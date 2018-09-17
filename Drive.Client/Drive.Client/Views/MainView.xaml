@@ -8,10 +8,18 @@
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Drive!"
-                VerticalOptions="CenterAndExpand" />
+            <Entry
+                BackgroundColor="AliceBlue"
+                HeightRequest="40"
+                HorizontalOptions="FillAndExpand"
+                Text="{Binding TargetValue}"
+                VerticalOptions="Start" />
+
+            <Button
+                Margin="20"
+                Command="{Binding TestCommand}"
+                HorizontalOptions="Center"
+                Text="search" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

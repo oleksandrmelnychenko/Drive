@@ -1,7 +1,7 @@
 ﻿namespace Drive.Client.Models.Rest.EndPoints {
     public class TestEndPoint {
 
-        private const string TEST_API_KEY = "api/v1/test?test={0}";
+        private const string TEST_API_KEY = "api/carid/getinfobycarnumber?carNumber={0}";
 
         public TestEndPoint(string defaultEndPoint) {
             BaseEndpoint = defaultEndPoint;

@@ -2,8 +2,10 @@
 
 namespace Drive.Client.Models.Rest {
     public class RestEndpoints {
-
-        public const string DEFAULT_ENDPOINT = "http://31.128.79.4:13828";
+        // valid
+        //public const string DEFAULT_ENDPOINT = "http://31.128.79.4:13828";
+        // test
+        public const string DEFAULT_ENDPOINT = "http://31.128.79.4:13823";
 
         /// <summary>
         /// Test api endpoints

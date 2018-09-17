@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Drive.Client.Services.CarsInfo;
 using Drive.Client.Services.Dialog;
 using Drive.Client.Services.Navigation;
 using Drive.Client.Services.RequestProvider;
@@ -27,13 +28,14 @@ namespace Drive.Client.ViewModels.Base {
             var builder = new ContainerBuilder();
 
             // View models.
-            builder.RegisterType<LoginViewModel>();
             builder.RegisterType<MainViewModel>();
+            builder.RegisterType<LoginViewModel>();
 
             // Services.
             builder.RegisterType<DialogService>().As<IDialogService>();
-            builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
+            builder.RegisterType<CarInfoService>().As<ICarInfoService>();
             builder.RegisterType<RequestProvider>().As<IRequestProvider>().SingleInstance();
+            builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
            
             // Factories.
 
