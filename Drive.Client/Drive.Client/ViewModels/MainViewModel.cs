@@ -39,6 +39,7 @@ namespace Drive.Client.ViewModels {
             _carInfoService = carInfoService;
 
             try {
+                //  Reactive search.
                 Observable.FromEventPattern<PropertyChangedEventArgs>(this, nameof(PropertyChanged))
                     .Where(x => x.EventArgs.PropertyName == nameof(TargetValue))
                     .Throttle(TimeSpan.FromMilliseconds(700))

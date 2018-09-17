@@ -22,7 +22,6 @@
   <ItemGroup>
     <Folder Include="Controls\" />
     <Folder Include="Resources\Images\" />
-    <Folder Include="Validations\" />
   </ItemGroup>
 
   <ItemGroup>
