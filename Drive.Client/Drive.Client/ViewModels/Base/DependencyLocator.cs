@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Drive.Client.Services.Dialog;
 using Drive.Client.Services.Navigation;
+using Drive.Client.Services.RequestProvider;
 using System;
 using System.Globalization;
 using System.Reflection;
@@ -32,6 +33,7 @@ namespace Drive.Client.ViewModels.Base {
             // Services.
             builder.RegisterType<DialogService>().As<IDialogService>();
             builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
+            builder.RegisterType<RequestProvider>().As<IRequestProvider>().SingleInstance();
            
             // Factories.
 
