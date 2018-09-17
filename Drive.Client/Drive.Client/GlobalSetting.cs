@@ -1,28 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Drive.Client.Helpers;
+using Drive.Client.Models.Identities;
+using Drive.Client.Models.Rest;
+using Newtonsoft.Json;
 
 namespace Drive.Client {
     public class GlobalSetting {
-        public const string DEFAULT_ENDPOINT = "http://31.128.79.4:13828/";
 
-        public static GlobalSetting Instance { get; } = new GlobalSetting();
+        //public const string DEFAULT_ENDPOINT = "http://31.128.79.4:13828";
 
+        /// <summary>
+        ///     ctor().
+        /// </summary>
         public GlobalSetting() {
-            BaseEndpoint = DEFAULT_ENDPOINT;
+            string jsonUserProfile = Settings.UserProfile;
+            UserProfile = (string.IsNullOrEmpty(jsonUserProfile)) ? new UserProfile() : JsonConvert.DeserializeObject<UserProfile>(jsonUserProfile);
         }
 
-        private string _baseEndpoint;
-        public string BaseEndpoint {
-            get { return _baseEndpoint; }
-            set {
-                _baseEndpoint = value;
-                UpdateEndpoint(_baseEndpoint);
-            }
-        }
+        public UserProfile UserProfile { get; private set; }
 
-        private void UpdateEndpoint(string baseEndpoint) {
-            
-        }
+        public RestEndpoints RestEndpoints { get; private set; } = new RestEndpoints();
     }
 }

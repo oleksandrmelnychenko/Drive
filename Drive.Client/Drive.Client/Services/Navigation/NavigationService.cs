@@ -34,9 +34,9 @@ namespace Drive.Client.Services.Navigation {
 
         public Task InitializeAsync(bool canLogin) {
             if (canLogin) {
-                return NavigateToAsync<MainViewModel>();
-            } else
                 return NavigateToAsync<LoginViewModel>();
+            } else
+                return NavigateToAsync<MainViewModel>();
         }
 
         public Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase =>

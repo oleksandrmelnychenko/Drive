@@ -26,7 +26,6 @@ namespace Drive.Client.ViewModels.Base {
         public ViewModelBase() {
             DialogService = DependencyLocator.Resolve<IDialogService>();
             NavigationService = DependencyLocator.Resolve<INavigationService>();
-            GlobalSetting.Instance.BaseEndpoint = Settings.UrlBase;
 
             BackCommand = new Command(async () => await NavigationService.GoBackAsync());
         }
