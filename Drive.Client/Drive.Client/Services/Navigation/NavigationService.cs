@@ -7,12 +7,23 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Drive.Client.Services.Navigation {
     public class NavigationService : INavigationService {
+
+        public bool IsBackButtonAvailable {
+            get {
+                if (Application.Current.MainPage is CustomNavigationView mainPage) {
+                    Page rootPage = mainPage.RootPage as MainView;
+                    if (rootPage != null) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
 
         public ViewModelBase PreviousPageViewModel {
             get {

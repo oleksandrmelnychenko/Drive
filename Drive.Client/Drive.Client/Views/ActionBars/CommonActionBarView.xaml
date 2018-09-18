@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<actionBars:ActionBarBaseView
+    x:Class="Drive.Client.Views.ActionBars.CommonActionBarView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:actionBars="clr-namespace:Drive.Client.Controls.ActionBars"
+    xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+
+    <Grid>
+        <!--  Logo  -->
+        <ContentView
+            HeightRequest="43"
+            HorizontalOptions="Start"
+            IsVisible="{Binding IsBackButtonAvailable, Converter={StaticResource Reverse_bool_converter}}"
+            VerticalOptions="Center"
+            WidthRequest="43">
+            <ffimage:CachedImage BackgroundColor="Black" />
+        </ContentView>
+
+        <!--  Back button  -->
+        <ContentView
+            HeightRequest="43"
+            HorizontalOptions="Start"
+            IsVisible="{Binding IsBackButtonAvailable}"
+            VerticalOptions="Center"
+            WidthRequest="43">
+            <ContentView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding BackCommand}" />
+            </ContentView.GestureRecognizers>
+            <ffimage:CachedImage BackgroundColor="LightBlue" />
+        </ContentView>
+    </Grid>
+</actionBars:ActionBarBaseView>

@@ -15,10 +15,6 @@ namespace Drive.Client.ViewModels {
         public override Task InitializeAsync(object navigationData) {
             BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken = "1111";
 
-            var tt = BaseSingleton<GlobalSetting>.Instance.UserProfile;
-
-            DialogService.ShowAlertAsync(tt.AccesToken, "accesToken", "good");
-
             return base.InitializeAsync(navigationData);
         }
     }

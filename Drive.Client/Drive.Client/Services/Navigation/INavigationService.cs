@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 namespace Drive.Client.Services.Navigation {
     public interface INavigationService {
 
+        bool IsBackButtonAvailable { get; }
+
         ViewModelBase LastPageViewModel { get; }
 
         ViewModelBase PreviousPageViewModel { get; }
