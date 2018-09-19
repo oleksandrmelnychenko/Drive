@@ -1,8 +1,121 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Drive.Client.App">
+<Application
+    x:Class="Drive.Client.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Drive.Client.Behaviors"
+    xmlns:converters="clr-namespace:Drive.Client.Converters">
     <Application.Resources>
+        <ResourceDictionary>
+            <!--  COLORS  -->
+            <Color x:Key="WhiteColor">#ffffff</Color>
+            <Color x:Key="BlackColor">#000000</Color>
+            <Color x:Key="ErrorColor">#ff5252</Color>
+            <Color x:Key="AndroidEntryBackgroundColor">Transparent</Color>
+            <Color x:Key="iOSEntryBackgroundColor">#FFFFFF</Color>
 
+            <OnPlatform
+                x:Key="EntryBackgroundColor"
+                x:TypeArguments="Color"
+                Android="{StaticResource AndroidEntryBackgroundColor}"
+                Default="Transparent"
+                iOS="{StaticResource iOSEntryBackgroundColor}" />
+
+            <!--  FONTS  -->
+
+            <!--  FONT SIZES  -->
+            <OnPlatform
+                x:Key="BaseButtonFontSize"
+                x:TypeArguments="x:Double"
+                Android="16"
+                Default="16"
+                iOS="18" />
+
+            <OnPlatform
+                x:Key="BaseFontSize"
+                x:TypeArguments="x:Double"
+                Android="15"
+                Default="15"
+                iOS="16" />
+
+            <OnPlatform
+                x:Key="LittleSize"
+                x:TypeArguments="x:Double"
+                Android="12"
+                Default="12"
+                iOS="11" />
+
+            <OnPlatform
+                x:Key="MidMediumSize"
+                x:TypeArguments="x:Double"
+                Android="14"
+                Default="14"
+                iOS="12" />
+
+            <OnPlatform
+                x:Key="MediumSize"
+                x:TypeArguments="x:Double"
+                Android="16"
+                Default="14"
+                iOS="14" />
+
+            <OnPlatform
+                x:Key="LargeSize"
+                x:TypeArguments="x:Double"
+                Android="18"
+                Default="16"
+                iOS="16" />
+
+            <OnPlatform
+                x:Key="LargerSize"
+                x:TypeArguments="x:Double"
+                Android="20"
+                Default="18"
+                iOS="18" />
+
+            <OnPlatform
+                x:Key="BigSize"
+                x:TypeArguments="x:Double"
+                Android="24"
+                Default="18"
+                iOS="20" />
+
+            <OnPlatform
+                x:Key="ExtraBigSize"
+                x:TypeArguments="x:Double"
+                Android="32"
+                Default="24"
+                iOS="24" />
+
+            <OnPlatform
+                x:Key="HugeSize"
+                x:TypeArguments="x:Double"
+                Android="48"
+                Default="48"
+                iOS="32" />
+
+            <OnPlatform
+                x:Key="BaseButtonFontAttributes"
+                x:TypeArguments="FontAttributes"
+                Android="None"
+                iOS="Bold" />
+
+            <!--  CONVERTERS  -->
+            <converters:BoolToGenericObjectConverter
+                x:Key="Reverse_bool_converter"
+                x:TypeArguments="x:Boolean"
+                FalseObject="True"
+                TrueObject="False" />
+
+
+            <!--  EXPLICIT STYLES  -->
+            <Style x:Key="ValidationErrorLabelStyle" TargetType="{x:Type Label}">
+                <Setter Property="TextColor" Value="{StaticResource ErrorColor}" />
+                <Setter Property="FontSize" Value="{StaticResource LittleSize}" />
+            </Style>
+
+            <!--  IMPLICIT STYLES  -->
+
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
