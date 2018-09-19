@@ -69,7 +69,8 @@
                 <Grid
                     x:Name="_bottomBarSpot_Grid"
                     Grid.Row="1"
-                    ColumnSpacing="0" />
+                    ColumnSpacing="0"
+                    HeightRequest="50" />
             </Grid>
 
             <!--  Menu  -->

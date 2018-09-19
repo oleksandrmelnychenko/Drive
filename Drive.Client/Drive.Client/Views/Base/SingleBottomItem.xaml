@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Drive.Client.Views.Base.SingleBottomItem"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
+
+    <Grid
+        x:Name="_rootContainer_Grid"
+        BackgroundColor="{StaticResource BottomBackgroundColor}"
+        RowSpacing="0"
+        VerticalOptions="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <controls:ExtendedContentView
+            BackgroundColor="{StaticResource DarkBlueColor}"
+            CornerRadius="{OnPlatform iOS=15,
+                                      Android=20,
+                                      Default=20}"
+            HeightRequest="30"
+            HorizontalOptions="Center"
+            IsVisible="{Binding HasBackgroundItem}"
+            Scale="{OnPlatform Android=1.2,
+                               iOS=1.3,
+                               Default=1.0}"
+            VerticalOptions="Center"
+            WidthRequest="30" />
+
+        <ffimageloadingsvg:SvgCachedImage
+            x:Name="_icon_CachedImage"
+            HeightRequest="20"
+            HorizontalOptions="Center"
+            Source="{Binding TabIcon}"
+            VerticalOptions="Center"
+            WidthRequest="20" />
+    </Grid>
+</ContentView>

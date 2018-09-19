@@ -22,7 +22,7 @@ namespace Drive.Client.Services.CarsInfo {
             await Task.Run(async () => {
                 List<CarInfo> carInfos = null;
 
-                string url = string.Format(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.TestEndPoint.TestRequest, carId);
+                string url = string.Format(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.CarInfoEndPoints.AutoCompleteEndpoint, carId);
 
                 try {
                     carInfos = await _requestProvider.GetAsync<List<CarInfo>>(url);

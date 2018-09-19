@@ -28,8 +28,13 @@ namespace Drive.Client.ViewModels.Base {
             var builder = new ContainerBuilder();
 
             // View models.
+            builder.RegisterType<HomeViewModel>();
             builder.RegisterType<MainViewModel>();
+            builder.RegisterType<PostViewModel>();
             builder.RegisterType<LoginViewModel>();
+            builder.RegisterType<SearchViewModel>();
+            builder.RegisterType<ProfileViewModel>();
+            builder.RegisterType<BookmarkViewModel>();
 
             // Services.
             builder.RegisterType<DialogService>().As<IDialogService>();

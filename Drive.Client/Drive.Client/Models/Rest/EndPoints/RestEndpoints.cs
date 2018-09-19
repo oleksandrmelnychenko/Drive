@@ -2,14 +2,12 @@
 
 namespace Drive.Client.Models.Rest {
     public class RestEndpoints {
-        // valid
-        //public const string DEFAULT_ENDPOINT = "http://31.128.79.4:13828";
-        // test
-        public const string DEFAULT_ENDPOINT = "http://31.128.79.4:13823";
+        
+        public const string DEFAULT_ENDPOINT = "http://31.128.79.4:13828/m";
 
         /// <summary>
-        /// Test api endpoints
+        /// Car info endpoints
         /// </summary>
-        public TestEndPoint TestEndPoint { get; private set; } = new TestEndPoint(DEFAULT_ENDPOINT);
+        public CarInfoEndPoints CarInfoEndPoints { get; private set; } = new CarInfoEndPoints(DEFAULT_ENDPOINT);
     }
 }

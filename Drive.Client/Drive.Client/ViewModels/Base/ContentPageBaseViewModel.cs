@@ -10,6 +10,12 @@ namespace Drive.Client.ViewModels.Base {
 
         private readonly Dictionary<Guid, bool> _busySequence = new Dictionary<Guid, bool>();
 
+        private List<IBottomBarTab> _bottomBarItems;
+        public List<IBottomBarTab> BottomBarItems {
+            get => _bottomBarItems;
+            protected set => SetProperty<List<IBottomBarTab>>(ref _bottomBarItems, value);
+        }
+
         ObservableCollection<PopupBaseViewModel> _popups = new ObservableCollection<PopupBaseViewModel>();
         public ObservableCollection<PopupBaseViewModel> Popups {
             get => _popups;

@@ -92,6 +92,8 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderers\EntryExtendedRenderer.cs" />
+    <Compile Include="Renderers\ExtendedContentViewRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -187,4 +189,5 @@
       <Name>Drive.Client</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
 </Project>
