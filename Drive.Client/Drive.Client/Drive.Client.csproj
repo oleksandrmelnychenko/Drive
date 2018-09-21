@@ -10,6 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\Services\**" />
+    <EmbeddedResource Remove="Models\Services\**" />
+    <None Remove="Models\Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resources\Images\Arrow.svg" />
     <None Remove="Resources\Images\drive_logo.svg" />
     <None Remove="Resources\Images\Home.svg" />

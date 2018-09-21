@@ -97,14 +97,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Models\Services\DeviceIdentifier\Location.cs" />
     <Compile Include="Renderers\BorderRenderer.cs" />
     <Compile Include="Renderers\EntryExtendedRenderer.cs" />
     <Compile Include="Renderers\ExtendedContentViewRenderer.cs" />
     <Compile Include="Renderers\Helpers\ValuesResolver.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\DeviceIdentifier.cs" />
+    <Compile Include="Services\Device.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
