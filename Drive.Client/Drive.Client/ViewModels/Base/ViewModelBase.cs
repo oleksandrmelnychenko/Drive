@@ -1,5 +1,6 @@
 ﻿using Drive.Client.Services.Dialog;
 using Drive.Client.Services.Navigation;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -7,6 +8,8 @@ using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.Base {
     public abstract class ViewModelBase : ExtendedBindableObject {
+
+        private static readonly string _SOURCE_URL = "https://data.gov.ua/";
 
         protected readonly IDialogService DialogService;
 
@@ -21,6 +24,10 @@ namespace Drive.Client.ViewModels.Base {
         }
 
         public ICommand BackCommand { get; protected set; }
+
+        public ICommand NavigateToSourceCommand => new Command((object param) => {
+            Device.OpenUri(new Uri(_SOURCE_URL));
+        });
 
         public ViewModelBase() {
             DialogService = DependencyLocator.Resolve<IDialogService>();
