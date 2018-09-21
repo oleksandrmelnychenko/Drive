@@ -53,14 +53,14 @@ namespace Drive.Client.Services.Automobile {
         /// <param name="value"></param>
         /// <param name="cancellationTokenSource"></param>
         /// <returns></returns>
-        public async Task<List<string>> GetCarNumbersAutocompleteAsync(string value, CancellationTokenSource cancellationTokenSource = null) =>
+        public async Task<List<DriveAutoSearch>> GetCarNumbersAutocompleteAsync(string value, CancellationTokenSource cancellationTokenSource = null) =>
             await Task.Run(async () => {
-                List<string> carNumbers = null;
+                List<DriveAutoSearch> carNumbers = null;
 
                 string url = string.Format(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.CarInfoEndPoints.AutoCompleteEndpoint, value);
 
                 try {
-                    carNumbers = await _requestProvider.GetAsync<List<string>>(url);
+                    carNumbers = await _requestProvider.GetAsync<List<DriveAutoSearch>>(url);
                 }
                 catch (ConnectivityException exc) {
                     throw exc;

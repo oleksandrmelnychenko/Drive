@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBaseView
+    x:Class="Drive.Client.Views.FoundDriveAutoView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:actionBars="clr-namespace:Drive.Client.Views.ActionBars"
+    xmlns:dependency="clr-namespace:Drive.Client.ViewModels.Base"
+    xmlns:viewBase="clr-namespace:Drive.Client.Views.Base"
+    dependency:DependencyLocator.AutoWireViewModel="True">
+
+    <viewBase:ContentPageBaseView.ActionBar>
+        <actionBars:CommonActionBarView />
+    </viewBase:ContentPageBaseView.ActionBar>
+
+    <viewBase:ContentPageBaseView.MainContent>
+        <Grid BackgroundColor="{StaticResource WhiteColor}" RowSpacing="0">
+            <ListView
+                x:Name="_list"
+                BackgroundColor="Transparent"
+                CachingStrategy="RecycleElement"
+                ItemSelected="ListView_ItemSelected"
+                ItemsSource="{Binding FoundCars}"
+                RowHeight="120"
+                SelectedItem="{Binding SelectedCar}"
+                SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid BackgroundColor="{StaticResource WhiteColor}" RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="1" />
+                                </Grid.RowDefinitions>
+
+                                <StackLayout
+                                    Grid.Row="0"
+                                    Padding="20,5"
+                                    Spacing="5"
+                                    VerticalOptions="Center">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="{StaticResource MediumSize}"
+                                        Text="{Binding NRegNew}"
+                                        VerticalOptions="CenterAndExpand" />
+                                    <Label
+                                        FontSize="{StaticResource MidMediumSize}"
+                                        Text="{Binding OperName}"
+                                        TextColor="{StaticResource TextColor}"
+                                        VerticalOptions="CenterAndExpand" />
+                                    <Label
+                                        FontSize="{StaticResource LittleSize}"
+                                        Text="{Binding Brand}"
+                                        TextColor="{StaticResource TextColor}"
+                                        VerticalOptions="CenterAndExpand" />
+                                </StackLayout>
+                                <BoxView Grid.Row="1" Color="{StaticResource TextColor}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+    </viewBase:ContentPageBaseView.MainContent>
+</viewBase:ContentPageBaseView>
+
+

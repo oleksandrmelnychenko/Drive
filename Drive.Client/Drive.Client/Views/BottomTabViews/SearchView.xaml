@@ -11,12 +11,13 @@
 
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="200" />
+            <RowDefinition Height="230" />
             <RowDefinition Height="0" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+        <!--  HIDE AUTOCOMPLETE  -->
         <BoxView
             Grid.Row="0"
             Grid.RowSpan="4"
@@ -55,8 +56,9 @@
                     <DataTemplate>
                         <stackList:CommonStackListItem IsOnSelectionVisualChangesEnabled="False" IsSelectable="True">
                             <Grid
+                                Padding="0,0,0,0"
                                 BackgroundColor="{StaticResource WhiteColor}"
-                                HeightRequest="40"
+                                HeightRequest="50"
                                 RowSpacing="0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="1" />
@@ -64,12 +66,23 @@
                                 </Grid.RowDefinitions>
 
                                 <BoxView Grid.Row="0" Color="{StaticResource SearchBackgroundColor}" />
-                                <Label
+
+                                <StackLayout
                                     Grid.Row="1"
-                                    FontSize="{StaticResource MediumSize}"
-                                    HorizontalOptions="Center"
-                                    Text="{Binding}"
-                                    VerticalOptions="Center" />
+                                    Padding="130,0,0,0"
+                                    Spacing="0"
+                                    VerticalOptions="Center">
+                                    <Label
+                                        FontSize="{StaticResource MediumSize}"
+                                        Text="{Binding Number}"
+                                        TextColor="{StaticResource BlackColor}"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontSize="{StaticResource LittleSize}"
+                                        Text="{Binding Brand}"
+                                        TextColor="{StaticResource TextColor}"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
                             </Grid>
                         </stackList:CommonStackListItem>
                     </DataTemplate>
@@ -107,7 +120,7 @@
         <Grid
             Grid.Row="2"
             BackgroundColor="{StaticResource SearchBackgroundColor}"
-            HeightRequest="50"
+            HeightRequest="60"
             RowSpacing="0"
             VerticalOptions="Center">
             <controls:EntryExtended
@@ -127,7 +140,7 @@
         </Grid>
 
         <!--  BUTTON  -->
-        <controls:ExtendedContentView
+        <!--<controls:ExtendedContentView
             Grid.Row="3"
             Margin="0,20,0,0"
             BackgroundColor="{StaticResource DarkBlueColor}"
@@ -140,6 +153,6 @@
                 Text="ЗНАЙТИ"
                 TextColor="{StaticResource WhiteColor}"
                 VerticalOptions="Center" />
-        </controls:ExtendedContentView>
+        </controls:ExtendedContentView>-->
     </Grid>
 </ContentView>

@@ -7,25 +7,27 @@
     xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
 
-    <Grid Padding="10">
+    <Grid BackgroundColor="{StaticResource WhiteColor}" HeightRequest="55">
         <!--  LOGO  -->
-        <ContentView HorizontalOptions="Center" VerticalOptions="Center">
+        <ContentView Padding="20,0" VerticalOptions="Fill">
             <ffimageloadingsvg:SvgCachedImage
+                HeightRequest="20"
                 HorizontalOptions="Center"
                 Source="resource://Drive.Client.Resources.Images.drive_logo.svg"
-                VerticalOptions="Center"
-                WidthRequest="100" />
+                VerticalOptions="Center" />
         </ContentView>
 
         <!--  BACK BUTTON  -->
         <ContentView
+            Padding="20,0"
             HorizontalOptions="Start"
             IsVisible="{Binding IsBackButtonAvailable, Converter={StaticResource Reverse_bool_converter}}"
-            VerticalOptions="Center">
+            VerticalOptions="Fill">
             <ContentView.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding BackCommand}" />
             </ContentView.GestureRecognizers>
             <ffimageloadingsvg:SvgCachedImage
+                HeightRequest="20"
                 HorizontalOptions="Center"
                 Source="resource://Drive.Client.Resources.Images.Arrow.svg"
                 VerticalOptions="Center" />

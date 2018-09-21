@@ -13,7 +13,7 @@
     </viewBase:ContentPageBaseView.ActionBar>
 
     <viewBase:ContentPageBaseView.MainContent>
-        <Grid>
+        <Grid BackgroundColor="{StaticResource WhiteColor}">
             <Label Text="Detail" />
         </Grid>
     </viewBase:ContentPageBaseView.MainContent>

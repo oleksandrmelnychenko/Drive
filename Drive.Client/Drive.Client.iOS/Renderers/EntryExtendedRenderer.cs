@@ -21,6 +21,8 @@ namespace Drive.Client.iOS.Renderers {
             if (e.NewElement != null) {
                 // Configure the control and subscribe to event handlers
             }
+
+            //this.AddDoneButton();
         }
 
         private void DisableNativeBorder() {
