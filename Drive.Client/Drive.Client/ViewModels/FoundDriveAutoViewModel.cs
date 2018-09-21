@@ -58,7 +58,6 @@ namespace Drive.Client.ViewModels {
             ActionBarViewModel = DependencyLocator.Resolve<CommonActionBarViewModel>();
 
             IsBackButtonAvailable = NavigationService.IsBackButtonAvailable;
-            
         }
 
         public override void Dispose() {
@@ -74,12 +73,15 @@ namespace Drive.Client.ViewModels {
 
                 if (TargetCarNumber.Length == AppConsts.LIMIT_CAR_NUMBER) {
                     GetDriveAutoDetail(TargetCarNumber);
+                } else {
+                    GetAllDriveAutoOrders(TargetCarNumber);
                 }
             }
 
             return base.InitializeAsync(navigationData);
         }
 
+       
         private async void GetDriveAutoDetail(string targetCarNumber) {
             ResetCancellationTokenSource(ref _getCarsCancellationTokenSource);
             CancellationTokenSource cancellationTokenSource = _getCarsCancellationTokenSource;
@@ -89,6 +91,30 @@ namespace Drive.Client.ViewModels {
 
             try {
                 IEnumerable<DriveAuto> result = await _driveAutoService.GetDriveAutoByNumberAsync(targetCarNumber, cancellationTokenSource);
+
+                if (result != null) {
+                    FoundCars = result.ToObservableCollection();
+                }
+            }
+            catch (OperationCanceledException ex) { Debug.WriteLine($"ERROR: {ex.Message}"); }
+            catch (ObjectDisposedException ex) { Debug.WriteLine($"ERROR: {ex.Message}"); }
+
+            catch (Exception ex) {
+                Debug.WriteLine($"ERROR: {ex.Message}");
+            }
+
+            SetBusy(busyKey, false);
+        }
+
+        private async void GetAllDriveAutoOrders(string targetCarNumber) {
+            ResetCancellationTokenSource(ref _getCarsCancellationTokenSource);
+            CancellationTokenSource cancellationTokenSource = _getCarsCancellationTokenSource;
+
+            Guid busyKey = Guid.NewGuid();
+            SetBusy(busyKey, true);
+
+            try {
+                IEnumerable<DriveAuto> result = await _driveAutoService.GetAllDriveAutosAsync(targetCarNumber, cancellationTokenSource);
 
                 if (result != null) {
                     FoundCars = result.ToObservableCollection();
