@@ -1,5 +1,6 @@
 ﻿using Drive.Client.Extensions;
 using Drive.Client.Helpers;
+using Drive.Client.Models.EntityModels;
 using Drive.Client.Services.Automobile;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.Views.BottomTabViews;
@@ -36,16 +37,16 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
             set { SetProperty(ref _targetValue, value); }
         }
 
-        string _resultSelected;
-        public string ResultSelected {
+        DriveAutoSearch _resultSelected;
+        public DriveAutoSearch ResultSelected {
             get { return _resultSelected; }
             set { SetProperty(ref _resultSelected, value);
-                NavigationService.NavigateToAsync<DriveAutoDetailsViewModel>(value);
+                NavigationService.NavigateToAsync<DriveAutoDetailsViewModel>(value.Number);
             }
         }
 
-        ObservableCollection<string> _foundResult;
-        public ObservableCollection<string> FoundResult {
+        ObservableCollection<DriveAutoSearch> _foundResult;
+        public ObservableCollection<DriveAutoSearch> FoundResult {
             get { return _foundResult; }
             set { SetProperty(ref _foundResult, value); }
         }
@@ -70,7 +71,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
                         var result = await SearchInfoAsync(TargetValue).ConfigureAwait(false);
 
                         if (cancellationToken.IsCancellationRequested) {
-                            return new string[] { };
+                            return new DriveAutoSearch[] { };
                         }
 
                         return result;
@@ -85,12 +86,12 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
             }
         }
 
-        private void ApplySearchResults(IEnumerable<string> foundResult) {
+        private void ApplySearchResults(IEnumerable<DriveAutoSearch> foundResult) {
             FoundResult = foundResult.ToObservableCollection();
         }
 
-        public async Task<IEnumerable<string>> SearchInfoAsync(string value) {
-            IEnumerable<string> carInfos = null;
+        public async Task<IEnumerable<DriveAutoSearch>> SearchInfoAsync(string value) {
+            IEnumerable<DriveAutoSearch> carInfos = null;
 
             if (!string.IsNullOrEmpty(value)) {
                 try {
@@ -101,7 +102,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
                     Debugger.Break();
                 }
             } else {
-                carInfos = new string[] { };
+                carInfos = new DriveAutoSearch[] { };
             }
 
             return carInfos;

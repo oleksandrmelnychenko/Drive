@@ -9,6 +9,6 @@ namespace Drive.Client.Services.Automobile {
 
         Task<List<DriveAuto>> GetDriveAutoByNumberAsync(string number, CancellationTokenSource cancellationTokenSource = default(CancellationTokenSource));
 
-        Task<List<string>> GetCarNumbersAutocompleteAsync(string value, CancellationTokenSource cancellationTokenSource = default(CancellationTokenSource));
+        Task<List<DriveAutoSearch>> GetCarNumbersAutocompleteAsync(string value, CancellationTokenSource cancellationTokenSource = default(CancellationTokenSource));
     }
 }
