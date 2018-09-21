@@ -31,6 +31,14 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
 
         private readonly IDriveAutoService _carInfoService;
 
+        public ICommand TestCommand => new Command(async () => await SearchInfoAsync(TargetValue));
+
+        public ICommand CleanSearchResultCommand => new Command(() => FoundResult?.Clear());
+
+        public ICommand InputCompleteCommand => new Command(() => {
+            Debugger.Break();
+        });
+
         string _targetValue;
         public string TargetValue {
             get { return _targetValue; }
@@ -58,10 +66,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
             get { return _foundResult; }
             set { SetProperty(ref _foundResult, value); }
         }
-
-        public ICommand TestCommand => new Command(async () => await SearchInfoAsync(TargetValue));
-
-        public ICommand CleanSearchResultCommand => new Command(() => FoundResult?.Clear());
 
         /// <summary>
         ///     ctor().

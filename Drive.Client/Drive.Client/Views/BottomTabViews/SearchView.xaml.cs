@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,10 @@ namespace Drive.Client.Views.BottomTabViews {
     public partial class SearchView : ContentView {
         public SearchView() {
             InitializeComponent();
+        }
+
+        private void EntryExtended_Completed(object sender, EventArgs e) {
+            Debugger.Break();
         }
 
         //private void _listResults_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) {
