@@ -10,6 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\Services\**" />
+    <EmbeddedResource Remove="Models\Services\**" />
+    <None Remove="Models\Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resources\Images\Arrow.svg" />
     <None Remove="Resources\Images\drive_logo.svg" />
     <None Remove="Resources\Images\Home.svg" />
@@ -38,7 +44,9 @@
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="System.Reactive" Version="4.0.0" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+    <PackageReference Include="Xam.Plugin.DeviceInfo" Version="4.0.0.13" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+    <PackageReference Include="Xamarin.Essentials" Version="0.10.0-preview" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.3.840" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.3.840" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.3.840" />

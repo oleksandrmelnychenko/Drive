@@ -1,9 +1,5 @@
-﻿using Drive.Client.Helpers;
-using Drive.Client.Services.Dialog;
+﻿using Drive.Client.Services.Dialog;
 using Drive.Client.Services.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -15,6 +11,8 @@ namespace Drive.Client.ViewModels.Base {
         protected readonly IDialogService DialogService;
 
         protected readonly INavigationService NavigationService;
+
+        public bool IsSubscribedOnAppEvents { get; private set; }
 
         bool _isBusy;
         public bool IsBusy {
@@ -32,18 +30,28 @@ namespace Drive.Client.ViewModels.Base {
         }
 
         public virtual Task InitializeAsync(object navigationData) {
-
+            if (!IsSubscribedOnAppEvents) {
+                OnSubscribeOnAppEvents();
+            }
 
             return Task.FromResult(false);
         }
 
         public virtual void Dispose() {
-
+            OnUnsubscribeFromAppEvents();
         }
 
         protected void ResetCancellationTokenSource(ref CancellationTokenSource cancellationTokenSource) {
             cancellationTokenSource.Cancel();
             cancellationTokenSource = new CancellationTokenSource();
+        }
+
+        protected virtual void OnSubscribeOnAppEvents() {
+            IsSubscribedOnAppEvents = true;
+        }
+
+        protected virtual void OnUnsubscribeFromAppEvents() {
+            IsSubscribedOnAppEvents = false;
         }
     }
 }

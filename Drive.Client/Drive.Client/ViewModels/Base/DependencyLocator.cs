@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Drive.Client.Services.Automobile;
+using Drive.Client.Services.DeviceUtil;
 using Drive.Client.Services.Dialog;
 using Drive.Client.Services.Navigation;
 using Drive.Client.Services.RequestProvider;
@@ -46,6 +47,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<DriveAutoService>().As<IDriveAutoService>();
             builder.RegisterType<RequestProvider>().As<IRequestProvider>().SingleInstance();
             builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
+            builder.RegisterType<DeviceUtilService>().As<IDeviceUtilService>().SingleInstance();
            
             // Factories.
 

@@ -9,5 +9,7 @@ namespace Drive.Client.Models.Rest {
         /// Car info endpoints
         /// </summary>
         public CarInfoEndPoints CarInfoEndPoints { get; private set; } = new CarInfoEndPoints(DEFAULT_ENDPOINT);
+
+        public ClientHardwareEndPoints ClientHardwareEndPoints { get; private set; } = new ClientHardwareEndPoints(DEFAULT_ENDPOINT);
     }
 }

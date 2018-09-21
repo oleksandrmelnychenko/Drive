@@ -2,12 +2,10 @@
 using Drive.Client.Helpers;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
-using System;
-using System.Collections.Generic;
+using Plugin.DeviceInfo;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Drive.Client.Services.RequestProvider {
@@ -18,14 +16,16 @@ namespace Drive.Client.Services.RequestProvider {
         public RequestProvider() {
             _client = new HttpClient();
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            ///
+            /// TODO: temporary implementation
+            /// 
+            _client.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue("uk-UA"));
+            _client.DefaultRequestHeaders.Add("DeviceId", CrossDeviceInfo.Current.Id);
         }
 
         /// <summary>
-        /// GET.
+        /// TODO: implement Base request/response models
         /// </summary>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="uri"></param>
-        /// <returns></returns>
         public async Task<TResult> GetAsync<TResult>(string uri) {
             //  Check internet connection.
             if (!CrossConnectivity.Current.IsConnected) throw new ConnectivityException(AppConsts.ERROR_INTERNET_CONNECTION);
@@ -41,6 +41,33 @@ namespace Drive.Client.Services.RequestProvider {
 
             return result;
         }
+
+        /// <summary>
+        /// TODO: implement Base request/response models
+        /// </summary>
+        public Task<TResponseValue> PostAsync<TResponseValue, TBodyContent>(string uri, TBodyContent bodyContent) =>
+            Task<TResponseValue>.Run(async () => {
+                if (!CrossConnectivity.Current.IsConnected) throw new ConnectivityException(AppConsts.ERROR_INTERNET_CONNECTION);
+
+                HttpContent content = null;
+
+                if (bodyContent != null) {
+                    string jObject = JsonConvert.SerializeObject(bodyContent);
+
+                    content = new StringContent(jObject);
+                    content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                }
+
+                HttpResponseMessage response = await _client.PostAsync(uri, content);
+
+                await HandleResponse(response);
+
+                string serialized = await response.Content.ReadAsStringAsync();
+
+                TResponseValue result = JsonConvert.DeserializeObject<TResponseValue>(serialized);
+
+                return result;
+            });
 
         private async Task HandleResponse(HttpResponseMessage response) {
             if (!response.IsSuccessStatusCode) {

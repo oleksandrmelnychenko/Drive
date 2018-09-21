@@ -1,12 +1,15 @@
 ﻿using Drive.Client.Helpers;
 using Drive.Client.Models.Identities;
-using Drive.Client.Services.DeviceIdentifer;
+using Drive.Client.Services.DependencyServices.Device;
 using Drive.Client.Services.Navigation;
 using Drive.Client.ViewModels.Base;
-using Drive.Client.Views;
 using Newtonsoft.Json;
+using Plugin.DeviceInfo;
+using Plugin.DeviceInfo.Abstractions;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -36,8 +39,6 @@ namespace Drive.Client {
 
         protected override async void OnStart() {
             base.OnStart();
-
-            string deviceId = DependencyService.Get<IDeviceIdentifier>().GetDeviceId();
 
             await InitNavigation();
 

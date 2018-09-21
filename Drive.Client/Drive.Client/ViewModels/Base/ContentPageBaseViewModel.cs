@@ -13,7 +13,10 @@ namespace Drive.Client.ViewModels.Base {
         private List<IBottomBarTab> _bottomBarItems;
         public List<IBottomBarTab> BottomBarItems {
             get => _bottomBarItems;
-            protected set => SetProperty<List<IBottomBarTab>>(ref _bottomBarItems, value);
+            protected set {
+                _bottomBarItems?.ForEach(bottomItem => bottomItem.Dispose());
+                SetProperty<List<IBottomBarTab>>(ref _bottomBarItems, value);
+            }
         }
 
         ObservableCollection<PopupBaseViewModel> _popups = new ObservableCollection<PopupBaseViewModel>();
@@ -70,7 +73,8 @@ namespace Drive.Client.ViewModels.Base {
         public void SetBusy(Guid guidKey, bool isBusy) {
             if (_busySequence.ContainsKey(guidKey)) {
                 _busySequence[guidKey] = isBusy;
-            } else {
+            }
+            else {
                 _busySequence.Add(guidKey, isBusy);
             }
 
