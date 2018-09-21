@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Drive.Client.Views
-{
+namespace Drive.Client.Views.BottomTabViews {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ProfileView : ContentView
+	public partial class HomeView : ContentView
 	{
-		public ProfileView ()
+		public HomeView ()
 		{
 			InitializeComponent ();
 		}

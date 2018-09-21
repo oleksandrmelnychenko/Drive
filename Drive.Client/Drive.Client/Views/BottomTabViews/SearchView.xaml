@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Drive.Client.Views.BottomTabViews.SearchView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Drive.Client.Behaviors"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:stackList="clr-namespace:Drive.Client.Controls.Stacklist"
+    BackgroundColor="{StaticResource WhiteColor}">
+
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200" />
+            <RowDefinition Height="0" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <BoxView
+            Grid.Row="0"
+            Grid.RowSpan="4"
+            Color="Transparent">
+            <BoxView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding CleanSearchResultCommand}" NumberOfTapsRequired="1" />
+            </BoxView.GestureRecognizers>
+        </BoxView>
+
+        <!--  LOGO  -->
+        <ffimageloadingsvg:SvgCachedImage
+            Grid.Row="0"
+            Margin="0,0"
+            HorizontalOptions="Center"
+            Source="resource://Drive.Client.Resources.Images.drive_logo.svg"
+            VerticalOptions="Center"
+            WidthRequest="200" />
+
+        <!--  TITLE  -->
+        <Label
+            Grid.Row="0"
+            Margin="0,20"
+            FontSize="{StaticResource LittleSize}"
+            HorizontalOptions="Center"
+            Text="ДЕРЖАВНИЙ ТРАНСПОРТНИЙ РЕЄСТР"
+            TextColor="{StaticResource TitleColor}"
+            VerticalOptions="End" />
+
+        <ScrollView VerticalOptions="End">
+            <stackList:StackList
+                Grid.Row="0"
+                ItemsSource="{Binding FoundResult}"
+                SelectedItem="{Binding ResultSelected, Mode=TwoWay}"
+                VerticalOptions="End">
+                <stackList:StackList.ItemTemplate>
+                    <DataTemplate>
+                        <stackList:CommonStackListItem IsOnSelectionVisualChangesEnabled="False" IsSelectable="True">
+                            <Grid
+                                BackgroundColor="{StaticResource WhiteColor}"
+                                HeightRequest="40"
+                                RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <BoxView Grid.Row="0" Color="{StaticResource SearchBackgroundColor}" />
+                                <Label
+                                    Grid.Row="1"
+                                    FontSize="{StaticResource MediumSize}"
+                                    HorizontalOptions="Center"
+                                    Text="{Binding}"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                        </stackList:CommonStackListItem>
+                    </DataTemplate>
+                </stackList:StackList.ItemTemplate>
+            </stackList:StackList>
+        </ScrollView>
+        <!--  SEARCH RESULT  -->
+        <!--<ListView
+            x:Name="_listResults"
+            Grid.Row="1"
+            BackgroundColor="Transparent"
+            CachingStrategy="RecycleElement"
+            FlowDirection="LeftToRight"
+            ItemAppearing="_listResults_ItemAppearing"
+            ItemsSource="{Binding FoundResult}"
+            PropertyChanged="_listResults_PropertyChanged"
+            RowHeight="40"
+            SeparatorVisibility="None"
+            VerticalOptions="End">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="0,0,0,0" BackgroundColor="{StaticResource WhiteColor}">
+                            <Label
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding}"
+                                VerticalOptions="Center" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>-->
+
+        <!--  SEARCH  -->
+        <Grid
+            Grid.Row="2"
+            BackgroundColor="{StaticResource SearchBackgroundColor}"
+            HeightRequest="50"
+            RowSpacing="0"
+            VerticalOptions="Center">
+            <controls:EntryExtended
+                Margin="0,0,0,0"
+                FontSize="{StaticResource LargerSize}"
+                HorizontalOptions="Fill"
+                HorizontalTextAlignment="Center"
+                Text="{Binding TargetValue}"
+                TextColor="{StaticResource TextColor}" />
+            <ffimageloadingsvg:SvgCachedImage
+                Margin="10,0,0,0"
+                HeightRequest="15"
+                HorizontalOptions="Start"
+                Source="resource://Drive.Client.Resources.Images.Search.svg"
+                VerticalOptions="Center"
+                WidthRequest="15" />
+        </Grid>
+
+        <!--  BUTTON  -->
+        <controls:ExtendedContentView
+            Grid.Row="3"
+            Margin="0,20,0,0"
+            BackgroundColor="{StaticResource DarkBlueColor}"
+            HeightRequest="50"
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+            WidthRequest="200">
+            <Label
+                HorizontalOptions="Center"
+                Text="ЗНАЙТИ"
+                TextColor="{StaticResource WhiteColor}"
+                VerticalOptions="Center" />
+        </controls:ExtendedContentView>
+    </Grid>
+</ContentView>

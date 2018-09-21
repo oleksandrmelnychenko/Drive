@@ -128,7 +128,7 @@ namespace Drive.Client.Views.Base {
                             }
 
                             if (queueNewValue.Any()) {
-                                declarer.SelectedBottomItemIndex = 1;
+                                declarer.SelectedBottomItemIndex = 0;
                             }
                         }
                     }
@@ -158,6 +158,7 @@ namespace Drive.Client.Views.Base {
             SetBinding(IsRefreshingProperty, new Binding(_IS_REFRESHING_BINDING_PATH, BindingMode.TwoWay));
             SetBinding(RefreshCommandProperty, new Binding(_REFRESH_COMMAND_BINDING_PATH, BindingMode.OneWay));
             SetBinding(BottomBarItemsProperty, new Binding(nameof(BottomBarItems), BindingMode.OneWay));
+            SetBinding(SelectedBottomItemIndexProperty, new Binding(nameof(SelectedBottomItemIndex), BindingMode.TwoWay));
 
             //_mainContentSpot_PullToRefreshLayout.SetBinding(PullToRefreshLayout.IsPullToRefreshEnabledProperty, new Binding(_IS_PULL_TO_REFRESH_ENABLED_BINDING_PATH, mode: BindingMode.OneWay, source: this));
             //_mainContentSpot_PullToRefreshLayout.SetBinding(PullToRefreshLayout.IsRefreshingProperty, new Binding(_IS_REFRESHING_BINDING_PATH, mode: BindingMode.TwoWay, source: this));

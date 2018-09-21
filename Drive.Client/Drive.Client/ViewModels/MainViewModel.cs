@@ -1,8 +1,10 @@
 ﻿using Drive.Client.ViewModels.Base;
+using Drive.Client.ViewModels.BottomTabViewModels;
 using Drive.Client.Views;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels {
     public sealed class MainViewModel : ContentPageBaseViewModel {
@@ -20,7 +22,6 @@ namespace Drive.Client.ViewModels {
         }
 
         public override Task InitializeAsync(object navigationData) {
-
 
             return base.InitializeAsync(navigationData);
         }

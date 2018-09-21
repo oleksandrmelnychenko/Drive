@@ -20,7 +20,12 @@ namespace Drive.Client.Services.RequestProvider {
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-
+        /// <summary>
+        /// GET.
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="uri"></param>
+        /// <returns></returns>
         public async Task<TResult> GetAsync<TResult>(string uri) {
             //  Check internet connection.
             if (!CrossConnectivity.Current.IsConnected) throw new ConnectivityException(AppConsts.ERROR_INTERNET_CONNECTION);

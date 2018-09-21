@@ -4,30 +4,31 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:actionBars="clr-namespace:Drive.Client.Controls.ActionBars"
-    xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms">
+    xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
 
-    <Grid>
-        <!--  Logo  -->
-        <ContentView
-            HeightRequest="43"
-            HorizontalOptions="Start"
-            IsVisible="{Binding IsBackButtonAvailable, Converter={StaticResource Reverse_bool_converter}}"
-            VerticalOptions="Center"
-            WidthRequest="43">
-            <ffimage:CachedImage BackgroundColor="Black" />
+    <Grid Padding="10">
+        <!--  LOGO  -->
+        <ContentView HorizontalOptions="Center" VerticalOptions="Center">
+            <ffimageloadingsvg:SvgCachedImage
+                HorizontalOptions="Center"
+                Source="resource://Drive.Client.Resources.Images.drive_logo.svg"
+                VerticalOptions="Center"
+                WidthRequest="100" />
         </ContentView>
 
-        <!--  Back button  -->
+        <!--  BACK BUTTON  -->
         <ContentView
-            HeightRequest="43"
             HorizontalOptions="Start"
-            IsVisible="{Binding IsBackButtonAvailable}"
-            VerticalOptions="Center"
-            WidthRequest="43">
+            IsVisible="{Binding IsBackButtonAvailable, Converter={StaticResource Reverse_bool_converter}}"
+            VerticalOptions="Center">
             <ContentView.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding BackCommand}" />
             </ContentView.GestureRecognizers>
-            <ffimage:CachedImage BackgroundColor="LightBlue" />
+            <ffimageloadingsvg:SvgCachedImage
+                HorizontalOptions="Center"
+                Source="resource://Drive.Client.Resources.Images.Arrow.svg"
+                VerticalOptions="Center" />
         </ContentView>
     </Grid>
 </actionBars:ActionBarBaseView>

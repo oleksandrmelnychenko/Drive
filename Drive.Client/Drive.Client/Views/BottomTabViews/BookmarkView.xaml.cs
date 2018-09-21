@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Drive.Client.Views
-{
+namespace Drive.Client.Views.BottomTabViews {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class HomeView : ContentView
+	public partial class BookmarkView : ContentView
 	{
-		public HomeView ()
+		public BookmarkView ()
 		{
 			InitializeComponent ();
 		}

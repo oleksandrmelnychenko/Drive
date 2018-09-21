@@ -28,6 +28,12 @@ namespace Drive.Client.ViewModels.Base {
             protected set => SetProperty(ref _refreshCommand, value);
         }
 
+        int _electedBottomItemIndex;
+        public int SelectedBottomItemIndex {
+            get => _electedBottomItemIndex;
+            protected set => SetProperty(ref _electedBottomItemIndex, value);
+        }
+
         bool _isPullToRefreshEnabled;
         public bool IsPullToRefreshEnabled {
             get => _isPullToRefreshEnabled;

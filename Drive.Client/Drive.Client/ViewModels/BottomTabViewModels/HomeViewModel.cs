@@ -1,10 +1,11 @@
 ﻿using Drive.Client.Helpers;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.Views;
+using Drive.Client.Views.BottomTabViews;
 using System;
 using System.Threading.Tasks;
 
-namespace Drive.Client.ViewModels {
+namespace Drive.Client.ViewModels.BottomTabViewModels {
     public sealed class HomeViewModel : NestedViewModel, IBottomBarTab {
 
         public bool IsBudgeVisible { get; private set; }

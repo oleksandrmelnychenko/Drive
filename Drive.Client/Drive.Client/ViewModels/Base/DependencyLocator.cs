@@ -1,8 +1,10 @@
 ﻿using Autofac;
-using Drive.Client.Services.CarsInfo;
+using Drive.Client.Services.Automobile;
 using Drive.Client.Services.Dialog;
 using Drive.Client.Services.Navigation;
 using Drive.Client.Services.RequestProvider;
+using Drive.Client.ViewModels.ActionBars;
+using Drive.Client.ViewModels.BottomTabViewModels;
 using System;
 using System.Globalization;
 using System.Reflection;
@@ -35,10 +37,12 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<SearchViewModel>();
             builder.RegisterType<ProfileViewModel>();
             builder.RegisterType<BookmarkViewModel>();
+            builder.RegisterType<CommonActionBarViewModel>();
+            builder.RegisterType<DriveAutoDetailsViewModel>();
 
             // Services.
             builder.RegisterType<DialogService>().As<IDialogService>();
-            builder.RegisterType<CarInfoService>().As<ICarInfoService>();
+            builder.RegisterType<DriveAutoService>().As<IDriveAutoService>();
             builder.RegisterType<RequestProvider>().As<IRequestProvider>().SingleInstance();
             builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
            

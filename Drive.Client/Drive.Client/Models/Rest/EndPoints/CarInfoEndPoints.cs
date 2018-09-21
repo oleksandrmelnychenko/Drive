@@ -5,6 +5,8 @@
 
         private const string AUTOCOMPLETE_API_KEY = "api/v1/auto/search/numbers?value={0}";
 
+        private const string GET_ALL_API_KEY = "api/v1/auto/get/all?number={0}";
+
         public CarInfoEndPoints(string defaultEndPoint) {
             BaseEndpoint = defaultEndPoint;
         }
@@ -18,13 +20,16 @@
             }
         }
 
-        public string GetByNumberEndPoint { get; set; }
+        public string GetByNumberEndPoint { get; private set; }
 
-        public string AutoCompleteEndpoint { get; set; }
+        public string AutoCompleteEndpoint { get; private set; }
+
+        public string GetAllCarInfoEndPoint { get; set; }
 
         private void UpdateEndpoint(string baseEndpoint) {
             GetByNumberEndPoint = $"{baseEndpoint}/{GET_BY_NUMBER_API_KEY}";
             AutoCompleteEndpoint = $"{baseEndpoint}/{AUTOCOMPLETE_API_KEY}";
+            GetAllCarInfoEndPoint = $"{baseEndpoint}/{GET_ALL_API_KEY}";
         }
     }
 }
