@@ -10,6 +10,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\Arrow.svg" />
+    <None Remove="Resources\Images\drive_logo.svg" />
+    <None Remove="Resources\Images\Home.svg" />
+    <None Remove="Resources\Images\Plus.svg" />
+    <None Remove="Resources\Images\Save.svg" />
+    <None Remove="Resources\Images\Search.svg" />
+    <None Remove="Resources\Images\User.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Images\Arrow.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Images\drive_logo.svg" />
+    <EmbeddedResource Include="Resources\Images\Home.svg" />
+    <EmbeddedResource Include="Resources\Images\Plus.svg" />
+    <EmbeddedResource Include="Resources\Images\Save.svg" />
+    <EmbeddedResource Include="Resources\Images\Search.svg" />
+    <EmbeddedResource Include="Resources\Images\User.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
     <PackageReference Include="Autofac" Version="4.8.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
@@ -24,8 +47,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Images\" />
     <Folder Include="Views\Popups\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\DriveAutoDetailsView.xaml.cs">
+      <DependentUpon>DriveAutoDetailsView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -41,13 +69,34 @@
     <EmbeddedResource Update="Views\Base\ContentPageBaseView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Base\SingleBottomItem.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\BottomTabViews\BookmarkView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DriveAutoDetailsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\CustomNavigationView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\BottomTabViews\HomeView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MainView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\BottomTabViews\PostView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\BottomTabViews\ProfileView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\BottomTabViews\SearchView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

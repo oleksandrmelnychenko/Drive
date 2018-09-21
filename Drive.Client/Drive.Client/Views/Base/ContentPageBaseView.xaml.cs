@@ -1,5 +1,9 @@
 ﻿using Drive.Client.Controls.ActionBars;
 using Drive.Client.Controls.Popups;
+using Drive.Client.ViewModels.Base;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -7,12 +11,17 @@ using Xamarin.Forms.Xaml;
 namespace Drive.Client.Views.Base {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ContentPageBaseView : ContentPage {
+
         private static readonly string _BUSY_BINDING_PATH = "IsBusy";
+
         private static readonly string _IS_POPUP_VISIBLE_BINDING_PATH = "IsPopupsVisible";
+
         private static readonly string _POPUPS_BINDING_PATH = "Popups";
 
         private static readonly string _IS_PULL_TO_REFRESH_ENABLED_BINDING_PATH = "IsPullToRefreshEnabled";
+
         private static readonly string _IS_REFRESHING_BINDING_PATH = "IsRefreshing";
+
         private static readonly string _REFRESH_COMMAND_BINDING_PATH = "RefreshCommand";
 
         public static readonly BindableProperty MainContentProperty =
@@ -92,7 +101,48 @@ namespace Drive.Client.Views.Base {
                 typeof(ICommand),
                 typeof(ContentPageBaseView));
 
+        public static readonly BindableProperty BottomBarItemsProperty =
+            BindableProperty.Create(nameof(BottomBarItems),
+                typeof(IEnumerable<IBottomBarTab>),
+                typeof(ContentPageBaseView),
+                propertyChanged: (BindableObject bindable, object oldValue, object newValue) => {
+                    if (bindable is ContentPageBaseView declarer) {
+                        declarer._bottomBarSpot_Grid.Children.Clear();
+                        declarer._bottomBarSpot_Grid.ColumnDefinitions.Clear();
+                        declarer._contentBox_Grid.Children.Clear();
+
+                        if (newValue is IEnumerable<IBottomBarTab> queueNewValue) {
+                            for (int i = 0; i < queueNewValue.Count(); i++) {
+                                SingleBottomItem singleVisualBottomItem = new SingleBottomItem();
+                                singleVisualBottomItem.TabIndex = i;
+                                singleVisualBottomItem.BindingContext = queueNewValue.ElementAt(i);
+                                singleVisualBottomItem.GestureRecognizers.Add(declarer._bottomItemTapGestureRecognizer);
+                                Grid.SetColumn(singleVisualBottomItem, i);
+
+                                declarer._bottomBarSpot_Grid.ColumnDefinitions.Add(new ColumnDefinition() {
+                                    Width = new GridLength(1, GridUnitType.Star)
+                                });
+                                declarer._bottomBarSpot_Grid.Children.Add(singleVisualBottomItem);
+
+                                declarer._contentBox_Grid.Children.Add(singleVisualBottomItem.AppropriateItemContentView);
+                            }
+
+                            if (queueNewValue.Any()) {
+                                declarer.SelectedBottomItemIndex = 0;
+                            }
+                        }
+                    }
+                });
+
+        public static readonly BindableProperty SelectedBottomItemIndexProperty =
+            BindableProperty.Create(nameof(SelectedBottomItemIndex),
+                typeof(int),
+                typeof(ContentPageBaseView),
+                defaultValue: -1,
+                propertyChanged: (BindableObject bindable, object oldValue, object newValue) => (bindable as ContentPageBaseView)?.OnSelectedBottomItemIndex());
+
         private TapGestureRecognizer _popupBlockBackingTapGesture = new TapGestureRecognizer();
+        private TapGestureRecognizer _bottomItemTapGestureRecognizer = new TapGestureRecognizer();
 
         public ContentPageBaseView() {
             InitializeComponent();
@@ -100,12 +150,15 @@ namespace Drive.Client.Views.Base {
             _popupBlockBackingTapGesture.Command = new Command(() => {
                 IsPopupVisible = false;
             });
+            _bottomItemTapGestureRecognizer.Tapped += OnBottomItemTapGestureRecognizerTapped;
 
             SetBinding(IsBusyAwaitingProperty, new Binding(_BUSY_BINDING_PATH));
             SetBinding(IsPopupVisibleProperty, new Binding(_IS_POPUP_VISIBLE_BINDING_PATH, BindingMode.TwoWay));
             SetBinding(IsPullToRefreshEnabledProperty, new Binding(_IS_PULL_TO_REFRESH_ENABLED_BINDING_PATH, BindingMode.OneWay));
             SetBinding(IsRefreshingProperty, new Binding(_IS_REFRESHING_BINDING_PATH, BindingMode.TwoWay));
             SetBinding(RefreshCommandProperty, new Binding(_REFRESH_COMMAND_BINDING_PATH, BindingMode.OneWay));
+            SetBinding(BottomBarItemsProperty, new Binding(nameof(BottomBarItems), BindingMode.OneWay));
+            SetBinding(SelectedBottomItemIndexProperty, new Binding(nameof(SelectedBottomItemIndex), BindingMode.TwoWay));
 
             //_mainContentSpot_PullToRefreshLayout.SetBinding(PullToRefreshLayout.IsPullToRefreshEnabledProperty, new Binding(_IS_PULL_TO_REFRESH_ENABLED_BINDING_PATH, mode: BindingMode.OneWay, source: this));
             //_mainContentSpot_PullToRefreshLayout.SetBinding(PullToRefreshLayout.IsRefreshingProperty, new Binding(_IS_REFRESHING_BINDING_PATH, mode: BindingMode.TwoWay, source: this));
@@ -119,6 +172,15 @@ namespace Drive.Client.Views.Base {
             set { SetValue(RefreshCommandProperty, value); }
         }
 
+        public IEnumerable<IBottomBarTab> BottomBarItems {
+            get => (IEnumerable<IBottomBarTab>)GetValue(BottomBarItemsProperty);
+            set => SetValue(BottomBarItemsProperty, value);
+        }
+
+        public int SelectedBottomItemIndex {
+            get => (int)GetValue(SelectedBottomItemIndexProperty);
+            set => SetValue(SelectedBottomItemIndexProperty, value);
+        }
 
         public bool IsRefreshing {
             get => (bool)GetValue(IsRefreshingProperty);
@@ -148,6 +210,22 @@ namespace Drive.Client.Views.Base {
         public bool IsBusyAwaiting {
             get => (bool)GetValue(IsBusyAwaitingProperty);
             set => SetValue(IsBusyAwaitingProperty, value);
+        }
+
+        private void OnSelectedBottomItemIndex() {
+            IEnumerable<SingleBottomItem> bottomItems = _bottomBarSpot_Grid.Children.OfType<SingleBottomItem>();
+
+            for (int i = 0; i < bottomItems.Count(); i++) {
+                bottomItems.ElementAt(i).IsSelected = (i == SelectedBottomItemIndex);
+
+                bottomItems.ElementAt(i).AppropriateItemContentView.TranslationX = (bottomItems.ElementAt(i).IsSelected) ? 0 : short.MaxValue;
+            }
+        }
+
+        private void OnBottomItemTapGestureRecognizerTapped(object sender, EventArgs e) {
+            if (SelectedBottomItemIndex != ((SingleBottomItem)sender).TabIndex) {
+                SelectedBottomItemIndex = ((SingleBottomItem)sender).TabIndex;
+            }
         }
     }
 }

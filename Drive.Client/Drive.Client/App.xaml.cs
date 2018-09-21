@@ -1,5 +1,6 @@
 ﻿using Drive.Client.Helpers;
 using Drive.Client.Models.Identities;
+using Drive.Client.Services.DeviceIdentifer;
 using Drive.Client.Services.Navigation;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.Views;
@@ -35,6 +36,8 @@ namespace Drive.Client {
 
         protected override async void OnStart() {
             base.OnStart();
+
+            string deviceId = DependencyService.Get<IDeviceIdentifier>().GetDeviceId();
 
             await InitNavigation();
 

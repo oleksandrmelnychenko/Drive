@@ -10,6 +10,12 @@ namespace Drive.Client.ViewModels.Base {
 
         private readonly Dictionary<Guid, bool> _busySequence = new Dictionary<Guid, bool>();
 
+        private List<IBottomBarTab> _bottomBarItems;
+        public List<IBottomBarTab> BottomBarItems {
+            get => _bottomBarItems;
+            protected set => SetProperty<List<IBottomBarTab>>(ref _bottomBarItems, value);
+        }
+
         ObservableCollection<PopupBaseViewModel> _popups = new ObservableCollection<PopupBaseViewModel>();
         public ObservableCollection<PopupBaseViewModel> Popups {
             get => _popups;
@@ -20,6 +26,12 @@ namespace Drive.Client.ViewModels.Base {
         public ICommand RefreshCommand {
             get => _refreshCommand;
             protected set => SetProperty(ref _refreshCommand, value);
+        }
+
+        int _electedBottomItemIndex;
+        public int SelectedBottomItemIndex {
+            get => _electedBottomItemIndex;
+            protected set => SetProperty(ref _electedBottomItemIndex, value);
         }
 
         bool _isPullToRefreshEnabled;

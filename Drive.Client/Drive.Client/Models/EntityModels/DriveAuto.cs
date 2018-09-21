@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
 
 namespace Drive.Client.Models.EntityModels {
-    public class CarInfo {
+    public class DriveAuto {
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("person")]
         public string Person { get; set; }

@@ -44,10 +44,7 @@ namespace Drive.Client.Services.Navigation {
         }
 
         public Task InitializeAsync(bool canLogin) {
-            if (canLogin) {
-                return NavigateToAsync<LoginViewModel>();
-            } else
-                return NavigateToAsync<MainViewModel>();
+            return NavigateToAsync<MainViewModel>();
         }
 
         public Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase =>
@@ -136,7 +133,7 @@ namespace Drive.Client.Services.Navigation {
 
                 return Activator.CreateInstance(pageType) as Page;
             }
-            catch (Exception) {
+            catch (Exception exc) {
                 Debugger.Break();
                 throw;
             }

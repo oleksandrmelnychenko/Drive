@@ -4,9 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels {
     public sealed class LoginViewModel : ViewModelBase {
+
+        public ICommand NavigateToViewCommand => new Command(async () => await NavigationService.NavigateToAsync<MainViewModel>());
 
         public LoginViewModel() {
             
