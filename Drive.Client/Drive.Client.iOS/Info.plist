@@ -32,6 +32,8 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>CFBundleShortVersionString</key>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>This app needs access location when open.</string>
 	<string>1.01</string>
 	<key>CFBundleVersion</key>
 	<string>1.01</string>
