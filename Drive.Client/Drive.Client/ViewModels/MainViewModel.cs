@@ -1,13 +1,11 @@
 ﻿using Drive.Client.Services.DeviceUtil;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.BottomTabViewModels;
-using Drive.Client.Views;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels {
     public sealed class MainViewModel : ContentPageBaseViewModel {
@@ -51,13 +49,9 @@ namespace Drive.Client.ViewModels {
 
             try {
                 string deviceRegistrationCompletion = await _deviceUtilService.RegisterClientDeviceInfoAsync(await _deviceUtilService.GetDeviceInfoAsync(cancellationTokenSource), cancellationTokenSource);
-
-                Debugger.Break();
             }
             catch (Exception exc) {
                 Debugger.Break();
-
-                Console.WriteLine(exc.Message);
             }
         }
     }

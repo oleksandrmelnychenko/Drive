@@ -2,6 +2,7 @@
 using Drive.Client.Helpers;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
+using Plugin.DeviceInfo;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -9,8 +10,6 @@ using System.Threading.Tasks;
 
 namespace Drive.Client.Services.RequestProvider {
     public class RequestProvider : IRequestProvider {
-
-        private static readonly string DEVICE_ID_HEADER_KEY = "DeviceId";
 
         private readonly HttpClient _client;
 
@@ -21,6 +20,7 @@ namespace Drive.Client.Services.RequestProvider {
             /// TODO: temporary implementation
             /// 
             _client.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue("uk-UA"));
+            _client.DefaultRequestHeaders.Add("DeviceId", CrossDeviceInfo.Current.Id);
         }
 
         /// <summary>

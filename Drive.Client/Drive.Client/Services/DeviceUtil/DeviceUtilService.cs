@@ -26,7 +26,6 @@ namespace Drive.Client.Services.DeviceUtil {
                 }
                 catch (Exception exc) {
                     Debugger.Break();
-
                     throw;
                 }
 
