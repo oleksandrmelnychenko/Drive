@@ -40,8 +40,16 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         DriveAutoSearch _resultSelected;
         public DriveAutoSearch ResultSelected {
             get { return _resultSelected; }
-            set { SetProperty(ref _resultSelected, value);
-                NavigationService.NavigateToAsync<DriveAutoDetailsViewModel>(value.Number);
+            set {
+                SetProperty(ref _resultSelected, value);
+                OnResulSelected(value);
+            }
+        }
+
+        private async void OnResulSelected(DriveAutoSearch value) {
+            if (value != null) {
+                await NavigationService.NavigateToAsync<FoundDriveAutoViewModel>(value.Number);
+                ResultSelected = null;
             }
         }
 

@@ -37,6 +37,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<SearchViewModel>();
             builder.RegisterType<ProfileViewModel>();
             builder.RegisterType<BookmarkViewModel>();
+            builder.RegisterType<FoundDriveAutoViewModel>();
             builder.RegisterType<CommonActionBarViewModel>();
             builder.RegisterType<DriveAutoDetailsViewModel>();
 

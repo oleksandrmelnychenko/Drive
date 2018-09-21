@@ -4,6 +4,7 @@ using Drive.Client.Services.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -38,6 +39,11 @@ namespace Drive.Client.ViewModels.Base {
 
         public virtual void Dispose() {
 
+        }
+
+        protected void ResetCancellationTokenSource(ref CancellationTokenSource cancellationTokenSource) {
+            cancellationTokenSource.Cancel();
+            cancellationTokenSource = new CancellationTokenSource();
         }
     }
 }

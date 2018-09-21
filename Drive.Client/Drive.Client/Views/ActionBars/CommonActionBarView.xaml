@@ -7,7 +7,7 @@
     xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
 
-    <Grid HeightRequest="55">
+    <Grid BackgroundColor="{StaticResource WhiteColor}" HeightRequest="55">
         <!--  LOGO  -->
         <ContentView Padding="20,0" VerticalOptions="Fill">
             <ffimageloadingsvg:SvgCachedImage

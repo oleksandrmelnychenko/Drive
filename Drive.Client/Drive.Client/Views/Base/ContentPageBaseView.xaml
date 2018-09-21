@@ -69,9 +69,7 @@
                 <Grid
                     x:Name="_bottomBarSpot_Grid"
                     Grid.Row="1"
-                    BackgroundColor="{StaticResource BottomBackgroundColor}"
-                    ColumnSpacing="0"
-                    HeightRequest="60" />
+                    ColumnSpacing="0" />
             </Grid>
 
             <!--  Menu  -->
