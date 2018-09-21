@@ -116,32 +116,50 @@
             </ListView.ItemTemplate>
         </ListView>-->
 
-        <!--  SEARCH  -->
-        <Grid
-            Grid.Row="2"
-            BackgroundColor="{StaticResource SearchBackgroundColor}"
-            HeightRequest="60"
-            RowSpacing="0"
-            VerticalOptions="Center">
-            <controls:EntryExtended
-                Margin="0,0,0,0"
-                FontSize="{StaticResource LargerSize}"
-                HorizontalOptions="Fill"
-                HorizontalTextAlignment="Center"
-                Text="{Binding TargetValue}"
-                TextColor="{StaticResource TextColor}">
-                <controls:EntryExtended.Behaviors>
-                    <behaviors:EventToCommandBehavior Command="{Binding Path=InputCompleteCommand}" EventName="Completed" />
-                </controls:EntryExtended.Behaviors>
-            </controls:EntryExtended>
-            <ffimageloadingsvg:SvgCachedImage
-                Margin="10,0,0,0"
-                HeightRequest="15"
-                HorizontalOptions="Start"
-                Source="resource://Drive.Client.Resources.Images.Search.svg"
-                VerticalOptions="Center"
-                WidthRequest="15" />
-        </Grid>
+        <StackLayout Grid.Row="2">
+
+            <!--  SEARCH  -->
+            <Grid
+                BackgroundColor="{StaticResource SearchBackgroundColor}"
+                HeightRequest="60"
+                RowSpacing="0"
+                VerticalOptions="Center">
+                <controls:EntryExtended
+                    Margin="0,0,0,0"
+                    FontSize="{StaticResource LargerSize}"
+                    HorizontalOptions="Fill"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding TargetValue}"
+                    TextColor="{StaticResource TextColor}">
+                    <controls:EntryExtended.Behaviors>
+                        <behaviors:EventToCommandBehavior Command="{Binding Path=InputCompleteCommand}" EventName="Completed" />
+                    </controls:EntryExtended.Behaviors>
+                </controls:EntryExtended>
+                <ffimageloadingsvg:SvgCachedImage
+                    Margin="10,0,0,0"
+                    HeightRequest="15"
+                    HorizontalOptions="Start"
+                    Source="resource://Drive.Client.Resources.Images.Search.svg"
+                    VerticalOptions="Center"
+                    WidthRequest="15" />
+            </Grid>
+
+            <StackLayout HorizontalOptions="Center">
+                <Label
+                    HorizontalOptions="Center"
+                    Text="Актуальна інформація на 31.08.2018"
+                    TextColor="{StaticResource Key=TextColor}" />
+                <Label
+                    HorizontalOptions="Center"
+                    Text="data.gov.ua"
+                    TextColor="{StaticResource TitleColor}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Path=NavigateToSourceCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+
+        </StackLayout>
 
         <!--  BUTTON  -->
         <!--<controls:ExtendedContentView
