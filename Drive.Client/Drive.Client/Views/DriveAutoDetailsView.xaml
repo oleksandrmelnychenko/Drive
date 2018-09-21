@@ -38,38 +38,35 @@
                         x:Key="valueLabel"
                         BasedOn="{StaticResource detailBase}"
                         TargetType="Label">
-                        <Setter Property="HorizontalOptions" Value="End" />
+                        <Setter Property="HorizontalOptions" Value="EndAndExpand" />
                         <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
-                        <Setter Property="FontSize" Value="{StaticResource LittleSize}" />
+                        <Setter Property="FontSize" Value="{StaticResource MediumSize}" />
                     </Style>
 
                     <Style
                         x:Key="titleLabel"
                         BasedOn="{StaticResource detailBase}"
                         TargetType="Label">
-                        <Setter Property="TranslationY" Value="-5" />
                         <Setter Property="TextColor" Value="{StaticResource TextColor}" />
-                        <Setter Property="FontSize" Value="{StaticResource MediumSize}" />
+                        <Setter Property="FontSize" Value="{StaticResource LittleSize}" />
                     </Style>
                 </ResourceDictionary>
             </Grid.Resources>
 
-            <StackLayout Grid.Row="0" BackgroundColor="Yellow">
+            <StackLayout Grid.Row="0" Margin="20,0,0,0">
                 <Label
-                    HorizontalOptions="Center"
+                    FontSize="{StaticResource LargerSize}"
                     Style="{StaticResource descriptionLabel}"
                     Text="{Binding DriveAuto.NRegNew}"
                     VerticalOptions="Center" />
                 <Label
-                    HorizontalOptions="Center"
                     Style="{StaticResource descriptionLabel}"
                     Text="{Binding DriveAuto.OperName}"
                     VerticalOptions="Center" />
             </StackLayout>
 
-
             <ScrollView Grid.Row="1">
-                <StackLayout Spacing="15">
+                <StackLayout Spacing="6">
                     <StackLayout Orientation="Horizontal" Spacing="0">
                         <Label Style="{StaticResource titleLabel}" Text="Дата реєстрації" />
                         <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.DReg}" />
