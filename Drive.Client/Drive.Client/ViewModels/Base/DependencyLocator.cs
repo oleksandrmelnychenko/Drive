@@ -6,6 +6,7 @@ using Drive.Client.Services.Navigation;
 using Drive.Client.Services.RequestProvider;
 using Drive.Client.ViewModels.ActionBars;
 using Drive.Client.ViewModels.BottomTabViewModels;
+using Drive.Client.ViewModels.IdentityAccounting.Registration;
 using System;
 using System.Globalization;
 using System.Reflection;
@@ -41,6 +42,11 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<FoundDriveAutoViewModel>();
             builder.RegisterType<CommonActionBarViewModel>();
             builder.RegisterType<DriveAutoDetailsViewModel>();
+            builder.RegisterType<PhoneNumberRegisterStepViewModel>();
+            builder.RegisterType<IdentityAccountingActionBarViewModel>();
+            builder.RegisterType<NameRegisterStepViewModel>();
+            builder.RegisterType<PasswordRegisterStepViewModel>();
+            builder.RegisterType<ConfirmPasswordRegisterStepViewModel>();
 
             // Services.
             builder.RegisterType<DialogService>().As<IDialogService>();

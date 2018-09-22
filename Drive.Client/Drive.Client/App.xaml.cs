@@ -3,6 +3,7 @@ using Drive.Client.Models.Identities;
 using Drive.Client.Services.DependencyServices.Device;
 using Drive.Client.Services.Navigation;
 using Drive.Client.ViewModels.Base;
+using Drive.Client.Views.IdentityAccounting.Registration;
 using Newtonsoft.Json;
 using Plugin.DeviceInfo;
 using Plugin.DeviceInfo.Abstractions;
@@ -41,6 +42,8 @@ namespace Drive.Client {
             base.OnStart();
 
             await InitNavigation();
+
+            //MainPage = new PhoneNumberRegisterStepView();
 
             base.OnResume();
         }

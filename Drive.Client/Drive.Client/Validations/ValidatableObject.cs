@@ -5,6 +5,9 @@ using System.Linq;
 namespace Drive.Client.Validations {
     public class ValidatableObject<T> : ExtendedBindableObject, IValidity {
 
+        public static readonly string FIELD_IS_REQUIRED_VALIDATION_MESSAGE = "This field is required";
+        public static readonly string INVALID_PHONE_VALIDATION_MESSAGE = "Invalid phone number";
+
         public List<IValidationRule<T>> Validations { get; }
 
         public ValidatableObject() {

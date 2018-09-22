@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<actionBars:ActionBarBaseView
+    x:Class="Drive.Client.Views.ActionBars.IdentityAccountingActionBarView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:actionBars="clr-namespace:Drive.Client.Controls.ActionBars"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
+
+    <Grid BackgroundColor="{StaticResource WhiteColor}" HeightRequest="55">
+        <!--  LOGO  -->
+        <ContentView Padding="20,0" VerticalOptions="Fill">
+            <ffimageloadingsvg:SvgCachedImage
+                HeightRequest="20"
+                HorizontalOptions="Center"
+                Source="resource://Drive.Client.Resources.Images.drive_logo.svg"
+                VerticalOptions="Center" />
+        </ContentView>
+
+        <!--  BACK BUTTON  -->
+        <ContentView
+            Padding="20,0"
+            HorizontalOptions="Start"
+            IsVisible="{Binding IsBackButtonAvailable}"
+            VerticalOptions="Fill">
+            <ContentView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding BackCommand}" />
+            </ContentView.GestureRecognizers>
+            <ffimageloadingsvg:SvgCachedImage
+                HeightRequest="20"
+                HorizontalOptions="Center"
+                Source="resource://Drive.Client.Resources.Images.Arrow.svg"
+                VerticalOptions="Center" />
+        </ContentView>
+    </Grid>
+</actionBars:ActionBarBaseView>

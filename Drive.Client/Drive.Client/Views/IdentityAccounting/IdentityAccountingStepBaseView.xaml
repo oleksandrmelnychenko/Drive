@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBaseView
+    x:Class="Drive.Client.Views.IdentityAccounting.IdentityAccountingStepBaseView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:actionBars="clr-namespace:Drive.Client.Views.ActionBars"
+    xmlns:behaviors="clr-namespace:Drive.Client.Behaviors"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:viewBase="clr-namespace:Drive.Client.Views.Base">
+
+    <viewBase:ContentPageBaseView.ActionBar>
+        <actionBars:IdentityAccountingActionBarView />
+    </viewBase:ContentPageBaseView.ActionBar>
+
+    <viewBase:ContentPageBaseView.MainContent>
+        <ContentView BackgroundColor="{StaticResource Key=WhiteColor}">
+            <StackLayout Padding="0,60" Spacing="30">
+
+                <!--  Step title  -->
+                <Label
+                    FontSize="{StaticResource LittleSize}"
+                    HorizontalOptions="Center"
+                    Text="{Binding Path=StepTitle}"
+                    TextColor="{StaticResource TitleColor}"
+                    VerticalOptions="End" />
+
+                <!--  Step input  -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid
+                        Grid.Row="0"
+                        BackgroundColor="{StaticResource SearchBackgroundColor}"
+                        HeightRequest="60"
+                        RowSpacing="0"
+                        VerticalOptions="Center">
+                        <controls:EntryExtended
+                            FontSize="{StaticResource LargerSize}"
+                            HorizontalOptions="Fill"
+                            HorizontalTextAlignment="Center"
+                            IsPassword="{Binding Path=IsPasswordInput}"
+                            Keyboard="{Binding Path=KeyboardType}"
+                            Placeholder="{Binding Path=MainInputPlaceholder}"
+                            Text="{Binding Path=MainInput.Value}"
+                            TextColor="{StaticResource TextColor}">
+                            <controls:EntryExtended.Behaviors>
+                                <behaviors:EventToCommandBehavior Command="{Binding Path=StepCommand}" EventName="Completed" />
+                            </controls:EntryExtended.Behaviors>
+                        </controls:EntryExtended>
+                        <!--  TODO: bound source property to the MainInputIconPath with appropriate binding converter  -->
+                        <ffimageloadingsvg:SvgCachedImage
+                            Margin="10,0,0,0"
+                            BackgroundColor="Black"
+                            HeightRequest="15"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            WidthRequest="15" />
+                    </Grid>
+                    <Label
+                        Grid.Row="1"
+                        FontSize="{StaticResource Key=MidMediumSize}"
+                        HorizontalOptions="Center"
+                        IsVisible="{Binding Path=MainInput.IsValid, Converter={StaticResource Key=Reverse_bool_converter}}"
+                        Text="{Binding Path=MainInput.Errors, Converter={StaticResource Key=first_element_from_collection_converter}}"
+                        TextColor="{StaticResource Key=ErrorColor}"
+                        VerticalOptions="Center" />
+                </Grid>
+            </StackLayout>
+        </ContentView>
+    </viewBase:ContentPageBaseView.MainContent>
+</viewBase:ContentPageBaseView>
