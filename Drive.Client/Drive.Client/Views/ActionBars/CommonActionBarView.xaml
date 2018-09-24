@@ -7,7 +7,14 @@
     xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
 
-    <Grid BackgroundColor="{StaticResource WhiteColor}" HeightRequest="55">
+    <Grid
+        BackgroundColor="{StaticResource WhiteColor}"
+        HeightRequest="55"
+        RowSpacing="0">
+        <BoxView
+            HeightRequest="1"
+            VerticalOptions="End"
+            Color="{StaticResource SearchBackgroundColor}" />
         <!--  LOGO  -->
         <ContentView Padding="20,0" VerticalOptions="Fill">
             <ffimageloadingsvg:SvgCachedImage
@@ -27,7 +34,7 @@
                 <TapGestureRecognizer Command="{Binding BackCommand}" />
             </ContentView.GestureRecognizers>
             <ffimageloadingsvg:SvgCachedImage
-                HeightRequest="20"
+                HeightRequest="12"
                 HorizontalOptions="Center"
                 Source="resource://Drive.Client.Resources.Images.Arrow.svg"
                 VerticalOptions="Center" />

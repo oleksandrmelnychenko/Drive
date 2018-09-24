@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using Drive.Client.ViewModels.BottomTabViewModels;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,8 +13,11 @@ namespace Drive.Client.Views.BottomTabViews {
             InitializeComponent();
         }
 
-        private void EntryExtended_Completed(object sender, EventArgs e) {
-            Debugger.Break();
+        private async void scroll_SizeChanged(object sender, EventArgs e) {
+            if (_stackList.ItemsSource != null && _stackList.ItemsSource is IEnumerable<object> source && source.Any()) {
+                await Task.Delay(10);
+                await scroll.ScrollToAsync(_stackList, ScrollToPosition.End, false);
+            }
         }
 
         //private void _listResults_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e) {

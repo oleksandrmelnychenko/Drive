@@ -5,9 +5,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:behaviors="clr-namespace:Drive.Client.Behaviors"
     xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:converters="clr-namespace:Drive.Client.Converters"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:stackList="clr-namespace:Drive.Client.Controls.Stacklist"
     BackgroundColor="{StaticResource WhiteColor}">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:UpperCaseConverter x:Key="UpperCaseConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
 
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
@@ -46,8 +53,12 @@
             TextColor="{StaticResource TitleColor}"
             VerticalOptions="End" />
 
-        <ScrollView VerticalOptions="End">
+        <ScrollView
+            x:Name="scroll"
+            SizeChanged="scroll_SizeChanged"
+            VerticalOptions="End">
             <stackList:StackList
+                x:Name="_stackList"
                 Grid.Row="0"
                 ItemsSource="{Binding FoundResult}"
                 SelectedItem="{Binding ResultSelected, Mode=TwoWay}"
@@ -117,7 +128,6 @@
         </ListView>-->
 
         <StackLayout Grid.Row="2" Spacing="0">
-
             <!--  SEARCH  -->
             <Grid
                 BackgroundColor="{StaticResource SearchBackgroundColor}"
@@ -126,13 +136,17 @@
                 VerticalOptions="Center">
                 <controls:EntryExtended
                     Margin="0,0,0,0"
-                    FontSize="{StaticResource LargerSize}"
+                    FontSize="{StaticResource MediumSize}"
                     HorizontalOptions="Fill"
                     HorizontalTextAlignment="Center"
-                    Text="{Binding TargetValue}"
+                    Placeholder="ПОШУК ПО НОМЕРУ"
+                    PlaceholderColor="{StaticResource TextColor}"
+                    ReturnType="Search"
+                    Text="{Binding TargetValue, Converter={StaticResource UpperCaseConverter}, Mode=TwoWay}"
                     TextColor="{StaticResource TextColor}">
                     <controls:EntryExtended.Behaviors>
-                        <behaviors:EventToCommandBehavior Command="{Binding Path=InputCompleteCommand}" EventName="Completed" />
+                        <behaviors:EventToCommandBehavior Command="{Binding InputCompleteCommand}" EventName="Completed" />
+                        <behaviors:EventToCommandBehavior Command="{Binding InputTextChangedCommand}" EventName="TextChanged" />
                     </controls:EntryExtended.Behaviors>
                 </controls:EntryExtended>
                 <ffimageloadingsvg:SvgCachedImage
@@ -143,6 +157,15 @@
                     VerticalOptions="Center"
                     WidthRequest="15" />
             </Grid>
+            <Label
+                Margin="0,0,0,0"
+                FontSize="{StaticResource LittleSize}"
+                HorizontalOptions="CenterAndExpand"
+                IsVisible="{Binding HasError}"
+                Text="{Binding ErrorMessage}"
+                TextColor="{StaticResource ErrorColor}"
+                VerticalOptions="End"
+                VerticalTextAlignment="Center" />
 
             <StackLayout
                 Margin="0,30,0,0"
@@ -163,23 +186,6 @@
                     </Label.GestureRecognizers>
                 </Label>
             </StackLayout>
-
         </StackLayout>
-
-        <!--  BUTTON  -->
-        <!--<controls:ExtendedContentView
-            Grid.Row="3"
-            Margin="0,20,0,0"
-            BackgroundColor="{StaticResource DarkBlueColor}"
-            HeightRequest="50"
-            HorizontalOptions="Center"
-            VerticalOptions="Start"
-            WidthRequest="200">
-            <Label
-                HorizontalOptions="Center"
-                Text="ЗНАЙТИ"
-                TextColor="{StaticResource WhiteColor}"
-                VerticalOptions="Center" />
-        </controls:ExtendedContentView>-->
     </Grid>
 </ContentView>

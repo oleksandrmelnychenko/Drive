@@ -66,77 +66,151 @@
             </StackLayout>
 
             <ScrollView Grid.Row="1">
-                <StackLayout Spacing="6">
-                    <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Дата реєстрації" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.DReg}" />
-                    </StackLayout>
+                <Grid RowSpacing="6" VerticalOptions="Start">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-                    <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Код ТСЦ" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.DepCode}" />
-                    </StackLayout>
+                    <Label
+                        Grid.Row="0"
+                        Style="{StaticResource titleLabel}"
+                        Text="Дата реєстрації" />
+                    <Label
+                        Grid.Row="0"
+                        Style="{StaticResource valueLabel}"
+                        Text="{Binding DriveAuto.DReg}" />
 
-                    <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="ТСЦ" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Dep}" />
-                    </StackLayout>
+                    <Label
+                        Grid.Row="1"
+                        Style="{StaticResource titleLabel}"
+                        Text="Код ТСЦ" />
+                    <Label
+                        Grid.Row="1"
+                        Style="{StaticResource valueLabel}"
+                        Text="{Binding DriveAuto.DepCode}" />
 
-                    <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Марка" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Brand}" />
-                    </StackLayout>
+                    <Label
+                        Grid.Row="2"
+                        Style="{StaticResource titleLabel}"
+                        Text="ТСЦ" />
+                    <Label
+                        Grid.Row="2"
+                        Style="{StaticResource valueLabel}"
+                        Text="{Binding DriveAuto.Dep}" />
 
-                    <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Рік випуску" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.MakeYear}" />
-                    </StackLayout>
+                    <Label
+                        Grid.Row="3"
+                        Style="{StaticResource titleLabel}"
+                        Text="Марка" />
+                    <Label
+                        Grid.Row="3"
+                        Style="{StaticResource valueLabel}"
+                        Text="{Binding DriveAuto.Brand}" />
 
-                    <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Колір" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Color}" />
-                    </StackLayout>
+                    <Label
+                        Grid.Row="4"
+                        Style="{StaticResource titleLabel}"
+                        Text="Рік випуску" />
+                    <Label
+                        Grid.Row="4"
+                        Style="{StaticResource valueLabel}"
+                        Text="{Binding DriveAuto.MakeYear}" />
 
-                    <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Тип" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Kind}" />
-                    </StackLayout>
+                    <Label
+                        Grid.Row="5"
+                        Style="{StaticResource titleLabel}"
+                        Text="Колір" />
+                    <Label
+                        Grid.Row="5"
+                        Style="{StaticResource valueLabel}"
+                        Text="{Binding DriveAuto.Color}" />
 
-                    <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Тип кузова" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Body}" />
-                    </StackLayout>
+                    <Label
+                        Grid.Row="6"
+                        Style="{StaticResource titleLabel}"
+                        Text="Тип" />
+                    <Label
+                        Grid.Row="6"
+                        Style="{StaticResource valueLabel}"
+                        Text="{Binding DriveAuto.Kind}" />
 
-                    <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Призначення" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Purpose}" />
-                    </StackLayout>
+                    <Label
+                        Grid.Row="7"
+                        Style="{StaticResource titleLabel}"
+                        Text="Тип кузова" />
+                    <Label
+                        Grid.Row="7"
+                        Style="{StaticResource valueLabel}"
+                        Text="{Binding DriveAuto.Body}" />
 
-                    <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Тип палива" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Fuel}" />
-                    </StackLayout>
+                    <Label
+                        Grid.Row="8"
+                        Style="{StaticResource titleLabel}"
+                        Text="Призначення" />
+                    <Label
+                        Grid.Row="8"
+                        Style="{StaticResource valueLabel}"
+                        Text="{Binding DriveAuto.Purpose}" />
 
-                    <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Об'єм двигуна" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Capacity}" />
-                    </StackLayout>
+                    <Label
+                        Grid.Row="9"
+                        Style="{StaticResource titleLabel}"
+                        Text="Тип палива" />
+                    <Label
+                        Grid.Row="9"
+                        Style="{StaticResource valueLabel}"
+                        Text="{Binding DriveAuto.Fuel}" />
 
-                    <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Маса без навантаження" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.OwnWeight}" />
-                    </StackLayout>
+                    <Label
+                        Grid.Row="10"
+                        Style="{StaticResource titleLabel}"
+                        Text="Об'єм двигуна" />
+                    <Label
+                        Grid.Row="10"
+                        Style="{StaticResource valueLabel}"
+                        Text="{Binding DriveAuto.Capacity}" />
 
-                    <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Повна маса" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.TotalWeight}" />
-                    </StackLayout>
+                    <Label
+                        Grid.Row="11"
+                        Style="{StaticResource titleLabel}"
+                        Text="Маса без навантаження" />
+                    <Label
+                        Grid.Row="11"
+                        Style="{StaticResource valueLabel}"
+                        Text="{Binding DriveAuto.OwnWeight}" />
 
-                    <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Реєстраційний номер" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.NRegNew}" />
-                    </StackLayout>
-                </StackLayout>
+                    <Label
+                        Grid.Row="12"
+                        Style="{StaticResource titleLabel}"
+                        Text="Повна маса" />
+                    <Label
+                        Grid.Row="12"
+                        Style="{StaticResource valueLabel}"
+                        Text="{Binding DriveAuto.TotalWeight}" />
+
+                    <Label
+                        Grid.Row="13"
+                        Style="{StaticResource titleLabel}"
+                        Text="Реєстраційний номер" />
+                    <Label
+                        Grid.Row="13"
+                        Style="{StaticResource valueLabel}"
+                        Text="{Binding DriveAuto.NRegNew}" />
+
+                </Grid>
             </ScrollView>
         </Grid>
     </viewBase:ContentPageBaseView.MainContent>

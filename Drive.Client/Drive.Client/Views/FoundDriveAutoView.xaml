@@ -53,7 +53,8 @@
                                         TextColor="{StaticResource TextColor}"
                                         VerticalOptions="CenterAndExpand" />
                                 </StackLayout>
-                                <BoxView Grid.Row="1" Color="{StaticResource TextColor}" />
+
+                                <BoxView Grid.Row="1" Color="{StaticResource SearchBackgroundColor}" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

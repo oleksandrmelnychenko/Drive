@@ -33,7 +33,11 @@ namespace Drive.Client.ViewModels.Base {
             DialogService = DependencyLocator.Resolve<IDialogService>();
             NavigationService = DependencyLocator.Resolve<INavigationService>();
 
-            BackCommand = new Command(async () => await NavigationService.GoBackAsync());
+            BackCommand = new Command(async () => {
+                await NavigationService.PreviousPageViewModel.InitializeAsync(null);
+                await NavigationService.GoBackAsync();
+            });
+
         }
 
         public virtual Task InitializeAsync(object navigationData) {

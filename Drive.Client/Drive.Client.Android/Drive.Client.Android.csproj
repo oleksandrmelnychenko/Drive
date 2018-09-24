@@ -137,7 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Drive.Client\Drive.Client.csproj">
-      <Project>{E06BA97E-EAB5-4302-AD14-58152F26747F}</Project>
+      <Project>{d29ff6a8-0b25-4cc4-9de1-2f873fb59265}</Project>
       <Name>Drive.Client</Name>
     </ProjectReference>
   </ItemGroup>

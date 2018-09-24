@@ -45,7 +45,7 @@ namespace Drive.Client.Services.Automobile {
                      throw new Exception(ex.Message);
                  }
                  return driveAutos;
-             });
+             }, cancellationTokenSource.Token);
 
         /// <summary>
         /// Get car numbers autocomplete.
@@ -70,7 +70,7 @@ namespace Drive.Client.Services.Automobile {
                     throw new Exception(ex.Message);
                 }
                 return carNumbers;
-            });
+            }, cancellationTokenSource.Token);
         
         /// <summary>
         /// Get drive auto by full match number.
@@ -95,6 +95,6 @@ namespace Drive.Client.Services.Automobile {
                     throw new Exception(ex.Message);
                 }
                 return carInfos;
-            });
+            }, cancellationTokenSource.Token);
     }
 }
