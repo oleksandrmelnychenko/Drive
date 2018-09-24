@@ -12,7 +12,7 @@
         <controls:LabelExtended
             FontSize="{StaticResource Key=BaseFontSize}"
             HorizontalOptions="Center"
-            Text="ЛЕНТА НОВИН"
+            Text="НОВИНИ"
             TextColor="{StaticResource TitleColor}"
             VerticalOptions="Center" />
         <controls:LabelExtended
