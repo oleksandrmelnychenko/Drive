@@ -3,10 +3,23 @@
     x:Class="Drive.Client.Views.BottomTabViews.HomeView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
     BackgroundColor="{StaticResource WhiteColor}">
-
-    <Label
+    <StackLayout
         HorizontalOptions="Center"
-        Text="Home view"
-        VerticalOptions="Center" />
+        Spacing="4"
+        VerticalOptions="Center">
+        <controls:LabelExtended
+            FontSize="{StaticResource Key=BaseFontSize}"
+            HorizontalOptions="Center"
+            Text="ЛЕНТА НОВИН"
+            TextColor="{StaticResource TitleColor}"
+            VerticalOptions="Center" />
+        <controls:LabelExtended
+            FontSize="{StaticResource Key=MidMediumSize}"
+            HorizontalOptions="Center"
+            Text="(У РОЗРОБЦІ)"
+            TextColor="{StaticResource TextColor}"
+            VerticalOptions="Center" />
+    </StackLayout>
 </ContentView>

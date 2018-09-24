@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using Drive.Client.Controls;
+﻿using Drive.Client.Controls;
 using Drive.Client.iOS.Renderers;
 using Foundation;
-using UIKit;
+using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 

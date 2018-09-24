@@ -15,7 +15,7 @@
             <StackLayout Padding="0,60" Spacing="30">
 
                 <!--  Step title  -->
-                <Label
+                <controls:LabelExtended
                     FontSize="{StaticResource LittleSize}"
                     HorizontalOptions="Center"
                     Text="{Binding Path=StepTitle}"
@@ -57,7 +57,7 @@
                             VerticalOptions="Center"
                             WidthRequest="15" />
                     </Grid>
-                    <Label
+                    <controls:LabelExtended
                         Grid.Row="1"
                         FontSize="{StaticResource Key=MidMediumSize}"
                         HorizontalOptions="Center"

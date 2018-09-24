@@ -72,12 +72,12 @@
                                     Padding="130,0,0,0"
                                     Spacing="0"
                                     VerticalOptions="Center">
-                                    <Label
+                                    <controls:LabelExtended
                                         FontSize="{StaticResource MediumSize}"
                                         Text="{Binding Number}"
                                         TextColor="{StaticResource BlackColor}"
                                         VerticalOptions="Center" />
-                                    <Label
+                                    <controls:LabelExtended
                                         FontSize="{StaticResource LittleSize}"
                                         Text="{Binding Brand}"
                                         TextColor="{StaticResource TextColor}"
@@ -148,20 +148,20 @@
                 Margin="0,30,0,0"
                 HorizontalOptions="Center"
                 Spacing="3">
-                <Label
+                <controls:LabelExtended
                     FontSize="{StaticResource Key=MidMediumSize}"
                     HorizontalOptions="Center"
                     Text="Актуальна інформація на 31.08.2018"
                     TextColor="{StaticResource Key=TextColor}" />
-                <Label
+                <controls:LabelExtended
                     FontSize="{StaticResource Key=MidMediumSize}"
                     HorizontalOptions="Center"
                     Text="data.gov.ua"
                     TextColor="{StaticResource TitleColor}">
-                    <Label.GestureRecognizers>
+                    <controls:LabelExtended.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Path=NavigateToSourceCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
+                    </controls:LabelExtended.GestureRecognizers>
+                </controls:LabelExtended>
             </StackLayout>
 
         </StackLayout>

@@ -3,18 +3,19 @@
     x:Class="Drive.Client.Views.LoginView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
     xmlns:dependency="clr-namespace:Drive.Client.ViewModels.Base"
     dependency:DependencyLocator.AutoWireViewModel="True"
     NavigationPage.HasNavigationBar="False">
 
     <StackLayout>
-        <Label
+        <controls:LabelExtended
             HorizontalOptions="CenterAndExpand"
             Text="Login!"
             VerticalOptions="CenterAndExpand">
-            <Label.GestureRecognizers>
+            <controls:LabelExtended.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding NavigateToViewCommand}" NumberOfTapsRequired="1" />
-            </Label.GestureRecognizers>
-        </Label>
+            </controls:LabelExtended.GestureRecognizers>
+        </controls:LabelExtended>
     </StackLayout>
 </ContentPage>

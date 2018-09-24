@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:actionBars="clr-namespace:Drive.Client.Views.ActionBars"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
     xmlns:dependency="clr-namespace:Drive.Client.ViewModels.Base"
     xmlns:viewBase="clr-namespace:Drive.Client.Views.Base"
     dependency:DependencyLocator.AutoWireViewModel="True">
@@ -37,17 +38,17 @@
                                     Padding="20,5"
                                     Spacing="6"
                                     VerticalOptions="Center">
-                                    <Label
+                                    <controls:LabelExtended
                                         FontAttributes="Bold"
                                         FontSize="{StaticResource MediumSize}"
                                         Text="{Binding NRegNew}"
                                         VerticalOptions="CenterAndExpand" />
-                                    <Label
+                                    <controls:LabelExtended
                                         FontSize="{StaticResource MidMediumSize}"
                                         Text="{Binding OperName}"
                                         TextColor="{StaticResource TextColor}"
                                         VerticalOptions="CenterAndExpand" />
-                                    <Label
+                                    <controls:LabelExtended
                                         FontSize="{StaticResource LittleSize}"
                                         Text="{Binding Brand}"
                                         TextColor="{StaticResource TextColor}"

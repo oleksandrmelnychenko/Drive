@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:actionBars="clr-namespace:Drive.Client.Views.ActionBars"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
     xmlns:dependency="clr-namespace:Drive.Client.ViewModels.Base"
     xmlns:viewBase="clr-namespace:Drive.Client.Views.Base"
     dependency:DependencyLocator.AutoWireViewModel="True">
@@ -54,12 +55,12 @@
             </Grid.Resources>
 
             <StackLayout Grid.Row="0" Margin="20,0,0,0">
-                <Label
+                <controls:LabelExtended
                     FontSize="{StaticResource LargerSize}"
                     Style="{StaticResource descriptionLabel}"
                     Text="{Binding DriveAuto.NRegNew}"
                     VerticalOptions="Center" />
-                <Label
+                <controls:LabelExtended
                     Style="{StaticResource descriptionLabel}"
                     Text="{Binding DriveAuto.OperName}"
                     VerticalOptions="Center" />
@@ -68,73 +69,73 @@
             <ScrollView Grid.Row="1">
                 <StackLayout Spacing="6">
                     <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Дата реєстрації" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.DReg}" />
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Дата реєстрації" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.DReg}" />
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Код ТСЦ" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.DepCode}" />
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Код ТСЦ" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.DepCode}" />
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="ТСЦ" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Dep}" />
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="ТСЦ" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Dep}" />
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Марка" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Brand}" />
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Марка" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Brand}" />
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Рік випуску" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.MakeYear}" />
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Рік випуску" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.MakeYear}" />
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Колір" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Color}" />
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Колір" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Color}" />
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Тип" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Kind}" />
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Тип" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Kind}" />
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Тип кузова" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Body}" />
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Тип кузова" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Body}" />
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Призначення" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Purpose}" />
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Призначення" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Purpose}" />
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Тип палива" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Fuel}" />
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Тип палива" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Fuel}" />
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Об'єм двигуна" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Capacity}" />
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Об'єм двигуна" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.Capacity}" />
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Маса без навантаження" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.OwnWeight}" />
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Маса без навантаження" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.OwnWeight}" />
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Повна маса" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.TotalWeight}" />
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Повна маса" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.TotalWeight}" />
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="0">
-                        <Label Style="{StaticResource titleLabel}" Text="Реєстраційний номер" />
-                        <Label Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.NRegNew}" />
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Реєстраційний номер" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.NRegNew}" />
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
