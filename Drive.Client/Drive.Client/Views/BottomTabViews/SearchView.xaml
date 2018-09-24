@@ -44,10 +44,10 @@
             WidthRequest="200" />
 
         <!--  TITLE  -->
-        <Label
+        <controls:LabelExtended
             Grid.Row="0"
             Margin="0,30"
-            FontSize="{StaticResource LittleSize}"
+            FontSize="{StaticResource BaseFontSize}"
             HorizontalOptions="Center"
             Text="ДЕРЖАВНИЙ ТРАНСПОРТНИЙ РЕЄСТР"
             TextColor="{StaticResource TitleColor}"
@@ -83,12 +83,12 @@
                                     Padding="130,0,0,0"
                                     Spacing="0"
                                     VerticalOptions="Center">
-                                    <Label
+                                    <controls:LabelExtended
                                         FontSize="{StaticResource MediumSize}"
                                         Text="{Binding Number}"
                                         TextColor="{StaticResource BlackColor}"
                                         VerticalOptions="Center" />
-                                    <Label
+                                    <controls:LabelExtended
                                         FontSize="{StaticResource LittleSize}"
                                         Text="{Binding Brand}"
                                         TextColor="{StaticResource TextColor}"
@@ -136,7 +136,7 @@
                 VerticalOptions="Center">
                 <controls:EntryExtended
                     Margin="0,0,0,0"
-                    FontSize="{StaticResource MediumSize}"
+                    FontSize="{StaticResource BaseFontSize}"
                     HorizontalOptions="Fill"
                     HorizontalTextAlignment="Center"
                     Placeholder="ПОШУК ПО НОМЕРУ"
@@ -157,7 +157,7 @@
                     VerticalOptions="Center"
                     WidthRequest="15" />
             </Grid>
-            <Label
+            <controls:LabelExtended
                 Margin="0,0,0,0"
                 FontSize="{StaticResource LittleSize}"
                 HorizontalOptions="CenterAndExpand"
@@ -171,20 +171,20 @@
                 Margin="0,30,0,0"
                 HorizontalOptions="Center"
                 Spacing="3">
-                <Label
+                <controls:LabelExtended
                     FontSize="{StaticResource Key=MidMediumSize}"
                     HorizontalOptions="Center"
                     Text="Актуальна інформація на 31.08.2018"
                     TextColor="{StaticResource Key=TextColor}" />
-                <Label
+                <controls:LabelExtended
                     FontSize="{StaticResource Key=MidMediumSize}"
                     HorizontalOptions="Center"
                     Text="data.gov.ua"
                     TextColor="{StaticResource TitleColor}">
-                    <Label.GestureRecognizers>
+                    <controls:LabelExtended.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Path=NavigateToSourceCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
+                    </controls:LabelExtended.GestureRecognizers>
+                </controls:LabelExtended>
             </StackLayout>
         </StackLayout>
     </Grid>

@@ -39,16 +39,17 @@
                                     Spacing="6"
                                     VerticalOptions="Center">
                                     <controls:LabelExtended
-                                        FontAttributes="Bold"
                                         FontSize="{StaticResource MediumSize}"
                                         Text="{Binding NRegNew}"
+                                        TextColor="{StaticResource BlackColor}"
                                         VerticalOptions="CenterAndExpand" />
                                     <controls:LabelExtended
                                         FontSize="{StaticResource MidMediumSize}"
                                         Text="{Binding OperName}"
-                                        TextColor="{StaticResource TextColor}"
+                                        TextColor="{StaticResource BlackColor}"
                                         VerticalOptions="CenterAndExpand" />
                                     <controls:LabelExtended
+                                        Margin="0,3,0,0"
                                         FontSize="{StaticResource LittleSize}"
                                         Text="{Binding Brand}"
                                         TextColor="{StaticResource TextColor}"
