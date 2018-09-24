@@ -2,16 +2,24 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Drive.Client.Views;
 using FFImageLoading.Forms.Platform;
 using Plugin.CurrentActivity;
+using Xamarin.Forms;
 
 namespace Drive.Client.Droid {
-    [Activity(Label = "Drive.Client", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity( MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity {
 
         internal static MainActivity Instance { get; private set; }
 
         protected override void OnCreate(Bundle savedInstanceState) {
+            MessagingCenter.Subscribe<object>(this, CustomNavigationView.ON_CUSTOM_NAVIGATION_VIEW_APPEARING, (param) => {
+                MessagingCenter.Unsubscribe<object>(this, CustomNavigationView.ON_CUSTOM_NAVIGATION_VIEW_APPEARING);
+
+                Window.SetBackgroundDrawableResource(Resource.Drawable.common_window_background_layer_list_drawable);
+            });
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 

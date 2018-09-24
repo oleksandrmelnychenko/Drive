@@ -28,6 +28,8 @@ namespace Drive.Client.ViewModels {
                 DependencyLocator.Resolve<ProfileViewModel>()};
 
             RegisterClientDeviceInfo();
+
+            SelectedBottomItemIndex = 1;
         }
 
         public override void Dispose() {
