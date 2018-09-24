@@ -37,7 +37,7 @@
             WidthRequest="200" />
 
         <!--  TITLE  -->
-        <Label
+        <controls:LabelExtended
             Grid.Row="0"
             Margin="0,30"
             FontSize="{StaticResource Key=BaseFontSize}"
@@ -130,7 +130,7 @@
                     HorizontalOptions="Fill"
                     HorizontalTextAlignment="Center"
                     Text="{Binding TargetValue}"
-                    TextColor="#999999">
+                    TextColor="{StaticResource TextColor}">
                     <controls:EntryExtended.Behaviors>
                         <behaviors:EventToCommandBehavior Command="{Binding Path=InputCompleteCommand}" EventName="Completed" />
                     </controls:EntryExtended.Behaviors>
