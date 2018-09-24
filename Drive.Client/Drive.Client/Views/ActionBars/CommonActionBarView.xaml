@@ -28,7 +28,7 @@
         <ContentView
             Padding="20,0"
             HorizontalOptions="Start"
-            IsVisible="{Binding IsBackButtonAvailable, Converter={StaticResource Reverse_bool_converter}}"
+            IsVisible="{Binding IsBackButtonAvailable}"
             VerticalOptions="Fill">
             <ContentView.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding BackCommand}" />

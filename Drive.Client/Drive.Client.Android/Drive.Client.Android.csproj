@@ -106,6 +106,8 @@
     <Compile Include="Services\Device.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\seguili.ttf" />
+    <AndroidAsset Include="Assets\SFProText-SemiBoldItalic.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />

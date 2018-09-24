@@ -26,7 +26,7 @@
                 <TapGestureRecognizer Command="{Binding BackCommand}" />
             </ContentView.GestureRecognizers>
             <ffimageloadingsvg:SvgCachedImage
-                HeightRequest="20"
+                HeightRequest="12"
                 HorizontalOptions="Center"
                 Source="resource://Drive.Client.Resources.Images.Arrow.svg"
                 VerticalOptions="Center" />

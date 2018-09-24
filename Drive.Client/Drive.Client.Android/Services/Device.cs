@@ -24,14 +24,17 @@ namespace Drive.Client.Droid.Services {
                 }
                 catch (FeatureNotSupportedException fnsEx) {
                     // TODO: Handle not supported on device exception
+                    System.Diagnostics.Debug.WriteLine($"---ERROR: {fnsEx.Message}");
                     Debugger.Break();
                 }
                 catch (PermissionException pEx) {
                     // TODO: Handle permission exception
+                    System.Diagnostics.Debug.WriteLine($"---ERROR: {pEx.Message}");
                     Debugger.Break();
                 }
                 catch (Exception ex) {
                     // TODO: Unable to get location
+                    System.Diagnostics.Debug.WriteLine($"---ERROR: {ex.Message}");
                     Debugger.Break();
                 }
 

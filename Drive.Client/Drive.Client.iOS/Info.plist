@@ -2,40 +2,74 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>UIDeviceFamily</key>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>This app needs access to the camera to take photos.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs access to photos.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app needs access to microphone.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This app needs access to the photo gallery.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Needs Calendar Permission</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Some ad content may access contact use</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Some ad content may access media library use</string>
+	<key>NSSiriUsageDescription</key>
+	<string>Some ad content may access siri use</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your location is used to estimate travel times to events and improve location searches.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Your location is used to estimate travel times to events and improve location searches.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Default</string>
+		<string>Default@2x</string>
+		<string>Default-568h@2x</string>
+		<string>Default-Portrait</string>
+		<string>Default-Portrait@2x</string>
+	</array>
+  <key>UIAppFonts</key>
   <array>
-    <integer>1</integer>
+    <string>Fonts/seguili.ttf</string>
+    <string>Fonts/SFProText-SemiBoldItalic.ttf</string>
   </array>
-  <key>UISupportedInterfaceOrientations</key>
-  <array>
-    <string>UIInterfaceOrientationPortrait</string>
-    <string>UIInterfaceOrientationLandscapeLeft</string>
-    <string>UIInterfaceOrientationLandscapeRight</string>
-  </array>
-  <key>UISupportedInterfaceOrientations~ipad</key>
-  <array>
-    <string>UIInterfaceOrientationPortrait</string>
-    <string>UIInterfaceOrientationPortraitUpsideDown</string>
-    <string>UIInterfaceOrientationLandscapeLeft</string>
-    <string>UIInterfaceOrientationLandscapeRight</string>
-  </array>
-  <key>NSLocationWhenInUseUsageDescription</key>
-  <string>This app needs access location when open.</string>
-  <key>MinimumOSVersion</key>
-  <string>8.0</string>
-  <key>CFBundleDisplayName</key>
-  <string>Drive.Client</string>
-  <key>CFBundleIdentifier</key>
-  <string>com.nolt.drive.client</string>
-  <key>UILaunchStoryboardName</key>
-  <string>LaunchScreen</string>
-  <key>CFBundleName</key>
-  <string>Drive.Client</string>
-  <key>XSAppIconAssets</key>
-  <string>Assets.xcassets/AppIcon.appiconset</string>
-  <key>CFBundleShortVersionString</key>
-  <string>1.01</string>
-  <key>CFBundleVersion</key>
-  <string>1.01</string>
+	<key>MinimumOSVersion</key>
+	<string>8.0</string>
+	<key>CFBundleDisplayName</key>
+	<string>Drive</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.nolt.drive.client</string>	
+	<key>CFBundleName</key>
+	<string>Drive.Client</string>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.01</string>
+	<key>CFBundleVersion</key>
+	<string>1.01</string>
 </dict>
 </plist>

@@ -25,14 +25,17 @@ namespace Drive.Client.iOS.Services {
                 }
                 catch (FeatureNotSupportedException fnsEx) {
                     // TODO: Handle not supported on device exception
+                    Debug.WriteLine($"---ERROR: {fnsEx.Message}");
                     Debugger.Break();
                 }
                 catch (PermissionException pEx) {
                     // TODO: Handle permission exception
+                    Debug.WriteLine($"---ERROR: {pEx.Message}");
                     Debugger.Break();
                 }
                 catch (Exception ex) {
                     // TODO: Unable to get location
+                    Debug.WriteLine($"---ERROR: {ex.Message}");
                     Debugger.Break();
                 }
 

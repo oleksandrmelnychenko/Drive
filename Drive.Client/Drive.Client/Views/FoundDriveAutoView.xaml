@@ -38,14 +38,14 @@
                                     Spacing="6"
                                     VerticalOptions="Center">
                                     <Label
-                                        FontAttributes="Bold"
                                         FontSize="{StaticResource MediumSize}"
                                         Text="{Binding NRegNew}"
+                                        TextColor="{StaticResource BlackColor}"
                                         VerticalOptions="CenterAndExpand" />
                                     <Label
                                         FontSize="{StaticResource MidMediumSize}"
                                         Text="{Binding OperName}"
-                                        TextColor="{StaticResource TextColor}"
+                                        TextColor="{StaticResource BlackColor}"
                                         VerticalOptions="CenterAndExpand" />
                                     <Label
                                         FontSize="{StaticResource LittleSize}"
