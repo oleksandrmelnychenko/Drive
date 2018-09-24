@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms.Internals;
 
@@ -68,6 +69,13 @@ namespace Drive.Client.ViewModels.Base {
             base.Dispose();
 
             ActionBarViewModel?.Dispose();
+        }
+
+        public override Task InitializeAsync(object navigationData) {
+
+            ActionBarViewModel?.InitializeAsync(navigationData);
+
+            return base.InitializeAsync(navigationData);
         }
 
         public void SetBusy(Guid guidKey, bool isBusy) {

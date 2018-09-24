@@ -3,10 +3,90 @@
     x:Class="Drive.Client.Views.BottomTabViews.ProfileView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     BackgroundColor="{StaticResource WhiteColor}">
 
-    <Label
-        HorizontalOptions="Center"
-        Text="PROFILE"
-        VerticalOptions="Center" />
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="230" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--  Logo scope  -->
+        <Grid Grid.Row="0">
+            <!--  LOGO  -->
+            <ffimageloadingsvg:SvgCachedImage
+                HorizontalOptions="Center"
+                Source="resource://Drive.Client.Resources.Images.drive_logo.svg"
+                VerticalOptions="Center"
+                WidthRequest="200" />
+
+            <!--  TITLE  -->
+            <Label
+                Margin="0,30"
+                FontSize="{StaticResource LittleSize}"
+                HorizontalOptions="Center"
+                Text="WE ARE HAPPY YOU ARE HERE LET'S DO THIS"
+                TextColor="{StaticResource TitleColor}"
+                VerticalOptions="End" />
+        </Grid>
+
+        <!--  Main content scope  -->
+        <StackLayout
+            Grid.Row="1"
+            Padding="20,0"
+            Spacing="12">
+            <controls:ExtendedContentView
+                BackgroundColor="{StaticResource Key=DarkBlueColor}"
+                BorderColor="{StaticResource Key=DarkBlueColor}"
+                BorderThickness="1"
+                HeightRequest="60">
+                <controls:ExtendedContentView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Path=LoginCommand}" />
+                </controls:ExtendedContentView.GestureRecognizers>
+                <Label
+                    FontSize="{StaticResource LittleSize}"
+                    HorizontalTextAlignment="Center"
+                    Text="ЛОГІН"
+                    TextColor="{StaticResource Key=TextColor}"
+                    VerticalTextAlignment="Center" />
+            </controls:ExtendedContentView>
+
+            <controls:ExtendedContentView
+                BackgroundColor="{StaticResource Key=WhiteColor}"
+                BorderColor="{StaticResource Key=DarkBlueColor}"
+                BorderThickness="1"
+                HeightRequest="60">
+                <controls:ExtendedContentView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Path=RegisterCommand}" />
+                </controls:ExtendedContentView.GestureRecognizers>
+                <Label
+                    FontSize="{StaticResource LittleSize}"
+                    HorizontalTextAlignment="Center"
+                    Text="РЕЄСТРАЦІЯ"
+                    TextColor="{StaticResource TitleColor}"
+                    VerticalTextAlignment="Center" />
+            </controls:ExtendedContentView>
+
+            <Label
+                HorizontalTextAlignment="Center"
+                Text="або миттево увійти через"
+                TextColor="{StaticResource TextColor}" />
+
+            <ContentView
+                HeightRequest="40"
+                HorizontalOptions="Center"
+                WidthRequest="40">
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Path=FacebookLoginCommand}" />
+                </ContentView.GestureRecognizers>
+                <ffimageloadingsvg:SvgCachedImage
+                    BackgroundColor="Black"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    WidthRequest="40" />
+            </ContentView>
+        </StackLayout>
+    </Grid>
 </ContentView>

@@ -11,8 +11,11 @@
 
   <ItemGroup>
     <Compile Remove="Models\Services\**" />
+    <Compile Remove="Views\Popups\**" />
     <EmbeddedResource Remove="Models\Services\**" />
+    <EmbeddedResource Remove="Views\Popups\**" />
     <None Remove="Models\Services\**" />
+    <None Remove="Views\Popups\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -55,16 +58,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Popups\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Mono.Android">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v7.1\Mono.Android.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Views\DriveAutoDetailsView.xaml.cs">
       <DependentUpon>DriveAutoDetailsView.xaml</DependentUpon>
     </Compile>
@@ -78,6 +71,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ActionBars\CommonActionBarView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ActionBars\IdentityAccountingActionBarView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Base\ContentPageBaseView.xaml">
@@ -99,6 +95,21 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\FoundDriveAutoView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\IdentityAccounting\IdentityAccountingStepBaseView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\IdentityAccounting\Registration\ConfirmPasswordRegisterStepView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\IdentityAccounting\Registration\NameRegisterStepView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\IdentityAccounting\Registration\PasswordRegisterStepView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\IdentityAccounting\Registration\PhoneNumberRegisterStepView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginView.xaml">
