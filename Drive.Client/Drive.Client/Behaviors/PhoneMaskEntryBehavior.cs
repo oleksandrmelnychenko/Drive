@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Xamarin.Forms;
-using System.Linq;
 
 namespace Drive.Client.Behaviors {
     public class PhoneMaskEntryBehavior : Behavior<Entry> {
