@@ -147,7 +147,11 @@ namespace Drive.Client.Droid.Renderers {
 
         private Path BuildRoundedPath(float width, float height, float radius, float offset = 0) {
             Path path = new Path();
-            path.AddRoundRect(offset, offset, width - offset, height - offset, radius, radius, Path.Direction.Cw);
+
+            try {
+                path.AddRoundRect(offset, offset, width - offset, height - offset, radius, radius, Path.Direction.Cw);
+            }
+            catch (Exception) { }
 
             return path;
         }

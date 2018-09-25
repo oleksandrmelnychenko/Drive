@@ -23,19 +23,24 @@ namespace Drive.Client.iOS.Renderers {
             if (e.PropertyName == LabelExtended.LetterSpacingProperty.PropertyName) {
                 SetLetterSpacing();
             }
+            else if (e.PropertyName == LabelExtended.TextProperty.PropertyName) {
+                SetLetterSpacing();
+            }
         }
 
         private void SetLetterSpacing() {
-            if (Element is LabelExtended labelExtended) {
-                string text = Control.Text;
-                NSMutableAttributedString attributedString = new NSMutableAttributedString(text);
+            if (Element is LabelExtended labelExtended && !string.IsNullOrEmpty(Control.Text)) {
+                //string text = Control.Text;
+                //NSMutableAttributedString attributedString = new NSMutableAttributedString(text);
 
-                NSString nsKern = new NSString("NSKern");
-                NSObject spacing = NSObject.FromObject(labelExtended.LetterSpacing * 10);
-                NSRange range = new NSRange(0, text.Length);
+                //NSString nsKern = new NSString("NSKern");
+                //NSObject spacing = NSObject.FromObject(labelExtended.LetterSpacing * 10);
+                //NSRange range = new NSRange(0, text.Length);
 
-                attributedString.AddAttribute(nsKern, spacing, range);
-                Control.AttributedText = attributedString;
+                //attributedString.AddAttribute(nsKern, spacing, range);
+                //Control.AttributedText = attributedString;
+
+                Control.AttributedText = new NSAttributedString(Control.Text, kerning: labelExtended.LetterSpacing);
             }
         }
     }

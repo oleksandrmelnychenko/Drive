@@ -2,6 +2,7 @@
 using Drive.Client.Controls;
 using Drive.Client.Droid.Renderers;
 using System.ComponentModel;
+using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
@@ -27,7 +28,10 @@ namespace Drive.Client.Droid.Renderers {
         }
 
         private void SetLetterSpacing() {
-            Control.LetterSpacing = ((LabelExtended)Element).LetterSpacing;
+            try {
+                Control.LetterSpacing = ((LabelExtended)Element).LetterSpacing;
+            }
+            catch (System.Exception exc) { }
         }
     }
 }
