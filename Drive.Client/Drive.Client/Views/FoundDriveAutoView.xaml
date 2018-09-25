@@ -50,13 +50,13 @@
                                         VerticalOptions="CenterAndExpand" />
                                     <controls:LabelExtended
                                         Margin="0,5,0,0"
-                                        FontFamily="{StaticResource SFProThin}"
+                                        FontFamily="{StaticResource SFProLight}"
                                         FontSize="{StaticResource LittleSize}"
                                         Text="{Binding Brand}"
-                                        TextColor="{StaticResource TextColor}"
+                                        TextColor="{StaticResource BrandColor}"
                                         VerticalOptions="CenterAndExpand" />
                                 </StackLayout>
-                                <BoxView Grid.Row="1" Color="{StaticResource TextColor}" />
+                                <BoxView Grid.Row="1" Color="{StaticResource SeparatorLineColor}" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

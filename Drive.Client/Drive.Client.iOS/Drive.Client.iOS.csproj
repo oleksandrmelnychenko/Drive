@@ -214,12 +214,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Drive.Client\Drive.Client.csproj">
-      <Project>{E06BA97E-EAB5-4302-AD14-58152F26747F}</Project>
-      <Name>Drive.Client</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\Default.png" />
   </ItemGroup>
   <ItemGroup>
@@ -233,5 +227,14 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-Portrait%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\drive_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Drive.Client\Drive.Client.csproj">
+      <Project>{d29ff6a8-0b25-4cc4-9de1-2f873fb59265}</Project>
+      <Name>Drive.Client</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

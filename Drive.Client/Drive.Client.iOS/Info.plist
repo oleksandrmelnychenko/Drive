@@ -47,12 +47,12 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Fonts/SFProDisplay-Light.ttf</string>
-    <string>Fonts/SFProDisplay-Regular.ttf</string>
-    <string>Fonts/SFProDisplay-SemiBold.ttf</string>
-    <string>Fonts/SFProDisplay-Thin.ttf</string>
+		<string>Fonts/SFProDisplay-Regular.ttf</string>
+		<string>Fonts/SFProDisplay-SemiBold.ttf</string>
+		<string>Fonts/SFProDisplay-Thin.ttf</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>9.1</string>
 	<key>CFBundleDisplayName</key>
 	<string>Drive</string>
 	<key>CFBundleIdentifier</key>
