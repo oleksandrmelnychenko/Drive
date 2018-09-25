@@ -12,13 +12,14 @@
         Spacing="4"
         VerticalOptions="Center">
         <controls:LabelExtended
-            FontSize="{StaticResource Key=BaseFontSize}"
+            FontSize="{StaticResource BaseFontSize}"
             HorizontalOptions="Center"
             Text="АККАУНТ КОРИСТУВАЧА"
             TextColor="{StaticResource TitleColor}"
             VerticalOptions="Center" />
         <controls:LabelExtended
-            FontSize="{StaticResource Key=MidMediumSize}"
+            FontFamily="{StaticResource SFProThin}"
+            FontSize="{StaticResource MidMediumSize}"
             HorizontalOptions="Center"
             Text="(У РОЗРОБЦІ)"
             TextColor="{StaticResource TextColor}"

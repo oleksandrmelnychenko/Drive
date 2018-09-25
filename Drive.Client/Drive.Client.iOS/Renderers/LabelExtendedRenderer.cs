@@ -30,17 +30,25 @@ namespace Drive.Client.iOS.Renderers {
 
         private void SetLetterSpacing() {
             if (Element is LabelExtended labelExtended && !string.IsNullOrEmpty(Control.Text)) {
-                //string text = Control.Text;
-                //NSMutableAttributedString attributedString = new NSMutableAttributedString(text);
+                try {
 
-                //NSString nsKern = new NSString("NSKern");
-                //NSObject spacing = NSObject.FromObject(labelExtended.LetterSpacing * 10);
-                //NSRange range = new NSRange(0, text.Length);
+                    //string text = Control.Text;
+                    //NSMutableAttributedString attributedString = new NSMutableAttributedString(text);
 
-                //attributedString.AddAttribute(nsKern, spacing, range);
-                //Control.AttributedText = attributedString;
+                    //NSString nsKern = new NSString("NSKern");
+                    //NSObject spacing = NSObject.FromObject(labelExtended.LetterSpacing * 10);
+                    //NSRange range = new NSRange(0, text.Length);
 
-                Control.AttributedText = new NSAttributedString(Control.Text, kerning: labelExtended.LetterSpacing);
+                    //attributedString.AddAttribute(nsKern, spacing, range);
+                    //Control.AttributedText = attributedString;
+                    //if (string.IsNullOrEmpty(Control.Text)) return;
+                    Control.AttributedText = new NSAttributedString(Control.Text, kerning: labelExtended.LetterSpacing);
+                }
+                catch (System.Exception ex) {
+
+                    throw;
+                }
+
             }
         }
     }

@@ -7,7 +7,7 @@ namespace Drive.Client.Controls {
             nameof(LetterSpacing),
             typeof(float),
             typeof(LabelExtended),
-            defaultValue: .05F);
+            defaultValue: (Device.RuntimePlatform == Device.Android) ? .05F : 1f);
 
         public float LetterSpacing {
             get => (float)GetValue(LetterSpacingProperty);

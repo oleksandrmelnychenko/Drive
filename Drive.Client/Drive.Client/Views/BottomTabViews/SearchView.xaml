@@ -89,6 +89,7 @@
                                         TextColor="{StaticResource BlackColor}"
                                         VerticalOptions="Center" />
                                     <controls:LabelExtended
+                                        FontFamily="{StaticResource SFProThin}"
                                         FontSize="{StaticResource LittleSize}"
                                         Text="{Binding Brand}"
                                         TextColor="{StaticResource TextColor}"
@@ -136,6 +137,7 @@
                 VerticalOptions="Center">
                 <controls:EntryExtended
                     Margin="0,0,0,0"
+                    FontFamily="{StaticResource SFProThin}"
                     FontSize="{StaticResource BaseFontSize}"
                     HorizontalOptions="Fill"
                     HorizontalTextAlignment="Center"
@@ -172,6 +174,7 @@
                 HorizontalOptions="Center"
                 Spacing="3">
                 <controls:LabelExtended
+                    FontFamily="{StaticResource SFProThin}"
                     FontSize="{StaticResource Key=MidMediumSize}"
                     HorizontalOptions="Center"
                     Text="Актуальна інформація на 31.08.2018"

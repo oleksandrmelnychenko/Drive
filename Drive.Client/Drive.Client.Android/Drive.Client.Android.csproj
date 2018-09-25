@@ -115,8 +115,10 @@
     <Compile Include="Services\Device.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\seguili.ttf" />
-    <AndroidAsset Include="Assets\SFProText-SemiBoldItalic.ttf" />
+    <AndroidAsset Include="Assets\SFProDisplay-Light.ttf" />
+    <AndroidAsset Include="Assets\SFProDisplay-Regular.ttf" />
+    <AndroidAsset Include="Assets\SFProDisplay-SemiBold.ttf" />
+    <AndroidAsset Include="Assets\SFProDisplay-Thin.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml">

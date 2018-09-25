@@ -16,6 +16,7 @@
             TextColor="{StaticResource TitleColor}"
             VerticalOptions="Center" />
         <controls:LabelExtended
+            FontFamily="{StaticResource SFProThin}"
             FontSize="{StaticResource Key=MidMediumSize}"
             HorizontalOptions="Center"
             Text="(У РОЗРОБЦІ)"
