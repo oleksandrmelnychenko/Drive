@@ -102,8 +102,10 @@
       <SubType>Designer</SubType>
     </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <BundleResource Include="Resources\Fonts\seguili.ttf" />
-    <BundleResource Include="Resources\Fonts\SFProText-SemiBoldItalic.ttf" />
+    <BundleResource Include="Resources\Fonts\SFProDisplay-Light.ttf" />
+    <BundleResource Include="Resources\Fonts\SFProDisplay-Regular.ttf" />
+    <BundleResource Include="Resources\Fonts\SFProDisplay-SemiBold.ttf" />
+    <BundleResource Include="Resources\Fonts\SFProDisplay-Thin.ttf" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-1024.png">

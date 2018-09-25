@@ -29,10 +29,25 @@
 
             <!--  FONTS  -->
             <OnPlatform
-                x:Key="SegLight"
+                x:Key="SFProLight"
                 x:TypeArguments="x:String"
-                Android="SFProText-SemiBoldItalic.ttf#SF Pro Text-Semibold Italic"
-                iOS="SFProText-SemiBoldItalic" />
+                Android="SFProDisplay-Light.ttf#SF Pro Display light"
+                iOS="SFProDisplay-Light" />
+            <OnPlatform
+                x:Key="SFProRegular"
+                x:TypeArguments="x:String"
+                Android="SFProDisplay-Regular.ttf#SF Pro Display Regular"
+                iOS="SFProDisplay-Regular" />
+            <OnPlatform
+                x:Key="SFProSemiBold"
+                x:TypeArguments="x:String"
+                Android="SFProDisplay-SemiBold.ttf#SF Pro Display SemiBold"
+                iOS="SFProDisplay-SemiBold" />
+            <OnPlatform
+                x:Key="SFProThin"
+                x:TypeArguments="x:String"
+                Android="SFProDisplay-Thin.ttf#SF Pro Display Thin"
+                iOS="SFProDisplay-Thin" />
 
             <!--  FONT SIZES  -->
             <OnPlatform
@@ -127,12 +142,12 @@
             </Style>
 
             <!--  IMPLICIT STYLES  -->
-            <!--<Style
+            <Style
                 ApplyToDerivedTypes="True"
                 CanCascade="True"
                 TargetType="Label">
-                <Setter Property="FontFamily" Value="{StaticResource SegLight}" />
-            </Style>-->
+                <Setter Property="FontFamily" Value="{StaticResource SFProRegular}" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

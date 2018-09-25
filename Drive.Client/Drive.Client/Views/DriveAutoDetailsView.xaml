@@ -41,13 +41,14 @@
                         TargetType="Label">
                         <Setter Property="HorizontalOptions" Value="EndAndExpand" />
                         <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
-                        <Setter Property="FontSize" Value="{StaticResource MediumSize}" />
+                        <Setter Property="FontSize" Value="{StaticResource MidMediumSize}" />
                     </Style>
 
                     <Style
                         x:Key="titleLabel"
                         BasedOn="{StaticResource detailBase}"
                         TargetType="Label">
+                        <Setter Property="FontFamily" Value="{StaticResource SFProThin}" />
                         <Setter Property="TextColor" Value="{StaticResource TextColor}" />
                         <Setter Property="FontSize" Value="{StaticResource LittleSize}" />
                     </Style>
