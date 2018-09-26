@@ -44,6 +44,7 @@
                             IsPassword="{Binding Path=IsPasswordInput}"
                             Keyboard="{Binding Path=KeyboardType}"
                             Placeholder="{Binding Path=MainInputPlaceholder}"
+                            ReturnType="Next"
                             Text="{Binding Path=MainInput.Value}"
                             TextColor="{StaticResource ExtraGrayColor}">
                             <controls:EntryExtended.Behaviors>

@@ -38,6 +38,7 @@
                             FontSize="{StaticResource LargerSize}"
                             HorizontalOptions="Fill"
                             HorizontalTextAlignment="Center"
+                            ReturnType="Next"
                             IsPassword="{Binding Path=IsPasswordInput}"
                             Keyboard="{Binding Path=KeyboardType}"
                             Placeholder="{Binding Path=MainInputPlaceholder}"
