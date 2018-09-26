@@ -25,6 +25,19 @@
 
             <Grid.Resources>
                 <ResourceDictionary>
+                    <OnPlatform
+                        x:Key="TitleFontSize"
+                        x:TypeArguments="x:Double"
+                        Android="{StaticResource LittleSize}"
+                        iOS="{StaticResource MediumSize}" />
+
+                    <OnPlatform
+                        x:Key="ValueFontSize"
+                        x:TypeArguments="x:Double"
+                        Android="{StaticResource MidMediumSize}"
+                        iOS="{StaticResource MediumSize}" />
+
+
                     <Style x:Key="descriptionLabel" TargetType="Label">
                         <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
                         <Setter Property="FontSize" Value="{StaticResource MediumSize}" />
@@ -41,7 +54,7 @@
                         TargetType="Label">
                         <Setter Property="HorizontalOptions" Value="EndAndExpand" />
                         <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
-                        <Setter Property="FontSize" Value="{StaticResource MidMediumSize}" />
+                        <Setter Property="FontSize" Value="{StaticResource ValueFontSize}" />
                     </Style>
 
                     <Style
@@ -50,7 +63,7 @@
                         TargetType="Label">
                         <Setter Property="FontFamily" Value="{StaticResource SFProLight}" />
                         <Setter Property="TextColor" Value="{StaticResource BrandColor}" />
-                        <Setter Property="FontSize" Value="{StaticResource LittleSize}" />
+                        <Setter Property="FontSize" Value="{StaticResource TitleFontSize}" />
                     </Style>
                 </ResourceDictionary>
             </Grid.Resources>
