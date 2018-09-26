@@ -7,7 +7,7 @@
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     BackgroundColor="{StaticResource WhiteColor}">
 
-    <StackLayout
+    <!--<StackLayout
         HorizontalOptions="Center"
         Spacing="4"
         VerticalOptions="Center">
@@ -15,19 +15,19 @@
             FontSize="{StaticResource BaseFontSize}"
             HorizontalOptions="Center"
             Text="АККАУНТ КОРИСТУВАЧА"
-            TextColor="{StaticResource TitleColor}"
+            TextColor="{StaticResource DarkColor}"
             VerticalOptions="Center" />
         <controls:LabelExtended
             FontFamily="{StaticResource SFProThin}"
             FontSize="{StaticResource MidMediumSize}"
             HorizontalOptions="Center"
             Text="(У РОЗРОБЦІ)"
-            TextColor="{StaticResource TextColor}"
+            TextColor="{StaticResource ExtraGrayColor}"
             VerticalOptions="Center" />
-    </StackLayout>
+    </StackLayout>-->
 
     <!--  Login/registartion stub  -->
-    <!--<Grid RowSpacing="0">
+    <Grid RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="230" />
             <RowDefinition Height="*" />
@@ -45,14 +45,15 @@
                 FontSize="{StaticResource LittleSize}"
                 HorizontalOptions="Center"
                 Text="WE ARE HAPPY YOU ARE HERE LET'S DO THIS"
-                TextColor="{StaticResource TitleColor}"
+                TextColor="{StaticResource DarkColor}"
                 VerticalOptions="End" />
         </Grid>
 
         <StackLayout
             Grid.Row="1"
             Padding="20,0"
-            Spacing="12">
+            Spacing="0">
+
             <controls:ExtendedContentView
                 BackgroundColor="{StaticResource Key=DarkBlueColor}"
                 BorderColor="{StaticResource Key=DarkBlueColor}"
@@ -65,11 +66,12 @@
                     FontSize="{StaticResource LittleSize}"
                     HorizontalTextAlignment="Center"
                     Text="ЛОГІН"
-                    TextColor="{StaticResource Key=TextColor}"
+                    TextColor="{StaticResource Key=ExtraGrayColor}"
                     VerticalTextAlignment="Center" />
             </controls:ExtendedContentView>
 
             <controls:ExtendedContentView
+                Margin="0,10,0,0"
                 BackgroundColor="{StaticResource Key=WhiteColor}"
                 BorderColor="{StaticResource Key=DarkBlueColor}"
                 BorderThickness="1"
@@ -81,28 +83,38 @@
                     FontSize="{StaticResource LittleSize}"
                     HorizontalTextAlignment="Center"
                     Text="РЕЄСТРАЦІЯ"
-                    TextColor="{StaticResource TitleColor}"
+                    TextColor="{StaticResource DarkColor}"
                     VerticalTextAlignment="Center" />
             </controls:ExtendedContentView>
 
             <Label
+                Margin="0,30,0,0"
                 HorizontalTextAlignment="Center"
                 Text="або миттево увійти через"
-                TextColor="{StaticResource TextColor}" />
+                TextColor="{StaticResource ExtraGrayColor}" />
 
-            <ContentView
+            <controls:ExtendedContentView
+                Margin="0,20,0,0"
+                BorderColor="{StaticResource LightGrayColor}"
+                BorderThickness="1"
+                CornerRadius="{OnPlatform Android=20,
+                                          iOS=20,
+                                          Default=20}"
                 HeightRequest="40"
                 HorizontalOptions="Center"
                 WidthRequest="40">
                 <ContentView.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding Path=FacebookLoginCommand}" />
                 </ContentView.GestureRecognizers>
+
                 <ffimageloadingsvg:SvgCachedImage
-                    BackgroundColor="Black"
-                    HeightRequest="40"
+                    Aspect="AspectFit"
+                    HeightRequest="20"
                     HorizontalOptions="Center"
-                    WidthRequest="40" />
-            </ContentView>
+                    Source="resource://Drive.Client.Resources.Images.facebook.svg"
+                    VerticalOptions="Center"
+                    WidthRequest="20" />
+            </controls:ExtendedContentView>
         </StackLayout>
-    </Grid>-->
+    </Grid>
 </ContentView>

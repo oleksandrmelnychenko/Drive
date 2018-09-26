@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Drive.Client.Controls"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-    BackgroundColor="{StaticResource BottomBackgroundColor}"
+    BackgroundColor="{StaticResource UltraLightGrayColor}"
     HeightRequest="60">
 
     <Grid

@@ -50,7 +50,7 @@
             FontSize="{StaticResource BaseFontSize}"
             HorizontalOptions="Center"
             Text="ДЕРЖАВНИЙ ТРАНСПОРТНИЙ РЕЄСТР"
-            TextColor="{StaticResource TitleColor}"
+            TextColor="{StaticResource DarkColor}"
             VerticalOptions="End" />
 
         <ScrollView
@@ -76,7 +76,7 @@
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
 
-                                <BoxView Grid.Row="0" Color="{StaticResource SearchBackgroundColor}" />
+                                <BoxView Grid.Row="0" Color="{StaticResource LightGrayColor}" />
 
                                 <StackLayout
                                     Grid.Row="1"
@@ -92,7 +92,7 @@
                                         FontFamily="{StaticResource SFProThin}"
                                         FontSize="{StaticResource LittleSize}"
                                         Text="{Binding Brand}"
-                                        TextColor="{StaticResource TextColor}"
+                                        TextColor="{StaticResource ExtraGrayColor}"
                                         VerticalOptions="Center" />
                                 </StackLayout>
                             </Grid>
@@ -131,7 +131,7 @@
         <StackLayout Grid.Row="2" Spacing="0">
             <!--  SEARCH  -->
             <Grid
-                BackgroundColor="{StaticResource SearchBackgroundColor}"
+                BackgroundColor="{StaticResource LightGrayColor}"
                 HeightRequest="60"
                 RowSpacing="0"
                 VerticalOptions="Center">
@@ -142,10 +142,10 @@
                     HorizontalOptions="Fill"
                     HorizontalTextAlignment="Center"
                     Placeholder="ПОШУК ПО НОМЕРУ"
-                    PlaceholderColor="{StaticResource TextColor}"
+                    PlaceholderColor="{StaticResource ExtraGrayColor}"
                     ReturnType="Search"
                     Text="{Binding TargetValue, Converter={StaticResource UpperCaseConverter}, Mode=TwoWay}"
-                    TextColor="{StaticResource TextColor}">
+                    TextColor="{StaticResource ExtraGrayColor}">
                     <controls:EntryExtended.Behaviors>
                         <behaviors:EventToCommandBehavior Command="{Binding InputCompleteCommand}" EventName="Completed" />
                         <behaviors:EventToCommandBehavior Command="{Binding InputTextChangedCommand}" EventName="TextChanged" />
@@ -178,12 +178,12 @@
                     FontSize="{StaticResource Key=MidMediumSize}"
                     HorizontalOptions="Center"
                     Text="Актуальна інформація на 31.08.2018"
-                    TextColor="{StaticResource Key=TextColor}" />
+                    TextColor="{StaticResource Key=ExtraGrayColor}" />
                 <controls:LabelExtended
                     FontSize="{StaticResource Key=MidMediumSize}"
                     HorizontalOptions="Center"
                     Text="data.gov.ua"
-                    TextColor="{StaticResource TitleColor}">
+                    TextColor="{StaticResource DarkColor}">
                     <controls:LabelExtended.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Path=NavigateToSourceCommand}" />
                     </controls:LabelExtended.GestureRecognizers>

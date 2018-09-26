@@ -53,10 +53,10 @@
                                         FontFamily="{StaticResource SFProLight}"
                                         FontSize="{StaticResource LittleSize}"
                                         Text="{Binding Brand}"
-                                        TextColor="{StaticResource BrandColor}"
+                                        TextColor="{StaticResource HardGrayColor}"
                                         VerticalOptions="CenterAndExpand" />
                                 </StackLayout>
-                                <BoxView Grid.Row="1" Color="{StaticResource SeparatorLineColor}" />
+                                <BoxView Grid.Row="1" Color="{StaticResource LightGrayColor}" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

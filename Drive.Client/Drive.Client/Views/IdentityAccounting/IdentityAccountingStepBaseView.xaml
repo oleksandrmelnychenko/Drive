@@ -22,7 +22,7 @@
                     FontSize="{StaticResource LittleSize}"
                     HorizontalOptions="Center"
                     Text="{Binding Path=StepTitle}"
-                    TextColor="{StaticResource TitleColor}"
+                    TextColor="{StaticResource DarkColor}"
                     VerticalOptions="End" />
 
                 <!--  Step input  -->
@@ -33,7 +33,7 @@
                     </Grid.RowDefinitions>
                     <Grid
                         Grid.Row="0"
-                        BackgroundColor="{StaticResource SearchBackgroundColor}"
+                        BackgroundColor="{StaticResource LightGrayColor}"
                         HeightRequest="60"
                         RowSpacing="0"
                         VerticalOptions="Center">
@@ -45,7 +45,7 @@
                             Keyboard="{Binding Path=KeyboardType}"
                             Placeholder="{Binding Path=MainInputPlaceholder}"
                             Text="{Binding Path=MainInput.Value}"
-                            TextColor="{StaticResource TextColor}">
+                            TextColor="{StaticResource ExtraGrayColor}">
                             <controls:EntryExtended.Behaviors>
                                 <behaviors:EventToCommandBehavior Command="{Binding Path=StepCommand}" EventName="Completed" />
                             </controls:EntryExtended.Behaviors>

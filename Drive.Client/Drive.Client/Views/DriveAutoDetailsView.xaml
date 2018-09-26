@@ -62,7 +62,7 @@
                         BasedOn="{StaticResource detailBase}"
                         TargetType="Label">
                         <Setter Property="FontFamily" Value="{StaticResource SFProLight}" />
-                        <Setter Property="TextColor" Value="{StaticResource BrandColor}" />
+                        <Setter Property="TextColor" Value="{StaticResource HardGrayColor}" />
                         <Setter Property="FontSize" Value="{StaticResource TitleFontSize}" />
                     </Style>
                 </ResourceDictionary>

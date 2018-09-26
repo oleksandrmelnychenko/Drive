@@ -13,14 +13,14 @@
             FontSize="{StaticResource Key=BaseFontSize}"
             HorizontalOptions="Center"
             Text="НОВИЙ ПОСТ"
-            TextColor="{StaticResource TitleColor}"
+            TextColor="{StaticResource DarkColor}"
             VerticalOptions="Center" />
         <controls:LabelExtended
             FontFamily="{StaticResource SFProThin}"
             FontSize="{StaticResource Key=MidMediumSize}"
             HorizontalOptions="Center"
             Text="(У РОЗРОБЦІ)"
-            TextColor="{StaticResource TextColor}"
+            TextColor="{StaticResource ExtraGrayColor}"
             VerticalOptions="Center" />
     </StackLayout>
 </ContentView>
