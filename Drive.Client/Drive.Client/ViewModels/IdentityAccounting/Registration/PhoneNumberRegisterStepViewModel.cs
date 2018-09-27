@@ -2,6 +2,7 @@
 using Drive.Client.Validations;
 using Drive.Client.Validations.ValidationRules;
 using Xamarin.Forms;
+using System;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
     public class PhoneNumberRegisterStepViewModel : IdentityAccountingStepBaseViewModel {
@@ -9,8 +10,8 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
         public PhoneNumberRegisterStepViewModel() {
             StepTitle = PHONE_STEP_REGISTRATION_TITLE;
             MainInputPlaceholder = PHONE_PLACEHOLDER_STEP_REGISTRATION;
-            MainInputIconPath = TODO_INPUT_ICON_STUB;
-            KeyboardType = Keyboard.Telephone;
+            MainInputIconPath = PHONENUMBER_ICON_PATH;
+            KeyboardType = Device.RuntimePlatform == Device.Android ? Keyboard.Telephone : Keyboard.Default;          
         }
 
         protected async override void OnStepCommand() {

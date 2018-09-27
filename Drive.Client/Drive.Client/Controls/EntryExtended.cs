@@ -4,6 +4,19 @@ using Xamarin.Forms;
 
 namespace Drive.Client.Controls {
     public class EntryExtended : Entry {
+
+        public static readonly BindableProperty LetterSpacingPlaceholderProperty = BindableProperty.Create(
+            propertyName: nameof(LetterSpacingPlaceholder),
+            returnType: typeof(float),
+            declaringType: typeof(EntryExtended),
+            defaultValue: (Device.RuntimePlatform == Device.Android) ? .05F : 4f);
+
+        public static readonly BindableProperty LetterSpacingProperty = BindableProperty.Create(
+           propertyName: nameof(LetterSpacing),
+           returnType: typeof(float),
+           declaringType: typeof(EntryExtended),
+           defaultValue: (Device.RuntimePlatform == Device.Android) ? .05F : 4f);
+
         public static readonly BindableProperty BorderColorProperty = BindableProperty.Create(
             propertyName: nameof(BorderColor),
             returnType: typeof(Color),
@@ -42,6 +55,16 @@ namespace Drive.Client.Controls {
 
         public EntryExtended() {
             Completed += OnEntryExtendedCompleted;
+        }
+
+        public float LetterSpacingPlaceholder {
+            get { return (float)GetValue(LetterSpacingPlaceholderProperty); }
+            set { SetValue(LetterSpacingPlaceholderProperty, value); }
+        }
+
+        public float LetterSpacing {
+            get { return (float)GetValue(LetterSpacingProperty); }
+            set { SetValue(LetterSpacingProperty, value); }
         }
 
         public Color BorderColor {

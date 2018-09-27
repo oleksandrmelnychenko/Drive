@@ -18,7 +18,11 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
         public static readonly string NAME_PLACEHOLDER_STEP_REGISTRATION = "ІМ'Я";
         public static readonly string PASSWORD_PLACEHOLDER_STEP_REGISTRATION = "ПАРОЛЬ";
 
+        public static readonly string PHONENUMBER_ICON_PATH = "resource://Drive.Client.Resources.Images.Phone.svg";
+        public static readonly string NAME_ICON_PATH = "resource://Drive.Client.Resources.Images.name.svg";
+        public static readonly string PASSWORD_ICON_PATH = "resource://Drive.Client.Resources.Images.password.svg";
         public static readonly string TODO_INPUT_ICON_STUB = "todo: appropriate icon path";
+        //public static readonly string TODO_INPUT_ICON_STUB = "todo: appropriate icon path";
 
         public IdentityAccountingStepBaseViewModel() {
             ActionBarViewModel = DependencyLocator.Resolve<IdentityAccountingActionBarViewModel>();

@@ -10,7 +10,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
         public ConfirmPasswordRegisterStepViewModel() {
             StepTitle = PASSWORD_CONFIRM_STEP_REGISTRATION_TITLE;
             MainInputPlaceholder = PASSWORD_PLACEHOLDER_STEP_REGISTRATION;
-            MainInputIconPath = TODO_INPUT_ICON_STUB;
+            MainInputIconPath = PASSWORD_ICON_PATH;
             IsPasswordInput = true;
         }
 

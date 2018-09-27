@@ -10,7 +10,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
         public NameRegisterStepViewModel() {
             StepTitle = NAME_STEP_REGISTRATION_TITLE;
             MainInputPlaceholder = NAME_PLACEHOLDER_STEP_REGISTRATION;
-            MainInputIconPath = TODO_INPUT_ICON_STUB;
+            MainInputIconPath = NAME_ICON_PATH;
         }
 
         public override Task InitializeAsync(object navigationData) {

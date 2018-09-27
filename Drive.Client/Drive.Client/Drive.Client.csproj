@@ -23,6 +23,9 @@
     <None Remove="Resources\Images\drive_logo.svg" />
     <None Remove="Resources\Images\facebook.svg" />
     <None Remove="Resources\Images\Home.svg" />
+    <None Remove="Resources\Images\name.svg" />
+    <None Remove="Resources\Images\password.svg" />
+    <None Remove="Resources\Images\Phone.svg" />
     <None Remove="Resources\Images\Plus.svg" />
     <None Remove="Resources\Images\Save.svg" />
     <None Remove="Resources\Images\Search.svg" />
@@ -37,6 +40,9 @@
     <EmbeddedResource Include="Resources\Images\drive_logo.svg" />
     <EmbeddedResource Include="Resources\Images\facebook.svg" />
     <EmbeddedResource Include="Resources\Images\Home.svg" />
+    <EmbeddedResource Include="Resources\Images\name.svg" />
+    <EmbeddedResource Include="Resources\Images\password.svg" />
+    <EmbeddedResource Include="Resources\Images\Phone.svg" />
     <EmbeddedResource Include="Resources\Images\Plus.svg" />
     <EmbeddedResource Include="Resources\Images\Save.svg" />
     <EmbeddedResource Include="Resources\Images\Search.svg" />

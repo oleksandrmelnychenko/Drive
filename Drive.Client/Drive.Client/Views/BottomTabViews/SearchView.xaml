@@ -138,9 +138,10 @@
                 <controls:EntryExtended
                     Margin="0,0,0,0"
                     FontFamily="{StaticResource SFProThin}"
-                    FontSize="{StaticResource BaseFontSize}"
+                    FontSize="{StaticResource MediumSize}"
                     HorizontalOptions="Fill"
                     HorizontalTextAlignment="Center"
+                    LetterSpacingPlaceholder="1.3"
                     Placeholder="ПОШУК ПО НОМЕРУ"
                     PlaceholderColor="{StaticResource ExtraGrayColor}"
                     ReturnType="Search"

@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:behaviors="clr-namespace:Drive.Client.Behaviors"
     xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:converters="clr-namespace:Drive.Client.Converters"
     xmlns:dependency="clr-namespace:Drive.Client.ViewModels.Base"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:identityAccounting="clr-namespace:Drive.Client.Views.IdentityAccounting"
@@ -38,10 +39,10 @@
                             FontSize="{StaticResource LargerSize}"
                             HorizontalOptions="Fill"
                             HorizontalTextAlignment="Center"
-                            ReturnType="Next"
                             IsPassword="{Binding Path=IsPasswordInput}"
-                            Keyboard="{Binding Path=KeyboardType}"
+                            Keyboard="{Binding KeyboardType}"
                             Placeholder="{Binding Path=MainInputPlaceholder}"
+                            ReturnType="Next"
                             Text="{Binding Path=MainInput.Value}"
                             TextColor="{StaticResource ExtraGrayColor}">
                             <controls:EntryExtended.Behaviors>
@@ -51,10 +52,10 @@
                         </controls:EntryExtended>
                         <!--  TODO: bound source property to the MainInputIconPath with appropriate binding converter  -->
                         <ffimageloadingsvg:SvgCachedImage
-                            Margin="10,0,0,0"
-                            BackgroundColor="Black"
+                            Margin="20,0,0,0"
                             HeightRequest="15"
                             HorizontalOptions="Start"
+                            Source="{Binding MainInputIconPath}"
                             VerticalOptions="Center"
                             WidthRequest="15" />
                     </Grid>
