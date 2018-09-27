@@ -141,7 +141,8 @@
                     FontSize="{StaticResource MediumSize}"
                     HorizontalOptions="Fill"
                     HorizontalTextAlignment="Center"
-                    LetterSpacingPlaceholder="1.3"
+                    LetterSpacingPlaceholder="{OnPlatform iOS=1.3,
+                                                          Android=0.1}"
                     Placeholder="ПОШУК ПО НОМЕРУ"
                     PlaceholderColor="{StaticResource ExtraGrayColor}"
                     ReturnType="Search"

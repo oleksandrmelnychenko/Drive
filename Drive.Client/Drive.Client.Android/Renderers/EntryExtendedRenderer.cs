@@ -2,6 +2,7 @@
 using Android.Views;
 using Drive.Client.Controls;
 using Drive.Client.Droid.Renderers;
+using System;
 using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -26,9 +27,22 @@ namespace Drive.Client.Droid.Renderers {
 
             EntryExtended entryEx = Element as EntryExtended;
 
+            UpdateLetterSpacingPlaceholder(entryEx);
             UpdateBackground(entryEx);
             UpdatePadding(entryEx);
             UpdateTextAlighnment(entryEx);
+        }
+
+        private void UpdateLetterSpacingPlaceholder(EntryExtended entryEx) {
+            if (entryEx == null) return;
+
+            Control.LetterSpacing = ((EntryExtended)Element).LetterSpacingPlaceholder;
+        }
+
+        private void UpdateLetterSpacing(EntryExtended entryEx) {
+            if (entryEx == null) return;
+
+            Control.LetterSpacing = ((EntryExtended)Element).LetterSpacing;
         }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) {
@@ -49,6 +63,14 @@ namespace Drive.Client.Droid.Renderers {
                 UpdatePadding(entryEx);
             } else if (e.PropertyName == Entry.HorizontalTextAlignmentProperty.PropertyName) {
                 UpdateTextAlighnment(entryEx);
+            } else if (e.PropertyName == Entry.TextProperty.PropertyName) {
+                UpdateLetterSpacing(entryEx);
+
+                if (string.IsNullOrEmpty(entryEx.Text)) {
+                    UpdateLetterSpacingPlaceholder(entryEx);
+                }
+            } else if (e.PropertyName == EntryExtended.LetterSpacingPlaceholderProperty.PropertyName) {
+                UpdateLetterSpacingPlaceholder(entryEx);
             }
         }
 

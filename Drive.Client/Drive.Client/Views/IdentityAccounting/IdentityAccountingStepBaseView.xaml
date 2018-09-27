@@ -38,7 +38,7 @@
                         RowSpacing="0"
                         VerticalOptions="Center">
                         <controls:EntryExtended
-                            FontSize="{StaticResource LargerSize}"
+                            FontSize="{StaticResource MediumSize}"
                             HorizontalOptions="Fill"
                             HorizontalTextAlignment="Center"
                             IsPassword="{Binding Path=IsPasswordInput}"
