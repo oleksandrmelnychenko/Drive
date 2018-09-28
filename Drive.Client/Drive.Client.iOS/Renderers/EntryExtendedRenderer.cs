@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using Drive.Client.Controls;
 using Drive.Client.iOS.Renderers;
 using Foundation;
@@ -49,6 +50,7 @@ namespace Drive.Client.iOS.Renderers {
                     Control.AttributedText = new NSAttributedString(Control.Text, kerning: entryExtended.LetterSpacing);
                 }
                 catch (Exception ex) {
+                    Debugger.Break();
                     throw;
                 }
             }
@@ -60,6 +62,7 @@ namespace Drive.Client.iOS.Renderers {
                     Control.AttributedPlaceholder = new NSAttributedString(Control.Placeholder, kerning: entryExtended.LetterSpacingPlaceholder);
                 }
                 catch (Exception ex) {
+                    Debugger.Break();
                     throw;
                 }
             }

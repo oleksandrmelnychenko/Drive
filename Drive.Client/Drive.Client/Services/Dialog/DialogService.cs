@@ -14,7 +14,7 @@ namespace Drive.Client.Services.Dialog {
                 return UserDialogs.Instance.Toast(new ToastConfig(message)
                     //var icon = await BitmapLoader.Current.LoadFromResource("emoji_cool_small.png", null, null);
                     //.SetIcon(icon)
-                    .SetBackgroundColor(Color.FromRgb(17, 95, 175))
+                    .SetBackgroundColor(Color.FromRgb(44, 62, 80))
                     .SetMessageTextColor(Color.White)
                     .SetDuration(TimeSpan.FromSeconds(3))
                     .SetPosition(ToastPosition.Bottom));
@@ -24,7 +24,7 @@ namespace Drive.Client.Services.Dialog {
         public async Task ToastAsync(string message, string actionName, Action action) {
             await Task.Run(() => {
                 return UserDialogs.Instance.Toast(new ToastConfig(message)
-                    .SetBackgroundColor(Color.FromRgb(12, 168, 244))
+                    .SetBackgroundColor(Color.FromRgb(44, 62, 80))
                     .SetMessageTextColor(Color.White)
                     .SetDuration(TimeSpan.FromSeconds(3))
                     .SetPosition(ToastPosition.Bottom)

@@ -42,7 +42,8 @@
 
             <Label
                 Margin="0,30"
-                FontSize="{StaticResource LittleSize}"
+                FontFamily="{StaticResource SFProLight}"
+                FontSize="{StaticResource MediumSize}"
                 HorizontalOptions="Center"
                 Text="WE ARE HAPPY YOU ARE HERE LET'S DO THIS"
                 TextColor="{StaticResource DarkColor}"
@@ -63,10 +64,11 @@
                     <TapGestureRecognizer Command="{Binding Path=LoginCommand}" />
                 </controls:ExtendedContentView.GestureRecognizers>
                 <Label
-                    FontSize="{StaticResource LittleSize}"
+                    FontFamily="{StaticResource SFProLight}"
+                    FontSize="{StaticResource MediumSize}"
                     HorizontalTextAlignment="Center"
                     Text="ЛОГІН"
-                    TextColor="{StaticResource Key=ExtraGrayColor}"
+                    TextColor="{StaticResource WhiteColor}"
                     VerticalTextAlignment="Center" />
             </controls:ExtendedContentView>
 
@@ -80,17 +82,18 @@
                     <TapGestureRecognizer Command="{Binding Path=RegisterCommand}" />
                 </controls:ExtendedContentView.GestureRecognizers>
                 <Label
-                    FontSize="{StaticResource LittleSize}"
+                    FontFamily="{StaticResource SFProLight}"
+                    FontSize="{StaticResource MediumSize}"
                     HorizontalTextAlignment="Center"
                     Text="РЕЄСТРАЦІЯ"
-                    TextColor="{StaticResource DarkColor}"
+                    TextColor="{StaticResource DarkBlueColor}"
                     VerticalTextAlignment="Center" />
             </controls:ExtendedContentView>
 
             <Label
                 Margin="0,30,0,0"
                 HorizontalTextAlignment="Center"
-                Text="або миттево увійти через"
+                Text="або миттєво увійти через"
                 TextColor="{StaticResource ExtraGrayColor}" />
 
             <controls:ExtendedContentView

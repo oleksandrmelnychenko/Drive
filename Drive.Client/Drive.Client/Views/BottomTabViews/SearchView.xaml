@@ -54,6 +54,7 @@
             TextColor="{StaticResource DarkColor}"
             VerticalOptions="End" />
 
+        <!--  SEARCH RESULT  -->
         <ScrollView
             x:Name="scroll"
             SizeChanged="scroll_SizeChanged"
@@ -102,35 +103,9 @@
                 </stackList:StackList.ItemTemplate>
             </stackList:StackList>
         </ScrollView>
-        <!--  SEARCH RESULT  -->
-        <!--<ListView
-            x:Name="_listResults"
-            Grid.Row="1"
-            BackgroundColor="Transparent"
-            CachingStrategy="RecycleElement"
-            FlowDirection="LeftToRight"
-            ItemAppearing="_listResults_ItemAppearing"
-            ItemsSource="{Binding FoundResult}"
-            PropertyChanged="_listResults_PropertyChanged"
-            RowHeight="40"
-            SeparatorVisibility="None"
-            VerticalOptions="End">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="0,0,0,0" BackgroundColor="{StaticResource WhiteColor}">
-                            <Label
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding}"
-                                VerticalOptions="Center" />
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>-->
 
         <StackLayout Grid.Row="2" Spacing="0">
-            <!--  SEARCH  -->
+            <!--  INPUT  -->
             <Grid
                 BackgroundColor="{StaticResource LightGrayColor}"
                 HeightRequest="60"
@@ -144,6 +119,7 @@
                     HorizontalTextAlignment="Center"
                     LetterSpacingPlaceholder="{OnPlatform iOS=1.3,
                                                           Android=0.1}"
+                    MaxLength="20"
                     Placeholder="ПОШУК ПО НОМЕРУ"
                     PlaceholderColor="{StaticResource ExtraGrayColor}"
                     ReturnType="Search"
@@ -162,6 +138,7 @@
                     VerticalOptions="Center"
                     WidthRequest="15" />
             </Grid>
+            <!--  ERROR  -->
             <controls:LabelExtended
                 Margin="0,0,0,0"
                 FontSize="{StaticResource LittleSize}"
@@ -172,6 +149,7 @@
                 VerticalOptions="End"
                 VerticalTextAlignment="Center" />
 
+            <!--  INFORMATION  -->
             <StackLayout
                 Margin="0,30,0,0"
                 HorizontalOptions="Center"

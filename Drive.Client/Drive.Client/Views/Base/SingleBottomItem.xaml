@@ -16,7 +16,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <controls:ExtendedContentView
+        <!--<controls:ExtendedContentView
             BackgroundColor="{StaticResource DarkBlueColor}"
             CornerRadius="{OnPlatform iOS=15,
                                       Android=20,
@@ -28,14 +28,22 @@
                                iOS=1.6,
                                Default=1.0}"
             VerticalOptions="Center"
-            WidthRequest="30" />
+            WidthRequest="30" />-->
+
+        <ffimageloadingsvg:SvgCachedImage
+            HeightRequest="50"
+            IsVisible="{Binding HasBackgroundItem}"
+            HorizontalOptions="Center"
+            Source="resource://Drive.Client.Resources.Images.Button.svg"
+            VerticalOptions="Center"
+            WidthRequest="50" />
 
         <ffimageloadingsvg:SvgCachedImage
             x:Name="_icon_CachedImage"
-            HeightRequest="20"
+            HeightRequest="22"
             HorizontalOptions="Center"
             Source="{Binding TabIcon}"
             VerticalOptions="Center"
-            WidthRequest="20" />
+            WidthRequest="22" />
     </Grid>
 </ContentView>

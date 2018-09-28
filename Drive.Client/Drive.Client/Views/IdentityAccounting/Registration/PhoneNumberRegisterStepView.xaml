@@ -17,7 +17,8 @@
 
                 <!--  Step title  -->
                 <controls:LabelExtended
-                    FontSize="{StaticResource LittleSize}"
+                    FontFamily="{StaticResource SFProLight}"
+                    FontSize="{StaticResource MediumSize}"
                     HorizontalOptions="Center"
                     Text="{Binding Path=StepTitle}"
                     TextColor="{StaticResource DarkColor}"
@@ -36,6 +37,7 @@
                         RowSpacing="0"
                         VerticalOptions="Center">
                         <controls:EntryExtended
+                            FontFamily="{StaticResource SFProLight}"
                             FontSize="{StaticResource MediumSize}"
                             HorizontalOptions="Fill"
                             HorizontalTextAlignment="Center"

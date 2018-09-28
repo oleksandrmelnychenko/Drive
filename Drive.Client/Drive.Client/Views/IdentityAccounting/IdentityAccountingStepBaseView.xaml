@@ -19,7 +19,8 @@
 
                 <!--  Step title  -->
                 <controls:LabelExtended
-                    FontSize="{StaticResource LittleSize}"
+                    FontFamily="{StaticResource SFProLight}"
+                    FontSize="{StaticResource MediumSize}"
                     HorizontalOptions="Center"
                     Text="{Binding Path=StepTitle}"
                     TextColor="{StaticResource DarkColor}"
@@ -39,6 +40,7 @@
                         VerticalOptions="Center">
                         <controls:EntryExtended
                             FontSize="{StaticResource MediumSize}"
+                            FontFamily="{StaticResource SFProLight}"
                             HorizontalOptions="Fill"
                             HorizontalTextAlignment="Center"
                             IsPassword="{Binding Path=IsPasswordInput}"
