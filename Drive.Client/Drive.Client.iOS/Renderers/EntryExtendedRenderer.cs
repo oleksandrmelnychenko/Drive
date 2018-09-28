@@ -59,7 +59,9 @@ namespace Drive.Client.iOS.Renderers {
         private void SetLetterSpacingPlaceholder() {
             if (Element is EntryExtended entryExtended) {
                 try {
-                    Control.AttributedPlaceholder = new NSAttributedString(Control.Placeholder, kerning: entryExtended.LetterSpacingPlaceholder);
+                    Control.AttributedPlaceholder =new NSAttributedString(str: Control.Placeholder,
+                                                                          font: UIKit.UIFont.SystemFontOfSize((float)entryExtended.FontSize),
+                                                                          kerning: entryExtended.LetterSpacingPlaceholder);
                 }
                 catch (Exception ex) {
                     Debugger.Break();
