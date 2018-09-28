@@ -47,7 +47,8 @@
         <controls:LabelExtended
             Grid.Row="0"
             Margin="0,30"
-            FontSize="{StaticResource BaseFontSize}"
+            FontFamily="{StaticResource SFProLight}"
+            FontSize="{StaticResource MediumSize}"
             HorizontalOptions="Center"
             Text="ДЕРЖАВНИЙ ТРАНСПОРТНИЙ РЕЄСТР"
             TextColor="{StaticResource DarkColor}"

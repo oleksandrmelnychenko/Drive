@@ -50,7 +50,7 @@
                 Android="SFProDisplay-Thin.ttf#SF Pro Display Thin"
                 iOS="SFProDisplay-Thin" />
 
-            <!--  FONT SIZES  -->           
+            <!--  FONT SIZES  -->
             <OnPlatform
                 x:Key="BaseFontSize"
                 x:TypeArguments="x:Double"

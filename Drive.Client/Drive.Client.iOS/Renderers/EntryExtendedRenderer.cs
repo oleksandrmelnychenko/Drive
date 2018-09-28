@@ -18,6 +18,7 @@ namespace Drive.Client.iOS.Renderers {
             }
 
             if (Element != null) {
+                SetLetterSpacingText();
                 SetLetterSpacingPlaceholder();
             }
 
@@ -37,6 +38,8 @@ namespace Drive.Client.iOS.Renderers {
                 SetLetterSpacingPlaceholder();
             }else if (e.PropertyName == Entry.PlaceholderProperty.PropertyName) {
                 SetLetterSpacingPlaceholder();
+            } else if (e.PropertyName == Entry.TextProperty.PropertyName) {
+                SetLetterSpacingText();
             }
         }
 

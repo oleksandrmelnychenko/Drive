@@ -1,4 +1,5 @@
 ﻿using Drive.Client.Services.Dialog;
+using Drive.Client.Services.EventStore;
 using Drive.Client.Services.Navigation;
 using System;
 using System.Threading;
@@ -9,11 +10,13 @@ using Xamarin.Forms;
 namespace Drive.Client.ViewModels.Base {
     public abstract class ViewModelBase : ExtendedBindableObject {
 
-        private static readonly string _SOURCE_URL = "https://data.gov.ua/";
+        private static readonly string SOURCE_URL = "https://data.gov.ua/";
 
         protected readonly IDialogService DialogService;
 
         protected readonly INavigationService NavigationService;
+
+        protected readonly IEventStoreService EventStoreService;
 
         public bool IsSubscribedOnAppEvents { get; private set; }
 
@@ -26,9 +29,12 @@ namespace Drive.Client.ViewModels.Base {
         public ICommand BackCommand { get; protected set; }
 
         public ICommand NavigateToSourceCommand => new Command((object param) => {
-            Device.OpenUri(new Uri(_SOURCE_URL));
+            Device.OpenUri(new Uri(SOURCE_URL));
         });
 
+        /// <summary>
+        ///     ctor().
+        /// </summary>
         public ViewModelBase() {
             DialogService = DependencyLocator.Resolve<IDialogService>();
             NavigationService = DependencyLocator.Resolve<INavigationService>();
@@ -37,7 +43,6 @@ namespace Drive.Client.ViewModels.Base {
                 await NavigationService.PreviousPageViewModel.InitializeAsync(null);
                 await NavigationService.GoBackAsync();
             });
-
         }
 
         public virtual Task InitializeAsync(object navigationData) {

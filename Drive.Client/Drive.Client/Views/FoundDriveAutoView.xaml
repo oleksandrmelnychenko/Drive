@@ -44,6 +44,7 @@
                                         TextColor="{StaticResource BlackColor}"
                                         VerticalOptions="CenterAndExpand" />
                                     <controls:LabelExtended
+                                        FontFamily="{StaticResource SFProLight}"
                                         FontSize="{StaticResource MidMediumSize}"
                                         Text="{Binding OperName}"
                                         TextColor="{StaticResource BlackColor}"

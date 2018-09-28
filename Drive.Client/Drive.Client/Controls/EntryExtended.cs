@@ -9,13 +9,13 @@ namespace Drive.Client.Controls {
             propertyName: nameof(LetterSpacingPlaceholder),
             returnType: typeof(float),
             declaringType: typeof(EntryExtended),
-            defaultValue: (Device.RuntimePlatform == Device.Android) ? .05F : 4f);
+            defaultValue: (Device.RuntimePlatform == Device.Android) ? .05F : 1f);
 
         public static readonly BindableProperty LetterSpacingProperty = BindableProperty.Create(
            propertyName: nameof(LetterSpacing),
            returnType: typeof(float),
            declaringType: typeof(EntryExtended),
-           defaultValue: (Device.RuntimePlatform == Device.Android) ? .05F : 4f);
+           defaultValue: (Device.RuntimePlatform == Device.Android) ? .05F : 1f);
 
         public static readonly BindableProperty BorderColorProperty = BindableProperty.Create(
             propertyName: nameof(BorderColor),

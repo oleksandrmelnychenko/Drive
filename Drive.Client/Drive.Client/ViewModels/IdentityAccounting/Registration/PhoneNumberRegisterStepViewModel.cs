@@ -3,15 +3,18 @@ using Drive.Client.Validations;
 using Drive.Client.Validations.ValidationRules;
 using Xamarin.Forms;
 using System;
+using Drive.Client.Services.EventStore;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
     public class PhoneNumberRegisterStepViewModel : IdentityAccountingStepBaseViewModel {
 
-        public PhoneNumberRegisterStepViewModel() {
+        private const string DRIVE_AUTO_STREAM = "DriveAutoStream";
+
+        public PhoneNumberRegisterStepViewModel(IEventStoreService eventStoreService) {
             StepTitle = PHONE_STEP_REGISTRATION_TITLE;
             MainInputPlaceholder = PHONE_PLACEHOLDER_STEP_REGISTRATION;
             MainInputIconPath = PHONENUMBER_ICON_PATH;
-            KeyboardType = Device.RuntimePlatform == Device.Android ? Keyboard.Telephone : Keyboard.Default;          
+            KeyboardType = Device.RuntimePlatform == Device.Android ? Keyboard.Telephone : Keyboard.Default;
         }
 
         protected async override void OnStepCommand() {
