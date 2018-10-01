@@ -6,7 +6,9 @@ using Newtonsoft.Json;
 namespace Drive.Client {
     public class GlobalSetting {
 
-        //public const string DEFAULT_ENDPOINT = "http://31.128.79.4:13828";
+        public UserProfile UserProfile { get; private set; }
+
+        public RestEndpoints RestEndpoints { get; private set; } = new RestEndpoints();
 
         /// <summary>
         ///     ctor().
@@ -15,9 +17,5 @@ namespace Drive.Client {
             string jsonUserProfile = Settings.UserProfile;
             UserProfile = (string.IsNullOrEmpty(jsonUserProfile)) ? new UserProfile() : JsonConvert.DeserializeObject<UserProfile>(jsonUserProfile);
         }
-
-        public UserProfile UserProfile { get; private set; }
-
-        public RestEndpoints RestEndpoints { get; private set; } = new RestEndpoints();
     }
 }

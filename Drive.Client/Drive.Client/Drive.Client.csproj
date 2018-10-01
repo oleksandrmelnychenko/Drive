@@ -22,14 +22,21 @@
     <None Remove="Resources\Images\Arrow.svg" />
     <None Remove="Resources\Images\Button.svg" />
     <None Remove="Resources\Images\drive_logo.svg" />
+    <None Remove="Resources\Images\edit.svg" />
     <None Remove="Resources\Images\facebook.svg" />
+    <None Remove="Resources\Images\filter.svg" />
+    <None Remove="Resources\Images\Gear.svg" />
     <None Remove="Resources\Images\Home.svg" />
+    <None Remove="Resources\Images\Idea.svg" />
     <None Remove="Resources\Images\name.svg" />
+    <None Remove="Resources\Images\Ok.svg" />
     <None Remove="Resources\Images\password.svg" />
     <None Remove="Resources\Images\Phone.svg" />
     <None Remove="Resources\Images\Plus.svg" />
     <None Remove="Resources\Images\Save.svg" />
     <None Remove="Resources\Images\Search.svg" />
+    <None Remove="Resources\Images\stroke.svg" />
+    <None Remove="Resources\Images\TEST.png" />
     <None Remove="Resources\Images\User.svg" />
   </ItemGroup>
 
@@ -40,14 +47,21 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\Images\drive_logo.svg" />
+    <EmbeddedResource Include="Resources\Images\edit.svg" />
     <EmbeddedResource Include="Resources\Images\facebook.svg" />
+    <EmbeddedResource Include="Resources\Images\filter.svg" />
+    <EmbeddedResource Include="Resources\Images\Gear.svg" />
     <EmbeddedResource Include="Resources\Images\Home.svg" />
+    <EmbeddedResource Include="Resources\Images\Idea.svg" />
     <EmbeddedResource Include="Resources\Images\name.svg" />
+    <EmbeddedResource Include="Resources\Images\Ok.svg" />
     <EmbeddedResource Include="Resources\Images\password.svg" />
     <EmbeddedResource Include="Resources\Images\Phone.svg" />
     <EmbeddedResource Include="Resources\Images\Plus.svg" />
     <EmbeddedResource Include="Resources\Images\Save.svg" />
     <EmbeddedResource Include="Resources\Images\Search.svg" />
+    <EmbeddedResource Include="Resources\Images\stroke.svg" />
+    <EmbeddedResource Include="Resources\Images\TEST.png" />
     <EmbeddedResource Include="Resources\Images\User.svg" />
   </ItemGroup>
 

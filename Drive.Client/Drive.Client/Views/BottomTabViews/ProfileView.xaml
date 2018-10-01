@@ -4,120 +4,295 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:ffImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     BackgroundColor="{StaticResource WhiteColor}">
 
-    <!--<StackLayout
-        HorizontalOptions="Center"
-        Spacing="4"
-        VerticalOptions="Center">
-        <controls:LabelExtended
-            FontSize="{StaticResource BaseFontSize}"
-            HorizontalOptions="Center"
-            Text="АККАУНТ КОРИСТУВАЧА"
-            TextColor="{StaticResource DarkColor}"
-            VerticalOptions="Center" />
-        <controls:LabelExtended
-            FontFamily="{StaticResource SFProThin}"
-            FontSize="{StaticResource MidMediumSize}"
-            HorizontalOptions="Center"
-            Text="(У РОЗРОБЦІ)"
-            TextColor="{StaticResource ExtraGrayColor}"
-            VerticalOptions="Center" />
-    </StackLayout>-->
-
-    <!--  Login/registartion stub  -->
+    <!--  MAIN FRAME  -->
     <Grid RowSpacing="0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="230" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            <ffimageloadingsvg:SvgCachedImage
-                HorizontalOptions="Center"
-                Source="resource://Drive.Client.Resources.Images.drive_logo.svg"
-                VerticalOptions="Center"
-                WidthRequest="200" />
+        <!--  PROFILE CONTENT  -->
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-            <Label
-                Margin="0,30"
-                FontFamily="{StaticResource SFProLight}"
-                FontSize="{StaticResource MediumSize}"
-                HorizontalOptions="Center"
-                Text="WE ARE HAPPY YOU ARE HERE LET'S DO THIS"
-                TextColor="{StaticResource DarkColor}"
-                VerticalOptions="End" />
+            <!--  TEMPORARY ACTION BAR  -->
+            <Grid
+                BackgroundColor="{StaticResource WhiteColor}"
+                HeightRequest="55"
+                RowSpacing="0">
+                <!--  LOGO  -->
+                <ContentView Padding="20,0" VerticalOptions="Fill">
+                    <ffimageloadingsvg:SvgCachedImage
+                        HeightRequest="20"
+                        HorizontalOptions="Center"
+                        Source="resource://Drive.Client.Resources.Images.drive_logo.svg"
+                        VerticalOptions="Center" />
+                </ContentView>
+
+                <!--  CANCEL BUTTON  -->
+                <ContentView
+                    Padding="20,0"
+                    HorizontalOptions="Start"
+                    IsVisible="True"
+                    VerticalOptions="Fill">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding}" />
+                    </ContentView.GestureRecognizers>
+                    <ffimageloadingsvg:SvgCachedImage
+                        HeightRequest="12"
+                        HorizontalOptions="Center"
+                        Source="resource://Drive.Client.Resources.Images"
+                        VerticalOptions="Center" />
+                </ContentView>
+                <!--  ACCEPT BUTTON  -->
+                <ContentView
+                    Padding="20,0"
+                    HorizontalOptions="End"
+                    IsVisible="True"
+                    VerticalOptions="Fill">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AcceptCommand}" />
+                    </ContentView.GestureRecognizers>
+                    <ffimageloadingsvg:SvgCachedImage
+                        HeightRequest="12"
+                        HorizontalOptions="Center"
+                        Source="resource://Drive.Client.Resources.Images.Ok.svg"
+                        VerticalOptions="Center" />
+                </ContentView>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!--  PROFILE INFO  -->
+                <Grid Grid.Row="0">
+                    <BoxView Grid.Row="0" Color="White" />
+                    <ffimageloadingsvg:SvgCachedImage
+                        HeightRequest="150"
+                        HorizontalOptions="Center"
+                        Source="resource://Drive.Client.Resources.Images.stroke.svg"
+                        VerticalOptions="Center" />
+                    <!--  PROFILE PHOTO  -->
+                    <ffImage:CachedImage
+                        Aspect="AspectFit"
+                        HorizontalOptions="Center"
+                        Source="resource://Drive.Client.Resources.Images.TEST.png"
+                        WidthRequest="140">
+                        <ffImage:CachedImage.Transformations>
+                            <ffTransformations:CircleTransformation />
+                        </ffImage:CachedImage.Transformations>
+                    </ffImage:CachedImage>
+                    <ffimageloadingsvg:SvgCachedImage
+                        Margin="0,140,0,0"
+                        HeightRequest="80"
+                        HorizontalOptions="Center"
+                        Source="resource://Drive.Client.Resources.Images.edit.svg"
+                        VerticalOptions="Center" />
+
+                    <Grid
+                        Grid.Row="0"
+                        Padding="20,0"
+                        RowSpacing="0"
+                        VerticalOptions="End">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+
+                        <BoxView
+                            Grid.Row="0"
+                            HeightRequest="1"
+                            VerticalOptions="Center"
+                            Color="{StaticResource LightGrayColor}" />
+                        <controls:LabelExtended
+                            Grid.Row="0"
+                            BackgroundColor="{StaticResource WhiteColor}"
+                            FontFamily="{StaticResource SFProLight}"
+                            FontSize="{StaticResource LargeSize}"
+                            HorizontalOptions="Center"
+                            Text="ОЛЕКСАНДР ЗАВАРКА"
+                            TextColor="{StaticResource DarkColor}"
+                            VerticalOptions="Center" />
+
+                        <controls:LabelExtended
+                            Grid.Row="1"
+                            FontFamily="{StaticResource SFProLight}"
+                            FontSize="{StaticResource MediumSize}"
+                            HorizontalOptions="Center"
+                            Text="ХМЕЛЬНИЦЬКИЙ"
+                            TextColor="{StaticResource DarkColor}"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </Grid>
+
+                <!--  PROFILE TOOLS  -->
+                <StackLayout
+                    Grid.Row="1"
+                    Padding="20,0"
+                    Spacing="0"
+                    VerticalOptions="Center">
+                    <BoxView HeightRequest="1" Color="{StaticResource LightGrayColor}" />
+                    <StackLayout
+                        HeightRequest="50"
+                        Orientation="Horizontal"
+                        Spacing="0">
+                        <controls:LabelExtended
+                            FontFamily="{StaticResource SFProLight}"
+                            FontSize="{StaticResource MediumSize}"
+                            HorizontalOptions="FillAndExpand"
+                            Text="НАСТРОЙКИ"
+                            TextColor="{StaticResource DarkColor}"
+                            VerticalOptions="Center" />
+                        <ffimageloadingsvg:SvgCachedImage
+                            HeightRequest="20"
+                            HorizontalOptions="End"
+                            Source="resource://Drive.Client.Resources.Images.Gear.svg"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                    <BoxView HeightRequest="1" Color="{StaticResource LightGrayColor}" />
+                    <StackLayout
+                        HeightRequest="50"
+                        Orientation="Horizontal"
+                        Spacing="0">
+                        <controls:LabelExtended
+                            FontFamily="{StaticResource SFProLight}"
+                            FontSize="{StaticResource MediumSize}"
+                            HorizontalOptions="FillAndExpand"
+                            Text="АККАУНТ"
+                            TextColor="{StaticResource DarkColor}"
+                            VerticalOptions="Center" />
+                        <ffimageloadingsvg:SvgCachedImage
+                            HeightRequest="20"
+                            HorizontalOptions="End"
+                            Source="resource://Drive.Client.Resources.Images.filter.svg"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                    <BoxView HeightRequest="1" Color="{StaticResource LightGrayColor}" />
+                    <StackLayout
+                        HeightRequest="50"
+                        Orientation="Horizontal"
+                        Spacing="0">
+                        <controls:LabelExtended
+                            FontFamily="{StaticResource SFProLight}"
+                            FontSize="{StaticResource MediumSize}"
+                            HorizontalOptions="FillAndExpand"
+                            Text="ПИТАННЯ ДО ЕКСПЕРТА"
+                            TextColor="{StaticResource DarkColor}"
+                            VerticalOptions="Center" />
+                        <ffimageloadingsvg:SvgCachedImage
+                            HeightRequest="20"
+                            HorizontalOptions="End"
+                            Source="resource://Drive.Client.Resources.Images.Idea.svg"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                    <BoxView HeightRequest="1" Color="{StaticResource LightGrayColor}" />
+                </StackLayout>
+            </Grid>
         </Grid>
 
-        <StackLayout
-            Grid.Row="1"
-            Padding="20,0"
-            Spacing="0">
+        <!--  Login/registartion stub  -->
+        <Grid
+            BackgroundColor="{StaticResource WhiteColor}"
+            IsVisible="{Binding VisibilityRegistrationContent}"
+            RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="230" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-            <controls:ExtendedContentView
-                BackgroundColor="{StaticResource Key=DarkBlueColor}"
-                BorderColor="{StaticResource Key=DarkBlueColor}"
-                BorderThickness="1"
-                HeightRequest="60">
-                <controls:ExtendedContentView.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Path=LoginCommand}" />
-                </controls:ExtendedContentView.GestureRecognizers>
-                <Label
-                    FontFamily="{StaticResource SFProLight}"
-                    FontSize="{StaticResource MediumSize}"
-                    HorizontalTextAlignment="Center"
-                    Text="ЛОГІН"
-                    TextColor="{StaticResource WhiteColor}"
-                    VerticalTextAlignment="Center" />
-            </controls:ExtendedContentView>
-
-            <controls:ExtendedContentView
-                Margin="0,10,0,0"
-                BackgroundColor="{StaticResource Key=WhiteColor}"
-                BorderColor="{StaticResource Key=DarkBlueColor}"
-                BorderThickness="1"
-                HeightRequest="60">
-                <controls:ExtendedContentView.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Path=RegisterCommand}" />
-                </controls:ExtendedContentView.GestureRecognizers>
-                <Label
-                    FontFamily="{StaticResource SFProLight}"
-                    FontSize="{StaticResource MediumSize}"
-                    HorizontalTextAlignment="Center"
-                    Text="РЕЄСТРАЦІЯ"
-                    TextColor="{StaticResource DarkBlueColor}"
-                    VerticalTextAlignment="Center" />
-            </controls:ExtendedContentView>
-
-            <Label
-                Margin="0,30,0,0"
-                HorizontalTextAlignment="Center"
-                Text="або миттєво увійти через"
-                TextColor="{StaticResource ExtraGrayColor}" />
-
-            <controls:ExtendedContentView
-                Margin="0,20,0,0"
-                BorderColor="{StaticResource LightGrayColor}"
-                BorderThickness="1"
-                CornerRadius="{OnPlatform Android=20,
-                                          iOS=20,
-                                          Default=20}"
-                HeightRequest="40"
-                HorizontalOptions="Center"
-                WidthRequest="40">
-                <ContentView.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Path=FacebookLoginCommand}" />
-                </ContentView.GestureRecognizers>
-
+            <Grid Grid.Row="0">
                 <ffimageloadingsvg:SvgCachedImage
-                    Aspect="AspectFit"
-                    HeightRequest="20"
                     HorizontalOptions="Center"
-                    Source="resource://Drive.Client.Resources.Images.facebook.svg"
+                    Source="resource://Drive.Client.Resources.Images.drive_logo.svg"
                     VerticalOptions="Center"
-                    WidthRequest="20" />
-            </controls:ExtendedContentView>
-        </StackLayout>
+                    WidthRequest="200" />
+
+                <Label
+                    Margin="0,30"
+                    FontFamily="{StaticResource SFProLight}"
+                    FontSize="{StaticResource MediumSize}"
+                    HorizontalOptions="Center"
+                    Text="WE ARE HAPPY YOU ARE HERE LET'S DO THIS"
+                    TextColor="{StaticResource DarkColor}"
+                    VerticalOptions="End" />
+            </Grid>
+
+            <StackLayout
+                Grid.Row="1"
+                Padding="20,0"
+                Spacing="0">
+
+                <controls:ExtendedContentView
+                    BackgroundColor="{StaticResource Key=DarkBlueColor}"
+                    BorderColor="{StaticResource Key=DarkBlueColor}"
+                    BorderThickness="1"
+                    HeightRequest="60">
+                    <controls:ExtendedContentView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Path=LoginCommand}" />
+                    </controls:ExtendedContentView.GestureRecognizers>
+                    <Label
+                        FontFamily="{StaticResource SFProLight}"
+                        FontSize="{StaticResource MediumSize}"
+                        HorizontalTextAlignment="Center"
+                        Text="ЛОГІН"
+                        TextColor="{StaticResource WhiteColor}"
+                        VerticalTextAlignment="Center" />
+                </controls:ExtendedContentView>
+
+                <controls:ExtendedContentView
+                    Margin="0,10,0,0"
+                    BackgroundColor="{StaticResource Key=WhiteColor}"
+                    BorderColor="{StaticResource Key=DarkBlueColor}"
+                    BorderThickness="1"
+                    HeightRequest="60">
+                    <controls:ExtendedContentView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Path=RegisterCommand}" />
+                    </controls:ExtendedContentView.GestureRecognizers>
+                    <Label
+                        FontFamily="{StaticResource SFProLight}"
+                        FontSize="{StaticResource MediumSize}"
+                        HorizontalTextAlignment="Center"
+                        Text="РЕЄСТРАЦІЯ"
+                        TextColor="{StaticResource DarkBlueColor}"
+                        VerticalTextAlignment="Center" />
+                </controls:ExtendedContentView>
+
+                <Label
+                    Margin="0,30,0,0"
+                    HorizontalTextAlignment="Center"
+                    Text="або миттєво увійти через"
+                    TextColor="{StaticResource ExtraGrayColor}" />
+
+                <controls:ExtendedContentView
+                    Margin="0,20,0,0"
+                    BorderColor="{StaticResource LightGrayColor}"
+                    BorderThickness="1"
+                    CornerRadius="{OnPlatform Android=20,
+                                              iOS=20,
+                                              Default=20}"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    WidthRequest="40">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Path=FacebookLoginCommand}" />
+                    </ContentView.GestureRecognizers>
+
+                    <ffimageloadingsvg:SvgCachedImage
+                        Aspect="AspectFit"
+                        HeightRequest="20"
+                        HorizontalOptions="Center"
+                        Source="resource://Drive.Client.Resources.Images.facebook.svg"
+                        VerticalOptions="Center"
+                        WidthRequest="20" />
+                </controls:ExtendedContentView>
+            </StackLayout>
+        </Grid>
     </Grid>
 </ContentView>

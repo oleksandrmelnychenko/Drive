@@ -3,6 +3,7 @@ using Drive.Client.Services.Automobile;
 using Drive.Client.Services.DeviceUtil;
 using Drive.Client.Services.Dialog;
 using Drive.Client.Services.EventStore;
+using Drive.Client.Services.Identity;
 using Drive.Client.Services.Navigation;
 using Drive.Client.Services.RequestProvider;
 using Drive.Client.ViewModels.ActionBars;
@@ -43,20 +44,22 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<FoundDriveAutoViewModel>();
             builder.RegisterType<CommonActionBarViewModel>();
             builder.RegisterType<DriveAutoDetailsViewModel>();
-            builder.RegisterType<PhoneNumberRegisterStepViewModel>();
-            builder.RegisterType<IdentityAccountingActionBarViewModel>();
             builder.RegisterType<NameRegisterStepViewModel>();
             builder.RegisterType<PasswordRegisterStepViewModel>();
+            builder.RegisterType<PhoneNumberRegisterStepViewModel>();
+            builder.RegisterType<IdentityAccountingActionBarViewModel>();
             builder.RegisterType<ConfirmPasswordRegisterStepViewModel>();
 
             // Services.
             builder.RegisterType<DialogService>().As<IDialogService>();
-            builder.RegisterType<DriveAutoService>().As<IDriveAutoService>();
             builder.RegisterType<RequestProvider>().As<IRequestProvider>().SingleInstance();
+            builder.RegisterType<IdentityService>().As<IIdentityService>();
+            builder.RegisterType<DriveAutoService>().As<IDriveAutoService>();
             builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
             builder.RegisterType<DeviceUtilService>().As<IDeviceUtilService>().SingleInstance();
             builder.RegisterType<EventStoreService>().As<IEventStoreService>();
            
+
             // Factories.
 
             if (_container != null) {

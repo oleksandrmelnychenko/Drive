@@ -23,11 +23,11 @@ namespace Drive.Client.Controls.Stacklist {
                 if (layout.ItemTemplate != null) {
                     layout.FillLayout();
 
-                    if (newValue != null && newValue is INotifyCollectionChanged) {
-                        if (oldValue != null && oldValue is INotifyCollectionChanged) {
-                            ((INotifyCollectionChanged)newValue).CollectionChanged -= layout.StackList_CollectionChanged;
-                        }
+                    if (oldValue != null && oldValue is INotifyCollectionChanged) {
+                        ((INotifyCollectionChanged)oldValue).CollectionChanged -= layout.StackList_CollectionChanged;
+                    }
 
+                    if (newValue != null && newValue is INotifyCollectionChanged) {
                         ((INotifyCollectionChanged)newValue).CollectionChanged += layout.StackList_CollectionChanged;
                     }
                 }
@@ -75,8 +75,7 @@ namespace Drive.Client.Controls.Stacklist {
                             stackList._selectedStackListItem = selectedStackListItemBase;
                             stackList._selectedStackListItem.Selected();
                         }
-                    }
-                    else {
+                    } else {
                         stackList._stackListSingleItemsChildren.ForEach(c => c.Deselected());
                     }
                 }
@@ -123,8 +122,7 @@ namespace Drive.Client.Controls.Stacklist {
                         foreach (object group in e.NewItems) {
                             Children.Add(PrepareGroup(group));
                         }
-                    }
-                    else {
+                    } else {
                         if (IsMultiRowEnabled) {
                             Layout<View> rowStack = Children.OfType<Layout<View>>().LastOrDefault();
 
@@ -176,15 +174,13 @@ namespace Drive.Client.Controls.Stacklist {
                             if (rowStack.Children.Any() && rowStack.Parent == null) {
                                 Children.Add(rowStack);
                             }
-                        }
-                        else {
+                        } else {
                             foreach (object item in e.NewItems) {
                                 Children.Add(PrepareSingleItem(item));
                             }
                         }
                     }
-                }
-                else if (e.Action == NotifyCollectionChangedAction.Remove) {
+                } else if (e.Action == NotifyCollectionChangedAction.Remove) {
                     if (IsMultiRowEnabled) {
                         switch (MultiRowStrategy) {
                             case MultiRowStrategy.Stack:
@@ -239,18 +235,15 @@ namespace Drive.Client.Controls.Stacklist {
                             default:
                                 break;
                         }
-                    }
-                    else {
+                    } else {
                         foreach (object item in e.OldItems) {
                             View childToRemove = Children.FirstOrDefault(v => v.BindingContext == item);
                             Children.Remove(childToRemove);
                         }
                     }
-                }
-                else if (e.Action == NotifyCollectionChangedAction.Reset) {
+                } else if (e.Action == NotifyCollectionChangedAction.Reset) {
                     ClearChildren();
-                }
-                else {
+                } else {
                     //
                     // TODO: handle other actions...
                     //
@@ -316,8 +309,7 @@ namespace Drive.Client.Controls.Stacklist {
                     if (rowStack.Children.Any()) {
                         Children.Add(rowStack);
                     }
-                }
-                else {
+                } else {
                     //
                     // TODO: refactor layout filling and items creation
                     //
@@ -325,8 +317,7 @@ namespace Drive.Client.Controls.Stacklist {
                         foreach (object group in ItemsSource) {
                             Children.Add(PrepareGroup(group));
                         }
-                    }
-                    else {
+                    } else {
                         foreach (object item in ItemsSource) {
                             Children.Add(PrepareSingleItem(item));
                         }
