@@ -42,6 +42,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
             VisibilityRegistrationContent = HasAccesToken();
         }
 
-        private bool HasAccesToken() => !string.IsNullOrEmpty(BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken);
+        private bool HasAccesToken() => string.IsNullOrEmpty(BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken);
     }
 }

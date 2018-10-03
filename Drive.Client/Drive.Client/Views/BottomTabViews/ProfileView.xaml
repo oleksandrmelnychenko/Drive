@@ -14,187 +14,204 @@
 
         <!--  PROFILE CONTENT  -->
         <Grid RowSpacing="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="55" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+            <ScrollView>
+                <Grid BackgroundColor="Transparent" RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="1.5*" />
+                    </Grid.RowDefinitions>
 
-            <!--  TEMPORARY ACTION BAR  -->
-            <Grid
-                BackgroundColor="{StaticResource WhiteColor}"
-                HeightRequest="55"
-                RowSpacing="0">
-                <!--  LOGO  -->
-                <ContentView Padding="20,0" VerticalOptions="Fill">
-                    <ffimageloadingsvg:SvgCachedImage
-                        HeightRequest="20"
-                        HorizontalOptions="Center"
-                        Source="resource://Drive.Client.Resources.Images.drive_logo.svg"
-                        VerticalOptions="Center" />
-                </ContentView>
-
-                <!--  CANCEL BUTTON  -->
-                <ContentView
-                    Padding="20,0"
-                    HorizontalOptions="Start"
-                    IsVisible="True"
-                    VerticalOptions="Fill">
-                    <ContentView.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding}" />
-                    </ContentView.GestureRecognizers>
-                    <ffimageloadingsvg:SvgCachedImage
-                        HeightRequest="12"
-                        HorizontalOptions="Center"
-                        Source="resource://Drive.Client.Resources.Images"
-                        VerticalOptions="Center" />
-                </ContentView>
-                <!--  ACCEPT BUTTON  -->
-                <ContentView
-                    Padding="20,0"
-                    HorizontalOptions="End"
-                    IsVisible="True"
-                    VerticalOptions="Fill">
-                    <ContentView.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding AcceptCommand}" />
-                    </ContentView.GestureRecognizers>
-                    <ffimageloadingsvg:SvgCachedImage
-                        HeightRequest="12"
-                        HorizontalOptions="Center"
-                        Source="resource://Drive.Client.Resources.Images.Ok.svg"
-                        VerticalOptions="Center" />
-                </ContentView>
-            </Grid>
-
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <!--  PROFILE INFO  -->
-                <Grid Grid.Row="0">
-                    <BoxView Grid.Row="0" Color="White" />
-                    <ffimageloadingsvg:SvgCachedImage
-                        HeightRequest="150"
-                        HorizontalOptions="Center"
-                        Source="resource://Drive.Client.Resources.Images.stroke.svg"
-                        VerticalOptions="Center" />
-                    <!--  PROFILE PHOTO  -->
-                    <ffImage:CachedImage
-                        Aspect="AspectFit"
-                        HorizontalOptions="Center"
-                        Source="resource://Drive.Client.Resources.Images.TEST.png"
-                        WidthRequest="140">
-                        <ffImage:CachedImage.Transformations>
-                            <ffTransformations:CircleTransformation />
-                        </ffImage:CachedImage.Transformations>
-                    </ffImage:CachedImage>
-                    <ffimageloadingsvg:SvgCachedImage
-                        Margin="0,140,0,0"
-                        HeightRequest="80"
-                        HorizontalOptions="Center"
-                        Source="resource://Drive.Client.Resources.Images.edit.svg"
-                        VerticalOptions="Center" />
-
-                    <Grid
-                        Grid.Row="0"
-                        Padding="20,0"
-                        RowSpacing="0"
-                        VerticalOptions="End">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                        </Grid.RowDefinitions>
-
-                        <BoxView
-                            Grid.Row="0"
-                            HeightRequest="1"
-                            VerticalOptions="Center"
-                            Color="{StaticResource LightGrayColor}" />
-                        <controls:LabelExtended
-                            Grid.Row="0"
-                            BackgroundColor="{StaticResource WhiteColor}"
-                            FontFamily="{StaticResource SFProLight}"
-                            FontSize="{StaticResource LargeSize}"
+                    <!--  PROFILE INFO  -->
+                    <Grid Grid.Row="0" BackgroundColor="{StaticResource WhiteColor}">
+                        <ffimageloadingsvg:SvgCachedImage
+                            HeightRequest="150"
                             HorizontalOptions="Center"
-                            Text="ОЛЕКСАНДР ЗАВАРКА"
-                            TextColor="{StaticResource DarkColor}"
+                            Source="resource://Drive.Client.Resources.Images.stroke.svg"
                             VerticalOptions="Center" />
-
-                        <controls:LabelExtended
-                            Grid.Row="1"
-                            FontFamily="{StaticResource SFProLight}"
-                            FontSize="{StaticResource MediumSize}"
+                        <!--  PROFILE PHOTO  -->
+                        <ffImage:CachedImage
+                            Aspect="AspectFit"
                             HorizontalOptions="Center"
-                            Text="ХМЕЛЬНИЦЬКИЙ"
-                            TextColor="{StaticResource DarkColor}"
+                            Source="resource://Drive.Client.Resources.Images.TEST.png"
+                            WidthRequest="140">
+                            <ffImage:CachedImage.Transformations>
+                                <ffTransformations:CircleTransformation />
+                            </ffImage:CachedImage.Transformations>
+                        </ffImage:CachedImage>
+                        <ffimageloadingsvg:SvgCachedImage
+                            Margin="0,140,0,0"
+                            HeightRequest="80"
+                            HorizontalOptions="Center"
+                            Source="resource://Drive.Client.Resources.Images.edit.svg"
                             VerticalOptions="Center" />
                     </Grid>
-                </Grid>
 
-                <!--  PROFILE TOOLS  -->
-                <StackLayout
-                    Grid.Row="1"
-                    Padding="20,0"
-                    Spacing="0"
-                    VerticalOptions="Center">
-                    <BoxView HeightRequest="1" Color="{StaticResource LightGrayColor}" />
+                    <!--  PROFILE TOOLS  -->
                     <StackLayout
-                        HeightRequest="50"
-                        Orientation="Horizontal"
-                        Spacing="0">
-                        <controls:LabelExtended
-                            FontFamily="{StaticResource SFProLight}"
-                            FontSize="{StaticResource MediumSize}"
-                            HorizontalOptions="FillAndExpand"
-                            Text="НАСТРОЙКИ"
-                            TextColor="{StaticResource DarkColor}"
-                            VerticalOptions="Center" />
-                        <ffimageloadingsvg:SvgCachedImage
-                            HeightRequest="20"
-                            HorizontalOptions="End"
-                            Source="resource://Drive.Client.Resources.Images.Gear.svg"
-                            VerticalOptions="Center" />
+                        Grid.Row="1"
+                        Padding="0,0"
+                        BackgroundColor="{StaticResource UltraLightGrayColor}"
+                        Spacing="20"
+                        VerticalOptions="Fill">
+
+                        <StackLayout
+                            Padding="20,10"
+                            BackgroundColor="{StaticResource WhiteColor}"
+                            Spacing="15">
+
+                            <Grid HeightRequest="50" RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="30" />
+                                </Grid.ColumnDefinitions>
+
+                                <controls:LabelExtended
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    FontFamily="{StaticResource SFProLight}"
+                                    FontSize="{StaticResource LittleSize}"
+                                    Text="ІМ'Я КОРИСТУВАЧА"
+                                    TextColor="{StaticResource BaseGrayColor}"
+                                    VerticalOptions="Center" />
+                                <controls:LabelExtended
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    FontFamily="{StaticResource SFProLight}"
+                                    FontSize="{StaticResource MediumSize}"
+                                    Text="ОЛЕКСАНДР ЗАВАРКА"
+                                    TextColor="{StaticResource DarkColor}"
+                                    VerticalOptions="Center" />
+                                <ffimageloadingsvg:SvgCachedImage
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="1"
+                                    HeightRequest="40"
+                                    HorizontalOptions="End"
+                                    Source="resource://Drive.Client.Resources.Images.TEMP_Next.svg"
+                                    VerticalOptions="Center" />
+                            </Grid>
+
+                            <Grid HeightRequest="50" RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="30" />
+                                </Grid.ColumnDefinitions>
+
+                                <controls:LabelExtended
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    FontFamily="{StaticResource SFProLight}"
+                                    FontSize="{StaticResource LittleSize}"
+                                    Text="ТЕЛЕФОН"
+                                    TextColor="{StaticResource BaseGrayColor}"
+                                    VerticalOptions="Center" />
+                                <controls:LabelExtended
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    FontFamily="{StaticResource SFProLight}"
+                                    FontSize="{StaticResource MediumSize}"
+                                    Text="+380971740024"
+                                    TextColor="{StaticResource DarkColor}"
+                                    VerticalOptions="Center" />
+                                <ffimageloadingsvg:SvgCachedImage
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="1"
+                                    HeightRequest="40"
+                                    HorizontalOptions="Center"
+                                    Source="resource://Drive.Client.Resources.Images.TEMP_Next.svg"
+                                    VerticalOptions="Center" />
+                            </Grid>
+
+                            <Grid HeightRequest="50" RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="30" />
+                                </Grid.ColumnDefinitions>
+
+                                <controls:LabelExtended
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    FontFamily="{StaticResource SFProLight}"
+                                    FontSize="{StaticResource LittleSize}"
+                                    Text="EMAIL"
+                                    TextColor="{StaticResource BaseGrayColor}"
+                                    VerticalOptions="Center" />
+                                <controls:LabelExtended
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    FontFamily="{StaticResource SFProLight}"
+                                    FontSize="{StaticResource MediumSize}"
+                                    Text="OLEK@gmail.com"
+                                    TextColor="{StaticResource DarkColor}"
+                                    VerticalOptions="Center" />
+                                <ffimageloadingsvg:SvgCachedImage
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="1"
+                                    HeightRequest="40"
+                                    HorizontalOptions="Center"
+                                    Source="resource://Drive.Client.Resources.Images.TEMP_Next.svg"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                        </StackLayout>
+
+                        <StackLayout
+                            Padding="20,10"
+                            BackgroundColor="{StaticResource WhiteColor}"
+                            Spacing="15">
+
+                            <Grid HeightRequest="50" RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="30" />
+                                </Grid.ColumnDefinitions>
+
+                                <controls:LabelExtended
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    FontFamily="{StaticResource SFProLight}"
+                                    FontSize="{StaticResource LittleSize}"
+                                    Text="МОВА"
+                                    TextColor="{StaticResource BaseGrayColor}"
+                                    VerticalOptions="Center" />
+                                <controls:LabelExtended
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    FontFamily="{StaticResource SFProLight}"
+                                    FontSize="{StaticResource MediumSize}"
+                                    Text="УКРАЇНСЬКА"
+                                    TextColor="{StaticResource DarkColor}"
+                                    VerticalOptions="Center" />
+                                <ffimageloadingsvg:SvgCachedImage
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="1"
+                                    HeightRequest="40"
+                                    HorizontalOptions="End"
+                                    Source="resource://Drive.Client.Resources.Images.TEMP_Next.svg"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                        </StackLayout>
                     </StackLayout>
-                    <BoxView HeightRequest="1" Color="{StaticResource LightGrayColor}" />
-                    <StackLayout
-                        HeightRequest="50"
-                        Orientation="Horizontal"
-                        Spacing="0">
-                        <controls:LabelExtended
-                            FontFamily="{StaticResource SFProLight}"
-                            FontSize="{StaticResource MediumSize}"
-                            HorizontalOptions="FillAndExpand"
-                            Text="АККАУНТ"
-                            TextColor="{StaticResource DarkColor}"
-                            VerticalOptions="Center" />
-                        <ffimageloadingsvg:SvgCachedImage
-                            HeightRequest="20"
-                            HorizontalOptions="End"
-                            Source="resource://Drive.Client.Resources.Images.filter.svg"
-                            VerticalOptions="Center" />
-                    </StackLayout>
-                    <BoxView HeightRequest="1" Color="{StaticResource LightGrayColor}" />
-                    <StackLayout
-                        HeightRequest="50"
-                        Orientation="Horizontal"
-                        Spacing="0">
-                        <controls:LabelExtended
-                            FontFamily="{StaticResource SFProLight}"
-                            FontSize="{StaticResource MediumSize}"
-                            HorizontalOptions="FillAndExpand"
-                            Text="ПИТАННЯ ДО ЕКСПЕРТА"
-                            TextColor="{StaticResource DarkColor}"
-                            VerticalOptions="Center" />
-                        <ffimageloadingsvg:SvgCachedImage
-                            HeightRequest="20"
-                            HorizontalOptions="End"
-                            Source="resource://Drive.Client.Resources.Images.Idea.svg"
-                            VerticalOptions="Center" />
-                    </StackLayout>
-                    <BoxView HeightRequest="1" Color="{StaticResource LightGrayColor}" />
-                </StackLayout>
-            </Grid>
+                </Grid>
+            </ScrollView>
         </Grid>
 
         <!--  Login/registartion stub  -->
