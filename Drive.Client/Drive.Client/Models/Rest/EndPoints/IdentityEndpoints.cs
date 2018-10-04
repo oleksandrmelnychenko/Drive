@@ -9,7 +9,7 @@ namespace Drive.Client.Models.Rest.EndPoints {
 
         private const string USER_NAME_AVAILABILITY_API_KEY = "api/v1/user/check/name?name={0}";
 
-        private const string GET_ALL_API_KEY = "api/v1/auto/get/all?number={0}";
+        private const string SIGNUP_API_KEY = "api/v1/user/signup";
 
         /// <summary>
         ///     ctor().
@@ -32,12 +32,12 @@ namespace Drive.Client.Models.Rest.EndPoints {
 
         public string CheckUserNameEndpoint { get; private set; }
 
-        public string GetAllCarInfoEndPoint { get; set; }
+        public string SignUpEndPoint { get; set; }
 
         private void UpdateEndpoint(string baseEndpoint) {
             CheckPhoneNumberEndPoint = $"{baseEndpoint}/{PHONE_NUMBER_AVAILABILITY_API_KEY}";
             CheckUserNameEndpoint = $"{baseEndpoint}/{USER_NAME_AVAILABILITY_API_KEY}";
-            GetAllCarInfoEndPoint = $"{baseEndpoint}/{GET_ALL_API_KEY}";
+            SignUpEndPoint = $"{baseEndpoint}/{SIGNUP_API_KEY}";
         }
     }
 }

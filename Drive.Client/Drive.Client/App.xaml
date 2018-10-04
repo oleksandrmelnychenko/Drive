@@ -129,6 +129,8 @@
                 TrueObject="False" />
             <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
             <converters:FirstElementFromCollectionConverter x:Key="first_element_from_collection_converter" />
+            <converters:StringToBoolConverter x:Key="StringToBoolConverter" />
+
 
             <!--  EXPLICIT STYLES  -->
             <Style x:Key="ValidationErrorLabelStyle" TargetType="{x:Type Label}">

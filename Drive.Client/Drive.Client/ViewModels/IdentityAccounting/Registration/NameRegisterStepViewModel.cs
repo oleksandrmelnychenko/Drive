@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
@@ -47,14 +48,26 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
                     ResetCancellationTokenSource(ref _checkUserNameCancellationTokenSource);
                     CancellationTokenSource cancellationTokenSource = _checkUserNameCancellationTokenSource;
 
-                    UserNameAvailability userNameAvailability = await _identityService.CheckUserNameAvailabiltyAsync(MainInput.Value, cancellationTokenSource.Token);
+                    Guid busyKey = Guid.NewGuid();
+                    SetBusy(busyKey, true);
 
-                    if (userNameAvailability != null && userNameAvailability.IsRequestSuccess) {
-                        _collectedInputsArgs.Name = MainInput.Value;
-                        await NavigationService.NavigateToAsync<PasswordRegisterStepViewModel>(_collectedInputsArgs);
-                    } else {
-                        //error.
+                    try {
+                        UserNameAvailability userNameAvailability = await _identityService.CheckUserNameAvailabiltyAsync(MainInput.Value, cancellationTokenSource.Token);
+
+                        if (userNameAvailability != null) {
+                            if (userNameAvailability.IsRequestSuccess) {
+                                _collectedInputsArgs.Name = MainInput.Value;
+                                await NavigationService.NavigateToAsync<PasswordRegisterStepViewModel>(_collectedInputsArgs);
+                            } else {
+                                ServerError = userNameAvailability.Message;
+                            }
+                        }
                     }
+                    catch (Exception ex) {
+                        Debug.WriteLine($"ERROR:{ex.Message}");
+                        Debugger.Break();
+                    }
+                    SetBusy(busyKey, false);
                 } else {
                     Debugger.Break();
                     await NavigationService.GoBackAsync();

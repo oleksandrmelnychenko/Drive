@@ -250,7 +250,7 @@
                     BackgroundColor="{StaticResource Key=DarkBlueColor}"
                     BorderColor="{StaticResource Key=DarkBlueColor}"
                     BorderThickness="1"
-                    HeightRequest="60">
+                    HeightRequest="50">
                     <controls:ExtendedContentView.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Path=LoginCommand}" />
                     </controls:ExtendedContentView.GestureRecognizers>
@@ -268,7 +268,7 @@
                     BackgroundColor="{StaticResource Key=WhiteColor}"
                     BorderColor="{StaticResource Key=DarkBlueColor}"
                     BorderThickness="1"
-                    HeightRequest="60">
+                    HeightRequest="50">
                     <controls:ExtendedContentView.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Path=RegisterCommand}" />
                     </controls:ExtendedContentView.GestureRecognizers>

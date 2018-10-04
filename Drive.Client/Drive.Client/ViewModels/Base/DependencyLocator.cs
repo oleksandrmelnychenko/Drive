@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Drive.Client.Factories.Validation;
 using Drive.Client.Services.Automobile;
 using Drive.Client.Services.DeviceUtil;
 using Drive.Client.Services.Dialog;
@@ -58,9 +59,10 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
             builder.RegisterType<DeviceUtilService>().As<IDeviceUtilService>().SingleInstance();
             builder.RegisterType<EventStoreService>().As<IEventStoreService>();
-           
+
 
             // Factories.
+            builder.RegisterType<ValidationObjectFactory>().As<IValidationObjectFactory>();
 
             if (_container != null) {
                 _container.Dispose();

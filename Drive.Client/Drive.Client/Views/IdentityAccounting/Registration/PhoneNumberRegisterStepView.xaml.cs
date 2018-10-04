@@ -6,5 +6,11 @@ namespace Drive.Client.Views.IdentityAccounting.Registration {
         public PhoneNumberRegisterStepView() {
             InitializeComponent();
         }
+
+        protected override void OnAppearing() {
+            base.OnAppearing();
+
+            _entyEx?.Focus();
+        }
     }
 }

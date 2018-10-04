@@ -39,22 +39,29 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
 
         protected async override void OnStepCommand() {
             if (ValidateForm()) {
+
+                Guid busyKey = Guid.NewGuid();
+                SetBusy(busyKey, true);
+
                 try {
                     ResetCancellationTokenSource(ref _checkPhoneNumberCancellationTokenSource);
                     CancellationTokenSource cancellationTokenSource = _checkPhoneNumberCancellationTokenSource;
 
-                    PhoneNumberAvailabilty phoneNumberAvailabilty =  await _identityService.CheckPhoneNumberAvailabiltyAsync(MainInput.Value, cancellationTokenSource.Token);
+                    PhoneNumberAvailabilty phoneNumberAvailabilty = await _identityService.CheckPhoneNumberAvailabiltyAsync(MainInput.Value, cancellationTokenSource.Token);
 
-                    if (phoneNumberAvailabilty != null && phoneNumberAvailabilty.IsRequestSuccess) {
-                        await NavigationService.NavigateToAsync<NameRegisterStepViewModel>(new RegistrationCollectedInputsArgs() { PhoneNumber = MainInput.Value });
-                    } else {
-                        // output error message
-                    }
+                    if (phoneNumberAvailabilty != null) {
+                        if (phoneNumberAvailabilty.IsRequestSuccess) {
+                            await NavigationService.NavigateToAsync<NameRegisterStepViewModel>(new RegistrationCollectedInputsArgs() { PhoneNumber = MainInput.Value });
+                        } else {
+                            ServerError = phoneNumberAvailabilty.Message;
+                        }
+                    } 
                 }
                 catch (Exception ex) {
                     Debug.WriteLine($"ERROR:{ex.Message}");
                     Debugger.Break();
                 }
+                SetBusy(busyKey, false);
             }
         }
 

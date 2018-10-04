@@ -32,18 +32,15 @@ namespace Drive.Client {
         }
 
         private Task InitNavigation() {
-            string accesToken = (JsonConvert.DeserializeObject<UserProfile>(Settings.UserProfile))?.AccesToken;
-
+            //string accesToken = (JsonConvert.DeserializeObject<UserProfile>(Settings.UserProfile))?.AccesToken;
             INavigationService navigationService = DependencyLocator.Resolve<INavigationService>();
-            return navigationService.InitializeAsync(string.IsNullOrEmpty(accesToken));
+            return navigationService.InitializeAsync();
         }
 
         protected override async void OnStart() {
             base.OnStart();
 
             await InitNavigation();
-
-            //MainPage = new PhoneNumberRegisterStepView();
 
             base.OnResume();
         }

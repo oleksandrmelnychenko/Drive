@@ -1,4 +1,5 @@
-﻿using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
+﻿using Drive.Client.Factories.Validation;
+using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
 using Drive.Client.Validations;
 using Drive.Client.Validations.ValidationRules;
 using Drive.Client.ViewModels.ActionBars;
@@ -22,51 +23,66 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
         public static readonly string NAME_ICON_PATH = "resource://Drive.Client.Resources.Images.name.svg";
         public static readonly string PASSWORD_ICON_PATH = "resource://Drive.Client.Resources.Images.password.svg";
         public static readonly string TODO_INPUT_ICON_STUB = "todo: appropriate icon path";
+
+        private readonly IValidationObjectFactory _validationObjectFactory;
+
         //public static readonly string TODO_INPUT_ICON_STUB = "todo: appropriate icon path";
 
         public IdentityAccountingStepBaseViewModel() {
+            _validationObjectFactory = DependencyLocator.Resolve<IValidationObjectFactory>();
+
             ActionBarViewModel = DependencyLocator.Resolve<IdentityAccountingActionBarViewModel>();
             ((IdentityAccountingActionBarViewModel)ActionBarViewModel).InitializeAsync(this);
+
+            _mainInput = _validationObjectFactory.GetValidatableObject<string>();
 
             ResetValidationObjects();
         }
 
         public ICommand StepCommand => new Command(() => OnStepCommand());
 
-        private string _stepTitle;
+        public ICommand CleanServerErrorCommand => new Command(() => ServerError = string.Empty);
+
+        string _serverError;
+        public string ServerError {
+            get { return _serverError; }
+            set { SetProperty(ref _serverError, value); }
+        }
+
+        string _stepTitle;
         public string StepTitle {
             get => _stepTitle;
-            protected set => SetProperty<string>(ref _stepTitle, value);
+            protected set => SetProperty(ref _stepTitle, value);
         }
 
-        private string _mainInputIconPath;
+        string _mainInputIconPath;
         public string MainInputIconPath {
             get => _mainInputIconPath;
-            protected set => SetProperty<string>(ref _mainInputIconPath, value);
+            protected set => SetProperty(ref _mainInputIconPath, value);
         }
 
-        private string _mainInputPlaceholder;
+        string _mainInputPlaceholder;
         public string MainInputPlaceholder {
             get => _mainInputPlaceholder;
-            protected set => SetProperty<string>(ref _mainInputPlaceholder, value);
+            protected set => SetProperty(ref _mainInputPlaceholder, value);
         }
 
-        private Keyboard _keyboardType = Keyboard.Default;
+        Keyboard _keyboardType = Keyboard.Default;
         public Keyboard KeyboardType {
             get => _keyboardType;
-            protected set => SetProperty<Keyboard>(ref _keyboardType, value);
+            protected set => SetProperty(ref _keyboardType, value);
         }
 
-        private bool _isPasswordInput;
+        bool _isPasswordInput;
         public bool IsPasswordInput {
             get => _isPasswordInput;
-            protected set => SetProperty<bool>(ref _isPasswordInput, value);
+            protected set => SetProperty(ref _isPasswordInput, value);
         }
 
-        private ValidatableObject<string> _mainInput = new ValidatableObject<string>();
+        ValidatableObject<string> _mainInput;
         public ValidatableObject<string> MainInput {
             get => _mainInput;
-            private set => SetProperty<ValidatableObject<string>>(ref _mainInput, value);
+            private set => SetProperty(ref _mainInput, value);
         }
 
         public virtual bool ValidateForm() {
@@ -84,7 +100,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
         }
 
         protected virtual void ResetValidationObjects() {
-            MainInput = new ValidatableObject<string>();
+            MainInput = _validationObjectFactory.GetValidatableObject<string>();
             MainInput.Validations.Add(new IsNotNullOrEmptyRule<string>() { ValidationMessage = ValidatableObject<string>.FIELD_IS_REQUIRED_VALIDATION_MESSAGE });
         }
 

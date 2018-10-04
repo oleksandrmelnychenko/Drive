@@ -3,6 +3,7 @@ using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
 using Drive.Client.Views.BottomTabViews;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -39,9 +40,17 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         ///     ctor().
         /// </summary>
         public ProfileViewModel() {
-            VisibilityRegistrationContent = HasAccesToken();
+            VisibilityRegistrationContent = !BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth;
         }
 
-        private bool HasAccesToken() => string.IsNullOrEmpty(BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken);
+        public override Task InitializeAsync(object navigationData) {
+            UpdateView();
+
+            return base.InitializeAsync(navigationData);
+        }
+
+        private void UpdateView() {
+            VisibilityRegistrationContent = !BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth;
+        }
     }
 }
