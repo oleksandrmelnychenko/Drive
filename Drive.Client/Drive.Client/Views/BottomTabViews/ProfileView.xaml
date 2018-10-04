@@ -82,16 +82,16 @@
                                     Grid.Column="0"
                                     FontFamily="{StaticResource SFProLight}"
                                     FontSize="{StaticResource MediumSize}"
-                                    Text="ОЛЕКСАНДР ЗАВАРКА"
+                                    Text="{Binding UserName}"
                                     TextColor="{StaticResource DarkColor}"
                                     VerticalOptions="Center" />
                                 <ffimageloadingsvg:SvgCachedImage
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
                                     Grid.Column="1"
-                                    HeightRequest="40"
+                                    HeightRequest="20"
                                     HorizontalOptions="End"
-                                    Source="resource://Drive.Client.Resources.Images.TEMP_Next.svg"
+                                    Source="resource://Drive.Client.Resources.Images.ArrowNext.svg"
                                     VerticalOptions="Center" />
                             </Grid>
 
@@ -118,16 +118,16 @@
                                     Grid.Column="0"
                                     FontFamily="{StaticResource SFProLight}"
                                     FontSize="{StaticResource MediumSize}"
-                                    Text="+380971740024"
+                                    Text="{Binding PhoneNumber}"
                                     TextColor="{StaticResource DarkColor}"
                                     VerticalOptions="Center" />
                                 <ffimageloadingsvg:SvgCachedImage
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
                                     Grid.Column="1"
-                                    HeightRequest="40"
-                                    HorizontalOptions="Center"
-                                    Source="resource://Drive.Client.Resources.Images.TEMP_Next.svg"
+                                    HeightRequest="20"
+                                    HorizontalOptions="End"
+                                    Source="resource://Drive.Client.Resources.Images.ArrowNext.svg"
                                     VerticalOptions="Center" />
                             </Grid>
 
@@ -161,9 +161,9 @@
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
                                     Grid.Column="1"
-                                    HeightRequest="40"
-                                    HorizontalOptions="Center"
-                                    Source="resource://Drive.Client.Resources.Images.TEMP_Next.svg"
+                                    HeightRequest="20"
+                                    HorizontalOptions="End"
+                                    Source="resource://Drive.Client.Resources.Images.ArrowNext.svg"
                                     VerticalOptions="Center" />
                             </Grid>
                         </StackLayout>
