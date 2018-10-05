@@ -13,7 +13,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
 
         private readonly IIdentityService _identityService;
 
-        private RegistrationCollectedInputsArgs _collectedInputsArgs;
+        private SignInArgs _signInArgsArgs;
 
         /// <summary>
         ///     ctor().
@@ -29,8 +29,8 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
 
         public override Task InitializeAsync(object navigationData) {
 
-            if (navigationData is RegistrationCollectedInputsArgs collectedInputsArgs) {
-                _collectedInputsArgs = collectedInputsArgs;
+            if (navigationData is SignInArgs signInArgs) {
+                _signInArgsArgs = signInArgs;
             }
 
             return base.InitializeAsync(navigationData);
@@ -38,7 +38,9 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
 
         protected async override void OnStepCommand() {
             if (ValidateForm()) {
-                if (_collectedInputsArgs != null) {
+                if (_signInArgsArgs != null) {
+                    _signInArgsArgs.Password = MainInput.Value;
+
                     ResetCancellationTokenSource(ref _signInCancellationTokenSource);
                     CancellationTokenSource cancellationTokenSource = _signInCancellationTokenSource;
 
@@ -46,7 +48,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
                     SetBusy(busyKey, true);
 
                     try {
-                        var signUpResult = await _identityService.SignUpAsync(_collectedInputsArgs, cancellationTokenSource.Token);
+                        var signUpResult = await _identityService.SignInAsync(_signInArgsArgs, cancellationTokenSource.Token);
 
                         if (signUpResult != null) {
                             if (signUpResult.IsSucceed) {

@@ -63,7 +63,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
                     SetBusy(busyKey, true);
 
                     try {
-                        SignUpResult signUpResult = await _identityService.SignUpAsync(_collectedInputsArgs, cancellationTokenSource.Token);
+                        AuthenticationResult signUpResult = await _identityService.SignUpAsync(_collectedInputsArgs, cancellationTokenSource.Token);
 
                         if (signUpResult != null) {
                             if (signUpResult.IsSucceed) {

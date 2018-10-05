@@ -1,4 +1,5 @@
-﻿using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
+﻿using Drive.Client.Extensions;
+using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
 using Drive.Client.Validations;
 using Drive.Client.Validations.ValidationRules;
 using System;
@@ -29,7 +30,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
                 SetBusy(busyKey, true);
 
                 try {
-                    await NavigationService.NavigateToAsync<SignInNameStepViewModel>(new RegistrationCollectedInputsArgs() { PhoneNumber = MainInput.Value });
+                    await NavigationService.NavigateToAsync<SignInNameStepViewModel>(new SignInArgs() { PhoneNumber = MainInput.Value });
                 }
                 catch (Exception ex) {
                     Debug.WriteLine($"ERROR:{ex.Message}");
