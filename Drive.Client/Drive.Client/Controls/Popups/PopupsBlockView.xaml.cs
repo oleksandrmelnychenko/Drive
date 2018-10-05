@@ -128,11 +128,13 @@ namespace Drive.Client.Controls.Popups {
                 foreach (object item in e.NewItems) {
                     AffiliateNewPopup(item as IPopupContext);
                 }
-            } else if (e.Action == NotifyCollectionChangedAction.Remove) {
+            }
+            else if (e.Action == NotifyCollectionChangedAction.Remove) {
                 foreach (object item in e.OldItems) {
                     DetachPopup(item as IPopupContext);
                 }
-            } else {
+            }
+            else {
                 Debugger.Break();
                 throw new NotImplementedException("PopupsBlockView.OnPopupsCollectionCollectionChanged");
             }

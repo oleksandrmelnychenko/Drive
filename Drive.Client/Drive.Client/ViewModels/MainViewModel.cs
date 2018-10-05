@@ -26,6 +26,7 @@ namespace Drive.Client.ViewModels {
                 DependencyLocator.Resolve<PostViewModel>(),
                 DependencyLocator.Resolve<BookmarkViewModel>(),
                 DependencyLocator.Resolve<ProfileViewModel>()};
+            BottomBarItems.ForEach(bottomBarTab => bottomBarTab.InitializeAsync(this));
 
             RegisterClientDeviceInfo();
 
@@ -35,6 +36,7 @@ namespace Drive.Client.ViewModels {
         public override void Dispose() {
             base.Dispose();
 
+            BottomBarItems?.ForEach(bottomBarItem => bottomBarItem?.Dispose());
             ResetCancellationTokenSource(ref _registerClientDeviceInfoCancellationTokenSource);
         }
 

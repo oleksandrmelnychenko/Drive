@@ -1,5 +1,6 @@
 ﻿using Drive.Client.Helpers;
 using Drive.Client.ViewModels.Base;
+using Drive.Client.ViewModels.BottomTabViewModels.Popups;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
 using Drive.Client.Views.BottomTabViews;
 using System;
@@ -22,6 +23,15 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         public Type RelativeViewType { get; private set; } = typeof(ProfileView);
 
         public bool HasBackgroundItem => false;
+
+        LanguageSelectPopupViewModel _languageSelectPopupViewModel;
+        public LanguageSelectPopupViewModel LanguageSelectPopupViewModel {
+            get => _languageSelectPopupViewModel;
+            private set {
+                _languageSelectPopupViewModel?.Dispose();
+                SetProperty<LanguageSelectPopupViewModel>(ref _languageSelectPopupViewModel, value);
+            }
+        }
 
         bool _visibilityRegistrationContent;
         public bool VisibilityRegistrationContent {
@@ -60,12 +70,23 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         /// </summary>
         public ProfileViewModel() {
             VisibilityRegistrationContent = false;
+
+            LanguageSelectPopupViewModel = DependencyLocator.Resolve<LanguageSelectPopupViewModel>();
+            LanguageSelectPopupViewModel.InitializeAsync(this);
         }
 
         public override Task InitializeAsync(object navigationData) {
             //UpdateView();
 
+            LanguageSelectPopupViewModel?.InitializeAsync(navigationData);
+
             return base.InitializeAsync(navigationData);
+        }
+
+        public override void Dispose() {
+            base.Dispose();
+
+            LanguageSelectPopupViewModel?.Dispose();
         }
 
         private void UpdateView() {
