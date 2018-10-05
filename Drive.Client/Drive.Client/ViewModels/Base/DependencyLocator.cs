@@ -6,10 +6,12 @@ using Drive.Client.Services.Dialog;
 using Drive.Client.Services.EventStore;
 using Drive.Client.Services.Identity;
 using Drive.Client.Services.Identity.IdentityUtility;
+using Drive.Client.Services.Media;
 using Drive.Client.Services.Navigation;
 using Drive.Client.Services.RequestProvider;
 using Drive.Client.ViewModels.ActionBars;
 using Drive.Client.ViewModels.BottomTabViewModels;
+using Drive.Client.ViewModels.BottomTabViewModels.Popups;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
 using System;
 using System.Globalization;
@@ -51,6 +53,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<PhoneNumberRegisterStepViewModel>();
             builder.RegisterType<IdentityAccountingActionBarViewModel>();
             builder.RegisterType<ConfirmPasswordRegisterStepViewModel>();
+            builder.RegisterType<LanguageSelectPopupViewModel>();
 
             // Services.
             builder.RegisterType<DialogService>().As<IDialogService>();
@@ -61,7 +64,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<DeviceUtilService>().As<IDeviceUtilService>().SingleInstance();
             builder.RegisterType<EventStoreService>().As<IEventStoreService>();
             builder.RegisterType<IdentityUtilityService>().As<IIdentityUtilityService>();
-
+            builder.RegisterType<PickMediaService>().As<IPickMediaService>();
 
             // Factories.
             builder.RegisterType<ValidationObjectFactory>().As<IValidationObjectFactory>();

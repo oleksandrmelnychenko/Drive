@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Android.Runtime;
 using Drive.Client.Views;
 using FFImageLoading.Forms.Platform;
 using Plugin.CurrentActivity;
@@ -13,6 +14,12 @@ namespace Drive.Client.Droid {
 
         internal static MainActivity Instance { get; private set; }
 
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults) {
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
         protected override void OnCreate(Bundle savedInstanceState) {
             MessagingCenter.Subscribe<object>(this, CustomNavigationView.ON_CUSTOM_NAVIGATION_VIEW_APPEARING, (param) => {
                 MessagingCenter.Unsubscribe<object>(this, CustomNavigationView.ON_CUSTOM_NAVIGATION_VIEW_APPEARING);
@@ -23,11 +30,13 @@ namespace Drive.Client.Droid {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            base.OnCreate(savedInstanceState);
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             CachedImageRenderer.Init(true);
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
+            base.OnCreate(savedInstanceState);
 
             Instance = this;
             UserDialogs.Init(this);

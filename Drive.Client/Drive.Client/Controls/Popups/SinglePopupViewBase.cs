@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Drive.Client.Controls.Popups {
@@ -11,11 +12,11 @@ namespace Drive.Client.Controls.Popups {
             defaultValue: default(bool),
             propertyChanged: (BindableObject bindable, object oldValue, object newValue) => (bindable as SinglePopupViewBase)?.OnIsViewable());
 
-        //public static readonly BindableProperty CloseCommandProperty = BindableProperty.Create(
-        //    nameof(CloseCommand),
-        //    typeof(ICommand),
-        //    typeof(SinglePopupViewBase),
-        //    defaultValue: null);
+        public static readonly BindableProperty CloseCommandProperty = BindableProperty.Create(
+            nameof(CloseCommand),
+            typeof(ICommand),
+            typeof(SinglePopupViewBase),
+            defaultValue: null);
 
         public event EventHandler Viewable = delegate { };
 
@@ -24,10 +25,10 @@ namespace Drive.Client.Controls.Popups {
             set => SetValue(SinglePopupViewBase.IsViewableProperty, value);
         }
 
-        //public ICommand CloseCommand {
-        //    get => (ICommand)GetValue(CloseCommandProperty);
-        //    set => SetValue(CloseCommandProperty, value);
-        //}
+        public ICommand CloseCommand {
+            get => (ICommand)GetValue(CloseCommandProperty);
+            set => SetValue(CloseCommandProperty, value);
+        }
 
         private void OnIsViewable() {
             Viewable.Invoke(this, new EventArgs());

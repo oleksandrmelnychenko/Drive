@@ -57,7 +57,8 @@ namespace Drive.Client.Views.Base {
 
                         if (declarer.IsBusyAwaiting) {
                             Grid.SetRow(declarer._busyIndicator_Indicator, 0);
-                        } else {
+                        }
+                        else {
                             Grid.SetRow(declarer._busyIndicator_Indicator, 1);
                         }
                     }
@@ -74,7 +75,8 @@ namespace Drive.Client.Views.Base {
                             declarer._popupSpot_ContentView.Opacity = 0;
                             Grid.SetRow(declarer._popupSpot_ContentView, 0);
                             await declarer._popupSpot_ContentView.FadeTo(1);
-                        } else {
+                        }
+                        else {
                             declarer._popupSpot_ContentView.Opacity = 1;
                             await declarer._popupSpot_ContentView.FadeTo(0);
                             Grid.SetRow(declarer._popupSpot_ContentView, 1);
@@ -165,6 +167,7 @@ namespace Drive.Client.Views.Base {
             //_mainContentSpot_PullToRefreshLayout.SetBinding(PullToRefreshLayout.RefreshCommandProperty, new Binding(_REFRESH_COMMAND_BINDING_PATH, mode: BindingMode.OneWay, source: this));
 
             _popupsKeeper_PopupsBlockView.SetBinding(PopupsBlockView.PopupsProperty, new Binding(_POPUPS_BINDING_PATH, mode: BindingMode.OneWay));
+            _popupsKeeper_PopupsBlockView.Backing.GestureRecognizers.Add(_popupBlockBackingTapGesture);
         }
 
         public ICommand RefreshCommand {
