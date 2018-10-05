@@ -59,6 +59,7 @@ namespace Drive.Client.ViewModels.Base {
 
         protected void ResetCancellationTokenSource(ref CancellationTokenSource cancellationTokenSource) {
             cancellationTokenSource.Cancel();
+            cancellationTokenSource.Dispose();
             cancellationTokenSource = new CancellationTokenSource();
         }
 

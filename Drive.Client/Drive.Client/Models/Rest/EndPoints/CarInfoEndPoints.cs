@@ -7,6 +7,10 @@
 
         private const string GET_ALL_API_KEY = "api/v1/auto/get/all?number={0}";
 
+        /// <summary>
+        ///     ctor().
+        /// </summary>
+        /// <param name="defaultEndPoint"></param>
         public CarInfoEndPoints(string defaultEndPoint) {
             BaseEndpoint = defaultEndPoint;
         }

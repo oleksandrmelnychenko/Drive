@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using Drive.Client.Controls;
 using Drive.Client.iOS.Renderers;
 using Foundation;
@@ -21,6 +22,7 @@ namespace Drive.Client.iOS.Renderers {
             if (Element != null) {
                 SetLetterSpacingText();
                 SetLetterSpacingPlaceholder();
+
             }
 
             if (e.OldElement != null) {
@@ -41,6 +43,9 @@ namespace Drive.Client.iOS.Renderers {
                 SetLetterSpacingPlaceholder();
             } else if (e.PropertyName == Entry.TextProperty.PropertyName) {
                 SetLetterSpacingText();
+                //var tt = NSLocale.CurrentLocale;
+                //var tt = NSLocale.PreferredLanguages[0];
+                //var x = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
             }
         }
 

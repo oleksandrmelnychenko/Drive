@@ -43,8 +43,8 @@ namespace Drive.Client.Services.Navigation {
             }
         }
 
-        public Task InitializeAsync(bool canLogin) {
-            return NavigateToAsync<MainViewModel>();
+        public Task InitializeAsync() {
+            return FirstInitilizeAsync<MainViewModel>();
         }
 
         public Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase =>
@@ -52,6 +52,12 @@ namespace Drive.Client.Services.Navigation {
 
         public Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase =>
              InternalNavigateToAsync(typeof(TViewModel), parameter);
+
+        private async Task FirstInitilizeAsync<TViewModel>() where TViewModel : ViewModelBase {
+            Page page = CreatePage(typeof(TViewModel), null);
+            Application.Current.MainPage = new CustomNavigationView(page);
+            await (page.BindingContext as ViewModelBase).InitializeAsync(null);
+        }
 
         private async Task InternalNavigateToAsync(Type viewModelType, object parameter) {
             if (Application.Current.MainPage is CustomNavigationView navigationPage) {

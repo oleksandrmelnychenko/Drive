@@ -39,8 +39,9 @@
                         RowSpacing="0"
                         VerticalOptions="Center">
                         <controls:EntryExtended
-                            FontSize="{StaticResource MediumSize}"
+                            x:Name="_entyEx"
                             FontFamily="{StaticResource SFProLight}"
+                            FontSize="{StaticResource MediumSize}"
                             HorizontalOptions="Fill"
                             HorizontalTextAlignment="Center"
                             IsPassword="{Binding Path=IsPasswordInput}"
@@ -51,6 +52,7 @@
                             TextColor="{StaticResource ExtraGrayColor}">
                             <controls:EntryExtended.Behaviors>
                                 <behaviors:EventToCommandBehavior Command="{Binding Path=StepCommand}" EventName="Completed" />
+                                <behaviors:EventToCommandBehavior Command="{Binding CleanServerErrorCommand}" EventName="TextChanged" />
                             </controls:EntryExtended.Behaviors>
                         </controls:EntryExtended>
                         <!--  TODO: bound source property to the MainInputIconPath with appropriate binding converter  -->
@@ -68,6 +70,14 @@
                         HorizontalOptions="Center"
                         IsVisible="{Binding Path=MainInput.IsValid, Converter={StaticResource Key=Reverse_bool_converter}}"
                         Text="{Binding Path=MainInput.Errors, Converter={StaticResource Key=first_element_from_collection_converter}}"
+                        TextColor="{StaticResource Key=ErrorColor}"
+                        VerticalOptions="Center" />
+                    <controls:LabelExtended
+                        Grid.Row="1"
+                        FontSize="{StaticResource Key=MidMediumSize}"
+                        HorizontalOptions="Center"
+                        IsVisible="{Binding ServerError, Converter={StaticResource StringToBoolConverter}}"
+                        Text="{Binding ServerError}"
                         TextColor="{StaticResource Key=ErrorColor}"
                         VerticalOptions="Center" />
                 </Grid>

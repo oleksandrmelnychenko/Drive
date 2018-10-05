@@ -8,5 +8,11 @@ namespace Drive.Client.Views.IdentityAccounting {
         public IdentityAccountingStepBaseView() {
             InitializeComponent();
         }
+
+        protected override void OnAppearing() {
+            base.OnAppearing();
+
+            _entyEx?.Focus();
+        }
     }
 }

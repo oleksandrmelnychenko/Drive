@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <None Remove="Resources\Images\Arrow.svg" />
+    <None Remove="Resources\Images\ArrowNext.svg" />
     <None Remove="Resources\Images\Button.svg" />
     <None Remove="Resources\Images\drive_logo.svg" />
     <None Remove="Resources\Images\edit.svg" />
@@ -42,6 +43,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\Images\Arrow.svg" />
+    <EmbeddedResource Include="Resources\Images\ArrowNext.svg" />
     <EmbeddedResource Include="Resources\Images\Button.svg" />
   </ItemGroup>
 
@@ -221,5 +223,9 @@
     <None Update="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\EntityModels\Search\" />
   </ItemGroup>
 </Project>

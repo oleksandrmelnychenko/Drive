@@ -6,10 +6,16 @@ namespace Drive.Client.Models.Rest {
         public const string DEFAULT_ENDPOINT = "http://31.128.79.4:13828/m";
 
         /// <summary>
-        /// Car info endpoints
+        /// Car info endpoints.
         /// </summary>
         public CarInfoEndPoints CarInfoEndPoints { get; private set; } = new CarInfoEndPoints(DEFAULT_ENDPOINT);
-
+        /// <summary>
+        /// Client hardware endpoints.
+        /// </summary>
         public ClientHardwareEndPoints ClientHardwareEndPoints { get; private set; } = new ClientHardwareEndPoints(DEFAULT_ENDPOINT);
+        /// <summary>
+        /// Identity endpoints.
+        /// </summary>
+        public IdentityEndpoints IdentityEndpoints { get; set; } = new IdentityEndpoints(DEFAULT_ENDPOINT);
     }
 }

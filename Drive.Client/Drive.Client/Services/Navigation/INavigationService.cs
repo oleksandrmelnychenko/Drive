@@ -1,5 +1,4 @@
 ﻿using Drive.Client.ViewModels.Base;
-using System;
 using System.Threading.Tasks;
 
 namespace Drive.Client.Services.Navigation {
@@ -11,7 +10,7 @@ namespace Drive.Client.Services.Navigation {
 
         ViewModelBase PreviousPageViewModel { get; }
 
-        Task InitializeAsync(bool canLogin);
+        Task InitializeAsync();
 
         Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase;
 
