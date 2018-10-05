@@ -45,15 +45,17 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<SearchViewModel>();
             builder.RegisterType<ProfileViewModel>();
             builder.RegisterType<BookmarkViewModel>();
+            builder.RegisterType<SignInNameStepViewModel>();
             builder.RegisterType<FoundDriveAutoViewModel>();
             builder.RegisterType<CommonActionBarViewModel>();
             builder.RegisterType<DriveAutoDetailsViewModel>();
             builder.RegisterType<NameRegisterStepViewModel>();
+            builder.RegisterType<LanguageSelectPopupViewModel>();
             builder.RegisterType<PasswordRegisterStepViewModel>();
+            builder.RegisterType<SignInPhoneNumberStepViewModel>();
             builder.RegisterType<PhoneNumberRegisterStepViewModel>();
             builder.RegisterType<IdentityAccountingActionBarViewModel>();
             builder.RegisterType<ConfirmPasswordRegisterStepViewModel>();
-            builder.RegisterType<LanguageSelectPopupViewModel>();
 
             // Services.
             builder.RegisterType<DialogService>().As<IDialogService>();

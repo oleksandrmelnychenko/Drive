@@ -62,7 +62,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
 
         public ICommand FacebookLoginCommand => new Command(async () => await DialogService.ToastAsync("Facebook login command in developing"));
 
-        public ICommand LoginCommand => new Command(async () => await DialogService.ToastAsync("Login command in developing"));
+        public ICommand LoginCommand => new Command(async () => await NavigationService.NavigateToAsync<SignInPhoneNumberStepViewModel>());
 
         public ICommand RegisterCommand => new Command(async () => await NavigationService.NavigateToAsync<PhoneNumberRegisterStepViewModel>());
 
@@ -76,14 +76,12 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         public ProfileViewModel(IIdentityUtilityService identityUtilityService) {
             _identityUtilityService = identityUtilityService;
 
-            VisibilityRegistrationContent = false;
-
             LanguageSelectPopupViewModel = DependencyLocator.Resolve<LanguageSelectPopupViewModel>();
             LanguageSelectPopupViewModel.InitializeAsync(this);
         }
 
         public override Task InitializeAsync(object navigationData) {
-            //UpdateView();
+            UpdateView();
 
             LanguageSelectPopupViewModel?.InitializeAsync(navigationData);
 

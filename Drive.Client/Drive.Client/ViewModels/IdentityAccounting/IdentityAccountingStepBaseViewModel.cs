@@ -11,6 +11,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
     public abstract class IdentityAccountingStepBaseViewModel : ContentPageBaseViewModel {
 
         public static readonly string PHONE_STEP_REGISTRATION_TITLE = "ВВЕДІТЬ НОМЕР ТЕЛЕФОНУ";
+        public static readonly string PHONE_STEP_SIGNIN_TITLE = "ВВЕДІТЬ ВАШ НОМЕР ТЕЛЕФОНУ";
         public static readonly string NAME_STEP_REGISTRATION_TITLE = "ВВЕДІТЬ ІМ'Я";
         public static readonly string PASSWORD_STEP_REGISTRATION_TITLE = "ВВЕДІТЬ ПАРОЛЬ";
         public static readonly string PASSWORD_CONFIRM_STEP_REGISTRATION_TITLE = "ПІДТВЕРДІТЬ ПАРОЛЬ";

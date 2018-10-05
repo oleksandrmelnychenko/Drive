@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
-    class PasswordRegisterStepViewModel: IdentityAccountingStepBaseViewModel {
+    public sealed class PasswordRegisterStepViewModel: IdentityAccountingStepBaseViewModel {
 
         private RegistrationCollectedInputsArgs _collectedInputsArgs;
 
