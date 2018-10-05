@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Drive.Client.DataItems.ProfileSettings;
 using Drive.Client.Factories.Validation;
 using Drive.Client.Services.Automobile;
 using Drive.Client.Services.DeviceUtil;
@@ -70,6 +71,9 @@ namespace Drive.Client.ViewModels.Base {
 
             // Factories.
             builder.RegisterType<ValidationObjectFactory>().As<IValidationObjectFactory>();
+
+            // Data items
+            builder.RegisterType<ProfileSettingsDataItems>().As<IProfileSettingsDataItems>().SingleInstance();
 
             if (_container != null) {
                 _container.Dispose();

@@ -3,21 +3,60 @@
     x:Class="Drive.Client.Views.BottomTabViews.Popups.LanguageSelectPopupView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
     xmlns:popups="clr-namespace:Drive.Client.Controls.Popups"
-    BackgroundColor="LightBlue"
-    VerticalOptions="Start">
+    xmlns:stackList="clr-namespace:Drive.Client.Controls.Stacklist"
+    CascadeInputTransparent="False"
+    InputTransparent="True">
+
     <popups:SinglePopupViewBase.Content>
-        <ContentView
-            BackgroundColor="White"
-            HeightRequest="60"
-            VerticalOptions="Start">
+        <Grid CascadeInputTransparent="False" InputTransparent="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-            <Label
-                FontSize="36"
-                HorizontalOptions="Center"
-                Text="Hello Xamarin.Forms!"
-                VerticalOptions="Center" />
+            <!--  Content background backing  -->
+            <ContentView Grid.Row="1" BackgroundColor="{StaticResource WhiteColor}" />
 
-        </ContentView>
+            <!--  Main content  -->
+            <StackLayout
+                Grid.Row="1"
+                Spacing="24"
+                VerticalOptions="Center">
+                <!--  Header  -->
+                <controls:LabelExtended
+                    FontFamily="{StaticResource SFProLight}"
+                    FontSize="{StaticResource LittleSize}"
+                    HorizontalOptions="Center"
+                    Text="МОВА"
+                    TextColor="{StaticResource BaseGrayColor}"
+                    VerticalOptions="Center" />
+
+                <!--  Languages list  -->
+                <stackList:StackList
+                    x:Name="_languagesList_StackList"
+                    ItemsSource="{Binding Path=Languages}"
+                    Spacing="24">
+                    <stackList:StackList.ItemTemplate>
+                        <DataTemplate>
+                            <stackList:CommonStackListItem IsOnSelectionVisualChangesEnabled="False" IsSelectable="False">
+                                <stackList:CommonStackListItem.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.SelectLanguageCommand, Source={Reference Name=_languagesList_StackList}}" CommandParameter="{Binding}" />
+                                </stackList:CommonStackListItem.GestureRecognizers>
+                                <controls:LabelExtended
+                                    FontFamily="{StaticResource SFProLight}"
+                                    FontSize="{StaticResource MediumSize}"
+                                    HorizontalOptions="Center"
+                                    Text="{Binding Path=Title}"
+                                    TextColor="{StaticResource DarkColor}"
+                                    VerticalOptions="Center" />
+                            </stackList:CommonStackListItem>
+                        </DataTemplate>
+                    </stackList:StackList.ItemTemplate>
+                </stackList:StackList>
+            </StackLayout>
+        </Grid>
+
     </popups:SinglePopupViewBase.Content>
 </popups:SinglePopupViewBase>
