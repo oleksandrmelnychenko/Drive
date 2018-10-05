@@ -1,4 +1,5 @@
 ﻿using Drive.Client.ViewModels.Base;
+using System;
 using System.Runtime.Serialization;
 
 namespace Drive.Client.Models.Identities {
@@ -8,7 +9,7 @@ namespace Drive.Client.Models.Identities {
         /// Acces token by user.
         /// </summary>
         [DataMember]
-        public string AccesToken { get; set; } = string.Empty;
+        public string AccesToken { get; set; } = string.Empty;       
         /// <summary>
         /// Refresh token by user.
         /// </summary>
@@ -39,5 +40,18 @@ namespace Drive.Client.Models.Identities {
         /// </summary>
         [DataMember]
         public string UserName { get; set; }
+
+        /// <summary>
+        /// Clear user profile.
+        /// </summary>
+        internal void ClearUserProfile() {
+            AccesToken = string.Empty;
+            RefreshToken = string.Empty;
+            IsAuth = false;
+            Email = string.Empty;
+            NetId = string.Empty;
+            PhoneNumber = string.Empty;
+            UserName = string.Empty;
+        }
     }
 }

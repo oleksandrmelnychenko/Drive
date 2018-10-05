@@ -1,4 +1,5 @@
 ﻿using Drive.Client.Helpers;
+using Drive.Client.Services.Identity.IdentityUtility;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
 using Drive.Client.Views.BottomTabViews;
@@ -10,6 +11,8 @@ using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels {
     public sealed class ProfileViewModel : NestedViewModel, IBottomBarTab {
+
+        private readonly IIdentityUtilityService _identityUtilityService;
 
         public bool IsBudgeVisible { get; private set; }
 
@@ -55,10 +58,14 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
 
         public ICommand AcceptCommand => new Command(async () => await DialogService.ToastAsync(" Accept command in developing"));
 
+        public ICommand LogOutCommand => new Command(() => _identityUtilityService.LogOut());
+
         /// <summary>
         ///     ctor().
         /// </summary>
-        public ProfileViewModel() {
+        public ProfileViewModel(IIdentityUtilityService identityUtilityService) {
+            _identityUtilityService = identityUtilityService;
+
             VisibilityRegistrationContent = false;
         }
 
