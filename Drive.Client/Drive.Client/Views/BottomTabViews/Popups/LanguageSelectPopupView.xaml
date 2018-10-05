@@ -15,7 +15,11 @@
                 <RowDefinition Height="3*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+
+            <!--  Content background backing  -->
             <ContentView Grid.Row="1" BackgroundColor="{StaticResource WhiteColor}" />
+
+            <!--  Main content  -->
             <StackLayout
                 Grid.Row="1"
                 Spacing="24"
