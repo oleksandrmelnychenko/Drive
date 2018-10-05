@@ -66,7 +66,6 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<IdentityUtilityService>().As<IIdentityUtilityService>();
             builder.RegisterType<PickMediaService>().As<IPickMediaService>();
 
-
             // Factories.
             builder.RegisterType<ValidationObjectFactory>().As<IValidationObjectFactory>();
 
