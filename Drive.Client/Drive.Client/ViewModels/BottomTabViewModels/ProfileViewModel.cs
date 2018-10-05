@@ -66,11 +66,11 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         public ProfileViewModel(IIdentityUtilityService identityUtilityService) {
             _identityUtilityService = identityUtilityService;
 
-            VisibilityRegistrationContent = false;
+            //VisibilityRegistrationContent = false;
         }
 
         public override Task InitializeAsync(object navigationData) {
-            //UpdateView();
+            UpdateView();
 
             return base.InitializeAsync(navigationData);
         }

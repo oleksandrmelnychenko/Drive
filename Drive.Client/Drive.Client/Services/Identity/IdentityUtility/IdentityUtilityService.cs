@@ -1,9 +1,5 @@
 ﻿using Drive.Client.Helpers;
-using Drive.Client.Models.Identities;
 using Drive.Client.Services.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Drive.Client.Services.Identity.IdentityUtility {
     public class IdentityUtilityService : IIdentityUtilityService {

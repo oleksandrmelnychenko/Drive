@@ -78,13 +78,19 @@ namespace Drive.Client.Services.Identity {
             }, cancellationToken);
 
         private static void SetupProfile(SignUpResult signUpResult) {
-            BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken = signUpResult.AccessToken;
-            BaseSingleton<GlobalSetting>.Instance.UserProfile.RefreshToken = signUpResult.RefreshToken;
-            BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth = true;
-            BaseSingleton<GlobalSetting>.Instance.UserProfile.NetId = signUpResult.User.NetId;
-            BaseSingleton<GlobalSetting>.Instance.UserProfile.PhoneNumber = signUpResult.User.PhoneNumber;
-            BaseSingleton<GlobalSetting>.Instance.UserProfile.Email = signUpResult.User?.Email;
-            BaseSingleton<GlobalSetting>.Instance.UserProfile.UserName = signUpResult.User.UserName;
+            try {
+                BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken = signUpResult.AccessToken;
+                BaseSingleton<GlobalSetting>.Instance.UserProfile.RefreshToken = signUpResult.RefreshToken;
+                BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth = true;
+                BaseSingleton<GlobalSetting>.Instance.UserProfile.NetId = signUpResult.User.NetId;
+                BaseSingleton<GlobalSetting>.Instance.UserProfile.PhoneNumber = signUpResult.User.PhoneNumber;
+                BaseSingleton<GlobalSetting>.Instance.UserProfile.Email = signUpResult.User?.Email;
+                BaseSingleton<GlobalSetting>.Instance.UserProfile.UserName = signUpResult.User.UserName;
+            }
+            catch (Exception ex) {
+                Debug.WriteLine($"ERROR:{ex.Message}");
+                Debugger.Break();
+            }
         }
     }
 }
