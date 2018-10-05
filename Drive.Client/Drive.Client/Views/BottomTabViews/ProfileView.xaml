@@ -206,7 +206,7 @@
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
                                     Grid.Column="1"
-                                    HeightRequest="40"
+                                    HeightRequest="20"
                                     HorizontalOptions="End"
                                     Source="resource://Drive.Client.Resources.Images.ArrowNext.svg"
                                     VerticalOptions="Center" />
@@ -233,7 +233,7 @@
                                     Grid.RowSpan="2"
                                     Grid.Column="0"
                                     FontFamily="{StaticResource SFProLight}"
-                                    FontSize="{StaticResource LargerSize}"
+                                    FontSize="{StaticResource MediumSize}"
                                     Text="Зміна пароля"
                                     TextColor="{StaticResource DarkColor}"
                                     VerticalOptions="Center" />
@@ -243,7 +243,7 @@
                                     Grid.Column="1"
                                     HeightRequest="20"
                                     HorizontalOptions="End"
-                                    Source="resource://Drive.Client.Resources.Images.ArrowNext.svg"
+                                    Source="resource://Drive.Client.Resources.Images.PasswordKey.svg"
                                     VerticalOptions="Center" />
                             </Grid>
 
@@ -262,7 +262,7 @@
                                     Grid.RowSpan="2"
                                     Grid.Column="0"
                                     FontFamily="{StaticResource SFProLight}"
-                                    FontSize="{StaticResource LargerSize}"
+                                    FontSize="{StaticResource MediumSize}"
                                     Text="Конфіденційність та безпека"
                                     TextColor="{StaticResource DarkColor}"
                                     VerticalOptions="Center" />
@@ -273,7 +273,7 @@
                                     Grid.Column="1"
                                     HeightRequest="20"
                                     HorizontalOptions="End"
-                                    Source="resource://Drive.Client.Resources.Images.ArrowNext.svg"
+                                    Source="resource://Drive.Client.Resources.Images.Security.svg"
                                     VerticalOptions="Center" />
                             </Grid>
 
@@ -292,7 +292,7 @@
                                     Grid.RowSpan="2"
                                     Grid.Column="0"
                                     FontFamily="{StaticResource SFProLight}"
-                                    FontSize="{StaticResource LargerSize}"
+                                    FontSize="{StaticResource MediumSize}"
                                     Text="Питання до експертів"
                                     TextColor="{StaticResource DarkColor}"
                                     VerticalOptions="Center" />
@@ -303,7 +303,7 @@
                                     Grid.Column="1"
                                     HeightRequest="20"
                                     HorizontalOptions="End"
-                                    Source="resource://Drive.Client.Resources.Images.ArrowNext.svg"
+                                    Source="resource://Drive.Client.Resources.Images.Idea.svg"
                                     VerticalOptions="Center" />
                             </Grid>
 
@@ -316,13 +316,16 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="30" />
                                 </Grid.ColumnDefinitions>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LogOutCommand}" NumberOfTapsRequired="1" />
+                                </Grid.GestureRecognizers>
 
                                 <controls:LabelExtended
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
                                     Grid.Column="0"
                                     FontFamily="{StaticResource SFProLight}"
-                                    FontSize="{StaticResource LargerSize}"
+                                    FontSize="{StaticResource MediumSize}"
                                     Text="Вийти"
                                     TextColor="{StaticResource DarkColor}"
                                     VerticalOptions="Center" />
@@ -331,7 +334,7 @@
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
                                     Grid.Column="1"
-                                    HeightRequest="30"
+                                    HeightRequest="20"
                                     HorizontalOptions="End"
                                     Source="resource://Drive.Client.Resources.Images.Out.svg"
                                     VerticalOptions="Center" />

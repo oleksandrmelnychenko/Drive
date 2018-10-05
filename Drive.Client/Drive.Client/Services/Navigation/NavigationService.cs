@@ -44,6 +44,15 @@ namespace Drive.Client.Services.Navigation {
         }
 
         public Task InitializeAsync() {
+            if (Application.Current.MainPage is CustomNavigationView navigationPage) {
+                List<Page> stack = navigationPage.Navigation.NavigationStack.ToList();
+                stack.ForEach(p => {
+                    if (p.BindingContext is ViewModelBase viewModel) {
+                        viewModel.Dispose();
+                    }
+                });
+            }
+
             return FirstInitilizeAsync<MainViewModel>();
         }
 
@@ -155,8 +164,8 @@ namespace Drive.Client.Services.Navigation {
 
 
         private void DisposeBindingContext(Page targetPage) {
-            if (targetPage?.BindingContext is ViewModelBase) {
-                ((ViewModelBase)targetPage.BindingContext).Dispose();
+            if (targetPage?.BindingContext is ViewModelBase viewModel) {
+                viewModel.Dispose();
             }
         }
     }

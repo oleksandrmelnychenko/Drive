@@ -67,7 +67,6 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
 
                         if (signUpResult != null) {
                             if (signUpResult.IsSucceed) {
-                                await NavigationService.RemoveBackStackAsync();
                                 await NavigationService.InitializeAsync();
                             } else {
                                 ServerError = signUpResult.Errors.LastOrDefault().Item2;

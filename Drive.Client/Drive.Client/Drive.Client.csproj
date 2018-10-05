@@ -33,10 +33,12 @@
     <None Remove="Resources\Images\Ok.svg" />
     <None Remove="Resources\Images\Out.svg" />
     <None Remove="Resources\Images\password.svg" />
+    <None Remove="Resources\Images\PasswordKey.svg" />
     <None Remove="Resources\Images\Phone.svg" />
     <None Remove="Resources\Images\Plus.svg" />
     <None Remove="Resources\Images\Save.svg" />
     <None Remove="Resources\Images\Search.svg" />
+    <None Remove="Resources\Images\Security.svg" />
     <None Remove="Resources\Images\stroke.svg" />
     <None Remove="Resources\Images\TEST.png" />
     <None Remove="Resources\Images\User.svg" />
@@ -60,10 +62,12 @@
     <EmbeddedResource Include="Resources\Images\Ok.svg" />
     <EmbeddedResource Include="Resources\Images\Out.svg" />
     <EmbeddedResource Include="Resources\Images\password.svg" />
+    <EmbeddedResource Include="Resources\Images\PasswordKey.svg" />
     <EmbeddedResource Include="Resources\Images\Phone.svg" />
     <EmbeddedResource Include="Resources\Images\Plus.svg" />
     <EmbeddedResource Include="Resources\Images\Save.svg" />
     <EmbeddedResource Include="Resources\Images\Search.svg" />
+    <EmbeddedResource Include="Resources\Images\Security.svg" />
     <EmbeddedResource Include="Resources\Images\stroke.svg" />
     <EmbeddedResource Include="Resources\Images\TEST.png" />
     <EmbeddedResource Include="Resources\Images\User.svg" />
