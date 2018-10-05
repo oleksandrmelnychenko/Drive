@@ -130,6 +130,7 @@
             <converters:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
             <converters:FirstElementFromCollectionConverter x:Key="first_element_from_collection_converter" />
             <converters:StringToBoolConverter x:Key="StringToBoolConverter" />
+            <converters:EmailConverter x:Key="EmailConverter" />
 
 
             <!--  EXPLICIT STYLES  -->

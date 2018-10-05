@@ -31,6 +31,7 @@
     <None Remove="Resources\Images\Idea.svg" />
     <None Remove="Resources\Images\name.svg" />
     <None Remove="Resources\Images\Ok.svg" />
+    <None Remove="Resources\Images\Out.svg" />
     <None Remove="Resources\Images\password.svg" />
     <None Remove="Resources\Images\Phone.svg" />
     <None Remove="Resources\Images\Plus.svg" />
@@ -57,6 +58,7 @@
     <EmbeddedResource Include="Resources\Images\Idea.svg" />
     <EmbeddedResource Include="Resources\Images\name.svg" />
     <EmbeddedResource Include="Resources\Images\Ok.svg" />
+    <EmbeddedResource Include="Resources\Images\Out.svg" />
     <EmbeddedResource Include="Resources\Images\password.svg" />
     <EmbeddedResource Include="Resources\Images\Phone.svg" />
     <EmbeddedResource Include="Resources\Images\Plus.svg" />

@@ -3,6 +3,7 @@ using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
 using Drive.Client.Views.BottomTabViews;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -40,6 +41,12 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
             set { SetProperty(ref _phoneNumber, value); }
         }
 
+        string _email;
+        public string Email {
+            get { return _email; }
+            set { SetProperty(ref _email, value); }
+        }
+
         public ICommand FacebookLoginCommand => new Command(async () => await DialogService.ToastAsync("Facebook login command in developing"));
 
         public ICommand LoginCommand => new Command(async () => await DialogService.ToastAsync("Login command in developing"));
@@ -52,19 +59,26 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         ///     ctor().
         /// </summary>
         public ProfileViewModel() {
-            VisibilityRegistrationContent = !BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth;
+            VisibilityRegistrationContent = false;
         }
 
         public override Task InitializeAsync(object navigationData) {
-            UpdateView();
+            //UpdateView();
 
             return base.InitializeAsync(navigationData);
         }
 
         private void UpdateView() {
-            VisibilityRegistrationContent = !BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth;
-            UserName = BaseSingleton<GlobalSetting>.Instance.UserProfile?.UserName;
-            PhoneNumber = BaseSingleton<GlobalSetting>.Instance.UserProfile?.PhoneNumber;
+            try {
+                VisibilityRegistrationContent = !BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth;
+                UserName = BaseSingleton<GlobalSetting>.Instance.UserProfile?.UserName;
+                PhoneNumber = BaseSingleton<GlobalSetting>.Instance.UserProfile?.PhoneNumber;
+                Email = BaseSingleton<GlobalSetting>.Instance.UserProfile?.Email;
+            }
+            catch (Exception ex) {
+                Debug.WriteLine($"ERROR:{ex.Message}");
+                Debugger.Break();
+            }
         }
     }
 }
