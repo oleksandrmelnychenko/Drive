@@ -16,10 +16,6 @@
         <Grid RowSpacing="0">
             <ScrollView Scrolled="OnScrollViewScrolled" VerticalScrollBarVisibility="Never">
                 <StackLayout BackgroundColor="Transparent" Spacing="18">
-                    <!--<Grid.RowDefinitions>
-                        <RowDefinition Height="250" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>-->
 
                     <BoxView
                         BackgroundColor="{StaticResource WhiteColor}"
@@ -341,19 +337,24 @@
                         VerticalOptions="Center" />
                     <!--  PROFILE PHOTO  -->
                     <ffImage:CachedImage
+                        x:Name="_avatarImage_CachedImage"
                         Aspect="AspectFit"
                         HorizontalOptions="Center"
+                        InputTransparent="True"
                         Source="resource://Drive.Client.Resources.Images.TEST.png"
                         WidthRequest="140">
+                        <ffImage:CachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=ChangeAvatarCommand}" />
+                        </ffImage:CachedImage.GestureRecognizers>
                         <ffImage:CachedImage.Transformations>
                             <ffTransformations:CircleTransformation />
                         </ffImage:CachedImage.Transformations>
                     </ffImage:CachedImage>
                     <ffimageloadingsvg:SvgCachedImage
+                        x:Name="_changeAvatarPencil_SvgCachedImage"
                         HeightRequest="80"
                         HorizontalOptions="Center"
                         Source="resource://Drive.Client.Resources.Images.edit.svg"
-                        TranslationY="24"
                         VerticalOptions="End">
                         <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Path=ChangeAvatarCommand}" />

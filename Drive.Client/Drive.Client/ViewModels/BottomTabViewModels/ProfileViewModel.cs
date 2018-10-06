@@ -71,9 +71,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
 
         public ICommand LogOutCommand => new Command(async () => await _identityUtilityService.LogOutAsync());
 
-        public ICommand ChangeAvatarCommand => new Command(() => {
-
-        });
+        public ICommand ChangeAvatarCommand => new Command(async () => await DialogService.ToastAsync("Change avatar command in developing"));
 
         /// <summary>
         ///     ctor().
