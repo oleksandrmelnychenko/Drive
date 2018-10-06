@@ -133,6 +133,9 @@
     <EmbeddedResource Update="Views\FoundDriveAutoView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\IdentityAccounting\EditProfile\EditPhoneNumberView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\IdentityAccounting\IdentityAccountingStepBaseView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

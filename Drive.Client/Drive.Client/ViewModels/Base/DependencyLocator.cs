@@ -13,6 +13,7 @@ using Drive.Client.Services.RequestProvider;
 using Drive.Client.ViewModels.ActionBars;
 using Drive.Client.ViewModels.BottomTabViewModels;
 using Drive.Client.ViewModels.BottomTabViewModels.Popups;
+using Drive.Client.ViewModels.IdentityAccounting.EditProfile;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
 using System;
 using System.Globalization;
@@ -46,6 +47,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<SearchViewModel>();
             builder.RegisterType<ProfileViewModel>();
             builder.RegisterType<BookmarkViewModel>();
+            builder.RegisterType<EditPhoneNumberViewModel>();
             builder.RegisterType<SignInNameStepViewModel>();
             builder.RegisterType<FoundDriveAutoViewModel>();
             builder.RegisterType<CommonActionBarViewModel>();

@@ -2,6 +2,7 @@
 using Drive.Client.Services.Identity.IdentityUtility;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.BottomTabViewModels.Popups;
+using Drive.Client.ViewModels.IdentityAccounting.EditProfile;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
 using Drive.Client.Views.BottomTabViews;
 using System;
@@ -66,7 +67,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
 
         public ICommand RegisterCommand => new Command(async () => await NavigationService.NavigateToAsync<PhoneNumberRegisterStepViewModel>());
 
-        public ICommand AcceptCommand => new Command(async () => await DialogService.ToastAsync(" Accept command in developing"));
+        public ICommand EditPhoneNumberCommand => new Command(async () => await NavigationService.NavigateToAsync<EditPhoneNumberViewModel>());
 
         public ICommand LogOutCommand => new Command(async () => await _identityUtilityService.LogOutAsync());
 
