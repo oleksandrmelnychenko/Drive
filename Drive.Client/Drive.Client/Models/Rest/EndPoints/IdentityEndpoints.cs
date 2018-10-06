@@ -13,6 +13,8 @@ namespace Drive.Client.Models.Rest.EndPoints {
 
         private const string SIGNIN_API_KEY = "api/v1/user/signin";
 
+        private const string LOG_OUT_API_KEY = "api/v1/user/logout";
+
         /// <summary>
         ///     ctor().
         /// </summary>
@@ -34,15 +36,18 @@ namespace Drive.Client.Models.Rest.EndPoints {
 
         public string CheckUserNameEndpoint { get; private set; }
 
-        public string SignUpEndPoint { get; set; }
+        public string SignUpEndPoint { get; private set; }
 
-        public string SignInEndPoint { get; set; }
+        public string SignInEndPoint { get; private set; }
+
+        public string LogOutEndPoint { get; private set; }
 
         private void UpdateEndpoint(string baseEndpoint) {
             CheckPhoneNumberEndPoint = $"{baseEndpoint}/{PHONE_NUMBER_AVAILABILITY_API_KEY}";
             CheckUserNameEndpoint = $"{baseEndpoint}/{USER_NAME_AVAILABILITY_API_KEY}";
             SignUpEndPoint = $"{baseEndpoint}/{SIGNUP_API_KEY}";
             SignInEndPoint = $"{baseEndpoint}/{SIGNIN_API_KEY}";
+            LogOutEndPoint = $"{baseEndpoint}/{LOG_OUT_API_KEY}";
         }
     }
 }

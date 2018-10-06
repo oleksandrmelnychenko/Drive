@@ -3,6 +3,7 @@ using Drive.Client.Helpers;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
 using Plugin.DeviceInfo;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -21,6 +22,14 @@ namespace Drive.Client.Services.RequestProvider {
             /// 
             _client.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue("uk-UA"));
             _client.DefaultRequestHeaders.Add("DeviceId", CrossDeviceInfo.Current.Id);
+        }
+
+        /// <summary>
+        /// Reset access token.
+        /// </summary>
+        public void ClientTokenReset() {
+            if (_client != null)
+                _client.DefaultRequestHeaders.Authorization = null;
         }
 
         /// <summary>
@@ -45,11 +54,12 @@ namespace Drive.Client.Services.RequestProvider {
         /// <summary>
         /// TODO: implement Base request/response models
         /// </summary>
-        public Task<TResponseValue> PostAsync<TResponseValue, TBodyContent>(string uri, TBodyContent bodyContent) =>
+        public Task<TResponseValue> PostAsync<TResponseValue, TBodyContent>(string uri, TBodyContent bodyContent, string accessToken = "") =>
             Task<TResponseValue>.Run(async () => {
                 if (!CrossConnectivity.Current.IsConnected) throw new ConnectivityException(AppConsts.ERROR_INTERNET_CONNECTION);
-
                 HttpContent content = null;
+
+                SetAccesToken(accessToken);
 
                 if (bodyContent != null) {
                     string jObject = JsonConvert.SerializeObject(bodyContent);
@@ -69,12 +79,26 @@ namespace Drive.Client.Services.RequestProvider {
                 return result;
             });
 
+        private void SetAccesToken(string accessToken) {
+            if (_client.DefaultRequestHeaders.Authorization == null) {
+                if (!string.IsNullOrEmpty(accessToken)) {
+                    _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                }
+            } else {
+                if (!(string.IsNullOrEmpty(accessToken)) && _client.DefaultRequestHeaders.Authorization.Parameter != accessToken) {
+                    _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                }
+            }
+        }
+
         private async Task HandleResponse(HttpResponseMessage response) {
             if (!response.IsSuccessStatusCode) {
                 var content = await response.Content.ReadAsStringAsync();
 
-                if (response.StatusCode == HttpStatusCode.Forbidden ||
-                    response.StatusCode == HttpStatusCode.Unauthorized) {
+                if (response.StatusCode == HttpStatusCode.Forbidden || response.StatusCode == HttpStatusCode.Unauthorized) {
+
+                    ClientTokenReset();
+
                     throw new ServiceAuthenticationException(content);
                 }
 

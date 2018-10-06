@@ -68,7 +68,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
 
         public ICommand AcceptCommand => new Command(async () => await DialogService.ToastAsync(" Accept command in developing"));
 
-        public ICommand LogOutCommand => new Command(() => _identityUtilityService.LogOut());
+        public ICommand LogOutCommand => new Command(async () => await _identityUtilityService.LogOutAsync());
 
         public ICommand ChangeAvatarCommand => new Command(() => {
 

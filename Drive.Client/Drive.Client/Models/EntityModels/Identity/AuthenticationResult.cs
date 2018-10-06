@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 
 namespace Drive.Client.Models.EntityModels.Identity {
-    public class SignUpResult {
+    public class AuthenticationResult {
         [JsonProperty("IsSucceed")]
         public bool IsSucceed { get; set; }
 

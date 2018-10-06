@@ -1,5 +1,7 @@
-﻿namespace Drive.Client.Services.Identity.IdentityUtility {
+﻿using System.Threading.Tasks;
+
+namespace Drive.Client.Services.Identity.IdentityUtility {
     public interface IIdentityUtilityService {
-        void LogOut();
+        Task LogOutAsync();
     }
 }
