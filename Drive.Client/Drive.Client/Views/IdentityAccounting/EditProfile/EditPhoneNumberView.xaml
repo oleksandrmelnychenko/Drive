@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<identityAccounting:IdentityAccountingStepBaseView
+    x:Class="Drive.Client.Views.IdentityAccounting.EditProfile.EditPhoneNumberView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Drive.Client.Behaviors"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:converters="clr-namespace:Drive.Client.Converters"
+    xmlns:dependency="clr-namespace:Drive.Client.ViewModels.Base"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:identityAccounting="clr-namespace:Drive.Client.Views.IdentityAccounting"
+    dependency:DependencyLocator.AutoWireViewModel="True">
+
+    <identityAccounting:IdentityAccountingStepBaseView.MainContent>
+        <ContentView BackgroundColor="{StaticResource WhiteColor}">
+            <StackLayout Padding="0,60" Spacing="30">
+
+                <!--  Step title  -->
+                <controls:LabelExtended
+                    FontFamily="{StaticResource SFProLight}"
+                    FontSize="{StaticResource MediumSize}"
+                    HorizontalOptions="Center"
+                    Text="{Binding Path=StepTitle}"
+                    TextColor="{StaticResource DarkColor}"
+                    VerticalOptions="End" />
+
+                <!--  Step input  -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid
+                        Grid.Row="0"
+                        BackgroundColor="{StaticResource LightGrayColor}"
+                        HeightRequest="60"
+                        RowSpacing="0"
+                        VerticalOptions="Center">
+                        <controls:EntryExtended
+                            x:Name="_entyEx"
+                            FontFamily="{StaticResource SFProLight}"
+                            FontSize="{StaticResource MediumSize}"
+                            HorizontalOptions="Fill"
+                            HorizontalTextAlignment="Center"
+                            IsPassword="{Binding Path=IsPasswordInput}"
+                            Keyboard="{Binding KeyboardType}"
+                            Placeholder="{Binding Path=MainInputPlaceholder}"
+                            ReturnType="Done"
+                            Text="{Binding Path=MainInput.Value}"
+                            TextColor="{StaticResource ExtraGrayColor}">
+                            <controls:EntryExtended.Behaviors>
+                                <behaviors:PhoneMaskEntryBehavior Mask="+3 8(XXX) XX-XXX-XX" />
+                                <behaviors:EventToCommandBehavior Command="{Binding StepCommand}" EventName="Completed" />
+                            </controls:EntryExtended.Behaviors>
+                        </controls:EntryExtended>
+                        <!--  TODO: bound source property to the MainInputIconPath with appropriate binding converter  -->
+                        <ffimageloadingsvg:SvgCachedImage
+                            Margin="20,0,0,0"
+                            HeightRequest="15"
+                            HorizontalOptions="Start"
+                            Source="{Binding MainInputIconPath}"
+                            VerticalOptions="Center"
+                            WidthRequest="15" />
+                    </Grid>
+                    <controls:LabelExtended
+                        Grid.Row="1"
+                        FontSize="{StaticResource Key=MidMediumSize}"
+                        HorizontalOptions="Center"
+                        IsVisible="{Binding Path=MainInput.IsValid, Converter={StaticResource Key=Reverse_bool_converter}}"
+                        Text="{Binding Path=MainInput.Errors, Converter={StaticResource Key=first_element_from_collection_converter}}"
+                        TextColor="{StaticResource Key=ErrorColor}"
+                        VerticalOptions="Center" />
+                    <controls:LabelExtended
+                        Grid.Row="1"
+                        FontSize="{StaticResource Key=MidMediumSize}"
+                        HorizontalOptions="Center"
+                        IsVisible="{Binding ServerError, Converter={StaticResource StringToBoolConverter}}"
+                        Text="{Binding ServerError}"
+                        TextColor="{StaticResource Key=ErrorColor}"
+                        VerticalOptions="Center" />
+                </Grid>
+            </StackLayout>
+        </ContentView>
+    </identityAccounting:IdentityAccountingStepBaseView.MainContent>
+</identityAccounting:IdentityAccountingStepBaseView>

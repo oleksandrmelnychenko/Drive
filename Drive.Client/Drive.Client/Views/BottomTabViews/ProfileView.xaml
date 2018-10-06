@@ -14,7 +14,7 @@
 
         <!--  PROFILE CONTENT  -->
         <Grid RowSpacing="0">
-            <ScrollView Scrolled="OnScrollViewScrolled">
+            <ScrollView Scrolled="OnScrollViewScrolled" VerticalScrollBarVisibility="Never">
                 <StackLayout BackgroundColor="Transparent" Spacing="18">
 
                     <BoxView
