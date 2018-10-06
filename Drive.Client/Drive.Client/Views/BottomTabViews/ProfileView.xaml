@@ -14,37 +14,17 @@
 
         <!--  PROFILE CONTENT  -->
         <Grid RowSpacing="0">
-            <ScrollView>
-                <Grid BackgroundColor="Transparent" RowSpacing="0">
-                    <Grid.RowDefinitions>
+            <ScrollView Scrolled="OnScrollViewScrolled">
+                <StackLayout BackgroundColor="Transparent" Spacing="18">
+                    <!--<Grid.RowDefinitions>
                         <RowDefinition Height="250" />
                         <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+                    </Grid.RowDefinitions>-->
 
-                    <!--  PROFILE INFO  -->
-                    <Grid Grid.Row="0" BackgroundColor="{StaticResource WhiteColor}">
-                        <ffimageloadingsvg:SvgCachedImage
-                            HeightRequest="150"
-                            HorizontalOptions="Center"
-                            Source="resource://Drive.Client.Resources.Images.stroke.svg"
-                            VerticalOptions="Center" />
-                        <!--  PROFILE PHOTO  -->
-                        <ffImage:CachedImage
-                            Aspect="AspectFit"
-                            HorizontalOptions="Center"
-                            Source="resource://Drive.Client.Resources.Images.TEST.png"
-                            WidthRequest="140">
-                            <ffImage:CachedImage.Transformations>
-                                <ffTransformations:CircleTransformation />
-                            </ffImage:CachedImage.Transformations>
-                        </ffImage:CachedImage>
-                        <ffimageloadingsvg:SvgCachedImage
-                            Margin="0,140,0,0"
-                            HeightRequest="80"
-                            HorizontalOptions="Center"
-                            Source="resource://Drive.Client.Resources.Images.edit.svg"
-                            VerticalOptions="Center" />
-                    </Grid>
+                    <BoxView
+                        BackgroundColor="Black"
+                        HeightRequest="182"
+                        VerticalOptions="Start" />
 
                     <!--  PROFILE TOOLS  -->
                     <StackLayout
@@ -341,8 +321,43 @@
                             </Grid>
                         </StackLayout>
                     </StackLayout>
-                </Grid>
+                </StackLayout>
             </ScrollView>
+
+            <!--  Avatar scope  -->
+            <ContentView
+                x:Name="_avatarScope_ContentView"
+                Padding="0,32,0,0"
+                BackgroundColor="{StaticResource WhiteColor}"
+                VerticalOptions="Start">
+                <Grid x:Name="_avatar_Grid" IsClippedToBounds="True">
+                    <ffimageloadingsvg:SvgCachedImage
+                        HeightRequest="150"
+                        HorizontalOptions="Center"
+                        Source="resource://Drive.Client.Resources.Images.stroke.svg"
+                        VerticalOptions="Center" />
+                    <!--  PROFILE PHOTO  -->
+                    <ffImage:CachedImage
+                        Aspect="AspectFit"
+                        HorizontalOptions="Center"
+                        Source="resource://Drive.Client.Resources.Images.TEST.png"
+                        WidthRequest="140">
+                        <ffImage:CachedImage.Transformations>
+                            <ffTransformations:CircleTransformation />
+                        </ffImage:CachedImage.Transformations>
+                    </ffImage:CachedImage>
+                    <ffimageloadingsvg:SvgCachedImage
+                        HeightRequest="80"
+                        HorizontalOptions="Center"
+                        Source="resource://Drive.Client.Resources.Images.edit.svg"
+                        TranslationY="24"
+                        VerticalOptions="End">
+                        <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=ChangeAvatarCommand}" />
+                        </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    </ffimageloadingsvg:SvgCachedImage>
+                </Grid>
+            </ContentView>
         </Grid>
 
         <!--  Login/registartion stub  -->
