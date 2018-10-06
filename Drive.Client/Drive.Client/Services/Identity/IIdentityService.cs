@@ -12,5 +12,11 @@ namespace Drive.Client.Services.Identity {
         Task<AuthenticationResult> SignUpAsync(RegistrationCollectedInputsArgs collectedInputsArgs, CancellationToken cancellationToken = default(CancellationToken));
 
         Task<AuthenticationResult> SignInAsync(SignInArgs signInArgsArgs, CancellationToken cancellationToken = default(CancellationToken));
+
+        Task<ChangedProfileData> ChangePhoneNumberAsync(string phoneNumber, CancellationToken cancellationToken = default(CancellationToken));
+
+        Task<ChangedProfileData> ChangeUserNameAsync(string userName, CancellationToken cancellationToken = default(CancellationToken));
+
+        Task<ChangedProfileData> ChangeEmailAsync(string value, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 namespace Drive.Client.Models.Rest.EndPoints {
     public class IdentityEndpoints {
 
-        private const string PHONE_NUMBER_AVAILABILITY_API_KEY = "api/v1/user/check/phone?phone={0}";
+        private const string PHONENUMBER_AVAILABILITY_API_KEY = "api/v1/user/check/phone?phone={0}";
 
         private const string USER_NAME_AVAILABILITY_API_KEY = "api/v1/user/check/name?name={0}";
 
@@ -14,6 +14,12 @@ namespace Drive.Client.Models.Rest.EndPoints {
         private const string SIGNIN_API_KEY = "api/v1/user/signin";
 
         private const string LOG_OUT_API_KEY = "api/v1/user/logout";
+
+        private const string CHANGE_PHONENUMBER_API_KEY = "api/v1/user/update/phone?phone={0}";
+
+        private const string CHANGE_USERNAME_API_KEY = "api/v1/user/update/name?name={0}";
+
+        private const string CHANGR_EMAIL_API_KEY = "api/v1/user/update/email?email={0}";
 
         /// <summary>
         ///     ctor().
@@ -42,12 +48,21 @@ namespace Drive.Client.Models.Rest.EndPoints {
 
         public string LogOutEndPoint { get; private set; }
 
+        public string ChangePhoneNumberEndPoint { get; set; }
+
+        public string ChangeUserNameEndPoint { get; set; }
+
+        public string ChangeEmailEndPoint { get; set; }
+
         private void UpdateEndpoint(string baseEndpoint) {
-            CheckPhoneNumberEndPoint = $"{baseEndpoint}/{PHONE_NUMBER_AVAILABILITY_API_KEY}";
+            CheckPhoneNumberEndPoint = $"{baseEndpoint}/{PHONENUMBER_AVAILABILITY_API_KEY}";
             CheckUserNameEndpoint = $"{baseEndpoint}/{USER_NAME_AVAILABILITY_API_KEY}";
             SignUpEndPoint = $"{baseEndpoint}/{SIGNUP_API_KEY}";
             SignInEndPoint = $"{baseEndpoint}/{SIGNIN_API_KEY}";
             LogOutEndPoint = $"{baseEndpoint}/{LOG_OUT_API_KEY}";
+            ChangePhoneNumberEndPoint = $"{baseEndpoint}/{CHANGE_PHONENUMBER_API_KEY}";
+            ChangeUserNameEndPoint = $"{baseEndpoint}/{CHANGE_USERNAME_API_KEY}";
+            ChangeEmailEndPoint= $"{baseEndpoint}/{CHANGR_EMAIL_API_KEY}";
         }
     }
 }

@@ -69,6 +69,10 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
 
         public ICommand EditPhoneNumberCommand => new Command(async () => await NavigationService.NavigateToAsync<EditPhoneNumberViewModel>());
 
+        public ICommand EditUserNameCommand => new Command(async () => await NavigationService.NavigateToAsync<EditUserNameViewModel>());
+
+        public ICommand EditEmailCommand => new Command(async () => await NavigationService.NavigateToAsync<EditEmailViewModel>());
+
         public ICommand LogOutCommand => new Command(async () => await _identityUtilityService.LogOutAsync());
 
         public ICommand ChangeAvatarCommand => new Command(async () => await DialogService.ToastAsync("Change avatar command in developing"));

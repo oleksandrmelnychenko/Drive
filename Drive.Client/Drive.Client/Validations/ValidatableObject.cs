@@ -9,6 +9,8 @@ namespace Drive.Client.Validations {
 
         public static readonly string INVALID_PHONE_VALIDATION_MESSAGE = "Некоректний номер телефону";
 
+        public static readonly string ERROR_EMAIL = "Некоректна електронна адреса";
+
         public List<IValidationRule<T>> Validations { get; }
 
         public ValidatableObject() {

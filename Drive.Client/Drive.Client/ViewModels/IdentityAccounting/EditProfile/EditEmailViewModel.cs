@@ -1,4 +1,5 @@
 ﻿using Drive.Client.Exceptions;
+using Drive.Client.Helpers;
 using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Services.Identity;
 using Drive.Client.Validations;
@@ -9,42 +10,40 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Threading;
-using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
-    public sealed class EditPhoneNumberViewModel : IdentityAccountingStepBaseViewModel {
+    public sealed class EditEmailViewModel : IdentityAccountingStepBaseViewModel {
 
         private readonly IIdentityService _identityService;
 
-        private CancellationTokenSource _changePhoneNumberCancellationTokenSource = new CancellationTokenSource();
+        private CancellationTokenSource _changeEmailCancellationTokenSource = new CancellationTokenSource();
 
         /// <summary>
         ///     ctor().
         /// </summary>
-        public EditPhoneNumberViewModel(IIdentityService identityService) {
+        public EditEmailViewModel(IIdentityService identityService) {
             _identityService = identityService;
 
-            StepTitle = CHANGE_PHONENUMBER_TITLE;
-            MainInputPlaceholder = PHONE_PLACEHOLDER_STEP_REGISTRATION;
-            MainInputIconPath = PHONENUMBER_ICON_PATH;
-            KeyboardType = Device.RuntimePlatform == Device.Android ? Keyboard.Telephone : Keyboard.Default;
+            StepTitle = CHANGE_EMAIL_TITLE;
+            MainInputPlaceholder = BaseSingleton<GlobalSetting>.Instance.UserProfile?.Email;
+            MainInputIconPath = EMAIL_ICON_PATH;
         }
 
         public override void Dispose() {
             base.Dispose();
 
-            ResetCancellationTokenSource(ref _changePhoneNumberCancellationTokenSource);
+            ResetCancellationTokenSource(ref _changeEmailCancellationTokenSource);
         }
 
         protected async override void OnStepCommand() {
             if (ValidateForm()) {
-                ResetCancellationTokenSource(ref _changePhoneNumberCancellationTokenSource);
-                CancellationTokenSource cancellationTokenSource = _changePhoneNumberCancellationTokenSource;
+                ResetCancellationTokenSource(ref _changeEmailCancellationTokenSource);
+                CancellationTokenSource cancellationTokenSource = _changeEmailCancellationTokenSource;
 
                 Guid busyKey = Guid.NewGuid();
                 SetBusy(busyKey, true);
                 try {
-                    ChangedProfileData changedProfileData =  await _identityService.ChangePhoneNumberAsync(MainInput.Value, _changePhoneNumberCancellationTokenSource.Token);
+                    ChangedProfileData changedProfileData = await _identityService.ChangeEmailAsync(MainInput.Value, _changeEmailCancellationTokenSource.Token);
                     if (changedProfileData != null) {
                         await NavigationService.PreviousPageViewModel.InitializeAsync(null);
                         await NavigationService.GoBackAsync();
@@ -68,7 +67,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
         protected override void ResetValidationObjects() {
             base.ResetValidationObjects();
 
-            MainInput.Validations.Add(new PhoneNumberRule<string>() { ValidationMessage = ValidatableObject<string>.INVALID_PHONE_VALIDATION_MESSAGE });
+            MainInput.Validations.Add(new EmailRule<string>() { ValidationMessage = ValidatableObject<string>.ERROR_EMAIL });
         }
     }
 }

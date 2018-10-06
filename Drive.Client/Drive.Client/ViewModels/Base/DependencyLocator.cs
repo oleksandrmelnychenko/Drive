@@ -47,6 +47,8 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<SearchViewModel>();
             builder.RegisterType<ProfileViewModel>();
             builder.RegisterType<BookmarkViewModel>();
+            builder.RegisterType<EditEmailViewModel>();
+            builder.RegisterType<EditUserNameViewModel>();
             builder.RegisterType<EditPhoneNumberViewModel>();
             builder.RegisterType<SignInNameStepViewModel>();
             builder.RegisterType<FoundDriveAutoViewModel>();
