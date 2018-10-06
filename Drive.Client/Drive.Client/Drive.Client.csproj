@@ -11,11 +11,18 @@
 
   <ItemGroup>
     <Compile Remove="Models\Services\**" />
+    <Compile Remove="Services\DependencyServices\Localize\**" />
     <Compile Remove="Views\Popups\**" />
     <EmbeddedResource Remove="Models\Services\**" />
+    <EmbeddedResource Remove="Services\DependencyServices\Localize\**" />
     <EmbeddedResource Remove="Views\Popups\**" />
     <None Remove="Models\Services\**" />
+    <None Remove="Services\DependencyServices\Localize\**" />
     <None Remove="Views\Popups\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Extensions\TranslateExtension.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -91,6 +98,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Resources\Resx\AppStrings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppStrings.resx</DependentUpon>
+    </Compile>
     <Compile Update="Views\DriveAutoDetailsView.xaml.cs">
       <DependentUpon>DriveAutoDetailsView.xaml</DependentUpon>
     </Compile>
@@ -102,6 +114,10 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Controls\Popups\PopupsBlockView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Resx\AppStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppStrings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ActionBars\CommonActionBarView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

@@ -7,6 +7,7 @@
     xmlns:ffImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
     BackgroundColor="{StaticResource WhiteColor}">
 
     <!--  MAIN FRAME  -->
@@ -50,7 +51,8 @@
                                     Grid.Column="0"
                                     FontFamily="{StaticResource SFProLight}"
                                     FontSize="{StaticResource LittleSize}"
-                                    Text="ІМ'Я КОРИСТУВАЧА"
+                                    LetterCaseTransform="ToUpperCase"
+                                    Text="{Binding Path=[UserNameUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
                                     TextColor="{StaticResource BaseGrayColor}"
                                     VerticalOptions="Center" />
                                 <controls:LabelExtended

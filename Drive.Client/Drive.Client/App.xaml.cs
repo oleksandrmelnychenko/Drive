@@ -1,16 +1,9 @@
 ﻿using Drive.Client.Helpers;
-using Drive.Client.Models.Identities;
-using Drive.Client.Services.DependencyServices.Device;
+using Drive.Client.Helpers.Localize;
 using Drive.Client.Services.Navigation;
 using Drive.Client.ViewModels.Base;
-using Drive.Client.Views.IdentityAccounting.Registration;
 using Newtonsoft.Json;
-using Plugin.DeviceInfo;
-using Plugin.DeviceInfo.Abstractions;
-using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -29,6 +22,7 @@ namespace Drive.Client {
 
         private void InitApp() {
             DependencyLocator.RegisterDependencies();
+            ResourceLoader.Init();
         }
 
         private Task InitNavigation() {

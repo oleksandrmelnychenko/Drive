@@ -1,4 +1,5 @@
 ﻿using Drive.Client.DataItems.ProfileSettings;
+using Drive.Client.Helpers.Localize;
 using Drive.Client.Models.DataItems.ProfileSettings;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.Views.BottomTabViews.Popups;
@@ -20,9 +21,11 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Popups {
             Languages = _profileSettingsDataItems.BuildLanguageDataItems();
         }
 
-        public ICommand SelectLanguageCommand => new Command(async (object param) => {
+        public ICommand SelectLanguageCommand => new Command((object param) => {
             if (param is LanguageDataItem selectedLanguageDataItem) {
-                await DialogService.ToastAsync(string.Format("Select language command in developing. {0}", selectedLanguageDataItem.Title));
+                ResourceLoader.Instance.CultureInfo = selectedLanguageDataItem.Culture;
+
+                ClosePopupCommand.Execute(null);
             }
         });
 
