@@ -70,6 +70,10 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
 
         public ICommand LogOutCommand => new Command(async () => await _identityUtilityService.LogOutAsync());
 
+        public ICommand ChangeAvatarCommand => new Command(() => {
+
+        });
+
         /// <summary>
         ///     ctor().
         /// </summary>
