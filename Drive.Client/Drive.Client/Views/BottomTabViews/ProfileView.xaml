@@ -84,6 +84,9 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="30" />
                                 </Grid.ColumnDefinitions>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding EditPhoneNumberCommand}" NumberOfTapsRequired="1" />
+                                </Grid.GestureRecognizers>
 
                                 <controls:LabelExtended
                                     Grid.Row="0"

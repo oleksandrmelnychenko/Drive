@@ -74,7 +74,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
             get => _keyboardType;
             protected set => SetProperty(ref _keyboardType, value);
         }
-
+        
         bool _isPasswordInput;
         public bool IsPasswordInput {
             get => _isPasswordInput;

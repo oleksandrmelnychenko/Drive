@@ -6,5 +6,9 @@ namespace Drive.Client.Views.IdentityAccounting.EditProfile {
         public EditPhoneNumberView() {
             InitializeComponent();
         }
+
+        protected override void OnAppearing() {
+            _entyEx.Focus();
+        }
     }
 }
