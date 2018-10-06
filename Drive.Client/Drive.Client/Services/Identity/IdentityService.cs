@@ -1,4 +1,5 @@
-﻿using Drive.Client.Extensions;
+﻿using Drive.Client.Exceptions;
+using Drive.Client.Extensions;
 using Drive.Client.Helpers;
 using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
 using Drive.Client.Models.EntityModels.Identity;
@@ -31,6 +32,9 @@ namespace Drive.Client.Services.Identity {
                 try {
                     phoneNumberAvailabilty = await _requestProvider.GetAsync<PhoneNumberAvailabilty>(url);
                 }
+                catch (ConnectivityException ex) {
+                    throw ex;
+                }
                 catch (Exception ex) {
                     Debug.WriteLine($"ERROR:{ex.Message}");
                     Debugger.Break();
@@ -47,6 +51,9 @@ namespace Drive.Client.Services.Identity {
 
                 try {
                     userNameAvailability = await _requestProvider.GetAsync<UserNameAvailability>(url);
+                }
+                catch (ConnectivityException ex) {
+                    throw ex;
                 }
                 catch (Exception ex) {
                     Debug.WriteLine($"ERROR:{ex.Message}");
@@ -68,6 +75,9 @@ namespace Drive.Client.Services.Identity {
                     if (authenticationResult != null && authenticationResult.IsSucceed) {
                         SetupProfile(authenticationResult);
                     }
+                }
+                catch (ConnectivityException ex) {
+                    throw ex;
                 }
                 catch (Exception ex) {
                     Debug.WriteLine($"ERROR:{ex.Message}");
@@ -91,6 +101,11 @@ namespace Drive.Client.Services.Identity {
                     if (authenticationResult != null && authenticationResult.IsSucceed) {
                         SetupProfile(authenticationResult);
                     }
+                }
+                catch (ConnectivityException ex) {
+                    throw ex;
+                }catch(HttpRequestExceptionEx ex) {
+                    throw ex;
                 }
                 catch (Exception ex) {
                     Debug.WriteLine($"ERROR:{ex.Message}");

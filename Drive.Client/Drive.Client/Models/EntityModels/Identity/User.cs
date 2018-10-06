@@ -13,5 +13,8 @@ namespace Drive.Client.Models.EntityModels.Identity {
 
         [JsonProperty("UserName")]
         public string UserName { get; set; }
+
+        [JsonProperty("AvatarUrl")]
+        public string AvatarUrl { get; set; }
     }
 }

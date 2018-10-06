@@ -1,5 +1,8 @@
-﻿using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
+﻿using Drive.Client.Exceptions;
+using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
+using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Services.Identity;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -61,7 +64,14 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
                             await NavigationService.GoBackAsync();
                         }
                     }
+                    catch (HttpRequestExceptionEx ex) {
+                        var tt = JsonConvert.DeserializeObject<HttpRequestExceptionResult>(ex.Message);
+                        await DialogService.ToastAsync(tt.Message);
+                        Debug.WriteLine($"ERROR:{tt.Message}");
+                        Debugger.Break();
+                    }
                     catch (Exception ex) {
+                        await DialogService.ToastAsync(ex.Message);
                         Debug.WriteLine($"ERROR:{ex.Message}");
                         Debugger.Break();
                     }

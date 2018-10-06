@@ -35,9 +35,11 @@ namespace Drive.Client.Services.RequestProvider {
         /// <summary>
         /// TODO: implement Base request/response models
         /// </summary>
-        public async Task<TResult> GetAsync<TResult>(string uri) {
+        public async Task<TResult> GetAsync<TResult>(string uri, string accessToken = "") {
             //  Check internet connection.
             if (!CrossConnectivity.Current.IsConnected) throw new ConnectivityException(AppConsts.ERROR_INTERNET_CONNECTION);
+
+            SetAccesToken(accessToken);
 
             HttpResponseMessage response = await _client.GetAsync(uri);
 
@@ -54,8 +56,8 @@ namespace Drive.Client.Services.RequestProvider {
         /// <summary>
         /// TODO: implement Base request/response models
         /// </summary>
-        public Task<TResponseValue> PostAsync<TResponseValue, TBodyContent>(string uri, TBodyContent bodyContent, string accessToken = "") =>
-            Task<TResponseValue>.Run(async () => {
+        public async Task<TResponseValue> PostAsync<TResponseValue, TBodyContent>(string uri, TBodyContent bodyContent, string accessToken = "") =>
+            await Task.Run(async () => {
                 if (!CrossConnectivity.Current.IsConnected) throw new ConnectivityException(AppConsts.ERROR_INTERNET_CONNECTION);
                 HttpContent content = null;
 
