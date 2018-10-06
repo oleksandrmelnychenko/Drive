@@ -20,25 +20,33 @@ namespace Drive.Client.Views.BottomTabViews {
         }
 
         private double AvatarScaleTransformation(ScrolledEventArgs e) {
-            if (_avatar_Grid.Scale > 1) {
+            if (e.ScrollY > 0) {
+                if (_avatar_Grid.Scale > 1) {
+                    _avatar_Grid.Scale = 1;
+                } else {
+                    double targetScale = 1 - ((_SCALE_LIMIT_VALUE * (e.ScrollY * _SCALE_MULTIPLIER)) / _Y_SCROLL_SCALE_LIMIT_VALUE);
+
+                    _avatar_Grid.Scale = targetScale > _SCALE_LIMIT_VALUE ? targetScale : _SCALE_LIMIT_VALUE;
+                }
+            } else {
                 _avatar_Grid.Scale = 1;
             }
-            else {
-                double targetScale = 1 - ((_SCALE_LIMIT_VALUE * (e.ScrollY * _SCALE_MULTIPLIER)) / _Y_SCROLL_SCALE_LIMIT_VALUE);
 
-                _avatar_Grid.Scale = targetScale > _SCALE_LIMIT_VALUE ? targetScale : _SCALE_LIMIT_VALUE;
-            }
 
             return _avatar_Grid.Scale;
         }
 
         private void AvatarScopeTranslation(ScrolledEventArgs e) {
-            if (e.ScrollY > _Y_SCROLL_TRANSLATION_LIMIT_VALUE) {
-                _avatarScope_ContentView.TranslationY = _Y_SCROLL_TRANSLATION_LIMIT_VALUE * -1;
+            if (e.ScrollY > 0) {
+                if (e.ScrollY > _Y_SCROLL_TRANSLATION_LIMIT_VALUE) {
+                    _avatarScope_ContentView.TranslationY = _Y_SCROLL_TRANSLATION_LIMIT_VALUE * -1;
+                } else {
+                    _avatarScope_ContentView.TranslationY = e.ScrollY * -1;
+                }
+            } else {
+                _avatarScope_ContentView.TranslationY = 0;
             }
-            else {
-                _avatarScope_ContentView.TranslationY = e.ScrollY * -1;
-            }
+
         }
     }
 }

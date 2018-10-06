@@ -22,7 +22,7 @@
                     </Grid.RowDefinitions>-->
 
                     <BoxView
-                        BackgroundColor="Black"
+                        BackgroundColor="{StaticResource WhiteColor}"
                         HeightRequest="182"
                         VerticalOptions="Start" />
 
