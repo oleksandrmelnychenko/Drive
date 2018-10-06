@@ -14,6 +14,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
         public static readonly string CHANGE_PHONENUMBER_TITLE = "ЗМІНИТИ НОМЕР ТЕЛЕФОНУ";
         public static readonly string PHONE_STEP_SIGNIN_TITLE = "ВВЕДІТЬ ВАШ НОМЕР ТЕЛЕФОНУ";
         public static readonly string NAME_STEP_REGISTRATION_TITLE = "ВВЕДІТЬ ІМ'Я";
+        public static readonly string CHANGE_EMAIL_TITLE = "ЕЛЕКТРОННА АДРЕСА";
         public static readonly string PASSWORD_STEP_REGISTRATION_TITLE = "ВВЕДІТЬ ПАРОЛЬ";
         public static readonly string PASSWORD_CONFIRM_STEP_REGISTRATION_TITLE = "ПІДТВЕРДІТЬ ПАРОЛЬ";
 
@@ -23,6 +24,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
 
         public static readonly string PHONENUMBER_ICON_PATH = "resource://Drive.Client.Resources.Images.Phone.svg";
         public static readonly string NAME_ICON_PATH = "resource://Drive.Client.Resources.Images.name.svg";
+        public static readonly string EMAIL_ICON_PATH = "resource://Drive.Client.Resources.Images.Email.svg";
         public static readonly string PASSWORD_ICON_PATH = "resource://Drive.Client.Resources.Images.password.svg";
         public static readonly string TODO_INPUT_ICON_STUB = "todo: appropriate icon path";
 

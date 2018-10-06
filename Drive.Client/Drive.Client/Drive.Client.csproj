@@ -24,6 +24,7 @@
     <None Remove="Resources\Images\Button.svg" />
     <None Remove="Resources\Images\drive_logo.svg" />
     <None Remove="Resources\Images\edit.svg" />
+    <None Remove="Resources\Images\Email.svg" />
     <None Remove="Resources\Images\facebook.svg" />
     <None Remove="Resources\Images\filter.svg" />
     <None Remove="Resources\Images\Gear.svg" />
@@ -53,6 +54,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\Images\drive_logo.svg" />
     <EmbeddedResource Include="Resources\Images\edit.svg" />
+    <EmbeddedResource Include="Resources\Images\Email.svg" />
     <EmbeddedResource Include="Resources\Images\facebook.svg" />
     <EmbeddedResource Include="Resources\Images\filter.svg" />
     <EmbeddedResource Include="Resources\Images\Gear.svg" />
@@ -133,7 +135,13 @@
     <EmbeddedResource Update="Views\FoundDriveAutoView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\IdentityAccounting\EditProfile\EditEmailView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\IdentityAccounting\EditProfile\EditPhoneNumberView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\IdentityAccounting\EditProfile\EditUserNameView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\IdentityAccounting\IdentityAccountingStepBaseView.xaml">

@@ -104,7 +104,8 @@ namespace Drive.Client.Services.Identity {
                 }
                 catch (ConnectivityException ex) {
                     throw ex;
-                }catch(HttpRequestExceptionEx ex) {
+                }
+                catch (HttpRequestExceptionEx ex) {
                     throw ex;
                 }
                 catch (Exception ex) {
@@ -115,7 +116,88 @@ namespace Drive.Client.Services.Identity {
                 return authenticationResult;
             }, cancellationToken);
 
-        private static void SetupProfile(AuthenticationResult authenticationResult) {
+        public async Task<ChangedProfileData> ChangePhoneNumberAsync(string phoneNumber, CancellationToken cancellationToken = default(CancellationToken)) =>
+           await Task.Run(async () => {
+               ChangedProfileData changedProfileData = null;
+
+               string url = string.Format(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.IdentityEndpoints.ChangePhoneNumberEndPoint, phoneNumber);
+               string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+
+               try {
+                   changedProfileData = await _requestProvider.PostAsync<ChangedProfileData, object>(url, null, accessToken);
+
+                   if (changedProfileData != null) {
+                       BaseSingleton<GlobalSetting>.Instance.UserProfile.PhoneNumber = changedProfileData.PhoneNumber;
+                   }
+               }
+               catch (ConnectivityException ex) {
+                   throw ex;
+               }
+               catch (HttpRequestExceptionEx ex) {
+                   throw ex;
+               }
+               catch (Exception ex) {
+                   Debug.WriteLine($"ERROR:{ex.Message}");
+                   Debugger.Break();
+               }
+               return changedProfileData;
+           }, cancellationToken);
+
+        public async Task<ChangedProfileData> ChangeUserNameAsync(string userName, CancellationToken cancellationToken = default(CancellationToken)) =>
+           await Task.Run(async () => {
+               ChangedProfileData changedProfileData = null;
+
+               string url = string.Format(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.IdentityEndpoints.ChangeUserNameEndPoint, userName);
+               string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+
+               try {
+                   changedProfileData = await _requestProvider.PostAsync<ChangedProfileData, object>(url, null, accessToken);
+
+                   if (changedProfileData != null) {
+                       BaseSingleton<GlobalSetting>.Instance.UserProfile.UserName = changedProfileData.UserName;
+                   }
+               }
+               catch (ConnectivityException ex) {
+                   throw ex;
+               }
+               catch (HttpRequestExceptionEx ex) {
+                   throw ex;
+               }
+               catch (Exception ex) {
+                   Debug.WriteLine($"ERROR:{ex.Message}");
+                   Debugger.Break();
+               }
+               return changedProfileData;
+           }, cancellationToken);
+
+        public async Task<ChangedProfileData> ChangeEmailAsync(string email, CancellationToken cancellationToken = default(CancellationToken)) =>
+            await Task.Run(async () => {
+                ChangedProfileData changedProfileData = null;
+
+                string url = string.Format(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.IdentityEndpoints.ChangeEmailEndPoint, email);
+                string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+
+                try {
+                    changedProfileData = await _requestProvider.PostAsync<ChangedProfileData, object>(url, null, accessToken);
+
+                    if (changedProfileData != null) {
+                        BaseSingleton<GlobalSetting>.Instance.UserProfile.Email = changedProfileData.Email;
+                    }
+                }
+                catch (ConnectivityException ex) {
+                    throw ex;
+                }
+                catch (HttpRequestExceptionEx ex) {
+                    throw ex;
+                }
+                catch (Exception ex) {
+                    Debug.WriteLine($"ERROR:{ex.Message}");
+                    Debugger.Break();
+                }
+                return changedProfileData;
+            }, cancellationToken);
+
+            private static void SetupProfile(AuthenticationResult authenticationResult) {
             try {
                 BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken = authenticationResult.AccessToken;
                 BaseSingleton<GlobalSetting>.Instance.UserProfile.RefreshToken = authenticationResult.RefreshToken;

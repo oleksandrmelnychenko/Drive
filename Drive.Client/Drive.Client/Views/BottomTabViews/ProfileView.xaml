@@ -44,6 +44,9 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="30" />
                                 </Grid.ColumnDefinitions>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding EditUserNameCommand}" NumberOfTapsRequired="1" />
+                                </Grid.GestureRecognizers>
 
                                 <controls:LabelExtended
                                     Grid.Row="0"
@@ -119,6 +122,9 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="30" />
                                 </Grid.ColumnDefinitions>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding EditEmailCommand}" NumberOfTapsRequired="1" />
+                                </Grid.GestureRecognizers>
 
                                 <controls:LabelExtended
                                     Grid.Row="0"

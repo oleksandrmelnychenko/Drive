@@ -1,50 +1,47 @@
 ﻿using Drive.Client.Exceptions;
 using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Services.Identity;
-using Drive.Client.Validations;
-using Drive.Client.Validations.ValidationRules;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Threading;
-using Xamarin.Forms;
 
-namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
-    public sealed class EditPhoneNumberViewModel : IdentityAccountingStepBaseViewModel {
+namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile
+{
+    public sealed class EditUserNameViewModel : IdentityAccountingStepBaseViewModel {
 
         private readonly IIdentityService _identityService;
 
-        private CancellationTokenSource _changePhoneNumberCancellationTokenSource = new CancellationTokenSource();
+        private CancellationTokenSource _changeUserNameCancellationTokenSource = new CancellationTokenSource();
 
         /// <summary>
         ///     ctor().
         /// </summary>
-        public EditPhoneNumberViewModel(IIdentityService identityService) {
+        public EditUserNameViewModel(IIdentityService identityService) {
             _identityService = identityService;
 
-            StepTitle = CHANGE_PHONENUMBER_TITLE;
-            MainInputPlaceholder = PHONE_PLACEHOLDER_STEP_REGISTRATION;
-            MainInputIconPath = PHONENUMBER_ICON_PATH;
-            KeyboardType = Device.RuntimePlatform == Device.Android ? Keyboard.Telephone : Keyboard.Default;
+            StepTitle = NAME_STEP_REGISTRATION_TITLE;
+            MainInputPlaceholder = NAME_PLACEHOLDER_STEP_REGISTRATION;
+            MainInputIconPath = NAME_ICON_PATH;
         }
 
         public override void Dispose() {
             base.Dispose();
 
-            ResetCancellationTokenSource(ref _changePhoneNumberCancellationTokenSource);
+            ResetCancellationTokenSource(ref _changeUserNameCancellationTokenSource);
         }
 
         protected async override void OnStepCommand() {
             if (ValidateForm()) {
-                ResetCancellationTokenSource(ref _changePhoneNumberCancellationTokenSource);
-                CancellationTokenSource cancellationTokenSource = _changePhoneNumberCancellationTokenSource;
+                ResetCancellationTokenSource(ref _changeUserNameCancellationTokenSource);
+                CancellationTokenSource cancellationTokenSource = _changeUserNameCancellationTokenSource;
 
                 Guid busyKey = Guid.NewGuid();
                 SetBusy(busyKey, true);
                 try {
-                    ChangedProfileData changedProfileData =  await _identityService.ChangePhoneNumberAsync(MainInput.Value, _changePhoneNumberCancellationTokenSource.Token);
+                    ChangedProfileData changedProfileData = await _identityService.ChangeUserNameAsync(MainInput.Value, _changeUserNameCancellationTokenSource.Token);
                     if (changedProfileData != null) {
                         await NavigationService.PreviousPageViewModel.InitializeAsync(null);
                         await NavigationService.GoBackAsync();
@@ -63,12 +60,6 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
                 }
                 SetBusy(busyKey, false);
             }
-        }
-
-        protected override void ResetValidationObjects() {
-            base.ResetValidationObjects();
-
-            MainInput.Validations.Add(new PhoneNumberRule<string>() { ValidationMessage = ValidatableObject<string>.INVALID_PHONE_VALIDATION_MESSAGE });
         }
     }
 }

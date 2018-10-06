@@ -24,7 +24,7 @@ namespace Drive.Client.Models.Identities {
         /// Email.
         /// </summary>
         [DataMember]
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
         /// <summary>
         /// Id.
         /// </summary>
