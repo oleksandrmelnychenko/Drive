@@ -1,4 +1,5 @@
 ﻿using Drive.Client.Exceptions;
+using Drive.Client.Helpers;
 using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Services.Identity;
 using Drive.Client.Validations;
@@ -25,7 +26,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
             _identityService = identityService;
 
             StepTitle = CHANGE_PHONENUMBER_TITLE;
-            MainInputPlaceholder = PHONE_PLACEHOLDER_STEP_REGISTRATION;
+            MainInputPlaceholder = BaseSingleton<GlobalSetting>.Instance.UserProfile?.PhoneNumber; ;
             MainInputIconPath = PHONENUMBER_ICON_PATH;
             KeyboardType = Device.RuntimePlatform == Device.Android ? Keyboard.Telephone : Keyboard.Default;
         }

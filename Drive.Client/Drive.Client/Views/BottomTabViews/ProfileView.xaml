@@ -10,6 +10,37 @@
     xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
     BackgroundColor="{StaticResource WhiteColor}">
 
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <OnPlatform
+                x:Key="BaseTitleFontSize"
+                x:TypeArguments="x:Double"
+                Android="{StaticResource MediumSize}"
+                iOS="{StaticResource LargeSize}" />
+
+            <Style x:Key="baseLabel" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource SFProLight}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style
+                x:Key="smallTitleLabel"
+                BasedOn="{StaticResource baseLabel}"
+                TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource BaseGrayColor}" />
+                <Setter Property="FontSize" Value="{StaticResource LittleSize}" />
+            </Style>
+
+            <Style
+                x:Key="baseTitleLabel"
+                BasedOn="{StaticResource baseLabel}"
+                TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DarkColor}" />
+                <Setter Property="FontSize" Value="{StaticResource BaseTitleFontSize}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
     <!--  MAIN FRAME  -->
     <Grid RowSpacing="0">
 
@@ -52,25 +83,18 @@
                                 <controls:LabelExtended
                                     Grid.Row="0"
                                     Grid.Column="0"
-                                    FontFamily="{StaticResource SFProLight}"
-                                    FontSize="{StaticResource LittleSize}"
-                                    LetterCaseTransform="ToUpperCase"
-                                    Text="{Binding Path=[UserNameUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
-                                    TextColor="{StaticResource BaseGrayColor}"
-                                    VerticalOptions="Center" />
+                                    Style="{StaticResource smallTitleLabel}"
+                                    Text="{Binding Path=[UserNameUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
                                 <controls:LabelExtended
                                     Grid.Row="1"
                                     Grid.Column="0"
-                                    FontFamily="{StaticResource SFProLight}"
-                                    FontSize="{StaticResource MediumSize}"
-                                    Text="{Binding UserName}"
-                                    TextColor="{StaticResource DarkColor}"
-                                    VerticalOptions="Center" />
+                                    Style="{StaticResource baseTitleLabel}"
+                                    Text="{Binding UserName}" />
                                 <ffimageloadingsvg:SvgCachedImage
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
                                     Grid.Column="1"
-                                    HeightRequest="20"
+                                    HeightRequest="15"
                                     HorizontalOptions="End"
                                     Source="resource://Drive.Client.Resources.Images.ArrowNext.svg"
                                     VerticalOptions="Center" />
@@ -92,24 +116,18 @@
                                 <controls:LabelExtended
                                     Grid.Row="0"
                                     Grid.Column="0"
-                                    FontFamily="{StaticResource SFProLight}"
-                                    FontSize="{StaticResource LittleSize}"
-                                    Text="ТЕЛЕФОН"
-                                    TextColor="{StaticResource BaseGrayColor}"
-                                    VerticalOptions="Center" />
+                                    Style="{StaticResource smallTitleLabel}"
+                                    Text="ТЕЛЕФОН" />
                                 <controls:LabelExtended
                                     Grid.Row="1"
                                     Grid.Column="0"
-                                    FontFamily="{StaticResource SFProLight}"
-                                    FontSize="{StaticResource MediumSize}"
-                                    Text="{Binding PhoneNumber}"
-                                    TextColor="{StaticResource DarkColor}"
-                                    VerticalOptions="Center" />
+                                    Style="{StaticResource baseTitleLabel}"
+                                    Text="{Binding PhoneNumber}" />
                                 <ffimageloadingsvg:SvgCachedImage
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
                                     Grid.Column="1"
-                                    HeightRequest="20"
+                                    HeightRequest="15"
                                     HorizontalOptions="End"
                                     Source="resource://Drive.Client.Resources.Images.ArrowNext.svg"
                                     VerticalOptions="Center" />
@@ -131,24 +149,18 @@
                                 <controls:LabelExtended
                                     Grid.Row="0"
                                     Grid.Column="0"
-                                    FontFamily="{StaticResource SFProLight}"
-                                    FontSize="{StaticResource LittleSize}"
-                                    Text="EMAIL"
-                                    TextColor="{StaticResource BaseGrayColor}"
-                                    VerticalOptions="Center" />
+                                    Style="{StaticResource smallTitleLabel}"
+                                    Text="EMAIL" />
                                 <controls:LabelExtended
                                     Grid.Row="1"
                                     Grid.Column="0"
-                                    FontFamily="{StaticResource SFProLight}"
-                                    FontSize="{StaticResource MediumSize}"
-                                    Text="{Binding Email, Converter={StaticResource EmailConverter}}"
-                                    TextColor="{StaticResource DarkColor}"
-                                    VerticalOptions="Center" />
+                                    Style="{StaticResource baseTitleLabel}"
+                                    Text="{Binding Email, Converter={StaticResource EmailConverter}}" />
                                 <ffimageloadingsvg:SvgCachedImage
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
                                     Grid.Column="1"
-                                    HeightRequest="20"
+                                    HeightRequest="15"
                                     HorizontalOptions="End"
                                     Source="resource://Drive.Client.Resources.Images.ArrowNext.svg"
                                     VerticalOptions="Center" />
@@ -176,24 +188,18 @@
                                 <controls:LabelExtended
                                     Grid.Row="0"
                                     Grid.Column="0"
-                                    FontFamily="{StaticResource SFProLight}"
-                                    FontSize="{StaticResource LittleSize}"
-                                    Text="МОВА"
-                                    TextColor="{StaticResource BaseGrayColor}"
-                                    VerticalOptions="Center" />
+                                    Style="{StaticResource smallTitleLabel}"
+                                    Text="МОВА" />
                                 <controls:LabelExtended
                                     Grid.Row="1"
                                     Grid.Column="0"
-                                    FontFamily="{StaticResource SFProLight}"
-                                    FontSize="{StaticResource MediumSize}"
-                                    Text="УКРАЇНСЬКА"
-                                    TextColor="{StaticResource DarkColor}"
-                                    VerticalOptions="Center" />
+                                    Style="{StaticResource baseTitleLabel}"
+                                    Text="УКРАЇНСЬКА" />
                                 <ffimageloadingsvg:SvgCachedImage
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
                                     Grid.Column="1"
-                                    HeightRequest="20"
+                                    HeightRequest="15"
                                     HorizontalOptions="End"
                                     Source="resource://Drive.Client.Resources.Images.ArrowNext.svg"
                                     VerticalOptions="Center" />
@@ -219,11 +225,8 @@
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
                                     Grid.Column="0"
-                                    FontFamily="{StaticResource SFProLight}"
-                                    FontSize="{StaticResource MediumSize}"
-                                    Text="Зміна пароля"
-                                    TextColor="{StaticResource DarkColor}"
-                                    VerticalOptions="Center" />
+                                    Style="{StaticResource baseTitleLabel}"
+                                    Text="Зміна пароля" />
                                 <ffimageloadingsvg:SvgCachedImage
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
@@ -234,7 +237,7 @@
                                     VerticalOptions="Center" />
                             </Grid>
 
-                            <Grid HeightRequest="50" RowSpacing="0">
+                            <!--<Grid HeightRequest="50" RowSpacing="0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="*" />
@@ -262,9 +265,9 @@
                                     HorizontalOptions="End"
                                     Source="resource://Drive.Client.Resources.Images.Security.svg"
                                     VerticalOptions="Center" />
-                            </Grid>
+                            </Grid>-->
 
-                            <Grid HeightRequest="50" RowSpacing="0">
+                            <!--<Grid HeightRequest="50" RowSpacing="0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="*" />
@@ -292,7 +295,7 @@
                                     HorizontalOptions="End"
                                     Source="resource://Drive.Client.Resources.Images.Idea.svg"
                                     VerticalOptions="Center" />
-                            </Grid>
+                            </Grid>-->
 
                             <Grid HeightRequest="50" RowSpacing="0">
                                 <Grid.RowDefinitions>
@@ -311,11 +314,8 @@
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
                                     Grid.Column="0"
-                                    FontFamily="{StaticResource SFProLight}"
-                                    FontSize="{StaticResource MediumSize}"
-                                    Text="Вийти"
-                                    TextColor="{StaticResource DarkColor}"
-                                    VerticalOptions="Center" />
+                                    Style="{StaticResource baseTitleLabel}"
+                                    Text="Вийти" />
 
                                 <ffimageloadingsvg:SvgCachedImage
                                     Grid.Row="0"
@@ -349,7 +349,7 @@
                         Aspect="AspectFit"
                         HorizontalOptions="Center"
                         InputTransparent="True"
-                        Source="resource://Drive.Client.Resources.Images.TEST.png"
+                        Source="{Binding AvatarUrl}"
                         WidthRequest="140">
                         <ffImage:CachedImage.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Path=ChangeAvatarCommand}" />
@@ -445,7 +445,7 @@
                     Text="або миттєво увійти через"
                     TextColor="{StaticResource ExtraGrayColor}" />
 
-                <controls:ExtendedContentView
+                <!--<controls:ExtendedContentView
                     Margin="0,20,0,0"
                     BorderColor="{StaticResource LightGrayColor}"
                     BorderThickness="1"
@@ -466,7 +466,7 @@
                         Source="resource://Drive.Client.Resources.Images.facebook.svg"
                         VerticalOptions="Center"
                         WidthRequest="20" />
-                </controls:ExtendedContentView>
+                </controls:ExtendedContentView>-->
             </StackLayout>
         </Grid>
     </Grid>

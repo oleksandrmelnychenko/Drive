@@ -1,5 +1,6 @@
 ﻿using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
 using Drive.Client.Models.EntityModels.Identity;
+using Drive.Client.Models.Medias;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,5 +19,7 @@ namespace Drive.Client.Services.Identity {
         Task<ChangedProfileData> ChangeUserNameAsync(string userName, CancellationToken cancellationToken = default(CancellationToken));
 
         Task<ChangedProfileData> ChangeEmailAsync(string value, CancellationToken cancellationToken = default(CancellationToken));
+
+        Task<string> UploadUserAvatarAsync(PickedImage pickedImage, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

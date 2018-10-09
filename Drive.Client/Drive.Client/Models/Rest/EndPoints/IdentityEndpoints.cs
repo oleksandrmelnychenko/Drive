@@ -21,6 +21,8 @@ namespace Drive.Client.Models.Rest.EndPoints {
 
         private const string CHANGR_EMAIL_API_KEY = "api/v1/user/update/email?email={0}";
 
+        private const string UPLOAD_USER_AVATAR_API_KEY = "api/v1/user/avatar/upload";
+
         /// <summary>
         ///     ctor().
         /// </summary>
@@ -54,6 +56,8 @@ namespace Drive.Client.Models.Rest.EndPoints {
 
         public string ChangeEmailEndPoint { get; set; }
 
+        public string UploadUserAvatarEndpoint { get; set; }
+
         private void UpdateEndpoint(string baseEndpoint) {
             CheckPhoneNumberEndPoint = $"{baseEndpoint}/{PHONENUMBER_AVAILABILITY_API_KEY}";
             CheckUserNameEndpoint = $"{baseEndpoint}/{USER_NAME_AVAILABILITY_API_KEY}";
@@ -63,6 +67,7 @@ namespace Drive.Client.Models.Rest.EndPoints {
             ChangePhoneNumberEndPoint = $"{baseEndpoint}/{CHANGE_PHONENUMBER_API_KEY}";
             ChangeUserNameEndPoint = $"{baseEndpoint}/{CHANGE_USERNAME_API_KEY}";
             ChangeEmailEndPoint= $"{baseEndpoint}/{CHANGR_EMAIL_API_KEY}";
+            UploadUserAvatarEndpoint = $"{baseEndpoint}/{UPLOAD_USER_AVATAR_API_KEY}";
         }
     }
 }

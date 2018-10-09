@@ -42,6 +42,12 @@ namespace Drive.Client.Models.Identities {
         public string UserName { get; set; }
 
         /// <summary>
+        /// User avatar.
+        /// </summary>
+        [DataMember]
+        public string AvatarUrl { get; set; }
+
+        /// <summary>
         /// Clear user profile.
         /// </summary>
         internal void ClearUserProfile() {
@@ -52,6 +58,7 @@ namespace Drive.Client.Models.Identities {
             NetId = string.Empty;
             PhoneNumber = string.Empty;
             UserName = string.Empty;
+            AvatarUrl = string.Empty;
         }
     }
 }

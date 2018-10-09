@@ -1,5 +1,6 @@
 ﻿using Drive.Client.Exceptions;
 using Drive.Client.Helpers;
+using Drive.Client.Models.Medias;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
 using Plugin.DeviceInfo;
@@ -80,6 +81,36 @@ namespace Drive.Client.Services.RequestProvider {
 
                 return result;
             });
+
+
+        public async Task<TResult> PostFormDataAsync<TResult, TBodyContent>(string uri, TBodyContent bodyContent, string accessToken = "")
+            where TBodyContent : PickedMediaBase =>
+            await Task.Run(async () => {
+                TResult result = default(TResult);
+
+                if (!CrossConnectivity.Current.IsConnected) throw new ConnectivityException(AppConsts.ERROR_INTERNET_CONNECTION);
+
+                SetAccesToken(accessToken);
+
+                using (MultipartFormDataContent formDataContent = new MultipartFormDataContent()) {
+                    if (bodyContent != null) {
+                        ByteArrayContent byteArrayContent = new ByteArrayContent(bodyContent.Body);
+
+                        formDataContent.Add(byteArrayContent, "ImageFile", bodyContent.Name);
+
+                        HttpResponseMessage response = await _client.PostAsync(uri, formDataContent);
+
+                        await HandleResponse(response);
+
+                        string serialized = await response.Content.ReadAsStringAsync();
+
+                        result = JsonConvert.DeserializeObject<TResult>(serialized);
+                    }
+                }
+
+                return result;
+            });
+
 
         private void SetAccesToken(string accessToken) {
             if (_client.DefaultRequestHeaders.Authorization == null) {
