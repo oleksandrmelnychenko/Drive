@@ -220,6 +220,9 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="30" />
                                 </Grid.ColumnDefinitions>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ChangePasswordCommand}" />
+                                </Grid.GestureRecognizers>
 
                                 <controls:LabelExtended
                                     Grid.Row="0"

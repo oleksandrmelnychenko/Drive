@@ -1,6 +1,7 @@
 ﻿using Drive.Client.Exceptions;
 using Drive.Client.Extensions;
 using Drive.Client.Helpers;
+using Drive.Client.Models.Arguments.IdentityAccounting.ChangePassword;
 using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
 using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Models.Medias;
@@ -129,6 +130,7 @@ namespace Drive.Client.Services.Identity {
 
                    if (changedProfileData != null) {
                        BaseSingleton<GlobalSetting>.Instance.UserProfile.PhoneNumber = changedProfileData.PhoneNumber;
+                       BaseSingleton<GlobalSetting>.Instance.UserProfile.SaveChanges();
                    }
                }
                catch (ConnectivityException ex) {
@@ -156,6 +158,7 @@ namespace Drive.Client.Services.Identity {
 
                    if (changedProfileData != null) {
                        BaseSingleton<GlobalSetting>.Instance.UserProfile.UserName = changedProfileData.UserName;
+                       BaseSingleton<GlobalSetting>.Instance.UserProfile.SaveChanges();
                    }
                }
                catch (ConnectivityException ex) {
@@ -183,6 +186,7 @@ namespace Drive.Client.Services.Identity {
 
                     if (changedProfileData != null) {
                         BaseSingleton<GlobalSetting>.Instance.UserProfile.Email = changedProfileData.Email;
+                        BaseSingleton<GlobalSetting>.Instance.UserProfile.SaveChanges();
                     }
                 }
                 catch (ConnectivityException ex) {
@@ -211,6 +215,7 @@ namespace Drive.Client.Services.Identity {
                    if (user != null) {
                        userAvatar = user.AvatarUrl;
                        BaseSingleton<GlobalSetting>.Instance.UserProfile.AvatarUrl = user.AvatarUrl;
+                       BaseSingleton<GlobalSetting>.Instance.UserProfile.SaveChanges();
                    }
                }
                catch (ConnectivityException ex) {
@@ -224,7 +229,36 @@ namespace Drive.Client.Services.Identity {
                    Debugger.Break();
                }
                return userAvatar;
-           }, cancellationToken);       
+           }, cancellationToken);
+
+
+        public async Task<User> UpdatePasswordAsync(ChangePasswordArgs changePasswordArgs, CancellationToken cancellationToken = default(CancellationToken)) =>
+            await Task.Run(async () => {
+                User user = null;
+
+                string url = string.Format(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.IdentityEndpoints.ChangePasswordEndPoint,
+                     changePasswordArgs.NewPassword, changePasswordArgs.CurrentPassword);
+                string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+
+                try {
+                    user = await _requestProvider.PostAsync<User, object>(url, null, accessToken);
+
+                    if (user != null) {
+
+                    }
+                }
+                catch (ConnectivityException ex) {
+                    throw ex;
+                }
+                catch (HttpRequestExceptionEx ex) {
+                    throw ex;
+                }
+                catch (Exception ex) {
+                    Debug.WriteLine($"ERROR:{ex.Message}");
+                    Debugger.Break();
+                }
+                return user;
+            }, cancellationToken);
 
         private static void SetupProfile(AuthenticationResult authenticationResult) {
             try {

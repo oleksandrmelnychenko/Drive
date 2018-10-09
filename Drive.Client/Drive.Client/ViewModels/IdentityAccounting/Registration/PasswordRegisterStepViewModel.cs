@@ -7,8 +7,11 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
 
         private RegistrationCollectedInputsArgs _collectedInputsArgs;
 
+        /// <summary>
+        ///     ctor().
+        /// </summary>
         public PasswordRegisterStepViewModel() {
-            StepTitle = PASSWORD_STEP_REGISTRATION_TITLE;
+            StepTitle = CURRENT_PASSWORD_STEP_REGISTRATION_TITLE;
             MainInputPlaceholder = PASSWORD_PLACEHOLDER_STEP_REGISTRATION;
             MainInputIconPath = PASSWORD_ICON_PATH;
             IsPasswordInput = true;

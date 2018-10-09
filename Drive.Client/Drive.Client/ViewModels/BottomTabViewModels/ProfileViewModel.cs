@@ -91,6 +91,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
 
         public ICommand EditEmailCommand => new Command(async () => await NavigationService.NavigateToAsync<EditEmailViewModel>());
 
+        public ICommand ChangePasswordCommand => new Command(async () => await NavigationService.NavigateToAsync<EditPasswordFirstStepViewModel>());
+
         public ICommand LogOutCommand => new Command(async () => await OnLogOutAsync());
        
         public ICommand ChangeAvatarCommand => new Command(async () => await OnChangeAvatarAsync());
@@ -138,11 +140,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
             Guid busyKey = Guid.NewGuid();
             UpdateBusyVisualState(busyKey, true);
             try {
-                PickedImage pickedImage = null;
-
-                using (MediaFile file = await _pickMediaService.PickPhotoAsync()) {
-                    pickedImage = await _pickMediaService.BuildPickedImageAsync(file);
-                }
+                PickedImage pickedImage = await _pickMediaService.BuildPickedImageAsync();
 
                 string avatarUrl = await _identityService.UploadUserAvatarAsync(pickedImage, _changeAvatarCancellationTokenSource.Token);
 
@@ -154,10 +152,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
                 Debug.WriteLine($"ERROR:{ex.Message}");
                 Debugger.Break();
             }
-
             UpdateBusyVisualState(busyKey, false);
         }
-
 
         private void UpdateView() {
             try {

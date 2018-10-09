@@ -66,8 +66,8 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
                     }
                     catch (HttpRequestExceptionEx ex) {
                         var tt = JsonConvert.DeserializeObject<HttpRequestExceptionResult>(ex.Message);
-                        await DialogService.ToastAsync(tt.Message);
                         Debug.WriteLine($"ERROR:{tt.Message}");
+                        ServerError = tt.Message;
                         Debugger.Break();
                     }
                     catch (Exception ex) {

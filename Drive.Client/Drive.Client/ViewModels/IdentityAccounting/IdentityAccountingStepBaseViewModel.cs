@@ -16,6 +16,8 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
         public static readonly string NAME_STEP_REGISTRATION_TITLE = "ВВЕДІТЬ ІМ'Я";
         public static readonly string CHANGE_EMAIL_TITLE = "ЕЛЕКТРОННА АДРЕСА";
         public static readonly string PASSWORD_STEP_REGISTRATION_TITLE = "ВВЕДІТЬ ПАРОЛЬ";
+        public static readonly string CURRENT_PASSWORD_STEP_REGISTRATION_TITLE = "ВВЕДІТЬ ПОТОЧНИЙ ПАРОЛЬ";
+        public static readonly string NEW_PASSWORD_STEP_REGISTRATION_TITLE = "ВВЕДІТЬ НОВИЙ ПАРОЛЬ";
         public static readonly string PASSWORD_CONFIRM_STEP_REGISTRATION_TITLE = "ПІДТВЕРДІТЬ ПАРОЛЬ";
 
         public static readonly string PHONE_PLACEHOLDER_STEP_REGISTRATION = "ТЕЛЕФОН";

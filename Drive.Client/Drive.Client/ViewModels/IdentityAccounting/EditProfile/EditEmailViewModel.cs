@@ -51,12 +51,13 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
                 }
                 catch (HttpRequestExceptionEx ex) {
                     var tt = JsonConvert.DeserializeObject<HttpRequestExceptionResult>(ex.Message);
-                    await DialogService.ToastAsync(tt.Message);
+                    ServerError = tt.Message;
+
                     Debug.WriteLine($"ERROR:{tt.Message}");
                     Debugger.Break();
                 }
                 catch (Exception ex) {
-                    await DialogService.ToastAsync(ex.Message);
+                    ServerError = ex.Message;
                     Debug.WriteLine($"ERROR:{ex.Message}");
                     Debugger.Break();
                 }

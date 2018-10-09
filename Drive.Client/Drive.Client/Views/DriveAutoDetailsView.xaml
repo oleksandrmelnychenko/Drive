@@ -80,8 +80,8 @@
                     VerticalOptions="Center" />
             </StackLayout>
 
-            <ScrollView Grid.Row="1">
-                <StackLayout Spacing="6">
+            <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never">
+                <StackLayout Spacing="10">
                     <StackLayout Orientation="Horizontal" Spacing="0">
                         <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Дата реєстрації" />
                         <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.DReg}" />

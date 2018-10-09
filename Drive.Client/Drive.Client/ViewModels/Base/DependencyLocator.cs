@@ -49,15 +49,17 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<BookmarkViewModel>();
             builder.RegisterType<EditEmailViewModel>();
             builder.RegisterType<EditUserNameViewModel>();
-            builder.RegisterType<EditPhoneNumberViewModel>();
             builder.RegisterType<SignInNameStepViewModel>();
             builder.RegisterType<FoundDriveAutoViewModel>();
+            builder.RegisterType<EditPhoneNumberViewModel>();
             builder.RegisterType<CommonActionBarViewModel>();
             builder.RegisterType<DriveAutoDetailsViewModel>();
             builder.RegisterType<NameRegisterStepViewModel>();
             builder.RegisterType<LanguageSelectPopupViewModel>();
             builder.RegisterType<PasswordRegisterStepViewModel>();
             builder.RegisterType<SignInPhoneNumberStepViewModel>();
+            builder.RegisterType<EditPasswordFirstStepViewModel>();
+            builder.RegisterType<EditPasswordSecondStepViewModel>();
             builder.RegisterType<PhoneNumberRegisterStepViewModel>();
             builder.RegisterType<IdentityAccountingActionBarViewModel>();
             builder.RegisterType<ConfirmPasswordRegisterStepViewModel>();
@@ -67,11 +69,11 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<RequestProvider>().As<IRequestProvider>().SingleInstance();
             builder.RegisterType<IdentityService>().As<IIdentityService>();
             builder.RegisterType<DriveAutoService>().As<IDriveAutoService>();
+            builder.RegisterType<PickMediaService>().As<IPickMediaService>();
             builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
             builder.RegisterType<DeviceUtilService>().As<IDeviceUtilService>().SingleInstance();
             builder.RegisterType<EventStoreService>().As<IEventStoreService>();
             builder.RegisterType<IdentityUtilityService>().As<IIdentityUtilityService>();
-            builder.RegisterType<PickMediaService>().As<IPickMediaService>();
 
             // Factories.
             builder.RegisterType<ValidationObjectFactory>().As<IValidationObjectFactory>();

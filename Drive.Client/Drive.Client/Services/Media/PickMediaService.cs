@@ -55,6 +55,30 @@ namespace Drive.Client.Services.Media {
             return file;
         }
 
+        public async Task<PickedImage> BuildPickedImageAsync() {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsPickPhotoSupported) return null;
+
+            PickedImage pickedImage = null;
+
+            using (var file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions { PhotoSize = PhotoSize.Custom, CompressionQuality = 50 })) {
+                if (file == null) return null;
+
+                try {
+                    Stream stream = file.GetStream();
+
+                    pickedImage = new PickedImage {
+                        Name = Path.GetFileName(file.Path),
+                        Body = await ParseStreamToBytes(stream)
+                    };
+                }
+                catch (Exception) {
+                    pickedImage = null;
+                }
+            }
+            return pickedImage;
+        }
+
         /// <summary>
         /// Take video from device camera
         /// </summary>
@@ -98,7 +122,6 @@ namespace Drive.Client.Services.Media {
                 PickedImage pickedImage = null;
                 try {
                     pickedImage = new PickedImage {
-                        DataBase64 = await ParseStreamToBase64(mediaFile.GetStream()),
                         Name = Path.GetFileName(mediaFile.Path),
                         Body = await ParseStreamToBytes(mediaFile.GetStream())
                     };
@@ -119,7 +142,7 @@ namespace Drive.Client.Services.Media {
                        bytes = reader.ReadBytes((int)stream.Length);
                    }
                }
-               catch (Exception) {
+               catch (Exception ex) {
                    Debugger.Break();
                }
                return bytes;
@@ -161,5 +184,7 @@ namespace Drive.Client.Services.Media {
                 }
                 return stream;
             });
+
+
     }
 }

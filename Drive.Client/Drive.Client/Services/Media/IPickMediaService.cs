@@ -18,5 +18,7 @@ namespace Drive.Client.Services.Media {
         Task<Stream> ExtractStreamFromMediaUrlAsync(string urlPath);
 
         Task<PickedImage> BuildPickedImageAsync(MediaFile mediaFile);
+
+        Task<PickedImage> BuildPickedImageAsync();
     }
 }

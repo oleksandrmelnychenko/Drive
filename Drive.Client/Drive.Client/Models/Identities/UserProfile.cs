@@ -1,4 +1,6 @@
-﻿using Drive.Client.ViewModels.Base;
+﻿using Drive.Client.Helpers;
+using Drive.Client.ViewModels.Base;
+using Newtonsoft.Json;
 using System;
 using System.Runtime.Serialization;
 
@@ -59,6 +61,10 @@ namespace Drive.Client.Models.Identities {
             PhoneNumber = string.Empty;
             UserName = string.Empty;
             AvatarUrl = string.Empty;
+        }
+
+        internal void SaveChanges() {
+            Settings.UserProfile = JsonConvert.SerializeObject(this);
         }
     }
 }
