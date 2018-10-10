@@ -51,7 +51,7 @@
 
                     <BoxView
                         BackgroundColor="{StaticResource WhiteColor}"
-                        HeightRequest="182"
+                        HeightRequest="180"
                         VerticalOptions="Start" />
 
                     <!--  PROFILE TOOLS  -->
@@ -80,14 +80,23 @@
                                     <TapGestureRecognizer Command="{Binding EditUserNameCommand}" NumberOfTapsRequired="1" />
                                 </Grid.GestureRecognizers>
 
-                                <controls:LabelExtended
+                                <!--<controls:LabelExtended
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     Style="{StaticResource smallTitleLabel}"
-                                    Text="{Binding Path=[UserNameUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
+                                    Text="{Binding Path=[UserNameUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />-->
+                                <controls:LabelExtended
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    LetterSpacing="{OnPlatform iOS=1.4,
+                                                               Android=0.07}"
+                                    Style="{StaticResource smallTitleLabel}"
+                                    Text="ІМ'Я КОРИСТУВАЧА" />
                                 <controls:LabelExtended
                                     Grid.Row="1"
                                     Grid.Column="0"
+                                    LetterSpacing="{OnPlatform iOS=1.4,
+                                                               Android=0.07}"
                                     Style="{StaticResource baseTitleLabel}"
                                     Text="{Binding UserName}" />
                                 <ffimageloadingsvg:SvgCachedImage
@@ -116,11 +125,15 @@
                                 <controls:LabelExtended
                                     Grid.Row="0"
                                     Grid.Column="0"
+                                    LetterSpacing="{OnPlatform iOS=1.4,
+                                                               Android=0.07}"
                                     Style="{StaticResource smallTitleLabel}"
                                     Text="ТЕЛЕФОН" />
                                 <controls:LabelExtended
                                     Grid.Row="1"
                                     Grid.Column="0"
+                                    LetterSpacing="{OnPlatform iOS=1.4,
+                                                               Android=0.07}"
                                     Style="{StaticResource baseTitleLabel}"
                                     Text="{Binding PhoneNumber}" />
                                 <ffimageloadingsvg:SvgCachedImage
@@ -149,11 +162,15 @@
                                 <controls:LabelExtended
                                     Grid.Row="0"
                                     Grid.Column="0"
+                                    LetterSpacing="{OnPlatform iOS=1.4,
+                                                               Android=0.07}"
                                     Style="{StaticResource smallTitleLabel}"
                                     Text="EMAIL" />
                                 <controls:LabelExtended
                                     Grid.Row="1"
                                     Grid.Column="0"
+                                    LetterSpacing="{OnPlatform iOS=1.4,
+                                                               Android=0.07}"
                                     Style="{StaticResource baseTitleLabel}"
                                     Text="{Binding Email, Converter={StaticResource EmailConverter}}" />
                                 <ffimageloadingsvg:SvgCachedImage
@@ -188,11 +205,15 @@
                                 <controls:LabelExtended
                                     Grid.Row="0"
                                     Grid.Column="0"
+                                    LetterSpacing="{OnPlatform iOS=1.4,
+                                                               Android=0.07}"
                                     Style="{StaticResource smallTitleLabel}"
                                     Text="МОВА" />
                                 <controls:LabelExtended
                                     Grid.Row="1"
                                     Grid.Column="0"
+                                    LetterSpacing="{OnPlatform iOS=1.4,
+                                                               Android=0.07}"
                                     Style="{StaticResource baseTitleLabel}"
                                     Text="УКРАЇНСЬКА" />
                                 <ffimageloadingsvg:SvgCachedImage
@@ -228,6 +249,8 @@
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
                                     Grid.Column="0"
+                                    LetterSpacing="{OnPlatform iOS=1.4,
+                                                               Android=0.07}"
                                     Style="{StaticResource baseTitleLabel}"
                                     Text="Зміна пароля" />
                                 <ffimageloadingsvg:SvgCachedImage
@@ -317,6 +340,8 @@
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
                                     Grid.Column="0"
+                                    LetterSpacing="{OnPlatform iOS=1.4,
+                                                               Android=0.07}"
                                     Style="{StaticResource baseTitleLabel}"
                                     Text="Вийти" />
 
@@ -337,30 +362,28 @@
             <!--  Avatar scope  -->
             <ContentView
                 x:Name="_avatarScope_ContentView"
-                Padding="0,32,0,0"
+                Padding="0,20,0,0"
                 BackgroundColor="{StaticResource WhiteColor}"
                 VerticalOptions="Start">
                 <Grid x:Name="_avatar_Grid" IsClippedToBounds="True">
-                    <ffimageloadingsvg:SvgCachedImage
-                        HeightRequest="150"
-                        HorizontalOptions="Center"
-                        Source="resource://Drive.Client.Resources.Images.stroke.svg"
-                        VerticalOptions="Center" />
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ChangeAvatarCommand}" />
+                    </Grid.GestureRecognizers>
                     <!--  PROFILE PHOTO  -->
                     <ffImage:CachedImage
                         x:Name="_avatarImage_CachedImage"
-                        Aspect="AspectFit"
+                        Aspect="AspectFill"
+                        HeightRequest="165"
                         HorizontalOptions="Center"
                         InputTransparent="True"
                         Source="{Binding AvatarUrl}"
-                        WidthRequest="140">
-                        <ffImage:CachedImage.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Path=ChangeAvatarCommand}" />
-                        </ffImage:CachedImage.GestureRecognizers>
-                        <ffImage:CachedImage.Transformations>
-                            <ffTransformations:CircleTransformation />
-                        </ffImage:CachedImage.Transformations>
-                    </ffImage:CachedImage>
+                        VerticalOptions="Center"
+                        WidthRequest="165" />
+                    <ffimageloadingsvg:SvgCachedImage
+                        HeightRequest="170"
+                        HorizontalOptions="Center"
+                        Source="resource://Drive.Client.Resources.Images.Mask.svg"
+                        VerticalOptions="Center" />
                     <ffimageloadingsvg:SvgCachedImage
                         x:Name="_changeAvatarPencil_SvgCachedImage"
                         HeightRequest="80"
@@ -368,7 +391,7 @@
                         Source="resource://Drive.Client.Resources.Images.edit.svg"
                         VerticalOptions="End">
                         <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Path=ChangeAvatarCommand}" />
+                            <TapGestureRecognizer Command="{Binding ChangeAvatarCommand}" />
                         </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
                     </ffimageloadingsvg:SvgCachedImage>
                 </Grid>
@@ -427,8 +450,6 @@
                 <controls:ExtendedContentView
                     Margin="0,13,0,0"
                     BackgroundColor="{StaticResource Key=WhiteColor}"
-                    BorderColor="{StaticResource Key=DarkBlueColor}"
-                    BorderThickness="1"
                     HeightRequest="52">
                     <controls:ExtendedContentView.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Path=RegisterCommand}" />
@@ -442,11 +463,11 @@
                         VerticalTextAlignment="Center" />
                 </controls:ExtendedContentView>
 
-                <Label
+                <!--<Label
                     Margin="0,30,0,0"
                     HorizontalTextAlignment="Center"
                     Text="або миттєво увійти через"
-                    TextColor="{StaticResource ExtraGrayColor}" />
+                    TextColor="{StaticResource ExtraGrayColor}" />-->
 
                 <!--<controls:ExtendedContentView
                     Margin="0,20,0,0"

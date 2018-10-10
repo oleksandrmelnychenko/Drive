@@ -25,6 +25,10 @@ namespace Drive.Client.Models.Rest.EndPoints {
 
         private const string UPDATE_PASSWORD_API_KEY = "api/v1/user/update/password?newPassword={0}&currentPassword={1}";
 
+        private const string CAN_USER_CHANGE_FORGOTTEN_PASSWORD_API_KEY = "api/v1/user/canchange/forgotten/password?phone={0}&name={1}";
+
+        private const string FORGOT_PASSWORD_API_KEY = "api/v1/user/forgotpassword?phone={0}&name={1}&password={2}";
+
         /// <summary>
         ///     ctor().
         /// </summary>
@@ -62,6 +66,10 @@ namespace Drive.Client.Models.Rest.EndPoints {
 
         public string ChangePasswordEndPoint { get; set; }
 
+        public string CanUserChangeForgottenPasswordEndPoint { get; set; }
+
+        public string ForgotPasswordEndPoint { get; set; }
+
         private void UpdateEndpoint(string baseEndpoint) {
             CheckPhoneNumberEndPoint = $"{baseEndpoint}/{PHONENUMBER_AVAILABILITY_API_KEY}";
             CheckUserNameEndpoint = $"{baseEndpoint}/{USER_NAME_AVAILABILITY_API_KEY}";
@@ -73,6 +81,8 @@ namespace Drive.Client.Models.Rest.EndPoints {
             ChangeEmailEndPoint= $"{baseEndpoint}/{CHANGR_EMAIL_API_KEY}";
             UploadUserAvatarEndpoint = $"{baseEndpoint}/{UPLOAD_USER_AVATAR_API_KEY}";
             ChangePasswordEndPoint = $"{baseEndpoint}/{UPDATE_PASSWORD_API_KEY}";
+            CanUserChangeForgottenPasswordEndPoint = $"{baseEndpoint}/{CAN_USER_CHANGE_FORGOTTEN_PASSWORD_API_KEY}";
+            ForgotPasswordEndPoint = $"{baseEndpoint}/{FORGOT_PASSWORD_API_KEY}";
         }
     }
 }

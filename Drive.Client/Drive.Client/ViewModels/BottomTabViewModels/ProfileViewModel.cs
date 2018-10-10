@@ -45,7 +45,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
             get => _languageSelectPopupViewModel;
             private set {
                 _languageSelectPopupViewModel?.Dispose();
-                SetProperty<LanguageSelectPopupViewModel>(ref _languageSelectPopupViewModel, value);
+                SetProperty(ref _languageSelectPopupViewModel, value);
             }
         }
 

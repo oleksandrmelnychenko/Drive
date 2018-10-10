@@ -15,8 +15,6 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
 
         public override void Dispose() {
             base.Dispose();
-
-
         }
 
         protected async override void OnStepCommand() {

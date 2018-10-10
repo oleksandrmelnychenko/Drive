@@ -1,4 +1,5 @@
 ﻿using Drive.Client.Models.Arguments.IdentityAccounting.ChangePassword;
+using Drive.Client.Models.Arguments.IdentityAccounting.ForgotPassword;
 using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
 using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Models.Medias;
@@ -23,5 +24,8 @@ namespace Drive.Client.Services.Identity {
         Task<string> UploadUserAvatarAsync(PickedImage pickedImage, CancellationToken cancellationToken = default(CancellationToken));
 
         Task<ChangedProfileData> ChangeEmailAsync(string value, CancellationToken cancellationToken = default(CancellationToken));
+
+        Task<CanChangeForgottenPassword> CanUserChangeForgottenPasswordAsync(string phoneNumber, string name, CancellationToken cancellationToken = default(CancellationToken));
+        Task<User> ForgotPasswordAsync(ForgotPasswordArgs forgotPasswordArgs, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

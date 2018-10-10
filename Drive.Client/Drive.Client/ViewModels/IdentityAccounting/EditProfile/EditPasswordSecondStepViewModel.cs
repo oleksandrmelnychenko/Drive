@@ -11,20 +11,12 @@ using System.Threading.Tasks;
 namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
     public sealed class EditPasswordSecondStepViewModel : IdentityAccountingStepBaseViewModel {
 
-        private CancellationTokenSource _updatePasswordCancellationTokenSource = new CancellationTokenSource();
-
         private ChangePasswordArgs _changePasswordArgs;
-
-        private readonly IIdentityService _identityService;
-
-        public string CurrentPassword { get; set; }
 
         /// <summary>
         ///     ctor().
         /// </summary>
-        public EditPasswordSecondStepViewModel(IIdentityService identityService) {
-            _identityService = identityService;
-
+        public EditPasswordSecondStepViewModel() {
             StepTitle = NEW_PASSWORD_STEP_REGISTRATION_TITLE;
             MainInputPlaceholder = PASSWORD_PLACEHOLDER_STEP_REGISTRATION;
             MainInputIconPath = PASSWORD_ICON_PATH;
@@ -40,33 +32,18 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
         }
 
         public override void Dispose() {
-            base.Dispose();
-
-            ResetCancellationTokenSource(ref _updatePasswordCancellationTokenSource);
+            base.Dispose();            
         }
 
         protected async override void OnStepCommand() {
             if (ValidateForm()) {
-                ResetCancellationTokenSource(ref _updatePasswordCancellationTokenSource);
-                CancellationTokenSource cancellationTokenSource = _updatePasswordCancellationTokenSource;
-
-                Guid busyKey = Guid.NewGuid();
-                SetBusy(busyKey, true);
-
-                _changePasswordArgs.NewPassword = MainInput.Value;
-                try {
-                    User user = await _identityService.UpdatePasswordAsync(_changePasswordArgs, _updatePasswordCancellationTokenSource.Token);
-
-                    if (user != null) {
-                        await NavigationService.InitializeAsync();
-                    }
-                }
-                catch (Exception ex) {
-                    Debug.WriteLine($"ERROR:{ex.Message}");
-                    ServerError = ex.Message;
+                if (_changePasswordArgs != null) {
+                    _changePasswordArgs.NewPassword = MainInput.Value;
+                    await NavigationService.NavigateToAsync<EditPasswordFinallyStepViewModel>(_changePasswordArgs);
+                } else {
                     Debugger.Break();
+                    await NavigationService.GoBackAsync();
                 }
-                SetBusy(busyKey, false);
             }
         }
     }
