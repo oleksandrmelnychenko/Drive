@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="todo" xml:space="preserve">
+    <value>TEST</value>
+  </data>
   <data name="UserNameUpperCase" xml:space="preserve">
     <value>USER NAME</value>
     <comment>Used as user name title upercase (in user settings form etc...)</comment>

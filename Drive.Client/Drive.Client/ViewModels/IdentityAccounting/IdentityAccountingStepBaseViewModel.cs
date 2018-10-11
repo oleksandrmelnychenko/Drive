@@ -1,5 +1,7 @@
 ﻿using Drive.Client.Factories.Validation;
+using Drive.Client.Helpers.Localize;
 using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
+using Drive.Client.Resources.Resx;
 using Drive.Client.Validations;
 using Drive.Client.Validations.ValidationRules;
 using Drive.Client.ViewModels.ActionBars;
@@ -10,7 +12,7 @@ using Xamarin.Forms;
 namespace Drive.Client.ViewModels.IdentityAccounting {
     public abstract class IdentityAccountingStepBaseViewModel : ContentPageBaseViewModel {
 
-        public static readonly string PHONENUMBER_TITLE_TITLE = "ВВЕДІТЬ НОМЕР ТЕЛЕФОНУ";
+        public static readonly StringResource PHONENUMBER_TITLE = ResourceLoader.Instance.GetString(AppStrings.todo);
         public static readonly string CHANGE_PHONENUMBER_TITLE = "ЗМІНИТИ НОМЕР ТЕЛЕФОНУ";
         public static readonly string NAME_STEP_REGISTRATION_TITLE = "ВВЕДІТЬ ІМ'Я";
         public static readonly string CHANGE_EMAIL_TITLE = "ЕЛЕКТРОННА АДРЕСА";
@@ -54,8 +56,8 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
             set { SetProperty(ref _serverError, value); }
         }
 
-        string _stepTitle;
-        public string StepTitle {
+        StringResource _stepTitle;
+        public StringResource StepTitle {
             get => _stepTitle;
             protected set => SetProperty(ref _stepTitle, value);
         }

@@ -61,6 +61,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TEST.
+        /// </summary>
+        public static string todo {
+            get {
+                return ResourceManager.GetString("todo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to USER NAME.
         /// </summary>
         public static string UserNameUpperCase {

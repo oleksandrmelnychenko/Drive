@@ -1,12 +1,14 @@
 ﻿using Drive.Client.Extensions;
 using Drive.Client.Helpers;
 using Drive.Client.Models.EntityModels;
+using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Models.Identities.NavigationArgs;
 using Drive.Client.Services.Automobile;
 using Drive.Client.Validations;
 using Drive.Client.Validations.ValidationRules;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.Views.BottomTabViews;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -181,8 +183,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
                 result = await _driveAutoService.GetAllDriveAutosAsync(targetCarNumber, cancellationTokenSource);
             }
             catch (Exception ex) {
-                Debug.WriteLine($"ERROR: {ex.Message}");
                 ErrorMessage = ex.Message;
+                Debug.WriteLine($"ERROR: {ex.Message}");
                 HasError = true;
             }
 

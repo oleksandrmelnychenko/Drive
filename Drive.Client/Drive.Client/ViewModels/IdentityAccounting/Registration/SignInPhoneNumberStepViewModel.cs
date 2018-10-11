@@ -13,7 +13,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
         ///     ctor().
         /// </summary>
         public SignInPhoneNumberStepViewModel() {
-            StepTitle = PHONENUMBER_TITLE_TITLE;
+            StepTitle = PHONENUMBER_TITLE;
             MainInputPlaceholder = PHONE_PLACEHOLDER_STEP_REGISTRATION;
             MainInputIconPath = PHONENUMBER_ICON_PATH;
             KeyboardType = Device.RuntimePlatform == Device.Android ? Keyboard.Telephone : Keyboard.Default;

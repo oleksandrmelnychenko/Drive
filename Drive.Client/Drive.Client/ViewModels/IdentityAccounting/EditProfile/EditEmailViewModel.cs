@@ -50,11 +50,17 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
                     }
                 }
                 catch (HttpRequestExceptionEx ex) {
-                    var tt = JsonConvert.DeserializeObject<HttpRequestExceptionResult>(ex.Message);
-                    ServerError = tt.Message;
+                    try {
+                        var error = JsonConvert.DeserializeObject<HttpRequestExceptionResult>(ex.Message);
+                        ServerError = error.Message;
 
-                    Debug.WriteLine($"ERROR:{tt.Message}");
-                    Debugger.Break();
+                        Debug.WriteLine($"ERROR:{error.Message}");
+                        Debugger.Break();
+
+                    }
+                    catch (Exception) {
+                        Debugger.Break();
+                    }
                 }
                 catch (Exception ex) {
                     ServerError = ex.Message;
