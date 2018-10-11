@@ -326,6 +326,5 @@ namespace Drive.Client.Services.Identity {
                 Debugger.Break();
             }
         }
-
     }
 }

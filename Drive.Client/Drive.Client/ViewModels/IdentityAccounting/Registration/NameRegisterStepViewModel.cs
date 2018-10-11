@@ -64,6 +64,8 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
                         }
                     }
                     catch (Exception ex) {
+                        ServerError = ex.Message;
+
                         Debug.WriteLine($"ERROR:{ex.Message}");
                         Debugger.Break();
                     }

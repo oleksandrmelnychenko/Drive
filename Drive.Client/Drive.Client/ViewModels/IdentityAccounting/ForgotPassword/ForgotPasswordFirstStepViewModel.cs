@@ -1,17 +1,12 @@
 ﻿using Drive.Client.Models.Arguments.IdentityAccounting.ForgotPassword;
 using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Services.Identity;
-using Drive.Client.Validations;
-using Drive.Client.Validations.ValidationRules;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Drive.Client.ViewModels.IdentityAccounting.ForgotPassword
-{
+namespace Drive.Client.ViewModels.IdentityAccounting.ForgotPassword {
     public sealed class ForgotPasswordFirstStepViewModel: IdentityAccountingStepBaseViewModel {
 
         private CancellationTokenSource _canUserChangeForgottenPasswordCancellationTokenSource = new CancellationTokenSource();

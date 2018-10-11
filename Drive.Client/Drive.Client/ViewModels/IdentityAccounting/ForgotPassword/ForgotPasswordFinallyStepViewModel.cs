@@ -75,8 +75,9 @@ namespace Drive.Client.ViewModels.IdentityAccounting.ForgotPassword {
                 }
                 catch (Exception ex) {
                     var tt = JsonConvert.DeserializeObject<HttpRequestExceptionResult>(ex.Message);
-                    Debug.WriteLine($"ERROR:{ex.Message}");
                     ServerError = tt.Message;
+
+                    Debug.WriteLine($"ERROR:{ex.Message}");
                     Debugger.Break();
                 }
                 SetBusy(busyKey, false);

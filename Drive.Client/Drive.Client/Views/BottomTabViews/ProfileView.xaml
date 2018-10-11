@@ -172,7 +172,7 @@
                                     LetterSpacing="{OnPlatform iOS=1.4,
                                                                Android=0.07}"
                                     Style="{StaticResource baseTitleLabel}"
-                                    Text="{Binding Email, Converter={StaticResource EmailConverter}}" />
+                                    Text="{Binding Email}" />
                                 <ffimageloadingsvg:SvgCachedImage
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
@@ -370,15 +370,16 @@
                         <TapGestureRecognizer Command="{Binding ChangeAvatarCommand}" />
                     </Grid.GestureRecognizers>
                     <!--  PROFILE PHOTO  -->
-                    <ffImage:CachedImage
+                    <ffimageloadingsvg:SvgCachedImage
                         x:Name="_avatarImage_CachedImage"
                         Aspect="AspectFill"
-                        HeightRequest="165"
+                        BackgroundColor="{StaticResource WhiteColor}"
+                        HeightRequest="150"
                         HorizontalOptions="Center"
                         InputTransparent="True"
                         Source="{Binding AvatarUrl}"
                         VerticalOptions="Center"
-                        WidthRequest="165" />
+                        WidthRequest="150" />
                     <ffimageloadingsvg:SvgCachedImage
                         HeightRequest="170"
                         HorizontalOptions="Center"

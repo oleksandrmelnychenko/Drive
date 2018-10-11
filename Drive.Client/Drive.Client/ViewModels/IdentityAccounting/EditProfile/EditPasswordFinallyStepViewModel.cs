@@ -1,6 +1,7 @@
 ﻿using Drive.Client.Models.Arguments.IdentityAccounting.ChangePassword;
 using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Services.Identity;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 using System.Threading;
@@ -61,7 +62,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
                 Guid busyKey = Guid.NewGuid();
                 SetBusy(busyKey, true);
 
-                
+
                 try {
                     User user = await _identityService.UpdatePasswordAsync(_changePasswordArgs, _updatePasswordCancellationTokenSource.Token);
 
@@ -70,9 +71,17 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
                     }
                 }
                 catch (Exception ex) {
-                    Debug.WriteLine($"ERROR:{ex.Message}");
-                    ServerError = ex.Message;
-                    Debugger.Break();
+                    try {
+                        var error = JsonConvert.DeserializeObject<HttpRequestExceptionResult>(ex.Message);
+                        ServerError = error.Message;
+
+                        Debug.WriteLine($"ERROR:{error.Message}");
+                        Debugger.Break();
+                    }
+                    catch (Exception) {
+                        Debug.WriteLine($"ERROR EditPasswordFinallyStepViewModel.OnStepCommand():{ex.Message}");
+                        Debugger.Break();
+                    }
                 }
                 SetBusy(busyKey, false);
             }

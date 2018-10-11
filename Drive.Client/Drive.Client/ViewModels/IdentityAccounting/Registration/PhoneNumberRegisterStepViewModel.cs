@@ -8,6 +8,7 @@ using System.Diagnostics;
 using Drive.Client.Services.Identity;
 using System.Threading;
 using Drive.Client.Models.EntityModels.Identity;
+using Newtonsoft.Json;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
     public class PhoneNumberRegisterStepViewModel : IdentityAccountingStepBaseViewModel {
@@ -58,6 +59,8 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
                     } 
                 }
                 catch (Exception ex) {
+                    ServerError = ex.Message;                   
+
                     Debug.WriteLine($"ERROR:{ex.Message}");
                     Debugger.Break();
                 }
