@@ -301,9 +301,7 @@
                 BackgroundColor="{StaticResource WhiteColor}"
                 VerticalOptions="Start">
                 <Grid x:Name="_avatar_Grid" IsClippedToBounds="True">
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ChangeAvatarCommand}" />
-                    </Grid.GestureRecognizers>
+
                     <!--  PROFILE PHOTO  -->
                     <ffimageloadingsvg:SvgCachedImage
                         x:Name="_avatarImage_CachedImage"
@@ -314,16 +312,22 @@
                         InputTransparent="True"
                         Source="{Binding AvatarUrl}"
                         VerticalOptions="Center"
-                        WidthRequest="150" />
+                        WidthRequest="150">
+                        <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeAvatarCommand}" />
+                        </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    </ffimageloadingsvg:SvgCachedImage>
                     <ffimageloadingsvg:SvgCachedImage
                         HeightRequest="170"
                         HorizontalOptions="Center"
+                        InputTransparent="True"
                         Source="resource://Drive.Client.Resources.Images.Mask.svg"
                         VerticalOptions="Center" />
                     <ffimageloadingsvg:SvgCachedImage
                         x:Name="_changeAvatarPencil_SvgCachedImage"
                         HeightRequest="80"
                         HorizontalOptions="Center"
+                        InputTransparent="False"
                         Source="resource://Drive.Client.Resources.Images.edit.svg"
                         VerticalOptions="End">
                         <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
