@@ -123,7 +123,7 @@
                                     LetterSpacing="{OnPlatform iOS=1.4,
                                                                Android=0.07}"
                                     Style="{StaticResource smallTitleLabel}"
-                                    Text="ТЕЛЕФОН" />
+                                    Text="{Binding [PhoneUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
                                 <controls:LabelExtended
                                     Grid.Row="1"
                                     Grid.Column="0"
@@ -203,14 +203,14 @@
                                     LetterSpacing="{OnPlatform iOS=1.4,
                                                                Android=0.07}"
                                     Style="{StaticResource smallTitleLabel}"
-                                    Text="МОВА" />
+                                    Text="{Binding [LanguageUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
                                 <controls:LabelExtended
                                     Grid.Row="1"
                                     Grid.Column="0"
                                     LetterSpacing="{OnPlatform iOS=1.4,
                                                                Android=0.07}"
                                     Style="{StaticResource baseTitleLabel}"
-                                    Text="УКРАЇНСЬКА" />
+                                    Text="{Binding}" />
                                 <ffimageloadingsvg:SvgCachedImage
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
@@ -247,7 +247,7 @@
                                     LetterSpacing="{OnPlatform iOS=1.4,
                                                                Android=0.07}"
                                     Style="{StaticResource baseTitleLabel}"
-                                    Text="Зміна пароля" />
+                                    Text="{Binding [ChangePassword].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
                                 <ffimageloadingsvg:SvgCachedImage
                                     Grid.Row="0"
                                     Grid.RowSpan="2"
@@ -382,7 +382,7 @@
                         HorizontalTextAlignment="Center"
                         LetterSpacing="{OnPlatform iOS=1.6,
                                                    Android=0.07}"
-                        Text="ЛОГІН"
+                        Text="{Binding [SignInUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
                         TextColor="{StaticResource WhiteColor}"
                         VerticalTextAlignment="Center" />
                 </controls:ExtendedContentView>
@@ -397,7 +397,7 @@
                         HorizontalTextAlignment="Center"
                         LetterSpacing="{OnPlatform iOS=1.2,
                                                    Android=0.07}"
-                        Text="Немає аккаунта?"
+                        Text="{Binding [NoAcc].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
                         TextColor="{StaticResource BaseGrayColor}"
                         VerticalOptions="Center" />
                     <controls:LabelExtended
@@ -406,7 +406,7 @@
                         HorizontalTextAlignment="Center"
                         LetterSpacing="{OnPlatform iOS=1.2,
                                                    Android=0.07}"
-                        Text="Реєстрація"
+                        Text="{Binding [SignUp].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
                         TextColor="{StaticResource HardGrayColor}"
                         VerticalOptions="Center" />
                 </StackLayout>

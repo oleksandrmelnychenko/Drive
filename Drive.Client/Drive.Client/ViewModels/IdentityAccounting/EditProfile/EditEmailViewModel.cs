@@ -24,8 +24,8 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
         public EditEmailViewModel(IIdentityService identityService) {
             _identityService = identityService;
 
-            //StepTitle = CHANGE_EMAIL_TITLE;
-            MainInputPlaceholder = BaseSingleton<GlobalSetting>.Instance.UserProfile?.Email;
+            StepTitle = CHANGE_EMAIL_TITLE;
+            //MainInputPlaceholder = BaseSingleton<GlobalSetting>.Instance.UserProfile?.Email;
             MainInputIconPath = EMAIL_ICON_PATH;
         }
 

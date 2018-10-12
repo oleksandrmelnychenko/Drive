@@ -1,9 +1,10 @@
-﻿using System.Text.RegularExpressions;
+﻿using Drive.Client.Helpers.Localize;
+using System.Text.RegularExpressions;
 
 namespace Drive.Client.Validations.ValidationRules {
     public class EmailRule<T> : IValidationRule<T> {
 
-        public string ValidationMessage { get; set; }
+        public StringResource ValidationMessage { get; set; }
 
         public bool Check(T value) {
             if (value == null)

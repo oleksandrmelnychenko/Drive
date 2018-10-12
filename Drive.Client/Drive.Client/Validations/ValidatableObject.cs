@@ -1,26 +1,31 @@
-﻿using Drive.Client.ViewModels.Base;
+﻿using Drive.Client.Helpers.Localize;
+using Drive.Client.Resources.Resx;
+using Drive.Client.Validations.ValidationRules;
+using Drive.Client.ViewModels.Base;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Drive.Client.Validations {
     public class ValidatableObject<T> : ExtendedBindableObject, IValidity {
 
-        public static readonly string FIELD_IS_REQUIRED_VALIDATION_MESSAGE = "Це поле є обов'язковим";
-
-        public static readonly string INVALID_PHONE_VALIDATION_MESSAGE = "Некоректний номер телефону";
-
-        public static readonly string ERROR_EMAIL = "Некоректна електронна адреса";
+        public static readonly StringResource FIELD_IS_REQUIRED_VALIDATION_MESSAGE =
+            ResourceLoader.Instance.GetString(nameof(AppStrings.FieldRequired));
+        
+        public static readonly StringResource INVALID_PHONE_VALIDATION_MESSAGE =
+            ResourceLoader.Instance.GetString(nameof(AppStrings.InvalidPhoneNumber));
+        
+        public static readonly StringResource ERROR_EMAIL = ResourceLoader.Instance.GetString(nameof(AppStrings.InvalidEmail));
 
         public List<IValidationRule<T>> Validations { get; }
 
         public ValidatableObject() {
             _isValid = true;
-            _errors = new List<string>();
+            _errors = new List<StringResource>();
             Validations = new List<IValidationRule<T>>();
         }
 
-        List<string> _errors;
-        public List<string> Errors {
+        List<StringResource> _errors;
+        public List<StringResource> Errors {
             get { return _errors; }
             set { SetProperty(ref _errors, value); }
         }
@@ -40,7 +45,7 @@ namespace Drive.Client.Validations {
         public bool Validate() {
             Errors.Clear();
 
-            IEnumerable<string> errors = Validations.Where(v => !v.Check(Value))
+            IEnumerable<StringResource> errors = Validations.Where(v => !v.Check(Value))
                 .Select(v => v.ValidationMessage);
 
             Errors = errors.ToList();

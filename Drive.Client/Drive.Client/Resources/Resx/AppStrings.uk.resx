@@ -136,11 +136,17 @@
   <data name="Brand" xml:space="preserve">
     <value>Марка</value>
   </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Зміна пароля</value>
+  </data>
   <data name="Color" xml:space="preserve">
     <value>Колір</value>
   </data>
   <data name="EngineCapacity" xml:space="preserve">
     <value>Об'єм двигуна</value>
+  </data>
+  <data name="FieldRequired" xml:space="preserve">
+    <value>Це поле є обов'язковим</value>
   </data>
   <data name="FuelType" xml:space="preserve">
     <value>Тип палива</value>
@@ -148,14 +154,38 @@
   <data name="FullWeight" xml:space="preserve">
     <value>Повна маса</value>
   </data>
+  <data name="InDev" xml:space="preserve">
+    <value>(У РОЗРОБЦІ)</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>Некоректна електронна адреса</value>
+  </data>
+  <data name="InvalidPhoneNumber" xml:space="preserve">
+    <value>Некоректний номер телефону</value>
+  </data>
   <data name="Kind" xml:space="preserve">
     <value>Тип</value>
+  </data>
+  <data name="LanguageUpperCase" xml:space="preserve">
+    <value>МОВА</value>
   </data>
   <data name="MainTitle" xml:space="preserve">
     <value>ДЕРЖАВНИЙ ТРАНСПОРТНИЙ РЕЄСТР</value>
   </data>
+  <data name="NewPostUpperCase" xml:space="preserve">
+    <value>НОВИЙ ПОСТ</value>
+  </data>
+  <data name="NewsUpperCase" xml:space="preserve">
+    <value>НОВИНИ</value>
+  </data>
+  <data name="NoAcc" xml:space="preserve">
+    <value>Немає аккаунта?</value>
+  </data>
   <data name="PhoneNumberUpperCase" xml:space="preserve">
     <value>ВВЕДІТЬ НОМЕР ТЕЛЕФОНУ</value>
+  </data>
+  <data name="PhoneUpperCase" xml:space="preserve">
+    <value>ТЕЛЕФОН</value>
   </data>
   <data name="Purpose" xml:space="preserve">
     <value>Призначення</value>
@@ -163,8 +193,17 @@
   <data name="RegistrationDate" xml:space="preserve">
     <value>Дата реєстрації</value>
   </data>
+  <data name="SavedUpperCase" xml:space="preserve">
+    <value>ЗБЕРЕЖЕНЕ</value>
+  </data>
   <data name="SearchByNumber" xml:space="preserve">
     <value>ПОШУК ЗА НОМЕРОМ</value>
+  </data>
+  <data name="SignInUpperCase" xml:space="preserve">
+    <value>ЛОГІН</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Реєстрація</value>
   </data>
   <data name="TSC" xml:space="preserve">
     <value>ТСЦ</value>
@@ -177,5 +216,38 @@
   </data>
   <data name="YearOfCreation" xml:space="preserve">
     <value>Рік випуску</value>
+  </data>
+  <data name="ChangePhoneNumberUpperCase" xml:space="preserve">
+    <value>ЗМІНИТИ НОМЕР ТЕЛЕФОНУ</value>
+  </data>
+  <data name="ConfirmPasswordUpperCase" xml:space="preserve">
+    <value>ПІДТВЕРДІТЬ ПАРОЛЬ</value>
+  </data>
+  <data name="EmailUppercase" xml:space="preserve">
+    <value>ЕЛЕКТРОННА АДРЕСА</value>
+  </data>
+  <data name="EnterCurrentPasswordUpperCase" xml:space="preserve">
+    <value>ВВЕДІТЬ ПОТОЧНИЙ ПАРОЛЬ</value>
+  </data>
+  <data name="EnterNameUpperCase" xml:space="preserve">
+    <value>ВВЕДІТЬ ІМ'Я</value>
+  </data>
+  <data name="EnterNewPasswordUpperCase" xml:space="preserve">
+    <value>ВВЕДІТЬ НОВИЙ ПАРОЛЬ</value>
+  </data>
+  <data name="EnterPasswordUpperCase" xml:space="preserve">
+    <value>ВВЕДІТЬ ПАРОЛЬ</value>
+  </data>
+  <data name="NameUpperCase" xml:space="preserve">
+    <value>ІМ'Я</value>
+  </data>
+  <data name="PasswordUpperCase" xml:space="preserve">
+    <value>ПАРОЛЬ</value>
+  </data>
+  <data name="PnoneNumberUpperCase" xml:space="preserve">
+    <value>ТЕЛЕФОН</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Забули пароль?</value>
   </data>
 </root>

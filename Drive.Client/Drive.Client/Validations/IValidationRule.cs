@@ -1,6 +1,8 @@
-﻿namespace Drive.Client.Validations {
+﻿using Drive.Client.Helpers.Localize;
+
+namespace Drive.Client.Validations {
     public interface IValidationRule<T> {
-        string ValidationMessage { get; set; }
+        StringResource ValidationMessage { get; set; }
 
         bool Check(T value);
     }

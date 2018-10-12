@@ -25,8 +25,8 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
         public EditPhoneNumberViewModel(IIdentityService identityService) {
             _identityService = identityService;
 
-            //StepTitle = CHANGE_PHONENUMBER_TITLE;
-            MainInputPlaceholder = BaseSingleton<GlobalSetting>.Instance.UserProfile?.PhoneNumber; ;
+            StepTitle = CHANGE_PHONENUMBER_TITLE;
+            //MainInputPlaceholder = BaseSingleton<GlobalSetting>.Instance.UserProfile?.PhoneNumber; ;
             MainInputIconPath = PHONENUMBER_ICON_PATH;
             KeyboardType = Device.RuntimePlatform == Device.Android ? Keyboard.Telephone : Keyboard.Default;
         }

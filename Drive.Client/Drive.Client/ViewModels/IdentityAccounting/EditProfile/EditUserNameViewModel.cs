@@ -23,8 +23,8 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile
         public EditUserNameViewModel(IIdentityService identityService) {
             _identityService = identityService;
 
-            //StepTitle = NAME_STEP_REGISTRATION_TITLE;
-            MainInputPlaceholder = BaseSingleton<GlobalSetting>.Instance.UserProfile?.UserName;
+            StepTitle = NAME_STEP_REGISTRATION_TITLE;
+            //MainInputPlaceholder = BaseSingleton<GlobalSetting>.Instance.UserProfile?.UserName;
             MainInputIconPath = NAME_ICON_PATH;
         }
 

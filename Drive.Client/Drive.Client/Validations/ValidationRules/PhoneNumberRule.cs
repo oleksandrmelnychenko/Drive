@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Drive.Client.Helpers.Localize;
 
 namespace Drive.Client.Validations.ValidationRules {
     class PhoneNumberRule<T> : IValidationRule<T> {
 
         public string PhonePattern { get; set; } = "+X X(XXX) XX-XXX-XX";
 
-        public string ValidationMessage { get; set; }
+        public StringResource ValidationMessage { get; set; }
 
         public bool Check(T value) {
 

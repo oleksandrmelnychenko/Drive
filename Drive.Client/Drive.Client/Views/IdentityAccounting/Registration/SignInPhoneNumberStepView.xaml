@@ -19,7 +19,7 @@
                     FontFamily="{StaticResource SFProLight}"
                     FontSize="{StaticResource MediumSize}"
                     HorizontalOptions="Center"
-                    Text="{Binding Path=StepTitle}"
+                    Text="{Binding Path=StepTitle.Value}"
                     TextColor="{StaticResource DarkColor}"
                     VerticalOptions="End" />
 
@@ -43,7 +43,7 @@
                             HorizontalTextAlignment="Center"
                             IsPassword="{Binding Path=IsPasswordInput}"
                             Keyboard="{Binding KeyboardType}"
-                            Placeholder="{Binding Path=MainInputPlaceholder}"
+                            Placeholder="{Binding Path=MainInputPlaceholder.Value, Mode=TwoWay}"
                             ReturnType="Next"
                             Text="{Binding Path=MainInput.Value}"
                             TextColor="{StaticResource ExtraGrayColor}">

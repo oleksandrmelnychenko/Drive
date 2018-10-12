@@ -97,6 +97,24 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change password.
+        /// </summary>
+        public static string ChangePassword {
+            get {
+                return ResourceManager.GetString("ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CHANGE PHONE NUMBER.
+        /// </summary>
+        public static string ChangePhoneNumberUpperCase {
+            get {
+                return ResourceManager.GetString("ChangePhoneNumberUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Color.
         /// </summary>
         public static string Color {
@@ -106,11 +124,83 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CONFIRM PASSWORD.
+        /// </summary>
+        public static string ConfirmPasswordUpperCase {
+            get {
+                return ResourceManager.GetString("ConfirmPasswordUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EMAIL.
+        /// </summary>
+        public static string EmailUppercase {
+            get {
+                return ResourceManager.GetString("EmailUppercase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Capacity.
         /// </summary>
         public static string EngineCapacity {
             get {
                 return ResourceManager.GetString("EngineCapacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ENTER CURRENT PASSWORD.
+        /// </summary>
+        public static string EnterCurrentPasswordUpperCase {
+            get {
+                return ResourceManager.GetString("EnterCurrentPasswordUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ENTER NAME.
+        /// </summary>
+        public static string EnterNameUpperCase {
+            get {
+                return ResourceManager.GetString("EnterNameUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ENTER NEW PASSWORD.
+        /// </summary>
+        public static string EnterNewPasswordUpperCase {
+            get {
+                return ResourceManager.GetString("EnterNewPasswordUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ENTER PASSWORD.
+        /// </summary>
+        public static string EnterPasswordUpperCase {
+            get {
+                return ResourceManager.GetString("EnterPasswordUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This field is required.
+        /// </summary>
+        public static string FieldRequired {
+            get {
+                return ResourceManager.GetString("FieldRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forgot your password?.
+        /// </summary>
+        public static string ForgotPassword {
+            get {
+                return ResourceManager.GetString("ForgotPassword", resourceCulture);
             }
         }
         
@@ -133,11 +223,47 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (IN DEVELOPMENT).
+        /// </summary>
+        public static string InDev {
+            get {
+                return ResourceManager.GetString("InDev", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid email address.
+        /// </summary>
+        public static string InvalidEmail {
+            get {
+                return ResourceManager.GetString("InvalidEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid phone number.
+        /// </summary>
+        public static string InvalidPhoneNumber {
+            get {
+                return ResourceManager.GetString("InvalidPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kind.
         /// </summary>
         public static string Kind {
             get {
                 return ResourceManager.GetString("Kind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LANGUAGE.
+        /// </summary>
+        public static string LanguageUpperCase {
+            get {
+                return ResourceManager.GetString("LanguageUpperCase", resourceCulture);
             }
         }
         
@@ -160,11 +286,74 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INPUT NUMBER PHONE.
+        ///   Looks up a localized string similar to NAME.
+        /// </summary>
+        public static string NameUpperCase {
+            get {
+                return ResourceManager.GetString("NameUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NEW POST.
+        /// </summary>
+        public static string NewPostUpperCase {
+            get {
+                return ResourceManager.GetString("NewPostUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NEWS.
+        /// </summary>
+        public static string NewsUpperCase {
+            get {
+                return ResourceManager.GetString("NewsUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No account?.
+        /// </summary>
+        public static string NoAcc {
+            get {
+                return ResourceManager.GetString("NoAcc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PASSWORD.
+        /// </summary>
+        public static string PasswordUpperCase {
+            get {
+                return ResourceManager.GetString("PasswordUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INPUT PHONE  NUMBER.
         /// </summary>
         public static string PhoneNumberUpperCase {
             get {
                 return ResourceManager.GetString("PhoneNumberUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PHONE NUMBER.
+        /// </summary>
+        public static string PhoneUpperCase {
+            get {
+                return ResourceManager.GetString("PhoneUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PHONE NUMBER.
+        /// </summary>
+        public static string PnoneNumberUpperCase {
+            get {
+                return ResourceManager.GetString("PnoneNumberUpperCase", resourceCulture);
             }
         }
         
@@ -187,11 +376,38 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SAVED.
+        /// </summary>
+        public static string SavedUpperCase {
+            get {
+                return ResourceManager.GetString("SavedUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SEARCH FOR NUMBERS.
         /// </summary>
         public static string SearchByNumber {
             get {
                 return ResourceManager.GetString("SearchByNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SIGN IN.
+        /// </summary>
+        public static string SignInUpperCase {
+            get {
+                return ResourceManager.GetString("SignInUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign up.
+        /// </summary>
+        public static string SignUp {
+            get {
+                return ResourceManager.GetString("SignUp", resourceCulture);
             }
         }
         

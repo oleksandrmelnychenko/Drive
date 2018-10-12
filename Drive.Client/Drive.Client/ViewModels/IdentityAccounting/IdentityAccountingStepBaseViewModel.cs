@@ -13,18 +13,17 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
     public abstract class IdentityAccountingStepBaseViewModel : ContentPageBaseViewModel {
 
         public static readonly StringResource PHONENUMBER_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.PhoneNumberUpperCase));
-        public static readonly string CHANGE_PHONENUMBER_TITLE = "ЗМІНИТИ НОМЕР ТЕЛЕФОНУ";
-        public static readonly string NAME_STEP_REGISTRATION_TITLE = "ВВЕДІТЬ ІМ'Я";
-        public static readonly string CHANGE_EMAIL_TITLE = "ЕЛЕКТРОННА АДРЕСА";
-        public static readonly string PASSWORD_STEP_REGISTRATION_TITLE = "ВВЕДІТЬ ПАРОЛЬ";
-        public static readonly string CURRENT_PASSWORD_STEP_REGISTRATION_TITLE = "ВВЕДІТЬ ПОТОЧНИЙ ПАРОЛЬ";
-        public static readonly string NEW_PASSWORD_STEP_REGISTRATION_TITLE = "ВВЕДІТЬ НОВИЙ ПАРОЛЬ";
-        public static readonly string PASSWORD_CONFIRM_STEP_REGISTRATION_TITLE = "ПІДТВЕРДІТЬ ПАРОЛЬ";
-
-        public static readonly string PHONE_PLACEHOLDER_STEP_REGISTRATION = "ТЕЛЕФОН";
-        public static readonly string NAME_PLACEHOLDER_STEP_REGISTRATION = "ІМ'Я";
-        public static readonly string PASSWORD_PLACEHOLDER_STEP_REGISTRATION = "ПАРОЛЬ";
-
+        public static readonly StringResource CHANGE_PHONENUMBER_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.ChangePhoneNumberUpperCase));
+        public static readonly StringResource NAME_STEP_REGISTRATION_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.EnterNameUpperCase));
+        public static readonly StringResource CHANGE_EMAIL_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.EmailUppercase));
+        public static readonly StringResource PASSWORD_STEP_REGISTRATION_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.EnterPasswordUpperCase));
+        public static readonly StringResource CURRENT_PASSWORD_STEP_REGISTRATION_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.EnterCurrentPasswordUpperCase));
+        public static readonly StringResource NEW_PASSWORD_STEP_REGISTRATION_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.EnterNewPasswordUpperCase));
+        public static readonly StringResource PASSWORD_CONFIRM_STEP_REGISTRATION_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.ConfirmPasswordUpperCase));
+        public static readonly StringResource PHONE_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.PnoneNumberUpperCase));
+        public static readonly StringResource NAME_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.NameUpperCase));
+        public static readonly StringResource PASSWORD_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.PasswordUpperCase));
+        
         public static readonly string PHONENUMBER_ICON_PATH = "resource://Drive.Client.Resources.Images.Phone.svg";
         public static readonly string NAME_ICON_PATH = "resource://Drive.Client.Resources.Images.name.svg";
         public static readonly string EMAIL_ICON_PATH = "resource://Drive.Client.Resources.Images.Email.svg";
@@ -68,8 +67,8 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
             protected set => SetProperty(ref _mainInputIconPath, value);
         }
 
-        string _mainInputPlaceholder;
-        public string MainInputPlaceholder {
+        StringResource _mainInputPlaceholder;
+        public StringResource MainInputPlaceholder {
             get => _mainInputPlaceholder;
             protected set => SetProperty(ref _mainInputPlaceholder, value);
         }
