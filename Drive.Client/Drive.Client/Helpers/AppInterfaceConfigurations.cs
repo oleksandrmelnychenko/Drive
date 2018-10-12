@@ -1,4 +1,5 @@
 ﻿using Drive.Client.Models.DataItems.ProfileSettings;
+using Drive.Client.Models.Identities.AppInterface.Language;
 using Newtonsoft.Json;
 using System.Runtime.Serialization;
 
@@ -8,10 +9,10 @@ namespace Drive.Client.Helpers {
     public class AppInterfaceConfigurations {
 
         [DataMember]
-        public LanguageInterface LanguageInterface { get; set; }
+        public AppLanguage LanguageInterface { get; set; } = new Ukrainian();
 
         public void ClearUserProfile() {
-            LanguageInterface = LanguageInterface.Ukrainian;
+            LanguageInterface = new Ukrainian();
         }
 
         public void SaveChanges() {

@@ -1,7 +1,6 @@
-﻿using Drive.Client.Helpers.Localize;
-using Drive.Client.Models.DataItems.ProfileSettings;
+﻿using Drive.Client.Models.DataItems.ProfileSettings;
+using Drive.Client.Models.Identities.AppInterface.Language;
 using System.Collections.Generic;
-using System.Globalization;
 
 namespace Drive.Client.DataItems.ProfileSettings {
     public class ProfileSettingsDataItems : IProfileSettingsDataItems {
@@ -12,15 +11,28 @@ namespace Drive.Client.DataItems.ProfileSettings {
         public List<LanguageDataItem> BuildLanguageDataItems() =>
             new List<LanguageDataItem>() {
                 new LanguageDataItem() {
-                    Language = LanguageInterface.Ukrainian,
                     Title = _UKRAINIAN_LANGUAGE_TITLE,
-                    Culture = new CultureInfo(ResourceLoader.UKRAINIAN_LOCALE_ID)
+                    Language = new Ukrainian()
                 },
                 new LanguageDataItem() {
-                    Language = LanguageInterface.English,
-                    Title = _ENGLISH_LANGUAGE_TITLE,
-                    Culture = new CultureInfo(ResourceLoader.ENGLISH_LOCALE_ID)
+                    Language = new English(),
+                    Title = _ENGLISH_LANGUAGE_TITLE
                 }
             };
+
+
+        //public List<LanguageDataItem> BuildLanguageDataItems() =>
+        //    new List<LanguageDataItem>() {
+        //        new LanguageDataItem() {
+        //            Language = LanguageInterface.Ukrainian,
+        //            Title = _UKRAINIAN_LANGUAGE_TITLE,
+        //            Culture = new CultureInfo(ResourceLoader.UKRAINIAN_LOCALE_ID)
+        //        },
+        //        new LanguageDataItem() {
+        //            Language = LanguageInterface.English,
+        //            Title = _ENGLISH_LANGUAGE_TITLE,
+        //            Culture = new CultureInfo(ResourceLoader.ENGLISH_LOCALE_ID)
+        //        }
+        //    };
     }
 }

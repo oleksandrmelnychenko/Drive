@@ -10,12 +10,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\EntityModels\Search\**" />
     <Compile Remove="Models\Services\**" />
     <Compile Remove="Services\DependencyServices\Localize\**" />
     <Compile Remove="Views\Popups\**" />
+    <EmbeddedResource Remove="Models\EntityModels\Search\**" />
     <EmbeddedResource Remove="Models\Services\**" />
     <EmbeddedResource Remove="Services\DependencyServices\Localize\**" />
     <EmbeddedResource Remove="Views\Popups\**" />
+    <None Remove="Models\EntityModels\Search\**" />
     <None Remove="Models\Services\**" />
     <None Remove="Services\DependencyServices\Localize\**" />
     <None Remove="Views\Popups\**" />
@@ -300,9 +303,5 @@
     <None Update="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\EntityModels\Search\" />
   </ItemGroup>
 </Project>

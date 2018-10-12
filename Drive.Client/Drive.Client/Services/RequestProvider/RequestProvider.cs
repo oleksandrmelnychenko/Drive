@@ -4,7 +4,6 @@ using Drive.Client.Models.Medias;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
 using Plugin.DeviceInfo;
-using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -21,7 +20,7 @@ namespace Drive.Client.Services.RequestProvider {
             ///
             /// TODO: temporary implementation
             /// 
-            _client.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue("uk-UA"));
+            _client.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(BaseSingleton<GlobalSetting>.Instance.AppInterfaceConfigurations.LanguageInterface.LocaleId));
             _client.DefaultRequestHeaders.Add("DeviceId", CrossDeviceInfo.Current.Id);
         }
 
@@ -41,6 +40,7 @@ namespace Drive.Client.Services.RequestProvider {
             if (!CrossConnectivity.Current.IsConnected) throw new ConnectivityException(AppConsts.ERROR_INTERNET_CONNECTION);
 
             SetAccesToken(accessToken);
+            SetLanguage();
 
             HttpResponseMessage response = await _client.GetAsync(uri);
 
@@ -63,6 +63,7 @@ namespace Drive.Client.Services.RequestProvider {
                 HttpContent content = null;
 
                 SetAccesToken(accessToken);
+                SetLanguage();
 
                 if (bodyContent != null) {
                     string jObject = JsonConvert.SerializeObject(bodyContent);
@@ -99,6 +100,7 @@ namespace Drive.Client.Services.RequestProvider {
                 TResult result = default(TResult);
 
                 SetAccesToken(accessToken);
+                SetLanguage();
 
                 using (MultipartFormDataContent formDataContent = new MultipartFormDataContent()) {
                     if (bodyContent != null) {
@@ -133,6 +135,7 @@ namespace Drive.Client.Services.RequestProvider {
                 TResult result = default(TResult);
 
                 SetAccesToken(accessToken);
+                SetLanguage();
 
                 if (bodyContent != null) {
                     content = new StringContent(JsonConvert.SerializeObject(bodyContent));
@@ -150,12 +153,18 @@ namespace Drive.Client.Services.RequestProvider {
                 return result;
             });
 
+        private void SetLanguage() {
+            _client.DefaultRequestHeaders.AcceptLanguage.Clear();
+            _client.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(BaseSingleton<GlobalSetting>.Instance.AppInterfaceConfigurations.LanguageInterface.LocaleId));
+        }
+
         private void SetAccesToken(string accessToken) {
             if (_client.DefaultRequestHeaders.Authorization == null) {
                 if (!string.IsNullOrEmpty(accessToken)) {
                     _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 }
-            } else {
+            }
+            else {
                 if (!(string.IsNullOrEmpty(accessToken)) && _client.DefaultRequestHeaders.Authorization.Parameter != accessToken) {
                     _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 }
@@ -176,7 +185,5 @@ namespace Drive.Client.Services.RequestProvider {
                 throw new HttpRequestExceptionEx(response.StatusCode, content);
             }
         }
-
-
     }
 }
