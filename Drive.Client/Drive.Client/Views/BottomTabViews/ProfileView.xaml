@@ -80,18 +80,13 @@
                                     <TapGestureRecognizer Command="{Binding EditUserNameCommand}" NumberOfTapsRequired="1" />
                                 </Grid.GestureRecognizers>
 
-                                <!--<controls:LabelExtended
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    Style="{StaticResource smallTitleLabel}"
-                                    Text="{Binding Path=[UserNameUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />-->
                                 <controls:LabelExtended
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     LetterSpacing="{OnPlatform iOS=1.4,
                                                                Android=0.07}"
                                     Style="{StaticResource smallTitleLabel}"
-                                    Text="ІМ'Я КОРИСТУВАЧА" />
+                                    Text="{Binding Path=[UserNameUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
                                 <controls:LabelExtended
                                     Grid.Row="1"
                                     Grid.Column="0"
@@ -262,67 +257,7 @@
                                     Source="resource://Drive.Client.Resources.Images.PasswordKey.svg"
                                     VerticalOptions="Center" />
                             </Grid>
-
-                            <!--<Grid HeightRequest="50" RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="30" />
-                                </Grid.ColumnDefinitions>
-
-                                <controls:LabelExtended
-                                    Grid.Row="0"
-                                    Grid.RowSpan="2"
-                                    Grid.Column="0"
-                                    FontFamily="{StaticResource SFProLight}"
-                                    FontSize="{StaticResource MediumSize}"
-                                    Text="Конфіденційність та безпека"
-                                    TextColor="{StaticResource DarkColor}"
-                                    VerticalOptions="Center" />
-
-                                <ffimageloadingsvg:SvgCachedImage
-                                    Grid.Row="0"
-                                    Grid.RowSpan="2"
-                                    Grid.Column="1"
-                                    HeightRequest="20"
-                                    HorizontalOptions="End"
-                                    Source="resource://Drive.Client.Resources.Images.Security.svg"
-                                    VerticalOptions="Center" />
-                            </Grid>-->
-
-                            <!--<Grid HeightRequest="50" RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="30" />
-                                </Grid.ColumnDefinitions>
-
-                                <controls:LabelExtended
-                                    Grid.Row="0"
-                                    Grid.RowSpan="2"
-                                    Grid.Column="0"
-                                    FontFamily="{StaticResource SFProLight}"
-                                    FontSize="{StaticResource MediumSize}"
-                                    Text="Питання до експертів"
-                                    TextColor="{StaticResource DarkColor}"
-                                    VerticalOptions="Center" />
-
-                                <ffimageloadingsvg:SvgCachedImage
-                                    Grid.Row="0"
-                                    Grid.RowSpan="2"
-                                    Grid.Column="1"
-                                    HeightRequest="20"
-                                    HorizontalOptions="End"
-                                    Source="resource://Drive.Client.Resources.Images.Idea.svg"
-                                    VerticalOptions="Center" />
-                            </Grid>-->
-
+                            <!--  LOG OUT  -->
                             <Grid HeightRequest="50" RowSpacing="0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
@@ -343,7 +278,7 @@
                                     LetterSpacing="{OnPlatform iOS=1.4,
                                                                Android=0.07}"
                                     Style="{StaticResource baseTitleLabel}"
-                                    Text="Вийти" />
+                                    Text="{Binding [LogOut].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
 
                                 <ffimageloadingsvg:SvgCachedImage
                                     Grid.Row="0"
@@ -416,20 +351,22 @@
                     VerticalOptions="Center"
                     WidthRequest="200" />
 
-                <Label
+                <controls:LabelExtended
                     Margin="0,30"
                     FontFamily="{StaticResource SFProLight}"
                     FontSize="{StaticResource MediumSize}"
                     HorizontalOptions="Center"
-                    Text="WE ARE HAPPY YOU ARE HERE LET'S DO THIS"
+                    Text="{Binding Path=[AppSlogan].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
                     TextColor="{StaticResource DarkColor}"
                     VerticalOptions="End" />
             </Grid>
 
             <StackLayout
                 Grid.Row="1"
+                Margin="0,0,0,20"
                 Padding="20,0"
-                Spacing="0">
+                Spacing="20"
+                VerticalOptions="End">
 
                 <controls:ExtendedContentView
                     BackgroundColor="{StaticResource Key=DarkBlueColor}"
@@ -439,30 +376,40 @@
                     <controls:ExtendedContentView.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Path=LoginCommand}" />
                     </controls:ExtendedContentView.GestureRecognizers>
-                    <Label
+                    <controls:LabelExtended
                         FontFamily="{StaticResource SFProLight}"
                         FontSize="{StaticResource MediumSize}"
                         HorizontalTextAlignment="Center"
+                        LetterSpacing="{OnPlatform iOS=1.6,
+                                                   Android=0.07}"
                         Text="ЛОГІН"
                         TextColor="{StaticResource WhiteColor}"
                         VerticalTextAlignment="Center" />
                 </controls:ExtendedContentView>
 
-                <controls:ExtendedContentView
-                    Margin="0,13,0,0"
-                    BackgroundColor="{StaticResource Key=WhiteColor}"
-                    HeightRequest="52">
-                    <controls:ExtendedContentView.GestureRecognizers>
+                <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                    <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Path=RegisterCommand}" />
-                    </controls:ExtendedContentView.GestureRecognizers>
-                    <Label
+                    </StackLayout.GestureRecognizers>
+                    <controls:LabelExtended
                         FontFamily="{StaticResource SFProLight}"
                         FontSize="{StaticResource MediumSize}"
                         HorizontalTextAlignment="Center"
-                        Text="РЕЄСТРАЦІЯ"
-                        TextColor="{StaticResource DarkBlueColor}"
-                        VerticalTextAlignment="Center" />
-                </controls:ExtendedContentView>
+                        LetterSpacing="{OnPlatform iOS=1.2,
+                                                   Android=0.07}"
+                        Text="Немає аккаунта?"
+                        TextColor="{StaticResource BaseGrayColor}"
+                        VerticalOptions="Center" />
+                    <controls:LabelExtended
+                        FontFamily="{StaticResource SFProLight}"
+                        FontSize="{StaticResource MediumSize}"
+                        HorizontalTextAlignment="Center"
+                        LetterSpacing="{OnPlatform iOS=1.2,
+                                                   Android=0.07}"
+                        Text="Реєстрація"
+                        TextColor="{StaticResource HardGrayColor}"
+                        VerticalOptions="Center" />
+                </StackLayout>
 
                 <!--<Label
                     Margin="0,30,0,0"

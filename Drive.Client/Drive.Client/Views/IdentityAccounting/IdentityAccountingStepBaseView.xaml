@@ -22,7 +22,7 @@
                     FontFamily="{StaticResource SFProLight}"
                     FontSize="{StaticResource MediumSize}"
                     HorizontalOptions="Center"
-                    Text="{Binding Path=StepTitle}"
+                    Text="{Binding Path=StepTitle.Value, Mode=TwoWay}"
                     TextColor="{StaticResource DarkColor}"
                     VerticalOptions="End" />
 

@@ -61,11 +61,182 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actual information as of 10.04.2018.
+        /// </summary>
+        public static string ActualInfo {
+            get {
+                return ResourceManager.GetString("ActualInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reliably serves your interests..
+        /// </summary>
+        public static string AppSlogan {
+            get {
+                return ResourceManager.GetString("AppSlogan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Body.
+        /// </summary>
+        public static string BodyType {
+            get {
+                return ResourceManager.GetString("BodyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brand.
+        /// </summary>
+        public static string Brand {
+            get {
+                return ResourceManager.GetString("Brand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color.
+        /// </summary>
+        public static string Color {
+            get {
+                return ResourceManager.GetString("Color", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Capacity.
+        /// </summary>
+        public static string EngineCapacity {
+            get {
+                return ResourceManager.GetString("EngineCapacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fuel.
+        /// </summary>
+        public static string FuelType {
+            get {
+                return ResourceManager.GetString("FuelType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full weight.
+        /// </summary>
+        public static string FullWeight {
+            get {
+                return ResourceManager.GetString("FullWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kind.
+        /// </summary>
+        public static string Kind {
+            get {
+                return ResourceManager.GetString("Kind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log out.
+        /// </summary>
+        public static string LogOut {
+            get {
+                return ResourceManager.GetString("LogOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to STATE TRANSPORT REGISTER.
+        /// </summary>
+        public static string MainTitle {
+            get {
+                return ResourceManager.GetString("MainTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INPUT NUMBER PHONE.
+        /// </summary>
+        public static string PhoneNumberUpperCase {
+            get {
+                return ResourceManager.GetString("PhoneNumberUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purpose.
+        /// </summary>
+        public static string Purpose {
+            get {
+                return ResourceManager.GetString("Purpose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registration Date.
+        /// </summary>
+        public static string RegistrationDate {
+            get {
+                return ResourceManager.GetString("RegistrationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SEARCH FOR NUMBERS.
+        /// </summary>
+        public static string SearchByNumber {
+            get {
+                return ResourceManager.GetString("SearchByNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TSC.
+        /// </summary>
+        public static string TSC {
+            get {
+                return ResourceManager.GetString("TSC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TSC code.
+        /// </summary>
+        public static string TSCcode {
+            get {
+                return ResourceManager.GetString("TSCcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to USER NAME.
         /// </summary>
         public static string UserNameUpperCase {
             get {
                 return ResourceManager.GetString("UserNameUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weight without load.
+        /// </summary>
+        public static string WeightWithoutLoad {
+            get {
+                return ResourceManager.GetString("WeightWithoutLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year of creation.
+        /// </summary>
+        public static string YearOfCreation {
+            get {
+                return ResourceManager.GetString("YearOfCreation", resourceCulture);
             }
         }
     }

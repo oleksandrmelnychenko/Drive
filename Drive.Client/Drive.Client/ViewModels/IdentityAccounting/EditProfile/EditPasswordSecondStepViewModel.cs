@@ -17,7 +17,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
         ///     ctor().
         /// </summary>
         public EditPasswordSecondStepViewModel() {
-            StepTitle = NEW_PASSWORD_STEP_REGISTRATION_TITLE;
+            //StepTitle = NEW_PASSWORD_STEP_REGISTRATION_TITLE;
             MainInputPlaceholder = PASSWORD_PLACEHOLDER_STEP_REGISTRATION;
             MainInputIconPath = PASSWORD_ICON_PATH;
             IsPasswordInput = true;

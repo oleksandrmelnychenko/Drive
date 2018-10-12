@@ -29,7 +29,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
         public SignInPasswordStepViewModel(IIdentityService identityService) {
             _identityService = identityService;
 
-            StepTitle = PASSWORD_STEP_REGISTRATION_TITLE;
+            //StepTitle = PASSWORD_STEP_REGISTRATION_TITLE;
             MainInputPlaceholder = PASSWORD_PLACEHOLDER_STEP_REGISTRATION;
             MainInputIconPath = PASSWORD_ICON_PATH;
             IsPasswordInput = true;

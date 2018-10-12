@@ -12,7 +12,7 @@ namespace Drive.Client.Helpers.Localize {
 
         public static readonly string APP_STRINGS_PATH = "Drive.Client.Resources.Resx.AppStrings";
 
-        private readonly CultureInfo _defaultCulture = new CultureInfo("en-US");
+        private readonly CultureInfo _defaultCulture = new CultureInfo("uk-UA");
         private readonly ResourceManager _manager;
         private readonly List<StringResource> _resources = new List<StringResource>();
 

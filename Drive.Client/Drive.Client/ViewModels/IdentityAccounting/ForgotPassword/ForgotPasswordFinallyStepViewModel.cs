@@ -24,7 +24,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.ForgotPassword {
         public ForgotPasswordFinallyStepViewModel(IIdentityService identityService) {
             _identityService = identityService;
 
-            StepTitle = PASSWORD_CONFIRM_STEP_REGISTRATION_TITLE;
+            //StepTitle = PASSWORD_CONFIRM_STEP_REGISTRATION_TITLE;
             MainInputPlaceholder = PASSWORD_PLACEHOLDER_STEP_REGISTRATION;
             MainInputIconPath = PASSWORD_ICON_PATH;
             IsPasswordInput = true;
@@ -74,10 +74,10 @@ namespace Drive.Client.ViewModels.IdentityAccounting.ForgotPassword {
                     }
                 }
                 catch (Exception ex) {
-                    var tt = JsonConvert.DeserializeObject<HttpRequestExceptionResult>(ex.Message);
-                    ServerError = tt.Message;
+                    var error = JsonConvert.DeserializeObject<HttpRequestExceptionResult>(ex.Message);
+                    ServerError = error.Message;
 
-                    Debug.WriteLine($"ERROR:{ex.Message}");
+                    Debug.WriteLine($"ERROR:{error.Message}");
                     Debugger.Break();
                 }
                 SetBusy(busyKey, false);
