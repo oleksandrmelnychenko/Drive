@@ -1,4 +1,5 @@
 ﻿using Drive.Client.Exceptions;
+using Drive.Client.Helpers;
 using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Services.Identity;
 using Newtonsoft.Json;
@@ -23,7 +24,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile
             _identityService = identityService;
 
             StepTitle = NAME_STEP_REGISTRATION_TITLE;
-            MainInputPlaceholder = NAME_PLACEHOLDER_STEP_REGISTRATION;
+            MainInputPlaceholder = BaseSingleton<GlobalSetting>.Instance.UserProfile?.UserName;
             MainInputIconPath = NAME_ICON_PATH;
         }
 

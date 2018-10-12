@@ -1,8 +1,11 @@
 ﻿using Drive.Client.Exceptions;
 using Drive.Client.Extensions;
 using Drive.Client.Helpers;
+using Drive.Client.Models.Arguments.IdentityAccounting.ChangePassword;
+using Drive.Client.Models.Arguments.IdentityAccounting.ForgotPassword;
 using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
 using Drive.Client.Models.EntityModels.Identity;
+using Drive.Client.Models.Medias;
 using Drive.Client.Services.RequestProvider;
 using System;
 using System.Collections.Generic;
@@ -128,6 +131,7 @@ namespace Drive.Client.Services.Identity {
 
                    if (changedProfileData != null) {
                        BaseSingleton<GlobalSetting>.Instance.UserProfile.PhoneNumber = changedProfileData.PhoneNumber;
+                       BaseSingleton<GlobalSetting>.Instance.UserProfile.SaveChanges();
                    }
                }
                catch (ConnectivityException ex) {
@@ -155,6 +159,7 @@ namespace Drive.Client.Services.Identity {
 
                    if (changedProfileData != null) {
                        BaseSingleton<GlobalSetting>.Instance.UserProfile.UserName = changedProfileData.UserName;
+                       BaseSingleton<GlobalSetting>.Instance.UserProfile.SaveChanges();
                    }
                }
                catch (ConnectivityException ex) {
@@ -182,6 +187,7 @@ namespace Drive.Client.Services.Identity {
 
                     if (changedProfileData != null) {
                         BaseSingleton<GlobalSetting>.Instance.UserProfile.Email = changedProfileData.Email;
+                        BaseSingleton<GlobalSetting>.Instance.UserProfile.SaveChanges();
                     }
                 }
                 catch (ConnectivityException ex) {
@@ -197,7 +203,112 @@ namespace Drive.Client.Services.Identity {
                 return changedProfileData;
             }, cancellationToken);
 
-            private static void SetupProfile(AuthenticationResult authenticationResult) {
+        public async Task<string> UploadUserAvatarAsync(PickedImage pickedImage, CancellationToken cancellationToken = default(CancellationToken)) =>
+           await Task.Run(async () => {
+               string userAvatar = string.Empty;
+
+               string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.IdentityEndpoints.UploadUserAvatarEndpoint;
+               string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+
+               try {
+                   User user = await _requestProvider.PostFormDataAsync<User, PickedImage>(url, pickedImage, accessToken);
+
+                   if (user != null) {
+                       userAvatar = user.AvatarUrl;
+                       BaseSingleton<GlobalSetting>.Instance.UserProfile.AvatarUrl = user.AvatarUrl;
+                       BaseSingleton<GlobalSetting>.Instance.UserProfile.SaveChanges();
+                   }
+               }
+               catch (ConnectivityException ex) {
+                   throw ex;
+               }
+               catch (HttpRequestExceptionEx ex) {
+                   throw ex;
+               }
+               catch (Exception ex) {
+                   Debug.WriteLine($"ERROR:{ex.Message}");
+                   Debugger.Break();
+               }
+               return userAvatar;
+           }, cancellationToken);
+
+
+        public async Task<User> UpdatePasswordAsync(ChangePasswordArgs changePasswordArgs, CancellationToken cancellationToken = default(CancellationToken)) =>
+            await Task.Run(async () => {
+                User user = null;
+
+                string url = string.Format(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.IdentityEndpoints.ChangePasswordEndPoint,
+                     changePasswordArgs.NewPassword, changePasswordArgs.CurrentPassword);
+                string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+
+                try {
+                    user = await _requestProvider.PostAsync<User, object>(url, null, accessToken);
+
+                    if (user != null) {
+
+                    }
+                }
+                catch (ConnectivityException ex) {
+                    throw ex;
+                }
+                catch (HttpRequestExceptionEx ex) {
+                    throw ex;
+                }
+                catch (Exception ex) {
+                    Debug.WriteLine($"ERROR:{ex.Message}");
+                    Debugger.Break();
+                }
+                return user;
+            }, cancellationToken);
+
+
+        public async Task<CanChangeForgottenPassword> CanUserChangeForgottenPasswordAsync(string phoneNumber, string name, CancellationToken cancellationToken = default(CancellationToken)) =>
+            await Task.Run(async () => {
+                CanChangeForgottenPassword result = null;
+
+                string url = string.Format(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.IdentityEndpoints.CanUserChangeForgottenPasswordEndPoint,
+                                           phoneNumber,
+                                           name);
+                try {
+                    result = await _requestProvider.GetAsync<CanChangeForgottenPassword>(url);
+                }
+                catch (ConnectivityException ex) {
+                    throw ex;
+                }
+                catch (HttpRequestExceptionEx ex) {
+                    throw ex;
+                }
+                catch (Exception ex) {
+                    Debug.WriteLine($"ERROR:{ex.Message}");
+                    Debugger.Break();
+                }
+                return result;
+            }, cancellationToken);
+
+
+        public async Task<User> ForgotPasswordAsync(ForgotPasswordArgs forgotPasswordArgs, CancellationToken cancellationToken = default(CancellationToken)) =>
+            await Task.Run(async () => {
+                User user = null;
+
+                string url = string.Format(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.IdentityEndpoints.ForgotPasswordEndPoint,
+                                           forgotPasswordArgs.PhoneNumber, forgotPasswordArgs.UserName, forgotPasswordArgs.NewPassword);
+                try {
+                    user = await _requestProvider.PutAsync<User, object>(url, null);
+                }
+                catch (ConnectivityException ex) {
+                    throw ex;
+                }
+                catch (HttpRequestExceptionEx ex) {
+                    throw ex;
+                }
+                catch (Exception ex) {
+                    Debug.WriteLine($"ERROR:{ex.Message}");
+                    Debugger.Break();
+                }
+                return user;
+            }, cancellationToken);
+
+        private static void SetupProfile(AuthenticationResult authenticationResult) {
             try {
                 BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken = authenticationResult.AccessToken;
                 BaseSingleton<GlobalSetting>.Instance.UserProfile.RefreshToken = authenticationResult.RefreshToken;
@@ -206,6 +317,9 @@ namespace Drive.Client.Services.Identity {
                 BaseSingleton<GlobalSetting>.Instance.UserProfile.PhoneNumber = authenticationResult.User.PhoneNumber;
                 BaseSingleton<GlobalSetting>.Instance.UserProfile.Email = authenticationResult.User?.Email;
                 BaseSingleton<GlobalSetting>.Instance.UserProfile.UserName = authenticationResult.User.UserName;
+                BaseSingleton<GlobalSetting>.Instance.UserProfile.AvatarUrl = authenticationResult.User.AvatarUrl;
+
+                BaseSingleton<GlobalSetting>.Instance.UserProfile.SaveChanges();
             }
             catch (Exception ex) {
                 Debug.WriteLine($"ERROR:{ex.Message}");

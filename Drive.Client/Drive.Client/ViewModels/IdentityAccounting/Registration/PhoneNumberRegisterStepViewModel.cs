@@ -8,6 +8,7 @@ using System.Diagnostics;
 using Drive.Client.Services.Identity;
 using System.Threading;
 using Drive.Client.Models.EntityModels.Identity;
+using Newtonsoft.Json;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
     public class PhoneNumberRegisterStepViewModel : IdentityAccountingStepBaseViewModel {
@@ -25,7 +26,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
         public PhoneNumberRegisterStepViewModel(IIdentityService identityService) {
             _identityService = identityService;
 
-            StepTitle = PHONE_STEP_REGISTRATION_TITLE;
+            StepTitle = PHONENUMBER_TITLE_TITLE;
             MainInputPlaceholder = PHONE_PLACEHOLDER_STEP_REGISTRATION;
             MainInputIconPath = PHONENUMBER_ICON_PATH;
             KeyboardType = Device.RuntimePlatform == Device.Android ? Keyboard.Telephone : Keyboard.Default;
@@ -58,6 +59,8 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
                     } 
                 }
                 catch (Exception ex) {
+                    ServerError = ex.Message;                   
+
                     Debug.WriteLine($"ERROR:{ex.Message}");
                     Debugger.Break();
                 }

@@ -1,5 +1,6 @@
 ﻿using Drive.Client.Exceptions;
 using Drive.Client.Helpers;
+using Drive.Client.Models.Medias;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
 using Plugin.DeviceInfo;
@@ -33,7 +34,7 @@ namespace Drive.Client.Services.RequestProvider {
         }
 
         /// <summary>
-        /// TODO: implement Base request/response models
+        /// GET.
         /// </summary>
         public async Task<TResult> GetAsync<TResult>(string uri, string accessToken = "") {
             //  Check internet connection.
@@ -54,7 +55,7 @@ namespace Drive.Client.Services.RequestProvider {
         }
 
         /// <summary>
-        /// TODO: implement Base request/response models
+        /// POST.
         /// </summary>
         public async Task<TResponseValue> PostAsync<TResponseValue, TBodyContent>(string uri, TBodyContent bodyContent, string accessToken = "") =>
             await Task.Run(async () => {
@@ -77,6 +78,74 @@ namespace Drive.Client.Services.RequestProvider {
                 string serialized = await response.Content.ReadAsStringAsync();
 
                 TResponseValue result = JsonConvert.DeserializeObject<TResponseValue>(serialized);
+
+                return result;
+            });
+
+        /// <summary>
+        /// POST form-data.
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <typeparam name="TBodyContent"></typeparam>
+        /// <param name="uri"></param>
+        /// <param name="bodyContent"></param>
+        /// <param name="accessToken"></param>
+        /// <returns></returns>
+        public async Task<TResult> PostFormDataAsync<TResult, TBodyContent>(string uri, TBodyContent bodyContent, string accessToken = "")
+            where TBodyContent : PickedMediaBase =>
+            await Task.Run(async () => {
+                if (!CrossConnectivity.Current.IsConnected) throw new ConnectivityException(AppConsts.ERROR_INTERNET_CONNECTION);
+
+                TResult result = default(TResult);
+
+                SetAccesToken(accessToken);
+
+                using (MultipartFormDataContent formDataContent = new MultipartFormDataContent()) {
+                    if (bodyContent != null) {
+                        ByteArrayContent byteArrayContent = new ByteArrayContent(bodyContent.Body);
+
+                        formDataContent.Add(byteArrayContent, "ImageFile", bodyContent.Name);
+
+                        HttpResponseMessage response = await _client.PostAsync(uri, formDataContent);
+
+                        await HandleResponse(response);
+
+                        string serialized = await response.Content.ReadAsStringAsync();
+
+                        result = JsonConvert.DeserializeObject<TResult>(serialized);
+                    }
+                }
+
+                return result;
+            });
+
+        /// <summary>
+        /// PUT.
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="url"></param>
+        /// <param name="accessToken"></param>
+        /// <returns></returns>
+        public async Task<TResult> PutAsync<TResult, TBodyContent>(string url, TBodyContent bodyContent, string accessToken = "") =>
+            await Task.Run(async () => {
+                if (!CrossConnectivity.Current.IsConnected) throw new ConnectivityException(AppConsts.ERROR_INTERNET_CONNECTION);
+                HttpContent content = null;
+                TResult result = default(TResult);
+
+                SetAccesToken(accessToken);
+
+                if (bodyContent != null) {
+                    content = new StringContent(JsonConvert.SerializeObject(bodyContent));
+                    content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                }
+                HttpResponseMessage response = await _client.PutAsync(url, content);
+
+                await HandleResponse(response);
+
+                string serialized = await response.Content.ReadAsStringAsync();
+
+                result = await Task.Run(() =>
+                    JsonConvert.DeserializeObject<TResult>(serialized));
 
                 return result;
             });
@@ -107,5 +176,7 @@ namespace Drive.Client.Services.RequestProvider {
                 throw new HttpRequestExceptionEx(response.StatusCode, content);
             }
         }
+
+
     }
 }

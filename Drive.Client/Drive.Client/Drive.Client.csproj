@@ -37,6 +37,7 @@
     <None Remove="Resources\Images\Gear.svg" />
     <None Remove="Resources\Images\Home.svg" />
     <None Remove="Resources\Images\Idea.svg" />
+    <None Remove="Resources\Images\Mask.svg" />
     <None Remove="Resources\Images\name.svg" />
     <None Remove="Resources\Images\Ok.svg" />
     <None Remove="Resources\Images\Out.svg" />
@@ -67,6 +68,7 @@
     <EmbeddedResource Include="Resources\Images\Gear.svg" />
     <EmbeddedResource Include="Resources\Images\Home.svg" />
     <EmbeddedResource Include="Resources\Images\Idea.svg" />
+    <EmbeddedResource Include="Resources\Images\Mask.svg" />
     <EmbeddedResource Include="Resources\Images\name.svg" />
     <EmbeddedResource Include="Resources\Images\Ok.svg" />
     <EmbeddedResource Include="Resources\Images\Out.svg" />
@@ -96,7 +98,7 @@
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.3.840" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.3.840" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.3.840" />
-    <PackageReference Include="Xamarin.Forms" Version="3.2.0.839982" />
+    <PackageReference Include="Xamarin.Forms" Version="3.2.0.871581" />
   </ItemGroup>
 
   <ItemGroup>
@@ -107,6 +109,12 @@
     </Compile>
     <Compile Update="Views\DriveAutoDetailsView.xaml.cs">
       <DependentUpon>DriveAutoDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\IdentityAccounting\EditProfile\EditPasswordFirstStepView.xaml.cs">
+      <DependentUpon>EditPasswordFirstStepView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\IdentityAccounting\Registration\SignInPasswordStepView.xaml.cs">
+      <DependentUpon>SignInPasswordStepView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -151,13 +159,31 @@
     <EmbeddedResource Update="Views\FoundDriveAutoView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\IdentityAccounting\EditProfile\EditPasswordFinallyStepView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\IdentityAccounting\EditProfile\EditPasswordFirstStepView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\IdentityAccounting\EditProfile\EditEmailView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\IdentityAccounting\EditProfile\EditPasswordSecondStepView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\IdentityAccounting\EditProfile\EditPhoneNumberView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\IdentityAccounting\EditProfile\EditUserNameView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\IdentityAccounting\ForgotPassword\ForgotPasswordFinallyStepView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\IdentityAccounting\ForgotPassword\ForgotPasswordFirstStepView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\IdentityAccounting\ForgotPassword\ForgotPasswordSecondStepView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\IdentityAccounting\IdentityAccountingStepBaseView.xaml">
@@ -175,7 +201,7 @@
     <EmbeddedResource Update="Views\IdentityAccounting\Registration\PhoneNumberRegisterStepView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\IdentityAccounting\Registration\SignInNameStepView.xaml">
+    <EmbeddedResource Update="Views\IdentityAccounting\Registration\SignInPasswordStepView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\IdentityAccounting\Registration\SignInPhoneNumberStepView.xaml">

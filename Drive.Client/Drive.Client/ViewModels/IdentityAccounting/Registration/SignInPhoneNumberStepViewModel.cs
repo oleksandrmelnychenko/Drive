@@ -13,7 +13,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
         ///     ctor().
         /// </summary>
         public SignInPhoneNumberStepViewModel() {
-            StepTitle = PHONE_STEP_SIGNIN_TITLE;
+            StepTitle = PHONENUMBER_TITLE_TITLE;
             MainInputPlaceholder = PHONE_PLACEHOLDER_STEP_REGISTRATION;
             MainInputIconPath = PHONENUMBER_ICON_PATH;
             KeyboardType = Device.RuntimePlatform == Device.Android ? Keyboard.Telephone : Keyboard.Default;
@@ -30,7 +30,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
                 SetBusy(busyKey, true);
 
                 try {
-                    await NavigationService.NavigateToAsync<SignInNameStepViewModel>(new SignInArgs() { PhoneNumber = MainInput.Value });
+                    await NavigationService.NavigateToAsync<SignInPasswordStepViewModel>(new SignInArgs() { PhoneNumber = MainInput.Value });
                 }
                 catch (Exception ex) {
                     Debug.WriteLine($"ERROR:{ex.Message}");

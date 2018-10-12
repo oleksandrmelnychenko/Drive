@@ -2,15 +2,18 @@
 using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
 using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Services.Identity;
+using Drive.Client.ViewModels.IdentityAccounting.ForgotPassword;
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
-    public sealed class SignInNameStepViewModel : IdentityAccountingStepBaseViewModel {
+    public sealed class SignInPasswordStepViewModel : IdentityAccountingStepBaseViewModel {
 
         private CancellationTokenSource _signInCancellationTokenSource = new CancellationTokenSource();
 
@@ -18,10 +21,12 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
 
         private SignInArgs _signInArgsArgs;
 
+        public ICommand ForgotPasswordCommand => new Command(async () => await NavigationService.NavigateToAsync<ForgotPasswordFirstStepViewModel>(_signInArgsArgs.PhoneNumber));
+
         /// <summary>
         ///     ctor().
         /// </summary>
-        public SignInNameStepViewModel(IIdentityService identityService) {
+        public SignInPasswordStepViewModel(IIdentityService identityService) {
             _identityService = identityService;
 
             StepTitle = PASSWORD_STEP_REGISTRATION_TITLE;
@@ -66,8 +71,8 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
                     }
                     catch (HttpRequestExceptionEx ex) {
                         var tt = JsonConvert.DeserializeObject<HttpRequestExceptionResult>(ex.Message);
-                        await DialogService.ToastAsync(tt.Message);
                         Debug.WriteLine($"ERROR:{tt.Message}");
+                        ServerError = tt.Message;
                         Debugger.Break();
                     }
                     catch (Exception ex) {

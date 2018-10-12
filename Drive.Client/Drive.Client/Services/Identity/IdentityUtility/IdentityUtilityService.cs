@@ -1,4 +1,5 @@
-﻿using Drive.Client.Helpers;
+﻿using Drive.Client.Exceptions;
+using Drive.Client.Helpers;
 using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Services.Dialog;
 using Drive.Client.Services.Navigation;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Drive.Client.Services.Identity.IdentityUtility {
     public class IdentityUtilityService : IIdentityUtilityService {
+
         private readonly IDialogService _dialogService;
 
         private readonly IRequestProvider _requestProvider;
@@ -34,12 +36,19 @@ namespace Drive.Client.Services.Identity.IdentityUtility {
                 if (logOutResult != null) {
                     if (logOutResult.IsRequestSuccess) {
                         BaseSingleton<GlobalSetting>.Instance.UserProfile.ClearUserProfile();
+                        BaseSingleton<GlobalSetting>.Instance.UserProfile.SaveChanges();
 
                         await _navigationService.InitializeAsync();
                     } else {
                         await _dialogService.ToastAsync(logOutResult.Message);
                     }
                 }
+            }
+            catch (ConnectivityException ex) {
+                throw ex;
+            }
+            catch (HttpRequestExceptionEx ex) {
+                throw ex;
             }
             catch (Exception ex) {
                 Debug.WriteLine($"ERROR:{ex.Message}");

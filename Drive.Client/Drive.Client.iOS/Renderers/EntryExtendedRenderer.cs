@@ -39,7 +39,7 @@ namespace Drive.Client.iOS.Renderers {
 
             if (e.PropertyName == EntryExtended.LetterSpacingPlaceholderProperty.PropertyName) {
                 SetLetterSpacingPlaceholder();
-            }else if (e.PropertyName == Entry.PlaceholderProperty.PropertyName) {
+            } else if (e.PropertyName == Entry.PlaceholderProperty.PropertyName) {
                 SetLetterSpacingPlaceholder();
             } else if (e.PropertyName == Entry.TextProperty.PropertyName) {
                 SetLetterSpacingText();
@@ -64,13 +64,14 @@ namespace Drive.Client.iOS.Renderers {
         private void SetLetterSpacingPlaceholder() {
             if (Element is EntryExtended entryExtended) {
                 try {
-                    Control.AttributedPlaceholder =new NSAttributedString(str: Control.Placeholder,
-                                                                          font: UIKit.UIFont.SystemFontOfSize((float)entryExtended.FontSize),
-                                                                          kerning: entryExtended.LetterSpacingPlaceholder);
+                    if (Control.Placeholder != null) {
+                        Control.AttributedPlaceholder = new NSAttributedString(str: Control.Placeholder,
+                                                                               font: UIKit.UIFont.SystemFontOfSize((float)entryExtended.FontSize),
+                                                                               kerning: entryExtended.LetterSpacingPlaceholder);
+                    }
                 }
                 catch (Exception ex) {
                     Debugger.Break();
-                    throw;
                 }
             }
         }
