@@ -61,11 +61,56 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TEST.
+        ///   Looks up a localized string similar to Actual information as of 10.04.2018.
         /// </summary>
-        public static string todo {
+        public static string ActualInfo {
             get {
-                return ResourceManager.GetString("todo", resourceCulture);
+                return ResourceManager.GetString("ActualInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reliably serves your interests..
+        /// </summary>
+        public static string AppSlogan {
+            get {
+                return ResourceManager.GetString("AppSlogan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log out.
+        /// </summary>
+        public static string LogOut {
+            get {
+                return ResourceManager.GetString("LogOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to STATE TRANSPORT REGISTER.
+        /// </summary>
+        public static string MainTitle {
+            get {
+                return ResourceManager.GetString("MainTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INPUT NUMBER PHONE.
+        /// </summary>
+        public static string PhoneNumberUpperCase {
+            get {
+                return ResourceManager.GetString("PhoneNumberUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SEARCH FOR NUMBERS.
+        /// </summary>
+        public static string SearchByNumber {
+            get {
+                return ResourceManager.GetString("SearchByNumber", resourceCulture);
             }
         }
         

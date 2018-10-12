@@ -44,7 +44,6 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<HomeViewModel>();
             builder.RegisterType<MainViewModel>();
             builder.RegisterType<PostViewModel>();
-            builder.RegisterType<LoginViewModel>();
             builder.RegisterType<SearchViewModel>();
             builder.RegisterType<ProfileViewModel>();
             builder.RegisterType<BookmarkViewModel>();

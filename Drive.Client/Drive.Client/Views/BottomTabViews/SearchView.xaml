@@ -7,6 +7,7 @@
     xmlns:controls="clr-namespace:Drive.Client.Controls"
     xmlns:converters="clr-namespace:Drive.Client.Converters"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
     xmlns:stackList="clr-namespace:Drive.Client.Controls.Stacklist"
     BackgroundColor="{StaticResource WhiteColor}">
 
@@ -50,7 +51,7 @@
             FontFamily="{StaticResource SFProLight}"
             FontSize="{StaticResource MediumSize}"
             HorizontalOptions="Center"
-            Text="ДЕРЖАВНИЙ ТРАНСПОРТНИЙ РЕЄСТР"
+            Text="{Binding [MainTitle].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
             TextColor="{StaticResource DarkColor}"
             VerticalOptions="End" />
 
@@ -120,7 +121,7 @@
                     LetterSpacingPlaceholder="{OnPlatform iOS=1.3,
                                                           Android=0.1}"
                     MaxLength="20"
-                    Placeholder="ПОШУК ЗА НОМЕРОМ"
+                    Placeholder="{Binding [SearchByNumber].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
                     PlaceholderColor="{StaticResource ExtraGrayColor}"
                     ReturnType="Search"
                     Text="{Binding TargetValue, Converter={StaticResource UpperCaseConverter}, Mode=TwoWay}"
@@ -150,26 +151,13 @@
                 VerticalTextAlignment="Center" />
 
             <!--  INFORMATION  -->
-            <StackLayout
+            <controls:LabelExtended
                 Margin="0,30,0,0"
+                FontFamily="{StaticResource SFProThin}"
+                FontSize="{StaticResource Key=MidMediumSize}"
                 HorizontalOptions="Center"
-                Spacing="3">
-                <controls:LabelExtended
-                    FontFamily="{StaticResource SFProThin}"
-                    FontSize="{StaticResource Key=MidMediumSize}"
-                    HorizontalOptions="Center"
-                    Text="Актуальна інформація на 31.08.2018"
-                    TextColor="{StaticResource Key=ExtraGrayColor}" />
-                <controls:LabelExtended
-                    FontSize="{StaticResource Key=MidMediumSize}"
-                    HorizontalOptions="Center"
-                    Text="data.gov.ua"
-                    TextColor="{StaticResource DarkColor}">
-                    <controls:LabelExtended.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Path=NavigateToSourceCommand}" />
-                    </controls:LabelExtended.GestureRecognizers>
-                </controls:LabelExtended>
-            </StackLayout>
+                Text="{Binding [ActualInfo].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                TextColor="{StaticResource Key=ExtraGrayColor}" />
         </StackLayout>
     </Grid>
 </ContentView>

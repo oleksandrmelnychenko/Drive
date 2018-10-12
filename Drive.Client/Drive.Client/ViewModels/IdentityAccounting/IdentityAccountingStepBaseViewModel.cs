@@ -12,7 +12,7 @@ using Xamarin.Forms;
 namespace Drive.Client.ViewModels.IdentityAccounting {
     public abstract class IdentityAccountingStepBaseViewModel : ContentPageBaseViewModel {
 
-        public static readonly StringResource PHONENUMBER_TITLE = ResourceLoader.Instance.GetString(AppStrings.todo);
+        public static readonly StringResource PHONENUMBER_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.PhoneNumberUpperCase));
         public static readonly string CHANGE_PHONENUMBER_TITLE = "ЗМІНИТИ НОМЕР ТЕЛЕФОНУ";
         public static readonly string NAME_STEP_REGISTRATION_TITLE = "ВВЕДІТЬ ІМ'Я";
         public static readonly string CHANGE_EMAIL_TITLE = "ЕЛЕКТРОННА АДРЕСА";

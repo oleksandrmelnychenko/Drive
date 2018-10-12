@@ -21,7 +21,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.ForgotPassword {
         public ForgotPasswordFirstStepViewModel(IIdentityService identityService) {
             _identityService = identityService;
 
-            StepTitle = NAME_STEP_REGISTRATION_TITLE;
+            //StepTitle = NAME_STEP_REGISTRATION_TITLE;
             MainInputPlaceholder = NAME_PLACEHOLDER_STEP_REGISTRATION;
             MainInputIconPath = NAME_ICON_PATH;
         }

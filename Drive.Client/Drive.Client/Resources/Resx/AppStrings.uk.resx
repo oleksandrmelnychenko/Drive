@@ -117,11 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="todo" xml:space="preserve">
-    <value>ТЕСТ</value>
-  </data>
   <data name="UserNameUpperCase" xml:space="preserve">
     <value>ІМ'Я КОРИСТУВАЧА</value>
     <comment>Used as user name title upercase (in user settings form etc...)</comment>
+  </data>
+  <data name="AppSlogan" xml:space="preserve">
+    <value>Надійно служить вашим інтересам.</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Вийти</value>
+  </data>
+  <data name="ActualInfo" xml:space="preserve">
+    <value>Актуальна інформація на 04.10.2018</value>
+  </data>
+  <data name="MainTitle" xml:space="preserve">
+    <value>ДЕРЖАВНИЙ ТРАНСПОРТНИЙ РЕЄСТР</value>
+  </data>
+  <data name="PhoneNumberUpperCase" xml:space="preserve">
+    <value>ВВЕДІТЬ НОМЕР ТЕЛЕФОНУ</value>
+  </data>
+  <data name="SearchByNumber" xml:space="preserve">
+    <value>ПОШУК ЗА НОМЕРОМ</value>
   </data>
 </root>

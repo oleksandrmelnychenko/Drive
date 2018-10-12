@@ -80,18 +80,13 @@
                                     <TapGestureRecognizer Command="{Binding EditUserNameCommand}" NumberOfTapsRequired="1" />
                                 </Grid.GestureRecognizers>
 
-                                <!--<controls:LabelExtended
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    Style="{StaticResource smallTitleLabel}"
-                                    Text="{Binding Path=[UserNameUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />-->
                                 <controls:LabelExtended
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     LetterSpacing="{OnPlatform iOS=1.4,
                                                                Android=0.07}"
                                     Style="{StaticResource smallTitleLabel}"
-                                    Text="ІМ'Я КОРИСТУВАЧА" />
+                                    Text="{Binding Path=[UserNameUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
                                 <controls:LabelExtended
                                     Grid.Row="1"
                                     Grid.Column="0"
@@ -262,9 +257,7 @@
                                     Source="resource://Drive.Client.Resources.Images.PasswordKey.svg"
                                     VerticalOptions="Center" />
                             </Grid>
-
-                        
-
+                            <!--  LOG OUT  -->
                             <Grid HeightRequest="50" RowSpacing="0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
@@ -285,7 +278,7 @@
                                     LetterSpacing="{OnPlatform iOS=1.4,
                                                                Android=0.07}"
                                     Style="{StaticResource baseTitleLabel}"
-                                    Text="Вийти" />
+                                    Text="{Binding [LogOut].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
 
                                 <ffimageloadingsvg:SvgCachedImage
                                     Grid.Row="0"
@@ -358,19 +351,19 @@
                     VerticalOptions="Center"
                     WidthRequest="200" />
 
-                <Label
+                <controls:LabelExtended
                     Margin="0,30"
                     FontFamily="{StaticResource SFProLight}"
                     FontSize="{StaticResource MediumSize}"
                     HorizontalOptions="Center"
-                    Text="WE ARE HAPPY YOU ARE HERE LET'S DO THIS"
+                    Text="{Binding Path=[AppSlogan].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
                     TextColor="{StaticResource DarkColor}"
                     VerticalOptions="End" />
             </Grid>
 
             <StackLayout
-                Margin="0,0,0,20"
                 Grid.Row="1"
+                Margin="0,0,0,20"
                 Padding="20,0"
                 Spacing="20"
                 VerticalOptions="End">
@@ -386,9 +379,9 @@
                     <controls:LabelExtended
                         FontFamily="{StaticResource SFProLight}"
                         FontSize="{StaticResource MediumSize}"
+                        HorizontalTextAlignment="Center"
                         LetterSpacing="{OnPlatform iOS=1.6,
                                                    Android=0.07}"
-                        HorizontalTextAlignment="Center"
                         Text="ЛОГІН"
                         TextColor="{StaticResource WhiteColor}"
                         VerticalTextAlignment="Center" />
