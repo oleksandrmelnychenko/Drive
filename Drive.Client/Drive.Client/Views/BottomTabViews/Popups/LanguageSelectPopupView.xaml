@@ -57,6 +57,5 @@
                 </stackList:StackList>
             </StackLayout>
         </Grid>
-
     </popups:SinglePopupViewBase.Content>
 </popups:SinglePopupViewBase>
