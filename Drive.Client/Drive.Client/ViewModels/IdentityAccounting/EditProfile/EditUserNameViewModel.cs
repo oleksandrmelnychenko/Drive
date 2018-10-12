@@ -17,6 +17,12 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile
 
         private CancellationTokenSource _changeUserNameCancellationTokenSource = new CancellationTokenSource();
 
+        string _currentNamePlaceholder;
+        public string CurrentNamePlaceholder {
+            get { return _currentNamePlaceholder; }
+            set { SetProperty(ref _currentNamePlaceholder, value); }
+        }
+
         /// <summary>
         ///     ctor().
         /// </summary>
@@ -24,7 +30,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile
             _identityService = identityService;
 
             StepTitle = NAME_STEP_REGISTRATION_TITLE;
-            //MainInputPlaceholder = BaseSingleton<GlobalSetting>.Instance.UserProfile?.UserName;
+            CurrentNamePlaceholder = BaseSingleton<GlobalSetting>.Instance.UserProfile?.UserName;
             MainInputIconPath = NAME_ICON_PATH;
         }
 

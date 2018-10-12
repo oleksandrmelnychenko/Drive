@@ -56,13 +56,13 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
                     SetBusy(busyKey, true);
 
                     try {
-                        var signUpResult = await _identityService.SignInAsync(_signInArgsArgs, cancellationTokenSource.Token);
+                        var signInResult = await _identityService.SignInAsync(_signInArgsArgs, cancellationTokenSource.Token);
 
-                        if (signUpResult != null) {
-                            if (signUpResult.IsSucceed) {
+                        if (signInResult != null) {
+                            if (signInResult.IsSucceed) {
                                 await NavigationService.InitializeAsync();
                             } else {
-                                ServerError = signUpResult.Errors.LastOrDefault().Item2;
+                                ServerError = signInResult.Errors.LastOrDefault().Item2;
                             }
                         } else {
                             Debugger.Break();
@@ -76,7 +76,8 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
                         Debugger.Break();
                     }
                     catch (Exception ex) {
-                        await DialogService.ToastAsync(ex.Message);
+                        ServerError = ex.Message;
+
                         Debug.WriteLine($"ERROR:{ex.Message}");
                         Debugger.Break();
                     }

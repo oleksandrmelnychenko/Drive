@@ -1,5 +1,7 @@
-﻿using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
+﻿using Drive.Client.Helpers.Localize;
+using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
 using Drive.Client.Models.EntityModels.Identity;
+using Drive.Client.Resources.Resx;
 using Drive.Client.Services.Identity;
 using System;
 using System.Diagnostics;
@@ -47,7 +49,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
 
             bool isValid = MainInput.Value != null && MainInput.Value.Equals(_collectedInputsArgs.Password);
             if (!isValid) {
-                ServerError = "Повторно введений пароль невірний";
+                ServerError = (ResourceLoader.Instance.GetString(nameof(AppStrings.ReEnteredPasswordIncorrect)).Value); 
             }
 
             return isValid;

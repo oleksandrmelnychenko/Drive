@@ -19,6 +19,12 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
 
         private CancellationTokenSource _changePhoneNumberCancellationTokenSource = new CancellationTokenSource();
 
+        private string _currentPhoneNumber;
+        public string CurrentPhoneNumber {
+            get { return _currentPhoneNumber; }
+            set { SetProperty(ref _currentPhoneNumber, value); }
+        }
+
         /// <summary>
         ///     ctor().
         /// </summary>
@@ -26,7 +32,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
             _identityService = identityService;
 
             StepTitle = CHANGE_PHONENUMBER_TITLE;
-            //MainInputPlaceholder = BaseSingleton<GlobalSetting>.Instance.UserProfile?.PhoneNumber; ;
+            CurrentPhoneNumber = BaseSingleton<GlobalSetting>.Instance.UserProfile?.PhoneNumber; ;
             MainInputIconPath = PHONENUMBER_ICON_PATH;
             KeyboardType = Device.RuntimePlatform == Device.Android ? Keyboard.Telephone : Keyboard.Default;
         }

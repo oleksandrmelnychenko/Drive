@@ -43,7 +43,7 @@
                             HorizontalTextAlignment="Center"
                             IsPassword="{Binding Path=IsPasswordInput}"
                             Keyboard="{Binding KeyboardType}"
-                            Placeholder="{Binding Path=MainInputPlaceholder.Value, Mode=TwoWay}"
+                            Placeholder="{Binding CurrentNamePlaceholder, Mode=TwoWay}"
                             ReturnType="Done"
                             Text="{Binding Path=MainInput.Value}"
                             TextColor="{StaticResource ExtraGrayColor}">

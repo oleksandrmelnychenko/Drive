@@ -250,4 +250,22 @@
   <data name="ForgotPassword" xml:space="preserve">
     <value>Забули пароль?</value>
   </data>
+  <data name="ByNumberUpperCase" xml:space="preserve">
+    <value>ЗА НОМЕРОМ</value>
+  </data>
+  <data name="ERROR_INTERNET_CONNECTION" xml:space="preserve">
+    <value>Перевірте підключення до інтернету</value>
+  </data>
+  <data name="NextVersionUpperCase" xml:space="preserve">
+    <value>(У НАСТУПНІЙ ВЕРСІЇ)</value>
+  </data>
+  <data name="PersonUpperCase" xml:space="preserve">
+    <value>ФІЗ. ОСОБА</value>
+  </data>
+  <data name="SearchByPersonUpperCase" xml:space="preserve">
+    <value>ПОШУК ЗА ФІЗ. ОСОБОЮ</value>
+  </data>
+  <data name="ReEnteredPasswordIncorrect" xml:space="preserve">
+    <value>Повторно введений пароль невірний</value>
+  </data>
 </root>

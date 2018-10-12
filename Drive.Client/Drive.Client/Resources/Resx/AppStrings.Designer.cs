@@ -97,6 +97,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BY NUMBER.
+        /// </summary>
+        public static string ByNumberUpperCase {
+            get {
+                return ResourceManager.GetString("ByNumberUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change password.
         /// </summary>
         public static string ChangePassword {
@@ -183,6 +192,15 @@ namespace Drive.Client.Resources.Resx {
         public static string EnterPasswordUpperCase {
             get {
                 return ResourceManager.GetString("EnterPasswordUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check your internet connection.
+        /// </summary>
+        public static string ERROR_INTERNET_CONNECTION {
+            get {
+                return ResourceManager.GetString("ERROR_INTERNET_CONNECTION", resourceCulture);
             }
         }
         
@@ -313,6 +331,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (IN THE NEXT VERSION).
+        /// </summary>
+        public static string NextVersionUpperCase {
+            get {
+                return ResourceManager.GetString("NextVersionUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No account?.
         /// </summary>
         public static string NoAcc {
@@ -327,6 +354,15 @@ namespace Drive.Client.Resources.Resx {
         public static string PasswordUpperCase {
             get {
                 return ResourceManager.GetString("PasswordUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INDIVIDUAL.
+        /// </summary>
+        public static string PersonUpperCase {
+            get {
+                return ResourceManager.GetString("PersonUpperCase", resourceCulture);
             }
         }
         
@@ -367,6 +403,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Re-entered password is incorrect.
+        /// </summary>
+        public static string ReEnteredPasswordIncorrect {
+            get {
+                return ResourceManager.GetString("ReEnteredPasswordIncorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Registration Date.
         /// </summary>
         public static string RegistrationDate {
@@ -390,6 +435,15 @@ namespace Drive.Client.Resources.Resx {
         public static string SearchByNumber {
             get {
                 return ResourceManager.GetString("SearchByNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SEARCH FOR A PHYSICAL PERSON.
+        /// </summary>
+        public static string SearchByPersonUpperCase {
+            get {
+                return ResourceManager.GetString("SearchByPersonUpperCase", resourceCulture);
             }
         }
         

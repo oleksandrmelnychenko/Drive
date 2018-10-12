@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Drive.Client.Helpers.Localize;
+using System;
 using System.Threading.Tasks;
 
 namespace Drive.Client.ViewModels.Base {
     public interface IVisualFiguring {
 
-        string TabHeader { get; }
+        StringResource TabHeader { get; }
 
         Type RelativeViewType { get; }
 
