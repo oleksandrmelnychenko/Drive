@@ -4,13 +4,10 @@ using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Services.Identity;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using System.Threading;
 
-namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile
-{
+namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
     public sealed class EditUserNameViewModel : IdentityAccountingStepBaseViewModel {
 
         private readonly IIdentityService _identityService;

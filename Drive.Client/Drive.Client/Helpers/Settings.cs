@@ -1,5 +1,4 @@
-﻿using Drive.Client.Models.Identities;
-using Plugin.Settings;
+﻿using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 
 namespace Drive.Client.Helpers {
@@ -8,26 +7,18 @@ namespace Drive.Client.Helpers {
         private static ISettings AppSettings => CrossSettings.Current;
 
         private const string USER_PROFILE = "user_profile";
-        private const string LANGUAGE_CODE = "language_code";
-        private const string LANGUAGE_NATIVE_NAME = "language_native_name";
+        private const string APP_INTERFACE_CONFIGURATIONS = "app_interface_configurations";
 
-        private static readonly string DefaultUserProfile = string.Empty;
-        private static readonly string LanguageCode = "en-US";
-        private static readonly string LanguageNative = string.Empty;
+        private static readonly string DefaultValueStub = string.Empty;
 
         public static string UserProfile {
-            get => AppSettings.GetValueOrDefault(USER_PROFILE, DefaultUserProfile);
+            get => AppSettings.GetValueOrDefault(USER_PROFILE, DefaultValueStub);
             set => AppSettings.AddOrUpdateValue(USER_PROFILE, value);
         }
 
-        public static string Language {
-            get => AppSettings.GetValueOrDefault(LANGUAGE_CODE, LanguageCode);
-            set => AppSettings.AddOrUpdateValue(LANGUAGE_CODE, value);
-        }
-
-        public static string LanguageNativeName {
-            get => AppSettings.GetValueOrDefault(LANGUAGE_NATIVE_NAME, LanguageNative);
-            set => AppSettings.AddOrUpdateValue(LANGUAGE_NATIVE_NAME, value);
+        public static string AppInterfaceConfigurations {
+            get => AppSettings.GetValueOrDefault(APP_INTERFACE_CONFIGURATIONS, DefaultValueStub);
+            set => AppSettings.AddOrUpdateValue(APP_INTERFACE_CONFIGURATIONS, value);
         }
     }
 }
