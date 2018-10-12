@@ -8,17 +8,15 @@ using Drive.Client.ViewModels.BottomTabViewModels.Popups;
 using Drive.Client.ViewModels.IdentityAccounting.EditProfile;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
 using Drive.Client.Views.BottomTabViews;
-using Plugin.Media.Abstractions;
 using System;
 using System.Diagnostics;
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels {
-    public sealed class ProfileViewModel : NestedViewModel, IBottomBarTab {
+    public sealed class ProfileViewModel : TabbedViewModelBase {
 
         private CancellationTokenSource _changeAvatarCancellationTokenSource = new CancellationTokenSource();
 
@@ -27,18 +25,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         private readonly IPickMediaService _pickMediaService;
 
         private readonly IIdentityService _identityService;
-
-        public bool IsBudgeVisible { get; private set; }
-
-        public int BudgeCount { get; private set; }
-
-        public string TabHeader { get; private set; }
-
-        public string TabIcon { get; private set; } = IconPath.PROFILE;
-
-        public Type RelativeViewType { get; private set; } = typeof(ProfileView);
-
-        public bool HasBackgroundItem => false;
 
         LanguageSelectPopupViewModel _languageSelectPopupViewModel;
         public LanguageSelectPopupViewModel LanguageSelectPopupViewModel {
@@ -94,7 +80,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         public ICommand ChangePasswordCommand => new Command(async () => await NavigationService.NavigateToAsync<EditPasswordFirstStepViewModel>());
 
         public ICommand LogOutCommand => new Command(async () => await OnLogOutAsync());
-       
+
         public ICommand ChangeAvatarCommand => new Command(async () => await OnChangeAvatarAsync());
 
         /// <summary>
@@ -124,6 +110,12 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
 
             LanguageSelectPopupViewModel?.Dispose();
             ResetCancellationTokenSource(ref _changeAvatarCancellationTokenSource);
+        }
+
+        protected override void TabbViewModelInit() {
+            TabIcon = IconPath.PROFILE;
+            RelativeViewType = typeof(ProfileView);
+            HasBackgroundItem = false;
         }
 
         private async Task OnLogOutAsync() {

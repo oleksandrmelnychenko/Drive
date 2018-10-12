@@ -13,6 +13,7 @@ using Drive.Client.Services.RequestProvider;
 using Drive.Client.ViewModels.ActionBars;
 using Drive.Client.ViewModels.BottomTabViewModels;
 using Drive.Client.ViewModels.BottomTabViewModels.Popups;
+using Drive.Client.ViewModels.BottomTabViewModels.Search;
 using Drive.Client.ViewModels.IdentityAccounting.EditProfile;
 using Drive.Client.ViewModels.IdentityAccounting.ForgotPassword;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
@@ -67,6 +68,8 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<ForgotPasswordFinallyStepViewModel>();
             builder.RegisterType<IdentityAccountingActionBarViewModel>();
             builder.RegisterType<ConfirmPasswordRegisterStepViewModel>();
+            builder.RegisterType<SearchByPersonViewModel>();
+            builder.RegisterType<SearchByCarIdViewModel>();
 
             // Services.
             builder.RegisterType<DialogService>().As<IDialogService>();
