@@ -331,7 +331,7 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (IN THE NEXT VERSION).
+        ///   Looks up a localized string similar to (IN DEVELOPING. IN THE NEXT VERSION).
         /// </summary>
         public static string NextVersionUpperCase {
             get {

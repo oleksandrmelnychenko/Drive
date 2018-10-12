@@ -21,13 +21,6 @@
             FontFamily="{StaticResource SFProThin}"
             FontSize="{StaticResource Key=MidMediumSize}"
             HorizontalOptions="Center"
-            Text="{Binding [InDev].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
-            TextColor="{StaticResource ExtraGrayColor}"
-            VerticalOptions="Center" />
-        <controls:LabelExtended
-            FontFamily="{StaticResource SFProThin}"
-            FontSize="{StaticResource Key=MidMediumSize}"
-            HorizontalOptions="Center"
             Text="{Binding [NextVersionUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
             TextColor="{StaticResource ExtraGrayColor}"
             VerticalOptions="Center" />
