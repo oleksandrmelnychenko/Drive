@@ -1,5 +1,4 @@
 ﻿using Drive.Client.Extensions;
-using Drive.Client.Helpers;
 using Drive.Client.Models.EntityModels;
 using Drive.Client.Models.Identities.NavigationArgs;
 using Drive.Client.Services.Automobile;
@@ -9,11 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels {
     public sealed class FoundDriveAutoViewModel : ContentPageBaseViewModel {
@@ -77,10 +73,7 @@ namespace Drive.Client.ViewModels {
 
             if (navigationData is GetAllArg getAllArg) {
                 FoundCars = getAllArg.FoundCars;
-                //GetAllDriveAutoOrders(getAllArg.Value);
             }
-
-
             return base.InitializeAsync(navigationData);
         }
 
@@ -105,7 +98,6 @@ namespace Drive.Client.ViewModels {
             catch (Exception ex) {
                 Debug.WriteLine($"ERROR: {ex.Message}");
             }
-
             SetBusy(busyKey, false);
         }
     }

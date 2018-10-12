@@ -130,13 +130,52 @@
   <data name="ActualInfo" xml:space="preserve">
     <value>Actual information as of 10.04.2018</value>
   </data>
+  <data name="BodyType" xml:space="preserve">
+    <value>Body</value>
+  </data>
+  <data name="Brand" xml:space="preserve">
+    <value>Brand</value>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="EngineCapacity" xml:space="preserve">
+    <value>Capacity</value>
+  </data>
+  <data name="FuelType" xml:space="preserve">
+    <value>Fuel</value>
+  </data>
+  <data name="FullWeight" xml:space="preserve">
+    <value>Full weight</value>
+  </data>
+  <data name="Kind" xml:space="preserve">
+    <value>Kind</value>
+  </data>
   <data name="MainTitle" xml:space="preserve">
     <value>STATE TRANSPORT REGISTER</value>
   </data>
   <data name="PhoneNumberUpperCase" xml:space="preserve">
     <value>INPUT NUMBER PHONE</value>
   </data>
+  <data name="Purpose" xml:space="preserve">
+    <value>Purpose</value>
+  </data>
+  <data name="RegistrationDate" xml:space="preserve">
+    <value>Registration Date</value>
+  </data>
   <data name="SearchByNumber" xml:space="preserve">
     <value>SEARCH FOR NUMBERS</value>
+  </data>
+  <data name="TSC" xml:space="preserve">
+    <value>TSC</value>
+  </data>
+  <data name="TSCcode" xml:space="preserve">
+    <value>TSC code</value>
+  </data>
+  <data name="WeightWithoutLoad" xml:space="preserve">
+    <value>Weight without load</value>
+  </data>
+  <data name="YearOfCreation" xml:space="preserve">
+    <value>Year of creation</value>
   </data>
 </root>
