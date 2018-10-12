@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Drive.Client.Views.BottomTabViews.Search.SearchByPersonView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    BackgroundColor="{StaticResource WhiteColor}">
+
+    <StackLayout
+        HorizontalOptions="Center"
+        Spacing="4"
+        VerticalOptions="Center">
+        <controls:LabelExtended
+            FontSize="{StaticResource Key=BaseFontSize}"
+            HorizontalOptions="Center"
+            Text="ПОШУК ЗА ФІЗ. ОСОБОЮ"
+            TextColor="{StaticResource DarkColor}"
+            VerticalOptions="Center" />
+        <controls:LabelExtended
+            FontFamily="{StaticResource SFProThin}"
+            FontSize="{StaticResource Key=MidMediumSize}"
+            HorizontalOptions="Center"
+            Text="(У РОЗРОБЦІ)"
+            TextColor="{StaticResource ExtraGrayColor}"
+            VerticalOptions="Center" />
+    </StackLayout>
+</ContentView>
