@@ -62,9 +62,9 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.02</string>
+	<string>1.03</string>
 	<key>CFBundleVersion</key>
-	<string>1.02</string>
+	<string>1.03</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 </dict>
