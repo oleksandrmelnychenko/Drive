@@ -294,11 +294,11 @@
                 </StackLayout>
             </ScrollView>
 
-            <!--  Avatar scope  -->
+            <!--  Avatar scope  BackgroundColor="{StaticResource WhiteColor}"  -->
             <ContentView
                 x:Name="_avatarScope_ContentView"
-                Padding="0,20,0,0"
-                BackgroundColor="{StaticResource WhiteColor}"
+                Padding="0,23,0,0"
+                BackgroundColor="LightCoral"
                 VerticalOptions="Start">
                 <Grid x:Name="_avatar_Grid" IsClippedToBounds="True">
 

@@ -11,7 +11,7 @@ namespace Drive.Client.Views.BottomTabViews {
         private readonly double _Y_SCROLL_SCALE_LIMIT_VALUE = 150;
         private readonly double _SCALE_LIMIT_VALUE = .5;
         private readonly double _SCALE_MULTIPLIER = 2.5;
-        private readonly double _PENCIL_DEFAULT_Y_TRANSLATION = 36;
+        private readonly double _PENCIL_DEFAULT_Y_TRANSLATION = 27;
 
         private bool _isHiding = false;
         private bool _isShowing = false;
