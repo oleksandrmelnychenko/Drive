@@ -18,6 +18,12 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
 
         private CancellationTokenSource _changeEmailCancellationTokenSource = new CancellationTokenSource();
 
+        string _currentEmail;
+        public string CurrentEmail {
+            get { return _currentEmail; }
+            set { SetProperty(ref _currentEmail, value); }
+        }
+
         /// <summary>
         ///     ctor().
         /// </summary>
@@ -25,7 +31,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
             _identityService = identityService;
 
             StepTitle = CHANGE_EMAIL_TITLE;
-            //MainInputPlaceholder = BaseSingleton<GlobalSetting>.Instance.UserProfile?.Email;
+            CurrentEmail = BaseSingleton<GlobalSetting>.Instance.UserProfile?.Email;
             MainInputIconPath = EMAIL_ICON_PATH;
         }
 

@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
     BackgroundColor="{StaticResource WhiteColor}">
 
     <StackLayout
@@ -13,14 +14,21 @@
         <controls:LabelExtended
             FontSize="{StaticResource Key=BaseFontSize}"
             HorizontalOptions="Center"
-            Text="ПОШУК ЗА ФІЗ. ОСОБОЮ"
+            Text="{Binding [SearchByPersonUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
             TextColor="{StaticResource DarkColor}"
             VerticalOptions="Center" />
         <controls:LabelExtended
             FontFamily="{StaticResource SFProThin}"
             FontSize="{StaticResource Key=MidMediumSize}"
             HorizontalOptions="Center"
-            Text="(У РОЗРОБЦІ)"
+            Text="{Binding [InDev].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+            TextColor="{StaticResource ExtraGrayColor}"
+            VerticalOptions="Center" />
+        <controls:LabelExtended
+            FontFamily="{StaticResource SFProThin}"
+            FontSize="{StaticResource Key=MidMediumSize}"
+            HorizontalOptions="Center"
+            Text="{Binding [NextVersionUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
             TextColor="{StaticResource ExtraGrayColor}"
             VerticalOptions="Center" />
     </StackLayout>

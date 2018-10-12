@@ -1,5 +1,7 @@
-﻿using Drive.Client.Models.Arguments.IdentityAccounting.ChangePassword;
+﻿using Drive.Client.Helpers.Localize;
+using Drive.Client.Models.Arguments.IdentityAccounting.ChangePassword;
 using Drive.Client.Models.EntityModels.Identity;
+using Drive.Client.Resources.Resx;
 using Drive.Client.Services.Identity;
 using Newtonsoft.Json;
 using System;
@@ -48,7 +50,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
 
             bool isValid = MainInput.Value != null && MainInput.Value.Equals(_changePasswordArgs.NewPassword);
             if (!isValid) {
-                ServerError = "Повторно введений пароль невірний";
+                ServerError = (ResourceLoader.Instance.GetString(nameof(AppStrings.ReEnteredPasswordIncorrect)).Value);
             }
 
             return isValid;

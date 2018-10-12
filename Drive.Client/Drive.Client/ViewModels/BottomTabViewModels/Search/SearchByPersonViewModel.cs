@@ -1,4 +1,6 @@
-﻿using Drive.Client.ViewModels.Base;
+﻿using Drive.Client.Helpers.Localize;
+using Drive.Client.Resources.Resx;
+using Drive.Client.ViewModels.Base;
 using Drive.Client.Views.BottomTabViews.Search;
 using System;
 
@@ -7,10 +9,15 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
 
         public Type RelativeViewType => typeof(SearchByPersonView);
 
-        private string _tabHeader = "ФІЗ. ОСОБА";
-        public string TabHeader {
+        StringResource _tabHeader = ResourceLoader.Instance.GetString(nameof(AppStrings.PersonUpperCase));
+        public StringResource TabHeader {
             get => _tabHeader;
-            private set => SetProperty<string>(ref _tabHeader, value);
+            private set => SetProperty(ref _tabHeader, value);
         }
+        //private string _tabHeader = "";
+        //public string TabHeader {
+        //    get => _tabHeader;
+        //    private set => SetProperty<string>(ref _tabHeader, value);
+        //}
     }
 }

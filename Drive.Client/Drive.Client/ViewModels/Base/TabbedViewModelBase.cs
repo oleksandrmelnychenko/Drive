@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Drive.Client.Helpers.Localize;
+using System;
 
 namespace Drive.Client.ViewModels.Base {
     public abstract class TabbedViewModelBase : NestedViewModel, IBottomBarTab {
@@ -11,7 +12,7 @@ namespace Drive.Client.ViewModels.Base {
 
         public int BudgeCount { get; protected set; }
 
-        public string TabHeader { get; protected set; }
+        public StringResource TabHeader { get; protected set; }
 
         public string TabIcon { get; protected set; }
 

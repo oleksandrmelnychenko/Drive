@@ -1,19 +1,15 @@
 ﻿using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
+using Drive.Client.Models.EntityModels.Identity;
+using Drive.Client.Services.Identity;
 using Drive.Client.Validations;
 using Drive.Client.Validations.ValidationRules;
-using Xamarin.Forms;
 using System;
-using Drive.Client.Services.EventStore;
 using System.Diagnostics;
-using Drive.Client.Services.Identity;
 using System.Threading;
-using Drive.Client.Models.EntityModels.Identity;
-using Newtonsoft.Json;
+using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
     public class PhoneNumberRegisterStepViewModel : IdentityAccountingStepBaseViewModel {
-
-        private const string DRIVE_AUTO_STREAM = "DriveAutoStream";
 
         private CancellationTokenSource _checkPhoneNumberCancellationTokenSource = new CancellationTokenSource();
 

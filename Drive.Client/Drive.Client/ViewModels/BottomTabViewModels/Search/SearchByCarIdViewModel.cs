@@ -8,8 +8,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Drive.Client.Extensions;
+using Drive.Client.Helpers.Localize;
 using Drive.Client.Models.EntityModels;
 using Drive.Client.Models.Identities.NavigationArgs;
+using Drive.Client.Resources.Resx;
 using Drive.Client.Services.Automobile;
 using Drive.Client.Validations;
 using Drive.Client.ViewModels.Base;
@@ -73,11 +75,11 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         });
 
         public Type RelativeViewType => typeof(SearchByCarIdView);
-
-        private string _tabHeader = "ЗА НОМЕРОМ";
-        public string TabHeader {
+        
+        StringResource _tabHeader = ResourceLoader.Instance.GetString(nameof(AppStrings.ByNumberUpperCase));
+        public StringResource TabHeader {
             get => _tabHeader;
-            private set => SetProperty<string>(ref _tabHeader, value);
+            private set => SetProperty(ref _tabHeader, value);
         }
 
         ValidatableObject<string> _validationTargetValue;
