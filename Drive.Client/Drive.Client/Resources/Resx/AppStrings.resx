@@ -268,4 +268,7 @@
   <data name="ReEnteredPasswordIncorrect" xml:space="preserve">
     <value>Re-entered password is incorrect</value>
   </data>
+  <data name="SearchResult" xml:space="preserve">
+    <value>SEARCH WAS NOT RESULT</value>
+  </data>
 </root>

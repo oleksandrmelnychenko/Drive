@@ -268,4 +268,7 @@
   <data name="ReEnteredPasswordIncorrect" xml:space="preserve">
     <value>Повторно введений пароль невірний</value>
   </data>
+  <data name="SearchResult" xml:space="preserve">
+    <value>ПОШУК НЕ ДАВ РЕЗУЛЬТАТІВ</value>
+  </data>
 </root>

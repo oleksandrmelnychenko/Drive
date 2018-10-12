@@ -1,6 +1,8 @@
 ﻿using Drive.Client.Extensions;
+using Drive.Client.Helpers.Localize;
 using Drive.Client.Models.EntityModels;
 using Drive.Client.Models.Identities.NavigationArgs;
+using Drive.Client.Resources.Resx;
 using Drive.Client.Services.Automobile;
 using Drive.Client.ViewModels.ActionBars;
 using Drive.Client.ViewModels.Base;
@@ -8,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -28,6 +31,18 @@ namespace Drive.Client.ViewModels {
         public string TargetCarNumber {
             get => _targetCarNumber;
             private set => SetProperty<string>(ref _targetCarNumber, value);
+        }
+
+        string _resultInfo = (ResourceLoader.Instance.GetString(nameof(AppStrings.SearchResult)).Value);
+        public string ResultInfo {
+            get { return _resultInfo; }
+            set { SetProperty(ref _resultInfo, value); }
+        }
+
+        bool _visibilityResultInfo;
+        public bool VisibilityResultInfo {
+            get { return _visibilityResultInfo; }
+            set { SetProperty(ref _visibilityResultInfo, value); }
         }
 
         ObservableCollection<DriveAuto> _foundCars;
@@ -73,6 +88,7 @@ namespace Drive.Client.ViewModels {
 
             if (navigationData is GetAllArg getAllArg) {
                 FoundCars = getAllArg.FoundCars;
+                VisibilityResultInfo = !FoundCars.Any();
             }
             return base.InitializeAsync(navigationData);
         }
@@ -90,6 +106,7 @@ namespace Drive.Client.ViewModels {
 
                 if (result != null) {
                     FoundCars = result.ToObservableCollection();
+                    VisibilityResultInfo = !FoundCars.Any();
                 }
             }
             catch (OperationCanceledException ex) { Debug.WriteLine($"ERROR: {ex.Message}"); }

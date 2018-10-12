@@ -194,7 +194,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         }
 
         private void SetupValidations() {
-            // ValidationTargetValue.Validations.Add(new LengthRule<string>() { ValidationMessage = "Мін. к-сть 4 символа" });
+            
         }
 
         private void ApplySearchResults(IEnumerable<DriveAutoSearch> foundResult) {
