@@ -448,6 +448,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SEARCH WAS NOT RESULT.
+        /// </summary>
+        public static string SearchResult {
+            get {
+                return ResourceManager.GetString("SearchResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SIGN IN.
         /// </summary>
         public static string SignInUpperCase {

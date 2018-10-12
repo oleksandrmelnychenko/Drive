@@ -15,6 +15,13 @@
 
     <viewBase:ContentPageBaseView.MainContent>
         <Grid BackgroundColor="{StaticResource WhiteColor}" RowSpacing="0">
+            <controls:LabelExtended
+                FontSize="{StaticResource MidMediumSize}"
+                HorizontalOptions="Center"
+                IsVisible="{Binding VisibilityResultInfo}"
+                Text="{Binding ResultInfo}"
+                TextColor="{StaticResource BaseGrayColor}"
+                VerticalOptions="CenterAndExpand" />
             <ListView
                 x:Name="_list"
                 BackgroundColor="Transparent"
