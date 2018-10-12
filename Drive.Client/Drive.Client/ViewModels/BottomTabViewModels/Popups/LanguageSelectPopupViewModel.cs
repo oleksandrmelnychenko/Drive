@@ -21,7 +21,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Popups {
             _profileSettingsDataItems = profileSettingsDataItems;
 
             Languages = _profileSettingsDataItems.BuildLanguageDataItems();
-            SelectedLanguage = Languages.FirstOrDefault<LanguageDataItem>(languageItem => languageItem.Language == BaseSingleton<GlobalSetting>.Instance.AppInterfaceConfigurations.LanguageInterface);
+            SelectedLanguage = Languages.FirstOrDefault<LanguageDataItem>(languageItem => languageItem.Language.LanguageInterface == BaseSingleton<GlobalSetting>.Instance.AppInterfaceConfigurations.LanguageInterface.LanguageInterface);
         }
 
         public ICommand SelectLanguageCommand => new Command((object param) => {
@@ -31,7 +31,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Popups {
                 BaseSingleton<GlobalSetting>.Instance.AppInterfaceConfigurations.LanguageInterface = selectedLanguageDataItem.Language;
                 BaseSingleton<GlobalSetting>.Instance.AppInterfaceConfigurations.SaveChanges();
 
-                ResourceLoader.Instance.CultureInfo = selectedLanguageDataItem.Culture;
+                ResourceLoader.Instance.CultureInfo = selectedLanguageDataItem.Language.Culture;
 
                 ClosePopupCommand.Execute(null);
             }

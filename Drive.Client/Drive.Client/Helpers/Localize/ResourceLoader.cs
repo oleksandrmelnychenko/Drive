@@ -1,4 +1,4 @@
-﻿using Drive.Client.Models.DataItems.ProfileSettings;
+﻿using Drive.Client.Models.Identities.AppInterface.Language;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -53,7 +53,7 @@ namespace Drive.Client.Helpers.Localize {
         public static void Init() {
             new ResourceLoader(new ResourceManager(APP_STRINGS_PATH, IntrospectionExtensions.GetTypeInfo(typeof(ResourceLoader)).Assembly));
 
-            switch (BaseSingleton<GlobalSetting>.Instance.AppInterfaceConfigurations.LanguageInterface) {
+            switch (BaseSingleton<GlobalSetting>.Instance.AppInterfaceConfigurations.LanguageInterface.LanguageInterface) {
                 case LanguageInterface.Ukrainian:
                     Instance.CultureInfo = new CultureInfo(UKRAINIAN_LOCALE_ID);
                     break;
