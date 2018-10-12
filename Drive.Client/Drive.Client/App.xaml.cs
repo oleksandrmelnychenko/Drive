@@ -2,6 +2,7 @@
 using Drive.Client.Helpers.Localize;
 using Drive.Client.Services.Navigation;
 using Drive.Client.ViewModels.Base;
+using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -17,6 +18,20 @@ namespace Drive.Client {
             InitializeComponent();
 
             InitApp();
+
+#if DEBUG
+            TrackMemoryUsage();
+#endif
+        }
+
+        private void TrackMemoryUsage() {
+            if (Device.RuntimePlatform == Device.Android) {
+                Device.StartTimer(TimeSpan.FromSeconds(5), () => {
+                    MemoryHelper.DisplayAndroidMemory();
+
+                    return true;
+                });
+            }
         }
 
         private void InitApp() {

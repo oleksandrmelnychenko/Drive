@@ -1,6 +1,8 @@
 ﻿using Drive.Client.Exceptions;
 using Drive.Client.Helpers;
+using Drive.Client.Helpers.Localize;
 using Drive.Client.Models.Medias;
+using Drive.Client.Resources.Resx;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
 using Plugin.DeviceInfo;
@@ -36,9 +38,7 @@ namespace Drive.Client.Services.RequestProvider {
         /// GET.
         /// </summary>
         public async Task<TResult> GetAsync<TResult>(string uri, string accessToken = "") {
-            //  Check internet connection.
-            if (!CrossConnectivity.Current.IsConnected) throw new ConnectivityException(AppConsts.ERROR_INTERNET_CONNECTION);
-
+            CheckInternetConnection();
             SetAccesToken(accessToken);
             SetLanguage();
 
@@ -54,14 +54,19 @@ namespace Drive.Client.Services.RequestProvider {
             return result;
         }
 
+        private static void CheckInternetConnection() {
+            if (!CrossConnectivity.Current.IsConnected)
+                throw new ConnectivityException((ResourceLoader.Instance.GetString(nameof(AppStrings.ERROR_INTERNET_CONNECTION))).Value);
+        }
+
         /// <summary>
         /// POST.
         /// </summary>
         public async Task<TResponseValue> PostAsync<TResponseValue, TBodyContent>(string uri, TBodyContent bodyContent, string accessToken = "") =>
             await Task.Run(async () => {
-                if (!CrossConnectivity.Current.IsConnected) throw new ConnectivityException(AppConsts.ERROR_INTERNET_CONNECTION);
                 HttpContent content = null;
 
+                CheckInternetConnection();
                 SetAccesToken(accessToken);
                 SetLanguage();
 
@@ -95,10 +100,9 @@ namespace Drive.Client.Services.RequestProvider {
         public async Task<TResult> PostFormDataAsync<TResult, TBodyContent>(string uri, TBodyContent bodyContent, string accessToken = "")
             where TBodyContent : PickedMediaBase =>
             await Task.Run(async () => {
-                if (!CrossConnectivity.Current.IsConnected) throw new ConnectivityException(AppConsts.ERROR_INTERNET_CONNECTION);
-
                 TResult result = default(TResult);
 
+                CheckInternetConnection();
                 SetAccesToken(accessToken);
                 SetLanguage();
 
@@ -130,10 +134,10 @@ namespace Drive.Client.Services.RequestProvider {
         /// <returns></returns>
         public async Task<TResult> PutAsync<TResult, TBodyContent>(string url, TBodyContent bodyContent, string accessToken = "") =>
             await Task.Run(async () => {
-                if (!CrossConnectivity.Current.IsConnected) throw new ConnectivityException(AppConsts.ERROR_INTERNET_CONNECTION);
                 HttpContent content = null;
                 TResult result = default(TResult);
 
+                CheckInternetConnection();
                 SetAccesToken(accessToken);
                 SetLanguage();
 
