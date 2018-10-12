@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 namespace Drive.Client.Models.Identities {
     [DataContract]
     public class UserProfile : ExtendedBindableObject {
+
         /// <summary>
         /// Acces token by user.
         /// </summary>

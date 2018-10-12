@@ -2,7 +2,6 @@
 using Drive.Client.Helpers.Localize;
 using Drive.Client.Services.Navigation;
 using Drive.Client.ViewModels.Base;
-using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -26,7 +25,6 @@ namespace Drive.Client {
         }
 
         private Task InitNavigation() {
-            //string accesToken = (JsonConvert.DeserializeObject<UserProfile>(Settings.UserProfile))?.AccesToken;
             INavigationService navigationService = DependencyLocator.Resolve<INavigationService>();
             return navigationService.InitializeAsync();
         }
@@ -40,7 +38,7 @@ namespace Drive.Client {
         }
 
         protected override void OnSleep() {
-            Settings.UserProfile = JsonConvert.SerializeObject(BaseSingleton<GlobalSetting>.Instance.UserProfile);
+            BaseSingleton<GlobalSetting>.Instance.SaveState();
         }
 
         protected override void OnResume() {

@@ -8,6 +8,8 @@ namespace Drive.Client {
 
         public UserProfile UserProfile { get; private set; }
 
+        public AppInterfaceConfigurations AppInterfaceConfigurations { get; private set; }
+
         public RestEndpoints RestEndpoints { get; private set; } = new RestEndpoints();
 
         /// <summary>
@@ -16,6 +18,14 @@ namespace Drive.Client {
         public GlobalSetting() {
             string jsonUserProfile = Settings.UserProfile;
             UserProfile = (string.IsNullOrEmpty(jsonUserProfile)) ? new UserProfile() : JsonConvert.DeserializeObject<UserProfile>(jsonUserProfile);
+
+            string appInterfaceConfigurations = Settings.AppInterfaceConfigurations;
+            AppInterfaceConfigurations = (string.IsNullOrEmpty(appInterfaceConfigurations)) ? new AppInterfaceConfigurations() : JsonConvert.DeserializeObject<AppInterfaceConfigurations>(appInterfaceConfigurations);
+        }
+
+        public void SaveState() {
+            Settings.UserProfile = JsonConvert.SerializeObject(BaseSingleton<GlobalSetting>.Instance.UserProfile);
+            Settings.AppInterfaceConfigurations = JsonConvert.SerializeObject(BaseSingleton<GlobalSetting>.Instance.AppInterfaceConfigurations);
         }
     }
 }

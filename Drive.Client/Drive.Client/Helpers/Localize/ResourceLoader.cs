@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Drive.Client.Models.DataItems.ProfileSettings;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -10,9 +12,11 @@ namespace Drive.Client.Helpers.Localize {
         /// TODO: dispose unused strings...!?
         /// 
 
+        public static readonly string UKRAINIAN_LOCALE_ID = "uk-UA";
+        public static readonly string ENGLISH_LOCALE_ID = "en-GB";
         public static readonly string APP_STRINGS_PATH = "Drive.Client.Resources.Resx.AppStrings";
 
-        private readonly CultureInfo _defaultCulture = new CultureInfo("uk-UA");
+        private readonly CultureInfo _defaultCulture = new CultureInfo(UKRAINIAN_LOCALE_ID);
         private readonly ResourceManager _manager;
         private readonly List<StringResource> _resources = new List<StringResource>();
 
@@ -48,6 +52,18 @@ namespace Drive.Client.Helpers.Localize {
 
         public static void Init() {
             new ResourceLoader(new ResourceManager(APP_STRINGS_PATH, IntrospectionExtensions.GetTypeInfo(typeof(ResourceLoader)).Assembly));
+
+            switch (BaseSingleton<GlobalSetting>.Instance.AppInterfaceConfigurations.LanguageInterface) {
+                case LanguageInterface.Ukrainian:
+                    Instance.CultureInfo = new CultureInfo(UKRAINIAN_LOCALE_ID);
+                    break;
+                case LanguageInterface.English:
+                    Instance.CultureInfo = new CultureInfo(ENGLISH_LOCALE_ID);
+                    break;
+                default:
+                    Debugger.Break();
+                    break;
+            }
         }
 
         public StringResource GetString(string resourceName) {
@@ -66,18 +82,5 @@ namespace Drive.Client.Helpers.Localize {
 
             return stringResource;
         }
-
-        //public StringResource GetString(string resourceName) {
-        //    ///
-        //    /// TODO: if string also exist return it???
-        //    /// 
-
-        //    string stringRes = _manager.GetString(resourceName, _cultureInfo);
-
-        //    StringResource stringResource = new StringResource(resourceName, stringRes);
-        //    _resources.Add(stringResource);
-
-        //    return stringResource;
-        //}
     }
 }
