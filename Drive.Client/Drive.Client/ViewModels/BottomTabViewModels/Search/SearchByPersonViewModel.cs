@@ -14,10 +14,12 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
             get => _tabHeader;
             private set => SetProperty(ref _tabHeader, value);
         }
-        //private string _tabHeader = "";
-        //public string TabHeader {
-        //    get => _tabHeader;
-        //    private set => SetProperty<string>(ref _tabHeader, value);
-        //}
+
+        /// <summary>
+        ///     ctor().
+        /// </summary>
+        public SearchByPersonViewModel() {
+
+        }
     }
 }

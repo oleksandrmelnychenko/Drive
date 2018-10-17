@@ -88,8 +88,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignProvision>
-    </CodesignProvision>
+    <CodesignProvision>CarIDAppStoreProvisioningProfile</CodesignProvision>
     <CodesignKey>iPhone Distribution: Oleksandr Melnychenko (8DKCVKHBBL)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
@@ -109,6 +108,8 @@
     <BundleResource Include="Resources\Fonts\SFProDisplay-Regular.ttf" />
     <BundleResource Include="Resources\Fonts\SFProDisplay-SemiBold.ttf" />
     <BundleResource Include="Resources\Fonts\SFProDisplay-Thin.ttf" />
+    <BundleResource Include="Resources\uk.lprog\InfoPlist.strings" />
+    <BundleResource Include="Resources\en.lprog\InfoPlist.strings" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-1024.png">
@@ -186,6 +187,9 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>
     </PackageReference>
+    <PackageReference Include="Plugin.Permissions">
+      <Version>3.0.0.12</Version>
+    </PackageReference>
     <PackageReference Include="System.Reactive">
       <Version>4.0.0</Version>
     </PackageReference>
@@ -243,4 +247,5 @@
       <Name>Drive.Client</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
 </Project>

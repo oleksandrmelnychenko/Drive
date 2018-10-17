@@ -10,6 +10,7 @@ using System.Windows.Input;
 using Drive.Client.Extensions;
 using Drive.Client.Helpers.Localize;
 using Drive.Client.Models.EntityModels;
+using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.Models.Identities.NavigationArgs;
 using Drive.Client.Resources.Resx;
 using Drive.Client.Services.Automobile;
@@ -24,58 +25,11 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         private readonly IDriveAutoService _driveAutoService;
 
         private CancellationTokenSource _getCarsCancellationTokenSource = new CancellationTokenSource();
+
         private CancellationTokenSource _getAllDriveAutoCancellationTokenSource = new CancellationTokenSource();
 
-        public SearchByCarIdViewModel(IDriveAutoService driveAutoService) {
-            _driveAutoService = driveAutoService;
-
-            _validationTargetValue = new ValidatableObject<string>();
-
-            try {
-                //  Reactive search.
-                Observable.FromEventPattern<PropertyChangedEventArgs>(this, nameof(PropertyChanged))
-                    .Where(x => x.EventArgs.PropertyName == nameof(TargetValue))
-                    .Throttle(TimeSpan.FromMilliseconds(300))
-                    .Select(handler => Observable.FromAsync(async cancellationToken => {
-                        var result = await SearchInfoAsync(TargetValue).ConfigureAwait(false);
-
-                        if (cancellationToken.IsCancellationRequested) {
-                            return new DriveAutoSearch[] { };
-                        }
-
-                        return result;
-                    }))
-                    .Switch()
-                    .Subscribe(foundResult => {
-                        ApplySearchResults(foundResult);
-                    });
-            }
-            catch (Exception ex) {
-                Debug.WriteLine($"---ERROR: {ex.Message}");
-            }
-
-            SetupValidations();
-        }
-
-        public ICommand CleanSearchResultCommand => new Command(() => ClearFoundedResult());
-
-        public ICommand InputCompleteCommand => new Command(async () => {
-            FoundResult?.Clear();
-
-            var foundCars = await GetAllDriveAutoByNumber(TargetValue);
-
-            if (foundCars != null) {
-                await NavigationService.NavigateToAsync<FoundDriveAutoViewModel>(new GetAllArg { FoundCars = foundCars.ToObservableCollection() });
-            }
-        });
-
-        public ICommand InputTextChangedCommand => new Command(() => {
-            ErrorMessage = string.Empty;
-            HasError = false;
-        });
-
         public Type RelativeViewType => typeof(SearchByCarIdView);
-        
+
         StringResource _tabHeader = ResourceLoader.Instance.GetString(nameof(AppStrings.ByNumberUpperCase));
         public StringResource TabHeader {
             get => _tabHeader;
@@ -118,9 +72,48 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         ObservableCollection<DriveAutoSearch> _foundResult;
         public ObservableCollection<DriveAutoSearch> FoundResult {
             get { return _foundResult; }
-            set {
-                SetProperty(ref _foundResult, value);
+            set { SetProperty(ref _foundResult, value); }
+        }
+
+        public ICommand CleanSearchResultCommand => new Command(() => ClearFoundedResult());
+
+        public ICommand InputCompleteCommand => new Command(async () => await OnInputCompleteAsync());
+
+        public ICommand InputTextChangedCommand => new Command(() => OnInputTextChenged());
+
+        /// <summary>
+        ///  ctor().
+        /// </summary>
+        /// <param name="driveAutoService"></param>
+        public SearchByCarIdViewModel(IDriveAutoService driveAutoService) {
+            _driveAutoService = driveAutoService;
+
+            _validationTargetValue = new ValidatableObject<string>();
+
+            try {
+                //  Reactive search.
+                Observable.FromEventPattern<PropertyChangedEventArgs>(this, nameof(PropertyChanged))
+                    .Where(x => x.EventArgs.PropertyName == nameof(TargetValue))
+                    .Throttle(TimeSpan.FromMilliseconds(300))
+                    .Select(handler => Observable.FromAsync(async cancellationToken => {
+                        var result = await SearchInfoAsync(TargetValue).ConfigureAwait(false);
+
+                        if (cancellationToken.IsCancellationRequested) {
+                            return new DriveAutoSearch[] { };
+                        }
+
+                        return result;
+                    }))
+                    .Switch()
+                    .Subscribe(foundResult => {
+                        ApplySearchResults(foundResult);
+                    });
             }
+            catch (Exception ex) {
+                Debug.WriteLine($"---ERROR: {ex.Message}");
+            }
+
+            SetupValidations();
         }
 
         public override Task InitializeAsync(object navigationData) {
@@ -134,6 +127,21 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
 
             ResetCancellationTokenSource(ref _getCarsCancellationTokenSource);
             ResetCancellationTokenSource(ref _getAllDriveAutoCancellationTokenSource);
+        }
+
+        private void OnInputTextChenged() {
+            ErrorMessage = string.Empty;
+            HasError = false;
+        }
+
+        private async Task OnInputCompleteAsync() {
+            FoundResult?.Clear();
+
+            var foundCars = await GetAllDriveAutoByNumber(TargetValue);
+
+            if (foundCars != null) {
+                await NavigationService.NavigateToAsync<FoundDriveAutoViewModel>(new GetAllArg { FoundCars = foundCars.ToObservableCollection() });
+            }
         }
 
         private async Task<IEnumerable<DriveAutoSearch>> SearchInfoAsync(string value) {
@@ -152,8 +160,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
                     HasError = string.IsNullOrEmpty(ErrorMessage);
                     Debugger.Break();
                 }
-            }
-            else {
+            } else {
                 carInfos = new DriveAutoSearch[] { };
             }
 
@@ -194,7 +201,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         }
 
         private void SetupValidations() {
-            
+
         }
 
         private void ApplySearchResults(IEnumerable<DriveAutoSearch> foundResult) {

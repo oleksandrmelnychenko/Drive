@@ -52,7 +52,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.ForgotPassword {
 
             bool isValid = MainInput.Value != null && MainInput.Value.Equals(_forgotPasswordArgs.NewPassword);
             if (!isValid) {
-                ServerError = (ResourceLoader.Instance.GetString(nameof(AppStrings.ReEnteredPasswordIncorrect)).Value); 
+                ServerError = (ResourceLoader.Instance.GetString(nameof(AppStrings.ReEnteredPasswordIncorrect)).Value);
             }
 
             return isValid;
@@ -76,11 +76,17 @@ namespace Drive.Client.ViewModels.IdentityAccounting.ForgotPassword {
                     }
                 }
                 catch (Exception ex) {
-                    var error = JsonConvert.DeserializeObject<HttpRequestExceptionResult>(ex.Message);
-                    ServerError = error.Message;
+                    try {
+                        var error = JsonConvert.DeserializeObject<HttpRequestExceptionResult>(ex.Message);
+                        ServerError = error.Message;
 
-                    Debug.WriteLine($"ERROR:{error.Message}");
-                    Debugger.Break();
+                        Debug.WriteLine($"ERROR:{error.Message}");
+                        Debugger.Break();
+                    }
+                    catch (Exception exc) {
+                        Debug.WriteLine($"ERROR:{exc.Message}");
+                        Debugger.Break();
+                    }
                 }
                 SetBusy(busyKey, false);
             }

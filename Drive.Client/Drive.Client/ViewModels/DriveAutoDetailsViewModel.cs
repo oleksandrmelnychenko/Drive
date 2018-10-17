@@ -1,9 +1,6 @@
-﻿using Drive.Client.Models.EntityModels;
+﻿using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.ViewModels.ActionBars;
 using Drive.Client.ViewModels.Base;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Drive.Client.ViewModels {

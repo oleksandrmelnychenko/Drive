@@ -1,4 +1,4 @@
-﻿using Drive.Client.Models.EntityModels;
+﻿using Drive.Client.Models.EntityModels.Search;
 using System.Collections.ObjectModel;
 
 namespace Drive.Client.Models.Identities.NavigationArgs {

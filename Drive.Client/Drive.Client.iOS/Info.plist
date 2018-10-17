@@ -12,33 +12,33 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Drive need access to your photo library to upload user photo.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Drive need access to your photo library to upload user photo.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app needs access to the camera to take photos.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app needs access to photos.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>This app needs access to microphone.</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>This app needs access to the photo gallery.</string>
-	<key>NSCalendarsUsageDescription</key>
-	<string>Needs Calendar Permission</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Some ad content may access contact use</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app needs access to microphone.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Needs Calendar Permission</string>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Some ad content may access media library use</string>
 	<key>NSSiriUsageDescription</key>
 	<string>Some ad content may access siri use</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your location is used to estimate travel times to events and improve location searches.</string>
+	<string>Your location is used to optimize news and searches.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Your location is used to estimate travel times to events and improve location searches.</string>
+	<string>Your location is used to optimize news and searches.</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>uk</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>uk</string>
+	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -62,9 +62,9 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.03</string>
+	<string>1.05</string>
 	<key>CFBundleVersion</key>
-	<string>1.03</string>
+	<string>1.05</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 </dict>

@@ -1,5 +1,4 @@
 ﻿using Drive.Client.Services.Dialog;
-using Drive.Client.Services.EventStore;
 using Drive.Client.Services.Navigation;
 using System;
 using System.Threading;
@@ -15,8 +14,6 @@ namespace Drive.Client.ViewModels.Base {
         protected readonly IDialogService DialogService;
 
         protected readonly INavigationService NavigationService;
-
-        protected readonly IEventStoreService EventStoreService;
 
         public bool IsSubscribedOnAppEvents { get; private set; }
 

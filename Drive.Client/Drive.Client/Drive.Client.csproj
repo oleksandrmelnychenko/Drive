@@ -10,15 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Models\EntityModels\Search\**" />
     <Compile Remove="Models\Services\**" />
     <Compile Remove="Services\DependencyServices\Localize\**" />
     <Compile Remove="Views\Popups\**" />
-    <EmbeddedResource Remove="Models\EntityModels\Search\**" />
     <EmbeddedResource Remove="Models\Services\**" />
     <EmbeddedResource Remove="Services\DependencyServices\Localize\**" />
     <EmbeddedResource Remove="Views\Popups\**" />
-    <None Remove="Models\EntityModels\Search\**" />
     <None Remove="Models\Services\**" />
     <None Remove="Services\DependencyServices\Localize\**" />
     <None Remove="Views\Popups\**" />
@@ -91,6 +88,7 @@
     <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
     <PackageReference Include="Autofac" Version="4.8.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="System.Reactive" Version="4.0.0" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
     <PackageReference Include="Xam.Plugin.DeviceInfo" Version="4.0.0.13" />
@@ -150,7 +148,10 @@
     <EmbeddedResource Update="Views\Base\SingleBottomItem.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\BottomTabViews\BookmarkView.xaml">
+    <EmbeddedResource Update="Views\BottomTabViews\Bookmark\BookmarkView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\BottomTabViews\Bookmark\UserVehiclesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BottomTabViews\Popups\LanguageSelectPopupView.xaml">

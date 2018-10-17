@@ -16,7 +16,7 @@ namespace Drive.Client.Helpers {
         }
 
         public void SaveChanges() {
-            Settings.UserProfile = JsonConvert.SerializeObject(this);
+            Settings.AppInterfaceConfigurations = JsonConvert.SerializeObject(this);
         }
     }
 }

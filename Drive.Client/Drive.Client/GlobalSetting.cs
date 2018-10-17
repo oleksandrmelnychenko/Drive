@@ -1,12 +1,16 @@
 ﻿using Drive.Client.Helpers;
+using Drive.Client.Helpers.AppEvents;
 using Drive.Client.Models.Identities;
 using Drive.Client.Models.Rest;
+using Drive.Client.ViewModels.Base;
 using Newtonsoft.Json;
 
 namespace Drive.Client {
     public class GlobalSetting {
 
         public UserProfile UserProfile { get; private set; }
+
+        public AppMessagingEvents AppMessagingEvents => DependencyLocator.Resolve<AppMessagingEvents>();
 
         public AppInterfaceConfigurations AppInterfaceConfigurations { get; private set; }
 

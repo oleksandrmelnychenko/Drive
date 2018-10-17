@@ -38,6 +38,9 @@ namespace Drive.Client.Services.Identity {
                 catch (ConnectivityException ex) {
                     throw ex;
                 }
+                catch (HttpRequestExceptionEx ex) {
+                    throw ex;
+                }
                 catch (Exception ex) {
                     Debug.WriteLine($"ERROR:{ex.Message}");
                     Debugger.Break();
@@ -58,11 +61,13 @@ namespace Drive.Client.Services.Identity {
                 catch (ConnectivityException ex) {
                     throw ex;
                 }
+                catch (HttpRequestExceptionEx ex) {
+                    throw ex;
+                }
                 catch (Exception ex) {
                     Debug.WriteLine($"ERROR:{ex.Message}");
                     Debugger.Break();
                 }
-
                 return userNameAvailability;
             }, cancellationToken);
 
@@ -80,6 +85,9 @@ namespace Drive.Client.Services.Identity {
                     }
                 }
                 catch (ConnectivityException ex) {
+                    throw ex;
+                }
+                catch (HttpRequestExceptionEx ex) {
                     throw ex;
                 }
                 catch (Exception ex) {

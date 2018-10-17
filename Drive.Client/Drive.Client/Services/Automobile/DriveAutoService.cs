@@ -1,6 +1,7 @@
 ﻿using Drive.Client.Exceptions;
 using Drive.Client.Helpers;
 using Drive.Client.Models.EntityModels;
+using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.Services.RequestProvider;
 using System;
 using System.Collections.Generic;

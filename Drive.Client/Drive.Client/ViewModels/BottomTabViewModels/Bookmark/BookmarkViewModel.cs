@@ -1,12 +1,18 @@
-﻿using Drive.Client.Helpers;
-using Drive.Client.ViewModels.Base;
-using Drive.Client.Views.BottomTabViews.Search;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
+using Drive.Client.Helpers;
+using Drive.Client.Services.Vehicle;
+using Drive.Client.ViewModels.Base;
+using Drive.Client.Views.BottomTabViews;
+using Drive.Client.Views.BottomTabViews.Bookmark;
 
-namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
-    public sealed class SearchViewModel : TabbedViewModelBase {
+namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
+    public sealed class BookmarkViewModel : TabbedViewModelBase {
 
+        
         List<IVisualFiguring> _searchTabs;
         public List<IVisualFiguring> SearchTabs {
             get => _searchTabs;
@@ -19,17 +25,17 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         /// <summary>
         ///     ctor().
         /// </summary>
-        public SearchViewModel() {
+        public BookmarkViewModel() {
             SearchTabs = new List<IVisualFiguring>() {
-                DependencyLocator.Resolve<SearchByCarIdViewModel>(),
-                DependencyLocator.Resolve<SearchByPersonViewModel>()
+                DependencyLocator.Resolve<UserVehiclesViewModel>()
             };
             SearchTabs.ForEach(searchTab => searchTab.InitializeAsync(this));
         }
 
         protected override void TabbViewModelInit() {
-            RelativeViewType = typeof(SearchView);
-            TabIcon = IconPath.SEARCH;
+            RelativeViewType = typeof(BookmarkView);
+            TabIcon = IconPath.BOOKMARK;
+            HasBackgroundItem = false;
         }
 
         public override void Dispose() {
@@ -43,6 +49,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
             SearchTabs?.ForEach(searchTab => searchTab.InitializeAsync(navigationData));
 
             return base.InitializeAsync(navigationData);
-        }
+        }       
     }
 }

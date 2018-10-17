@@ -1,0 +1,4 @@
+"NSPhotoLibraryUsageDescription"="Drive need access to your photo library to upload user photo";
+"NSPhotoLibraryAddUsageDescription" = "Drive need access to your photo library to upload user photo";
+"NSLocationWhenInUseUsageDescription" = "Your location is used to optimize news and searches";
+"NSLocationAlwaysUsageDescription" = "Your location is used to optimize news and searches";

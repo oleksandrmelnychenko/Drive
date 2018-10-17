@@ -56,19 +56,19 @@ namespace Drive.Client.Models.Rest.EndPoints {
 
         public string LogOutEndPoint { get; private set; }
 
-        public string ChangePhoneNumberEndPoint { get; set; }
+        public string ChangePhoneNumberEndPoint { get; private set; }
 
-        public string ChangeUserNameEndPoint { get; set; }
+        public string ChangeUserNameEndPoint { get; private set; }
 
-        public string ChangeEmailEndPoint { get; set; }
+        public string ChangeEmailEndPoint { get; private set; }
 
-        public string UploadUserAvatarEndpoint { get; set; }
+        public string UploadUserAvatarEndpoint { get; private set; }
 
-        public string ChangePasswordEndPoint { get; set; }
+        public string ChangePasswordEndPoint { get; private set; }
 
-        public string CanUserChangeForgottenPasswordEndPoint { get; set; }
+        public string CanUserChangeForgottenPasswordEndPoint { get; private set; }
 
-        public string ForgotPasswordEndPoint { get; set; }
+        public string ForgotPasswordEndPoint { get; private set; }
 
         private void UpdateEndpoint(string baseEndpoint) {
             CheckPhoneNumberEndPoint = $"{baseEndpoint}/{PHONENUMBER_AVAILABILITY_API_KEY}";
@@ -78,7 +78,7 @@ namespace Drive.Client.Models.Rest.EndPoints {
             LogOutEndPoint = $"{baseEndpoint}/{LOG_OUT_API_KEY}";
             ChangePhoneNumberEndPoint = $"{baseEndpoint}/{CHANGE_PHONENUMBER_API_KEY}";
             ChangeUserNameEndPoint = $"{baseEndpoint}/{CHANGE_USERNAME_API_KEY}";
-            ChangeEmailEndPoint= $"{baseEndpoint}/{CHANGR_EMAIL_API_KEY}";
+            ChangeEmailEndPoint = $"{baseEndpoint}/{CHANGR_EMAIL_API_KEY}";
             UploadUserAvatarEndpoint = $"{baseEndpoint}/{UPLOAD_USER_AVATAR_API_KEY}";
             ChangePasswordEndPoint = $"{baseEndpoint}/{UPDATE_PASSWORD_API_KEY}";
             CanUserChangeForgottenPasswordEndPoint = $"{baseEndpoint}/{CAN_USER_CHANGE_FORGOTTEN_PASSWORD_API_KEY}";

@@ -17,5 +17,9 @@ namespace Drive.Client.Models.Rest {
         /// Identity endpoints.
         /// </summary>
         public IdentityEndpoints IdentityEndpoints { get; set; } = new IdentityEndpoints(DEFAULT_ENDPOINT);
+        /// <summary>
+        /// Vehicle endpoints
+        /// </summary>
+        public VehicleEndpoints VehicleEndpoints { get; set; } = new VehicleEndpoints(DEFAULT_ENDPOINT);
     }
 }

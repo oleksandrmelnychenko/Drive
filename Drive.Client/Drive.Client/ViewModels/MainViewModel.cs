@@ -1,6 +1,7 @@
 ﻿using Drive.Client.Services.DeviceUtil;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.BottomTabViewModels;
+using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
 using Drive.Client.ViewModels.BottomTabViewModels.Search;
 using System;
 using System.Collections.Generic;

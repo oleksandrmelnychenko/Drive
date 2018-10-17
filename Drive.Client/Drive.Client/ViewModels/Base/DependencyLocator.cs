@@ -1,17 +1,21 @@
 ﻿using Autofac;
 using Drive.Client.DataItems.ProfileSettings;
 using Drive.Client.Factories.Validation;
+using Drive.Client.Factories.Vehicle;
+using Drive.Client.Helpers.AppEvents;
+using Drive.Client.Helpers.AppEvents.Events;
 using Drive.Client.Services.Automobile;
 using Drive.Client.Services.DeviceUtil;
 using Drive.Client.Services.Dialog;
-using Drive.Client.Services.EventStore;
 using Drive.Client.Services.Identity;
 using Drive.Client.Services.Identity.IdentityUtility;
 using Drive.Client.Services.Media;
 using Drive.Client.Services.Navigation;
 using Drive.Client.Services.RequestProvider;
+using Drive.Client.Services.Vehicle;
 using Drive.Client.ViewModels.ActionBars;
 using Drive.Client.ViewModels.BottomTabViewModels;
+using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
 using Drive.Client.ViewModels.BottomTabViewModels.Popups;
 using Drive.Client.ViewModels.BottomTabViewModels.Search;
 using Drive.Client.ViewModels.IdentityAccounting.EditProfile;
@@ -41,6 +45,9 @@ namespace Drive.Client.ViewModels.Base {
         public static void RegisterDependencies() {
             var builder = new ContainerBuilder();
 
+            builder.RegisterType<LanguageEvents>().SingleInstance();
+            builder.RegisterType<AppMessagingEvents>().SingleInstance();
+
             // View models.
             builder.RegisterType<HomeViewModel>();
             builder.RegisterType<MainViewModel>();
@@ -50,6 +57,9 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<BookmarkViewModel>();
             builder.RegisterType<EditEmailViewModel>();
             builder.RegisterType<EditUserNameViewModel>();
+            builder.RegisterType<UserVehiclesViewModel>();
+            builder.RegisterType<SearchByCarIdViewModel>();
+            builder.RegisterType<SearchByPersonViewModel>();
             builder.RegisterType<FoundDriveAutoViewModel>();
             builder.RegisterType<EditPhoneNumberViewModel>();
             builder.RegisterType<CommonActionBarViewModel>();
@@ -68,21 +78,20 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<ForgotPasswordFinallyStepViewModel>();
             builder.RegisterType<IdentityAccountingActionBarViewModel>();
             builder.RegisterType<ConfirmPasswordRegisterStepViewModel>();
-            builder.RegisterType<SearchByPersonViewModel>();
-            builder.RegisterType<SearchByCarIdViewModel>();
 
             // Services.
             builder.RegisterType<DialogService>().As<IDialogService>();
+            builder.RegisterType<VehicleService>().As<IVehicleService>();
             builder.RegisterType<RequestProvider>().As<IRequestProvider>().SingleInstance();
             builder.RegisterType<IdentityService>().As<IIdentityService>();
             builder.RegisterType<DriveAutoService>().As<IDriveAutoService>();
             builder.RegisterType<PickMediaService>().As<IPickMediaService>();
             builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
             builder.RegisterType<DeviceUtilService>().As<IDeviceUtilService>().SingleInstance();
-            builder.RegisterType<EventStoreService>().As<IEventStoreService>();
             builder.RegisterType<IdentityUtilityService>().As<IIdentityUtilityService>();
 
             // Factories.
+            builder.RegisterType<VehicleFactory>().As<IVehicleFactory>();
             builder.RegisterType<ValidationObjectFactory>().As<IValidationObjectFactory>();
 
             // Data items

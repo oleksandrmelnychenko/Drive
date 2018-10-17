@@ -271,4 +271,25 @@
   <data name="SearchResult" xml:space="preserve">
     <value>ПОШУК НЕ ДАВ РЕЗУЛЬТАТІВ</value>
   </data>
+  <data name="NSPhotoLibraryUsageDescription" xml:space="preserve">
+    <value>Щоб Ви змогли загрузити фото для вашого профіля</value>
+  </data>
+  <data name="HistoryRequestsUpperCase" xml:space="preserve">
+    <value>ІСТОРІЯ ЗАПИТІВ</value>
+  </data>
+  <data name="VehiclesSecondTypeUpperCase" xml:space="preserve">
+    <value>АВТОМОБІЛЯ</value>
+  </data>
+  <data name="VehiclesUpperCase" xml:space="preserve">
+    <value>АВТОМОБІЛІВ</value>
+  </data>
+  <data name="VehicleUpperCase" xml:space="preserve">
+    <value>АВТОМОБІЛЬ</value>
+  </data>
+  <data name="FinishedUpperCase" xml:space="preserve">
+    <value>ЗАВЕРШЕНО</value>
+  </data>
+  <data name="ProcessingUpperCase" xml:space="preserve">
+    <value>В ОБРОБЦІ</value>
+  </data>
 </root>

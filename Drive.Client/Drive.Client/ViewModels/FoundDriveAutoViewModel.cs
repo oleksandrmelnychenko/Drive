@@ -1,6 +1,7 @@
 ﻿using Drive.Client.Extensions;
 using Drive.Client.Helpers.Localize;
 using Drive.Client.Models.EntityModels;
+using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.Models.Identities.NavigationArgs;
 using Drive.Client.Resources.Resx;
 using Drive.Client.Services.Automobile;

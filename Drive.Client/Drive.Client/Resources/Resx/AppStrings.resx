@@ -271,4 +271,25 @@
   <data name="SearchResult" xml:space="preserve">
     <value>SEARCH WAS NOT RESULT</value>
   </data>
+  <data name="NSPhotoLibraryUsageDescription" xml:space="preserve">
+    <value>Drive need access to your photo library to upload user photo</value>
+  </data>
+  <data name="HistoryRequestsUpperCase" xml:space="preserve">
+    <value>HISTORY OF REQUESTS</value>
+  </data>
+  <data name="VehiclesSecondTypeUpperCase" xml:space="preserve">
+    <value>VEHICLES</value>
+  </data>
+  <data name="VehiclesUpperCase" xml:space="preserve">
+    <value>VEHICLES</value>
+  </data>
+  <data name="VehicleUpperCase" xml:space="preserve">
+    <value>VEHICLE</value>
+  </data>
+  <data name="FinishedUpperCase" xml:space="preserve">
+    <value>FINISHED</value>
+  </data>
+  <data name="ProcessingUpperCase" xml:space="preserve">
+    <value>PROCESSING</value>
+  </data>
 </root>

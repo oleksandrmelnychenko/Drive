@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
 using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Services.Identity;
+using Newtonsoft.Json;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
     class NameRegisterStepViewModel : IdentityAccountingStepBaseViewModel {
@@ -64,7 +65,8 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
                         }
                     }
                     catch (Exception ex) {
-                        ServerError = ex.Message;
+                        var error = JsonConvert.DeserializeObject<HttpRequestExceptionResult>(ex.Message);
+                        ServerError = error.Message;
 
                         Debug.WriteLine($"ERROR:{ex.Message}");
                         Debugger.Break();

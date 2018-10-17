@@ -8,6 +8,8 @@ using Drive.Client.ViewModels.BottomTabViewModels.Popups;
 using Drive.Client.ViewModels.IdentityAccounting.EditProfile;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
 using Drive.Client.Views.BottomTabViews;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using System;
 using System.Diagnostics;
 using System.Threading;
@@ -129,22 +131,43 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
             ResetCancellationTokenSource(ref _changeAvatarCancellationTokenSource);
             CancellationTokenSource cancellationTokenSource = _changeAvatarCancellationTokenSource;
 
-            Guid busyKey = Guid.NewGuid();
-            UpdateBusyVisualState(busyKey, true);
             try {
-                PickedImage pickedImage = await _pickMediaService.BuildPickedImageAsync();
+                var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Photos);
+                if (status != PermissionStatus.Granted) {
+                    if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Photos)) {
+                        Debugger.Break();
+                    }
 
-                string avatarUrl = await _identityService.UploadUserAvatarAsync(pickedImage, _changeAvatarCancellationTokenSource.Token);
+                    var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Photos);
+                    if (results.ContainsKey(Permission.Photos))
+                        status = results[Permission.Photos];
+                }
 
-                if (!string.IsNullOrEmpty(avatarUrl)) {
-                    AvatarUrl = avatarUrl;
+                if (status == PermissionStatus.Granted) {
+                    Guid busyKey = Guid.NewGuid();
+                    UpdateBusyVisualState(busyKey, true);
+                    try {
+                        PickedImage pickedImage = await _pickMediaService.BuildPickedImageAsync();
+
+                        string avatarUrl = await _identityService.UploadUserAvatarAsync(pickedImage, _changeAvatarCancellationTokenSource.Token);
+
+                        if (!string.IsNullOrEmpty(avatarUrl)) {
+                            AvatarUrl = avatarUrl;
+                        }
+                    }
+                    catch (Exception ex) {
+                        Debug.WriteLine($"ERROR:{ex.Message}");
+                        Debugger.Break();
+                    }
+                    UpdateBusyVisualState(busyKey, false);
+                } else if (status != PermissionStatus.Unknown) {
+                    await DialogService.ShowAlertAsync("Photos access Denied", "Can not continue, try again.", "OK");
                 }
             }
             catch (Exception ex) {
                 Debug.WriteLine($"ERROR:{ex.Message}");
                 Debugger.Break();
             }
-            UpdateBusyVisualState(busyKey, false);
         }
 
         private void UpdateView() {

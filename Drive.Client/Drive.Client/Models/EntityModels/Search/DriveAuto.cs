@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Drive.Client.Models.EntityModels {
+namespace Drive.Client.Models.EntityModels.Search {
     public class DriveAuto {
         [JsonProperty("id")]
         public string Id { get; set; }

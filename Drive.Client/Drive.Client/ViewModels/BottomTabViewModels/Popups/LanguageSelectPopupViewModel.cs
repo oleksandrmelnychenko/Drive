@@ -33,6 +33,9 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Popups {
 
                 ResourceLoader.Instance.CultureInfo = selectedLanguageDataItem.Language.Culture;
 
+                // Raise selected language.
+                BaseSingleton<GlobalSetting>.Instance.AppMessagingEvents.LanguageEvents.OnLanguageChanged(selectedLanguageDataItem.Language.LocaleId);
+
                 ClosePopupCommand.Execute(null);
             }
         });
