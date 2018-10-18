@@ -2,7 +2,6 @@
 using Drive.Client.Models.DataItems.Vehicle;
 using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.Resources.Resx;
-using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
@@ -16,8 +15,8 @@ namespace Drive.Client.Factories.Vehicle {
                     ResidentRequest = request,
                     Created = request.Created,
                     Status = GetLocalizeStatus(request.Status),
-                    CountOutput = GetOutputValue(request.VechicalCount),
-                    StatusColor = request.Status == Status.Finished ? (Color)App.Current.Resources["StatusFinishedColor"] : (Color)App.Current.Resources["StatusProcessingColor"]
+                    CountOutput = GetOutputValue(request.VehicleCount),
+                    StatusColor = (request.Status == Status.Finished) ? (Color)App.Current.Resources["StatusFinishedColor"] : (Color)App.Current.Resources["StatusProcessingColor"]
                 };
                 residentRequestDataItem.InitializeAsync(null);
                 residentRequestDataItems.Add(residentRequestDataItem);

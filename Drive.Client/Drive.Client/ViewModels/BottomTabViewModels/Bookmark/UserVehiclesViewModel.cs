@@ -4,6 +4,8 @@ using Drive.Client.Helpers;
 using Drive.Client.Helpers.Localize;
 using Drive.Client.Models.DataItems.Vehicle;
 using Drive.Client.Models.EntityModels.Search;
+using Drive.Client.Models.EntityModels.Vehicle;
+using Drive.Client.Models.Identities.NavigationArgs;
 using Drive.Client.Resources.Resx;
 using Drive.Client.Services.Vehicle;
 using Drive.Client.ViewModels.Base;
@@ -12,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,6 +26,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
     public sealed class UserVehiclesViewModel : NestedViewModel, IVisualFiguring {
 
         private CancellationTokenSource _getUserVehicleDetailRequestsCancellationTokenSource = new CancellationTokenSource();
+
+        private CancellationTokenSource _getVehiclesCancellationTokenSource = new CancellationTokenSource();
 
         private readonly IVehicleFactory _vehicleFactory;
 
@@ -56,13 +61,13 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
             get { return _selectedRequest; }
             set {
                 if (SetProperty(ref _selectedRequest, value) && value != null) {
-                    if (value.ResidentRequest.Status == Status.Finished && value.ResidentRequest.VechicalCount > 0) {
-                        Debugger.Break();
+                    if (value.ResidentRequest.VehicleCount > 0) {
+                        GetVehicles(value);
                     }
                 }
             }
         }
-
+      
         /// <summary>
         ///     ctor().
         /// </summary>
@@ -86,6 +91,41 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
             UserRequests?.Clear();
 
             ResetCancellationTokenSource(ref _getUserVehicleDetailRequestsCancellationTokenSource);
+            ResetCancellationTokenSource(ref _getVehiclesCancellationTokenSource);
+        }
+
+        private async void GetVehicles(ResidentRequestDataItem residentRequestDataItem) {
+            IEnumerable<VehicleDetail> foundVehicles = await GetVehiclesByRequestIdAsync(residentRequestDataItem.ResidentRequest.GovRequestId);
+
+            if (foundVehicles != null && foundVehicles.Any()) {
+                VehicleArgs vehicleArgs = new VehicleArgs {
+                    ResidentRequestDataItem = residentRequestDataItem,
+                    VehicleDetails = foundVehicles
+                };
+
+                await NavigationService.NavigateToAsync<VehicleDetailViewModel>(vehicleArgs);
+            }
+        }
+
+        private async Task<IEnumerable<VehicleDetail>> GetVehiclesByRequestIdAsync(long govRequestId) {
+            ResetCancellationTokenSource(ref _getVehiclesCancellationTokenSource);
+            CancellationTokenSource cancellationTokenSource = _getVehiclesCancellationTokenSource;
+
+            IEnumerable<VehicleDetail> result = null;
+
+            Guid busyKey = Guid.NewGuid();
+            UpdateBusyVisualState(busyKey, true);
+
+            try {
+                result = await _vehicleService.GetVehiclesByRequestIdAsync(govRequestId, cancellationTokenSource.Token);
+            }
+            catch (Exception ex) {
+                Debug.WriteLine($"ERROR: {ex.Message}");                
+            }
+
+            UpdateBusyVisualState(busyKey, false);
+
+            return result;
         }
 
         private void UpdateView() {

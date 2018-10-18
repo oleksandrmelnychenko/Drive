@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
-    public sealed class EditPasswordFinallyStepViewModel : IdentityAccountingStepBaseViewModel {
+    public sealed class EditPasswordFinallyStepViewModel : StepBaseViewModel {
 
         private CancellationTokenSource _updatePasswordCancellationTokenSource = new CancellationTokenSource();
 

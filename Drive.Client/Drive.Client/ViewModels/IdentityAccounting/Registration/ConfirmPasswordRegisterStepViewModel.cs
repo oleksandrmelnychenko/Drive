@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
-    public class ConfirmPasswordRegisterStepViewModel : IdentityAccountingStepBaseViewModel {
+    public class ConfirmPasswordRegisterStepViewModel : StepBaseViewModel {
 
         private CancellationTokenSource _signUpCancellationTokenSource = new CancellationTokenSource();
 

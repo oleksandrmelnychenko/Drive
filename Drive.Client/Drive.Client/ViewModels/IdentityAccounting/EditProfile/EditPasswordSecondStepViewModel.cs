@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
-    public sealed class EditPasswordSecondStepViewModel : IdentityAccountingStepBaseViewModel {
+    public sealed class EditPasswordSecondStepViewModel : StepBaseViewModel {
 
         private ChangePasswordArgs _changePasswordArgs;
 

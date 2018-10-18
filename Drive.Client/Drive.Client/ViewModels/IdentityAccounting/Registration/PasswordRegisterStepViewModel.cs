@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
-    public sealed class PasswordRegisterStepViewModel: IdentityAccountingStepBaseViewModel {
+    public sealed class PasswordRegisterStepViewModel : StepBaseViewModel {
 
         private RegistrationCollectedInputsArgs _collectedInputsArgs;
 
@@ -39,8 +39,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
                 if (_collectedInputsArgs != null) {
                     _collectedInputsArgs.Password = MainInput.Value;
                     await NavigationService.NavigateToAsync<ConfirmPasswordRegisterStepViewModel>(_collectedInputsArgs);
-                }
-                else {
+                } else {
                     Debugger.Break();
                     await NavigationService.GoBackAsync();
                 }

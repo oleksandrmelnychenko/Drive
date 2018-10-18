@@ -9,7 +9,7 @@ using Xamarin.Forms.Xaml;
 
 namespace Drive.Client.Views.IdentityAccounting.EditProfile {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EditUserNameView : IdentityAccountingStepBaseView {
+    public partial class EditUserNameView : StepBaseView {
         public EditUserNameView() {
             InitializeComponent();
         }

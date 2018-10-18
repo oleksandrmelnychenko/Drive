@@ -32,6 +32,8 @@
                 Default="Transparent"
                 iOS="{StaticResource iOSEntryBackgroundColor}" />
 
+            <x:String x:Key="FormattedDate">{0:dd.MM.yyyy}</x:String>
+
             <!--  FONTS  -->
             <OnPlatform
                 x:Key="SFProLight"

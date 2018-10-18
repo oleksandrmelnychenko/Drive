@@ -12,7 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.ForgotPassword {
-    public sealed class ForgotPasswordFinallyStepViewModel : IdentityAccountingStepBaseViewModel {
+    public sealed class ForgotPasswordFinallyStepViewModel : StepBaseViewModel {
 
         private CancellationTokenSource _forgotPasswordCancellationTokenSource = new CancellationTokenSource();
 

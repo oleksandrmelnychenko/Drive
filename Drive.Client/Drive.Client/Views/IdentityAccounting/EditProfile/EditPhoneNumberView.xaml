@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<identityAccounting:IdentityAccountingStepBaseView
+<identityAccounting:StepBaseView
     x:Class="Drive.Client.Views.IdentityAccounting.EditProfile.EditPhoneNumberView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -11,7 +11,7 @@
     xmlns:identityAccounting="clr-namespace:Drive.Client.Views.IdentityAccounting"
     dependency:DependencyLocator.AutoWireViewModel="True">
 
-    <identityAccounting:IdentityAccountingStepBaseView.MainContent>
+    <identityAccounting:StepBaseView.MainContent>
         <ContentView BackgroundColor="{StaticResource WhiteColor}">
             <StackLayout Padding="0,60" Spacing="30">
 
@@ -81,5 +81,5 @@
                 </Grid>
             </StackLayout>
         </ContentView>
-    </identityAccounting:IdentityAccountingStepBaseView.MainContent>
-</identityAccounting:IdentityAccountingStepBaseView>
+    </identityAccounting:StepBaseView.MainContent>
+</identityAccounting:StepBaseView>

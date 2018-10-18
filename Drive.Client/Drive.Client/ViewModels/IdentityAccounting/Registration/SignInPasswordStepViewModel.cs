@@ -13,7 +13,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
-    public sealed class SignInPasswordStepViewModel : IdentityAccountingStepBaseViewModel {
+    public sealed class SignInPasswordStepViewModel : StepBaseViewModel {
 
         private CancellationTokenSource _signInCancellationTokenSource = new CancellationTokenSource();
 

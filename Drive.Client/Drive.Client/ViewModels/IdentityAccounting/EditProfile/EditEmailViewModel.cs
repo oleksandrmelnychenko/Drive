@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
-    public sealed class EditEmailViewModel : IdentityAccountingStepBaseViewModel {
+    public sealed class EditEmailViewModel : StepBaseViewModel {
 
         private readonly IIdentityService _identityService;
 

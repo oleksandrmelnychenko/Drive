@@ -9,7 +9,7 @@ using System.Threading;
 using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
-    public class PhoneNumberRegisterStepViewModel : IdentityAccountingStepBaseViewModel {
+    public class PhoneNumberRegisterStepViewModel : StepBaseViewModel {
 
         private CancellationTokenSource _checkPhoneNumberCancellationTokenSource = new CancellationTokenSource();
 

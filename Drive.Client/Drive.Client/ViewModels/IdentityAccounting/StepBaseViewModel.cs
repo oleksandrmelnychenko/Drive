@@ -10,8 +10,10 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.IdentityAccounting {
-    public abstract class IdentityAccountingStepBaseViewModel : ContentPageBaseViewModel {
+    public abstract class StepBaseViewModel : ContentPageBaseViewModel {
 
+        public static readonly StringResource MIDDLENAME_STEP_REGISTRATION_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.MiddleNameUpperCase));
+        public static readonly StringResource MIDDLENAME_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.MiddleNameUpperCase));
         public static readonly StringResource PHONENUMBER_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.PhoneNumberUpperCase));
         public static readonly StringResource CHANGE_PHONENUMBER_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.ChangePhoneNumberUpperCase));
         public static readonly StringResource NAME_STEP_REGISTRATION_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.EnterNameUpperCase));
@@ -23,7 +25,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
         public static readonly StringResource PHONE_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.PnoneNumberUpperCase));
         public static readonly StringResource NAME_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.NameUpperCase));
         public static readonly StringResource PASSWORD_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.PasswordUpperCase));
-        
+
         public static readonly string PHONENUMBER_ICON_PATH = "resource://Drive.Client.Resources.Images.Phone.svg";
         public static readonly string NAME_ICON_PATH = "resource://Drive.Client.Resources.Images.name.svg";
         public static readonly string EMAIL_ICON_PATH = "resource://Drive.Client.Resources.Images.Email.svg";
@@ -32,9 +34,10 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
 
         private readonly IValidationObjectFactory _validationObjectFactory;
 
-        //public static readonly string TODO_INPUT_ICON_STUB = "todo: appropriate icon path";
-
-        public IdentityAccountingStepBaseViewModel() {
+        /// <summary>
+        ///     ctor().
+        /// </summary>
+        public StepBaseViewModel() {
             _validationObjectFactory = DependencyLocator.Resolve<IValidationObjectFactory>();
 
             ActionBarViewModel = DependencyLocator.Resolve<IdentityAccountingActionBarViewModel>();
@@ -78,7 +81,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
             get => _keyboardType;
             protected set => SetProperty(ref _keyboardType, value);
         }
-        
+
         bool _isPasswordInput;
         public bool IsPasswordInput {
             get => _isPasswordInput;

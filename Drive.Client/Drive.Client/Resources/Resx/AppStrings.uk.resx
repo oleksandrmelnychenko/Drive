@@ -292,4 +292,28 @@
   <data name="ProcessingUpperCase" xml:space="preserve">
     <value>В ОБРОБЦІ</value>
   </data>
+  <data name="BrandUpperCase" xml:space="preserve">
+    <value>МАРКА</value>
+  </data>
+  <data name="DataRegUpperCase" xml:space="preserve">
+    <value>ДАТА РЕЄСТРАЦІЇ</value>
+  </data>
+  <data name="EngineCapacityUpperСase" xml:space="preserve">
+    <value>ОБ'ЄМ ДВИГУНА</value>
+  </data>
+  <data name="ModelUpperCase" xml:space="preserve">
+    <value>МОДЕЛЬ</value>
+  </data>
+  <data name="YearUpperCase" xml:space="preserve">
+    <value>РІК</value>
+  </data>
+  <data name="MiddleNameUpperCase" xml:space="preserve">
+    <value>ПО БАТЬКОВІ</value>
+  </data>
+  <data name="SurnameUpperCase" xml:space="preserve">
+    <value>ПРІЗВИЩЕ</value>
+  </data>
+  <data name="SearchByPersonTitleUpperCase" xml:space="preserve">
+    <value>ПОШУК ЗА ФІЗИЧНОЮ ОСОБОЮ</value>
+  </data>
 </root>

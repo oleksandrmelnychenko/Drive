@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Threading;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
-    public sealed class EditUserNameViewModel : IdentityAccountingStepBaseViewModel {
+    public sealed class EditUserNameViewModel : StepBaseViewModel {
 
         private readonly IIdentityService _identityService;
 

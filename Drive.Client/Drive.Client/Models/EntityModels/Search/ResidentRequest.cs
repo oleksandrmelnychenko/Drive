@@ -6,17 +6,17 @@ namespace Drive.Client.Models.EntityModels.Search {
         [JsonProperty("Created")]
         public DateTime Created { get; set; }
 
-        [JsonProperty("ResidentFirstName")]
-        public string ResidentFirstName { get; set; }
+        [JsonProperty("FirstName")]
+        public string FirstName { get; set; }
 
-        [JsonProperty("ResidentLastName")]
-        public string ResidentLastName { get; set; }
+        [JsonProperty("LastName")]
+        public string LastName { get; set; }
 
-        [JsonProperty("ResidentMiddleName")]
-        public string ResidentMiddleName { get; set; }
+        [JsonProperty("MiddleName")]
+        public string MiddleName { get; set; }
 
-        [JsonProperty("ResidentDateOfBirth")]
-        public DateTime? ResidentDateOfBirth { get; set; }
+        [JsonProperty("DateOfBirth")]
+        public DateTime? DateOfBirth { get; set; }
 
         [JsonProperty("Status")]
         public Status Status { get; set; }
@@ -24,7 +24,7 @@ namespace Drive.Client.Models.EntityModels.Search {
         [JsonProperty("GovRequestId")]
         public long GovRequestId { get; set; }
 
-        [JsonProperty("VechicalCount")]
-        public long VechicalCount { get; set; }
+        [JsonProperty("VehicleCount")]
+        public long VehicleCount { get; set; }
     }
 }

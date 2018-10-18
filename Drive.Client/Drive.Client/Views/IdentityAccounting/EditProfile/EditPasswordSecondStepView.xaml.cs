@@ -2,7 +2,7 @@
 
 namespace Drive.Client.Views.IdentityAccounting.EditProfile {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EditPasswordSecondStepView : IdentityAccountingStepBaseView {
+    public partial class EditPasswordSecondStepView : StepBaseView {
         public EditPasswordSecondStepView() {
             InitializeComponent();
         }

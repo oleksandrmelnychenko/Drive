@@ -2,7 +2,7 @@
 
 namespace Drive.Client.Views.IdentityAccounting.EditProfile {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EditEmailView : IdentityAccountingStepBaseView {
+    public partial class EditEmailView : StepBaseView {
         public EditEmailView() {
             InitializeComponent();
         }

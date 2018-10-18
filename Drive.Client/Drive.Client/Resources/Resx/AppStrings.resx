@@ -292,4 +292,28 @@
   <data name="ProcessingUpperCase" xml:space="preserve">
     <value>PROCESSING</value>
   </data>
+  <data name="BrandUpperCase" xml:space="preserve">
+    <value>BRAND</value>
+  </data>
+  <data name="DataRegUpperCase" xml:space="preserve">
+    <value>REGISTRATION DATE</value>
+  </data>
+  <data name="EngineCapacityUpperСase" xml:space="preserve">
+    <value>ENGINE CAPACITY</value>
+  </data>
+  <data name="ModelUpperCase" xml:space="preserve">
+    <value>MODEL</value>
+  </data>
+  <data name="YearUpperCase" xml:space="preserve">
+    <value>YEAR</value>
+  </data>
+  <data name="MiddleNameUpperCase" xml:space="preserve">
+    <value>MIDDLE NAME</value>
+  </data>
+  <data name="SurnameUpperCase" xml:space="preserve">
+    <value>SURNAME</value>
+  </data>
+  <data name="SearchByPersonTitleUpperCase" xml:space="preserve">
+    <value>SEARCH FOR A PHYSICAL PERSON</value>
+  </data>
 </root>

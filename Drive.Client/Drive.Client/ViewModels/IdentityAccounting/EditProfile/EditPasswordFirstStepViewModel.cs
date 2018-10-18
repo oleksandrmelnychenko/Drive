@@ -1,7 +1,7 @@
 ﻿using Drive.Client.Models.Arguments.IdentityAccounting.ChangePassword;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
-    public sealed class EditPasswordFirstStepViewModel : IdentityAccountingStepBaseViewModel {
+    public sealed class EditPasswordFirstStepViewModel : StepBaseViewModel {
 
         /// <summary>
         ///     ctor().

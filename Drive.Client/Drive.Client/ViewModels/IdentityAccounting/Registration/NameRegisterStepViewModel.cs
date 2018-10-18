@@ -8,7 +8,7 @@ using Drive.Client.Services.Identity;
 using Newtonsoft.Json;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
-    class NameRegisterStepViewModel : IdentityAccountingStepBaseViewModel {
+    public sealed class NameRegisterStepViewModel : StepBaseViewModel {
 
         private RegistrationCollectedInputsArgs _collectedInputsArgs;
 

@@ -114,6 +114,9 @@
     <Compile Update="Views\IdentityAccounting\EditProfile\EditPasswordFirstStepView.xaml.cs">
       <DependentUpon>EditPasswordFirstStepView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\IdentityAccounting\StepBaseView.xaml.cs">
+      <DependentUpon>StepBaseView.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\IdentityAccounting\Registration\SignInPasswordStepView.xaml.cs">
       <DependentUpon>SignInPasswordStepView.xaml</DependentUpon>
     </Compile>
@@ -160,6 +163,12 @@
     <EmbeddedResource Update="Views\BottomTabViews\Search\SearchByCarIdView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Search\SearchByPersonFinallyStepView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Search\SearchByPersonSecondStepView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\BottomTabViews\Search\SearchByPersonView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -202,7 +211,7 @@
     <EmbeddedResource Update="Views\IdentityAccounting\ForgotPassword\ForgotPasswordSecondStepView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\IdentityAccounting\IdentityAccountingStepBaseView.xaml">
+    <EmbeddedResource Update="Views\IdentityAccounting\StepBaseView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\IdentityAccounting\Registration\ConfirmPasswordRegisterStepView.xaml">
@@ -233,6 +242,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BottomTabViews\Search\SearchView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\VehicleDetailView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

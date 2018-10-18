@@ -18,7 +18,7 @@
 
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="230" />
+            <RowDefinition Height="200" />
             <RowDefinition Height="0" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
@@ -41,14 +41,14 @@
             HorizontalOptions="Center"
             Source="resource://Drive.Client.Resources.Images.drive_logo.svg"
             VerticalOptions="Center"
-            WidthRequest="200" />
+            WidthRequest="185" />
 
         <!--  TITLE  -->
         <controls:LabelExtended
             Grid.Row="0"
             Margin="0,30"
             FontFamily="{StaticResource SFProLight}"
-            FontSize="{StaticResource MediumSize}"
+            FontSize="{StaticResource MidMediumSize}"
             HorizontalOptions="Center"
             Text="{Binding [MainTitle].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
             TextColor="{StaticResource DarkColor}"

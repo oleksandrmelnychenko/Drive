@@ -13,7 +13,7 @@ using System.Threading;
 using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
-    public sealed class EditPhoneNumberViewModel : IdentityAccountingStepBaseViewModel {
+    public sealed class EditPhoneNumberViewModel : StepBaseViewModel {
 
         private readonly IIdentityService _identityService;
 

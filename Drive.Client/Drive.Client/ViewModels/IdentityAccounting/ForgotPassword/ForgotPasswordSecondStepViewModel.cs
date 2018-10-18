@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.ForgotPassword {
-    public sealed class ForgotPasswordSecondStepViewModel : IdentityAccountingStepBaseViewModel {
+    public sealed class ForgotPasswordSecondStepViewModel : StepBaseViewModel {
 
         private ForgotPasswordArgs _forgotPasswordArgs;
 

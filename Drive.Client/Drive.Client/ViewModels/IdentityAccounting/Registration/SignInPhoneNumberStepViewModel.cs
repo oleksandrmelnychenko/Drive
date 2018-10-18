@@ -7,7 +7,7 @@ using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
-    public sealed class SignInPhoneNumberStepViewModel : IdentityAccountingStepBaseViewModel {
+    public sealed class SignInPhoneNumberStepViewModel : StepBaseViewModel {
 
         /// <summary>
         ///     ctor().

@@ -16,12 +16,13 @@ namespace Drive.Client.Services.RequestProvider {
 
         private readonly HttpClient _client;
 
+        /// <summary>
+        ///     ctor().
+        /// </summary>
         public RequestProvider() {
             _client = new HttpClient();
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            ///
-            /// TODO: temporary implementation
-            /// 
+
             _client.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(BaseSingleton<GlobalSetting>.Instance.AppInterfaceConfigurations.LanguageInterface.LocaleId));
             _client.DefaultRequestHeaders.Add("DeviceId", CrossDeviceInfo.Current.Id);
         }
@@ -47,16 +48,9 @@ namespace Drive.Client.Services.RequestProvider {
             await HandleResponse(response);
 
             string serialized = await response.Content.ReadAsStringAsync();
-
-            TResult result = await Task.Run(() =>
-                JsonConvert.DeserializeObject<TResult>(serialized));
+            TResult result = await DeserializeResponse<TResult>(serialized);
 
             return result;
-        }
-
-        private static void CheckInternetConnection() {
-            if (!CrossConnectivity.Current.IsConnected)
-                throw new ConnectivityException((ResourceLoader.Instance.GetString(nameof(AppStrings.ERROR_INTERNET_CONNECTION))).Value);
         }
 
         /// <summary>
@@ -83,7 +77,7 @@ namespace Drive.Client.Services.RequestProvider {
 
                 string serialized = await response.Content.ReadAsStringAsync();
 
-                TResponseValue result = JsonConvert.DeserializeObject<TResponseValue>(serialized);
+                TResponseValue result = await DeserializeResponse<TResponseValue>(serialized);
 
                 return result;
             });
@@ -118,7 +112,7 @@ namespace Drive.Client.Services.RequestProvider {
 
                         string serialized = await response.Content.ReadAsStringAsync();
 
-                        result = JsonConvert.DeserializeObject<TResult>(serialized);
+                        result = await DeserializeResponse<TResult>(serialized);
                     }
                 }
 
@@ -151,11 +145,23 @@ namespace Drive.Client.Services.RequestProvider {
 
                 string serialized = await response.Content.ReadAsStringAsync();
 
-                result = await Task.Run(() =>
-                    JsonConvert.DeserializeObject<TResult>(serialized));
+                result = await DeserializeResponse<TResult>(serialized);
 
                 return result;
             });
+
+        private static async Task<TResult> DeserializeResponse<TResult>(string serialized) =>
+           await Task.Run(() => {
+               if (serialized != null) {
+                   return JsonConvert.DeserializeObject<TResult>(serialized);
+               }
+               return default(TResult);
+           });
+
+        private static void CheckInternetConnection() {
+            if (!CrossConnectivity.Current.IsConnected)
+                throw new ConnectivityException((ResourceLoader.Instance.GetString(nameof(AppStrings.ERROR_INTERNET_CONNECTION))).Value);
+        }
 
         private void SetLanguage() {
             _client.DefaultRequestHeaders.AcceptLanguage.Clear();
@@ -167,8 +173,7 @@ namespace Drive.Client.Services.RequestProvider {
                 if (!string.IsNullOrEmpty(accessToken)) {
                     _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 }
-            }
-            else {
+            } else {
                 if (!(string.IsNullOrEmpty(accessToken)) && _client.DefaultRequestHeaders.Authorization.Parameter != accessToken) {
                     _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 }

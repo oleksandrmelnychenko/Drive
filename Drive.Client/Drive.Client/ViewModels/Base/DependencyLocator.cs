@@ -21,7 +21,9 @@ using Drive.Client.ViewModels.BottomTabViewModels.Search;
 using Drive.Client.ViewModels.IdentityAccounting.EditProfile;
 using Drive.Client.ViewModels.IdentityAccounting.ForgotPassword;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
+using Drive.Client.ViewModels.Search;
 using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
 using Xamarin.Forms;
@@ -58,6 +60,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<EditEmailViewModel>();
             builder.RegisterType<EditUserNameViewModel>();
             builder.RegisterType<UserVehiclesViewModel>();
+            builder.RegisterType<VehicleDetailViewModel>();
             builder.RegisterType<SearchByCarIdViewModel>();
             builder.RegisterType<SearchByPersonViewModel>();
             builder.RegisterType<FoundDriveAutoViewModel>();
@@ -74,7 +77,9 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<PhoneNumberRegisterStepViewModel>();
             builder.RegisterType<EditPasswordFinallyStepViewModel>();
             builder.RegisterType<ForgotPasswordFirstStepViewModel>();
+            builder.RegisterType<SearchByPersonSecondStepViewModel>();
             builder.RegisterType<ForgotPasswordSecondStepViewModel>();
+            builder.RegisterType<SearchByPersonFinallyStepViewModel>();
             builder.RegisterType<ForgotPasswordFinallyStepViewModel>();
             builder.RegisterType<IdentityAccountingActionBarViewModel>();
             builder.RegisterType<ConfirmPasswordRegisterStepViewModel>();
@@ -114,7 +119,10 @@ namespace Drive.Client.ViewModels.Base {
             var viewModelName = string.Format(CultureInfo.InvariantCulture, "{0}Model, {1}", viewName, viewAssemblyName);
 
             var viewModelType = Type.GetType(viewModelName);
-            if (viewModelType == null) return;
+            if (viewModelType == null) {
+                Debug.WriteLine("------------------------ERROR: Can't find viewModel type ---------------------");
+                return;
+            } 
 
             var viewModel = _container.Resolve(viewModelType);
             view.BindingContext = viewModel;

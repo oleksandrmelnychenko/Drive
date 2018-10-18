@@ -97,6 +97,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BRAND.
+        /// </summary>
+        public static string BrandUpperCase {
+            get {
+                return ResourceManager.GetString("BrandUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to BY NUMBER.
         /// </summary>
         public static string ByNumberUpperCase {
@@ -142,6 +151,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to REGISTRATION DATE.
+        /// </summary>
+        public static string DataRegUpperCase {
+            get {
+                return ResourceManager.GetString("DataRegUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EMAIL.
         /// </summary>
         public static string EmailUppercase {
@@ -156,6 +174,15 @@ namespace Drive.Client.Resources.Resx {
         public static string EngineCapacity {
             get {
                 return ResourceManager.GetString("EngineCapacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ENGINE CAPACITY.
+        /// </summary>
+        public static string EngineCapacityUpperСase {
+            get {
+                return ResourceManager.GetString("EngineCapacityUpperСase", resourceCulture);
             }
         }
         
@@ -322,6 +349,24 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MIDDLE NAME.
+        /// </summary>
+        public static string MiddleNameUpperCase {
+            get {
+                return ResourceManager.GetString("MiddleNameUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MODEL.
+        /// </summary>
+        public static string ModelUpperCase {
+            get {
+                return ResourceManager.GetString("ModelUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NAME.
         /// </summary>
         public static string NameUpperCase {
@@ -477,6 +522,15 @@ namespace Drive.Client.Resources.Resx {
         /// <summary>
         ///   Looks up a localized string similar to SEARCH FOR A PHYSICAL PERSON.
         /// </summary>
+        public static string SearchByPersonTitleUpperCase {
+            get {
+                return ResourceManager.GetString("SearchByPersonTitleUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SEARCH FOR A PHYSICAL PERSON.
+        /// </summary>
         public static string SearchByPersonUpperCase {
             get {
                 return ResourceManager.GetString("SearchByPersonUpperCase", resourceCulture);
@@ -507,6 +561,15 @@ namespace Drive.Client.Resources.Resx {
         public static string SignUp {
             get {
                 return ResourceManager.GetString("SignUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SURNAME.
+        /// </summary>
+        public static string SurnameUpperCase {
+            get {
+                return ResourceManager.GetString("SurnameUpperCase", resourceCulture);
             }
         }
         
@@ -579,6 +642,15 @@ namespace Drive.Client.Resources.Resx {
         public static string YearOfCreation {
             get {
                 return ResourceManager.GetString("YearOfCreation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to YEAR.
+        /// </summary>
+        public static string YearUpperCase {
+            get {
+                return ResourceManager.GetString("YearUpperCase", resourceCulture);
             }
         }
     }

@@ -2,7 +2,7 @@
 
 namespace Drive.Client.Views.IdentityAccounting.Registration {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NameRegisterStepView : IdentityAccountingStepBaseView {
+    public partial class NameRegisterStepView : StepBaseView {
         public NameRegisterStepView() {
             InitializeComponent();
         }

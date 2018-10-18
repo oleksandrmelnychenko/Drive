@@ -1,7 +1,11 @@
 ﻿namespace Drive.Client.Models.Rest.EndPoints {
     public class VehicleEndpoints {
 
-        private const string USER_VEHICLE_DETAIL_REQUESTS_API_KEY = "api/v1/resident/vechical/details/get/all";
+        private const string USER_VEHICLE_DETAIL_REQUESTS_API_KEY = "api/v1/resident/vehicle/details/get/all";
+
+        private const string GET_VEHICLE_DETAILS_API_KEY = "api/v1/resident/vehicle/details/get?requestId={0}";
+
+        private const string GET_VEHICLE_DETAILS_BY_RESIDENT_FULLNAME_API_KEY = "api/v1/resident/vehicle/details/new?first={0}&last={1}&middle={2}&birth={3}";
 
         /// <summary>
         ///     ctor().
@@ -20,10 +24,16 @@
             }
         }
 
-        public string UserVehicleDetailRequests { get; private set; }
+        public string UserVehicleDetailRequestsEndpoint { get; private set; }
+
+        public string VehicleDetailsEndpoint { get; private set; }
+
+        public string VehicleDetailsByResidentFullNameEndpoint { get; private set; }
 
         private void UpdateEndpoint(string baseEndpoint) {
-            UserVehicleDetailRequests = $"{baseEndpoint}/{USER_VEHICLE_DETAIL_REQUESTS_API_KEY}";
+            UserVehicleDetailRequestsEndpoint = $"{baseEndpoint}/{USER_VEHICLE_DETAIL_REQUESTS_API_KEY}";
+            VehicleDetailsEndpoint = $"{baseEndpoint}/{GET_VEHICLE_DETAILS_API_KEY}";
+            VehicleDetailsByResidentFullNameEndpoint = $"{baseEndpoint}/{GET_VEHICLE_DETAILS_BY_RESIDENT_FULLNAME_API_KEY}";
         }
     }
 }

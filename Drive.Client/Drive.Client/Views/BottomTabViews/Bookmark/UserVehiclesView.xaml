@@ -77,13 +77,13 @@
                                         <controls:LabelExtended
                                             FontSize="{StaticResource MidMediumSize}"
                                             HorizontalOptions="Start"
-                                            Text="{Binding ResidentRequest.ResidentFirstName, Converter={StaticResource upperCaseConverter}}"
+                                            Text="{Binding ResidentRequest.FirstName, Converter={StaticResource upperCaseConverter}}"
                                             TextColor="{StaticResource DarkColor}"
                                             VerticalOptions="Center" />
                                         <controls:LabelExtended
                                             FontSize="{StaticResource MidMediumSize}"
                                             HorizontalOptions="StartAndExpand"
-                                            Text="{Binding ResidentRequest.ResidentLastName, Converter={StaticResource upperCaseConverter}}"
+                                            Text="{Binding ResidentRequest.LastName, Converter={StaticResource upperCaseConverter}}"
                                             TextColor="{StaticResource DarkColor}"
                                             VerticalOptions="Center" />
                                     </StackLayout>
@@ -95,13 +95,13 @@
                                         <controls:LabelExtended
                                             FontSize="{StaticResource MidMediumSize}"
                                             HorizontalOptions="Start"
-                                            Text="{Binding ResidentRequest.ResidentMiddleName, Converter={StaticResource upperCaseConverter}}"
+                                            Text="{Binding ResidentRequest.MiddleName, Converter={StaticResource upperCaseConverter}}"
                                             TextColor="{StaticResource DarkColor}"
                                             VerticalOptions="Center" />
                                         <controls:LabelExtended
                                             FontSize="{StaticResource LittleSize}"
                                             HorizontalOptions="StartAndExpand"
-                                            Text="{Binding ResidentRequest.ResidentDateOfBirth, StringFormat=' {0:dd/MM/yyyy}'}"
+                                            Text="{Binding ResidentRequest.DateOfBirth, StringFormat={StaticResource FormattedDate}}"
                                             TextColor="{StaticResource DarkColor}"
                                             VerticalOptions="End" />
                                     </StackLayout>
@@ -113,7 +113,7 @@
                                             FontFamily="{StaticResource SFProLight}"
                                             FontSize="{StaticResource LittleSize}"
                                             HorizontalOptions="Start"
-                                            Text="{Binding ResidentRequest.VechicalCount}"
+                                            Text="{Binding ResidentRequest.VehicleCount}"
                                             TextColor="{StaticResource HardGrayColor}"
                                             VerticalOptions="Center" />
                                         <controls:LabelExtended

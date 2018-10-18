@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBaseView
+    x:Class="Drive.Client.Views.VehicleDetailView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:actionBars="clr-namespace:Drive.Client.Views.ActionBars"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:converters="clr-namespace:Drive.Client.Converters"
+    xmlns:dependency="clr-namespace:Drive.Client.ViewModels.Base"
+    xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:viewBase="clr-namespace:Drive.Client.Views.Base"
+    dependency:DependencyLocator.AutoWireViewModel="True">
+
+    <viewBase:ContentPageBaseView.ActionBar>
+        <actionBars:CommonActionBarView />
+    </viewBase:ContentPageBaseView.ActionBar>
+
+    <viewBase:ContentPageBaseView.MainContent>
+        <Grid BackgroundColor="{StaticResource WhiteColor}" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <converters:UpperCaseConverter x:Key="upperCaseConverter" />
+
+                    <OnPlatform
+                        x:Key="TitleFontSize"
+                        x:TypeArguments="x:Double"
+                        Android="{StaticResource LittleSize}"
+                        iOS="{StaticResource LittleSize}" />
+
+                    <OnPlatform
+                        x:Key="ValueFontSize"
+                        x:TypeArguments="x:Double"
+                        Android="{StaticResource MidMediumSize}"
+                        iOS="{StaticResource MediumSize}" />
+
+                    <Style x:Key="descriptionLabel" TargetType="Label">
+                        <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                        <Setter Property="FontSize" Value="{StaticResource MediumSize}" />
+                    </Style>
+
+                    <Style x:Key="detailBase" TargetType="Label">
+                        <Setter Property="HorizontalOptions" Value="Start" />
+                        <Setter Property="VerticalOptions" Value="Center" />
+                    </Style>
+
+                    <Style
+                        x:Key="valueLabel"
+                        BasedOn="{StaticResource detailBase}"
+                        TargetType="Label">
+                        <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+                        <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                        <Setter Property="FontSize" Value="{StaticResource ValueFontSize}" />
+                    </Style>
+
+                    <Style
+                        x:Key="titleLabel"
+                        BasedOn="{StaticResource detailBase}"
+                        TargetType="Label">
+                        <Setter Property="FontFamily" Value="{StaticResource SFProLight}" />
+                        <Setter Property="TextColor" Value="{StaticResource HardGrayColor}" />
+                        <Setter Property="FontSize" Value="{StaticResource TitleFontSize}" />
+                    </Style>
+                </ResourceDictionary>
+            </Grid.Resources>
+
+            <StackLayout
+                Grid.Row="0"
+                Margin="40,20,0,20"
+                Spacing="2"
+                VerticalOptions="Center">
+                <StackLayout
+                    HorizontalOptions="Start"
+                    Orientation="Horizontal"
+                    Spacing="4">
+                    <controls:LabelExtended
+                        FontFamily="{StaticResource SFProLight}"
+                        FontSize="{StaticResource BigSize}"
+                        Text="{Binding ResidentRequestDataItem.Created, StringFormat={StaticResource FormattedDate}}"
+                        TextColor="{StaticResource DarkColor}" />
+                    <controls:LabelExtended
+                        FontSize="{StaticResource MidMediumSize}"
+                        HorizontalOptions="StartAndExpand"
+                        Text="{Binding ResidentRequestDataItem.Status.Value}"
+                        TextColor="{Binding ResidentRequestDataItem.StatusColor}"
+                        TranslationY="-2"
+                        VerticalOptions="End" />
+                </StackLayout>
+
+                <StackLayout
+                    HorizontalOptions="Start"
+                    Orientation="Horizontal"
+                    Spacing="4">
+                    <controls:LabelExtended
+                        FontSize="{StaticResource MediumSize}"
+                        HorizontalOptions="Start"
+                        Text="{Binding ResidentRequestDataItem.ResidentRequest.FirstName, Converter={StaticResource upperCaseConverter}}"
+                        TextColor="{StaticResource DarkColor}"
+                        VerticalOptions="Center" />
+                    <controls:LabelExtended
+                        FontSize="{StaticResource MediumSize}"
+                        HorizontalOptions="StartAndExpand"
+                        Text="{Binding ResidentRequestDataItem.ResidentRequest.LastName, Converter={StaticResource upperCaseConverter}}"
+                        TextColor="{StaticResource DarkColor}"
+                        VerticalOptions="Center" />
+                </StackLayout>
+
+                <StackLayout
+                    HorizontalOptions="Start"
+                    Orientation="Horizontal"
+                    Spacing="2">
+                    <controls:LabelExtended
+                        FontSize="{StaticResource MediumSize}"
+                        HorizontalOptions="Start"
+                        Text="{Binding ResidentRequestDataItem.ResidentRequest.MiddleName, Converter={StaticResource upperCaseConverter}}"
+                        TextColor="{StaticResource DarkColor}"
+                        VerticalOptions="Center" />
+                    <controls:LabelExtended
+                        FontSize="{StaticResource LittleSize}"
+                        HorizontalOptions="StartAndExpand"
+                        Text="{Binding ResidentRequest.DateOfBirth, StringFormat=' {0:dd/MM/yyyy}'}"
+                        TextColor="{StaticResource DarkColor}"
+                        VerticalOptions="End" />
+                </StackLayout>
+            </StackLayout>
+
+            <ListView
+                x:Name="_list"
+                Grid.Row="1"
+                ios:ListView.SeparatorStyle="FullWidth"
+                ItemSelected="_list_ItemSelected"
+                ItemsSource="{Binding VehicleDetails}"
+                RowHeight="140"
+                SeparatorColor="#cccccc"
+                SeparatorVisibility="Default"
+                VerticalOptions="Start">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout
+                                Padding="20,10"
+                                Spacing="5"
+                                VerticalOptions="Center">
+                                <controls:LabelExtended
+                                    FontSize="{StaticResource MediumSize}"
+                                    Text="{Binding Brand}"
+                                    TextColor="{StaticResource DarkColor}" />
+
+                                <StackLayout Orientation="Horizontal" Spacing="0">
+                                    <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [ModelUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
+                                    <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding Model}" />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Spacing="0">
+                                    <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [YearUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
+                                    <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding Year}" />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Spacing="0">
+                                    <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [DataRegUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
+                                    <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding Data}" />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Spacing="0">
+                                    <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [EngineCapacityUpperСase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
+                                    <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding Volume}" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+        </Grid>
+    </viewBase:ContentPageBaseView.MainContent>
+</viewBase:ContentPageBaseView>

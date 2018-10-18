@@ -3,26 +3,111 @@
     x:Class="Drive.Client.Views.BottomTabViews.Search.SearchByPersonView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Drive.Client.Behaviors"
     xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:converters="clr-namespace:Drive.Client.Converters"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
+    xmlns:stackList="clr-namespace:Drive.Client.Controls.Stacklist"
     BackgroundColor="{StaticResource WhiteColor}">
 
-    <StackLayout
-        HorizontalOptions="Center"
-        Spacing="4"
-        VerticalOptions="Center">
-        <controls:LabelExtended
-            FontSize="{StaticResource Key=BaseFontSize}"
-            HorizontalOptions="Center"
-            Text="{Binding [SearchByPersonUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
-            TextColor="{StaticResource DarkColor}"
-            VerticalOptions="Center" />
-        <controls:LabelExtended
-            FontFamily="{StaticResource SFProThin}"
-            FontSize="{StaticResource Key=MidMediumSize}"
-            HorizontalOptions="Center"
-            Text="{Binding [NextVersionUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
-            TextColor="{StaticResource ExtraGrayColor}"
-            VerticalOptions="Center" />
-    </StackLayout>
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:UpperCaseConverter x:Key="UpperCaseConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+
+    <Grid>
+        <Grid RowSpacing="0" VerticalOptions="Start">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  LOGO  -->
+            <ffimageloadingsvg:SvgCachedImage
+                Grid.Row="0"
+                HorizontalOptions="Center"
+                Source="resource://Drive.Client.Resources.Images.drive_logo.svg"
+                VerticalOptions="Center"
+                WidthRequest="185" />
+
+            <!--  TITLE  -->
+            <controls:LabelExtended
+                Grid.Row="0"
+                Margin="0,30"
+                FontFamily="{StaticResource SFProLight}"
+                FontSize="{StaticResource MidMediumSize}"
+                HorizontalOptions="Center"
+                Text="{Binding [SearchByPersonTitleUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                TextColor="{StaticResource DarkColor}"
+                VerticalOptions="End" />
+
+            <StackLayout Grid.Row="1" Spacing="0">
+                <!--  INPUT  -->
+                <Grid
+                    BackgroundColor="{StaticResource LightGrayColor}"
+                    HeightRequest="60"
+                    RowSpacing="0"
+                    VerticalOptions="Center">
+                    <controls:EntryExtended
+                        FontFamily="{StaticResource SFProThin}"
+                        FontSize="{StaticResource MediumSize}"
+                        HorizontalOptions="Fill"
+                        HorizontalTextAlignment="Center"
+                        LetterSpacingPlaceholder="{OnPlatform iOS=1.3,
+                                                              Android=0.1}"
+                        MaxLength="20"
+                        Placeholder="{Binding [SurnameUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                        PlaceholderColor="{StaticResource ExtraGrayColor}"
+                        ReturnType="Next"
+                        Text="{Binding LastName.Value, Converter={StaticResource UpperCaseConverter}, Mode=TwoWay}"
+                        TextColor="{StaticResource ExtraGrayColor}">
+                        <controls:EntryExtended.Behaviors>
+                            <behaviors:EventToCommandBehavior Command="{Binding InputCompleteCommand}" EventName="Completed" />
+                        </controls:EntryExtended.Behaviors>
+                    </controls:EntryExtended>
+                    <ffimageloadingsvg:SvgCachedImage
+                        Margin="10,0,0,0"
+                        HeightRequest="15"
+                        HorizontalOptions="Start"
+                        Source="resource://Drive.Client.Resources.Images.name.svg"
+                        VerticalOptions="Center"
+                        WidthRequest="15" />
+                </Grid>
+                <!--  ERROR  -->
+                <controls:LabelExtended
+                    Margin="0,0,0,0"
+                    FontSize="{StaticResource LittleSize}"
+                    HorizontalOptions="CenterAndExpand"
+                    IsVisible="{Binding LastName.IsValid, Converter={StaticResource Reverse_bool_converter}}"
+                    Text="{Binding LastName.Errors, Converter={StaticResource first_element_from_collection_converter}}"
+                    TextColor="{StaticResource ErrorColor}"
+                    VerticalOptions="End"
+                    VerticalTextAlignment="Center" />
+            </StackLayout>
+        </Grid>
+
+        <ContentView BackgroundColor="{StaticResource WhiteColor}" IsVisible="{Binding VisibilityClosedView}">
+            <StackLayout
+                HorizontalOptions="Center"
+                Spacing="4"
+                VerticalOptions="Center">
+                <controls:LabelExtended
+                    FontSize="{StaticResource Key=BaseFontSize}"
+                    HorizontalOptions="Center"
+                    Text="{Binding [SearchByPersonUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                    TextColor="{StaticResource DarkColor}"
+                    VerticalOptions="Center" />
+                <controls:LabelExtended
+                    FontFamily="{StaticResource SFProThin}"
+                    FontSize="{StaticResource Key=MidMediumSize}"
+                    HorizontalOptions="Center"
+                    Text="{Binding [NextVersionUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                    TextColor="{StaticResource ExtraGrayColor}"
+                    VerticalOptions="Center" />
+            </StackLayout>
+        </ContentView>
+    </Grid>
 </ContentView>

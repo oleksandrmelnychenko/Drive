@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <viewBase:ContentPageBaseView
-    x:Class="Drive.Client.Views.IdentityAccounting.IdentityAccountingStepBaseView"
+    x:Class="Drive.Client.Views.IdentityAccounting.StepBaseView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:actionBars="clr-namespace:Drive.Client.Views.ActionBars"

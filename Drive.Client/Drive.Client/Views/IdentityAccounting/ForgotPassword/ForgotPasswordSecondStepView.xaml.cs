@@ -2,7 +2,7 @@
 
 namespace Drive.Client.Views.IdentityAccounting.ForgotPassword {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ForgotPasswordSecondStepView : IdentityAccountingStepBaseView {
+    public partial class ForgotPasswordSecondStepView : StepBaseView {
         public ForgotPasswordSecondStepView() {
             InitializeComponent();
         }
