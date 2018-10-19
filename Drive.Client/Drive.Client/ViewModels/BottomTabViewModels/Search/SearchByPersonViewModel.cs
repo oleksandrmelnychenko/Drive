@@ -15,7 +15,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
-    public class SearchByPersonViewModel : NestedViewModel, IVisualFiguring {
+    public class SearchByPersonViewModel : NestedViewModel, IVisualFiguring, IClearedAfterTabTap {
 
         public Type RelativeViewType => typeof(SearchByPersonView);
 
@@ -51,7 +51,17 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
 
             AddValidations();
         }
-       
+
+        public void ClearAfterTabTap() {
+            try {
+                LastName.Value = "";
+                LastName.IsValid = true;
+                LastName.Validations?.Clear();
+            }
+            catch (Exception) {
+            }
+        }
+
         public override Task InitializeAsync(object navigationData) {
             UpdateView();
 

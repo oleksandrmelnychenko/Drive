@@ -20,7 +20,7 @@ using Drive.Client.Views.BottomTabViews.Search;
 using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
-    public class SearchByCarIdViewModel : NestedViewModel, IVisualFiguring {
+    public class SearchByCarIdViewModel : NestedViewModel, IVisualFiguring, IClearedAfterTabTap {
 
         private readonly IDriveAutoService _driveAutoService;
 
@@ -114,6 +114,17 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
             }
 
             SetupValidations();
+        }
+
+        public void ClearAfterTabTap() {
+            try {
+                ValidationTargetValue.Value = "";
+                TargetValue = "";
+                HasError = false;
+                ErrorMessage = "";
+            }
+            catch (Exception) {
+            }
         }
 
         public override Task InitializeAsync(object navigationData) {

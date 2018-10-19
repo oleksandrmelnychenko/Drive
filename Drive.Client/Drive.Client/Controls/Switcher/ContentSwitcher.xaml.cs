@@ -80,6 +80,10 @@ namespace Drive.Client.Controls.Switcher {
                             IVisualFiguring targetContext = declarer._contextAndViewPairs.Keys.ElementAt(i);
                             View targetContextView = declarer._contextAndViewPairs[targetContext];
 
+                            if (targetContext is IClearedAfterTabTap clearedAfterTabTap) {
+                                clearedAfterTabTap.ClearAfterTabTap();
+                            }
+
                             if (((int)newValue) == declarer._contextAndViewPairs.Keys.IndexOf(targetContext)) {
                                 ///
                                 /// Rendering view if is not used yet
