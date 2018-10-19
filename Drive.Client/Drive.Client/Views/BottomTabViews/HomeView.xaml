@@ -9,6 +9,7 @@
     <controls:DateEntry
         EntryBackgroundColor="{StaticResource LightGrayColor}"
         EntryCalendarCulture="{Binding Path=DatePickerCulture}"
+        EntryCommand="{Binding Path=TODOCommand}"
         EntryDate="{Binding Path=TODO, Mode=TwoWay}"
         EntryFontFamily="{StaticResource SFProLight}"
         EntryFontSize="{StaticResource MediumSize}"

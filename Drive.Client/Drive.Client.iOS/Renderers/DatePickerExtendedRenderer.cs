@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics;
 using Drive.Client.Controls;
 using Drive.Client.iOS.Renderers;
 using Foundation;
@@ -38,11 +39,9 @@ namespace Drive.Client.iOS.Renderers {
                 NSLocale nSLocale = ((DatePickerExtended)Element).CalendarCulture != null ? new NSLocale(((DatePickerExtended)Element).CalendarCulture.Name.Substring(0, 2)) : new NSLocale("en");
 
                 calendar.Locale = nSLocale;
-
             }
             catch (System.Exception exc) {
-
-                
+                Debugger.Break();
             }
         }
     }

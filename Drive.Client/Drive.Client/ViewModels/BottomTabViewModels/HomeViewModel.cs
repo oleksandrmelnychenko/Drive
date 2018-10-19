@@ -3,6 +3,8 @@ using Drive.Client.ViewModels.Base;
 using Drive.Client.Views.BottomTabViews;
 using System;
 using System.Globalization;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels {
     public sealed class HomeViewModel : TabbedViewModelBase {
@@ -14,6 +16,10 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
 
             //TODO = DateTime.Now;
         }
+
+        public ICommand TODOCommand => new Command(() => {
+            DateTime? selectedValue = _TODO;
+        });
 
         DateTime? _TODO;
         public DateTime? TODO {
