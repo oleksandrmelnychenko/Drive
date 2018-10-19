@@ -1,9 +1,10 @@
 ﻿using Drive.Client.Models.Medias;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Drive.Client.Services.RequestProvider {
     public interface IRequestProvider {
-        Task<TResult> GetAsync<TResult>(string uri, string accessToken = "");
+        Task<TResult> GetAsync<TResult>(string uri, string accessToken = "", CancellationToken cancellationToken = default(CancellationToken));
 
         Task<TResponseValue> PostAsync<TResponseValue, TBodyContent>(string url, TBodyContent bodyContent, string accessToken = "");
 
