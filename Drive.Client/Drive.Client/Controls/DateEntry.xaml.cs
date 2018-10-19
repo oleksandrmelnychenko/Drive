@@ -69,8 +69,8 @@ namespace Drive.Client.Controls {
                     declarer.ResolvePlaceHolderAndValueVisibility();
 
                     declarer._datePicker_DatePickerExtended.Date = ((Nullable<DateTime>)newValue).HasValue ? ((Nullable<DateTime>)newValue).Value : declarer._datePicker_DatePickerExtended.Date;
-                    declarer._dateOutput_LabelExtended.Text = string.Format("{0:dd MMMM yyyy}", declarer._datePicker_DatePickerExtended.Date);
-                    //declarer._dateOutput_LabelExtended.Text = string.Format(App.Current.Resources[_APP_COMMON_DATE_FORMAT_RESOURCE_KEY].ToString(), declarer._datePicker_DatePickerExtended.Date);
+                    //declarer._dateOutput_LabelExtended.Text = string.Format("{0:dd MMMM yyyy}", declarer._datePicker_DatePickerExtended.Date);
+                    declarer._dateOutput_LabelExtended.Text = string.Format(App.Current.Resources[_APP_COMMON_DATE_FORMAT_RESOURCE_KEY].ToString(), declarer._datePicker_DatePickerExtended.Date);
                 }
             });
 
