@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Drive.Client.Controls.DateEntry"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
+    <Grid x:Name="_mainSpot_Grid">
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnMainSpotGridTapGestureRecognizerTapped" />
+        </Grid.GestureRecognizers>
+
+        <controls:LabelExtended
+            x:Name="_placeholder_LabelExtended"
+            HorizontalOptions="Center"
+            VerticalOptions="Center" />
+
+        <controls:LabelExtended
+            x:Name="_dateOutput_LabelExtended"
+            HorizontalOptions="Center"
+            VerticalOptions="Center" />
+
+        <controls:DatePickerExtended x:Name="_datePicker_DatePickerExtended" />
+
+        <ffimageloadingsvg:SvgCachedImage
+            x:Name="_icon_SvgCachedImage"
+            HeightRequest="15"
+            HorizontalOptions="Start"
+            TranslationX="20"
+            VerticalOptions="Center"
+            WidthRequest="15" />
+    </Grid>
+</ContentView>

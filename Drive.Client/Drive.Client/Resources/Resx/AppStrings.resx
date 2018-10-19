@@ -316,4 +316,7 @@
   <data name="SearchByPersonTitleUpperCase" xml:space="preserve">
     <value>SEARCH FOR A PHYSICAL PERSON</value>
   </data>
+  <data name="DateUpperCase" xml:space="preserve">
+    <value>DATE</value>
+  </data>
 </root>

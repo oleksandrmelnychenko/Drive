@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderers\DatePickerExtendedRenderer.cs" />
     <Compile Include="Renderers\EntryExtendedRenderer.cs" />
     <Compile Include="Renderers\ExtendedContentViewRenderer.cs" />
     <Compile Include="Renderers\LabelExtendedRenderer.cs" />

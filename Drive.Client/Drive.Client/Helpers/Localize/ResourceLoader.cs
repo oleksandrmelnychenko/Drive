@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
+using System.Threading;
 
 namespace Drive.Client.Helpers.Localize {
     public class ResourceLoader {
@@ -33,6 +34,9 @@ namespace Drive.Client.Helpers.Localize {
         public CultureInfo CultureInfo {
             get => _cultureInfo;
             set {
+                Thread.CurrentThread.CurrentCulture = value != null ? value : _defaultCulture;
+                Thread.CurrentThread.CurrentUICulture = value != null ? value : _defaultCulture;
+
                 if (_cultureInfo?.Name != value?.Name) {
                     _cultureInfo = value;
 
