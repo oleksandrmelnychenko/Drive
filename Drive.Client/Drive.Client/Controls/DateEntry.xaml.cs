@@ -1,6 +1,7 @@
 ﻿using FFImageLoading.Svg.Forms;
 using System;
 using System.Globalization;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -8,7 +9,7 @@ namespace Drive.Client.Controls {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DateEntry : ContentView {
 
-        private static readonly string _APP_COMMON_DATE_FORMAT_RESOURCE_KEY = "FormattedDate";
+        private static readonly string _DATE_FORMAT = "{0:dd MMMM yyyy}";
 
         public static BindableProperty EntrySvgIconPathProperty = BindableProperty.Create(
             nameof(EntrySvgIconPath),
@@ -69,8 +70,7 @@ namespace Drive.Client.Controls {
                     declarer.ResolvePlaceHolderAndValueVisibility();
 
                     declarer._datePicker_DatePickerExtended.Date = ((Nullable<DateTime>)newValue).HasValue ? ((Nullable<DateTime>)newValue).Value : declarer._datePicker_DatePickerExtended.Date;
-                    //declarer._dateOutput_LabelExtended.Text = string.Format("{0:dd MMMM yyyy}", declarer._datePicker_DatePickerExtended.Date);
-                    declarer._dateOutput_LabelExtended.Text = string.Format(App.Current.Resources[_APP_COMMON_DATE_FORMAT_RESOURCE_KEY].ToString(), declarer._datePicker_DatePickerExtended.Date);
+                    declarer.ResolveOutputDateString();
                 }
             });
 
@@ -78,9 +78,18 @@ namespace Drive.Client.Controls {
             nameof(EntryCalendarCulture),
             typeof(CultureInfo),
             typeof(DateEntry),
-            defaultValue: default(CultureInfo));
+            defaultValue: default(CultureInfo),
+            propertyChanged: (BindableObject bindable, object oldValue, object newValue) => {
+                if (bindable is DateEntry declarer) {
+                    declarer.ResolveOutputDateString();
+                }
+            });
 
-        public event EventHandler Done = delegate { };
+        public static BindableProperty EntryCommandProperty = BindableProperty.Create(
+            nameof(EntryCommand),
+            typeof(ICommand),
+            typeof(DateEntry),
+            defaultValue: default(ICommand));
 
         public DateEntry() {
             InitializeComponent();
@@ -103,9 +112,14 @@ namespace Drive.Client.Controls {
             _placeholder_LabelExtended.SetBinding(LabelExtended.TextProperty, new Binding(nameof(EntryPlaceholder), source: this));
 
             _datePicker_DatePickerExtended.DateSelected += OnDatePickerExtendedDateSelected;
-            _datePicker_DatePickerExtended.Unfocused += TODO_TEST;
+            _datePicker_DatePickerExtended.Unfocused += OnDatePickerExtendedUnfocused;
 
             ResolvePlaceHolderAndValueVisibility();
+        }
+
+        public ICommand EntryCommand {
+            get => (ICommand)GetValue(EntryCommandProperty);
+            set => SetValue(EntryCommandProperty, value);
         }
 
         public string EntrySvgIconPath {
@@ -160,6 +174,12 @@ namespace Drive.Client.Controls {
 
         private void OnDatePickerExtendedDateSelected(object sender, DateChangedEventArgs e) => EntryDate = e.NewDate;
 
+        private void OnDatePickerExtendedUnfocused(object sender, FocusEventArgs e) {
+            if (EntryCommand != null && EntryDate.HasValue) {
+                EntryCommand.Execute(EntryDate);
+            }
+        }
+
         private void OnMainSpotGridTapGestureRecognizerTapped(object sender, EventArgs e) => _datePicker_DatePickerExtended.Focus();
 
         private void ResolvePlaceHolderAndValueVisibility() {
@@ -167,8 +187,6 @@ namespace Drive.Client.Controls {
             _placeholder_LabelExtended.TranslationX = EntryDate.HasValue ? short.MaxValue : 0;
         }
 
-        private void TODO_TEST(object sender, FocusEventArgs e) {
-
-        }
+        private void ResolveOutputDateString() => _dateOutput_LabelExtended.Text = string.Format(EntryCalendarCulture, _DATE_FORMAT, _datePicker_DatePickerExtended.Date);
     }
 }

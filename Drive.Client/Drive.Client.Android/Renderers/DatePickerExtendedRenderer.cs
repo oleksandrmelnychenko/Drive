@@ -3,7 +3,7 @@ using Drive.Client.Controls;
 using Drive.Client.Droid.Renderers;
 using Java.Util;
 using System.ComponentModel;
-using System.Globalization;
+using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
@@ -41,12 +41,15 @@ namespace Drive.Client.Droid.Renderers {
         }
 
         private void ResolveCalendarCulture() {
-            CultureInfo culture = ((DatePickerExtended)Element).CalendarCulture;
+            try {
+                Locale targetLocale = ((DatePickerExtended)Element).CalendarCulture != null ? new Locale(((DatePickerExtended)Element).CalendarCulture.Name.Substring(0, 2)) : Locale.English;
 
-            Locale targetLocale = ((DatePickerExtended)Element).CalendarCulture != null ? new Locale(((DatePickerExtended)Element).CalendarCulture.Name.Substring(0, 2)) : Locale.English;
-
-            Locale.Default = targetLocale;
-            Control.TextLocale = targetLocale;
+                Locale.Default = targetLocale;
+                Control.TextLocale = targetLocale;
+            }
+            catch (System.Exception exc) {
+                Debugger.Break();
+            }
         }
     }
 }
