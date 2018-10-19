@@ -23,7 +23,7 @@ namespace Drive.Client.Services.Vehicle {
         }
 
         public Task<List<ResidentRequest>> GetUserVehicleDetailRequestsAsync(CancellationToken cancellationToken = default(CancellationToken)) =>
-            Task<List<ResidentRequest>>.Run(async () => {
+            Task.Run(async () => {
                 List<ResidentRequest> residentRequests = null;
 
                 string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.VehicleEndpoints.UserVehicleDetailRequestsEndpoint;

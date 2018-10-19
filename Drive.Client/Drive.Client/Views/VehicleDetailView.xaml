@@ -28,6 +28,12 @@
                     <converters:UpperCaseConverter x:Key="UpperCaseConverter" />
 
                     <OnPlatform
+                        x:Key="FullNameSize"
+                        x:TypeArguments="x:Double"
+                        Android="{StaticResource LargeSize}"
+                        iOS="{StaticResource LargerSize}" />
+
+                    <OnPlatform
                         x:Key="TitleFontSize"
                         x:TypeArguments="x:Double"
                         Android="{StaticResource LittleSize}"
@@ -80,7 +86,8 @@
                     Spacing="4">
                     <controls:LabelExtended
                         FontFamily="{StaticResource SFProLight}"
-                        FontSize="{StaticResource ExtraBigSize}"
+                        FontSize="{OnPlatform Android={StaticResource BigSize},
+                                              iOS={StaticResource ExtraBigSize}}"
                         Text="{Binding ResidentRequestDataItem.Created, StringFormat={StaticResource FormattedDate}}"
                         TextColor="{StaticResource BaseGrayColor}" />
                     <controls:LabelExtended
@@ -99,14 +106,14 @@
                     Spacing="4">
                     <controls:LabelExtended
                         FontFamily="{StaticResource SFProLight}"
-                        FontSize="{StaticResource LargerSize}"
+                        FontSize="{StaticResource FullNameSize}"
                         HorizontalOptions="StartAndExpand"
                         Text="{Binding ResidentRequestDataItem.ResidentRequest.LastName, Converter={StaticResource UpperCaseConverter}}"
                         TextColor="{StaticResource DarkColor}"
                         VerticalOptions="Center" />
                     <controls:LabelExtended
                         FontFamily="{StaticResource SFProLight}"
-                        FontSize="{StaticResource LargerSize}"
+                        FontSize="{StaticResource FullNameSize}"
                         HorizontalOptions="Start"
                         Text="{Binding ResidentRequestDataItem.ResidentRequest.FirstName, Converter={StaticResource UpperCaseConverter}}"
                         TextColor="{StaticResource DarkColor}"
@@ -119,7 +126,7 @@
                     Spacing="2">
                     <controls:LabelExtended
                         FontFamily="{StaticResource SFProLight}"
-                        FontSize="{StaticResource LargerSize}"
+                        FontSize="{StaticResource FullNameSize}"
                         HorizontalOptions="Start"
                         Text="{Binding ResidentRequestDataItem.ResidentRequest.MiddleName, Converter={StaticResource UpperCaseConverter}}"
                         TextColor="{StaticResource DarkColor}"
