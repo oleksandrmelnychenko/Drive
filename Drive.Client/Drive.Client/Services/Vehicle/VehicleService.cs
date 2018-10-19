@@ -22,15 +22,15 @@ namespace Drive.Client.Services.Vehicle {
             _requestProvider = requestProvider;
         }
 
-        public async Task<List<ResidentRequest>> GetUserVehicleDetailRequestsAsync(CancellationToken cancellationToken = default(CancellationToken)) =>
-            await Task.Run(async () => {
+        public Task<List<ResidentRequest>> GetUserVehicleDetailRequestsAsync(CancellationToken cancellationToken = default(CancellationToken)) =>
+            Task<List<ResidentRequest>>.Run(async () => {
                 List<ResidentRequest> residentRequests = null;
 
                 string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.VehicleEndpoints.UserVehicleDetailRequestsEndpoint;
                 string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
 
                 try {
-                    residentRequests = await _requestProvider.GetAsync<List<ResidentRequest>>(url, accessToken);
+                    residentRequests = await _requestProvider.GetAsync<List<ResidentRequest>>(url, accessToken, cancellationToken);
                 }
                 catch (ConnectivityException ex) {
                     throw ex;
@@ -40,8 +40,10 @@ namespace Drive.Client.Services.Vehicle {
                 }
                 catch (Exception ex) {
                     Debug.WriteLine($"ERROR:{ex.Message}");
-                    Debugger.Break();
+                    throw ex;
                 }
+
+                cancellationToken.ThrowIfCancellationRequested();
                 return residentRequests;
             }, cancellationToken);
 

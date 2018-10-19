@@ -9,6 +9,7 @@ using Plugin.DeviceInfo;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Drive.Client.Services.RequestProvider {
@@ -38,12 +39,12 @@ namespace Drive.Client.Services.RequestProvider {
         /// <summary>
         /// GET.
         /// </summary>
-        public async Task<TResult> GetAsync<TResult>(string uri, string accessToken = "") {
+        public async Task<TResult> GetAsync<TResult>(string uri, string accessToken = "", CancellationToken cancellationToken = default(CancellationToken)) {
             CheckInternetConnection();
             SetAccesToken(accessToken);
             SetLanguage();
 
-            HttpResponseMessage response = await _client.GetAsync(uri);
+            HttpResponseMessage response = await _client.GetAsync(uri, cancellationToken);
 
             await HandleResponse(response);
 
@@ -173,7 +174,8 @@ namespace Drive.Client.Services.RequestProvider {
                 if (!string.IsNullOrEmpty(accessToken)) {
                     _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 }
-            } else {
+            }
+            else {
                 if (!(string.IsNullOrEmpty(accessToken)) && _client.DefaultRequestHeaders.Authorization.Parameter != accessToken) {
                     _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 }
