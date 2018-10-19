@@ -327,4 +327,7 @@
   <data name="UnauthorizeText" xml:space="preserve">
     <value>Вибачте, доступ обмежений</value>
   </data>
+  <data name="DateUpperCase" xml:space="preserve">
+    <value>ДАТА</value>
+  </data>
 </root>

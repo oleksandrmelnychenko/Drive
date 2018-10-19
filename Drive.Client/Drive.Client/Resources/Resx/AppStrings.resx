@@ -327,4 +327,7 @@
   <data name="UnauthorizeText" xml:space="preserve">
     <value>Sorry, access is limited</value>
   </data>
+  <data name="DateUpperCase" xml:space="preserve">
+    <value>DATE</value>
+  </data>
 </root>
