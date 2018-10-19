@@ -69,6 +69,7 @@ namespace Drive.Client.Controls {
                     declarer.ResolvePlaceHolderAndValueVisibility();
 
                     declarer._datePicker_DatePickerExtended.Date = ((Nullable<DateTime>)newValue).HasValue ? ((Nullable<DateTime>)newValue).Value : declarer._datePicker_DatePickerExtended.Date;
+                    //declarer._dateOutput_LabelExtended.Text = string.Format("{0:dd MMMM yyyy}", declarer._datePicker_DatePickerExtended.Date);
                     declarer._dateOutput_LabelExtended.Text = string.Format(App.Current.Resources[_APP_COMMON_DATE_FORMAT_RESOURCE_KEY].ToString(), declarer._datePicker_DatePickerExtended.Date);
                 }
             });
@@ -78,6 +79,8 @@ namespace Drive.Client.Controls {
             typeof(CultureInfo),
             typeof(DateEntry),
             defaultValue: default(CultureInfo));
+
+        public event EventHandler Done = delegate { };
 
         public DateEntry() {
             InitializeComponent();
@@ -100,6 +103,7 @@ namespace Drive.Client.Controls {
             _placeholder_LabelExtended.SetBinding(LabelExtended.TextProperty, new Binding(nameof(EntryPlaceholder), source: this));
 
             _datePicker_DatePickerExtended.DateSelected += OnDatePickerExtendedDateSelected;
+            _datePicker_DatePickerExtended.Unfocused += TODO_TEST;
 
             ResolvePlaceHolderAndValueVisibility();
         }
@@ -161,6 +165,10 @@ namespace Drive.Client.Controls {
         private void ResolvePlaceHolderAndValueVisibility() {
             _dateOutput_LabelExtended.TranslationX = EntryDate.HasValue ? 0 : short.MaxValue;
             _placeholder_LabelExtended.TranslationX = EntryDate.HasValue ? short.MaxValue : 0;
+        }
+
+        private void TODO_TEST(object sender, FocusEventArgs e) {
+
         }
     }
 }
