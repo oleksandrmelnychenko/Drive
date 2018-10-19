@@ -145,7 +145,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
             try {
                 if (BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth) {
                     List<ResidentRequest> userRequests =
-                        await _vehicleService.GetUserVehicleDetailRequestsAsync(_getUserVehicleDetailRequestsCancellationTokenSource.Token);
+                        await _vehicleService.GetUserVehicleDetailRequestsAsync(cancellationTokenSource.Token);
 
                     if (userRequests != null) {
                         var createdItems = _vehicleFactory.BuildItems(userRequests);
