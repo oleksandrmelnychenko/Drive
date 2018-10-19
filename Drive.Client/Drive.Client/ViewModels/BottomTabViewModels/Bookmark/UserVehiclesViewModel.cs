@@ -84,9 +84,10 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
         }
 
         public override Task InitializeAsync(object navigationData) {
-            UpdateView();
 
             GetRequestsAsync();
+
+            UpdateView();
 
             return base.InitializeAsync(navigationData);
         }
@@ -127,7 +128,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
                 result = await _vehicleService.GetVehiclesByRequestIdAsync(govRequestId, cancellationTokenSource.Token);
             }
             catch (Exception ex) {
-                Debug.WriteLine($"ERROR: {ex.Message}");                
+                Debug.WriteLine($"ERROR: {ex.Message}");
             }
 
             UpdateBusyVisualState(busyKey, false);
@@ -142,11 +143,13 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
         private async void GetRequestsAsync() {
             ResetCancellationTokenSource(ref _getUserVehicleDetailRequestsCancellationTokenSource);
             CancellationTokenSource cancellationTokenSource = _getUserVehicleDetailRequestsCancellationTokenSource;
+
             try {
                 if (BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth) {
                     List<ResidentRequest> userRequests =
                         await _vehicleService.GetUserVehicleDetailRequestsAsync(cancellationTokenSource.Token);
 
+                    cancellationTokenSource.Token.ThrowIfCancellationRequested();
                     if (userRequests != null) {
                         var createdItems = _vehicleFactory.BuildItems(userRequests);
 
@@ -154,6 +157,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
                     }
                 }
             }
+            catch (OperationCanceledException) { }
+            catch (ObjectDisposedException) { }
             catch (Exception ex) {
                 Debug.WriteLine($"ERROR:{ex.Message}");
                 Debugger.Break();
