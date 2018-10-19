@@ -14,6 +14,12 @@
         <ResourceDictionary>
             <converters:DateFormatConverter x:Key="dateFormatConverter" />
             <converters:VechicalCountConverter x:Key="vechicalCountConverter" />
+
+            <OnPlatform
+                x:Key="ValueFontSize"
+                x:TypeArguments="x:Double"
+                Android="{StaticResource MidMediumSize}"
+                iOS="{StaticResource MediumSize}" />
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -75,13 +81,13 @@
                                         Orientation="Horizontal"
                                         Spacing="4">
                                         <controls:LabelExtended
-                                            FontSize="{StaticResource MediumSize}"
+                                            FontSize="{StaticResource ValueFontSize}"
                                             HorizontalOptions="StartAndExpand"
                                             Text="{Binding ResidentRequest.LastName, Converter={StaticResource UpperCaseConverter}}"
                                             TextColor="{StaticResource DarkColor}"
                                             VerticalOptions="Center" />
                                         <controls:LabelExtended
-                                            FontSize="{StaticResource MediumSize}"
+                                            FontSize="{StaticResource ValueFontSize}"
                                             HorizontalOptions="Start"
                                             Text="{Binding ResidentRequest.FirstName, Converter={StaticResource UpperCaseConverter}}"
                                             TextColor="{StaticResource DarkColor}"
@@ -91,9 +97,9 @@
                                     <StackLayout
                                         HorizontalOptions="Start"
                                         Orientation="Horizontal"
-                                        Spacing="2">
+                                        Spacing="3">
                                         <controls:LabelExtended
-                                            FontSize="{StaticResource MediumSize}"
+                                            FontSize="{StaticResource ValueFontSize}"
                                             HorizontalOptions="Start"
                                             Text="{Binding ResidentRequest.MiddleName, Converter={StaticResource UpperCaseConverter}}"
                                             TextColor="{StaticResource DarkColor}"
