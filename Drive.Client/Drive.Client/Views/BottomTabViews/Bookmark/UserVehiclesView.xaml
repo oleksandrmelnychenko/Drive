@@ -26,7 +26,7 @@
             ItemsSource="{Binding UserRequests}"
             RowHeight="80"
             SelectedItem="{Binding SelectedRequest}"
-            SeparatorColor="#cccccc"
+            SeparatorColor="{StaticResource LightGrayColor}"
             SeparatorVisibility="Default">
             <ListView.ItemTemplate>
                 <DataTemplate>
