@@ -71,7 +71,7 @@
 
             <StackLayout
                 Grid.Row="0"
-                Margin="40,20,0,20"
+                Margin="40,20,0,10"
                 Spacing="2"
                 VerticalOptions="Center">
                 <StackLayout
@@ -99,14 +99,14 @@
                     Spacing="4">
                     <controls:LabelExtended
                         FontFamily="{StaticResource SFProLight}"
-                        FontSize="{StaticResource BigSize}"
+                        FontSize="{StaticResource LargerSize}"
                         HorizontalOptions="StartAndExpand"
                         Text="{Binding ResidentRequestDataItem.ResidentRequest.LastName, Converter={StaticResource UpperCaseConverter}}"
                         TextColor="{StaticResource DarkColor}"
                         VerticalOptions="Center" />
                     <controls:LabelExtended
                         FontFamily="{StaticResource SFProLight}"
-                        FontSize="{StaticResource BigSize}"
+                        FontSize="{StaticResource LargerSize}"
                         HorizontalOptions="Start"
                         Text="{Binding ResidentRequestDataItem.ResidentRequest.FirstName, Converter={StaticResource UpperCaseConverter}}"
                         TextColor="{StaticResource DarkColor}"
@@ -118,15 +118,15 @@
                     Orientation="Horizontal"
                     Spacing="2">
                     <controls:LabelExtended
-                        FontSize="{StaticResource BigSize}"
                         FontFamily="{StaticResource SFProLight}"
+                        FontSize="{StaticResource LargerSize}"
                         HorizontalOptions="Start"
                         Text="{Binding ResidentRequestDataItem.ResidentRequest.MiddleName, Converter={StaticResource UpperCaseConverter}}"
                         TextColor="{StaticResource DarkColor}"
                         VerticalOptions="Center" />
                     <controls:LabelExtended
-                        FontSize="{StaticResource LittleSize}"
                         FontFamily="{StaticResource SFProLight}"
+                        FontSize="{StaticResource LittleSize}"
                         HorizontalOptions="StartAndExpand"
                         Text="{Binding ResidentRequest.DateOfBirth, StringFormat=' {0:dd/MM/yyyy}'}"
                         TextColor="{StaticResource DarkColor}"
@@ -148,7 +148,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout
-                                Padding="20,10"
+                                Padding="20,5"
                                 Spacing="5"
                                 VerticalOptions="Center">
                                 <controls:LabelExtended
