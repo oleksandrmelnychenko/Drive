@@ -12,5 +12,6 @@
         HorizontalOptions="Center"
         Text="{Binding TabHeader.Value, Mode=TwoWay}"
         TextColor="{StaticResource Key=DarkColor}"
+        TranslationY="7"
         VerticalOptions="Center" />
 </ContentView>
