@@ -23,6 +23,8 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
                 _collectedInputsArgs = collectedInputsArgs;
             }
 
+            MainInput.Value = string.Empty;
+
             return base.InitializeAsync(navigationData);
         }
 

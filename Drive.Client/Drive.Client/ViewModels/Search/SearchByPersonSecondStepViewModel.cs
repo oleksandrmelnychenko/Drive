@@ -32,6 +32,8 @@ namespace Drive.Client.ViewModels.Search {
                 _searchByPersonArgs = searchByPersonArgs;
             }
 
+            MainInput.Value = string.Empty;
+
             return base.InitializeAsync(navigationData);
         }
 

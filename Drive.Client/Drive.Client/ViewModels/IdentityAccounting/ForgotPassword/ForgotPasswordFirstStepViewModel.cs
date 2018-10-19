@@ -32,6 +32,8 @@ namespace Drive.Client.ViewModels.IdentityAccounting.ForgotPassword {
                 _forgotPasswordArgs = new ForgotPasswordArgs { PhoneNumber = navigationData as string };
             }
 
+            MainInput.Value = string.Empty;
+
             return base.InitializeAsync(navigationData);
         }
 

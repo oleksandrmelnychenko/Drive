@@ -4,6 +4,7 @@ using Drive.Client.Validations;
 using Drive.Client.Validations.ValidationRules;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
@@ -22,6 +23,13 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
         public override void Dispose() {
             base.Dispose();
 
+        }
+
+        public override Task InitializeAsync(object navigationData) {
+
+            MainInput.Value = string.Empty;
+
+            return base.InitializeAsync(navigationData);
         }
 
         protected async override void OnStepCommand() {

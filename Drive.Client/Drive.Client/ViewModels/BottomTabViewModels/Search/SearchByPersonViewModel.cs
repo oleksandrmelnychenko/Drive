@@ -51,7 +51,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
 
             AddValidations();
         }
-
        
         public override Task InitializeAsync(object navigationData) {
             UpdateView();

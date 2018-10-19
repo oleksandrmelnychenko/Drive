@@ -6,6 +6,7 @@ using Drive.Client.Validations.ValidationRules;
 using System;
 using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
@@ -32,6 +33,13 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
             base.Dispose();
 
             ResetCancellationTokenSource(ref _checkPhoneNumberCancellationTokenSource);
+        }
+
+        public override Task InitializeAsync(object navigationData) {
+
+            MainInput.Value = string.Empty;
+
+            return base.InitializeAsync(navigationData);
         }
 
         protected async override void OnStepCommand() {

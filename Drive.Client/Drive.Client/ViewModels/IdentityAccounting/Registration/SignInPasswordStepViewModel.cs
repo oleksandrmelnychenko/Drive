@@ -44,6 +44,11 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
             return base.InitializeAsync(navigationData);
         }
 
+        public override void Dispose() {
+            base.Dispose();
+
+        }
+
         protected async override void OnStepCommand() {
             if (ValidateForm()) {
                 if (_signInArgsArgs != null) {
