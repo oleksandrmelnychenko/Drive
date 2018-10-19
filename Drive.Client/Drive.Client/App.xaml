@@ -151,7 +151,7 @@
                 ApplyToDerivedTypes="True"
                 CanCascade="True"
                 TargetType="Label">
-                <Setter Property="FontFamily" Value="{StaticResource SFProRegular}" />
+                <Setter Property="FontFamily" Value="{StaticResource SFProLight}" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

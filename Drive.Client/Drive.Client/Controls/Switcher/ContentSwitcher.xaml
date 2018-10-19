@@ -16,7 +16,7 @@
             Grid.Row="0"
             BackgroundColor="{StaticResource Key=LightGrayColor}"
             ColumnSpacing="0"
-            HeightRequest="42"
+            HeightRequest="48"
             RowSpacing="0">
             <ContentView
                 x:Name="_selectionRunner_ContentView"
