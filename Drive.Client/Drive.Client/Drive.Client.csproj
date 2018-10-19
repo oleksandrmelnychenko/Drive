@@ -156,6 +156,9 @@
     <EmbeddedResource Update="Views\BottomTabViews\Bookmark\BookmarkView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\BottomTabViews\Bookmark\SavedView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\BottomTabViews\Bookmark\UserVehiclesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

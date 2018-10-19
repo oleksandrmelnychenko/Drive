@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Drive.Client.Views.BottomTabViews.Bookmark.SavedView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:converters="clr-namespace:Drive.Client.Converters"
+    xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
+    xmlns:hiddenView="clr-namespace:Drive.Client.Views.IdentityAccounting"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    BackgroundColor="{StaticResource WhiteColor}">
+
+    <Grid>
+        <StackLayout
+            HorizontalOptions="Center"
+            Spacing="4"
+            VerticalOptions="Center">
+            <controls:LabelExtended
+                FontSize="{StaticResource Key=BaseFontSize}"
+                HorizontalOptions="Center"
+                Text="{Binding [SavedUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                TextColor="{StaticResource DarkColor}"
+                VerticalOptions="Center" />
+            <controls:LabelExtended
+                FontFamily="{StaticResource SFProThin}"
+                FontSize="{StaticResource Key=MidMediumSize}"
+                HorizontalOptions="Center"
+                Text="{Binding [InDev].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                TextColor="{StaticResource ExtraGrayColor}"
+                VerticalOptions="Center" />
+        </StackLayout>
+
+        <hiddenView:UnauthorizeView BackgroundColor="{StaticResource WhiteColor}" IsVisible="{Binding VisibilityClosedView}" />
+    </Grid>
+</ContentView>
