@@ -10,12 +10,6 @@
     xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
     xmlns:stackList="clr-namespace:Drive.Client.Controls.Stacklist">
 
-    <ContentView.Resources>
-        <ResourceDictionary>
-            <converters:UpperCaseConverter x:Key="UpperCaseConverter" />
-        </ResourceDictionary>
-    </ContentView.Resources>
-
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="200" />

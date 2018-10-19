@@ -8,15 +8,9 @@
     xmlns:converters="clr-namespace:Drive.Client.Converters"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
+    xmlns:hiddenView="clr-namespace:Drive.Client.Views.IdentityAccounting"
     xmlns:stackList="clr-namespace:Drive.Client.Controls.Stacklist"
     BackgroundColor="{StaticResource WhiteColor}">
-
-    <ContentView.Resources>
-        <ResourceDictionary>
-            <converters:UpperCaseConverter x:Key="UpperCaseConverter" />
-        </ResourceDictionary>
-    </ContentView.Resources>
-
 
     <Grid>
         <Grid RowSpacing="0" VerticalOptions="Start">
@@ -89,25 +83,6 @@
             </StackLayout>
         </Grid>
 
-        <ContentView BackgroundColor="{StaticResource WhiteColor}" IsVisible="{Binding VisibilityClosedView}">
-            <StackLayout
-                HorizontalOptions="Center"
-                Spacing="4"
-                VerticalOptions="Center">
-                <controls:LabelExtended
-                    FontSize="{StaticResource Key=BaseFontSize}"
-                    HorizontalOptions="Center"
-                    Text="{Binding [SearchByPersonUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
-                    TextColor="{StaticResource DarkColor}"
-                    VerticalOptions="Center" />
-                <controls:LabelExtended
-                    FontFamily="{StaticResource SFProThin}"
-                    FontSize="{StaticResource Key=MidMediumSize}"
-                    HorizontalOptions="Center"
-                    Text="{Binding [NextVersionUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
-                    TextColor="{StaticResource ExtraGrayColor}"
-                    VerticalOptions="Center" />
-            </StackLayout>
-        </ContentView>
+        <hiddenView:UnauthorizeView BackgroundColor="{StaticResource WhiteColor}" IsVisible="{Binding VisibilityClosedView}" />
     </Grid>
 </ContentView>

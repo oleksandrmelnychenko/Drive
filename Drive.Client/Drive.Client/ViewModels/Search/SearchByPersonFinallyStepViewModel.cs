@@ -1,6 +1,7 @@
 ﻿using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.Models.Identities.NavigationArgs;
 using Drive.Client.Services.Vehicle;
+using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
 using Drive.Client.ViewModels.IdentityAccounting;
 using System;
 using System.Collections.Generic;
@@ -55,10 +56,10 @@ namespace Drive.Client.ViewModels.Search {
                 if (_searchByPersonArgs != null) {
                     try {
                         _searchByPersonArgs.MiddleName = MainInput.Value;
-                        VehicleDetailsByResidentFullName vehicleDetailsByResidentFullName =  await _vehicleService.GetVehicleDetailsByResidentFullNameAsync(_searchByPersonArgs, cancellationTokenSource.Token);
+                        VehicleDetailsByResidentFullName vehicleDetailsByResidentFullName = await _vehicleService.GetVehicleDetailsByResidentFullNameAsync(_searchByPersonArgs, cancellationTokenSource.Token);
 
                         if (vehicleDetailsByResidentFullName != null) {
-                            await DialogService.ShowAlertAsync(vehicleDetailsByResidentFullName.Message, "Info", "OK");
+                            await NavigationService.NavigateToAsync<MainViewModel>(new BottomTabIndexArgs { TargetTab = typeof(BookmarkViewModel) });
                         }
                     }
                     catch (Exception ex) {

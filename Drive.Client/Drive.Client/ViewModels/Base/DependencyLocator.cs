@@ -21,6 +21,7 @@ using Drive.Client.ViewModels.BottomTabViewModels.Search;
 using Drive.Client.ViewModels.IdentityAccounting.EditProfile;
 using Drive.Client.ViewModels.IdentityAccounting.ForgotPassword;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
+using Drive.Client.ViewModels.IdentityAccounting;
 using Drive.Client.ViewModels.Search;
 using System;
 using System.Diagnostics;
@@ -58,6 +59,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<ProfileViewModel>();
             builder.RegisterType<BookmarkViewModel>();
             builder.RegisterType<EditEmailViewModel>();
+            builder.RegisterType<UnauthorizeViewModel>();
             builder.RegisterType<EditUserNameViewModel>();
             builder.RegisterType<UserVehiclesViewModel>();
             builder.RegisterType<VehicleDetailViewModel>();

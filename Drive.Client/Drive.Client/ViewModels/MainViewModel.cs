@@ -1,4 +1,5 @@
-﻿using Drive.Client.Services.DeviceUtil;
+﻿using Drive.Client.Models.Identities.NavigationArgs;
+using Drive.Client.Services.DeviceUtil;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.BottomTabViewModels;
 using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
@@ -6,6 +7,7 @@ using Drive.Client.ViewModels.BottomTabViewModels.Search;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -44,6 +46,17 @@ namespace Drive.Client.ViewModels {
 
         public override Task InitializeAsync(object navigationData) {
 
+            if (navigationData is BottomTabIndexArgs bottomTabIndexArgs) {
+                try {
+                    SelectedBottomItemIndex =
+                        BottomBarItems.IndexOf(BottomBarItems?.FirstOrDefault(barItem => barItem.GetType().Equals(bottomTabIndexArgs.TargetTab)));
+                }
+                catch (Exception ex) {
+                    Debug.WriteLine($"ERRROR:{ex.Message}");
+                    Debugger.Break();
+                }
+            }
+
             BottomBarItems?.ForEach(bottomBarItem => bottomBarItem.InitializeAsync(navigationData));
 
             return base.InitializeAsync(navigationData);
@@ -56,7 +69,8 @@ namespace Drive.Client.ViewModels {
             try {
                 string deviceRegistrationCompletion = await _deviceUtilService.RegisterClientDeviceInfoAsync(await _deviceUtilService.GetDeviceInfoAsync(cancellationTokenSource), cancellationTokenSource);
             }
-            catch (Exception exc) {
+            catch (Exception ex) {
+                Debug.WriteLine($"ERRROR:{ex.Message}");
                 Debugger.Break();
             }
         }

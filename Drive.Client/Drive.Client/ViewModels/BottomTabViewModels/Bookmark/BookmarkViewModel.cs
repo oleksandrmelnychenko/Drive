@@ -12,7 +12,6 @@ using Drive.Client.Views.BottomTabViews.Bookmark;
 namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
     public sealed class BookmarkViewModel : TabbedViewModelBase {
 
-        
         List<IVisualFiguring> _searchTabs;
         public List<IVisualFiguring> SearchTabs {
             get => _searchTabs;

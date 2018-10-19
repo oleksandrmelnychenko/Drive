@@ -6,6 +6,7 @@
     xmlns:controls="clr-namespace:Drive.Client.Controls"
     xmlns:converters="clr-namespace:Drive.Client.Converters"
     xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
+    xmlns:hiddenView="clr-namespace:Drive.Client.Views.IdentityAccounting"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     BackgroundColor="{StaticResource WhiteColor}">
 
@@ -13,7 +14,6 @@
         <ResourceDictionary>
             <converters:DateFormatConverter x:Key="dateFormatConverter" />
             <converters:VechicalCountConverter x:Key="vechicalCountConverter" />
-            <converters:UpperCaseConverter x:Key="upperCaseConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -77,13 +77,13 @@
                                         <controls:LabelExtended
                                             FontSize="{StaticResource MidMediumSize}"
                                             HorizontalOptions="Start"
-                                            Text="{Binding ResidentRequest.FirstName, Converter={StaticResource upperCaseConverter}}"
+                                            Text="{Binding ResidentRequest.FirstName, Converter={StaticResource UpperCaseConverter}}"
                                             TextColor="{StaticResource DarkColor}"
                                             VerticalOptions="Center" />
                                         <controls:LabelExtended
                                             FontSize="{StaticResource MidMediumSize}"
                                             HorizontalOptions="StartAndExpand"
-                                            Text="{Binding ResidentRequest.LastName, Converter={StaticResource upperCaseConverter}}"
+                                            Text="{Binding ResidentRequest.LastName, Converter={StaticResource UpperCaseConverter}}"
                                             TextColor="{StaticResource DarkColor}"
                                             VerticalOptions="Center" />
                                     </StackLayout>
@@ -95,7 +95,7 @@
                                         <controls:LabelExtended
                                             FontSize="{StaticResource MidMediumSize}"
                                             HorizontalOptions="Start"
-                                            Text="{Binding ResidentRequest.MiddleName, Converter={StaticResource upperCaseConverter}}"
+                                            Text="{Binding ResidentRequest.MiddleName, Converter={StaticResource UpperCaseConverter}}"
                                             TextColor="{StaticResource DarkColor}"
                                             VerticalOptions="Center" />
                                         <controls:LabelExtended
@@ -139,25 +139,6 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <ContentView BackgroundColor="{StaticResource WhiteColor}" IsVisible="{Binding VisibilityClosedView}">
-            <StackLayout
-                HorizontalOptions="Center"
-                Spacing="4"
-                VerticalOptions="Center">
-                <controls:LabelExtended
-                    FontSize="{StaticResource Key=BaseFontSize}"
-                    HorizontalOptions="Center"
-                    Text="{Binding [SavedUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
-                    TextColor="{StaticResource DarkColor}"
-                    VerticalOptions="Center" />
-                <controls:LabelExtended
-                    FontFamily="{StaticResource SFProThin}"
-                    FontSize="{StaticResource Key=MidMediumSize}"
-                    HorizontalOptions="Center"
-                    Text="{Binding [InDev].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
-                    TextColor="{StaticResource ExtraGrayColor}"
-                    VerticalOptions="Center" />
-            </StackLayout>
-        </ContentView>
+        <hiddenView:UnauthorizeView BackgroundColor="{StaticResource WhiteColor}" IsVisible="{Binding VisibilityClosedView}" />
     </Grid>
 </ContentView>

@@ -6,6 +6,7 @@ using Drive.Client.Resources.Resx;
 using Drive.Client.Validations;
 using Drive.Client.Validations.ValidationRules;
 using Drive.Client.ViewModels.Base;
+using Drive.Client.ViewModels.IdentityAccounting.Registration;
 using Drive.Client.ViewModels.Search;
 using Drive.Client.Views.BottomTabViews.Search;
 using System;
@@ -37,6 +38,10 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         }
         
         public ICommand InputCompleteCommand => new Command(async () => await OnInputComplete());
+
+        public ICommand SignInCommand => new Command(async () => await NavigationService.NavigateToAsync<SignInPhoneNumberStepViewModel>());
+
+        public ICommand SignUpCommand => new Command(async () => await NavigationService.NavigateToAsync<PhoneNumberRegisterStepViewModel>());
 
         /// <summary>
         ///     ctor().
