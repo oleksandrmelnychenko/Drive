@@ -14,7 +14,7 @@ namespace Drive.Client.Helpers.AppEvents.Events {
 
         }
 
-        public void OnLanguageChanged(string language) => LanguageChanged(this, new LanguageChangedArgs { Language = language });
+        public void OnLanguageChanged(string languageId) => LanguageChanged(this, new LanguageChangedArgs { LanguageId = languageId });
 
     }
 }

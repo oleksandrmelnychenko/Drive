@@ -160,6 +160,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DATE.
+        /// </summary>
+        public static string DateUpperCase {
+            get {
+                return ResourceManager.GetString("DateUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EMAIL.
         /// </summary>
         public static string EmailUppercase {

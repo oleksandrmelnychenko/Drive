@@ -12,7 +12,6 @@ namespace Drive.Client.Models.Identities.AppInterface.Language {
         [DataMember]
         public LanguageInterface LanguageInterface { get; protected set; }
 
-        [DataMember]
         public CultureInfo Culture { get; protected set; }
     }
 }
