@@ -26,7 +26,7 @@
             ItemsSource="{Binding UserRequests}"
             RowHeight="80"
             SelectedItem="{Binding SelectedRequest}"
-            SeparatorColor="{StaticResource LightGrayColor}"
+            SeparatorColor="#cccccc"
             SeparatorVisibility="Default">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -76,14 +76,14 @@
                                         Spacing="4">
                                         <controls:LabelExtended
                                             FontSize="{StaticResource MidMediumSize}"
-                                            HorizontalOptions="Start"
-                                            Text="{Binding ResidentRequest.FirstName, Converter={StaticResource UpperCaseConverter}}"
+                                            HorizontalOptions="StartAndExpand"
+                                            Text="{Binding ResidentRequest.LastName, Converter={StaticResource UpperCaseConverter}}"
                                             TextColor="{StaticResource DarkColor}"
                                             VerticalOptions="Center" />
                                         <controls:LabelExtended
                                             FontSize="{StaticResource MidMediumSize}"
-                                            HorizontalOptions="StartAndExpand"
-                                            Text="{Binding ResidentRequest.LastName, Converter={StaticResource UpperCaseConverter}}"
+                                            HorizontalOptions="Start"
+                                            Text="{Binding ResidentRequest.FirstName, Converter={StaticResource UpperCaseConverter}}"
                                             TextColor="{StaticResource DarkColor}"
                                             VerticalOptions="Center" />
                                     </StackLayout>

@@ -80,10 +80,11 @@
                     Spacing="4">
                     <controls:LabelExtended
                         FontFamily="{StaticResource SFProLight}"
-                        FontSize="{StaticResource BigSize}"
+                        FontSize="{StaticResource ExtraBigSize}"
                         Text="{Binding ResidentRequestDataItem.Created, StringFormat={StaticResource FormattedDate}}"
-                        TextColor="{StaticResource DarkColor}" />
+                        TextColor="{StaticResource BaseGrayColor}" />
                     <controls:LabelExtended
+                        FontFamily="{StaticResource SFProLight}"
                         FontSize="{StaticResource MidMediumSize}"
                         HorizontalOptions="StartAndExpand"
                         Text="{Binding ResidentRequestDataItem.Status.Value}"
@@ -97,15 +98,17 @@
                     Orientation="Horizontal"
                     Spacing="4">
                     <controls:LabelExtended
-                        FontSize="{StaticResource MediumSize}"
-                        HorizontalOptions="Start"
-                        Text="{Binding ResidentRequestDataItem.ResidentRequest.FirstName, Converter={StaticResource UpperCaseConverter}}"
+                        FontFamily="{StaticResource SFProLight}"
+                        FontSize="{StaticResource BigSize}"
+                        HorizontalOptions="StartAndExpand"
+                        Text="{Binding ResidentRequestDataItem.ResidentRequest.LastName, Converter={StaticResource UpperCaseConverter}}"
                         TextColor="{StaticResource DarkColor}"
                         VerticalOptions="Center" />
                     <controls:LabelExtended
-                        FontSize="{StaticResource MediumSize}"
-                        HorizontalOptions="StartAndExpand"
-                        Text="{Binding ResidentRequestDataItem.ResidentRequest.LastName, Converter={StaticResource UpperCaseConverter}}"
+                        FontFamily="{StaticResource SFProLight}"
+                        FontSize="{StaticResource BigSize}"
+                        HorizontalOptions="Start"
+                        Text="{Binding ResidentRequestDataItem.ResidentRequest.FirstName, Converter={StaticResource UpperCaseConverter}}"
                         TextColor="{StaticResource DarkColor}"
                         VerticalOptions="Center" />
                 </StackLayout>
@@ -115,13 +118,15 @@
                     Orientation="Horizontal"
                     Spacing="2">
                     <controls:LabelExtended
-                        FontSize="{StaticResource MediumSize}"
+                        FontSize="{StaticResource BigSize}"
+                        FontFamily="{StaticResource SFProLight}"
                         HorizontalOptions="Start"
                         Text="{Binding ResidentRequestDataItem.ResidentRequest.MiddleName, Converter={StaticResource UpperCaseConverter}}"
                         TextColor="{StaticResource DarkColor}"
                         VerticalOptions="Center" />
                     <controls:LabelExtended
                         FontSize="{StaticResource LittleSize}"
+                        FontFamily="{StaticResource SFProLight}"
                         HorizontalOptions="StartAndExpand"
                         Text="{Binding ResidentRequest.DateOfBirth, StringFormat=' {0:dd/MM/yyyy}'}"
                         TextColor="{StaticResource DarkColor}"
@@ -136,7 +141,7 @@
                 ItemSelected="_list_ItemSelected"
                 ItemsSource="{Binding VehicleDetails}"
                 RowHeight="140"
-                SeparatorColor="#cccccc"
+                SeparatorColor="{StaticResource LightGrayColor}"
                 SeparatorVisibility="Default"
                 VerticalOptions="Start">
                 <ListView.ItemTemplate>
@@ -147,7 +152,7 @@
                                 Spacing="5"
                                 VerticalOptions="Center">
                                 <controls:LabelExtended
-                                    FontSize="{StaticResource MediumSize}"
+                                    FontSize="{StaticResource LargeSize}"
                                     Text="{Binding Brand}"
                                     TextColor="{StaticResource DarkColor}" />
 
