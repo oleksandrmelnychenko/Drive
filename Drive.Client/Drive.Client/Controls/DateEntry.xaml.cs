@@ -79,6 +79,8 @@ namespace Drive.Client.Controls {
             typeof(DateEntry),
             defaultValue: default(CultureInfo));
 
+        public event EventHandler Done = delegate { };
+
         public DateEntry() {
             InitializeComponent();
 
@@ -100,6 +102,7 @@ namespace Drive.Client.Controls {
             _placeholder_LabelExtended.SetBinding(LabelExtended.TextProperty, new Binding(nameof(EntryPlaceholder), source: this));
 
             _datePicker_DatePickerExtended.DateSelected += OnDatePickerExtendedDateSelected;
+            _datePicker_DatePickerExtended.Unfocused += TODO_TEST;
 
             ResolvePlaceHolderAndValueVisibility();
         }
@@ -161,6 +164,10 @@ namespace Drive.Client.Controls {
         private void ResolvePlaceHolderAndValueVisibility() {
             _dateOutput_LabelExtended.TranslationX = EntryDate.HasValue ? 0 : short.MaxValue;
             _placeholder_LabelExtended.TranslationX = EntryDate.HasValue ? short.MaxValue : 0;
+        }
+
+        private void TODO_TEST(object sender, FocusEventArgs e) {
+
         }
     }
 }
