@@ -430,6 +430,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to or.
+        /// </summary>
+        public static string Or {
+            get {
+                return ResourceManager.GetString("Or", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PASSWORD.
         /// </summary>
         public static string PasswordUpperCase {
@@ -502,6 +511,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to sign up.
+        /// </summary>
+        public static string Register {
+            get {
+                return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Registration Date.
         /// </summary>
         public static string RegistrationDate {
@@ -556,6 +574,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to sign in.
+        /// </summary>
+        public static string SignIn {
+            get {
+                return ResourceManager.GetString("SignIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SIGN IN.
         /// </summary>
         public static string SignInUpperCase {
@@ -597,6 +624,15 @@ namespace Drive.Client.Resources.Resx {
         public static string TSCcode {
             get {
                 return ResourceManager.GetString("TSCcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry, access is limited.
+        /// </summary>
+        public static string UnauthorizeText {
+            get {
+                return ResourceManager.GetString("UnauthorizeText", resourceCulture);
             }
         }
         

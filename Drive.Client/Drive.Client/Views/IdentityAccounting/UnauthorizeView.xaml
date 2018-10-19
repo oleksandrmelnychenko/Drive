@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Drive.Client.Views.IdentityAccounting.UnauthorizeView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:dependency="clr-namespace:Drive.Client.ViewModels.Base"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
+    dependency:DependencyLocator.AutoWireViewModel="False">
+
+    <StackLayout Padding="10,0" VerticalOptions="Center" Margin="0,0,0,10" Spacing="4">
+
+        <ffimageloadingsvg:SvgCachedImage
+            Margin="0,0,0,10"
+            HorizontalOptions="Center"
+            Source="resource://Drive.Client.Resources.Images.ic_barrier.png"
+            VerticalOptions="Center"
+            WidthRequest="185" />
+
+        <controls:LabelExtended
+            FontFamily="{StaticResource SFProLight}"
+            FontSize="{StaticResource MediumSize}"
+            HorizontalOptions="Center"
+            HorizontalTextAlignment="Center"
+            Text="{Binding [UnauthorizeText].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+            TextColor="{StaticResource DarkColor}" />
+
+        <StackLayout
+            HorizontalOptions="Center"
+            Orientation="Horizontal"
+            Spacing="3">
+            <controls:LabelExtended
+                FontFamily="{StaticResource SFProLight}"
+                FontSize="{StaticResource MediumSize}"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="{Binding [Register].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                TextColor="{StaticResource BlueColor}">
+                <controls:LabelExtended.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SignUpCommand}" NumberOfTapsRequired="1" />
+                </controls:LabelExtended.GestureRecognizers>
+            </controls:LabelExtended>
+            <controls:LabelExtended
+                FontFamily="{StaticResource SFProLight}"
+                FontSize="{StaticResource MediumSize}"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="{Binding [Or].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                TextColor="{StaticResource DarkColor}" />
+            <controls:LabelExtended
+                FontFamily="{StaticResource SFProLight}"
+                FontSize="{StaticResource MediumSize}"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="{Binding [SignIn].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                TextColor="{StaticResource BlueColor}">
+                <controls:LabelExtended.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SignInCommand}" NumberOfTapsRequired="1" />
+                </controls:LabelExtended.GestureRecognizers>
+            </controls:LabelExtended>
+        </StackLayout>
+    </StackLayout>
+</ContentView>

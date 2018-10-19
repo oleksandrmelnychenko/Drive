@@ -21,6 +21,7 @@
             <Color x:Key="UltraLightGrayColor">#f8f8f8</Color>
             <Color x:Key="StatusProcessingColor">#f4a900</Color>
             <Color x:Key="StatusFinishedColor">#44a000</Color>
+            <Color x:Key="BlueColor">#24659E</Color>
 
             <Color x:Key="AndroidEntryBackgroundColor">Transparent</Color>
             <Color x:Key="iOSEntryBackgroundColor">#FFFFFF</Color>
@@ -136,6 +137,7 @@
             <converters:FirstElementFromCollectionConverter x:Key="first_element_from_collection_converter" />
             <converters:StringToBoolConverter x:Key="StringToBoolConverter" />
             <converters:EmailConverter x:Key="EmailConverter" />
+            <converters:UpperCaseConverter x:Key="UpperCaseConverter" />
 
 
             <!--  EXPLICIT STYLES  -->

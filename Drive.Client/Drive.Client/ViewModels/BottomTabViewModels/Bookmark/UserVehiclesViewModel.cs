@@ -9,6 +9,7 @@ using Drive.Client.Models.Identities.NavigationArgs;
 using Drive.Client.Resources.Resx;
 using Drive.Client.Services.Vehicle;
 using Drive.Client.ViewModels.Base;
+using Drive.Client.ViewModels.IdentityAccounting.Registration;
 using Drive.Client.Views.BottomTabViews.Bookmark;
 using System;
 using System.Collections.Generic;
@@ -67,7 +68,11 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
                 }
             }
         }
-      
+
+        public ICommand SignInCommand => new Command(async () => await NavigationService.NavigateToAsync<SignInPhoneNumberStepViewModel>());
+
+        public ICommand SignUpCommand => new Command(async () => await NavigationService.NavigateToAsync<PhoneNumberRegisterStepViewModel>());
+
         /// <summary>
         ///     ctor().
         /// </summary>
@@ -75,11 +80,13 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
             _vehicleFactory = vehicleFactory;
             _vehicleService = vehicleService;
 
-            GetRequestsAsync();
+            //GetRequestsAsync();
         }
 
         public override Task InitializeAsync(object navigationData) {
             UpdateView();
+
+            GetRequestsAsync();
 
             return base.InitializeAsync(navigationData);
         }
