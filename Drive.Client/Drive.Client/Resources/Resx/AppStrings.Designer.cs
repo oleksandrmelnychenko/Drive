@@ -241,6 +241,24 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maximum number of 120 characters.
+        /// </summary>
+        public static string ERROR_MAXLENGTH {
+            get {
+                return ResourceManager.GetString("ERROR_MAXLENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum number of 2 characters.
+        /// </summary>
+        public static string ERROR_MINLENGTH {
+            get {
+                return ResourceManager.GetString("ERROR_MINLENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This field is required.
         /// </summary>
         public static string FieldRequired {

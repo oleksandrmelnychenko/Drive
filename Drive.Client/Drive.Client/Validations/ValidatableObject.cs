@@ -16,6 +16,10 @@ namespace Drive.Client.Validations {
         
         public static readonly StringResource ERROR_EMAIL = ResourceLoader.Instance.GetString(nameof(AppStrings.InvalidEmail));
 
+        public static readonly StringResource ERROR_MINLENGTH = ResourceLoader.Instance.GetString(nameof(AppStrings.ERROR_MINLENGTH));
+
+        public static readonly StringResource ERROR_MAXLENGTH = ResourceLoader.Instance.GetString(nameof(AppStrings.ERROR_MAXLENGTH));
+
         public List<IValidationRule<T>> Validations { get; }
 
         public ValidatableObject() {

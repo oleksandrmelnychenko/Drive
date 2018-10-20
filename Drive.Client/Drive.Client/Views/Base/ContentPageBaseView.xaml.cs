@@ -3,6 +3,7 @@ using Drive.Client.Controls.Popups;
 using Drive.Client.ViewModels.Base;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -57,8 +58,7 @@ namespace Drive.Client.Views.Base {
 
                         if (declarer.IsBusyAwaiting) {
                             Grid.SetRow(declarer._busyIndicator_Indicator, 0);
-                        }
-                        else {
+                        } else {
                             Grid.SetRow(declarer._busyIndicator_Indicator, 1);
                         }
                     }
@@ -75,8 +75,7 @@ namespace Drive.Client.Views.Base {
                             declarer._popupSpot_ContentView.Opacity = 0;
                             Grid.SetRow(declarer._popupSpot_ContentView, 0);
                             await declarer._popupSpot_ContentView.FadeTo(1);
-                        }
-                        else {
+                        } else {
                             declarer._popupSpot_ContentView.Opacity = 1;
                             await declarer._popupSpot_ContentView.FadeTo(0);
                             Grid.SetRow(declarer._popupSpot_ContentView, 1);
@@ -141,7 +140,25 @@ namespace Drive.Client.Views.Base {
                 typeof(int),
                 typeof(ContentPageBaseView),
                 defaultValue: -1,
-                propertyChanged: (BindableObject bindable, object oldValue, object newValue) => (bindable as ContentPageBaseView)?.OnSelectedBottomItemIndex());
+                propertyChanged: (BindableObject bindable, object oldValue, object newValue) => {
+                    (bindable as ContentPageBaseView)?.OnSelectedBottomItemIndex();
+
+                    try {
+                        if (bindable is ContentPageBaseView contentPageBaseView) {
+                            if (contentPageBaseView.BottomBarItems != null) {
+                                foreach (var item in contentPageBaseView?.BottomBarItems) {
+                                    if (item is IClearedAfterTabTap clearedAfterTabTap) {
+                                        clearedAfterTabTap.ClearAfterTabTap();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex) {
+                        Debug.WriteLine($"--------------------------------------------{ex.Message}");
+                        Debugger.Break();
+                    }
+                });
 
         private TapGestureRecognizer _popupBlockBackingTapGesture = new TapGestureRecognizer();
         private TapGestureRecognizer _bottomItemTapGestureRecognizer = new TapGestureRecognizer();

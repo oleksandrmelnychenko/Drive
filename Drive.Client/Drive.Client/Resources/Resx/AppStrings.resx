@@ -330,4 +330,10 @@
   <data name="DateUpperCase" xml:space="preserve">
     <value>DATE</value>
   </data>
+  <data name="ERROR_MAXLENGTH" xml:space="preserve">
+    <value>Maximum number of 120 characters</value>
+  </data>
+  <data name="ERROR_MINLENGTH" xml:space="preserve">
+    <value>Minimum number of 2 characters</value>
+  </data>
 </root>

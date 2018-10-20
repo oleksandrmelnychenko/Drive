@@ -54,9 +54,10 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
 
         public void ClearAfterTabTap() {
             try {
-                LastName.Value = "";
+                LastName.Value = string.Empty;
                 LastName.IsValid = true;
                 LastName.Validations?.Clear();
+                AddValidations();
             }
             catch (Exception) {
             }
@@ -65,8 +66,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         public override Task InitializeAsync(object navigationData) {
             UpdateView();
 
-            ClearAfterTabTap();
-
             return base.InitializeAsync(navigationData);
         }
 
@@ -74,6 +73,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
             if (Validate()) {
                 SearchByPersonArgs searchByPersonArgs = new SearchByPersonArgs { lastName = LastName.Value };
                 await NavigationService.NavigateToAsync<SearchByPersonSecondStepViewModel>(searchByPersonArgs);
+                LastName.Value = string.Empty;
             }
         }
 
@@ -89,6 +89,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
 
         private void AddValidations() {
             _lastName.Validations.Add(new IsNotNullOrEmptyRule<string>() { ValidationMessage = ValidatableObject<string>.FIELD_IS_REQUIRED_VALIDATION_MESSAGE });
+            _lastName.Validations.Add(new FullNameMinLengthRule<string>() { ValidationMessage = ValidatableObject<string>.ERROR_MINLENGTH });
+            _lastName.Validations.Add(new FullNameMaxLengthRule<string>() { ValidationMessage = ValidatableObject<string>.ERROR_MAXLENGTH });
         }
     }
 }

@@ -330,4 +330,10 @@
   <data name="DateUpperCase" xml:space="preserve">
     <value>ДАТА</value>
   </data>
+  <data name="ERROR_MAXLENGTH" xml:space="preserve">
+    <value>Максимальна к-сть 120 символів</value>
+  </data>
+  <data name="ERROR_MINLENGTH" xml:space="preserve">
+    <value>Мінімальна к-сть 2 символа</value>
+  </data>
 </root>

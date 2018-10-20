@@ -1,6 +1,8 @@
 ﻿using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.Models.Identities.NavigationArgs;
 using Drive.Client.Services.Vehicle;
+using Drive.Client.Validations;
+using Drive.Client.Validations.ValidationRules;
 using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
 using Drive.Client.ViewModels.IdentityAccounting;
 using System;
@@ -34,6 +36,13 @@ namespace Drive.Client.ViewModels.Search {
             base.Dispose();
 
 
+        }
+
+        protected override void ResetValidationObjects() {
+            base.ResetValidationObjects();
+
+            MainInput.Validations.Add(new FullNameMinLengthRule<string>() { ValidationMessage = ValidatableObject<string>.ERROR_MINLENGTH });
+            MainInput.Validations.Add(new FullNameMaxLengthRule<string>() { ValidationMessage = ValidatableObject<string>.ERROR_MAXLENGTH });
         }
 
         public override Task InitializeAsync(object navigationData) {
