@@ -57,7 +57,7 @@ namespace Drive.Client.Services.RequestProvider {
         /// <summary>
         /// POST.
         /// </summary>
-        public async Task<TResponseValue> PostAsync<TResponseValue, TBodyContent>(string uri, TBodyContent bodyContent, string accessToken = "") =>
+        public async Task<TResult> PostAsync<TResult, TBodyContent>(string uri, TBodyContent bodyContent, string accessToken = "") =>
             await Task.Run(async () => {
                 HttpContent content = null;
 
@@ -78,7 +78,7 @@ namespace Drive.Client.Services.RequestProvider {
 
                 string serialized = await response.Content.ReadAsStringAsync();
 
-                TResponseValue result = await DeserializeResponse<TResponseValue>(serialized);
+                TResult result = await DeserializeResponse<TResult>(serialized);
 
                 return result;
             });

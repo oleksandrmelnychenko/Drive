@@ -129,6 +129,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
             }
             catch (Exception ex) {
                 Debug.WriteLine($"ERROR: {ex.Message}");
+                Debugger.Break();
             }
 
             UpdateBusyVisualState(busyKey, false);
