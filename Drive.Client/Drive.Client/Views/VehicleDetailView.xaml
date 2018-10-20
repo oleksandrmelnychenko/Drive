@@ -187,8 +187,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-
         </Grid>
     </viewBase:ContentPageBaseView.MainContent>
 </viewBase:ContentPageBaseView>

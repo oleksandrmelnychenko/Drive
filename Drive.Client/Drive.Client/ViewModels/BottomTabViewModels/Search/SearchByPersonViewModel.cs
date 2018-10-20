@@ -65,6 +65,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         public override Task InitializeAsync(object navigationData) {
             UpdateView();
 
+            ClearAfterTabTap();
+
             return base.InitializeAsync(navigationData);
         }
 

@@ -26,8 +26,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
         /// </summary>
         public BookmarkViewModel() {
             SearchTabs = new List<IVisualFiguring>() {
-                DependencyLocator.Resolve<SavedViewModel>(),
-                DependencyLocator.Resolve<UserVehiclesViewModel>()
+                DependencyLocator.Resolve<UserVehiclesViewModel>(),
+                DependencyLocator.Resolve<SavedViewModel>()
             };
             SearchTabs.ForEach(searchTab => searchTab.InitializeAsync(this));
         }

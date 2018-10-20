@@ -174,8 +174,7 @@ namespace Drive.Client.Services.RequestProvider {
                 if (!string.IsNullOrEmpty(accessToken)) {
                     _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 }
-            }
-            else {
+            } else {
                 if (!(string.IsNullOrEmpty(accessToken)) && _client.DefaultRequestHeaders.Authorization.Parameter != accessToken) {
                     _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 }
