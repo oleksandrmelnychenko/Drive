@@ -70,6 +70,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ACTUALLY TO.
+        /// </summary>
+        public static string ActuallyToUpperCase {
+            get {
+                return ResourceManager.GetString("ActuallyToUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reliably serves your interests..
         /// </summary>
         public static string AppSlogan {

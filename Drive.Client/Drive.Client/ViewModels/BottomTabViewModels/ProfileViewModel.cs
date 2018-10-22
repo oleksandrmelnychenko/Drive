@@ -121,10 +121,18 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         }
 
         private async Task OnLogOutAsync() {
-            Guid busyKey = Guid.NewGuid();
-            UpdateBusyVisualState(busyKey, true);
-            await _identityUtilityService.LogOutAsync();
-            UpdateBusyVisualState(busyKey, false);
+            try {
+                Guid busyKey = Guid.NewGuid();
+                UpdateBusyVisualState(busyKey, true);
+                await _identityUtilityService.LogOutAsync();
+                UpdateBusyVisualState(busyKey, false);
+            }
+            catch (OperationCanceledException) { }
+            catch (ObjectDisposedException) { }
+            catch (Exception ex) {
+                Debug.WriteLine($"ERROR: {ex.Message}");
+                Debugger.Break();
+            }
         }
 
         private async Task OnChangeAvatarAsync() {

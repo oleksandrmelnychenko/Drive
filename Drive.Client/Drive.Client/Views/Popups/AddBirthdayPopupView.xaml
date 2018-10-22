@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<popups:SinglePopupViewBase
+    x:Class="Drive.Client.Views.Popups.AddBirthdayPopupView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Drive.Client.Behaviors"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:popups="clr-namespace:Drive.Client.Controls.Popups"
+    CascadeInputTransparent="False"
+    InputTransparent="True">
+
+    <popups:SinglePopupViewBase.Content>
+        <Grid
+            Margin="30,50,30,0"
+            HeightRequest="350"
+            VerticalOptions="Start">
+            <BoxView CornerRadius="10" Color="White" />
+            <ContentView
+                Padding="20"
+                HeightRequest="80"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                WidthRequest="80">
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ClosePopupCommand}" NumberOfTapsRequired="1" />
+                </ContentView.GestureRecognizers>
+                <ffimageloadingsvg:SvgCachedImage
+                    Grid.Row="0"
+                    HeightRequest="20"
+                    HorizontalOptions="End"
+                    Source="resource://Drive.Client.Resources.Images.Close.svg"
+                    VerticalOptions="Start"
+                    WidthRequest="20" />
+            </ContentView>
+
+            <Grid
+                BackgroundColor="Yellow"
+                RowSpacing="0"
+                VerticalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <controls:LabelExtended
+                    Grid.Row="0"
+                    FontSize="{StaticResource MediumSize}"
+                    HorizontalOptions="Center"
+                    Text="Пошук за фізичною особою"
+                    TextColor="{StaticResource BaseGrayColor}" />
+                <StackLayout
+                    Grid.Row="1"
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal"
+                    Spacing="4">
+                    <controls:LabelExtended
+                        FontFamily="{StaticResource SFProLight}"
+                        FontSize="{StaticResource LargerSize}"
+                        HorizontalOptions="Start"
+                        Text="{Binding SearchByPersonArgs.LastName, Converter={StaticResource UpperCaseConverter}}"
+                        TextColor="{StaticResource DarkBlueColor}" />
+                    <controls:LabelExtended
+                        FontSize="{StaticResource LargerSize}"
+                        HorizontalOptions="StartAndExpand"
+                        Text="{Binding SearchByPersonArgs.FirstName, Converter={StaticResource UpperCaseConverter}}"
+                        TextColor="{StaticResource DarkColor}" />
+                </StackLayout>
+
+                <controls:LabelExtended
+                    Grid.Row="2"
+                    FontFamily="{StaticResource SFProLight}"
+                    FontSize="{StaticResource LargerSize}"
+                    HorizontalOptions="Center"
+                    Text="{Binding SearchByPersonArgs.MiddleName, Converter={StaticResource UpperCaseConverter}}"
+                    TextColor="{StaticResource DarkColor}" />
+
+                <controls:LabelExtended
+                    Grid.Row="3"
+                    FontSize="{StaticResource MediumSize}"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="Для більш точних результатів введіть дату народження"
+                    TextColor="{StaticResource BaseGrayColor}" />
+                <Grid
+                    Grid.Row="4"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    RowSpacing="0"
+                    VerticalOptions="Center"
+                    WidthRequest="120">
+                    <controls:EntryExtended
+                        FontSize="{StaticResource MediumSize}"
+                        HorizontalOptions="Fill"
+                        HorizontalTextAlignment="Center"
+                        Placeholder="XX/XX/XXXX"
+                        Text="{Binding DateInput}"
+                        TextColor="{StaticResource ExtraGrayColor}">
+                        <controls:EntryExtended.Behaviors>
+                            <behaviors:MaskedBehavior Mask="XX/XX/XXXX" />
+                            <behaviors:EventToCommandBehavior Command="{Binding DoneCommand}" EventName="Completed" />
+                        </controls:EntryExtended.Behaviors>
+                    </controls:EntryExtended>
+                    <BoxView
+                        HeightRequest="2"
+                        HorizontalOptions="Center"
+                        VerticalOptions="End"
+                        WidthRequest="140"
+                        Color="Red" />
+                    <ffimageloadingsvg:SvgCachedImage
+                        Margin="20,0,0,0"
+                        HeightRequest="15"
+                        HorizontalOptions="Start"
+                        Source="resource://Drive.Client.Resources.Images.Calendar.svg"
+                        VerticalOptions="Center"
+                        WidthRequest="15" />
+                </Grid>
+                <!--<ffimageloadingsvg:SvgCachedImage
+                    Grid.Row="0"
+                    HeightRequest="90"
+                    Rotation="-45"
+                    Source="resource://Drive.Client.Resources.Images.Sent.svg"
+                    TranslationX="5"
+                    WidthRequest="90" />-->
+            </Grid>
+        </Grid>
+    </popups:SinglePopupViewBase.Content>
+</popups:SinglePopupViewBase>

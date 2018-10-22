@@ -12,13 +12,10 @@
   <ItemGroup>
     <Compile Remove="Models\Services\**" />
     <Compile Remove="Services\DependencyServices\Localize\**" />
-    <Compile Remove="Views\Popups\**" />
     <EmbeddedResource Remove="Models\Services\**" />
     <EmbeddedResource Remove="Services\DependencyServices\Localize\**" />
-    <EmbeddedResource Remove="Views\Popups\**" />
     <None Remove="Models\Services\**" />
     <None Remove="Services\DependencyServices\Localize\**" />
-    <None Remove="Views\Popups\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +26,7 @@
     <None Remove="Resources\Images\Arrow.svg" />
     <None Remove="Resources\Images\ArrowNext.svg" />
     <None Remove="Resources\Images\Button.svg" />
+    <None Remove="Resources\Images\Close.svg" />
     <None Remove="Resources\Images\drive_logo.svg" />
     <None Remove="Resources\Images\edit.svg" />
     <None Remove="Resources\Images\Email.svg" />
@@ -36,6 +34,7 @@
     <None Remove="Resources\Images\filter.svg" />
     <None Remove="Resources\Images\Gear.svg" />
     <None Remove="Resources\Images\Home.svg" />
+    <None Remove="Resources\Images\Icon-72.png" />
     <None Remove="Resources\Images\ic_barrier.png" />
     <None Remove="Resources\Images\Idea.svg" />
     <None Remove="Resources\Images\Mask.svg" />
@@ -49,8 +48,8 @@
     <None Remove="Resources\Images\Save.svg" />
     <None Remove="Resources\Images\Search.svg" />
     <None Remove="Resources\Images\Security.svg" />
+    <None Remove="Resources\Images\Sent.svg" />
     <None Remove="Resources\Images\stroke.svg" />
-    <None Remove="Resources\Images\TEST.png" />
     <None Remove="Resources\Images\User.svg" />
   </ItemGroup>
 
@@ -58,6 +57,7 @@
     <EmbeddedResource Include="Resources\Images\Arrow.svg" />
     <EmbeddedResource Include="Resources\Images\ArrowNext.svg" />
     <EmbeddedResource Include="Resources\Images\Button.svg" />
+    <EmbeddedResource Include="Resources\Images\Close.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -68,6 +68,7 @@
     <EmbeddedResource Include="Resources\Images\filter.svg" />
     <EmbeddedResource Include="Resources\Images\Gear.svg" />
     <EmbeddedResource Include="Resources\Images\Home.svg" />
+    <EmbeddedResource Include="Resources\Images\Icon-72.png" />
     <EmbeddedResource Include="Resources\Images\ic_barrier.png" />
     <EmbeddedResource Include="Resources\Images\Idea.svg" />
     <EmbeddedResource Include="Resources\Images\Mask.svg" />
@@ -81,8 +82,8 @@
     <EmbeddedResource Include="Resources\Images\Save.svg" />
     <EmbeddedResource Include="Resources\Images\Search.svg" />
     <EmbeddedResource Include="Resources\Images\Security.svg" />
+    <EmbeddedResource Include="Resources\Images\Sent.svg" />
     <EmbeddedResource Include="Resources\Images\stroke.svg" />
-    <EmbeddedResource Include="Resources\Images\TEST.png" />
     <EmbeddedResource Include="Resources\Images\User.svg" />
   </ItemGroup>
 
@@ -172,6 +173,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\IdentityAccounting\UnauthorizeView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popups\AddBirthdayPopupView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popups\RequestInfoPopupView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Search\SearchByPersonFinallyStepView.xaml">

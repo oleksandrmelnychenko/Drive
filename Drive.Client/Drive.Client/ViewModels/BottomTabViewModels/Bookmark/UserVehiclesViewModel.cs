@@ -145,25 +145,55 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
             ResetCancellationTokenSource(ref _getUserVehicleDetailRequestsCancellationTokenSource);
             CancellationTokenSource cancellationTokenSource = _getUserVehicleDetailRequestsCancellationTokenSource;
 
-            try {
-                if (BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth) {
-                    List<ResidentRequest> userRequests =
-                        await _vehicleService.GetUserVehicleDetailRequestsAsync(cancellationTokenSource.Token);
+            Task task = await Task.Factory.StartNew(async () => {
+                try {
+                    if (BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth) {
+                        List<ResidentRequest> userRequests =
+                            await _vehicleService.GetUserVehicleDetailRequestsAsync(cancellationTokenSource.Token);
 
-                    cancellationTokenSource.Token.ThrowIfCancellationRequested();
-                    if (userRequests != null) {
-                        var createdItems = _vehicleFactory.BuildItems(userRequests);
+                        if (userRequests != null) {
+                            var createdItems = _vehicleFactory.BuildItems(userRequests);
 
-                        UserRequests = createdItems.ToObservableCollection();
+                            UserRequests = createdItems.ToObservableCollection();
+                        }
                     }
                 }
-            }
-            catch (OperationCanceledException) { }
-            catch (ObjectDisposedException) { }
-            catch (Exception ex) {
-                Debug.WriteLine($"ERROR:{ex.Message}");
+                catch (OperationCanceledException) { }
+                catch (ObjectDisposedException) { }
+                catch (Exception ex) {
+                    Debug.WriteLine($"ERROR: {ex.Message}");
+                    Debugger.Break();
+                }
+            }, cancellationTokenSource.Token);
+
+            if (task.IsCanceled) {
                 Debugger.Break();
             }
+
+            if (task.IsFaulted) {
+                Debugger.Break();
+            }
+
+
+            //try {
+            //    if (BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth) {
+            //        List<ResidentRequest> userRequests =
+            //            await _vehicleService.GetUserVehicleDetailRequestsAsync(cancellationTokenSource.Token);
+
+            //        cancellationTokenSource.Token.ThrowIfCancellationRequested();
+            //        if (userRequests != null) {
+            //            var createdItems = _vehicleFactory.BuildItems(userRequests);
+
+            //            UserRequests = createdItems.ToObservableCollection();
+            //        }
+            //    }
+            //}
+            //catch (OperationCanceledException) { }
+            //catch (ObjectDisposedException) { }
+            //catch (Exception ex) {
+            //    Debug.WriteLine($"ERROR:{ex.Message}");
+            //    Debugger.Break();
+            //}
         }
     }
 }

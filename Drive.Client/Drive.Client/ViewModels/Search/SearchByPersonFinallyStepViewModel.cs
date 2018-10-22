@@ -1,10 +1,13 @@
-﻿using Drive.Client.Models.EntityModels.Search;
+﻿using Drive.Client.Helpers;
+using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.Models.Identities.NavigationArgs;
 using Drive.Client.Services.Vehicle;
 using Drive.Client.Validations;
 using Drive.Client.Validations.ValidationRules;
+using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
 using Drive.Client.ViewModels.IdentityAccounting;
+using Drive.Client.ViewModels.Popups;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,6 +24,24 @@ namespace Drive.Client.ViewModels.Search {
 
         private SearchByPersonArgs _searchByPersonArgs;
 
+        RequestInfoPopupViewModel _requestInfoPopupViewModel;
+        public RequestInfoPopupViewModel RequestInfoPopupViewModel {
+            get => _requestInfoPopupViewModel;
+            private set {
+                _requestInfoPopupViewModel?.Dispose();
+                SetProperty(ref _requestInfoPopupViewModel, value);
+            }
+        }
+
+        AddBirthdayPopupViewModel _addBirthdayPopupViewModel;
+        public AddBirthdayPopupViewModel AddBirthdayPopupViewModel {
+            get => _addBirthdayPopupViewModel;
+            private set {
+                _addBirthdayPopupViewModel?.Dispose();
+                SetProperty(ref _addBirthdayPopupViewModel, value);
+            }
+        }
+
         /// <summary>
         ///     ctor().
         /// </summary>
@@ -30,6 +51,12 @@ namespace Drive.Client.ViewModels.Search {
             StepTitle = MIDDLENAME_STEP_REGISTRATION_TITLE;
             MainInputPlaceholder = MIDDLENAME_PLACEHOLDER_STEP_REGISTRATION;
             MainInputIconPath = NAME_ICON_PATH;
+
+            RequestInfoPopupViewModel = DependencyLocator.Resolve<RequestInfoPopupViewModel>();
+            RequestInfoPopupViewModel.InitializeAsync(this);
+
+            AddBirthdayPopupViewModel = DependencyLocator.Resolve<AddBirthdayPopupViewModel>();
+            AddBirthdayPopupViewModel.InitializeAsync(this);
         }
 
         public override void Dispose() {
@@ -54,6 +81,22 @@ namespace Drive.Client.ViewModels.Search {
             return base.InitializeAsync(navigationData);
         }
 
+        protected override void OnSubscribeOnAppEvents() {
+            base.OnSubscribeOnAppEvents();
+
+            BaseSingleton<GlobalSetting>.Instance.AppMessagingEvents.LanguageEvents.TestEve += LanguageEvents_TestEve;
+        }
+
+        protected override void OnUnsubscribeFromAppEvents() {
+            base.OnUnsubscribeFromAppEvents();
+
+            BaseSingleton<GlobalSetting>.Instance.AppMessagingEvents.LanguageEvents.TestEve -= LanguageEvents_TestEve;
+        }
+
+        private void LanguageEvents_TestEve(object sender, Helpers.AppEvents.Events.Args.TestArgs e) {
+            RequestInfoPopupViewModel.ShowPopupCommand.Execute(null);
+        }
+
         protected async override void OnStepCommand() {
             if (ValidateForm()) {
                 ResetCancellationTokenSource(ref _vehicleDetailsCancellationTokenSource);
@@ -65,11 +108,15 @@ namespace Drive.Client.ViewModels.Search {
                 if (_searchByPersonArgs != null) {
                     try {
                         _searchByPersonArgs.MiddleName = MainInput.Value;
-                        VehicleDetailsByResidentFullName vehicleDetailsByResidentFullName = await _vehicleService.GetVehicleDetailsByResidentFullNameAsync(_searchByPersonArgs, cancellationTokenSource.Token);
 
-                        if (vehicleDetailsByResidentFullName != null) {
-                            await NavigationService.NavigateToAsync<MainViewModel>(new BottomTabIndexArgs { TargetTab = typeof(BookmarkViewModel) });
-                        }
+                        await AddBirthdayPopupViewModel.InitializeAsync(_searchByPersonArgs);
+                        AddBirthdayPopupViewModel.ShowPopupCommand.Execute(null);
+
+                        //VehicleDetailsByResidentFullName vehicleDetailsByResidentFullName = await _vehicleService.GetVehicleDetailsByResidentFullNameAsync(_searchByPersonArgs, cancellationTokenSource.Token);
+
+                        //if (vehicleDetailsByResidentFullName != null) {
+                        //    RequestInfoPopupViewModel.ShowPopupCommand.Execute(null);
+                        //}
                     }
                     catch (Exception ex) {
                         Debug.WriteLine($"ERROR:{ex.Message}");

@@ -71,7 +71,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
 
         private async Task OnInputComplete() {
             if (Validate()) {
-                SearchByPersonArgs searchByPersonArgs = new SearchByPersonArgs { lastName = LastName.Value };
+                SearchByPersonArgs searchByPersonArgs = new SearchByPersonArgs { LastName = LastName.Value };
                 await NavigationService.NavigateToAsync<SearchByPersonSecondStepViewModel>(searchByPersonArgs);
                 LastName.Value = string.Empty;
             }

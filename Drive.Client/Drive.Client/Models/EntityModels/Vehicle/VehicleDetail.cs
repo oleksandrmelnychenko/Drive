@@ -1,7 +1,11 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace Drive.Client.Models.EntityModels.Vehicle {
     public class VehicleDetail {
+        [JsonProperty("Created")]
+        public DateTime Created { get; set; }
+
         [JsonProperty("Brand")]
         public string Brand { get; set; }
 

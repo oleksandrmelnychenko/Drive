@@ -43,7 +43,6 @@ namespace Drive.Client.Services.Vehicle {
                     throw ex;
                 }
 
-                cancellationToken.ThrowIfCancellationRequested();
                 return residentRequests;
             }, cancellationToken);
 
@@ -75,7 +74,7 @@ namespace Drive.Client.Services.Vehicle {
                 VehicleDetailsByResidentFullName vehicleDetailsByResidentFullName = null;
 
                 string url = string.Format(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.VehicleEndpoints.VehicleDetailsByResidentFullNameEndpoint,
-                    searchByPersonArgs.FirstName, searchByPersonArgs.lastName, searchByPersonArgs.MiddleName, searchByPersonArgs.DateOfBirth);
+                    searchByPersonArgs.FirstName, searchByPersonArgs.LastName, searchByPersonArgs.MiddleName, searchByPersonArgs.DateOfBirth);
                 string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
 
                 try {

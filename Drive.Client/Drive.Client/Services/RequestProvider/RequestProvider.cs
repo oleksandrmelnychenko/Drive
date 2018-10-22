@@ -44,7 +44,7 @@ namespace Drive.Client.Services.RequestProvider {
             SetAccesToken(accessToken);
             SetLanguage();
 
-            HttpResponseMessage response = await _client.GetAsync(uri, cancellationToken);
+            HttpResponseMessage response = await _client.GetAsync(uri);
 
             await HandleResponse(response);
 

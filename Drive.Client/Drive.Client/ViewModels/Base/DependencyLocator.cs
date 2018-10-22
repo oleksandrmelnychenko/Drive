@@ -28,6 +28,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
 using Xamarin.Forms;
+using Drive.Client.ViewModels.Popups;
 
 namespace Drive.Client.ViewModels.Base {
     public static class DependencyLocator {
@@ -70,7 +71,9 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<EditPhoneNumberViewModel>();
             builder.RegisterType<CommonActionBarViewModel>();
             builder.RegisterType<DriveAutoDetailsViewModel>();
+            builder.RegisterType<AddBirthdayPopupViewModel>();
             builder.RegisterType<NameRegisterStepViewModel>();
+            builder.RegisterType<RequestInfoPopupViewModel>();
             builder.RegisterType<SignInPasswordStepViewModel>();
             builder.RegisterType<LanguageSelectPopupViewModel>();
             builder.RegisterType<PasswordRegisterStepViewModel>();

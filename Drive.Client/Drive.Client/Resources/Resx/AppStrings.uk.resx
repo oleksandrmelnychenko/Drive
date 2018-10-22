@@ -336,4 +336,7 @@
   <data name="ERROR_MINLENGTH" xml:space="preserve">
     <value>Мінімальна к-сть 2 символа</value>
   </data>
+  <data name="ActuallyToUpperCase" xml:space="preserve">
+    <value>АКТУАЛЬНО НА</value>
+  </data>
 </root>

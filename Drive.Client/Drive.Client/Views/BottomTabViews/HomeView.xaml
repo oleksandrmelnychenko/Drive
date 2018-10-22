@@ -24,17 +24,8 @@
             TextColor="{StaticResource ExtraGrayColor}"
             VerticalOptions="Center" />
     </StackLayout>
-</ContentView>
 
-<!--<?xml version="1.0" encoding="UTF-8" ?>
-<ContentView
-    x:Class="Drive.Client.Views.BottomTabViews.HomeView"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:Drive.Client.Controls"
-    xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
-    BackgroundColor="{StaticResource WhiteColor}">
-    <controls:DateEntry
+    <!--<controls:DateEntry
         EntryBackgroundColor="{StaticResource LightGrayColor}"
         EntryCalendarCulture="{Binding Path=DatePickerCulture}"
         EntryCommand="{Binding Path=TODOCommand}"
@@ -46,5 +37,6 @@
         EntryPlaceholderTextColor="{StaticResource ExtraGrayColor}"
         EntrySvgIconPath="resource://Drive.Client.Resources.Images.name.svg"
         EntryTextColor="{StaticResource ExtraGrayColor}"
-        VerticalOptions="Center" />
-</ContentView>-->
+        VerticalOptions="Center" />-->
+</ContentView>
+

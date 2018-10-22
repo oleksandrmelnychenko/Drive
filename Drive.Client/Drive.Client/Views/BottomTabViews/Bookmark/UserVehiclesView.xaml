@@ -7,7 +7,6 @@
     xmlns:converters="clr-namespace:Drive.Client.Converters"
     xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
     xmlns:hiddenView="clr-namespace:Drive.Client.Views.IdentityAccounting"
-    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     BackgroundColor="{StaticResource WhiteColor}">
 
     <ContentView.Resources>
@@ -26,14 +25,12 @@
     <Grid>
         <ListView
             x:Name="_list"
-            ios:ListView.SeparatorStyle="FullWidth"
             CachingStrategy="RecycleElement"
             ItemSelected="_list_ItemSelected"
             ItemsSource="{Binding UserRequests}"
             RowHeight="80"
             SelectedItem="{Binding SelectedRequest}"
-            SeparatorColor="#cccccc"
-            SeparatorVisibility="Default">
+            SeparatorVisibility="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -141,6 +138,11 @@
                                         VerticalOptions="Center" />
                                 </Grid>
                             </Grid>
+                            <BoxView
+                                Grid.ColumnSpan="2"
+                                HeightRequest="1"
+                                VerticalOptions="End"
+                                Color="#CCCCCC" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

@@ -15,9 +15,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Popups {
 
         private readonly IProfileSettingsDataItems _profileSettingsDataItems;
 
-        public LanguageSelectPopupViewModel(
-            IProfileSettingsDataItems profileSettingsDataItems) {
-
+        public LanguageSelectPopupViewModel(IProfileSettingsDataItems profileSettingsDataItems) {
             _profileSettingsDataItems = profileSettingsDataItems;
 
             Languages = _profileSettingsDataItems.BuildLanguageDataItems();

@@ -78,7 +78,8 @@
             <StackLayout
                 Grid.Row="0"
                 Margin="40,20,0,10"
-                Spacing="2"
+                Spacing="{OnPlatform Android=0,
+                                     iOS=2}"
                 VerticalOptions="Center">
                 <StackLayout
                     HorizontalOptions="Start"
@@ -147,10 +148,12 @@
                 ios:ListView.SeparatorStyle="FullWidth"
                 ItemSelected="_list_ItemSelected"
                 ItemsSource="{Binding VehicleDetails}"
-                RowHeight="140"
+                RowHeight="{OnPlatform iOS=150,
+                                       Android=160}"
                 SeparatorColor="{StaticResource LightGrayColor}"
                 SeparatorVisibility="Default"
-                VerticalOptions="Start">
+                VerticalOptions="{OnPlatform iOS=Start,
+                                             Android=Fill}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -181,6 +184,11 @@
                                 <StackLayout Orientation="Horizontal" Spacing="0">
                                     <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [EngineCapacityUpperСase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
                                     <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding Volume}" />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Spacing="0">
+                                    <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [ActuallyToUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
+                                    <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding Created, StringFormat={StaticResource FormattedDate}}" />
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>

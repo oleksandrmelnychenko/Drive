@@ -336,4 +336,7 @@
   <data name="ERROR_MINLENGTH" xml:space="preserve">
     <value>Minimum number of 2 characters</value>
   </data>
+  <data name="ActuallyToUpperCase" xml:space="preserve">
+    <value>ACTUALLY TO</value>
+  </data>
 </root>
