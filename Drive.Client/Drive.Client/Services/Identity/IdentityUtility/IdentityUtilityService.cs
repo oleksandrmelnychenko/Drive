@@ -27,17 +27,19 @@ namespace Drive.Client.Services.Identity.IdentityUtility {
         }
 
         public async Task LogOutAsync() {
-            try {
-                string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.IdentityEndpoints.LogOutEndPoint;
-                string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+            await Task.Run(async () => {
+                try {
+                    string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.IdentityEndpoints.LogOutEndPoint;
+                    string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
 
-                LogOutResult logOutResult = await _requestProvider.PostAsync<LogOutResult, object>(url, null, accessToken);
+                    LogOutResult logOutResult = await _requestProvider.PostAsync<LogOutResult, object>(url, null, accessToken);
 
-                if (logOutResult != null) { }
-            }
-            catch (Exception ex) {
-                Debug.WriteLine($"ERROR LogOutAsync():{ex.Message}");
-            }
+                    if (logOutResult != null) { }
+                }
+                catch (Exception ex) {
+                    Debug.WriteLine($"ERROR LogOutAsync():{ex.Message}");
+                }
+            });
 
             BaseSingleton<GlobalSetting>.Instance.UserProfile.ClearUserProfile();
             BaseSingleton<GlobalSetting>.Instance.UserProfile.SaveChanges();

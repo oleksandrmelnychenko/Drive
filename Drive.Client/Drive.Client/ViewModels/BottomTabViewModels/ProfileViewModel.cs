@@ -81,7 +81,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
 
         public ICommand ChangePasswordCommand => new Command(async () => await NavigationService.NavigateToAsync<EditPasswordFirstStepViewModel>());
 
-        public ICommand LogOutCommand => new Command(async () => await OnLogOutAsync());
+        public ICommand LogOutCommand => new Command(async () => await _identityUtilityService.LogOutAsync());
 
         public ICommand ChangeAvatarCommand => new Command(async () => await OnChangeAvatarAsync());
 
@@ -118,21 +118,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
             TabIcon = IconPath.PROFILE;
             RelativeViewType = typeof(ProfileView);
             HasBackgroundItem = false;
-        }
-
-        private async Task OnLogOutAsync() {
-            try {
-                Guid busyKey = Guid.NewGuid();
-                UpdateBusyVisualState(busyKey, true);
-                await _identityUtilityService.LogOutAsync();
-                UpdateBusyVisualState(busyKey, false);
-            }
-            catch (OperationCanceledException) { }
-            catch (ObjectDisposedException) { }
-            catch (Exception ex) {
-                Debug.WriteLine($"ERROR: {ex.Message}");
-                Debugger.Break();
-            }
         }
 
         private async Task OnChangeAvatarAsync() {
