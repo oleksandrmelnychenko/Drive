@@ -84,7 +84,7 @@
                 <StackLayout Spacing="10">
                     <StackLayout Orientation="Horizontal" Spacing="0">
                         <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [RegistrationDate].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
-                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.DReg}" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding DriveAuto.DReg, StringFormat={StaticResource FormattedDate}}" />
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="0">

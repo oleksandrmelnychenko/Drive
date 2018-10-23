@@ -13,7 +13,7 @@
 
     <popups:SinglePopupViewBase.Content>
         <Grid
-            Margin="30,50,30,0"
+            Margin="20,50,20,0"
             HeightRequest="350"
             VerticalOptions="Start">
             <BoxView CornerRadius="10" Color="{StaticResource WhiteColor}" />
@@ -35,7 +35,10 @@
                     WidthRequest="20" />
             </ContentView>
 
-            <Grid RowSpacing="35" VerticalOptions="Center">
+            <Grid
+                Padding="20,0"
+                RowSpacing="35"
+                VerticalOptions="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="90" />
                     <RowDefinition Height="auto" />
@@ -44,9 +47,7 @@
                 <ffimageloadingsvg:SvgCachedImage
                     Grid.Row="0"
                     HeightRequest="90"
-                    Rotation="-45"
-                    Source="resource://Drive.Client.Resources.Images.Sent.svg"
-                    TranslationX="5"
+                    Source="resource://Drive.Client.Resources.Images.d_logo.svg"
                     WidthRequest="90" />
                 <controls:LabelExtended
                     Grid.Row="1"

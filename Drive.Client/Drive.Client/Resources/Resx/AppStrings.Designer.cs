@@ -169,6 +169,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DAY / MONTH / YEAR.
+        /// </summary>
+        public static string DateHelpUpperCase {
+            get {
+                return ResourceManager.GetString("DateHelpUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DATE.
         /// </summary>
         public static string DateUpperCase {
@@ -250,7 +259,7 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximum number of 120 characters.
+        ///   Looks up a localized string similar to Maximum number of 50 characters.
         /// </summary>
         public static string ERROR_MAXLENGTH {
             get {
@@ -660,6 +669,15 @@ namespace Drive.Client.Resources.Resx {
         public static string UnauthorizeText {
             get {
                 return ResourceManager.GetString("UnauthorizeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information is constantly updated.
+        /// </summary>
+        public static string UpdatedInfo {
+            get {
+                return ResourceManager.GetString("UpdatedInfo", resourceCulture);
             }
         }
         

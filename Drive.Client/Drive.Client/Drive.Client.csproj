@@ -25,9 +25,12 @@
   <ItemGroup>
     <None Remove="Resources\Images\Arrow.svg" />
     <None Remove="Resources\Images\ArrowNext.svg" />
+    <None Remove="Resources\Images\Arrow_ok.svg" />
     <None Remove="Resources\Images\Button.svg" />
+    <None Remove="Resources\Images\Calendar.svg" />
     <None Remove="Resources\Images\Close.svg" />
     <None Remove="Resources\Images\drive_logo.svg" />
+    <None Remove="Resources\Images\d_logo.svg" />
     <None Remove="Resources\Images\edit.svg" />
     <None Remove="Resources\Images\Email.svg" />
     <None Remove="Resources\Images\facebook.svg" />
@@ -56,12 +59,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\Images\Arrow.svg" />
     <EmbeddedResource Include="Resources\Images\ArrowNext.svg" />
+    <EmbeddedResource Include="Resources\Images\Arrow_ok.svg" />
     <EmbeddedResource Include="Resources\Images\Button.svg" />
+    <EmbeddedResource Include="Resources\Images\Calendar.svg" />
     <EmbeddedResource Include="Resources\Images\Close.svg" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\Images\drive_logo.svg" />
+    <EmbeddedResource Include="Resources\Images\d_logo.svg" />
     <EmbeddedResource Include="Resources\Images\edit.svg" />
     <EmbeddedResource Include="Resources\Images\Email.svg" />
     <EmbeddedResource Include="Resources\Images\facebook.svg" />

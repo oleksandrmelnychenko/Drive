@@ -33,27 +33,15 @@ namespace Drive.Client.Services.Identity.IdentityUtility {
 
                 LogOutResult logOutResult = await _requestProvider.PostAsync<LogOutResult, object>(url, null, accessToken);
 
-                if (logOutResult != null) {
-                    if (logOutResult.IsRequestSuccess) {
-                        BaseSingleton<GlobalSetting>.Instance.UserProfile.ClearUserProfile();
-                        BaseSingleton<GlobalSetting>.Instance.UserProfile.SaveChanges();
-
-                        await _navigationService.InitializeAsync();
-                    } else {
-                        await _dialogService.ToastAsync(logOutResult.Message);
-                    }
-                }
-            }
-            catch (ConnectivityException ex) {
-                throw ex;
-            }
-            catch (HttpRequestExceptionEx ex) {
-                throw ex;
+                if (logOutResult != null) { }
             }
             catch (Exception ex) {
-                Debug.WriteLine($"ERROR:{ex.Message}");
-                Debugger.Break();
+                Debug.WriteLine($"ERROR LogOutAsync():{ex.Message}");
             }
+
+            BaseSingleton<GlobalSetting>.Instance.UserProfile.ClearUserProfile();
+            BaseSingleton<GlobalSetting>.Instance.UserProfile.SaveChanges();
+            await _navigationService.InitializeAsync();
         }
     }
 }

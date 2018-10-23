@@ -6,17 +6,29 @@
     xmlns:behaviors="clr-namespace:Drive.Client.Behaviors"
     xmlns:controls="clr-namespace:Drive.Client.Controls"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
     xmlns:popups="clr-namespace:Drive.Client.Controls.Popups"
     CascadeInputTransparent="False"
     InputTransparent="True">
 
     <popups:SinglePopupViewBase.Content>
         <Grid
-            Margin="30,50,30,0"
+            Margin="20,50,20,0"
             HeightRequest="350"
+            RowSpacing="0"
             VerticalOptions="Start">
-            <BoxView CornerRadius="10" Color="White" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="35" />
+            </Grid.RowDefinitions>
+            <BoxView
+                Grid.RowSpan="3"
+                CornerRadius="10"
+                Color="White" />
             <ContentView
+                Grid.Row="0"
+                Grid.RowSpan="2"
                 Padding="20"
                 HeightRequest="80"
                 HorizontalOptions="End"
@@ -35,96 +47,137 @@
             </ContentView>
 
             <Grid
-                BackgroundColor="Yellow"
-                RowSpacing="0"
+                Grid.Row="1"
+                Padding="20,0"
+                CascadeInputTransparent="False"
+                InputTransparent="True"
+                RowSpacing="8"
                 VerticalOptions="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="15" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <controls:LabelExtended
                     Grid.Row="0"
-                    FontSize="{StaticResource MediumSize}"
+                    Margin="0,0,0,0"
+                    FontSize="{StaticResource LargeSize}"
                     HorizontalOptions="Center"
                     Text="Пошук за фізичною особою"
                     TextColor="{StaticResource BaseGrayColor}" />
-                <StackLayout
+                <!--<StackLayout
                     Grid.Row="1"
                     HorizontalOptions="Center"
                     Orientation="Horizontal"
                     Spacing="4">
                     <controls:LabelExtended
                         FontFamily="{StaticResource SFProLight}"
-                        FontSize="{StaticResource LargerSize}"
+                        FontSize="{StaticResource BigSize}"
                         HorizontalOptions="Start"
+                        LineBreakMode="NoWrap"
                         Text="{Binding SearchByPersonArgs.LastName, Converter={StaticResource UpperCaseConverter}}"
                         TextColor="{StaticResource DarkBlueColor}" />
                     <controls:LabelExtended
-                        FontSize="{StaticResource LargerSize}"
+                        FontSize="{StaticResource BigSize}"
                         HorizontalOptions="StartAndExpand"
+                        LineBreakMode="NoWrap"
                         Text="{Binding SearchByPersonArgs.FirstName, Converter={StaticResource UpperCaseConverter}}"
                         TextColor="{StaticResource DarkColor}" />
-                </StackLayout>
+                </StackLayout>-->
 
                 <controls:LabelExtended
-                    Grid.Row="2"
-                    FontFamily="{StaticResource SFProLight}"
-                    FontSize="{StaticResource LargerSize}"
-                    HorizontalOptions="Center"
-                    Text="{Binding SearchByPersonArgs.MiddleName, Converter={StaticResource UpperCaseConverter}}"
-                    TextColor="{StaticResource DarkColor}" />
-
-                <controls:LabelExtended
-                    Grid.Row="3"
-                    FontSize="{StaticResource MediumSize}"
+                    Grid.Row="1"
+                    Margin="0,10,0,0"
+                    FontSize="{OnPlatform Android={StaticResource LargeSize},
+                                          iOS={StaticResource BigSize}}"
                     HorizontalOptions="Center"
                     HorizontalTextAlignment="Center"
-                    Text="Для більш точних результатів введіть дату народження"
-                    TextColor="{StaticResource BaseGrayColor}" />
+                    LetterSpacing="{OnPlatform Android=0.07,
+                                               iOS=1.3}"
+                    Text="{Binding SearchByPersonArgs.FullName, Converter={StaticResource UpperCaseConverter}}"
+                    TextColor="{StaticResource DarkColor}" />
+
+                <StackLayout Grid.Row="3" Spacing="2">
+                    <controls:LabelExtended
+                        FontSize="{StaticResource MediumSize}"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="Для більш точних результатів"
+                        TextColor="{StaticResource BaseGrayColor}" />
+
+                    <controls:LabelExtended
+                        FontSize="{StaticResource MediumSize}"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="введіть дату народження"
+                        TextColor="{StaticResource BaseGrayColor}" />
+                </StackLayout>
                 <Grid
                     Grid.Row="4"
-                    HeightRequest="40"
+                    HeightRequest="50"
                     HorizontalOptions="Center"
-                    RowSpacing="0"
-                    VerticalOptions="Center"
-                    WidthRequest="120">
-                    <controls:EntryExtended
-                        FontSize="{StaticResource MediumSize}"
-                        HorizontalOptions="Fill"
-                        HorizontalTextAlignment="Center"
-                        Placeholder="XX/XX/XXXX"
-                        Text="{Binding DateInput}"
-                        TextColor="{StaticResource ExtraGrayColor}">
-                        <controls:EntryExtended.Behaviors>
-                            <behaviors:MaskedBehavior Mask="XX/XX/XXXX" />
-                            <behaviors:EventToCommandBehavior Command="{Binding DoneCommand}" EventName="Completed" />
-                        </controls:EntryExtended.Behaviors>
-                    </controls:EntryExtended>
-                    <BoxView
-                        HeightRequest="2"
+                    RowSpacing="2"
+                    WidthRequest="170">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <StackLayout
                         HorizontalOptions="Center"
+                        Orientation="Horizontal"
+                        Spacing="4">
+                        <ffimageloadingsvg:SvgCachedImage
+                            Margin="0,0,0,0"
+                            HeightRequest="15"
+                            Source="resource://Drive.Client.Resources.Images.Calendar.svg"
+                            VerticalOptions="Center"
+                            WidthRequest="15" />
+                        <controls:EntryExtended
+                            FontSize="{StaticResource MediumSize}"
+                            HorizontalTextAlignment="Center"
+                            MaxLength="10"
+                            Placeholder="XX/XX/XXXX"
+                            Text="{Binding DateInput}"
+                            TextColor="{StaticResource BaseGrayColor}">
+                            <controls:EntryExtended.Behaviors>
+                                <behaviors:MaskedBehavior Mask="XX/XX/XXXX" />
+                                <behaviors:EventToCommandBehavior Command="{Binding DoneCommand}" EventName="Completed" />
+                            </controls:EntryExtended.Behaviors>
+                        </controls:EntryExtended>
+                    </StackLayout>
+                    <BoxView
+                        HeightRequest="1"
                         VerticalOptions="End"
-                        WidthRequest="140"
-                        Color="Red" />
-                    <ffimageloadingsvg:SvgCachedImage
-                        Margin="20,0,0,0"
-                        HeightRequest="15"
-                        HorizontalOptions="Start"
-                        Source="resource://Drive.Client.Resources.Images.Calendar.svg"
-                        VerticalOptions="Center"
-                        WidthRequest="15" />
+                        Color="{StaticResource BaseGrayColor}" />
+                    <controls:LabelExtended
+                        Grid.Row="1"
+                        FontSize="{StaticResource UltraLittleSize}"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="End"
+                        Text="{Binding [DateHelpUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                        TextColor="{StaticResource BaseGrayColor}" />
                 </Grid>
-                <!--<ffimageloadingsvg:SvgCachedImage
-                    Grid.Row="0"
-                    HeightRequest="90"
-                    Rotation="-45"
-                    Source="resource://Drive.Client.Resources.Images.Sent.svg"
-                    TranslationX="5"
-                    WidthRequest="90" />-->
             </Grid>
+            <ContentView
+                Grid.Row="2"
+                Padding="20,0"
+                HeightRequest="35"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                WidthRequest="50">
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding DoneCommand}" NumberOfTapsRequired="1" />
+                </ContentView.GestureRecognizers>
+                <ffimageloadingsvg:SvgCachedImage
+                    Grid.Row="0"
+                    HeightRequest="20"
+                    HorizontalOptions="End"
+                    Source="resource://Drive.Client.Resources.Images.Arrow_ok.svg"
+                    TranslationY="-8"
+                    VerticalOptions="Center" />
+            </ContentView>
         </Grid>
     </popups:SinglePopupViewBase.Content>
 </popups:SinglePopupViewBase>

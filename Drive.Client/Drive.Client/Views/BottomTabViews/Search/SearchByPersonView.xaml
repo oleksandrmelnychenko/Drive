@@ -79,6 +79,14 @@
                     TextColor="{StaticResource ErrorColor}"
                     VerticalOptions="End"
                     VerticalTextAlignment="Center" />
+                <!--  INFORMATION  -->
+                <controls:LabelExtended
+                    Margin="0,30,0,0"
+                    FontFamily="{StaticResource SFProThin}"
+                    FontSize="{StaticResource Key=MidMediumSize}"
+                    HorizontalOptions="Center"
+                    Text="{Binding [UpdatedInfo].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                    TextColor="{StaticResource Key=ExtraGrayColor}" />
             </StackLayout>
         </Grid>
 

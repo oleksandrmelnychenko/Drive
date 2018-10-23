@@ -46,6 +46,7 @@
                                     Spacing="6"
                                     VerticalOptions="Center">
                                     <controls:LabelExtended
+                                        FontFamily="{StaticResource SFProRegular}"
                                         FontSize="{StaticResource MediumSize}"
                                         Text="{Binding NRegNew}"
                                         TextColor="{StaticResource BlackColor}"

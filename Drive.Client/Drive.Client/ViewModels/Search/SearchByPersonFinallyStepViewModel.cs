@@ -11,9 +11,12 @@ using Drive.Client.ViewModels.Popups;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.Search {
     public sealed class SearchByPersonFinallyStepViewModel : StepBaseViewModel {
@@ -42,6 +45,8 @@ namespace Drive.Client.ViewModels.Search {
             }
         }
 
+        public ICommand InputTextChangedCommand => new Command(() => OnInputTextChenged());
+
         /// <summary>
         ///     ctor().
         /// </summary>
@@ -62,7 +67,11 @@ namespace Drive.Client.ViewModels.Search {
         public override void Dispose() {
             base.Dispose();
 
+            ResetCancellationTokenSource(ref _vehicleDetailsCancellationTokenSource);
+        }
 
+        private void OnInputTextChenged() {
+            ServerError = string.Empty;          
         }
 
         protected override void ResetValidationObjects() {
@@ -83,50 +92,56 @@ namespace Drive.Client.ViewModels.Search {
 
         protected override void OnSubscribeOnAppEvents() {
             base.OnSubscribeOnAppEvents();
-
-            BaseSingleton<GlobalSetting>.Instance.AppMessagingEvents.LanguageEvents.TestEve += LanguageEvents_TestEve;
+            BaseSingleton<GlobalSetting>.Instance.AppMessagingEvents.VehicleEvents.SendInformation += OnSendInformation;
         }
 
         protected override void OnUnsubscribeFromAppEvents() {
             base.OnUnsubscribeFromAppEvents();
-
-            BaseSingleton<GlobalSetting>.Instance.AppMessagingEvents.LanguageEvents.TestEve -= LanguageEvents_TestEve;
+            BaseSingleton<GlobalSetting>.Instance.AppMessagingEvents.VehicleEvents.SendInformation -= OnSendInformation;
         }
 
-        private void LanguageEvents_TestEve(object sender, Helpers.AppEvents.Events.Args.TestArgs e) {
-            RequestInfoPopupViewModel.ShowPopupCommand.Execute(null);
+        private async void OnSendInformation(object sender, EventArgs e) {
+            ResetCancellationTokenSource(ref _vehicleDetailsCancellationTokenSource);
+            CancellationTokenSource cancellationTokenSource = _vehicleDetailsCancellationTokenSource;
+
+            Guid busyKey = Guid.NewGuid();
+            SetBusy(busyKey, true);
+
+            try {
+                VehicleDetailsByResidentFullName vehicleDetailsByResidentFullName = await _vehicleService.GetVehicleDetailsByResidentFullNameAsync(_searchByPersonArgs, _vehicleDetailsCancellationTokenSource.Token);
+
+                if (vehicleDetailsByResidentFullName != null) {
+                    RequestInfoPopupViewModel.ShowPopupCommand.Execute(null);
+                }
+            }
+            catch (Exception ex) {
+                ServerError = ex.Message;
+                Debug.WriteLine($"ERROR:{ex.Message}");
+            }
+
+            SetBusy(busyKey, false);
         }
 
         protected async override void OnStepCommand() {
             if (ValidateForm()) {
-                ResetCancellationTokenSource(ref _vehicleDetailsCancellationTokenSource);
-                CancellationTokenSource cancellationTokenSource = _vehicleDetailsCancellationTokenSource;
-
-                Guid busyKey = Guid.NewGuid();
-                SetBusy(busyKey, true);
-
                 if (_searchByPersonArgs != null) {
                     try {
                         _searchByPersonArgs.MiddleName = MainInput.Value;
 
                         await AddBirthdayPopupViewModel.InitializeAsync(_searchByPersonArgs);
+
+                        if (AddBirthdayPopupViewModel.IsPopupVisible) {
+                            AddBirthdayPopupViewModel.ClosePopupCommand.Execute(null);
+                        }
                         AddBirthdayPopupViewModel.ShowPopupCommand.Execute(null);
-
-                        //VehicleDetailsByResidentFullName vehicleDetailsByResidentFullName = await _vehicleService.GetVehicleDetailsByResidentFullNameAsync(_searchByPersonArgs, cancellationTokenSource.Token);
-
-                        //if (vehicleDetailsByResidentFullName != null) {
-                        //    RequestInfoPopupViewModel.ShowPopupCommand.Execute(null);
-                        //}
                     }
                     catch (Exception ex) {
                         Debug.WriteLine($"ERROR:{ex.Message}");
                         Debugger.Break();
                     }
                 } else {
-                    Debugger.Break();
                     await NavigationService.GoBackAsync();
                 }
-                SetBusy(busyKey, false);
             }
         }
     }

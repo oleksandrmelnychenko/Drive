@@ -10,7 +10,7 @@ namespace Drive.Client.Validations.ValidationRules {
 
             string validatedValue = value as string;
 
-            if (validatedValue.Length > 120) {
+            if (validatedValue.Length > 50) {
                 return false;
             }
 

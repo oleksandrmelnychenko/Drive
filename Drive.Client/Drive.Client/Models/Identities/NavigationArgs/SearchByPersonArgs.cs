@@ -7,5 +7,7 @@
         public string MiddleName { get; set; }
 
         public string DateOfBirth { get; set; }
+
+        public string FullName => $"{LastName} {FirstName} {MiddleName}";
     }
 }

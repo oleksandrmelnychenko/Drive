@@ -14,39 +14,32 @@ using Xamarin.Forms;
 namespace Drive.Client.ViewModels.Popups {
     public class AddBirthdayPopupViewModel : PopupBaseViewModel {
 
+        public override Type RelativeViewType => typeof(AddBirthdayPopupView);
+
         string _dateInput;
         public string DateInput {
             get { return _dateInput; }
             set { SetProperty(ref _dateInput, value); }
         }
 
-        private readonly IVehicleService _vehicleService;
-
         SearchByPersonArgs _searchByPersonArgs;
         public SearchByPersonArgs SearchByPersonArgs {
             get { return _searchByPersonArgs; }
             set { SetProperty(ref _searchByPersonArgs, value); }
         }
-
-        public AddBirthdayPopupViewModel(IVehicleService vehicleService) {
-            _vehicleService = vehicleService;
-        }
-
+       
         public ICommand DoneCommand => new Command(() => {
-            _searchByPersonArgs.DateOfBirth = DateInput;
-
-            Task.Run(async () => {
-                VehicleDetailsByResidentFullName vehicleDetailsByResidentFullName = await _vehicleService.GetVehicleDetailsByResidentFullNameAsync(_searchByPersonArgs);
-
-                if (vehicleDetailsByResidentFullName != null) {
-                    BaseSingleton<GlobalSetting>.Instance.AppMessagingEvents.LanguageEvents.OnTestEve(vehicleDetailsByResidentFullName);
-                }
-            });
-
             ClosePopupCommand.Execute(null);
+            _searchByPersonArgs.DateOfBirth = DateInput;
+            BaseSingleton<GlobalSetting>.Instance.AppMessagingEvents.VehicleEvents.OnSendInformation();
         });
 
-        public override Type RelativeViewType => typeof(AddBirthdayPopupView);
+        /// <summary>
+        ///     ctor().
+        /// </summary>
+        public AddBirthdayPopupViewModel() {
+          
+        }
 
         public override Task InitializeAsync(object navigationData) {
             if (navigationData is SearchByPersonArgs searchByPersonArgs) {

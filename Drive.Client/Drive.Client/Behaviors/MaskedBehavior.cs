@@ -43,10 +43,16 @@ namespace Drive.Client.Behaviors {
         private void OnEntryTextChanged(object sender, TextChangedEventArgs args) {
             var entry = sender as Entry;
 
-            var text = entry.Text;
-
-            if (string.IsNullOrWhiteSpace(text) || _positions == null)
+            if (string.IsNullOrWhiteSpace(entry.Text) || _positions == null)
                 return;
+
+            string tt = args.NewTextValue.Substring(args.NewTextValue.Length - 1);
+            if (!double.TryParse(tt, out double tempValue))
+                ((Entry)sender).Text = args.OldTextValue;
+            else
+                ((Entry)sender).Text = args.NewTextValue;
+
+            var text = entry.Text;
 
             if (text.Length > _mask.Length) {
                 entry.Text = text.Remove(text.Length - 1);

@@ -331,12 +331,18 @@
     <value>DATE</value>
   </data>
   <data name="ERROR_MAXLENGTH" xml:space="preserve">
-    <value>Maximum number of 120 characters</value>
+    <value>Maximum number of 50 characters</value>
   </data>
   <data name="ERROR_MINLENGTH" xml:space="preserve">
     <value>Minimum number of 2 characters</value>
   </data>
   <data name="ActuallyToUpperCase" xml:space="preserve">
     <value>ACTUALLY TO</value>
+  </data>
+  <data name="UpdatedInfo" xml:space="preserve">
+    <value>Information is constantly updated</value>
+  </data>
+  <data name="DateHelpUpperCase" xml:space="preserve">
+    <value>DAY / MONTH / YEAR</value>
   </data>
 </root>

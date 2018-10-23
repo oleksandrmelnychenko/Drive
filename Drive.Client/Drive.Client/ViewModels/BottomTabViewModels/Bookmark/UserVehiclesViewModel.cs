@@ -161,8 +161,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
                 catch (OperationCanceledException) { }
                 catch (ObjectDisposedException) { }
                 catch (Exception ex) {
-                    Debug.WriteLine($"ERROR: {ex.Message}");
-                    Debugger.Break();
+                    Debug.WriteLine($"ERROR: {ex.Message}");                    
                 }
             }, cancellationTokenSource.Token);
 
@@ -172,28 +171,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
 
             if (task.IsFaulted) {
                 Debugger.Break();
-            }
-
-
-            //try {
-            //    if (BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth) {
-            //        List<ResidentRequest> userRequests =
-            //            await _vehicleService.GetUserVehicleDetailRequestsAsync(cancellationTokenSource.Token);
-
-            //        cancellationTokenSource.Token.ThrowIfCancellationRequested();
-            //        if (userRequests != null) {
-            //            var createdItems = _vehicleFactory.BuildItems(userRequests);
-
-            //            UserRequests = createdItems.ToObservableCollection();
-            //        }
-            //    }
-            //}
-            //catch (OperationCanceledException) { }
-            //catch (ObjectDisposedException) { }
-            //catch (Exception ex) {
-            //    Debug.WriteLine($"ERROR:{ex.Message}");
-            //    Debugger.Break();
-            //}
+            }           
         }
     }
 }

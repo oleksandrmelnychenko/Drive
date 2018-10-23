@@ -54,10 +54,10 @@
                             Text="{Binding Path=MainInput.Value, Converter={StaticResource UpperCaseConverter}, Mode=TwoWay}"
                             TextColor="{StaticResource ExtraGrayColor}">
                             <controls:EntryExtended.Behaviors>
-                                <behaviors:EventToCommandBehavior Command="{Binding Path=StepCommand}" EventName="Completed" />
+                                <behaviors:EventToCommandBehavior Command="{Binding StepCommand}" EventName="Completed" />
+                                <behaviors:EventToCommandBehavior Command="{Binding InputTextChangedCommand}" EventName="TextChanged" />
                             </controls:EntryExtended.Behaviors>
                         </controls:EntryExtended>
-                        <!--  TODO: bound source property to the MainInputIconPath with appropriate binding converter  -->
                         <ffimageloadingsvg:SvgCachedImage
                             Margin="20,0,0,0"
                             HeightRequest="15"

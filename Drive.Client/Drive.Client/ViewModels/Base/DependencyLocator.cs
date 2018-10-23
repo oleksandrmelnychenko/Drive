@@ -49,6 +49,8 @@ namespace Drive.Client.ViewModels.Base {
         public static void RegisterDependencies() {
             var builder = new ContainerBuilder();
 
+            // Events.
+            builder.RegisterType<VehicleEvents>().SingleInstance();
             builder.RegisterType<LanguageEvents>().SingleInstance();
             builder.RegisterType<AppMessagingEvents>().SingleInstance();
 
