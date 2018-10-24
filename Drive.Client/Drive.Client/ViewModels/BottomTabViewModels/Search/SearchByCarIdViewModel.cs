@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -94,21 +95,22 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
             try {
                 //  Reactive search.
                 Observable.FromEventPattern<PropertyChangedEventArgs>(this, nameof(PropertyChanged))
-                    .Where(x => x.EventArgs.PropertyName == nameof(TargetValue))
-                    .Throttle(TimeSpan.FromMilliseconds(300))
-                    .Select(handler => Observable.FromAsync(async cancellationToken => {
-                        var result = await SearchInfoAsync(TargetValue).ConfigureAwait(false);
+                      .Where(x => x.EventArgs.PropertyName == nameof(TargetValue))
+                      .Throttle(TimeSpan.FromMilliseconds(300))
+                      .Select(handler => Observable.FromAsync(async cancellationToken => {
+                          var result = await SearchInfoAsync(TargetValue).ConfigureAwait(false);
 
-                        if (cancellationToken.IsCancellationRequested) {
-                            return new DriveAutoSearch[] { };
-                        }
+                          if (cancellationToken.IsCancellationRequested) {
+                              return new DriveAutoSearch[] { };
+                          }
 
-                        return result;
-                    }))
-                    .Switch()
-                    .Subscribe(foundResult => {
-                        ApplySearchResults(foundResult);
-                    });
+                          return result;
+                      }))
+                      .Switch()
+                      .Finally(() => Debug.WriteLine($"---ERROR(Observable.Finally): "))
+                     .Subscribe(foundResult => {
+                         ApplySearchResults(foundResult);
+                     });
             }
             catch (Exception ex) {
                 Debug.WriteLine($"---ERROR: {ex.Message}");

@@ -1,6 +1,7 @@
 ﻿using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.ViewModels.ActionBars;
 using Drive.Client.ViewModels.Base;
+using System;
 using System.Threading.Tasks;
 
 namespace Drive.Client.ViewModels {
@@ -31,6 +32,8 @@ namespace Drive.Client.ViewModels {
 
             if (navigationData is DriveAuto driveAuto) {
                 DriveAuto = driveAuto;
+                DateTime dateTime = DateTime.Parse(driveAuto.DReg);
+                driveAuto.DReg = dateTime.ToString("dd.MM.yyyy");
             }
 
             return base.InitializeAsync(navigationData);
