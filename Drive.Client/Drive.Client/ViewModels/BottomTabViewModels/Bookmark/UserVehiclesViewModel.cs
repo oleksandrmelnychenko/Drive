@@ -2,6 +2,7 @@
 using Drive.Client.Factories.Vehicle;
 using Drive.Client.Helpers;
 using Drive.Client.Helpers.Localize;
+using Drive.Client.Models.Arguments.BottomtabSwitcher;
 using Drive.Client.Models.DataItems.Vehicle;
 using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.Models.EntityModels.Vehicle;
@@ -24,7 +25,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
-    public sealed class UserVehiclesViewModel : NestedViewModel, IVisualFiguring {
+    public sealed class UserVehiclesViewModel : NestedViewModel, IVisualFiguring, ISwitchTab {
 
         private CancellationTokenSource _getUserVehicleDetailRequestsCancellationTokenSource = new CancellationTokenSource();
 
@@ -33,6 +34,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
         private readonly IVehicleFactory _vehicleFactory;
 
         private readonly IVehicleService _vehicleService;
+
+        private bool _canGet = true;
 
         public Type RelativeViewType => typeof(UserVehiclesView);
 
@@ -79,13 +82,13 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
         public UserVehiclesViewModel(IVehicleService vehicleService, IVehicleFactory vehicleFactory) {
             _vehicleFactory = vehicleFactory;
             _vehicleService = vehicleService;
-
-            //GetRequestsAsync();
         }
 
         public override Task InitializeAsync(object navigationData) {
 
-            GetRequestsAsync();
+            if (navigationData is SelectedBottomBarTabArgs) {
+                GetRequestsAsync();
+            }
 
             UpdateView();
 
@@ -142,36 +145,33 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
         }
 
         private async void GetRequestsAsync() {
-            ResetCancellationTokenSource(ref _getUserVehicleDetailRequestsCancellationTokenSource);
-            CancellationTokenSource cancellationTokenSource = _getUserVehicleDetailRequestsCancellationTokenSource;
+            try {
+                if (BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth) {
+                    if (_canGet) {
+                        _canGet = false;
 
-            Task task = await Task.Factory.StartNew(async () => {
-                try {
-                    if (BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth) {
-                        List<ResidentRequest> userRequests =
-                            await _vehicleService.GetUserVehicleDetailRequestsAsync(cancellationTokenSource.Token);
+                        List<ResidentRequest> userRequests = await _vehicleService.GetUserVehicleDetailRequestsAsync();
 
                         if (userRequests != null) {
                             var createdItems = _vehicleFactory.BuildItems(userRequests);
 
                             UserRequests = createdItems.ToObservableCollection();
                         }
+                        _canGet = true;
                     }
                 }
-                catch (OperationCanceledException) { }
-                catch (ObjectDisposedException) { }
-                catch (Exception ex) {
-                    Debug.WriteLine($"ERROR: {ex.Message}");                    
-                }
-            }, cancellationTokenSource.Token);
-
-            if (task.IsCanceled) {
-                Debugger.Break();
             }
+            catch (Exception ex) {
+                _canGet = true;
+                Debug.WriteLine($"ERROR: {ex.Message}");
+            }
+        }
 
-            if (task.IsFaulted) {
-                Debugger.Break();
-            }           
+        public void ClearAfterTabTap() {
+        }
+
+        public void TabClicked() {
+            GetRequestsAsync();
         }
     }
 }

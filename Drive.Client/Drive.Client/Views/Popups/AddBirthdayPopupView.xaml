@@ -65,7 +65,7 @@
                     Margin="0,0,0,0"
                     FontSize="{StaticResource LargeSize}"
                     HorizontalOptions="Center"
-                    Text="Пошук за фізичною особою"
+                    Text="{Binding [SearchByPerson].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
                     TextColor="{StaticResource BaseGrayColor}" />
                 <!--<StackLayout
                     Grid.Row="1"
@@ -104,14 +104,14 @@
                         FontSize="{StaticResource MediumSize}"
                         HorizontalOptions="Center"
                         HorizontalTextAlignment="Center"
-                        Text="Для більш точних результатів"
+                        Text="{Binding [AccurateResults].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
                         TextColor="{StaticResource BaseGrayColor}" />
 
                     <controls:LabelExtended
                         FontSize="{StaticResource MediumSize}"
                         HorizontalOptions="Center"
                         HorizontalTextAlignment="Center"
-                        Text="введіть дату народження"
+                        Text="{Binding [EnterBirthday].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
                         TextColor="{StaticResource BaseGrayColor}" />
                 </StackLayout>
                 <Grid

@@ -80,7 +80,7 @@ namespace Drive.Client.Controls.Switcher {
                             IVisualFiguring targetContext = declarer._contextAndViewPairs.Keys.ElementAt(i);
                             View targetContextView = declarer._contextAndViewPairs[targetContext];
 
-                            if (targetContext is IClearedAfterTabTap clearedAfterTabTap) {
+                            if (targetContext is ISwitchTab clearedAfterTabTap) {
                                 clearedAfterTabTap.ClearAfterTabTap();
                             }
 
@@ -95,6 +95,10 @@ namespace Drive.Client.Controls.Switcher {
                                     declarer._contextAndViewPairs[targetContext] = targetContextView;
 
                                     declarer._mainContentSpot_Grid.Children.Add(targetContextView);
+                                }
+
+                                if (targetContext is ISwitchTab newClearedAfterTabTap) {
+                                    newClearedAfterTabTap.TabClicked();
                                 }
 
                                 declarer.ChangeContentVisibility(targetContextView, true);

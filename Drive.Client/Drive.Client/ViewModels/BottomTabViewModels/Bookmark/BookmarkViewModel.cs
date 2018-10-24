@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using Drive.Client.Helpers;
+using Drive.Client.Models.Arguments.BottomtabSwitcher;
 using Drive.Client.Services.Vehicle;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.Views.BottomTabViews;
@@ -45,6 +46,9 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
         }
 
         public override Task InitializeAsync(object navigationData) {
+            if (navigationData is SelectedBottomBarTabArgs) {
+                
+            }
 
             SearchTabs?.ForEach(searchTab => searchTab.InitializeAsync(navigationData));
 

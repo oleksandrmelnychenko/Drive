@@ -143,21 +143,21 @@ namespace Drive.Client.Views.Base {
                 propertyChanged: (BindableObject bindable, object oldValue, object newValue) => {
                     (bindable as ContentPageBaseView)?.OnSelectedBottomItemIndex();
 
-                    try {
-                        if (bindable is ContentPageBaseView contentPageBaseView) {
-                            if (contentPageBaseView.BottomBarItems != null) {
-                                foreach (var item in contentPageBaseView?.BottomBarItems) {
-                                    if (item is IClearedAfterTabTap clearedAfterTabTap) {
-                                        clearedAfterTabTap.ClearAfterTabTap();
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    catch (Exception ex) {
-                        Debug.WriteLine($"--------------------------------------------{ex.Message}");
-                        Debugger.Break();
-                    }
+                    //try {
+                    //    if (bindable is ContentPageBaseView contentPageBaseView) {
+                    //        if (contentPageBaseView.BottomBarItems != null) {
+                    //            foreach (var item in contentPageBaseView?.BottomBarItems) {
+                    //                if (item is ISwitchTab clearedAfterTabTap) {
+                    //                    clearedAfterTabTap.ClearAfterTabTap();
+                    //                }
+                    //            }
+                    //        }
+                    //    }
+                    //}
+                    //catch (Exception ex) {
+                    //    Debug.WriteLine($"--------------------------------------------{ex.Message}");
+                    //    Debugger.Break();
+                    //}
                 });
 
         private TapGestureRecognizer _popupBlockBackingTapGesture = new TapGestureRecognizer();

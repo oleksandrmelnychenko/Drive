@@ -1,4 +1,5 @@
 ﻿using Drive.Client.Helpers;
+using Drive.Client.Models.Arguments.BottomtabSwitcher;
 using Drive.Client.Services.Identity;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.Views.BottomTabViews;
@@ -17,6 +18,10 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         }
 
         public override Task InitializeAsync(object navigationData) {
+
+            if (navigationData is SelectedBottomBarTabArgs) {
+
+            }
 
             return base.InitializeAsync(navigationData);
         }

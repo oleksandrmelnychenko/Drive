@@ -1,6 +1,7 @@
 ﻿using Drive.Client.Factories.Validation;
 using Drive.Client.Helpers;
 using Drive.Client.Helpers.Localize;
+using Drive.Client.Models.Arguments.BottomtabSwitcher;
 using Drive.Client.Models.Identities.NavigationArgs;
 using Drive.Client.Resources.Resx;
 using Drive.Client.Validations;
@@ -15,7 +16,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
-    public class SearchByPersonViewModel : NestedViewModel, IVisualFiguring, IClearedAfterTabTap {
+    public class SearchByPersonViewModel : NestedViewModel, IVisualFiguring, ISwitchTab {
 
         public Type RelativeViewType => typeof(SearchByPersonView);
 
@@ -63,7 +64,14 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
             }
         }
 
+        public void TabClicked() { }
+
         public override Task InitializeAsync(object navigationData) {
+
+            if (navigationData is SelectedBottomBarTabArgs) {
+
+            }
+
             UpdateView();
 
             return base.InitializeAsync(navigationData);

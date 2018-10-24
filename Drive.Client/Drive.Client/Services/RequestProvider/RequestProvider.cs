@@ -6,6 +6,8 @@ using Drive.Client.Resources.Resx;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
 using Plugin.DeviceInfo;
+using System;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -39,20 +41,23 @@ namespace Drive.Client.Services.RequestProvider {
         /// <summary>
         /// GET.
         /// </summary>
-        public async Task<TResult> GetAsync<TResult>(string uri, string accessToken = "", CancellationToken cancellationToken = default(CancellationToken)) {
-            CheckInternetConnection();
-            SetAccesToken(accessToken);
-            SetLanguage();
+        public async Task<TResult> GetAsync<TResult>(string uri, string accessToken = "", CancellationToken cancellationToken = default(CancellationToken)) =>
+              await Task.Run(async () => {
+                  TResult result = default(TResult);
+                  CheckInternetConnection();
+                  SetAccesToken(accessToken);
+                  SetLanguage();
 
-            HttpResponseMessage response = await _client.GetAsync(uri);
+                  HttpResponseMessage response = await _client.GetAsync(uri, cancellationToken);
 
-            await HandleResponse(response);
+                  await HandleResponse(response);
 
-            string serialized = await response.Content.ReadAsStringAsync();
-            TResult result = await DeserializeResponse<TResult>(serialized);
+                  string serialized = await response.Content.ReadAsStringAsync();
+                  result = await DeserializeResponse<TResult>(serialized);
 
-            return result;
-        }
+                  return result;
+
+              }, cancellationToken);
 
         /// <summary>
         /// POST.

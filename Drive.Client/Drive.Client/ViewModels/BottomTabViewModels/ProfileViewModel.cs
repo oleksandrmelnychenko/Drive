@@ -1,4 +1,6 @@
 ﻿using Drive.Client.Helpers;
+using Drive.Client.Models.Arguments.BottomtabSwitcher;
+using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Models.Medias;
 using Drive.Client.Services.Identity;
 using Drive.Client.Services.Identity.IdentityUtility;
@@ -20,7 +22,12 @@ using Xamarin.Forms;
 namespace Drive.Client.ViewModels.BottomTabViewModels {
     public sealed class ProfileViewModel : TabbedViewModelBase {
 
+        // Try get source one time..
+        private bool _canGet = true;
+
         private CancellationTokenSource _changeAvatarCancellationTokenSource = new CancellationTokenSource();
+
+        private CancellationTokenSource _getUserCancellationTokenSource = new CancellationTokenSource();
 
         private readonly IIdentityUtilityService _identityUtilityService;
 
@@ -61,6 +68,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
             set { SetProperty(ref _email, value); }
         }
 
+
         string _avatarUrl;
         public string AvatarUrl {
             get { return _avatarUrl; }
@@ -99,8 +107,35 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
             LanguageSelectPopupViewModel.InitializeAsync(this);
         }
 
+        private async void GetUser() {
+            try {
+                if (BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth) {
+                    if (_canGet) {
+                        _canGet = false;
+
+                        User user = await _identityService.GetUserAsync();
+                        if (user != null) {
+                            UpdateUserProfile(user);
+                            UpdateView();
+                        }
+                        _canGet = true;
+                    }
+                }
+            }
+            catch (Exception ex) {
+                _canGet = true;
+                Debug.WriteLine($"ERROR:{ex.Message}");
+                Debugger.Break();
+            }
+        }
+
+
         public override Task InitializeAsync(object navigationData) {
             UpdateView();
+
+            if (navigationData is SelectedBottomBarTabArgs) {
+                GetUser();
+            }
 
             LanguageSelectPopupViewModel?.InitializeAsync(navigationData);
 
@@ -112,12 +147,21 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
 
             LanguageSelectPopupViewModel?.Dispose();
             ResetCancellationTokenSource(ref _changeAvatarCancellationTokenSource);
+            ResetCancellationTokenSource(ref _getUserCancellationTokenSource);
         }
 
         protected override void TabbViewModelInit() {
             TabIcon = IconPath.PROFILE;
             RelativeViewType = typeof(ProfileView);
             HasBackgroundItem = false;
+        }
+
+        private static void UpdateUserProfile(User user) {
+            BaseSingleton<GlobalSetting>.Instance.UserProfile.UserName = user.UserName;
+            BaseSingleton<GlobalSetting>.Instance.UserProfile.PhoneNumber = user.PhoneNumber;
+            BaseSingleton<GlobalSetting>.Instance.UserProfile.Email = user.Email;
+            BaseSingleton<GlobalSetting>.Instance.UserProfile.AvatarUrl = user.AvatarUrl;
+            BaseSingleton<GlobalSetting>.Instance.UserProfile.NetId = user.NetId;
         }
 
         private async Task OnChangeAvatarAsync() {

@@ -1,8 +1,10 @@
 ﻿using Drive.Client.Helpers;
+using Drive.Client.Models.Arguments.BottomtabSwitcher;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.Views.BottomTabViews;
 using System;
 using System.Globalization;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -46,5 +48,20 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         }
 
         private void OnLanguageEventsLanguageChanged(object sender, Helpers.AppEvents.Events.Args.LanguageChangedArgs e) => DatePickerCulture = new CultureInfo(e.LanguageId);
+
+        /// <summary>
+        ///     ctor().
+        /// </summary>
+        public HomeViewModel() {
+
+        }
+
+        public override Task InitializeAsync(object navigationData) {
+            if (navigationData is SelectedBottomBarTabArgs) {
+
+            }
+
+            return base.InitializeAsync(navigationData);
+        }
     }
 }

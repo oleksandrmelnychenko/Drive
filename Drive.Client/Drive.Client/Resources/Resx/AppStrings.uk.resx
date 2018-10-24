@@ -126,7 +126,7 @@
   <data name="LogOut" xml:space="preserve">
     <value>Вийти</value>
   </data>
-  <data name="ActualInfo" xml:space="preserve">
+  <data name="Ваш запит надіслано!" xml:space="preserve">
     <value>Актуальна інформація на 04.10.2018</value>
   </data>
   <data name="BodyType" xml:space="preserve">
@@ -344,5 +344,20 @@
   </data>
   <data name="DateHelpUpperCase" xml:space="preserve">
     <value>ДЕНЬ/МІСЯЦЬ/РІК</value>
+  </data>
+  <data name="AccurateResults" xml:space="preserve">
+    <value>Для більш точних результатів</value>
+  </data>
+  <data name="AnswerReady" xml:space="preserve">
+    <value>Коли відповідь буде готова, Ви отримаєте сповіщення.</value>
+  </data>
+  <data name="EnterBirthday" xml:space="preserve">
+    <value>введіть дату народження</value>
+  </data>
+  <data name="RequestSent" xml:space="preserve">
+    <value>Ваш запит надіслано!</value>
+  </data>
+  <data name="SearchByPerson" xml:space="preserve">
+    <value>Пошук за фізичною особою</value>
   </data>
 </root>

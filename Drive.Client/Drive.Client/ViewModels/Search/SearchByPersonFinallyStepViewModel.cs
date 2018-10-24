@@ -67,6 +67,8 @@ namespace Drive.Client.ViewModels.Search {
         public override void Dispose() {
             base.Dispose();
 
+            RequestInfoPopupViewModel?.Dispose();
+            AddBirthdayPopupViewModel?.Dispose();
             ResetCancellationTokenSource(ref _vehicleDetailsCancellationTokenSource);
         }
 
@@ -86,6 +88,9 @@ namespace Drive.Client.ViewModels.Search {
             if (navigationData is SearchByPersonArgs searchByPersonArgs) {
                 _searchByPersonArgs = searchByPersonArgs;
             }
+
+            RequestInfoPopupViewModel.InitializeAsync(navigationData);
+            AddBirthdayPopupViewModel.InitializeAsync(navigationData);
 
             return base.InitializeAsync(navigationData);
         }

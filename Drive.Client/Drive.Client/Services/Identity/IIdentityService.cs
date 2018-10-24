@@ -27,5 +27,7 @@ namespace Drive.Client.Services.Identity {
 
         Task<CanChangeForgottenPassword> CanUserChangeForgottenPasswordAsync(string phoneNumber, string name, CancellationToken cancellationToken = default(CancellationToken));
         Task<User> ForgotPasswordAsync(ForgotPasswordArgs forgotPasswordArgs, CancellationToken cancellationToken = default(CancellationToken));
+
+        Task<User> GetUserAsync(CancellationToken cancellationToken = default(CancellationToken));
     }
 }

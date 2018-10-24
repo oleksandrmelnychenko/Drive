@@ -316,6 +316,30 @@ namespace Drive.Client.Services.Identity {
                 return user;
             }, cancellationToken);
 
+
+        public async Task<User> GetUserAsync(CancellationToken cancellationToken = default(CancellationToken)) =>
+              await Task.Run(async () => {
+                  User user = null;
+
+                  string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.IdentityEndpoints.GetUserEndPoint;
+                  string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+
+                  try {
+                      user = await _requestProvider.GetAsync<User>(url, accessToken, cancellationToken);
+                  }
+                  catch (ConnectivityException ex) {
+                      throw ex;
+                  }
+                  catch (HttpRequestExceptionEx ex) {
+                      throw ex;
+                  }
+                  catch (Exception ex) {
+                      Debug.WriteLine($"ERROR:{ex.Message}");
+                      Debugger.Break();
+                  }
+                  return user;
+              }, cancellationToken);
+
         private static void SetupProfile(AuthenticationResult authenticationResult) {
             try {
                 BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken = authenticationResult.AccessToken;

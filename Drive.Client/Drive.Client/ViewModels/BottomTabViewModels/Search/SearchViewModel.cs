@@ -1,4 +1,5 @@
 ﻿using Drive.Client.Helpers;
+using Drive.Client.Models.Arguments.BottomtabSwitcher;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.Views.BottomTabViews.Search;
 using System;
@@ -7,7 +8,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
-    public sealed class SearchViewModel : TabbedViewModelBase, IClearedAfterTabTap {
+    public sealed class SearchViewModel : TabbedViewModelBase, ISwitchTab {
 
         List<IVisualFiguring> _searchTabs;
         public List<IVisualFiguring> SearchTabs {
@@ -42,6 +43,10 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
 
         public override Task InitializeAsync(object navigationData) {
 
+            if (navigationData is SelectedBottomBarTabArgs) {
+                
+            }
+
             SearchTabs?.ForEach(searchTab => searchTab.InitializeAsync(navigationData));
 
             return base.InitializeAsync(navigationData);
@@ -49,11 +54,13 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
 
         public void ClearAfterTabTap() {
             try {
-                SearchTabs?.ForEach(searchTab => (searchTab as IClearedAfterTabTap)?.ClearAfterTabTap());
+                SearchTabs?.ForEach(searchTab => (searchTab as ISwitchTab)?.ClearAfterTabTap());
             }
             catch (Exception ex) {
                 Debugger.Break();
             }
         }
+
+        public void TabClicked() { }
     }
 }

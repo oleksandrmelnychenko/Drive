@@ -46,11 +46,13 @@ namespace Drive.Client.Behaviors {
             if (string.IsNullOrWhiteSpace(entry.Text) || _positions == null)
                 return;
 
-            string tt = args.NewTextValue.Substring(args.NewTextValue.Length - 1);
-            if (!double.TryParse(tt, out double tempValue))
-                ((Entry)sender).Text = args.OldTextValue;
-            else
-                ((Entry)sender).Text = args.NewTextValue;
+            string lastChar = args.NewTextValue.Substring(args.NewTextValue.Length - 1);
+            if (lastChar != "/") {
+                if (!double.TryParse(lastChar, out double tempValue))
+                    entry.Text = args.OldTextValue;
+                else
+                    entry.Text = args.NewTextValue;
+            }
 
             var text = entry.Text;
 

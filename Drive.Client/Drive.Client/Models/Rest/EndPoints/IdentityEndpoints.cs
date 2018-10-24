@@ -29,6 +29,8 @@ namespace Drive.Client.Models.Rest.EndPoints {
 
         private const string FORGOT_PASSWORD_API_KEY = "api/v1/user/forgotpassword?phone={0}&name={1}&password={2}";
 
+        private const string GET_USER_API_KEY = "api/v1/user/get";
+
         /// <summary>
         ///     ctor().
         /// </summary>
@@ -70,6 +72,8 @@ namespace Drive.Client.Models.Rest.EndPoints {
 
         public string ForgotPasswordEndPoint { get; private set; }
 
+        public string GetUserEndPoint { get; private set; }
+
         private void UpdateEndpoint(string baseEndpoint) {
             CheckPhoneNumberEndPoint = $"{baseEndpoint}/{PHONENUMBER_AVAILABILITY_API_KEY}";
             CheckUserNameEndpoint = $"{baseEndpoint}/{USER_NAME_AVAILABILITY_API_KEY}";
@@ -83,6 +87,7 @@ namespace Drive.Client.Models.Rest.EndPoints {
             ChangePasswordEndPoint = $"{baseEndpoint}/{UPDATE_PASSWORD_API_KEY}";
             CanUserChangeForgottenPasswordEndPoint = $"{baseEndpoint}/{CAN_USER_CHANGE_FORGOTTEN_PASSWORD_API_KEY}";
             ForgotPasswordEndPoint = $"{baseEndpoint}/{FORGOT_PASSWORD_API_KEY}";
+            GetUserEndPoint = $"{baseEndpoint}/{GET_USER_API_KEY}";
         }
     }
 }

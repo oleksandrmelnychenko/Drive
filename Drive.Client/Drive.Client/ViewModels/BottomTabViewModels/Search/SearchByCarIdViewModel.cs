@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Drive.Client.Extensions;
 using Drive.Client.Helpers.Localize;
+using Drive.Client.Models.Arguments.BottomtabSwitcher;
 using Drive.Client.Models.EntityModels;
 using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.Models.Identities.NavigationArgs;
@@ -20,7 +21,7 @@ using Drive.Client.Views.BottomTabViews.Search;
 using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
-    public class SearchByCarIdViewModel : NestedViewModel, IVisualFiguring, IClearedAfterTabTap {
+    public class SearchByCarIdViewModel : NestedViewModel, IVisualFiguring, ISwitchTab {
 
         private readonly IDriveAutoService _driveAutoService;
 
@@ -75,7 +76,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
             set { SetProperty(ref _foundResult, value); }
         }
 
-        public ICommand CleanSearchResultCommand => new Command(() => ClearFoundedResult());
+        public ICommand CleanSearchResultCommand => new Command(() => ClearSource());
 
         public ICommand InputCompleteCommand => new Command(async () => await OnInputCompleteAsync());
 
@@ -117,18 +118,29 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         }
 
         public void ClearAfterTabTap() {
+            ClearSource();
+        }
+
+        private void ClearSource() {
             try {
                 ValidationTargetValue.Value = "";
-                TargetValue = "";
+                FoundResult?.Clear();
+                TargetValue = string.Empty;
                 HasError = false;
-                ErrorMessage = "";
+                ErrorMessage = string.Empty;
             }
             catch (Exception) {
             }
         }
 
+        public void TabClicked() { }
+
         public override Task InitializeAsync(object navigationData) {
-            ClearFoundedResult();
+
+            if (navigationData is SelectedBottomBarTabArgs) {
+            }
+
+            ClearSource();
 
             return base.InitializeAsync(navigationData);
         }
@@ -224,12 +236,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
                 await NavigationService.NavigateToAsync<FoundDriveAutoViewModel>(value.Number);
                 ResultSelected = null;
             }
-        }
-
-        private void ClearFoundedResult() {
-            FoundResult?.Clear();
-            TargetValue = string.Empty;
-            //HasBackgroundItem = false;
         }
     }
 }

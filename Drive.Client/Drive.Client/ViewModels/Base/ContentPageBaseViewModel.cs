@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Drive.Client.Models.Arguments.BottomtabSwitcher;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -35,7 +37,16 @@ namespace Drive.Client.ViewModels.Base {
         int _electedBottomItemIndex;
         public int SelectedBottomItemIndex {
             get => _electedBottomItemIndex;
-            protected set => SetProperty(ref _electedBottomItemIndex, value);
+            set {
+                try {
+                    BottomBarItems?[value].InitializeAsync(new SelectedBottomBarTabArgs());
+                }
+                catch (Exception exc) {
+                    Debugger.Break();
+                }
+
+                SetProperty(ref _electedBottomItemIndex, value);
+            } 
         }
 
         bool _isPullToRefreshEnabled;

@@ -25,9 +25,18 @@ namespace Drive.Client.ViewModels.Popups {
         SearchByPersonArgs _searchByPersonArgs;
         public SearchByPersonArgs SearchByPersonArgs {
             get { return _searchByPersonArgs; }
-            set { SetProperty(ref _searchByPersonArgs, value); }
+            set {
+                SetProperty(ref _searchByPersonArgs, value);
+                OnPropertyChanged("SearchByPersonArgs");
+            }
         }
-       
+
+        string _fullName;
+        public string FullName {
+            get { return _fullName; }
+            set { SetProperty(ref _fullName, value); }
+        }
+
         public ICommand DoneCommand => new Command(() => {
             ClosePopupCommand.Execute(null);
             _searchByPersonArgs.DateOfBirth = DateInput;
@@ -44,6 +53,7 @@ namespace Drive.Client.ViewModels.Popups {
         public override Task InitializeAsync(object navigationData) {
             if (navigationData is SearchByPersonArgs searchByPersonArgs) {
                 SearchByPersonArgs = searchByPersonArgs;
+                FullName = searchByPersonArgs.FullName;
             }
 
             return base.InitializeAsync(navigationData);

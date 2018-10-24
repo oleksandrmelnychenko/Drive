@@ -1,5 +1,6 @@
 ﻿using Drive.Client.Helpers;
 using Drive.Client.Helpers.Localize;
+using Drive.Client.Models.Arguments.BottomtabSwitcher;
 using Drive.Client.Resources.Resx;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
@@ -13,7 +14,7 @@ using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark
 {
-    public sealed class SavedViewModel : NestedViewModel, IVisualFiguring {
+    public sealed class SavedViewModel : NestedViewModel, IVisualFiguring, ISwitchTab {
 
         public Type RelativeViewType => typeof(SavedView);
 
@@ -47,6 +48,10 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark
         }
 
         public override Task InitializeAsync(object navigationData) {
+
+            if (navigationData is SelectedBottomBarTabArgs) {
+            }
+
             UpdateView();
 
             return base.InitializeAsync(navigationData);
@@ -54,6 +59,12 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark
 
         private void UpdateView() {
             VisibilityClosedView = !BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth;
+        }
+
+        public void ClearAfterTabTap() {
+        }
+
+        public void TabClicked() {
         }
     }
 }

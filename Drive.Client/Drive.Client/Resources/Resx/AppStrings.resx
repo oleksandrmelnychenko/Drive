@@ -345,4 +345,19 @@
   <data name="DateHelpUpperCase" xml:space="preserve">
     <value>DAY / MONTH / YEAR</value>
   </data>
+  <data name="AccurateResults" xml:space="preserve">
+    <value>For more accurate results</value>
+  </data>
+  <data name="AnswerReady" xml:space="preserve">
+    <value>When the answer is ready, you will receive a notification.</value>
+  </data>
+  <data name="EnterBirthday" xml:space="preserve">
+    <value>enter your birthday</value>
+  </data>
+  <data name="RequestSent" xml:space="preserve">
+    <value>Your request has been sent!</value>
+  </data>
+  <data name="SearchByPerson" xml:space="preserve">
+    <value>Individual search</value>
+  </data>
 </root>

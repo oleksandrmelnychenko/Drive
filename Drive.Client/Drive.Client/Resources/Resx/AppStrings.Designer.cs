@@ -61,6 +61,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to For more accurate results.
+        /// </summary>
+        public static string AccurateResults {
+            get {
+                return ResourceManager.GetString("AccurateResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Actual information as of 10.04.2018.
         /// </summary>
         public static string ActualInfo {
@@ -75,6 +84,15 @@ namespace Drive.Client.Resources.Resx {
         public static string ActuallyToUpperCase {
             get {
                 return ResourceManager.GetString("ActuallyToUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When the answer is ready, you will receive a notification..
+        /// </summary>
+        public static string AnswerReady {
+            get {
+                return ResourceManager.GetString("AnswerReady", resourceCulture);
             }
         }
         
@@ -210,6 +228,15 @@ namespace Drive.Client.Resources.Resx {
         public static string EngineCapacityUpperСase {
             get {
                 return ResourceManager.GetString("EngineCapacityUpperСase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to enter your birthday.
+        /// </summary>
+        public static string EnterBirthday {
+            get {
+                return ResourceManager.GetString("EnterBirthday", resourceCulture);
             }
         }
         
@@ -565,6 +592,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your request has been sent!.
+        /// </summary>
+        public static string RequestSent {
+            get {
+                return ResourceManager.GetString("RequestSent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SAVED.
         /// </summary>
         public static string SavedUpperCase {
@@ -579,6 +615,15 @@ namespace Drive.Client.Resources.Resx {
         public static string SearchByNumber {
             get {
                 return ResourceManager.GetString("SearchByNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Individual search.
+        /// </summary>
+        public static string SearchByPerson {
+            get {
+                return ResourceManager.GetString("SearchByPerson", resourceCulture);
             }
         }
         
