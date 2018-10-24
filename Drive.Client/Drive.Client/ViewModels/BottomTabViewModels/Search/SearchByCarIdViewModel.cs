@@ -108,15 +108,20 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
                       }))
                       .Switch()
                       .Finally(() => Debug.WriteLine($"---ERROR(Observable.Finally): "))
-                     .Subscribe(foundResult => {
-                         ApplySearchResults(foundResult);
-                     });
+                      .Retry()
+                      .Subscribe(foundResult => {
+                          ApplySearchResults(foundResult);
+                      });
             }
             catch (Exception ex) {
                 Debug.WriteLine($"---ERROR: {ex.Message}");
             }
 
             SetupValidations();
+        }
+
+        private IObservable<IEnumerable<DriveAutoSearch>> TT() {
+            return null;
         }
 
         public void ClearAfterTabTap() {
@@ -177,13 +182,15 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
 
             if (!string.IsNullOrEmpty(value)) {
                 try {
-                    carInfos = await _driveAutoService.GetCarNumbersAutocompleteAsync(value, cancellationTokenSource);
+                    carInfos = await _driveAutoService.GetCarNumbersAutocompleteAsync(value, cancellationTokenSource.Token);
                 }
                 catch (Exception ex) {
                     Debug.WriteLine($"ERROR: {ex.Message}");
-                    ErrorMessage = ex.Message;
-                    HasError = string.IsNullOrEmpty(ErrorMessage);
                     Debugger.Break();
+
+                    ErrorMessage = ex.Message;
+                    HasError = !string.IsNullOrEmpty(ErrorMessage);
+                    carInfos = new DriveAutoSearch[] { };
                 }
             } else {
                 carInfos = new DriveAutoSearch[] { };
@@ -202,7 +209,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
             UpdateBusyVisualState(busyKey, true);
 
             try {
-                result = await _driveAutoService.GetAllDriveAutosAsync(targetCarNumber, cancellationTokenSource);
+                result = await _driveAutoService.GetAllDriveAutosAsync(targetCarNumber, cancellationTokenSource.Token);
             }
             catch (Exception ex) {
                 Debug.WriteLine($"ERROR: {ex.Message}");

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace Drive.Client.Models.EntityModels.Search {
     public class DriveAuto {
@@ -18,7 +19,7 @@ namespace Drive.Client.Models.EntityModels.Search {
         public string OperName { get; set; }
 
         [JsonProperty("dReg")]
-        public string DReg { get; set; }
+        public DateTime DReg { get; set; }
 
         [JsonProperty("depCode")]
         public string DepCode { get; set; }

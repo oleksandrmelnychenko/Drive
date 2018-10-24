@@ -103,7 +103,7 @@ namespace Drive.Client.ViewModels {
             SetBusy(busyKey, true);
 
             try {
-                IEnumerable<DriveAuto> result = await _driveAutoService.GetDriveAutoByNumberAsync(targetCarNumber, cancellationTokenSource);
+                IEnumerable<DriveAuto> result = await _driveAutoService.GetDriveAutoByNumberAsync(targetCarNumber, cancellationTokenSource.Token);
 
                 if (result != null) {
                     FoundCars = result.ToObservableCollection();

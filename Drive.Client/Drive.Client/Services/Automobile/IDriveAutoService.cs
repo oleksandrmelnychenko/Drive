@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace Drive.Client.Services.Automobile {
     public interface IDriveAutoService {
-        Task<List<DriveAuto>> GetAllDriveAutosAsync(string value, CancellationTokenSource cancellationTokenSource = default(CancellationTokenSource));
+        Task<List<DriveAuto>> GetAllDriveAutosAsync(string value, CancellationToken cancellationToken = default(CancellationToken));
 
-        Task<List<DriveAuto>> GetDriveAutoByNumberAsync(string number, CancellationTokenSource cancellationTokenSource = default(CancellationTokenSource));
+        Task<List<DriveAuto>> GetDriveAutoByNumberAsync(string number, CancellationToken cancellationToken = default(CancellationToken));
 
-        Task<List<DriveAutoSearch>> GetCarNumbersAutocompleteAsync(string value, CancellationTokenSource cancellationTokenSource = default(CancellationTokenSource));
+        Task<List<DriveAutoSearch>> GetCarNumbersAutocompleteAsync(string value, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

@@ -20,7 +20,7 @@ namespace Drive.Client {
             InitApp();
 
 #if DEBUG
-            TrackMemoryUsage();
+            //TrackMemoryUsage();
 #endif
         }
 

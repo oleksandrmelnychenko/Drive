@@ -29,7 +29,7 @@ namespace Drive.Client.Services.Automobile {
         /// <param name="value"></param>
         /// <param name="cancellationTokenSource"></param>
         /// <returns></returns>
-        public async Task<List<DriveAuto>> GetAllDriveAutosAsync(string value, CancellationTokenSource cancellationTokenSource = null) =>
+        public async Task<List<DriveAuto>> GetAllDriveAutosAsync(string value, CancellationToken cancellationToken = default(CancellationToken)) =>
              await Task.Run(async () => {
                  List<DriveAuto> driveAutos = null;
 
@@ -46,7 +46,7 @@ namespace Drive.Client.Services.Automobile {
                      throw new Exception(ex.Message);
                  }
                  return driveAutos;
-             }, cancellationTokenSource.Token);
+             }, cancellationToken);
 
         /// <summary>
         /// Get car numbers autocomplete.
@@ -54,7 +54,7 @@ namespace Drive.Client.Services.Automobile {
         /// <param name="value"></param>
         /// <param name="cancellationTokenSource"></param>
         /// <returns></returns>
-        public async Task<List<DriveAutoSearch>> GetCarNumbersAutocompleteAsync(string value, CancellationTokenSource cancellationTokenSource = null) =>
+        public async Task<List<DriveAutoSearch>> GetCarNumbersAutocompleteAsync(string value, CancellationToken cancellationToken = default(CancellationToken)) =>
             await Task.Run(async () => {
                 List<DriveAutoSearch> carNumbers = null;
 
@@ -71,7 +71,7 @@ namespace Drive.Client.Services.Automobile {
                     throw new Exception(ex.Message);
                 }
                 return carNumbers;
-            }, cancellationTokenSource.Token);
+            }, cancellationToken);
         
         /// <summary>
         /// Get drive auto by full match number.
@@ -79,7 +79,7 @@ namespace Drive.Client.Services.Automobile {
         /// <param name="number"></param>
         /// <param name="cancellationTokenSource"></param>
         /// <returns></returns>
-        public async Task<List<DriveAuto>> GetDriveAutoByNumberAsync(string number, CancellationTokenSource cancellationTokenSource = null) =>
+        public async Task<List<DriveAuto>> GetDriveAutoByNumberAsync(string number, CancellationToken cancellationToken = default(CancellationToken)) =>
             await Task.Run(async () => {
                 List<DriveAuto> carInfos = null;
 
@@ -96,6 +96,6 @@ namespace Drive.Client.Services.Automobile {
                     throw new Exception(ex.Message);
                 }
                 return carInfos;
-            }, cancellationTokenSource.Token);
+            }, cancellationToken);
     }
 }
