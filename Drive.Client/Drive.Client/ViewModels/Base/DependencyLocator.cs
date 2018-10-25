@@ -79,6 +79,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<SignInPasswordStepViewModel>();
             builder.RegisterType<LanguageSelectPopupViewModel>();
             builder.RegisterType<PasswordRegisterStepViewModel>();
+            builder.RegisterType<UpdateAppVersionPopupViewModel>();
             builder.RegisterType<SignInPhoneNumberStepViewModel>();
             builder.RegisterType<EditPasswordFirstStepViewModel>();
             builder.RegisterType<EditPasswordSecondStepViewModel>();

@@ -11,6 +11,6 @@ namespace Drive.Client.Services.DeviceUtil {
 
         Task<ClientHardware> GetDeviceInfoAsync(CancellationTokenSource cancellationTokenSource);
 
-        Task<string> RegisterClientDeviceInfoAsync(ClientHardware clientHardware, CancellationTokenSource cancellationTokenSource);
+        Task<bool> RegisterClientDeviceInfoAsync(ClientHardware clientHardware, CancellationTokenSource cancellationTokenSource);
     }
 }

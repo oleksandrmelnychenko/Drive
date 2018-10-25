@@ -4,6 +4,7 @@ using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.BottomTabViewModels;
 using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
 using Drive.Client.ViewModels.BottomTabViewModels.Search;
+using Drive.Client.ViewModels.Popups;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,6 +18,15 @@ namespace Drive.Client.ViewModels {
         private readonly IDeviceUtilService _deviceUtilService;
 
         private CancellationTokenSource _registerClientDeviceInfoCancellationTokenSource = new CancellationTokenSource();
+
+        UpdateAppVersionPopupViewModel _updateAppVersionPopupViewModel;
+        public UpdateAppVersionPopupViewModel UpdateAppVersionPopupViewModel {
+            get => _updateAppVersionPopupViewModel;
+            private set {
+                _updateAppVersionPopupViewModel?.Dispose();
+                SetProperty(ref _updateAppVersionPopupViewModel, value);
+            }
+        }
 
         /// <summary>
         ///     ctor().
@@ -35,6 +45,9 @@ namespace Drive.Client.ViewModels {
             RegisterClientDeviceInfo();
 
             SelectedBottomItemIndex = 1;
+
+            UpdateAppVersionPopupViewModel = DependencyLocator.Resolve<UpdateAppVersionPopupViewModel>();
+            UpdateAppVersionPopupViewModel.InitializeAsync(this);
         }
 
         public override void Dispose() {
@@ -45,6 +58,7 @@ namespace Drive.Client.ViewModels {
         }
 
         public override Task InitializeAsync(object navigationData) {
+            UpdateAppVersionPopupViewModel.InitializeAsync(this);
 
             if (navigationData is BottomTabIndexArgs bottomTabIndexArgs) {
                 try {
@@ -67,7 +81,11 @@ namespace Drive.Client.ViewModels {
             CancellationTokenSource cancellationTokenSource = _registerClientDeviceInfoCancellationTokenSource;
 
             try {
-                string deviceRegistrationCompletion = await _deviceUtilService.RegisterClientDeviceInfoAsync(await _deviceUtilService.GetDeviceInfoAsync(cancellationTokenSource), cancellationTokenSource);
+                bool deviceRegistrationCompletion = await _deviceUtilService.RegisterClientDeviceInfoAsync(await _deviceUtilService.GetDeviceInfoAsync(cancellationTokenSource), cancellationTokenSource);
+
+                if (!deviceRegistrationCompletion) {
+                    UpdateAppVersionPopupViewModel.ShowPopupCommand.Execute(null);
+                }
             }
             catch (Exception ex) {
                 Debug.WriteLine($"ERRROR:{ex.Message}");

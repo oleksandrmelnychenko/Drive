@@ -360,4 +360,13 @@
   <data name="SearchByPerson" xml:space="preserve">
     <value>Пошук за фізичною особою</value>
   </data>
+  <data name="UpdateVersionInfoPartOne" xml:space="preserve">
+    <value>Вам доступна нова версія.</value>
+  </data>
+  <data name="Regards" xml:space="preserve">
+    <value>З повагою, Drive team</value>
+  </data>
+  <data name="UpdateVersionInfoPartTwo" xml:space="preserve">
+    <value>Оновіть, будь-ласка!</value>
+  </data>
 </root>

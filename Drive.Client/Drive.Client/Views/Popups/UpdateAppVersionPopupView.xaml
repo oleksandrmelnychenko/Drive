@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<popups:SinglePopupViewBase
+    x:Class="Drive.Client.Views.Popups.UpdateAppVersionPopupView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Drive.Client.Behaviors"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
+    xmlns:popups="clr-namespace:Drive.Client.Controls.Popups"
+    CascadeInputTransparent="False"
+    InputTransparent="True">
+
+    <popups:SinglePopupViewBase.Content>
+        <Grid
+            Margin="40,100,40,0"
+            HeightRequest="300"
+            VerticalOptions="Start">
+            <BoxView CornerRadius="10" Color="{StaticResource WhiteColor}" />
+            <ContentView
+                Padding="20"
+                HeightRequest="80"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                WidthRequest="80">
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ClosePopupCommand}" NumberOfTapsRequired="1" />
+                </ContentView.GestureRecognizers>
+                <ffimageloadingsvg:SvgCachedImage
+                    Grid.Row="0"
+                    HeightRequest="20"
+                    HorizontalOptions="End"
+                    Source="resource://Drive.Client.Resources.Images.Close.svg"
+                    VerticalOptions="Start"
+                    WidthRequest="20" />
+            </ContentView>
+
+            <Grid
+                Margin="0,60,0,0"
+                Padding="10,0"
+                RowSpacing="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <ffimageloadingsvg:SvgCachedImage Grid.Row="0" Source="resource://Drive.Client.Resources.Images.d_logo.svg" />
+                <controls:LabelExtended
+                    Grid.Row="1"
+                    Margin="0,0,0,0"
+                    FontFamily="{StaticResource SFProRegular}"
+                    FontSize="{StaticResource LargerSize}"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding [UpdateVersionInfoPartOne].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                    TextColor="{StaticResource DarkColor}" />
+                <controls:LabelExtended
+                    Grid.Row="2"
+                    Margin="0,0,0,0"
+                    FontSize="{StaticResource LargeSize}"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    LetterSpacing="{OnPlatform Android=0.07,
+                                               iOS=1.2}"
+                    Text="{Binding [UpdateVersionInfoPartTwo].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                    TextColor="{StaticResource DarkColor}" />
+                <controls:LabelExtended
+                    Grid.Row="3"
+                    Margin="0,0,0,20"
+                    FontSize="{StaticResource MediumSize}"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    LetterSpacing="{OnPlatform Android=0.07,
+                                               iOS=1.2}"
+                    Text="{Binding [Regards].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                    TextColor="{StaticResource ExtraGrayColor}"
+                    VerticalOptions="End" />
+            </Grid>
+        </Grid>
+    </popups:SinglePopupViewBase.Content>
+</popups:SinglePopupViewBase>

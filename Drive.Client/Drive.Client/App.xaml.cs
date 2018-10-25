@@ -1,5 +1,6 @@
 ﻿using Drive.Client.Helpers;
 using Drive.Client.Helpers.Localize;
+using Drive.Client.Services.DependencyServices.AppVersion;
 using Drive.Client.Services.Navigation;
 using Drive.Client.ViewModels.Base;
 using System;

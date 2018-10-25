@@ -99,6 +99,7 @@
     <Compile Include="Renderers\EntryExtendedRenderer.cs" />
     <Compile Include="Renderers\ExtendedContentViewRenderer.cs" />
     <Compile Include="Renderers\LabelExtendedRenderer.cs" />
+    <Compile Include="Services\AppVersion.cs" />
     <Compile Include="Services\Device.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist">

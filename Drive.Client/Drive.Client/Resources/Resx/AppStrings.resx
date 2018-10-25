@@ -360,4 +360,13 @@
   <data name="SearchByPerson" xml:space="preserve">
     <value>Individual search</value>
   </data>
+  <data name="UpdateVersionInfoPartOne" xml:space="preserve">
+    <value>A new version is available to you.</value>
+  </data>
+  <data name="Regards" xml:space="preserve">
+    <value>Best regards, Drive team</value>
+  </data>
+  <data name="UpdateVersionInfoPartTwo" xml:space="preserve">
+    <value>Please update!</value>
+  </data>
 </root>

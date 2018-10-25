@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace Drive.Client.Services.DeviceUtil {
     public class DeviceUtilService : IDeviceUtilService {
@@ -17,23 +18,24 @@ namespace Drive.Client.Services.DeviceUtil {
             _requestProvider = requestProvider;
         }
 
-        public Task<string> RegisterClientDeviceInfoAsync(ClientHardware clientHardware, CancellationTokenSource cancellationTokenSource) =>
-            Task<string>.Run(async () => {
-                string responseCompletion = null;
+        public Task<bool> RegisterClientDeviceInfoAsync(ClientHardware clientHardware, CancellationTokenSource cancellationTokenSource) =>
+            Task.Run(async () => {
+                bool responseCompletion = default(bool);
 
                 try {
-                    responseCompletion = await _requestProvider.PostAsync<string, ClientHardware>(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.ClientHardwareEndPoints.RegisterClientDevice, clientHardware);
+                    responseCompletion = await _requestProvider.PostAsync<bool, ClientHardware>(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.ClientHardwareEndPoints.RegisterClientDevice, clientHardware);
                 }
-                catch (Exception exc) {
+                catch (Exception ex) {
+                    Debug.WriteLine($"ERROR: {ex.Message}");
                     Debugger.Break();
-                    throw;
+                    responseCompletion = true;
                 }
 
                 return responseCompletion;
             }, cancellationTokenSource.Token);
 
         public Task<Location> GetDeviceLocationAsync(GeolocationAccuracy accuracy, TimeSpan timeout, CancellationTokenSource cancellationTokenSource) =>
-            Task<Location>.Run(async () => {
+            Task.Run(async () => {
                 Location result = null;
 
                 try {
@@ -61,7 +63,7 @@ namespace Drive.Client.Services.DeviceUtil {
             }, cancellationTokenSource.Token);
 
         public Task<ClientHardware> GetDeviceInfoAsync(CancellationTokenSource cancellationTokenSource) =>
-            Task<ClientHardware>.Run(async () => {
+            Task.Run(async () => {
                 ClientHardware clientHardware = new ClientHardware() {
                     DeviceId = CrossDeviceInfo.Current.Id,
                     Model = CrossDeviceInfo.Current.Model,
@@ -76,7 +78,13 @@ namespace Drive.Client.Services.DeviceUtil {
                     VersionNumber = CrossDeviceInfo.Current.Version
                 };
 
-                Location location = await GetDeviceLocationAsync(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(9), cancellationTokenSource);
+                Location location;
+
+                if (Device.RuntimePlatform == Device.Android) {
+                    location = null;
+                } else {
+                    location = await GetDeviceLocationAsync(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(9), cancellationTokenSource);
+                }
 
                 if (location != null) {
                     clientHardware.Latitude = location.Latitude;

@@ -574,6 +574,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Best regards, Drive team.
+        /// </summary>
+        public static string Regards {
+            get {
+                return ResourceManager.GetString("Regards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to sign up.
         /// </summary>
         public static string Register {
@@ -723,6 +732,24 @@ namespace Drive.Client.Resources.Resx {
         public static string UpdatedInfo {
             get {
                 return ResourceManager.GetString("UpdatedInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A new version is available to you..
+        /// </summary>
+        public static string UpdateVersionInfoPartOne {
+            get {
+                return ResourceManager.GetString("UpdateVersionInfoPartOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please update!.
+        /// </summary>
+        public static string UpdateVersionInfoPartTwo {
+            get {
+                return ResourceManager.GetString("UpdateVersionInfoPartTwo", resourceCulture);
             }
         }
         
