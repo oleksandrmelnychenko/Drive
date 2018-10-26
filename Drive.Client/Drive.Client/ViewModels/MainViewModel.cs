@@ -1,4 +1,5 @@
-﻿using Drive.Client.Models.Identities.NavigationArgs;
+﻿using Drive.Client.Helpers;
+using Drive.Client.Models.Identities.NavigationArgs;
 using Drive.Client.Services.DeviceUtil;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.BottomTabViewModels;
@@ -77,19 +78,21 @@ namespace Drive.Client.ViewModels {
         }
 
         private async void RegisterClientDeviceInfo() {
-            ResetCancellationTokenSource(ref _registerClientDeviceInfoCancellationTokenSource);
-            CancellationTokenSource cancellationTokenSource = _registerClientDeviceInfoCancellationTokenSource;
+            if (BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth) {
+                ResetCancellationTokenSource(ref _registerClientDeviceInfoCancellationTokenSource);
+                CancellationTokenSource cancellationTokenSource = _registerClientDeviceInfoCancellationTokenSource;
 
-            try {
-                bool deviceRegistrationCompletion = await _deviceUtilService.RegisterClientDeviceInfoAsync(await _deviceUtilService.GetDeviceInfoAsync(cancellationTokenSource), cancellationTokenSource);
+                try {
+                    bool deviceRegistrationCompletion = await _deviceUtilService.RegisterClientDeviceInfoAsync(await _deviceUtilService.GetDeviceInfoAsync(cancellationTokenSource), cancellationTokenSource);
 
-                if (!deviceRegistrationCompletion) {
-                    UpdateAppVersionPopupViewModel.ShowPopupCommand.Execute(null);
+                    if (!deviceRegistrationCompletion) {
+                        UpdateAppVersionPopupViewModel.ShowPopupCommand.Execute(null);
+                    }
                 }
-            }
-            catch (Exception ex) {
-                Debug.WriteLine($"ERRROR:{ex.Message}");
-                Debugger.Break();
+                catch (Exception ex) {
+                    Debug.WriteLine($"ERRROR:{ex.Message}");
+                    Debugger.Break();
+                }
             }
         }
     }
