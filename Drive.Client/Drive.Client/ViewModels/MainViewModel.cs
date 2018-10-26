@@ -78,21 +78,21 @@ namespace Drive.Client.ViewModels {
         }
 
         private async void RegisterClientDeviceInfo() {
-            if (BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth) {
-                ResetCancellationTokenSource(ref _registerClientDeviceInfoCancellationTokenSource);
-                CancellationTokenSource cancellationTokenSource = _registerClientDeviceInfoCancellationTokenSource;
+            try {
+                if (BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth) {
+                    ResetCancellationTokenSource(ref _registerClientDeviceInfoCancellationTokenSource);
+                    CancellationTokenSource cancellationTokenSource = _registerClientDeviceInfoCancellationTokenSource;
 
-                try {
                     bool deviceRegistrationCompletion = await _deviceUtilService.RegisterClientDeviceInfoAsync(await _deviceUtilService.GetDeviceInfoAsync(cancellationTokenSource), cancellationTokenSource);
 
                     if (!deviceRegistrationCompletion) {
                         UpdateAppVersionPopupViewModel.ShowPopupCommand.Execute(null);
                     }
                 }
-                catch (Exception ex) {
-                    Debug.WriteLine($"ERRROR:{ex.Message}");
-                    Debugger.Break();
-                }
+            }
+            catch (Exception ex) {
+                Debug.WriteLine($"ERRROR:{ex.Message}");
+                Debugger.Break();
             }
         }
     }
