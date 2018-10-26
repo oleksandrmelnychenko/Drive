@@ -29,6 +29,7 @@ using System.Globalization;
 using System.Reflection;
 using Xamarin.Forms;
 using Drive.Client.ViewModels.Popups;
+using Drive.Client.Services.OpenUrl;
 
 namespace Drive.Client.ViewModels.Base {
     public static class DependencyLocator {
@@ -95,6 +96,7 @@ namespace Drive.Client.ViewModels.Base {
 
             // Services.
             builder.RegisterType<DialogService>().As<IDialogService>();
+            builder.RegisterType<OpenUrlService>().As<IOpenUrlService>();
             builder.RegisterType<VehicleService>().As<IVehicleService>();
             builder.RegisterType<RequestProvider>().As<IRequestProvider>().SingleInstance();
             builder.RegisterType<IdentityService>().As<IIdentityService>();
