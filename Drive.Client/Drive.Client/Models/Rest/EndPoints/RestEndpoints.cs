@@ -3,8 +3,8 @@
 namespace Drive.Client.Models.Rest {
     public class RestEndpoints {
         
-        //public const string DEFAULT_ENDPOINT = "http://31.128.79.4:13828/m"; // Release
-        public const string DEFAULT_ENDPOINT = "http://31.128.79.4:13829/m"; // Development
+        public const string DEFAULT_ENDPOINT = "http://31.128.79.4:13828/m"; // Release
+        //public const string DEFAULT_ENDPOINT = "http://31.128.79.4:13829/m"; // Development
         /// <summary>
         /// Car info endpoints.
         /// </summary>
@@ -21,7 +21,5 @@ namespace Drive.Client.Models.Rest {
         /// Vehicle endpoints
         /// </summary>
         public VehicleEndpoints VehicleEndpoints { get; set; } = new VehicleEndpoints(DEFAULT_ENDPOINT);
-
-        //ttsdfsfsd
     }
 }
