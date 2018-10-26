@@ -1,6 +1,7 @@
 ﻿using Drive.Client.Controls;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 
@@ -12,14 +13,11 @@ namespace Drive.Client.Behaviors {
         }
 
         private void TextChangedHandler(object sender, TextChangedEventArgs e) {
-            //  Short circuit for no value
-            if (string.IsNullOrEmpty(e.NewTextValue))
-                return;
+            if (!string.IsNullOrWhiteSpace(e.NewTextValue)) {
+                bool isValid = e.NewTextValue.ToCharArray().All(x => char.IsDigit(x)); //Make sure all characters are numbers
 
-            if (!double.TryParse(e.NewTextValue, out double tempValue))
-                ((Entry)sender).Text = e.OldTextValue;
-            else
-                ((Entry)sender).Text = e.NewTextValue;
+                ((Entry)sender).Text = isValid ? e.NewTextValue : e.NewTextValue.Remove(e.NewTextValue.Length - 1);
+            }
         }
 
         protected override void OnDetachingFrom(EntryExtended bindable) {

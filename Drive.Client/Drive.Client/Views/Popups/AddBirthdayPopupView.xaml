@@ -67,25 +67,6 @@
                     HorizontalOptions="Center"
                     Text="{Binding [SearchByPerson].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
                     TextColor="{StaticResource BaseGrayColor}" />
-                <!--<StackLayout
-                    Grid.Row="1"
-                    HorizontalOptions="Center"
-                    Orientation="Horizontal"
-                    Spacing="4">
-                    <controls:LabelExtended
-                        FontFamily="{StaticResource SFProLight}"
-                        FontSize="{StaticResource BigSize}"
-                        HorizontalOptions="Start"
-                        LineBreakMode="NoWrap"
-                        Text="{Binding SearchByPersonArgs.LastName, Converter={StaticResource UpperCaseConverter}}"
-                        TextColor="{StaticResource DarkBlueColor}" />
-                    <controls:LabelExtended
-                        FontSize="{StaticResource BigSize}"
-                        HorizontalOptions="StartAndExpand"
-                        LineBreakMode="NoWrap"
-                        Text="{Binding SearchByPersonArgs.FirstName, Converter={StaticResource UpperCaseConverter}}"
-                        TextColor="{StaticResource DarkColor}" />
-                </StackLayout>-->
 
                 <controls:LabelExtended
                     Grid.Row="1"
@@ -127,14 +108,15 @@
                     <StackLayout
                         HorizontalOptions="Center"
                         Orientation="Horizontal"
-                        Spacing="4">
+                        Spacing="0">
                         <ffimageloadingsvg:SvgCachedImage
                             Margin="0,0,0,0"
                             HeightRequest="15"
                             Source="resource://Drive.Client.Resources.Images.Calendar.svg"
+                            TranslationX="-5"
                             VerticalOptions="Center"
                             WidthRequest="15" />
-                        <controls:EntryExtended
+                        <!--<controls:EntryExtended
                             FontSize="{StaticResource MediumSize}"
                             HorizontalTextAlignment="Center"
                             MaxLength="10"
@@ -143,6 +125,40 @@
                             TextColor="{StaticResource BaseGrayColor}">
                             <controls:EntryExtended.Behaviors>
                                 <behaviors:MaskedBehavior Mask="XX/XX/XXXX" />
+                                <behaviors:EventToCommandBehavior Command="{Binding DoneCommand}" EventName="Completed" />
+                            </controls:EntryExtended.Behaviors>
+                        </controls:EntryExtended>-->
+                        <controls:EntryExtended
+                            FontSize="{StaticResource MediumSize}"
+                            HorizontalTextAlignment="Center"
+                            MaxLength="2"
+                            Placeholder="XX"
+                            Text="{Binding Day}"
+                            TextColor="{StaticResource BaseGrayColor}">
+                            <controls:EntryExtended.Behaviors>
+                                <behaviors:NumericEntryBehavior />
+                            </controls:EntryExtended.Behaviors>
+                        </controls:EntryExtended>
+                        <controls:EntryExtended
+                            FontSize="{StaticResource MediumSize}"
+                            HorizontalTextAlignment="Center"
+                            MaxLength="2"
+                            Placeholder="XX"
+                            Text="{Binding Mounth}"
+                            TextColor="{StaticResource BaseGrayColor}">
+                            <controls:EntryExtended.Behaviors>
+                                <behaviors:NumericEntryBehavior />
+                            </controls:EntryExtended.Behaviors>
+                        </controls:EntryExtended>
+                        <controls:EntryExtended
+                            FontSize="{StaticResource MediumSize}"
+                            HorizontalTextAlignment="Center"
+                            MaxLength="4"
+                            Placeholder="XXXX"
+                            Text="{Binding Year}"
+                            TextColor="{StaticResource BaseGrayColor}">
+                            <controls:EntryExtended.Behaviors>
+                                <behaviors:NumericEntryBehavior />
                                 <behaviors:EventToCommandBehavior Command="{Binding DoneCommand}" EventName="Completed" />
                             </controls:EntryExtended.Behaviors>
                         </controls:EntryExtended>

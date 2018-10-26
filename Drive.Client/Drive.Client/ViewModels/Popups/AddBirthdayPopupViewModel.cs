@@ -22,6 +22,24 @@ namespace Drive.Client.ViewModels.Popups {
             set { SetProperty(ref _dateInput, value); }
         }
 
+        string _day;
+        public string Day {
+            get { return _day; }
+            set { SetProperty(ref _day, value); }
+        }
+
+        string _mounth;
+        public string Mounth {
+            get { return _mounth; }
+            set { SetProperty(ref _mounth, value); }
+        }
+
+        string _year;
+        public string Year {
+            get { return _year; }
+            set { SetProperty(ref _year, value); }
+        }
+
         SearchByPersonArgs _searchByPersonArgs;
         public SearchByPersonArgs SearchByPersonArgs {
             get { return _searchByPersonArgs; }
@@ -39,7 +57,8 @@ namespace Drive.Client.ViewModels.Popups {
 
         public ICommand DoneCommand => new Command(() => {
             ClosePopupCommand.Execute(null);
-            _searchByPersonArgs.DateOfBirth = DateInput;
+            //_searchByPersonArgs.DateOfBirth = DateInput;
+            _searchByPersonArgs.DateOfBirth = $"{Day}/{Mounth}/{Year}";
             BaseSingleton<GlobalSetting>.Instance.AppMessagingEvents.VehicleEvents.OnSendInformation();
         });
 
