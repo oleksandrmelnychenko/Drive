@@ -21,7 +21,5 @@ namespace Drive.Client.Models.Rest {
         /// Vehicle endpoints
         /// </summary>
         public VehicleEndpoints VehicleEndpoints { get; set; } = new VehicleEndpoints(DEFAULT_ENDPOINT);
-
-        //tt
     }
 }
