@@ -64,5 +64,8 @@ namespace Drive.Client.Models.EntityModels.Search {
 
         [JsonProperty("Type")]
         public string Type { get; set; }
+
+        [JsonProperty("Number")]
+        public string Number { get; set; }
     }
 }

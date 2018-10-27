@@ -93,7 +93,7 @@ namespace Drive.Client.Services.Vehicle {
                 return vehicleDetailsByResidentFullName;
             }, cancellationToken);
 
-        public async Task<PolandVehicleDetail> GetPolandVehicleDetails(SearchByPolandNumberArgs searchByPolandNumberArgs, CancellationToken cancellationToken = default(CancellationToken))=>
+        public async Task<PolandVehicleDetail> GetPolandVehicleDetails(SearchByPolandNumberArgs searchByPolandNumberArgs, CancellationToken cancellationToken = default(CancellationToken)) =>
              await Task.Run(async () => {
                  PolandVehicleDetail polandVehicleDetail = null;
 
@@ -108,7 +108,7 @@ namespace Drive.Client.Services.Vehicle {
                      throw ex;
                  }
                  catch (HttpRequestExceptionEx ex) {
-                     throw ex;
+                     polandVehicleDetail = null;
                  }
                  catch (Exception ex) {
                      Debug.WriteLine($"ERROR:{ex.Message}");

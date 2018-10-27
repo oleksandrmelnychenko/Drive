@@ -54,6 +54,7 @@
                             Text="{Binding Path=MainInput.Value, Converter={StaticResource UpperCaseConverter}, Mode=TwoWay}"
                             TextColor="{StaticResource ExtraGrayColor}">
                             <controls:EntryExtended.Behaviors>
+                                <behaviors:PhoneMaskEntryBehavior Mask="XX/XX/XXXX" />
                                 <behaviors:EventToCommandBehavior Command="{Binding StepCommand}" EventName="Completed" />
                                 <behaviors:EventToCommandBehavior Command="{Binding InputTextChangedCommand}" EventName="TextChanged" />
                             </controls:EntryExtended.Behaviors>

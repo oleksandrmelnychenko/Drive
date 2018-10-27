@@ -367,6 +367,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incorrect date value.
+        /// </summary>
+        public static string IncorrectDateFormat {
+            get {
+                return ResourceManager.GetString("IncorrectDateFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (IN DEVELOPMENT).
         /// </summary>
         public static string InDev {
@@ -804,6 +813,24 @@ namespace Drive.Client.Resources.Resx {
         public static string UserNameUpperCase {
             get {
                 return ResourceManager.GetString("UserNameUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle found.
+        /// </summary>
+        public static string VehicleFound {
+            get {
+                return ResourceManager.GetString("VehicleFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your request give no results.
+        /// </summary>
+        public static string VehicleRequestGiveNoResults {
+            get {
+                return ResourceManager.GetString("VehicleRequestGiveNoResults", resourceCulture);
             }
         }
         

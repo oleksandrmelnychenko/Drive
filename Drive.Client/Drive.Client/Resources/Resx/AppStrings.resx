@@ -384,4 +384,13 @@
   <data name="InserVinUpperCase" xml:space="preserve">
     <value>ENTER VIN</value>
   </data>
+  <data name="IncorrectDateFormat" xml:space="preserve">
+    <value>Incorrect date value</value>
+  </data>
+  <data name="VehicleRequestGiveNoResults" xml:space="preserve">
+    <value>Your request give no results</value>
+  </data>
+  <data name="VehicleFound" xml:space="preserve">
+    <value>Vehicle found</value>
+  </data>
 </root>

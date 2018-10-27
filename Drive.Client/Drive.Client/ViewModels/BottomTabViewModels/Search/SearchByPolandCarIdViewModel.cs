@@ -46,6 +46,10 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         /// </summary>
         public SearchByPolandCarIdViewModel(IValidationObjectFactory validationObjectFactory) {
             _number = validationObjectFactory.GetValidatableObject<string>();
+
+#if DEBUG
+            _number.Value = "sps02218";
+#endif
         }
 
         private async Task OnInputComplete() {

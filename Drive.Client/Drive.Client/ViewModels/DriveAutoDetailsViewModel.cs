@@ -29,11 +29,19 @@ namespace Drive.Client.ViewModels {
             IsBackButtonAvailable = NavigationService.IsBackButtonAvailable;
         }
 
+        public override void Dispose() {
+            base.Dispose();
+
+            ActionBarViewModel?.Dispose();
+        }
+
         public override Task InitializeAsync(object navigationData) {
 
             if (navigationData is DriveAuto driveAuto) {
                 DriveAuto = driveAuto;
             }
+
+            ActionBarViewModel?.InitializeAsync(navigationData);
 
             return base.InitializeAsync(navigationData);
         }

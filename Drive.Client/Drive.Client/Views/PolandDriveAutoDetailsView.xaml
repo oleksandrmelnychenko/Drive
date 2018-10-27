@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBaseView
+    x:Class="Drive.Client.Views.PolandDriveAutoDetailsView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:actionBars="clr-namespace:Drive.Client.Views.ActionBars"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:dependency="clr-namespace:Drive.Client.ViewModels.Base"
+    xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
+    xmlns:viewBase="clr-namespace:Drive.Client.Views.Base"
+    dependency:DependencyLocator.AutoWireViewModel="True">
+
+    <viewBase:ContentPageBaseView.ActionBar>
+        <actionBars:CommonActionBarView />
+    </viewBase:ContentPageBaseView.ActionBar>
+
+    <viewBase:ContentPageBaseView.MainContent>
+        <Grid
+            Padding="20"
+            BackgroundColor="White"
+            RowSpacing="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.Resources>
+                <ResourceDictionary>
+                    <OnPlatform
+                        x:Key="TitleFontSize"
+                        x:TypeArguments="x:Double"
+                        Android="{StaticResource LittleSize}"
+                        iOS="{StaticResource MediumSize}" />
+
+                    <OnPlatform
+                        x:Key="ValueFontSize"
+                        x:TypeArguments="x:Double"
+                        Android="{StaticResource MidMediumSize}"
+                        iOS="{StaticResource MediumSize}" />
+
+                    <Style x:Key="descriptionLabel" TargetType="Label">
+                        <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                        <Setter Property="FontSize" Value="{StaticResource MediumSize}" />
+                    </Style>
+
+                    <Style x:Key="detailBase" TargetType="Label">
+                        <Setter Property="HorizontalOptions" Value="Start" />
+                        <Setter Property="VerticalOptions" Value="Center" />
+                    </Style>
+
+                    <Style
+                        x:Key="valueLabel"
+                        BasedOn="{StaticResource detailBase}"
+                        TargetType="Label">
+                        <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+                        <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                        <Setter Property="FontSize" Value="{StaticResource ValueFontSize}" />
+                    </Style>
+
+                    <Style
+                        x:Key="titleLabel"
+                        BasedOn="{StaticResource detailBase}"
+                        TargetType="Label">
+                        <Setter Property="FontFamily" Value="{StaticResource SFProLight}" />
+                        <Setter Property="TextColor" Value="{StaticResource HardGrayColor}" />
+                        <Setter Property="FontSize" Value="{StaticResource TitleFontSize}" />
+                    </Style>
+                </ResourceDictionary>
+            </Grid.Resources>
+
+            <StackLayout Grid.Row="0" Margin="20,0,0,0">
+                <controls:LabelExtended
+                    FontSize="{StaticResource LargerSize}"
+                    Style="{StaticResource descriptionLabel}"
+                    Text="{Binding PolandDriveAuto.Brand}"
+                    VerticalOptions="Center" />
+            </StackLayout>
+
+            <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never">
+                <StackLayout Spacing="10">
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Year of production:" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.Year, StringFormat={StaticResource FormattedDate}}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="VIN:" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.VIN}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Last recorded odometer reading:" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.LastOdometrData}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Registration status:" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.RegistrationStatus}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Engine capacity:" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.EngineCapacity}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Engine power:" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.EnginePower}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Fuel type:" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.FuelType}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Total capacity:" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.TotalCapacity}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Number of seats:" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.NumberOfSeats}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Curb weight:" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.CurbWeight}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Maximum laden mass of braked trailer:" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.MaximumLadenMassOfBrakedTrailer}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Maximum laden mass of unbraked trailer:" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.MaximumLadenMassOfUnbrakedTrailer}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="Maximum permissible to wable mass" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.MaximumPermissibleTowableMass}" />
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </viewBase:ContentPageBaseView.MainContent>
+</viewBase:ContentPageBaseView>

@@ -12,6 +12,7 @@ namespace Drive.Client.Services.Vehicle {
         Task<List<VehicleDetail>> GetVehiclesByRequestIdAsync(long govRequestId, CancellationToken cancellationToken = default(CancellationToken));
 
         Task<VehicleDetailsByResidentFullName> GetVehicleDetailsByResidentFullNameAsync(SearchByPersonArgs searchByPersonArgs, CancellationToken cancellationToken = default(CancellationToken));
+
         Task<PolandVehicleDetail> GetPolandVehicleDetails(SearchByPolandNumberArgs searchByPolandNumberArgs, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

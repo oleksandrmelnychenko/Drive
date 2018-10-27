@@ -384,4 +384,13 @@
   <data name="InserVinUpperCase" xml:space="preserve">
     <value>ВВЕДІТЬ VIN</value>
   </data>
+  <data name="IncorrectDateFormat" xml:space="preserve">
+    <value>Невірне значення дати</value>
+  </data>
+  <data name="VehicleRequestGiveNoResults" xml:space="preserve">
+    <value>За вашим запитом нічого не знайдено</value>
+  </data>
+  <data name="VehicleFound" xml:space="preserve">
+    <value>Транспортний засіб знайдено</value>
+  </data>
 </root>

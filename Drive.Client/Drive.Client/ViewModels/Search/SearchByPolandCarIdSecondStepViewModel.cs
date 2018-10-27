@@ -28,7 +28,6 @@ namespace Drive.Client.ViewModels.Search {
 
         protected override void ResetValidationObjects() {
             base.ResetValidationObjects();
-
         }
 
         public override Task InitializeAsync(object navigationData) {
@@ -38,6 +37,9 @@ namespace Drive.Client.ViewModels.Search {
             }
 
             MainInput.Value = string.Empty;
+#if DEBUG
+            MainInput.Value = "wvwzzz1jzwb026870";
+#endif
 
             return base.InitializeAsync(navigationData);
         }
