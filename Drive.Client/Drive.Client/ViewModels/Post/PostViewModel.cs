@@ -4,6 +4,7 @@ using Drive.Client.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -41,6 +42,12 @@ namespace Drive.Client.ViewModels.Post {
         /// </summary>
         public PostViewModel(IOpenUrlService openUrlService) {
             _openUrlService =openUrlService;
+        }
+
+        public override Task InitializeAsync(object navigationData) {
+
+
+            return base.InitializeAsync(navigationData);
         }
     }
 }
