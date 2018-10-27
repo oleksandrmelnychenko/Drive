@@ -126,7 +126,7 @@
   <data name="LogOut" xml:space="preserve">
     <value>Вийти</value>
   </data>
-  <data name="Ваш запит надіслано!" xml:space="preserve">
+  <data name="ActualInfo" xml:space="preserve">
     <value>Актуальна інформація на 04.10.2018</value>
   </data>
   <data name="BodyType" xml:space="preserve">
