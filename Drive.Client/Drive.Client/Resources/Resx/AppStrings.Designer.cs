@@ -376,6 +376,24 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ENTER DATE.
+        /// </summary>
+        public static string InserDateUpperCase {
+            get {
+                return ResourceManager.GetString("InserDateUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ENTER VIN.
+        /// </summary>
+        public static string InserVinUpperCase {
+            get {
+                return ResourceManager.GetString("InserVinUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid email address.
         /// </summary>
         public static string InvalidEmail {

@@ -12,6 +12,8 @@ using Xamarin.Forms;
 namespace Drive.Client.ViewModels.IdentityAccounting {
     public abstract class StepBaseViewModel : ContentPageBaseViewModel {
 
+        public static readonly StringResource VIN_STEP_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.InserVinUpperCase));
+        public static readonly StringResource DATE_STEP_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.InserDateUpperCase));
         public static readonly StringResource MIDDLENAME_STEP_REGISTRATION_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.MiddleNameUpperCase));
         public static readonly StringResource MIDDLENAME_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.MiddleNameUpperCase));
         public static readonly StringResource PHONENUMBER_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.PhoneNumberUpperCase));
@@ -30,6 +32,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
         public static readonly string NAME_ICON_PATH = "resource://Drive.Client.Resources.Images.name.svg";
         public static readonly string EMAIL_ICON_PATH = "resource://Drive.Client.Resources.Images.Email.svg";
         public static readonly string PASSWORD_ICON_PATH = "resource://Drive.Client.Resources.Images.password.svg";
+        public static readonly string DATE_ICON_PATH = "resource://Drive.Client.Resources.Images.Calendar.svg";
         public static readonly string TODO_INPUT_ICON_STUB = "todo: appropriate icon path";
 
         private readonly IValidationObjectFactory _validationObjectFactory;

@@ -95,6 +95,8 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<ForgotPasswordFinallyStepViewModel>();
             builder.RegisterType<IdentityAccountingActionBarViewModel>();
             builder.RegisterType<ConfirmPasswordRegisterStepViewModel>();
+            builder.RegisterType<SearchByPolandCarIdSecondStepViewModel>();
+            builder.RegisterType<SearchByPolandCarIdFinallyStepViewModel>();
 
             // Services.
             builder.RegisterType<DialogService>().As<IDialogService>();

@@ -378,4 +378,10 @@
   <data name="SearchByNumberFromPoland" xml:space="preserve">
     <value>SEARCH FOR NUMBERS IN POLAND</value>
   </data>
+  <data name="InserDateUpperCase" xml:space="preserve">
+    <value>ENTER DATE</value>
+  </data>
+  <data name="InserVinUpperCase" xml:space="preserve">
+    <value>ENTER VIN</value>
+  </data>
 </root>

@@ -51,7 +51,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         private async Task OnInputComplete() {
             if (Validate()) {
                 SearchByPolandNumberArgs searchByPolandNumberArgs = new SearchByPolandNumberArgs { Number = Number.Value };
-                await NavigationService.NavigateToAsync<SearchByPersonSecondStepViewModel>(searchByPolandNumberArgs);
+                await NavigationService.NavigateToAsync<SearchByPolandCarIdSecondStepViewModel>(searchByPolandNumberArgs);
                 Number.Value = string.Empty;
             }
         }

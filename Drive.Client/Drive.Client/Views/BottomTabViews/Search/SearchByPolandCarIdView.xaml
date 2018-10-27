@@ -56,7 +56,6 @@
                         Text="{Binding Number.Value, Converter={StaticResource UpperCaseConverter}, Mode=TwoWay}"
                         TextColor="{StaticResource ExtraGrayColor}">
                         <controls:EntryExtended.Behaviors>
-                            <behaviors:NumericEntryBehavior />
                             <behaviors:EventToCommandBehavior Command="{Binding InputCompleteCommand}" EventName="Completed" />
                         </controls:EntryExtended.Behaviors>
                     </controls:EntryExtended>

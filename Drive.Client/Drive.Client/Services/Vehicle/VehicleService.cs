@@ -92,5 +92,29 @@ namespace Drive.Client.Services.Vehicle {
                 }
                 return vehicleDetailsByResidentFullName;
             }, cancellationToken);
+
+        public async Task<PolandVehicleDetail> GetPolandVehicleDetails(SearchByPolandNumberArgs searchByPolandNumberArgs, CancellationToken cancellationToken = default(CancellationToken))=>
+             await Task.Run(async () => {
+                 PolandVehicleDetail polandVehicleDetail = null;
+
+                 string url = string.Format(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.VehicleEndpoints.PolandVehicleDetailEndpoint,
+                     searchByPolandNumberArgs.Vin, searchByPolandNumberArgs.Date, searchByPolandNumberArgs.Number);
+                 string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+
+                 try {
+                     polandVehicleDetail = await _requestProvider.GetAsync<PolandVehicleDetail>(url, accessToken);
+                 }
+                 catch (ConnectivityException ex) {
+                     throw ex;
+                 }
+                 catch (HttpRequestExceptionEx ex) {
+                     throw ex;
+                 }
+                 catch (Exception ex) {
+                     Debug.WriteLine($"ERROR:{ex.Message}");
+                     Debugger.Break();
+                 }
+                 return polandVehicleDetail;
+             }, cancellationToken);
     }
 }
