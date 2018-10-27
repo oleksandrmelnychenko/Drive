@@ -142,6 +142,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PL NUMBER.
+        /// </summary>
+        public static string ByPolandNumberUpperCase {
+            get {
+                return ResourceManager.GetString("ByPolandNumberUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change password.
         /// </summary>
         public static string ChangePassword {
@@ -493,6 +502,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NUMBER.
+        /// </summary>
+        public static string NumberUpperCase {
+            get {
+                return ResourceManager.GetString("NumberUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to or.
         /// </summary>
         public static string Or {
@@ -624,6 +642,15 @@ namespace Drive.Client.Resources.Resx {
         public static string SearchByNumber {
             get {
                 return ResourceManager.GetString("SearchByNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SEARCH FOR NUMBERS IN POLAND.
+        /// </summary>
+        public static string SearchByNumberFromPoland {
+            get {
+                return ResourceManager.GetString("SearchByNumberFromPoland", resourceCulture);
             }
         }
         

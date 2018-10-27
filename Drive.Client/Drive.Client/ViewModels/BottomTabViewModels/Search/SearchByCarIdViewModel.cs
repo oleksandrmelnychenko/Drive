@@ -81,7 +81,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
 
         public ICommand InputCompleteCommand => new Command(async () => await OnInputCompleteAsync());
 
-        public ICommand InputTextChangedCommand => new Command(() => OnInputTextChenged());
+        public ICommand InputTextChangedCommand => new Command(() => OnInputTextChanged());
 
         /// <summary>
         ///  ctor().
@@ -120,17 +120,13 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
             SetupValidations();
         }
 
-        private IObservable<IEnumerable<DriveAutoSearch>> TT() {
-            return null;
-        }
-
         public void ClearAfterTabTap() {
             ClearSource();
         }
 
         private void ClearSource() {
             try {
-                ValidationTargetValue.Value = "";
+                ValidationTargetValue.Value = string.Empty;
                 FoundResult?.Clear();
                 TargetValue = string.Empty;
                 HasError = false;
@@ -159,7 +155,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
             ResetCancellationTokenSource(ref _getAllDriveAutoCancellationTokenSource);
         }
 
-        private void OnInputTextChenged() {
+        private void OnInputTextChanged() {
             ErrorMessage = string.Empty;
             HasError = false;
         }

@@ -80,6 +80,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<RequestInfoPopupViewModel>();
             builder.RegisterType<SignInPasswordStepViewModel>();
             builder.RegisterType<LanguageSelectPopupViewModel>();
+            builder.RegisterType<SearchByPolandCarIdViewModel>();
             builder.RegisterType<PasswordRegisterStepViewModel>();
             builder.RegisterType<UpdateAppVersionPopupViewModel>();
             builder.RegisterType<SignInPhoneNumberStepViewModel>();

@@ -25,6 +25,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         public SearchViewModel() {
             SearchTabs = new List<IVisualFiguring>() {
                 DependencyLocator.Resolve<SearchByCarIdViewModel>(),
+                DependencyLocator.Resolve<SearchByPolandCarIdViewModel>(),
                 DependencyLocator.Resolve<SearchByPersonViewModel>()
             };
             SearchTabs.ForEach(searchTab => searchTab.InitializeAsync(this));

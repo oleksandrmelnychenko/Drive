@@ -369,4 +369,13 @@
   <data name="UpdateVersionInfoPartTwo" xml:space="preserve">
     <value>Оновіть, будь-ласка!</value>
   </data>
+  <data name="ByPolandNumberUpperCase" xml:space="preserve">
+    <value>PL НОМЕР</value>
+  </data>
+  <data name="NumberUpperCase" xml:space="preserve">
+    <value>НОМЕР</value>
+  </data>
+  <data name="SearchByNumberFromPoland" xml:space="preserve">
+    <value>ПОШУК ЗА НОМЕРОМ В ПОЛЬЩІ</value>
+  </data>
 </root>
