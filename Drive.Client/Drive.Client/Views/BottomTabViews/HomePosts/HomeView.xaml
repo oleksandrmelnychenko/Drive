@@ -1,12 +1,48 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentView
-    x:Class="Drive.Client.Views.BottomTabViews.HomeView"
+    x:Class="Drive.Client.Views.BottomTabViews.HomePosts.HomeView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
+    xmlns:templateSelectors="clr-namespace:Drive.Client.Views.Templates.TemplateSelectors"
     BackgroundColor="{StaticResource WhiteColor}">
-    <StackLayout
+
+    <Grid Padding="10,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid
+            Grid.Row="0"
+            BackgroundColor="{StaticResource WhiteColor}"
+            RowSpacing="0">
+            <BoxView
+                HeightRequest="1"
+                VerticalOptions="End"
+                Color="{StaticResource LightGrayColor}" />
+
+            <ffimageloadingsvg:SvgCachedImage
+                HeightRequest="20"
+                HorizontalOptions="Center"
+                Source="resource://Drive.Client.Resources.Images.drive_logo.svg"
+                TranslationY="-6"
+                VerticalOptions="Center" />
+        </Grid>
+
+        <ListView
+            Grid.Row="1"
+            BackgroundColor="Transparent"
+            HasUnevenRows="True"
+            ItemTemplate="{templateSelectors:HomePostTemplateSelector}"
+            ItemsSource="{Binding Path=Posts}"
+            SelectionMode="None"
+            SeparatorVisibility="None" />
+    </Grid>
+
+    <!--<StackLayout
         HorizontalOptions="Center"
         Spacing="4"
         VerticalOptions="Center">
@@ -23,7 +59,7 @@
             Text="{Binding [InDev].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
             TextColor="{StaticResource ExtraGrayColor}"
             VerticalOptions="Center" />
-    </StackLayout>
+    </StackLayout>-->
 
     <!--<controls:DateEntry
         EntryBackgroundColor="{StaticResource LightGrayColor}"
