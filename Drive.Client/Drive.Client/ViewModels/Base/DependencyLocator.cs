@@ -56,6 +56,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<AppMessagingEvents>().SingleInstance();
 
             // View models.
+            builder.RegisterType<PostViewModel>();
             builder.RegisterType<HomeViewModel>();
             builder.RegisterType<MainViewModel>();
             builder.RegisterType<PostViewModel>();
