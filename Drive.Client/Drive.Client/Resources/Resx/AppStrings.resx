@@ -426,4 +426,10 @@
   <data name="VinUppercase" xml:space="preserve">
     <value>VIN</value>
   </data>
+  <data name="DayUpperCase" xml:space="preserve">
+    <value>DAY</value>
+  </data>
+  <data name="MonthUpperCase" xml:space="preserve">
+    <value>MONTH</value>
+  </data>
 </root>
