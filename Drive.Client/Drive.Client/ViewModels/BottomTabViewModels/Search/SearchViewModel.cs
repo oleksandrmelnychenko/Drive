@@ -19,12 +19,10 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
             }
         }
 
-        int _t;
-        public int t {
-            get => _t;
-            set {
-                SetProperty(ref _t, value);
-            }
+        int _selectedTabIndex;
+        public int SelectedTabIndex {
+            get => _selectedTabIndex;
+            set => SetProperty(ref _selectedTabIndex, value);
         }
 
         /// <summary>
@@ -38,7 +36,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
             };
             SearchTabs.ForEach(searchTab => searchTab.InitializeAsync(this));
 
-            t = 1;
+            SelectedTabIndex = 1;
         }
 
         protected override void TabbViewModelInit() {
@@ -55,7 +53,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         public override Task InitializeAsync(object navigationData) {
 
             if (navigationData is SelectedBottomBarTabArgs) {
-                
+
             }
 
             SearchTabs?.ForEach(searchTab => searchTab.InitializeAsync(navigationData));

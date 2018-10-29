@@ -13,7 +13,7 @@ namespace Drive.Client.Controls.Switcher {
 
         private static readonly Color _MAIN_SELECT_COLOR_RESOURCE_KEY = (Color)App.Current.Resources["DarkColor"];
         private static readonly Color _MAIN_UNSELECT_COLOR_RESOURCE_KEY = (Color)App.Current.Resources["ExtraGrayColor"];
-        private static readonly double _Y_SPACE_FOR_RUNNER= -1;
+        private static readonly double _Y_SPACE_FOR_RUNNER = -1;
 
         private static int _NICHE_ROW_INDEX = 0;
         private static int _MAIN_VISUAL_ROW_INDEX = 1;
@@ -127,6 +127,7 @@ namespace Drive.Client.Controls.Switcher {
             InitializeComponent();
 
             _tasselTapGestureRecognizer.Tapped += OnTasselTapGestureRecognizerTapped;
+            _selectionRunner_ContentView.RegisterRelativeSwitcher(this);
         }
 
         private void OnTasselTapGestureRecognizerTapped(object sender, EventArgs e) => SelectedContentItemIndex = _tassels.IndexOf((Tassel)sender);
@@ -141,17 +142,17 @@ namespace Drive.Client.Controls.Switcher {
             set => SetValue(SelectedContentItemIndexProperty, value);
         }
 
-        private void ChangeContentVisibility(View targetView, bool makeVisible) {
-            targetView.TranslationY = makeVisible ? 0 : short.MaxValue;
-            Grid.SetRow(targetView, makeVisible ? _MAIN_VISUAL_ROW_INDEX : _NICHE_ROW_INDEX);
-        }
-
-        private async void TasselVisualSelection() {
+        public async void TasselVisualSelection() {
             for (int i = 0; i < _tassels.Count; i++) {
                 _tassels[i].IsTasselSelected = SelectedContentItemIndex == i;
             }
 
             await _selectionRunner_ContentView.TranslateTo(SelectedContentItemIndex * _selectionRunner_ContentView.Width, 0, 96);
+        }
+
+        private void ChangeContentVisibility(View targetView, bool makeVisible) {
+            targetView.TranslationY = makeVisible ? 0 : short.MaxValue;
+            Grid.SetRow(targetView, makeVisible ? _MAIN_VISUAL_ROW_INDEX : _NICHE_ROW_INDEX);
         }
     }
 }

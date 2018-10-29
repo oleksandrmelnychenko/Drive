@@ -43,6 +43,20 @@ namespace Drive.Client.Services.Navigation {
             }
         }
 
+        public IReadOnlyCollection<ViewModelBase> CurrentViewModelsNavigationStack {
+            get {
+                CustomNavigationView customNavigationView = Application.Current.MainPage as CustomNavigationView;
+
+                IReadOnlyCollection<ViewModelBase> readOnlyResult =
+                    customNavigationView.Navigation.NavigationStack
+                    .Select<Page, ViewModelBase>(p => (ViewModelBase)p.BindingContext)
+                    .ToList<ViewModelBase>()
+                    .AsReadOnly();
+
+                return readOnlyResult;
+            }
+        }
+
         public Task InitializeAsync() {
             if (Application.Current.MainPage is CustomNavigationView navigationPage) {
                 List<Page> stack = navigationPage.Navigation.NavigationStack.ToList();
