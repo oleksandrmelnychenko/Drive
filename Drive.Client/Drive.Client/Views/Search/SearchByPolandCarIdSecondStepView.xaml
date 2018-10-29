@@ -59,12 +59,12 @@
                         </controls:EntryExtended>
                         <!--  TODO: bound source property to the MainInputIconPath with appropriate binding converter  -->
                         <ffimageloadingsvg:SvgCachedImage
-                            Margin="20,0,0,0"
-                            HeightRequest="15"
+                            Margin="10,0,0,0"
+                            HeightRequest="18"
                             HorizontalOptions="Start"
                             Source="{Binding MainInputIconPath}"
                             VerticalOptions="Center"
-                            WidthRequest="15" />
+                            WidthRequest="18" />
                     </Grid>
                     <controls:LabelExtended
                         Grid.Row="1"

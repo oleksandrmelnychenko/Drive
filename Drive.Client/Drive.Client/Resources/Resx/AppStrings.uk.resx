@@ -426,4 +426,10 @@
   <data name="VinUppercase" xml:space="preserve">
     <value>VIN</value>
   </data>
+  <data name="RegistrationDateUppercase" xml:space="preserve">
+    <value>ДАТА РЕЄСТРАЦІЇ</value>
+  </data>
+  <data name="VINCodeUpperCase" xml:space="preserve">
+    <value>VIN КОД</value>
+  </data>
 </root>

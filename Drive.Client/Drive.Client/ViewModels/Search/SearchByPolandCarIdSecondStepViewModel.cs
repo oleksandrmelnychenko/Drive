@@ -1,9 +1,7 @@
 ﻿using Drive.Client.Models.Identities.NavigationArgs;
 using Drive.Client.ViewModels.IdentityAccounting;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Drive.Client.ViewModels.Search {
@@ -16,8 +14,8 @@ namespace Drive.Client.ViewModels.Search {
         /// </summary>
         public SearchByPolandCarIdSecondStepViewModel() {
             StepTitle = VIN_STEP_TITLE;
-            //MainInputPlaceholder = NAME_PLACEHOLDER_STEP_REGISTRATION;
-            //MainInputIconPath = NAME_ICON_PATH;
+            MainInputPlaceholder = VEHICLE_VIN_CODE_PLACEHOLDER_STEP;
+            MainInputIconPath = VEHICLE_VIN_CODE_ICON_PATH;
         }
 
         public override void Dispose() {
