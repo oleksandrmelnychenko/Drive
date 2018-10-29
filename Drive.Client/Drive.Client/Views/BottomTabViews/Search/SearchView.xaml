@@ -5,5 +5,5 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:switcherControls="clr-namespace:Drive.Client.Controls.Switcher"
     BackgroundColor="{StaticResource WhiteColor}">
-    <switcherControls:ContentSwitcher ContentItemSource="{Binding Path=SearchTabs}" SelectedContentItemIndex="{Binding Path=t}" />
+    <switcherControls:ContentSwitcher ContentItemSource="{Binding Path=SearchTabs}" SelectedContentItemIndex="{Binding Path=SelectedTabIndex, Mode=TwoWay}" />
 </ContentView>
