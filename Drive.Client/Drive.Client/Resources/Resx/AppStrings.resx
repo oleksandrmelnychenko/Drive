@@ -393,10 +393,37 @@
   <data name="VehicleFound" xml:space="preserve">
     <value>Vehicle found</value>
   </data>
-  <data name="DayUpperCase" xml:space="preserve">
-    <value>DAY</value>
+  <data name="CurbWeight" xml:space="preserve">
+    <value>Curb weight</value>
   </data>
-  <data name="MonthUpperCase" xml:space="preserve">
-    <value>MONTH</value>
+  <data name="EnginePower" xml:space="preserve">
+    <value>Engine power</value>
+  </data>
+  <data name="EngineСapacity" xml:space="preserve">
+    <value>Engine capacity</value>
+  </data>
+  <data name="LastRecordedOdometerReading" xml:space="preserve">
+    <value>Last recorded odometer reading</value>
+  </data>
+  <data name="MaximumLadenMassOfBrakedTrailer" xml:space="preserve">
+    <value>Maximum laden mass of braked trailer</value>
+  </data>
+  <data name="MaximumLadenMassOfUnbrakedTrailer" xml:space="preserve">
+    <value>Maximum laden mass of unbraked trailer</value>
+  </data>
+  <data name="MaximumPermissibleTowableMass" xml:space="preserve">
+    <value>Maximum permissible towable mass</value>
+  </data>
+  <data name="NumberOfSeats" xml:space="preserve">
+    <value>Number of seats</value>
+  </data>
+  <data name="RegistrationStatus" xml:space="preserve">
+    <value>Registration status</value>
+  </data>
+  <data name="TotalСapacity" xml:space="preserve">
+    <value>Total capacity</value>
+  </data>
+  <data name="VinUppercase" xml:space="preserve">
+    <value>VIN</value>
   </data>
 </root>
