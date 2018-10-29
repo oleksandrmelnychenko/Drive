@@ -187,6 +187,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Curb weight.
+        /// </summary>
+        public static string CurbWeight {
+            get {
+                return ResourceManager.GetString("CurbWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to REGISTRATION DATE.
         /// </summary>
         public static string DataRegUpperCase {
@@ -237,6 +246,24 @@ namespace Drive.Client.Resources.Resx {
         public static string EngineCapacityUpperСase {
             get {
                 return ResourceManager.GetString("EngineCapacityUpperСase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Engine power.
+        /// </summary>
+        public static string EnginePower {
+            get {
+                return ResourceManager.GetString("EnginePower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Engine capacity.
+        /// </summary>
+        public static string EngineСapacity {
+            get {
+                return ResourceManager.GetString("EngineСapacity", resourceCulture);
             }
         }
         
@@ -439,6 +466,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last recorded odometer reading.
+        /// </summary>
+        public static string LastRecordedOdometerReading {
+            get {
+                return ResourceManager.GetString("LastRecordedOdometerReading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log out.
         /// </summary>
         public static string LogOut {
@@ -453,6 +489,33 @@ namespace Drive.Client.Resources.Resx {
         public static string MainTitle {
             get {
                 return ResourceManager.GetString("MainTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum laden mass of braked trailer.
+        /// </summary>
+        public static string MaximumLadenMassOfBrakedTrailer {
+            get {
+                return ResourceManager.GetString("MaximumLadenMassOfBrakedTrailer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum laden mass of unbraked trailer.
+        /// </summary>
+        public static string MaximumLadenMassOfUnbrakedTrailer {
+            get {
+                return ResourceManager.GetString("MaximumLadenMassOfUnbrakedTrailer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum permissible towable mass.
+        /// </summary>
+        public static string MaximumPermissibleTowableMass {
+            get {
+                return ResourceManager.GetString("MaximumPermissibleTowableMass", resourceCulture);
             }
         }
         
@@ -525,6 +588,15 @@ namespace Drive.Client.Resources.Resx {
         public static string NSPhotoLibraryUsageDescription {
             get {
                 return ResourceManager.GetString("NSPhotoLibraryUsageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of seats.
+        /// </summary>
+        public static string NumberOfSeats {
+            get {
+                return ResourceManager.GetString("NumberOfSeats", resourceCulture);
             }
         }
         
@@ -646,6 +718,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Registration status.
+        /// </summary>
+        public static string RegistrationStatus {
+            get {
+                return ResourceManager.GetString("RegistrationStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your request has been sent!.
         /// </summary>
         public static string RequestSent {
@@ -754,6 +835,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total capacity.
+        /// </summary>
+        public static string TotalСapacity {
+            get {
+                return ResourceManager.GetString("TotalСapacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TSC.
         /// </summary>
         public static string TSC {
@@ -858,6 +948,15 @@ namespace Drive.Client.Resources.Resx {
         public static string VehicleUpperCase {
             get {
                 return ResourceManager.GetString("VehicleUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VIN.
+        /// </summary>
+        public static string VinUppercase {
+            get {
+                return ResourceManager.GetString("VinUppercase", resourceCulture);
             }
         }
         
