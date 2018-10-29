@@ -460,4 +460,7 @@
   <data name="VehicleTechnicalInspection" xml:space="preserve">
     <value>Технічна інспекція автомобіля</value>
   </data>
+  <data name="SearchByNumberFromUkraine" xml:space="preserve">
+    <value>ПОШУК АВТОМОБІЛЯ В УКРАЇНІ</value>
+  </data>
 </root>

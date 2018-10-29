@@ -460,4 +460,7 @@ certificate issued</value>
   <data name="VehicleTechnicalInspection" xml:space="preserve">
     <value>Vehicle technical inspection</value>
   </data>
+  <data name="SearchByNumberFromUkraine" xml:space="preserve">
+    <value>SEARCH CAR IN UKRAINE</value>
+  </data>
 </root>
