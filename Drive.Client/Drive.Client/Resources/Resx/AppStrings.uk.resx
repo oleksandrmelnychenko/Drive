@@ -409,7 +409,8 @@
     <value>Максимальна вага маси гальмованого авто</value>
   </data>
   <data name="MaximumLadenMassOfUnbrakedTrailer" xml:space="preserve">
-    <value>Максимальна навантажена маса неблокуваного авто</value>
+    <value>Максимальна навантажена маса 
+неблокуваного авто</value>
   </data>
   <data name="MaximumPermissibleTowableMass" xml:space="preserve">
     <value>Максимально допустима буксирована маса</value>
@@ -432,10 +433,31 @@
   <data name="MonthUpperCase" xml:space="preserve">
     <value>МІСЯЦЬ</value>
   </data>
-  <data name="RegistrationDateUppercase" xml:space="preserve">
-    <value>ДАТА РЕЄСТРАЦІЇ</value>
+  <data name="DateOfCreationUppercase" xml:space="preserve">
+    <value>ДАТА ВИПУСКУ</value>
   </data>
   <data name="VINCodeUpperCase" xml:space="preserve">
     <value>VIN КОД</value>
+  </data>
+  <data name="CivilLiabilityInsurance" xml:space="preserve">
+    <value>Цивільне страхування</value>
+  </data>
+  <data name="DateVehicleRecordDocumentIssued" xml:space="preserve">
+    <value>Дата видачі документів</value>
+  </data>
+  <data name="DateСurrentVehicleRegistrationCertificateIssued" xml:space="preserve">
+    <value>Дата видачі сертифікату реєстрації</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Номер</value>
+  </data>
+  <data name="NumberOfAxles" xml:space="preserve">
+    <value>Кількість осей</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="VehicleTechnicalInspection" xml:space="preserve">
+    <value>Технічна інспекція автомобіля</value>
   </data>
 </root>

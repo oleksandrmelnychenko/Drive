@@ -432,10 +432,32 @@
   <data name="MonthUpperCase" xml:space="preserve">
     <value>MONTH</value>
   </data>
-  <data name="RegistrationDateUppercase" xml:space="preserve">
-    <value>REGISTRATION DATE</value>
+  <data name="DateOfCreationUppercase" xml:space="preserve">
+    <value>DATE OF CREATION</value>
   </data>
   <data name="VINCodeUpperCase" xml:space="preserve">
     <value>VIN CODE</value>
+  </data>
+  <data name="CivilLiabilityInsurance" xml:space="preserve">
+    <value>Civil liability insurance</value>
+  </data>
+  <data name="DateVehicleRecordDocumentIssued" xml:space="preserve">
+    <value>Date vehicle record document issued</value>
+  </data>
+  <data name="DateСurrentVehicleRegistrationCertificateIssued" xml:space="preserve">
+    <value>Date сurrent vehicle registration 
+certificate issued</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="NumberOfAxles" xml:space="preserve">
+    <value>Number of axles</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="VehicleTechnicalInspection" xml:space="preserve">
+    <value>Vehicle technical inspection</value>
   </data>
 </root>

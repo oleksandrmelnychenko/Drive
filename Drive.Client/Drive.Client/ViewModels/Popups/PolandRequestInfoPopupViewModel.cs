@@ -20,6 +20,7 @@ namespace Drive.Client.ViewModels.Popups {
 
                 if (_lastIncomingVechile != null) {
                     await NavigationService.NavigateToAsync<PolandDriveAutoDetailsViewModel>(_lastIncomingVechile);
+                    await NavigationService.RemoveIntermediatePagesAsync();
                 }
                 else {
                     await NavigationService.NavigateToAsync<MainViewModel>();

@@ -169,6 +169,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Civil liability insurance.
+        /// </summary>
+        public static string CivilLiabilityInsurance {
+            get {
+                return ResourceManager.GetString("CivilLiabilityInsurance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Color.
         /// </summary>
         public static string Color {
@@ -214,11 +223,39 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DATE OF CREATION.
+        /// </summary>
+        public static string DateOfCreationUppercase {
+            get {
+                return ResourceManager.GetString("DateOfCreationUppercase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DATE.
         /// </summary>
         public static string DateUpperCase {
             get {
                 return ResourceManager.GetString("DateUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date vehicle record document issued.
+        /// </summary>
+        public static string DateVehicleRecordDocumentIssued {
+            get {
+                return ResourceManager.GetString("DateVehicleRecordDocumentIssued", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date сurrent vehicle registration 
+        ///certificate issued.
+        /// </summary>
+        public static string DateСurrentVehicleRegistrationCertificateIssued {
+            get {
+                return ResourceManager.GetString("DateСurrentVehicleRegistrationCertificateIssued", resourceCulture);
             }
         }
         
@@ -610,6 +647,24 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number.
+        /// </summary>
+        public static string Number {
+            get {
+                return ResourceManager.GetString("Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of axles.
+        /// </summary>
+        public static string NumberOfAxles {
+            get {
+                return ResourceManager.GetString("NumberOfAxles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number of seats.
         /// </summary>
         public static string NumberOfSeats {
@@ -732,15 +787,6 @@ namespace Drive.Client.Resources.Resx {
         public static string RegistrationDate {
             get {
                 return ResourceManager.GetString("RegistrationDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to REGISTRATION DATE.
-        /// </summary>
-        public static string RegistrationDateUppercase {
-            get {
-                return ResourceManager.GetString("RegistrationDateUppercase", resourceCulture);
             }
         }
         
@@ -889,6 +935,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry, access is limited.
         /// </summary>
         public static string UnauthorizeText {
@@ -966,6 +1021,15 @@ namespace Drive.Client.Resources.Resx {
         public static string VehiclesUpperCase {
             get {
                 return ResourceManager.GetString("VehiclesUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle technical inspection.
+        /// </summary>
+        public static string VehicleTechnicalInspection {
+            get {
+                return ResourceManager.GetString("VehicleTechnicalInspection", resourceCulture);
             }
         }
         
