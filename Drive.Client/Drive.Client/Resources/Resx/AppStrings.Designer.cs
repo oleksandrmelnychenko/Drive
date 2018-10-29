@@ -214,6 +214,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DAY.
+        /// </summary>
+        public static string DayUpperCase {
+            get {
+                return ResourceManager.GetString("DayUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EMAIL.
         /// </summary>
         public static string EmailUppercase {
@@ -471,6 +480,15 @@ namespace Drive.Client.Resources.Resx {
         public static string ModelUpperCase {
             get {
                 return ResourceManager.GetString("ModelUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MONTH.
+        /// </summary>
+        public static string MonthUpperCase {
+            get {
+                return ResourceManager.GetString("MonthUpperCase", resourceCulture);
             }
         }
         

@@ -393,4 +393,10 @@
   <data name="VehicleFound" xml:space="preserve">
     <value>Транспортний засіб знайдено</value>
   </data>
+  <data name="DayUpperCase" xml:space="preserve">
+    <value>ДЕНЬ</value>
+  </data>
+  <data name="MonthUpperCase" xml:space="preserve">
+    <value>МІСЯЦЬ</value>
+  </data>
 </root>

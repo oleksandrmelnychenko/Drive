@@ -95,87 +95,118 @@
                         Text="{Binding [EnterBirthday].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
                         TextColor="{StaticResource BaseGrayColor}" />
                 </StackLayout>
+
+                <!--  DATE  -->
                 <Grid
                     Grid.Row="4"
                     HeightRequest="50"
                     HorizontalOptions="Center"
                     RowSpacing="2"
                     WidthRequest="170">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="1" />
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
-                    <StackLayout
-                        HorizontalOptions="Center"
-                        Orientation="Horizontal"
-                        Spacing="0">
-                        <ffimageloadingsvg:SvgCachedImage
-                            Margin="0,0,0,0"
-                            HeightRequest="15"
-                            Source="resource://Drive.Client.Resources.Images.Calendar.svg"
-                            TranslationX="-5"
-                            VerticalOptions="Center"
-                            WidthRequest="15" />
-                        <!--<controls:EntryExtended
-                            FontSize="{StaticResource MediumSize}"
-                            HorizontalTextAlignment="Center"
-                            MaxLength="10"
-                            Placeholder="XX/XX/XXXX"
-                            Text="{Binding DateInput}"
-                            TextColor="{StaticResource BaseGrayColor}">
-                            <controls:EntryExtended.Behaviors>
-                                <behaviors:MaskedBehavior Mask="XX/XX/XXXX" />
-                                <behaviors:EventToCommandBehavior Command="{Binding DoneCommand}" EventName="Completed" />
-                            </controls:EntryExtended.Behaviors>
-                        </controls:EntryExtended>-->
-                        <controls:EntryExtended
-                            FontSize="{StaticResource MediumSize}"
-                            HorizontalTextAlignment="Center"
-                            MaxLength="2"
-                            Placeholder="XX"
-                            Text="{Binding Day}"
-                            TextColor="{StaticResource BaseGrayColor}">
-                            <controls:EntryExtended.Behaviors>
-                                <behaviors:NumericEntryBehavior />
-                            </controls:EntryExtended.Behaviors>
-                        </controls:EntryExtended>
-                        <controls:EntryExtended
-                            FontSize="{StaticResource MediumSize}"
-                            HorizontalTextAlignment="Center"
-                            MaxLength="2"
-                            Placeholder="XX"
-                            Text="{Binding Mounth}"
-                            TextColor="{StaticResource BaseGrayColor}">
-                            <controls:EntryExtended.Behaviors>
-                                <behaviors:NumericEntryBehavior />
-                            </controls:EntryExtended.Behaviors>
-                        </controls:EntryExtended>
-                        <controls:EntryExtended
-                            FontSize="{StaticResource MediumSize}"
-                            HorizontalTextAlignment="Center"
-                            MaxLength="4"
-                            Placeholder="XXXX"
-                            Text="{Binding Year}"
-                            TextColor="{StaticResource BaseGrayColor}">
-                            <controls:EntryExtended.Behaviors>
-                                <behaviors:NumericEntryBehavior />
-                                <behaviors:EventToCommandBehavior Command="{Binding DoneCommand}" EventName="Completed" />
-                            </controls:EntryExtended.Behaviors>
-                        </controls:EntryExtended>
-                    </StackLayout>
+
+                    <!--  DAY  -->
+                    <controls:EntryExtended
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontSize="{StaticResource MediumSize}"
+                        HorizontalTextAlignment="Center"
+                        MaxLength="2"
+                        Placeholder="XX"
+                        Text="{Binding Day}"
+                        TextColor="{StaticResource BaseGrayColor}"
+                        VerticalOptions="End">
+                        <controls:EntryExtended.Behaviors>
+                            <behaviors:NumericEntryBehavior />
+                        </controls:EntryExtended.Behaviors>
+                    </controls:EntryExtended>
                     <BoxView
+                        Grid.Row="1"
+                        Grid.Column="0"
                         HeightRequest="1"
                         VerticalOptions="End"
                         Color="{StaticResource BaseGrayColor}" />
                     <controls:LabelExtended
-                        Grid.Row="1"
+                        Grid.Row="2"
+                        Grid.Column="0"
                         FontSize="{StaticResource UltraLittleSize}"
                         HorizontalOptions="Center"
                         HorizontalTextAlignment="End"
-                        Text="{Binding [DateHelpUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                        Text="{Binding [DayUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                        TextColor="{StaticResource BaseGrayColor}" />
+
+                    <!--  MONTH  -->
+                    <controls:EntryExtended
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontSize="{StaticResource MediumSize}"
+                        HorizontalTextAlignment="Center"
+                        MaxLength="2"
+                        Placeholder="XX"
+                        Text="{Binding Mounth}"
+                        TextColor="{StaticResource BaseGrayColor}"
+                        VerticalOptions="End">
+                        <controls:EntryExtended.Behaviors>
+                            <behaviors:NumericEntryBehavior />
+                        </controls:EntryExtended.Behaviors>
+                    </controls:EntryExtended>
+                    <BoxView
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HeightRequest="1"
+                        VerticalOptions="End"
+                        Color="{StaticResource BaseGrayColor}" />
+                    <controls:LabelExtended
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        FontSize="{StaticResource UltraLittleSize}"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="End"
+                        Text="{Binding [MonthUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                        TextColor="{StaticResource BaseGrayColor}" />
+
+                    <!--  YEAR  -->
+                    <controls:EntryExtended
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        FontSize="{StaticResource MediumSize}"
+                        HorizontalTextAlignment="Center"
+                        MaxLength="4"
+                        Placeholder="XXXX"
+                        Text="{Binding Year}"
+                        TextColor="{StaticResource BaseGrayColor}"
+                        VerticalOptions="End">
+                        <controls:EntryExtended.Behaviors>
+                            <behaviors:NumericEntryBehavior />
+                        </controls:EntryExtended.Behaviors>
+                    </controls:EntryExtended>
+                    <BoxView
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        HeightRequest="1"
+                        VerticalOptions="End"
+                        Color="{StaticResource BaseGrayColor}" />
+                    <controls:LabelExtended
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        FontSize="{StaticResource UltraLittleSize}"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="End"
+                        Text="{Binding [YearUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
                         TextColor="{StaticResource BaseGrayColor}" />
                 </Grid>
             </Grid>
+
+            <!--  BUTTON NEXT  -->
             <ContentView
                 Grid.Row="2"
                 Padding="20,0"
