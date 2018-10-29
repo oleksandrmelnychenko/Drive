@@ -32,7 +32,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
 
         public Type RelativeViewType => typeof(SearchByCarIdView);
 
-        StringResource _tabHeader = ResourceLoader.Instance.GetString(nameof(AppStrings.ByNumberUpperCase));
+        StringResource _tabHeader = ResourceLoader.Instance.GetString(nameof(AppStrings.ByUkraineNumberUpperCase));
         public StringResource TabHeader {
             get => _tabHeader;
             private set => SetProperty(ref _tabHeader, value);
