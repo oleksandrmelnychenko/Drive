@@ -32,7 +32,6 @@ namespace Drive.Client.Factories.Vehicle {
                 PolandRequestDataItem polandRequestDataItem = new PolandRequestDataItem {
                     PolandVehicleRequest = request,
                     Created = request.Created,
-                    Status
                 };
                 polandRequestDataItem.InitializeAsync(null);
                 residentRequestDataItems.Add(polandRequestDataItem);

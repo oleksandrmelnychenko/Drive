@@ -50,6 +50,7 @@ namespace Drive.Client.ViewModels.Search {
             base.Dispose();
 
             RequestInfoPopupViewModel?.Dispose();
+            ResetCancellationTokenSource(ref _getPolandVehicleCancellationTokenSource);
         }
 
         public override Task InitializeAsync(object navigationData) {
@@ -67,17 +68,18 @@ namespace Drive.Client.ViewModels.Search {
             if (ValidateForm()) {
                 if (_searchByPolandNumberArgs != null) {
 
-
                     Guid busyKey = Guid.NewGuid();
                     SetBusy(busyKey, true);
 
-                    PolandVehicleDetail foundPolandVehicle = null;
+                    ResetCancellationTokenSource(ref _getPolandVehicleCancellationTokenSource);
+                    CancellationTokenSource cancellationTokenSource = _getPolandVehicleCancellationTokenSource;
 
+                    PolandVehicleDetail foundPolandVehicle = null;
 
                     try {
                         _searchByPolandNumberArgs.Date = MainInput.Value.Replace('/', '.');
 
-                        foundPolandVehicle = await _vehicleService.GetPolandVehicleDetails(_searchByPolandNumberArgs);
+                        foundPolandVehicle = await _vehicleService.GetPolandVehicleDetails(_searchByPolandNumberArgs, cancellationTokenSource.Token);
 
                         RequestInfoPopupViewModel.ShowPopupCommand.Execute(foundPolandVehicle);
                     }
