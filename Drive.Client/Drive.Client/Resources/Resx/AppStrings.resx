@@ -463,4 +463,10 @@ certificate issued</value>
   <data name="SearchByNumberFromUkraine" xml:space="preserve">
     <value>SEARCH CAR IN UKRAINE</value>
   </data>
+  <data name="ErrorUpperCase" xml:space="preserve">
+    <value>ERROR</value>
+  </data>
+  <data name="ExecutedUpperCase" xml:space="preserve">
+    <value>EXECUTED</value>
+  </data>
 </root>

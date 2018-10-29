@@ -463,4 +463,10 @@
   <data name="SearchByNumberFromUkraine" xml:space="preserve">
     <value>ПОШУК АВТОМОБІЛЯ В УКРАЇНІ</value>
   </data>
+  <data name="ErrorUpperCase" xml:space="preserve">
+    <value>ПОМИЛКА</value>
+  </data>
+  <data name="ExecutedUpperCase" xml:space="preserve">
+    <value>ВИКОНАНО</value>
+  </data>
 </root>

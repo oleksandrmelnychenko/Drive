@@ -386,6 +386,24 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ERROR.
+        /// </summary>
+        public static string ErrorUpperCase {
+            get {
+                return ResourceManager.GetString("ErrorUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EXECUTED.
+        /// </summary>
+        public static string ExecutedUpperCase {
+            get {
+                return ResourceManager.GetString("ExecutedUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This field is required.
         /// </summary>
         public static string FieldRequired {

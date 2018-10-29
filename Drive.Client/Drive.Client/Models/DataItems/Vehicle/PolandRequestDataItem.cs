@@ -1,5 +1,6 @@
 ﻿using Drive.Client.Helpers.Localize;
 using Drive.Client.Models.EntityModels.Search;
+using System.Drawing;
 
 namespace Drive.Client.Models.DataItems.Vehicle {
     public class PolandRequestDataItem : BaseRequestDataItem {
@@ -14,6 +15,12 @@ namespace Drive.Client.Models.DataItems.Vehicle {
         public StringResource Status {
             get { return _status; }
             set { SetProperty(ref _status, value); }
+        }
+
+        Color _statusColor;
+        public Color StatusColor {
+            get { return _statusColor; }
+            set { SetProperty(ref _statusColor, value); }
         }
     }
 }
