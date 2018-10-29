@@ -89,6 +89,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         private void ClearSource() {
             try {
                 Number.Value = string.Empty;
+                Number.IsValid = true;
                 Number.Validations?.Clear();
                 AddValidations();
             }

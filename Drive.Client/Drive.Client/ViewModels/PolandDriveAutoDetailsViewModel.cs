@@ -6,6 +6,8 @@ using Drive.Client.ViewModels.Base;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.Linq;
+using Drive.Client.Models.Identities.NavigationArgs;
+using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
 
 namespace Drive.Client.ViewModels {
     public class PolandDriveAutoDetailsViewModel : ContentPageBaseViewModel {
@@ -13,7 +15,6 @@ namespace Drive.Client.ViewModels {
         public PolandDriveAutoDetailsViewModel() {
             ActionBarViewModel = DependencyLocator.Resolve<CommonActionBarViewModel>();
             ActionBarViewModel.InitializeAsync(this);
-
 
             VehicleTechnicalInspectionFormattedString.Spans.Add(new Span() {
                 TextColor = (Color)Application.Current.Resources["HardGrayColor"],
@@ -67,6 +68,10 @@ namespace Drive.Client.ViewModels {
         public override Task InitializeAsync(object navigationData) {
 
             if (navigationData is PolandVehicleDetail polandVehicleDetail) {
+                if (NavigationService.CurrentViewModelsNavigationStack.FirstOrDefault() is MainViewModel mainViewModel) {
+                    mainViewModel.InitializeAsync(new BottomTabIndexArgs() { TargetTab = typeof(BookmarkViewModel) });
+                }
+
                 PolandDriveAuto = polandVehicleDetail;
 
                 VehicleTechnicalInspectionFormattedString.Spans.Last().Text = string.Format(": {0}", polandVehicleDetail.VehicleTechnicalInspection);
