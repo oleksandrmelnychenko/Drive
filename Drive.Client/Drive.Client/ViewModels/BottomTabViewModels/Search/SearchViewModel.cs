@@ -19,16 +19,26 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
             }
         }
 
+        int _t;
+        public int t {
+            get => _t;
+            set {
+                SetProperty(ref _t, value);
+            }
+        }
+
         /// <summary>
         ///     ctor().
         /// </summary>
         public SearchViewModel() {
             SearchTabs = new List<IVisualFiguring>() {
-                DependencyLocator.Resolve<SearchByCarIdViewModel>(),
                 DependencyLocator.Resolve<SearchByPolandCarIdViewModel>(),
+                DependencyLocator.Resolve<SearchByCarIdViewModel>(),
                 DependencyLocator.Resolve<SearchByPersonViewModel>()
             };
             SearchTabs.ForEach(searchTab => searchTab.InitializeAsync(this));
+
+            t = 1;
         }
 
         protected override void TabbViewModelInit() {

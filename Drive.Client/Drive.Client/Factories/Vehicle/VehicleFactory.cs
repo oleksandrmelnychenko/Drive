@@ -7,8 +7,8 @@ using Xamarin.Forms;
 
 namespace Drive.Client.Factories.Vehicle {
     class VehicleFactory : IVehicleFactory {
-        public List<ResidentRequestDataItem> BuildItems(IEnumerable<ResidentRequest> residentRequests) {
-            List<ResidentRequestDataItem> residentRequestDataItems = new List<ResidentRequestDataItem>();
+        public List<BaseRequestDataItem> BuildResidentRequestItems(IEnumerable<ResidentRequest> residentRequests) {
+            List<BaseRequestDataItem> residentRequestDataItems = new List<BaseRequestDataItem>();
 
             foreach (var request in residentRequests) {
                 ResidentRequestDataItem residentRequestDataItem = new ResidentRequestDataItem {
@@ -20,6 +20,21 @@ namespace Drive.Client.Factories.Vehicle {
                 };
                 residentRequestDataItem.InitializeAsync(null);
                 residentRequestDataItems.Add(residentRequestDataItem);
+            }
+
+            return residentRequestDataItems;
+        }
+
+        public List<BaseRequestDataItem> BuildPolandRequestItems(IEnumerable<PolandVehicleRequest> residentRequests) {
+            List<BaseRequestDataItem> residentRequestDataItems = new List<BaseRequestDataItem>();
+
+            foreach (var request in residentRequests) {
+                PolandRequestDataItem polandRequestDataItem = new PolandRequestDataItem {
+                    PolandVehicleRequest = request,
+                    Created = request.Created,
+                };
+                polandRequestDataItem.InitializeAsync(null);
+                residentRequestDataItems.Add(polandRequestDataItem);
             }
 
             return residentRequestDataItems;

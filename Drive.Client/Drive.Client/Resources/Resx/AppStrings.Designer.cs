@@ -790,6 +790,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SEARCH CAR IN UKRAINE.
+        /// </summary>
+        public static string SearchByNumberFromUkraine {
+            get {
+                return ResourceManager.GetString("SearchByNumberFromUkraine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Individual search.
         /// </summary>
         public static string SearchByPerson {

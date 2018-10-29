@@ -438,4 +438,7 @@
   <data name="VINCodeUpperCase" xml:space="preserve">
     <value>VIN КОД</value>
   </data>
+  <data name="SearchByNumberFromUkraine" xml:space="preserve">
+    <value>ПОШУК АВТОМОБІЛЯ В УКРАЇНІ</value>
+  </data>
 </root>
