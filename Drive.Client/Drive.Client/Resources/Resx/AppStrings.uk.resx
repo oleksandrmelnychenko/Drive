@@ -249,8 +249,8 @@
   <data name="ForgotPassword" xml:space="preserve">
     <value>Забули пароль?</value>
   </data>
-  <data name="ByNumberUpperCase" xml:space="preserve">
-    <value>ЗА НОМЕРОМ</value>
+  <data name="ByUkraineNumberUpperCase" xml:space="preserve">
+    <value>UA НОМЕР</value>
   </data>
   <data name="ERROR_INTERNET_CONNECTION" xml:space="preserve">
     <value>Перевірте підключення до інтернету</value>
@@ -376,7 +376,7 @@
     <value>НОМЕР</value>
   </data>
   <data name="SearchByNumberFromPoland" xml:space="preserve">
-    <value>ПОШУК ЗА НОМЕРОМ В ПОЛЬЩІ</value>
+    <value>ПОШУК АВТОМОБІЛЯ В ПОЛЬЩІ</value>
   </data>
   <data name="InserDateUpperCase" xml:space="preserve">
     <value>ВВЕДІТЬ ДАТУ</value>
@@ -426,10 +426,10 @@
   <data name="VinUppercase" xml:space="preserve">
     <value>VIN</value>
   </data>
-  <data name="RegistrationDateUppercase" xml:space="preserve">
-    <value>ДАТА РЕЄСТРАЦІЇ</value>
+  <data name="DayUpperCase" xml:space="preserve">
+    <value>ДЕНЬ</value>
   </data>
-  <data name="VINCodeUpperCase" xml:space="preserve">
-    <value>VIN КОД</value>
+  <data name="MonthUpperCase" xml:space="preserve">
+    <value>МІСЯЦЬ</value>
   </data>
 </root>

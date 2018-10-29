@@ -249,8 +249,8 @@
   <data name="ForgotPassword" xml:space="preserve">
     <value>Forgot your password?</value>
   </data>
-  <data name="ByNumberUpperCase" xml:space="preserve">
-    <value>BY NUMBER</value>
+  <data name="ByUkraineNumberUpperCase" xml:space="preserve">
+    <value>UA NUMBER</value>
   </data>
   <data name="ERROR_INTERNET_CONNECTION" xml:space="preserve">
     <value>Check your internet connection</value>
@@ -376,7 +376,7 @@
     <value>NUMBER</value>
   </data>
   <data name="SearchByNumberFromPoland" xml:space="preserve">
-    <value>SEARCH FOR NUMBERS IN POLAND</value>
+    <value>SEARCH CAR IN POLAND</value>
   </data>
   <data name="InserDateUpperCase" xml:space="preserve">
     <value>ENTER DATE</value>
@@ -426,10 +426,10 @@
   <data name="VinUppercase" xml:space="preserve">
     <value>VIN</value>
   </data>
-  <data name="RegistrationDateUppercase" xml:space="preserve">
-    <value>REGISTRATION DATE</value>
+  <data name="DayUpperCase" xml:space="preserve">
+    <value>DAY</value>
   </data>
-  <data name="VINCodeUpperCase" xml:space="preserve">
-    <value>VIN CODE</value>
+  <data name="MonthUpperCase" xml:space="preserve">
+    <value>MONTH</value>
   </data>
 </root>

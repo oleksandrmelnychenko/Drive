@@ -133,20 +133,20 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BY NUMBER.
-        /// </summary>
-        public static string ByNumberUpperCase {
-            get {
-                return ResourceManager.GetString("ByNumberUpperCase", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to PL NUMBER.
         /// </summary>
         public static string ByPolandNumberUpperCase {
             get {
                 return ResourceManager.GetString("ByPolandNumberUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UA NUMBER.
+        /// </summary>
+        public static string ByUkraineNumberUpperCase {
+            get {
+                return ResourceManager.GetString("ByUkraineNumberUpperCase", resourceCulture);
             }
         }
         
@@ -219,6 +219,15 @@ namespace Drive.Client.Resources.Resx {
         public static string DateUpperCase {
             get {
                 return ResourceManager.GetString("DateUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DAY.
+        /// </summary>
+        public static string DayUpperCase {
+            get {
+                return ResourceManager.GetString("DayUpperCase", resourceCulture);
             }
         }
         
@@ -538,6 +547,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MONTH.
+        /// </summary>
+        public static string MonthUpperCase {
+            get {
+                return ResourceManager.GetString("MonthUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NAME.
         /// </summary>
         public static string NameUpperCase {
@@ -763,7 +781,7 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SEARCH FOR NUMBERS IN POLAND.
+        ///   Looks up a localized string similar to SEARCH CAR IN POLAND.
         /// </summary>
         public static string SearchByNumberFromPoland {
             get {
