@@ -51,8 +51,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
             set { SetProperty(ref _visibilityClosedView, value); }
         }
 
-        ObservableCollection<ResidentRequestDataItem> _userRequests;
-        public ObservableCollection<ResidentRequestDataItem> UserRequests {
+        ObservableCollection<BaseRequestDataItem> _userRequests;
+        public ObservableCollection<BaseRequestDataItem> UserRequests {
             get { return _userRequests; }
             set {
                 _userRequests?.ForEach(r => r.Dispose());
@@ -60,13 +60,17 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
             }
         }
 
-        ResidentRequestDataItem _selectedRequest;
-        public ResidentRequestDataItem SelectedRequest {
+        BaseRequestDataItem _selectedRequest;
+        public BaseRequestDataItem SelectedRequest {
             get { return _selectedRequest; }
             set {
                 if (SetProperty(ref _selectedRequest, value) && value != null) {
-                    if (value.ResidentRequest.VehicleCount > 0) {
-                        GetVehicles(value);
+                    if (value is ResidentRequestDataItem residentRequestDataItem) {
+                        if (residentRequestDataItem.ResidentRequest.VehicleCount > 0) {
+                            GetVehicles((ResidentRequestDataItem)value);
+                        }
+                    } else if (value is PolandRequestDataItem polandRequestDataItem) {
+                        // TODO
                     }
                 }
             }
@@ -147,22 +151,21 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
         private async void GetRequestsAsync() {
             try {
                 if (BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth) {
-                    if (_canGet) {
-                        _canGet = false;
 
-                        List<ResidentRequest> userRequests = await _vehicleService.GetUserVehicleDetailRequestsAsync();
+                    List<ResidentRequest> userRequests = await _vehicleService.GetUserVehicleDetailRequestsAsync();
 
-                        if (userRequests != null) {
-                            var createdItems = _vehicleFactory.BuildItems(userRequests);
+                    if (userRequests != null) {
+                        List<BaseRequestDataItem> createdItems = _vehicleFactory.BuildResidentRequestItems(userRequests);
 
-                            UserRequests = createdItems.ToObservableCollection();
+                        List<PolandVehicleRequest> polandVehicleRequests = await _vehicleService.GetPolandVehicleRequestsAsync();
+                        if (polandVehicleRequests != null) {
+                            createdItems.AddRange(_vehicleFactory.BuildPolandRequestItems(polandVehicleRequests));
                         }
-                        _canGet = true;
+                        UserRequests = createdItems.OrderByDescending(x => x.Created).ToObservableCollection();
                     }
                 }
             }
             catch (Exception ex) {
-                _canGet = true;
                 Debug.WriteLine($"ERROR: {ex.Message}");
             }
         }

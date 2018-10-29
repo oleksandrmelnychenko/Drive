@@ -6,6 +6,8 @@ using System.Text;
 
 namespace Drive.Client.Factories.Vehicle {
     public interface IVehicleFactory {
-        List<ResidentRequestDataItem> BuildItems(IEnumerable<ResidentRequest> residentRequests);
+        List<BaseRequestDataItem> BuildPolandRequestItems(IEnumerable<PolandVehicleRequest> residentRequests);
+
+        List<BaseRequestDataItem> BuildResidentRequestItems(IEnumerable<ResidentRequest> residentRequests);
     }
 }

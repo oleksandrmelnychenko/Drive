@@ -44,7 +44,7 @@
             FontFamily="{StaticResource SFProLight}"
             FontSize="{StaticResource MidMediumSize}"
             HorizontalOptions="Center"
-            Text="{Binding [MainTitle].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+            Text="{Binding [SearchByNumberFromUkraine].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
             TextColor="{StaticResource DarkColor}"
             VerticalOptions="End" />
 

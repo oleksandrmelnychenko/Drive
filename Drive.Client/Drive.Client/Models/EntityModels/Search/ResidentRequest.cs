@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Drive.Client.Models.EntityModels.Search.Contracts;
+using Newtonsoft.Json;
 using System;
 
 namespace Drive.Client.Models.EntityModels.Search {
-    public class ResidentRequest {
+    public class ResidentRequest : IUserVehicleRequest {
         [JsonProperty("Created")]
         public DateTime Created { get; set; }
 
