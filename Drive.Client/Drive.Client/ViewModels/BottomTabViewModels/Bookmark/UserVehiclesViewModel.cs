@@ -31,6 +31,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
 
         private CancellationTokenSource _getVehiclesCancellationTokenSource = new CancellationTokenSource();
 
+        private CancellationTokenSource _getPolandVehicleInfoCancellationTokenSource = new CancellationTokenSource();
+
         private readonly IVehicleFactory _vehicleFactory;
 
         private readonly IVehicleService _vehicleService;
@@ -69,9 +71,11 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
                         if (residentRequestDataItem.ResidentRequest.VehicleCount > 0) {
                             GetVehicles((ResidentRequestDataItem)value);
                         }
-                    } else if (value is PolandRequestDataItem polandRequestDataItem) {
-                        // TODO
                     }
+                    else if (value is PolandRequestDataItem polandRequestDataItem) {
+                        OnPolandRequestDataItem(polandRequestDataItem);
+                    }
+
                 }
             }
         }
@@ -105,6 +109,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
             UserRequests?.ForEach(r => r.Dispose());
             UserRequests?.Clear();
 
+            ResetCancellationTokenSource(ref _getPolandVehicleInfoCancellationTokenSource);
             ResetCancellationTokenSource(ref _getUserVehicleDetailRequestsCancellationTokenSource);
             ResetCancellationTokenSource(ref _getVehiclesCancellationTokenSource);
         }
@@ -119,6 +124,31 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
                 };
 
                 await NavigationService.NavigateToAsync<VehicleDetailViewModel>(vehicleArgs);
+            }
+        }
+
+        private async void OnPolandRequestDataItem(PolandRequestDataItem selectedPolandRequestDataItem) {
+            Guid busyKey = Guid.NewGuid();
+            UpdateBusyVisualState(busyKey, true);
+
+            ResetCancellationTokenSource(ref _getPolandVehicleInfoCancellationTokenSource);
+            CancellationTokenSource cancellationTokenSource = _getPolandVehicleInfoCancellationTokenSource;
+
+            try {
+                PolandVehicleDetail polandVehicleDetail = await _vehicleService.GetPolandVehicleDetailsByRequestIdAsync(selectedPolandRequestDataItem.PolandVehicleRequest.RequestId.ToString(), cancellationTokenSource.Token);
+
+                if (polandVehicleDetail != null) {
+                    UpdateBusyVisualState(busyKey, false);
+                    await NavigationService.NavigateToAsync<PolandDriveAutoDetailsViewModel>(polandVehicleDetail);
+                }
+            }
+            catch (OperationCanceledException) { }
+            catch (ObjectDisposedException) { }
+            catch (Exception exc) {
+                UpdateBusyVisualState(busyKey, false);
+
+                Debug.WriteLine($"ERROR: {exc.Message}");
+                Debugger.Break();
             }
         }
 
