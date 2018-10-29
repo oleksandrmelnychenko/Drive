@@ -78,11 +78,11 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
             protected set => SetProperty(ref _mainInputPlaceholder, value);
         }
 
-        Keyboard _keyboardType = Keyboard.Default;
-        public Keyboard KeyboardType {
-            get => _keyboardType;
-            protected set => SetProperty(ref _keyboardType, value);
-        }
+        //Keyboard _keyboardType = Keyboard.Default;
+        //public Keyboard KeyboardType {
+        //    get => _keyboardType;
+        //    protected set => SetProperty(ref _keyboardType, value);
+        //}
 
         bool _isPasswordInput;
         public bool IsPasswordInput {

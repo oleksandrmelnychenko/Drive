@@ -37,7 +37,6 @@ namespace Drive.Client.ViewModels.Search {
 
             StepTitle = DATE_STEP_TITLE;
             MainInputIconPath = DATE_ICON_PATH;
-            KeyboardType = Keyboard.Numeric;
 
             RequestInfoPopupViewModel = DependencyLocator.Resolve<PolandRequestInfoPopupViewModel>();
             RequestInfoPopupViewModel.InitializeAsync(this);

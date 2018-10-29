@@ -42,7 +42,7 @@
                             HorizontalOptions="Fill"
                             HorizontalTextAlignment="Center"
                             IsPassword="{Binding Path=IsPasswordInput}"
-                            Keyboard="{Binding KeyboardType}"
+                            Keyboard="Email"
                             Placeholder="{Binding CurrentEmail, Mode=TwoWay}"
                             ReturnType="Done"
                             Text="{Binding Path=MainInput.Value}"

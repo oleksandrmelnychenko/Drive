@@ -48,7 +48,8 @@
                             HorizontalOptions="Fill"
                             HorizontalTextAlignment="Center"
                             IsPassword="{Binding Path=IsPasswordInput}"
-                            Keyboard="{Binding KeyboardType}"
+                            Keyboard="{OnPlatform Android=Telephone,
+                                                  iOS=Default}"
                             Placeholder="{Binding Path=MainInputPlaceholder.Value, Mode=TwoWay}"
                             ReturnType="Next"
                             Text="{Binding Path=MainInput.Value, Converter={StaticResource UpperCaseConverter}, Mode=TwoWay}"
