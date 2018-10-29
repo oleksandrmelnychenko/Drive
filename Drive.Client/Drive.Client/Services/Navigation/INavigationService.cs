@@ -20,6 +20,8 @@ namespace Drive.Client.Services.Navigation {
 
         Task RemoveBackStackAsync();
 
+        Task RemoveIntermediatePagesAsync();
+
         Task GoBackAsync();
     }
 }

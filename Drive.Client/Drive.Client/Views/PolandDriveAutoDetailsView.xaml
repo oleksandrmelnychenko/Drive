@@ -76,7 +76,7 @@
                     VerticalOptions="Center" />
                 <controls:LabelExtended
                     Style="{StaticResource descriptionLabel}"
-                    Text="{Binding PolandDriveAuto.Type}"
+                    Text="{Binding PolandDriveAuto.Model}"
                     VerticalOptions="Center" />
             </StackLayout>
 
@@ -90,6 +90,16 @@
                     <StackLayout Orientation="Horizontal" Spacing="0">
                         <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [VinUppercase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}, StringFormat='{0}:'}" />
                         <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.VIN}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [Number].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}, StringFormat='{0}:'}" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.Number}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [Type].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}, StringFormat='{0}:'}" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.Type}" />
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="0">
@@ -128,6 +138,11 @@
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [NumberOfAxles].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}, StringFormat='{0}:'}" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.NumberOfAxles}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
                         <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [CurbWeight].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}, StringFormat='{0}:'}" />
                         <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.CurbWeight}" />
                     </StackLayout>
@@ -146,6 +161,36 @@
                         <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [MaximumPermissibleTowableMass].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}, StringFormat='{0}:'}" />
                         <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.MaximumPermissibleTowableMass}" />
                     </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [DateСurrentVehicleRegistrationCertificateIssued].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}, StringFormat='{0}:'}" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.DateСurrentVehicleRegistrationCertificateIssued}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [DateVehicleRecordDocumentIssued].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}, StringFormat='{0}:'}" />
+                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.DateVehicleRecordDocumentIssued}" />
+                    </StackLayout>
+
+                    <!--<StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [VehicleTechnicalInspection].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}, StringFormat='{0}:'}" />
+                        <controls:LabelExtended
+                            HorizontalOptions="Start"
+                            Style="{StaticResource valueLabel}"
+                            Text="{Binding PolandDriveAuto.VehicleTechnicalInspection}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [CivilLiabilityInsurance].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}, StringFormat='{0}:'}" />
+                        <controls:LabelExtended
+                            HorizontalOptions="Start"
+                            Style="{StaticResource valueLabel}"
+                            Text="{Binding PolandDriveAuto.CivilLiabilityInsurance}" />
+                    </StackLayout>-->
+
+                    <Label FormattedText="{Binding Path=VehicleTechnicalInspectionFormattedString}" />
+
+                    <Label FormattedText="{Binding Path=CivilLiabilityInsuranceFormattedString}" />
                 </StackLayout>
             </ScrollView>
         </Grid>
