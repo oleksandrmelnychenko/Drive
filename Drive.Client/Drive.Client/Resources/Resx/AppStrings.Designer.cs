@@ -736,6 +736,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to REGISTRATION DATE.
+        /// </summary>
+        public static string RegistrationDateUppercase {
+            get {
+                return ResourceManager.GetString("RegistrationDateUppercase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Registration status.
         /// </summary>
         public static string RegistrationStatus {
@@ -966,6 +975,15 @@ namespace Drive.Client.Resources.Resx {
         public static string VehicleUpperCase {
             get {
                 return ResourceManager.GetString("VehicleUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VIN CODE.
+        /// </summary>
+        public static string VINCodeUpperCase {
+            get {
+                return ResourceManager.GetString("VINCodeUpperCase", resourceCulture);
             }
         }
         

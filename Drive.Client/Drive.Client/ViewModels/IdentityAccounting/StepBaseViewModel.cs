@@ -26,12 +26,15 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
         public static readonly StringResource PHONE_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.PnoneNumberUpperCase));
         public static readonly StringResource NAME_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.NameUpperCase));
         public static readonly StringResource PASSWORD_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.PasswordUpperCase));
+        public static readonly StringResource VEHICLE_VIN_CODE_PLACEHOLDER_STEP = ResourceLoader.Instance.GetString(nameof(AppStrings.VINCodeUpperCase));
+        public static readonly StringResource REGISTRATION_DATE_PLACEHOLDER_STEP = ResourceLoader.Instance.GetString(nameof(AppStrings.RegistrationDateUppercase));
 
         public static readonly string PHONENUMBER_ICON_PATH = "resource://Drive.Client.Resources.Images.Phone.svg";
         public static readonly string NAME_ICON_PATH = "resource://Drive.Client.Resources.Images.name.svg";
         public static readonly string EMAIL_ICON_PATH = "resource://Drive.Client.Resources.Images.Email.svg";
         public static readonly string PASSWORD_ICON_PATH = "resource://Drive.Client.Resources.Images.password.svg";
         public static readonly string DATE_ICON_PATH = "resource://Drive.Client.Resources.Images.Calendar.svg";
+        public static readonly string VEHICLE_VIN_CODE_ICON_PATH = "resource://Drive.Client.Resources.Images.ic_vin.svg";
         public static readonly string TODO_INPUT_ICON_STUB = "todo: appropriate icon path";
 
         private readonly IValidationObjectFactory _validationObjectFactory;

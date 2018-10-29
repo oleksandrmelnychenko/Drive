@@ -432,4 +432,10 @@
   <data name="MonthUpperCase" xml:space="preserve">
     <value>МІСЯЦЬ</value>
   </data>
+  <data name="RegistrationDateUppercase" xml:space="preserve">
+    <value>ДАТА РЕЄСТРАЦІЇ</value>
+  </data>
+  <data name="VINCodeUpperCase" xml:space="preserve">
+    <value>VIN КОД</value>
+  </data>
 </root>

@@ -8,6 +8,7 @@ using Drive.Client.ViewModels.IdentityAccounting;
 using Drive.Client.ViewModels.Popups;
 using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -15,8 +16,10 @@ using Xamarin.Forms;
 namespace Drive.Client.ViewModels.Search {
     public sealed class SearchByPolandCarIdFinallyStepViewModel : StepBaseViewModel {
 
-        private SearchByPolandNumberArgs _searchByPolandNumberArgs;
         private readonly IVehicleService _vehicleService;
+
+        private SearchByPolandNumberArgs _searchByPolandNumberArgs;
+        private CancellationTokenSource _getPolandVehicleCancellationTokenSource = new CancellationTokenSource();
 
         public ICommand InputTextChangedCommand => new Command(() => { });
 
@@ -37,6 +40,7 @@ namespace Drive.Client.ViewModels.Search {
 
             StepTitle = DATE_STEP_TITLE;
             MainInputIconPath = DATE_ICON_PATH;
+            MainInputPlaceholder = REGISTRATION_DATE_PLACEHOLDER_STEP;
 
             RequestInfoPopupViewModel = DependencyLocator.Resolve<PolandRequestInfoPopupViewModel>();
             RequestInfoPopupViewModel.InitializeAsync(this);
@@ -62,10 +66,13 @@ namespace Drive.Client.ViewModels.Search {
         protected async override void OnStepCommand() {
             if (ValidateForm()) {
                 if (_searchByPolandNumberArgs != null) {
-                    PolandVehicleDetail foundPolandVehicle = null;
+
 
                     Guid busyKey = Guid.NewGuid();
                     SetBusy(busyKey, true);
+
+                    PolandVehicleDetail foundPolandVehicle = null;
+
 
                     try {
                         _searchByPolandNumberArgs.Date = MainInput.Value.Replace('/', '.');
@@ -74,6 +81,8 @@ namespace Drive.Client.ViewModels.Search {
 
                         RequestInfoPopupViewModel.ShowPopupCommand.Execute(foundPolandVehicle);
                     }
+                    catch (OperationCanceledException) { }
+                    catch (ObjectDisposedException) { }
                     catch (Exception ex) {
                         Debug.WriteLine($"ERROR:{ex.Message}");
                     }
