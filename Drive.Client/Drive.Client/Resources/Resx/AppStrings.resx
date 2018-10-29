@@ -196,7 +196,7 @@
     <value>SAVED</value>
   </data>
   <data name="SearchByNumber" xml:space="preserve">
-    <value>SEARCH FOR NUMBERS</value>
+    <value>SEARCH BY NUMBER</value>
   </data>
   <data name="SignInUpperCase" xml:space="preserve">
     <value>SIGN IN</value>
