@@ -6,6 +6,7 @@ using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
 using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Models.Medias;
 using Drive.Client.Services.RequestProvider;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 using System.Threading;
@@ -351,7 +352,9 @@ namespace Drive.Client.Services.Identity {
                       throw ex;
                   }
                   catch (HttpRequestExceptionEx ex) {
-                      throw ex;
+                      completion = JsonConvert.DeserializeObject<IsCurrentPasswordExistResponse>(ex.Message);
+
+                      throw new InvalidOperationException(completion.Message, ex);
                   }
                   catch (Exception ex) {
                       Debug.WriteLine($"ERROR:{ex.Message}");
