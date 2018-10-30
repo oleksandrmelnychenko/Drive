@@ -9,6 +9,7 @@
     xmlns:controls="clr-namespace:Drive.Client.Controls"
     xmlns:dependency="clr-namespace:Drive.Client.ViewModels.Base"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
     xmlns:viewBase="clr-namespace:Drive.Client.Views.Base"
     dependency:DependencyLocator.AutoWireViewModel="True">
 
@@ -73,7 +74,7 @@
                         Grid.Row="1"
                         FontSize="{StaticResource Key=MidMediumSize}"
                         HorizontalOptions="Center"
-                        Text="день/місяць/рік"
+                        Text="{Binding [DayMonthYear].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
                         TextColor="{StaticResource BaseGrayColor}"
                         VerticalOptions="Center" />
                     <controls:LabelExtended

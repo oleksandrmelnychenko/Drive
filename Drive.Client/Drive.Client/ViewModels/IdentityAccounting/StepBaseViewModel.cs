@@ -12,7 +12,9 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
     public abstract class StepBaseViewModel : ContentPageBaseViewModel {
 
         public static readonly StringResource VIN_STEP_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.InserVinUpperCase));
+        public static readonly StringResource FIRST_DATE_REGISTRATION_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.FirstRegistrationDateUppercase));
         public static readonly StringResource DATE_STEP_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.InserDateUpperCase));
+        public static readonly StringResource DATE_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.DateUpperCase));
         public static readonly StringResource MIDDLENAME_STEP_REGISTRATION_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.MiddleNameUpperCase));
         public static readonly StringResource MIDDLENAME_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.MiddleNameUpperCase));
         public static readonly StringResource PHONENUMBER_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.PhoneNumberUpperCase));

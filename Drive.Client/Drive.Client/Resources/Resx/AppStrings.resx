@@ -469,4 +469,10 @@ certificate issued</value>
   <data name="ExecutedUpperCase" xml:space="preserve">
     <value>EXECUTED</value>
   </data>
+  <data name="DayMonthYear" xml:space="preserve">
+    <value>day/month/year</value>
+  </data>
+  <data name="FirstRegistrationDateUppercase" xml:space="preserve">
+    <value>First registration date</value>
+  </data>
 </root>

@@ -260,6 +260,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to day/month/year.
+        /// </summary>
+        public static string DayMonthYear {
+            get {
+                return ResourceManager.GetString("DayMonthYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DAY.
         /// </summary>
         public static string DayUpperCase {
@@ -418,6 +427,15 @@ namespace Drive.Client.Resources.Resx {
         public static string FinishedUpperCase {
             get {
                 return ResourceManager.GetString("FinishedUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First registration date.
+        /// </summary>
+        public static string FirstRegistrationDateUppercase {
+            get {
+                return ResourceManager.GetString("FirstRegistrationDateUppercase", resourceCulture);
             }
         }
         

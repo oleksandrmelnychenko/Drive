@@ -468,4 +468,10 @@
   <data name="ExecutedUpperCase" xml:space="preserve">
     <value>ВИКОНАНО</value>
   </data>
+  <data name="DayMonthYear" xml:space="preserve">
+    <value>день/місяць/рік</value>
+  </data>
+  <data name="FirstRegistrationDateUppercase" xml:space="preserve">
+    <value>ВВЕДІТЬ ДАТУ ПЕРШОЇ РЕЄСТРАЦІЇ</value>
+  </data>
 </root>

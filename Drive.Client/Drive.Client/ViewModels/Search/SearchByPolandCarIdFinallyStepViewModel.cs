@@ -38,9 +38,9 @@ namespace Drive.Client.ViewModels.Search {
         public SearchByPolandCarIdFinallyStepViewModel(IVehicleService vehicleService) {
             _vehicleService = vehicleService;
 
-            StepTitle = DATE_STEP_TITLE;
+            StepTitle = FIRST_DATE_REGISTRATION_TITLE;
             MainInputIconPath = DATE_ICON_PATH;
-            MainInputPlaceholder = REGISTRATION_DATE_PLACEHOLDER_STEP;
+            MainInputPlaceholder = DATE_TITLE;
 
             RequestInfoPopupViewModel = DependencyLocator.Resolve<PolandRequestInfoPopupViewModel>();
             RequestInfoPopupViewModel.InitializeAsync(this);
