@@ -34,6 +34,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid
                         Grid.Row="0"
@@ -72,12 +73,19 @@
                         Grid.Row="1"
                         FontSize="{StaticResource Key=MidMediumSize}"
                         HorizontalOptions="Center"
+                        Text="день/місяць/рік"
+                        TextColor="{StaticResource BaseGrayColor}"
+                        VerticalOptions="Center" />
+                    <controls:LabelExtended
+                        Grid.Row="2"
+                        FontSize="{StaticResource Key=MidMediumSize}"
+                        HorizontalOptions="Center"
                         IsVisible="{Binding Path=MainInput.IsValid, Converter={StaticResource Key=Reverse_bool_converter}}"
                         Text="{Binding Path=MainInput.Errors, Converter={StaticResource Key=first_element_from_collection_converter}}"
                         TextColor="{StaticResource Key=ErrorColor}"
                         VerticalOptions="Center" />
                     <controls:LabelExtended
-                        Grid.Row="1"
+                        Grid.Row="2"
                         FontSize="{StaticResource Key=MidMediumSize}"
                         HorizontalOptions="Center"
                         IsVisible="{Binding ServerError, Converter={StaticResource StringToBoolConverter}}"
