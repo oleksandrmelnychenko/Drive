@@ -1,5 +1,4 @@
 ﻿using Drive.Client.Exceptions;
-using Drive.Client.Extensions;
 using Drive.Client.Helpers;
 using Drive.Client.Models.Arguments.IdentityAccounting.ChangePassword;
 using Drive.Client.Models.Arguments.IdentityAccounting.ForgotPassword;
@@ -8,9 +7,7 @@ using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Models.Medias;
 using Drive.Client.Services.RequestProvider;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -97,7 +94,6 @@ namespace Drive.Client.Services.Identity {
 
                 return authenticationResult;
             }, cancellationToken);
-
 
 
         public async Task<AuthenticationResult> SignInAsync(SignInArgs signInArgsArgs, CancellationToken cancellationToken = default(CancellationToken)) =>
@@ -338,6 +334,31 @@ namespace Drive.Client.Services.Identity {
                       Debugger.Break();
                   }
                   return user;
+              }, cancellationToken);
+
+        public Task<IsCurrentPasswordExistResponse> IsCurrentPasswordExistAsync(string password, CancellationToken cancellationToken = default(CancellationToken)) =>
+              Task<IsCurrentPasswordExistResponse>.Run(async () => {
+                  IsCurrentPasswordExistResponse completion = null;
+
+                  try {
+                      string url = string.Format(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.IdentityEndpoints.IsCurrentPasswordExist, password);
+
+                      completion = await _requestProvider.GetAsync<IsCurrentPasswordExistResponse>(url,
+                          BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken,
+                          cancellationToken);
+                  }
+                  catch (ConnectivityException ex) {
+                      throw ex;
+                  }
+                  catch (HttpRequestExceptionEx ex) {
+                      throw ex;
+                  }
+                  catch (Exception ex) {
+                      Debug.WriteLine($"ERROR:{ex.Message}");
+                      Debugger.Break();
+                  }
+
+                  return completion;
               }, cancellationToken);
 
         private static void SetupProfile(AuthenticationResult authenticationResult) {

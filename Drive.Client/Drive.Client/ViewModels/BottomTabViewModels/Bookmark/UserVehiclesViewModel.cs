@@ -75,11 +75,10 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
                     else if (value is PolandRequestDataItem polandRequestDataItem) {
                         OnPolandRequestDataItem(polandRequestDataItem);
                     }
-
                 }
             }
         }
-
+        
         public ICommand SignInCommand => new Command(async () => await NavigationService.NavigateToAsync<SignInPhoneNumberStepViewModel>());
 
         public ICommand SignUpCommand => new Command(async () => await NavigationService.NavigateToAsync<PhoneNumberRegisterStepViewModel>());
