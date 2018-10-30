@@ -16,270 +16,65 @@ namespace Drive.Client.ViewModels {
             ActionBarViewModel = DependencyLocator.Resolve<CommonActionBarViewModel>();
             ActionBarViewModel.InitializeAsync(this);
 
-            //VehicleTechnicalInspectionFormattedString.Spans.Add(new Span() {
-            //    TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-            //    FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-            //    FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            //});
-            //VehicleTechnicalInspectionFormattedString.Spans.Add(new Span() {
-            //    TextColor = (Color)Application.Current.Resources["BlackColor"],
-            //    FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-            //    FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            //});
-            //VehicleTechnicalInspectionFormattedString.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.VehicleTechnicalInspection))));
+            Year.Spans.Add(BuildHeaderSpan(nameof(AppStrings.YearOfCreation)));
+            Year.Spans.Add(BuildValueSpan());
 
-            //CivilLiabilityInsuranceFormattedString.Spans.Add(new Span() {
-            //    TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-            //    FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-            //    FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            //});
-            //CivilLiabilityInsuranceFormattedString.Spans.Add(new Span() {
-            //    TextColor = (Color)Application.Current.Resources["BlackColor"],
-            //    FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-            //    FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            //});
-            //CivilLiabilityInsuranceFormattedString.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.CivilLiabilityInsurance))));
+            Vin.Spans.Add(BuildHeaderSpan(nameof(AppStrings.VinUppercase)));
+            Vin.Spans.Add(BuildValueSpan());
 
-            Year.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            Year.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            Year.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.YearOfCreation))));
+            VehicleTechnicalInspection.Spans.Add(BuildHeaderSpan(nameof(AppStrings.VehicleTechnicalInspection)));
+            VehicleTechnicalInspection.Spans.Add(BuildValueSpan());
 
-            Vin.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            Vin.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            Vin.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.VinUppercase))));
+            LastOdometrData.Spans.Add(BuildHeaderSpan(nameof(AppStrings.LastRecordedOdometerReading)));
+            LastOdometrData.Spans.Add(BuildValueSpan());
 
-            VehicleTechnicalInspection.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            VehicleTechnicalInspection.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            VehicleTechnicalInspection.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.VehicleTechnicalInspection))));
+            RegistrationStatus.Spans.Add(BuildHeaderSpan(nameof(AppStrings.RegistrationStatus)));
+            RegistrationStatus.Spans.Add(BuildValueSpan());
 
-            LastOdometrData.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            LastOdometrData.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            LastOdometrData.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.LastRecordedOdometerReading))));
+            EngineCapacity.Spans.Add(BuildHeaderSpan(nameof(AppStrings.EngineCapacity)));
+            EngineCapacity.Spans.Add(BuildValueSpan());
 
-            RegistrationStatus.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            RegistrationStatus.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            RegistrationStatus.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.RegistrationStatus))));
+            EnginePower.Spans.Add(BuildHeaderSpan(nameof(AppStrings.EnginePower)));
+            EnginePower.Spans.Add(BuildValueSpan());
 
-            EngineCapacity.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            EngineCapacity.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            EngineCapacity.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.EngineCapacity))));
+            FuelType.Spans.Add(BuildHeaderSpan(nameof(AppStrings.FuelType)));
+            FuelType.Spans.Add(BuildValueSpan());
 
-            EnginePower.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            EnginePower.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            EnginePower.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.EnginePower))));
+            TotalCapacity.Spans.Add(BuildHeaderSpan(nameof(AppStrings.TotalСapacity)));
+            TotalCapacity.Spans.Add(BuildValueSpan());
 
-            FuelType.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            FuelType.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            FuelType.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.FuelType))));
+            NumberOfSeats.Spans.Add(BuildHeaderSpan(nameof(AppStrings.NumberOfSeats)));
+            NumberOfSeats.Spans.Add(BuildValueSpan());
 
-            TotalCapacity.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            TotalCapacity.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            TotalCapacity.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.TotalСapacity))));
+            CurbWeight.Spans.Add(BuildHeaderSpan(nameof(AppStrings.CurbWeight)));
+            CurbWeight.Spans.Add(BuildValueSpan());
 
-            NumberOfSeats.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            NumberOfSeats.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            NumberOfSeats.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.NumberOfSeats))));
+            MaximumLadenMassOfBrakedTrailer.Spans.Add(BuildHeaderSpan(nameof(AppStrings.MaximumLadenMassOfBrakedTrailer)));
+            MaximumLadenMassOfBrakedTrailer.Spans.Add(BuildValueSpan());
 
-            CurbWeight.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            CurbWeight.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            CurbWeight.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.CurbWeight))));
+            MaximumLadenMassOfUnbrakedTrailer.Spans.Add(BuildHeaderSpan(nameof(AppStrings.MaximumLadenMassOfUnbrakedTrailer)));
+            MaximumLadenMassOfUnbrakedTrailer.Spans.Add(BuildValueSpan());
 
-            MaximumLadenMassOfBrakedTrailer.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            MaximumLadenMassOfBrakedTrailer.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            MaximumLadenMassOfBrakedTrailer.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.MaximumLadenMassOfBrakedTrailer))));
+            MaximumPermissibleTowableMass.Spans.Add(BuildHeaderSpan(nameof(AppStrings.MaximumPermissibleTowableMass)));
+            MaximumPermissibleTowableMass.Spans.Add(BuildValueSpan());
 
-            MaximumLadenMassOfUnbrakedTrailer.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            MaximumLadenMassOfUnbrakedTrailer.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            MaximumLadenMassOfUnbrakedTrailer.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.MaximumLadenMassOfUnbrakedTrailer))));
+            NumberOfAxles.Spans.Add(BuildHeaderSpan(nameof(AppStrings.NumberOfAxles)));
+            NumberOfAxles.Spans.Add(BuildValueSpan());
 
-            MaximumPermissibleTowableMass.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            MaximumPermissibleTowableMass.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            MaximumPermissibleTowableMass.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.MaximumPermissibleTowableMass))));
+            DateСurrentVehicleRegistrationCertificateIssued.Spans.Add(BuildHeaderSpan(nameof(AppStrings.DateСurrentVehicleRegistrationCertificateIssued)));
+            DateСurrentVehicleRegistrationCertificateIssued.Spans.Add(BuildValueSpan());
 
-            NumberOfAxles.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            NumberOfAxles.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            NumberOfAxles.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.NumberOfAxles))));
+            DateVehicleRecordDocumentIssued.Spans.Add(BuildHeaderSpan(nameof(AppStrings.DateVehicleRecordDocumentIssued)));
+            DateVehicleRecordDocumentIssued.Spans.Add(BuildValueSpan());
 
-            DateСurrentVehicleRegistrationCertificateIssued.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            DateСurrentVehicleRegistrationCertificateIssued.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            DateСurrentVehicleRegistrationCertificateIssued.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.DateСurrentVehicleRegistrationCertificateIssued))));
+            CivilLiabilityInsurance.Spans.Add(BuildHeaderSpan(nameof(AppStrings.CivilLiabilityInsurance)));
+            CivilLiabilityInsurance.Spans.Add(BuildValueSpan());
 
-            DateVehicleRecordDocumentIssued.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            DateVehicleRecordDocumentIssued.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            DateVehicleRecordDocumentIssued.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.DateVehicleRecordDocumentIssued))));
+            Type.Spans.Add(BuildHeaderSpan(nameof(AppStrings.Type)));
+            Type.Spans.Add(BuildValueSpan());
 
-            CivilLiabilityInsurance.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            CivilLiabilityInsurance.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            CivilLiabilityInsurance.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.CivilLiabilityInsurance))));
-
-            Type.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            Type.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            Type.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.Type))));
-
-            Number.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            Number.Spans.Add(new Span() {
-                TextColor = (Color)Application.Current.Resources["BlackColor"],
-                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
-                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
-            });
-            Number.Spans.First().SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(nameof(AppStrings.Number))));
-
+            Number.Spans.Add(BuildHeaderSpan(nameof(AppStrings.Number)));
+            Number.Spans.Add(BuildValueSpan());
         }
 
         private FormattedString _number = new FormattedString();
@@ -402,24 +197,6 @@ namespace Drive.Client.ViewModels {
             private set => SetProperty<FormattedString>(ref _year, value);
         }
 
-
-
-
-
-        //private FormattedString _vehicleTechnicalInspectionFormattedString = new FormattedString();
-        //public FormattedString VehicleTechnicalInspectionFormattedString {
-        //    get => _vehicleTechnicalInspectionFormattedString;
-        //    private set => SetProperty<FormattedString>(ref _vehicleTechnicalInspectionFormattedString, value);
-        //}
-
-        //private FormattedString _civilLiabilityInsuranceFormattedString = new FormattedString();
-        //public FormattedString CivilLiabilityInsuranceFormattedString {
-        //    get => _civilLiabilityInsuranceFormattedString;
-        //    private set => SetProperty<FormattedString>(ref _civilLiabilityInsuranceFormattedString, value);
-        //}
-
-
-
         PolandVehicleDetail _polandDriveAuto;
         public PolandVehicleDetail PolandDriveAuto {
             get => _polandDriveAuto;
@@ -441,31 +218,50 @@ namespace Drive.Client.ViewModels {
 
                 PolandDriveAuto = polandVehicleDetail;
 
-                Year.Spans.Last().Text = string.Format(" {0:dd.MM.yyyy}", PolandDriveAuto.Year);
-                Vin.Spans.Last().Text = string.Format(" {0}", PolandDriveAuto.VIN);
-                VehicleTechnicalInspection.Spans.Last().Text = string.Format(" {0}", PolandDriveAuto.VehicleTechnicalInspection);
-                LastOdometrData.Spans.Last().Text = string.Format(" {0}", PolandDriveAuto.LastOdometrData);
-                RegistrationStatus.Spans.Last().Text = string.Format(" {0}", PolandDriveAuto.RegistrationStatus);
-                EngineCapacity.Spans.Last().Text = string.Format(" {0}", PolandDriveAuto.EngineCapacity);
-                EnginePower.Spans.Last().Text = string.Format(" {0}", PolandDriveAuto.EnginePower);
-                FuelType.Spans.Last().Text = string.Format(" {0}", PolandDriveAuto.FuelType);
-                TotalCapacity.Spans.Last().Text = string.Format(" {0}", PolandDriveAuto.TotalCapacity);
-                NumberOfSeats.Spans.Last().Text = string.Format(" {0}", PolandDriveAuto.NumberOfSeats);
-                CurbWeight.Spans.Last().Text = string.Format(" {0}", PolandDriveAuto.CurbWeight);
-                MaximumLadenMassOfBrakedTrailer.Spans.Last().Text = string.Format(" {0}", PolandDriveAuto.MaximumLadenMassOfBrakedTrailer);
-                MaximumLadenMassOfUnbrakedTrailer.Spans.Last().Text = string.Format(" {0}", PolandDriveAuto.MaximumLadenMassOfUnbrakedTrailer);
-                MaximumPermissibleTowableMass.Spans.Last().Text = string.Format(" {0}", PolandDriveAuto.MaximumPermissibleTowableMass);
-                NumberOfAxles.Spans.Last().Text = string.Format(" {0}", PolandDriveAuto.NumberOfAxles);
-                DateСurrentVehicleRegistrationCertificateIssued.Spans.Last().Text = string.Format(" {0}", PolandDriveAuto.DateСurrentVehicleRegistrationCertificateIssued);
-                DateVehicleRecordDocumentIssued.Spans.Last().Text = string.Format(" {0}", PolandDriveAuto.DateVehicleRecordDocumentIssued);
-                CivilLiabilityInsurance.Spans.Last().Text = string.Format(" {0}", PolandDriveAuto.CivilLiabilityInsurance);
-                Type.Spans.Last().Text = string.Format(" {0}", PolandDriveAuto.Type);
-                Number.Spans.Last().Text = string.Format(" {0}", PolandDriveAuto.Number);
+                Year.Spans.Last().Text = string.Format("  {0:dd.MM.yyyy}", PolandDriveAuto.Year);
+                Vin.Spans.Last().Text = string.Format("  {0}", PolandDriveAuto.VIN);
+                VehicleTechnicalInspection.Spans.Last().Text = string.Format("  {0}", PolandDriveAuto.VehicleTechnicalInspection);
+                LastOdometrData.Spans.Last().Text = string.Format("  {0}", PolandDriveAuto.LastOdometrData);
+                RegistrationStatus.Spans.Last().Text = string.Format("  {0}", PolandDriveAuto.RegistrationStatus);
+                EngineCapacity.Spans.Last().Text = string.Format("  {0}", PolandDriveAuto.EngineCapacity);
+                EnginePower.Spans.Last().Text = string.Format("  {0}", PolandDriveAuto.EnginePower);
+                FuelType.Spans.Last().Text = string.Format("  {0}", PolandDriveAuto.FuelType);
+                TotalCapacity.Spans.Last().Text = string.Format("  {0}", PolandDriveAuto.TotalCapacity);
+                NumberOfSeats.Spans.Last().Text = string.Format("  {0}", PolandDriveAuto.NumberOfSeats);
+                CurbWeight.Spans.Last().Text = string.Format("  {0}", PolandDriveAuto.CurbWeight);
+                MaximumLadenMassOfBrakedTrailer.Spans.Last().Text = string.Format("  {0}", PolandDriveAuto.MaximumLadenMassOfBrakedTrailer);
+                MaximumLadenMassOfUnbrakedTrailer.Spans.Last().Text = string.Format("  {0}", PolandDriveAuto.MaximumLadenMassOfUnbrakedTrailer);
+                MaximumPermissibleTowableMass.Spans.Last().Text = string.Format("  {0}", PolandDriveAuto.MaximumPermissibleTowableMass);
+                NumberOfAxles.Spans.Last().Text = string.Format("  {0}", PolandDriveAuto.NumberOfAxles);
+                DateСurrentVehicleRegistrationCertificateIssued.Spans.Last().Text = string.Format("  {0}", PolandDriveAuto.DateСurrentVehicleRegistrationCertificateIssued);
+                DateVehicleRecordDocumentIssued.Spans.Last().Text = string.Format("  {0}", PolandDriveAuto.DateVehicleRecordDocumentIssued);
+                CivilLiabilityInsurance.Spans.Last().Text = string.Format("  {0}", PolandDriveAuto.CivilLiabilityInsurance);
+                Type.Spans.Last().Text = string.Format("  {0}", PolandDriveAuto.Type);
+                Number.Spans.Last().Text = string.Format("  {0}", PolandDriveAuto.Number);
             }
 
             ActionBarViewModel?.InitializeAsync(navigationData);
 
             return base.InitializeAsync(navigationData);
         }
+
+        private Span BuildHeaderSpan(string stringPath) {
+            Span span = new Span() {
+                TextColor = (Color)Application.Current.Resources["HardGrayColor"],
+                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
+                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
+            };
+
+            span.SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(stringPath)));
+
+            return span;
+        }
+
+        private Span BuildValueSpan() =>
+            new Span() {
+                TextColor = (Color)Application.Current.Resources["BlackColor"],
+                FontSize = Device.RuntimePlatform == Device.iOS ? 14 : 12,
+                FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
+            };
     }
 }
