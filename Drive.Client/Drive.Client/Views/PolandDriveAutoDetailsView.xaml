@@ -44,7 +44,7 @@
                     </Style>
 
                     <Style x:Key="detailBase" TargetType="Label">
-                        <Setter Property="HorizontalOptions" Value="Start" />
+                        <Setter Property="HorizontalTextAlignment" Value="Start" />
                         <Setter Property="VerticalOptions" Value="Center" />
                     </Style>
 
@@ -52,7 +52,6 @@
                         x:Key="valueLabel"
                         BasedOn="{StaticResource detailBase}"
                         TargetType="Label">
-                        <Setter Property="LineBreakMode" Value="NoWrap" />
                         <Setter Property="HorizontalTextAlignment" Value="End" />
                         <Setter Property="HorizontalOptions" Value="EndAndExpand" />
                         <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
@@ -63,6 +62,7 @@
                         x:Key="titleLabel"
                         BasedOn="{StaticResource detailBase}"
                         TargetType="Label">
+                        <Setter Property="HorizontalOptions" Value="Start" />
                         <Setter Property="FontFamily" Value="{StaticResource SFProLight}" />
                         <Setter Property="TextColor" Value="{StaticResource HardGrayColor}" />
                         <Setter Property="FontSize" Value="{StaticResource TitleFontSize}" />
@@ -84,123 +84,162 @@
 
             <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never">
                 <StackLayout Spacing="10">
-                    <!--<StackLayout Orientation="Horizontal" Spacing="0">
-                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [YearOfCreation].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}" />
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [YearOfCreation].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
                         <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.Year, StringFormat={StaticResource FormattedDate}}" />
-                    </StackLayout>-->
+                    </StackLayout>
 
-                    <Label FormattedText="{Binding Path=Year}" />
-
-                    <!--<StackLayout Orientation="Horizontal" Spacing="0">
-                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [VinUppercase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}" />
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [VinUppercase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
                         <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.VIN}" />
-                    </StackLayout>-->
-                    <Label FormattedText="{Binding Path=Vin}" />
+                    </StackLayout>
 
-                    <!--<StackLayout Orientation="Horizontal" Spacing="0">
-                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [Number].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}" />
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [Number].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
                         <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.Number}" />
-                    </StackLayout>-->
-                    <Label FormattedText="{Binding Path=Number}" />
+                    </StackLayout>
 
-                    <!--<StackLayout Orientation="Horizontal" Spacing="0">
+                    <Grid ColumnSpacing="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
                         <controls:LabelExtended
-                            LineBreakMode="NoWrap"
+                            Grid.Column="0"
                             Style="{StaticResource titleLabel}"
-                            Text="{Binding [Type].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}" />
-                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.Type}" />
-                    </StackLayout>-->
-                    <Label FormattedText="{Binding Path=Type}" />
+                            Text="{Binding [Type].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
+                        <controls:LabelExtended
+                            Grid.Column="1"
+                            Style="{StaticResource valueLabel}"
+                            Text="{Binding PolandDriveAuto.Type}" />
+                    </Grid>
 
-                    <!--<StackLayout Orientation="Horizontal" Spacing="0">
-                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [LastRecordedOdometerReading].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}" />
-                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.LastOdometrData}" />
-                    </StackLayout>-->
-                    <Label FormattedText="{Binding Path=LastOdometrData}" />
+                    <Grid ColumnSpacing="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <controls:LabelExtended
+                            Grid.Column="0"
+                            Style="{StaticResource titleLabel}"
+                            Text="{Binding [LastRecordedOdometerReading].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
+                        <controls:LabelExtended
+                            Grid.Column="1"
+                            Style="{StaticResource valueLabel}"
+                            Text="{Binding PolandDriveAuto.LastOdometrData}" />
+                    </Grid>
 
-                    <!--<StackLayout Orientation="Horizontal" Spacing="0">
-                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [RegistrationStatus].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}" />
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [RegistrationStatus].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
                         <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.RegistrationStatus}" />
-                    </StackLayout>-->
-                    <Label FormattedText="{Binding Path=RegistrationStatus}" />
+                    </StackLayout>
 
-                    <!--<StackLayout Orientation="Horizontal" Spacing="0">
-                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [EngineСapacity].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}" />
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [EngineСapacity].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
                         <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.EngineCapacity}" />
-                    </StackLayout>-->
-                    <Label FormattedText="{Binding Path=EngineCapacity}" />
+                    </StackLayout>
 
-                    <!--<StackLayout Orientation="Horizontal" Spacing="0">
-                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [EnginePower].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}" />
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [EnginePower].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
                         <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.EnginePower}" />
-                    </StackLayout>-->
-                    <Label FormattedText="{Binding Path=EnginePower}" />
+                    </StackLayout>
 
-                    <!--<StackLayout Orientation="Horizontal" Spacing="0">
-                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [FuelType].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}" />
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [FuelType].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
                         <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.FuelType}" />
-                    </StackLayout>-->
-                    <Label FormattedText="{Binding Path=FuelType}" />
+                    </StackLayout>
 
-                    <!--<StackLayout Orientation="Horizontal" Spacing="0">
-                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [TotalСapacity].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}" />
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [TotalСapacity].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
                         <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.TotalCapacity}" />
-                    </StackLayout>-->
-                    <Label FormattedText="{Binding Path=TotalCapacity}" />
+                    </StackLayout>
 
-                    <!--<StackLayout Orientation="Horizontal" Spacing="0">
-                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [NumberOfSeats].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}" />
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [NumberOfSeats].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
                         <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.NumberOfSeats}" />
-                    </StackLayout>-->
-                    <Label FormattedText="{Binding Path=NumberOfSeats}" />
+                    </StackLayout>
 
-                    <!--<StackLayout Orientation="Horizontal" Spacing="0">
-                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [NumberOfAxles].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}" />
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [NumberOfAxles].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
                         <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.NumberOfAxles}" />
-                    </StackLayout>-->
-                    <Label FormattedText="{Binding Path=NumberOfAxles}" />
+                    </StackLayout>
 
-                    <!--<StackLayout Orientation="Horizontal" Spacing="0">
-                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [CurbWeight].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}" />
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [CurbWeight].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
                         <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.CurbWeight}" />
-                    </StackLayout>-->
-                    <Label FormattedText="{Binding Path=CurbWeight}" />
+                    </StackLayout>
 
-                    <!--<StackLayout Orientation="Horizontal" Spacing="0">
-                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [MaximumLadenMassOfBrakedTrailer].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}" />
-                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.MaximumLadenMassOfBrakedTrailer}" />
-                    </StackLayout>-->
-                    <Label FormattedText="{Binding Path=MaximumLadenMassOfBrakedTrailer}" />
+                    <Grid ColumnSpacing="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <controls:LabelExtended
+                            Grid.Column="0"
+                            Style="{StaticResource titleLabel}"
+                            Text="{Binding [MaximumLadenMassOfBrakedTrailer].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
+                        <controls:LabelExtended
+                            Grid.Column="1"
+                            Style="{StaticResource valueLabel}"
+                            Text="{Binding PolandDriveAuto.MaximumLadenMassOfBrakedTrailer}" />
+                    </Grid>
 
-                    <!--<StackLayout Orientation="Horizontal" Spacing="0">
-                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [MaximumLadenMassOfUnbrakedTrailer].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}" />
-                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.MaximumLadenMassOfUnbrakedTrailer}" />
-                    </StackLayout>-->
-                    <Label FormattedText="{Binding Path=MaximumLadenMassOfUnbrakedTrailer}" />
+                    <Grid ColumnSpacing="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <controls:LabelExtended
+                            Grid.Column="0"
+                            Style="{StaticResource titleLabel}"
+                            Text="{Binding [MaximumLadenMassOfUnbrakedTrailer].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
+                        <controls:LabelExtended
+                            Grid.Column="1"
+                            Style="{StaticResource valueLabel}"
+                            Text="{Binding PolandDriveAuto.MaximumLadenMassOfUnbrakedTrailer}" />
+                    </Grid>
 
-                    <!--<StackLayout Orientation="Horizontal" Spacing="0">
-                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [MaximumPermissibleTowableMass].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}" />
-                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.MaximumPermissibleTowableMass}" />
-                    </StackLayout>-->
-                    <Label FormattedText="{Binding Path=MaximumPermissibleTowableMass}" />
+                    <Grid ColumnSpacing="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <controls:LabelExtended
+                            Grid.Column="0"
+                            Style="{StaticResource titleLabel}"
+                            Text="{Binding [MaximumPermissibleTowableMass].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
+                        <controls:LabelExtended
+                            Grid.Column="1"
+                            Style="{StaticResource valueLabel}"
+                            Text="{Binding PolandDriveAuto.MaximumPermissibleTowableMass}" />
+                    </Grid>
 
-                    <!--<StackLayout Orientation="Horizontal" Spacing="0">
-                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [DateСurrentVehicleRegistrationCertificateIssued].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}" />
-                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.DateСurrentVehicleRegistrationCertificateIssued}" />
-                    </StackLayout>-->
-                    <Label FormattedText="{Binding Path=DateСurrentVehicleRegistrationCertificateIssued}" />
+                    <Grid ColumnSpacing="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <controls:LabelExtended
+                            Grid.Column="0"
+                            Style="{StaticResource titleLabel}"
+                            Text="{Binding [DateСurrentVehicleRegistrationCertificateIssued].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
+                        <controls:LabelExtended
+                            Grid.Column="1"
+                            Style="{StaticResource valueLabel}"
+                            Text="{Binding PolandDriveAuto.DateСurrentVehicleRegistrationCertificateIssued}" />
+                    </Grid>
 
-                    <!--<StackLayout Orientation="Horizontal" Spacing="0">
-                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [DateVehicleRecordDocumentIssued].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}" />
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding [DateVehicleRecordDocumentIssued].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}" />
                         <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.DateVehicleRecordDocumentIssued}" />
-                    </StackLayout>-->
-                    <Label FormattedText="{Binding Path=DateVehicleRecordDocumentIssued}" />
+                    </StackLayout>
 
-                    <Label FormattedText="{Binding Path=VehicleTechnicalInspection}" />
+                    <Label FormattedText="{Binding Path=VehicleTechnicalInspectionFormattedString}" />
 
-                    <Label FormattedText="{Binding Path=CivilLiabilityInsurance}" />
+                    <Label FormattedText="{Binding Path=CivilLiabilityInsuranceFormattedString}" />
                 </StackLayout>
             </ScrollView>
         </Grid>
     </viewBase:ContentPageBaseView.MainContent>
+
 </viewBase:ContentPageBaseView>

@@ -59,6 +59,7 @@
                     <RowDefinition Height="15" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <controls:LabelExtended
                     Grid.Row="0"
@@ -204,6 +205,15 @@
                         Text="{Binding [YearUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
                         TextColor="{StaticResource BaseGrayColor}" />
                 </Grid>
+
+                <controls:LabelExtended
+                    Grid.Row="5"
+                    FontSize="{StaticResource Key=MidMediumSize}"
+                    HorizontalOptions="Center"
+                    IsVisible="{Binding IsWarningMessageVisible}"
+                    Text="{Binding [IncorrectDateFormat].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                    TextColor="{StaticResource Key=ErrorColor}"
+                    VerticalOptions="Center" />
             </Grid>
 
             <!--  BUTTON NEXT  -->

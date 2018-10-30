@@ -458,7 +458,7 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Incorrect date value.
+        ///   Looks up a localized string similar to Incorrect date format.
         /// </summary>
         public static string IncorrectDateFormat {
             get {
