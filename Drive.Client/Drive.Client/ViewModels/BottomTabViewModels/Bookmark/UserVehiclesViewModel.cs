@@ -31,11 +31,11 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
 
         private CancellationTokenSource _getVehiclesCancellationTokenSource = new CancellationTokenSource();
 
+        private CancellationTokenSource _getPolandVehicleInfoCancellationTokenSource = new CancellationTokenSource();
+
         private readonly IVehicleFactory _vehicleFactory;
 
         private readonly IVehicleService _vehicleService;
-
-        private bool _canGet = true;
 
         public Type RelativeViewType => typeof(UserVehiclesView);
 
@@ -51,8 +51,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
             set { SetProperty(ref _visibilityClosedView, value); }
         }
 
-        ObservableCollection<ResidentRequestDataItem> _userRequests;
-        public ObservableCollection<ResidentRequestDataItem> UserRequests {
+        ObservableCollection<BaseRequestDataItem> _userRequests;
+        public ObservableCollection<BaseRequestDataItem> UserRequests {
             get { return _userRequests; }
             set {
                 _userRequests?.ForEach(r => r.Dispose());
@@ -60,13 +60,19 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
             }
         }
 
-        ResidentRequestDataItem _selectedRequest;
-        public ResidentRequestDataItem SelectedRequest {
+        BaseRequestDataItem _selectedRequest;
+        public BaseRequestDataItem SelectedRequest {
             get { return _selectedRequest; }
             set {
                 if (SetProperty(ref _selectedRequest, value) && value != null) {
-                    if (value.ResidentRequest.VehicleCount > 0) {
-                        GetVehicles(value);
+                    if (value is ResidentRequestDataItem residentRequestDataItem) {
+                        if (residentRequestDataItem.ResidentRequest.VehicleCount > 0) {
+                            GetVehicles((ResidentRequestDataItem)value);
+                        }
+                    } else if (value is PolandRequestDataItem polandRequestDataItem) {
+                        if (polandRequestDataItem.PolandVehicleRequest.IsParsed) {
+                            OnPolandRequestDataItem(polandRequestDataItem);
+                        }
                     }
                 }
             }
@@ -101,6 +107,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
             UserRequests?.ForEach(r => r.Dispose());
             UserRequests?.Clear();
 
+            ResetCancellationTokenSource(ref _getPolandVehicleInfoCancellationTokenSource);
             ResetCancellationTokenSource(ref _getUserVehicleDetailRequestsCancellationTokenSource);
             ResetCancellationTokenSource(ref _getVehiclesCancellationTokenSource);
         }
@@ -115,6 +122,31 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
                 };
 
                 await NavigationService.NavigateToAsync<VehicleDetailViewModel>(vehicleArgs);
+            }
+        }
+
+        private async void OnPolandRequestDataItem(PolandRequestDataItem selectedPolandRequestDataItem) {
+            Guid busyKey = Guid.NewGuid();
+            UpdateBusyVisualState(busyKey, true);
+
+            ResetCancellationTokenSource(ref _getPolandVehicleInfoCancellationTokenSource);
+            CancellationTokenSource cancellationTokenSource = _getPolandVehicleInfoCancellationTokenSource;
+
+            try {
+                PolandVehicleDetail polandVehicleDetail = await _vehicleService.GetPolandVehicleDetailsByRequestIdAsync(selectedPolandRequestDataItem.PolandVehicleRequest.RequestId.ToString(), cancellationTokenSource.Token);
+
+                if (polandVehicleDetail != null) {
+                    UpdateBusyVisualState(busyKey, false);
+                    await NavigationService.NavigateToAsync<PolandDriveAutoDetailsViewModel>(polandVehicleDetail);
+                }
+            }
+            catch (OperationCanceledException) { }
+            catch (ObjectDisposedException) { }
+            catch (Exception exc) {
+                UpdateBusyVisualState(busyKey, false);
+
+                Debug.WriteLine($"ERROR: {exc.Message}");
+                Debugger.Break();
             }
         }
 
@@ -147,22 +179,21 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
         private async void GetRequestsAsync() {
             try {
                 if (BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth) {
-                    if (_canGet) {
-                        _canGet = false;
 
-                        List<ResidentRequest> userRequests = await _vehicleService.GetUserVehicleDetailRequestsAsync();
+                    List<ResidentRequest> userRequests = await _vehicleService.GetUserVehicleDetailRequestsAsync();
 
-                        if (userRequests != null) {
-                            var createdItems = _vehicleFactory.BuildItems(userRequests);
+                    if (userRequests != null) {
+                        List<BaseRequestDataItem> createdItems = _vehicleFactory.BuildResidentRequestItems(userRequests);
 
-                            UserRequests = createdItems.ToObservableCollection();
+                        List<PolandVehicleRequest> polandVehicleRequests = await _vehicleService.GetPolandVehicleRequestsAsync();
+                        if (polandVehicleRequests != null) {
+                            createdItems.AddRange(_vehicleFactory.BuildPolandRequestItems(polandVehicleRequests));
                         }
-                        _canGet = true;
+                        UserRequests = createdItems.OrderByDescending(x => x.Created).ToObservableCollection();
                     }
                 }
             }
             catch (Exception ex) {
-                _canGet = true;
                 Debug.WriteLine($"ERROR: {ex.Message}");
             }
         }

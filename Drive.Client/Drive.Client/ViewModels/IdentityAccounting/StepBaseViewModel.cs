@@ -1,6 +1,5 @@
 ﻿using Drive.Client.Factories.Validation;
 using Drive.Client.Helpers.Localize;
-using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
 using Drive.Client.Resources.Resx;
 using Drive.Client.Validations;
 using Drive.Client.Validations.ValidationRules;
@@ -12,6 +11,8 @@ using Xamarin.Forms;
 namespace Drive.Client.ViewModels.IdentityAccounting {
     public abstract class StepBaseViewModel : ContentPageBaseViewModel {
 
+        public static readonly StringResource VIN_STEP_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.InserVinUpperCase));
+        public static readonly StringResource DATE_STEP_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.InserDateUpperCase));
         public static readonly StringResource MIDDLENAME_STEP_REGISTRATION_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.MiddleNameUpperCase));
         public static readonly StringResource MIDDLENAME_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.MiddleNameUpperCase));
         public static readonly StringResource PHONENUMBER_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.PhoneNumberUpperCase));
@@ -25,11 +26,16 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
         public static readonly StringResource PHONE_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.PnoneNumberUpperCase));
         public static readonly StringResource NAME_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.NameUpperCase));
         public static readonly StringResource PASSWORD_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.PasswordUpperCase));
+        public static readonly StringResource VEHICLE_VIN_CODE_PLACEHOLDER_STEP = ResourceLoader.Instance.GetString(nameof(AppStrings.VINCodeUpperCase));
+        public static readonly StringResource REGISTRATION_DATE_PLACEHOLDER_STEP = ResourceLoader.Instance.GetString(nameof(AppStrings.DateOfCreationUppercase));
+        //public static readonly StringResource INVALID_PASSWORD_WARNING = ResourceLoader.Instance.GetString(nameof(AppStrings.InvalidPassword));
 
         public static readonly string PHONENUMBER_ICON_PATH = "resource://Drive.Client.Resources.Images.Phone.svg";
         public static readonly string NAME_ICON_PATH = "resource://Drive.Client.Resources.Images.name.svg";
         public static readonly string EMAIL_ICON_PATH = "resource://Drive.Client.Resources.Images.Email.svg";
         public static readonly string PASSWORD_ICON_PATH = "resource://Drive.Client.Resources.Images.password.svg";
+        public static readonly string DATE_ICON_PATH = "resource://Drive.Client.Resources.Images.Calendar.svg";
+        public static readonly string VEHICLE_VIN_CODE_ICON_PATH = "resource://Drive.Client.Resources.Images.ic_vin.svg";
         public static readonly string TODO_INPUT_ICON_STUB = "todo: appropriate icon path";
 
         private readonly IValidationObjectFactory _validationObjectFactory;
@@ -76,11 +82,11 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
             protected set => SetProperty(ref _mainInputPlaceholder, value);
         }
 
-        Keyboard _keyboardType = Keyboard.Default;
-        public Keyboard KeyboardType {
-            get => _keyboardType;
-            protected set => SetProperty(ref _keyboardType, value);
-        }
+        //Keyboard _keyboardType = Keyboard.Default;
+        //public Keyboard KeyboardType {
+        //    get => _keyboardType;
+        //    protected set => SetProperty(ref _keyboardType, value);
+        //}
 
         bool _isPasswordInput;
         public bool IsPasswordInput {

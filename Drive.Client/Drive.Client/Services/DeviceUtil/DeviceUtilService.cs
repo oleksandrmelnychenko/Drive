@@ -22,8 +22,11 @@ namespace Drive.Client.Services.DeviceUtil {
             Task.Run(async () => {
                 bool responseCompletion = default(bool);
 
+                string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.ClientHardwareEndPoints.RegisterClientDevice;
+                string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+
                 try {
-                    responseCompletion = await _requestProvider.PostAsync<bool, ClientHardware>(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.ClientHardwareEndPoints.RegisterClientDevice, clientHardware);
+                    responseCompletion = await _requestProvider.PostAsync<bool, ClientHardware>(url, clientHardware, accessToken);
                 }
                 catch (Exception ex) {
                     Debug.WriteLine($"ERROR: {ex.Message}");

@@ -34,7 +34,6 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
             StepTitle = CHANGE_PHONENUMBER_TITLE;
             CurrentPhoneNumber = BaseSingleton<GlobalSetting>.Instance.UserProfile?.PhoneNumber; ;
             MainInputIconPath = PHONENUMBER_ICON_PATH;
-            KeyboardType = Device.RuntimePlatform == Device.Android ? Keyboard.Telephone : Keyboard.Default;
         }
 
         public override void Dispose() {

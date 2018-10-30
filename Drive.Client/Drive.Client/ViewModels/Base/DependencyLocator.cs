@@ -29,6 +29,7 @@ using System.Globalization;
 using System.Reflection;
 using Xamarin.Forms;
 using Drive.Client.ViewModels.Popups;
+using Drive.Client.Services.OpenUrl;
 
 namespace Drive.Client.ViewModels.Base {
     public static class DependencyLocator {
@@ -55,6 +56,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<AppMessagingEvents>().SingleInstance();
 
             // View models.
+            builder.RegisterType<PostViewModel>();
             builder.RegisterType<HomeViewModel>();
             builder.RegisterType<MainViewModel>();
             builder.RegisterType<PostViewModel>();
@@ -78,6 +80,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<RequestInfoPopupViewModel>();
             builder.RegisterType<SignInPasswordStepViewModel>();
             builder.RegisterType<LanguageSelectPopupViewModel>();
+            builder.RegisterType<SearchByPolandCarIdViewModel>();
             builder.RegisterType<PasswordRegisterStepViewModel>();
             builder.RegisterType<UpdateAppVersionPopupViewModel>();
             builder.RegisterType<SignInPhoneNumberStepViewModel>();
@@ -92,9 +95,14 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<ForgotPasswordFinallyStepViewModel>();
             builder.RegisterType<IdentityAccountingActionBarViewModel>();
             builder.RegisterType<ConfirmPasswordRegisterStepViewModel>();
+            builder.RegisterType<SearchByPolandCarIdSecondStepViewModel>();
+            builder.RegisterType<SearchByPolandCarIdFinallyStepViewModel>();
+            builder.RegisterType<PolandRequestInfoPopupViewModel>();
+            builder.RegisterType<PolandDriveAutoDetailsViewModel>();
 
             // Services.
             builder.RegisterType<DialogService>().As<IDialogService>();
+            builder.RegisterType<OpenUrlService>().As<IOpenUrlService>();
             builder.RegisterType<VehicleService>().As<IVehicleService>();
             builder.RegisterType<RequestProvider>().As<IRequestProvider>().SingleInstance();
             builder.RegisterType<IdentityService>().As<IIdentityService>();

@@ -1,12 +1,13 @@
 ﻿using Drive.Client.Helpers;
 using Drive.Client.Helpers.Localize;
 using Drive.Client.Models.EntityModels.Search;
+using Drive.Client.Models.EntityModels.Search.Contracts;
 using Drive.Client.ViewModels.Base;
 using System;
 using Xamarin.Forms;
 
 namespace Drive.Client.Models.DataItems.Vehicle {
-    public class ResidentRequestDataItem : NestedViewModel {
+    public class ResidentRequestDataItem : BaseRequestDataItem {
 
         public ResidentRequest ResidentRequest { get; set; }
 
@@ -14,12 +15,6 @@ namespace Drive.Client.Models.DataItems.Vehicle {
         public Color StatusColor {
             get { return _statusColor; }
             set { SetProperty(ref _statusColor, value); }
-        }
-
-        DateTime _created;
-        public DateTime Created {
-            get { return _created; }
-            set { SetProperty(ref _created, value); }
         }
 
         StringResource _countOutput;

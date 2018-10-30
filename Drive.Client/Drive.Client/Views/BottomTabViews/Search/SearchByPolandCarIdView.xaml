@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Drive.Client.Views.BottomTabViews.Search.SearchByPolandCarIdView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Drive.Client.Behaviors"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:converters="clr-namespace:Drive.Client.Converters"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
+    xmlns:hiddenView="clr-namespace:Drive.Client.Views.IdentityAccounting">
+
+    <Grid>
+        <Grid RowSpacing="0" VerticalOptions="Start">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  LOGO  -->
+            <ffimageloadingsvg:SvgCachedImage
+                Grid.Row="0"
+                HorizontalOptions="Center"
+                Source="resource://Drive.Client.Resources.Images.drive_logo.svg"
+                VerticalOptions="Center"
+                WidthRequest="185" />
+
+            <!--  TITLE  -->
+            <controls:LabelExtended
+                Grid.Row="0"
+                Margin="0,30"
+                FontFamily="{StaticResource SFProLight}"
+                FontSize="{StaticResource MidMediumSize}"
+                HorizontalOptions="Center"
+                Text="{Binding [SearchByNumberFromPoland].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                TextColor="{StaticResource DarkColor}"
+                VerticalOptions="End" />
+
+            <StackLayout Grid.Row="1" Spacing="0">
+                <!--  INPUT  -->
+                <Grid
+                    BackgroundColor="{StaticResource LightGrayColor}"
+                    HeightRequest="60"
+                    RowSpacing="0"
+                    VerticalOptions="Center">
+                    <controls:EntryExtended
+                        FontFamily="{StaticResource SFProThin}"
+                        FontSize="{StaticResource MediumSize}"
+                        HorizontalOptions="Fill"
+                        HorizontalTextAlignment="Center"
+                        LetterSpacingPlaceholder="{OnPlatform iOS=1.3,
+                                                              Android=0.1}"
+                        Placeholder="{Binding [NumberUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                        PlaceholderColor="{StaticResource ExtraGrayColor}"
+                        ReturnType="Next"
+                        Text="{Binding Number.Value, Converter={StaticResource UpperCaseConverter}, Mode=TwoWay}"
+                        TextColor="{StaticResource ExtraGrayColor}">
+                        <controls:EntryExtended.Behaviors>
+                            <behaviors:EventToCommandBehavior Command="{Binding InputCompleteCommand}" EventName="Completed" />
+                        </controls:EntryExtended.Behaviors>
+                    </controls:EntryExtended>
+                    <ffimageloadingsvg:SvgCachedImage
+                        Margin="10,0,0,0"
+                        HeightRequest="15"
+                        HorizontalOptions="Start"
+                        Source="resource://Drive.Client.Resources.Images.Search.svg"
+                        VerticalOptions="Center"
+                        WidthRequest="15" />
+                </Grid>
+                <!--  ERROR  -->
+                <controls:LabelExtended
+                    Margin="0,0,0,0"
+                    FontSize="{StaticResource LittleSize}"
+                    HorizontalOptions="CenterAndExpand"
+                    IsVisible="{Binding Number.IsValid, Converter={StaticResource Reverse_bool_converter}}"
+                    Text="{Binding Number.Errors, Converter={StaticResource first_element_from_collection_converter}}"
+                    TextColor="{StaticResource ErrorColor}"
+                    VerticalOptions="End"
+                    VerticalTextAlignment="Center" />
+                <!--  INFORMATION  -->
+                <!--<controls:LabelExtended
+                    Margin="0,30,0,0"
+                    FontFamily="{StaticResource SFProThin}"
+                    FontSize="{StaticResource Key=MidMediumSize}"
+                    HorizontalOptions="Center"
+                    Text="{Binding [UpdatedInfo].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                    TextColor="{StaticResource Key=ExtraGrayColor}" />-->
+            </StackLayout>
+        </Grid>
+
+        <hiddenView:UnauthorizeView BackgroundColor="{StaticResource WhiteColor}" IsVisible="{Binding VisibilityClosedView}" />
+    </Grid>
+</ContentView>

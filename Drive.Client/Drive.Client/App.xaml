@@ -3,7 +3,8 @@
     x:Class="Drive.Client.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:converters="clr-namespace:Drive.Client.Converters">
+    xmlns:converters="clr-namespace:Drive.Client.Converters"
+    xmlns:dataTemplates="clr-namespace:Drive.Client.Views.CustomCells.DataTemplateSelectors">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -146,6 +147,8 @@
             <converters:EmailConverter x:Key="EmailConverter" />
             <converters:UpperCaseConverter x:Key="UpperCaseConverter" />
 
+            <!--  DATA TEMPLATES  -->
+            <dataTemplates:VehicleRequestDataTemplateSelector x:Key="VehicleRequestDataTemplateSelector" />
 
             <!--  EXPLICIT STYLES  -->
             <Style x:Key="ValidationErrorLabelStyle" TargetType="{x:Type Label}">

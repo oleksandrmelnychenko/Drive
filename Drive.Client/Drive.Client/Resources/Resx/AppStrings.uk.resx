@@ -126,7 +126,7 @@
   <data name="LogOut" xml:space="preserve">
     <value>Вийти</value>
   </data>
-  <data name="Ваш запит надіслано!" xml:space="preserve">
+  <data name="ActualInfo" xml:space="preserve">
     <value>Актуальна інформація на 04.10.2018</value>
   </data>
   <data name="BodyType" xml:space="preserve">
@@ -249,8 +249,8 @@
   <data name="ForgotPassword" xml:space="preserve">
     <value>Забули пароль?</value>
   </data>
-  <data name="ByNumberUpperCase" xml:space="preserve">
-    <value>ЗА НОМЕРОМ</value>
+  <data name="ByUkraineNumberUpperCase" xml:space="preserve">
+    <value>UA АВТО</value>
   </data>
   <data name="ERROR_INTERNET_CONNECTION" xml:space="preserve">
     <value>Перевірте підключення до інтернету</value>
@@ -368,5 +368,104 @@
   </data>
   <data name="UpdateVersionInfoPartTwo" xml:space="preserve">
     <value>Оновіть, будь-ласка!</value>
+  </data>
+  <data name="ByPolandNumberUpperCase" xml:space="preserve">
+    <value>PL АВТО</value>
+  </data>
+  <data name="NumberUpperCase" xml:space="preserve">
+    <value>НОМЕР</value>
+  </data>
+  <data name="SearchByNumberFromPoland" xml:space="preserve">
+    <value>ПОШУК АВТОМОБІЛЯ В ПОЛЬЩІ</value>
+  </data>
+  <data name="InserDateUpperCase" xml:space="preserve">
+    <value>ВВЕДІТЬ ДАТУ</value>
+  </data>
+  <data name="InserVinUpperCase" xml:space="preserve">
+    <value>ВВЕДІТЬ VIN</value>
+  </data>
+  <data name="IncorrectDateFormat" xml:space="preserve">
+    <value>Невірний формат дати</value>
+  </data>
+  <data name="VehicleRequestGiveNoResults" xml:space="preserve">
+    <value>За вашим запитом нічого не знайдено</value>
+  </data>
+  <data name="VehicleFound" xml:space="preserve">
+    <value>Транспортний засіб знайдено</value>
+  </data>
+  <data name="CurbWeight" xml:space="preserve">
+    <value>Споряджена маса</value>
+  </data>
+  <data name="EnginePower" xml:space="preserve">
+    <value>Потужність двигуна</value>
+  </data>
+  <data name="EngineСapacity" xml:space="preserve">
+    <value>Об'єм двигуна</value>
+  </data>
+  <data name="LastRecordedOdometerReading" xml:space="preserve">
+    <value>Останні показники одометра</value>
+  </data>
+  <data name="MaximumLadenMassOfBrakedTrailer" xml:space="preserve">
+    <value>Макс. вага маси гальмованого авто</value>
+  </data>
+  <data name="MaximumLadenMassOfUnbrakedTrailer" xml:space="preserve">
+    <value>Макс. навантажена маса неблокованого авто</value>
+  </data>
+  <data name="MaximumPermissibleTowableMass" xml:space="preserve">
+    <value>Макс. допустима буксирована маса</value>
+  </data>
+  <data name="NumberOfSeats" xml:space="preserve">
+    <value>Кількість місць</value>
+  </data>
+  <data name="RegistrationStatus" xml:space="preserve">
+    <value>Статус реєстрації</value>
+  </data>
+  <data name="TotalСapacity" xml:space="preserve">
+    <value>Загальна місткість</value>
+  </data>
+  <data name="VinUppercase" xml:space="preserve">
+    <value>VIN</value>
+  </data>
+  <data name="DayUpperCase" xml:space="preserve">
+    <value>ДЕНЬ</value>
+  </data>
+  <data name="MonthUpperCase" xml:space="preserve">
+    <value>МІСЯЦЬ</value>
+  </data>
+  <data name="DateOfCreationUppercase" xml:space="preserve">
+    <value>ДАТА ВИПУСКУ</value>
+  </data>
+  <data name="VINCodeUpperCase" xml:space="preserve">
+    <value>VIN КОД</value>
+  </data>
+  <data name="CivilLiabilityInsurance" xml:space="preserve">
+    <value>Цивільне страхування</value>
+  </data>
+  <data name="DateVehicleRecordDocumentIssued" xml:space="preserve">
+    <value>Дата видачі документів</value>
+  </data>
+  <data name="DateСurrentVehicleRegistrationCertificateIssued" xml:space="preserve">
+    <value>Дата видачі сертифікату реєстрації</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Номер</value>
+  </data>
+  <data name="NumberOfAxles" xml:space="preserve">
+    <value>Кількість осей</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="VehicleTechnicalInspection" xml:space="preserve">
+    <value>Технічна інспекція автомобіля</value>
+  </data>
+  <data name="SearchByNumberFromUkraine" xml:space="preserve">
+    <value>ПОШУК АВТОМОБІЛЯ В УКРАЇНІ</value>
+  </data>
+  <data name="ErrorUpperCase" xml:space="preserve">
+    <value>ПОМИЛКА</value>
+  </data>
+  <data name="ExecutedUpperCase" xml:space="preserve">
+    <value>ВИКОНАНО</value>
   </data>
 </root>

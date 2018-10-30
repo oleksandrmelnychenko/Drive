@@ -17,17 +17,17 @@ namespace Drive.Client.ViewModels.Base {
             }
         }
 
-        public ICommand ShowPopupCommand => new Command(() => {
+        public ICommand ShowPopupCommand => new Command((object param) => {
             UpdatePopupScopeVisibility(true);
             IsPopupVisible = true;
 
-            OnShowPopup();
+            OnShowPopupCommand(param);
         });
 
-        public ICommand ClosePopupCommand => new Command(() => {
+        public ICommand ClosePopupCommand => new Command((object param) => {
             UpdatePopupScopeVisibility(false);
 
-            OnClosePopup();
+            OnClosePopupCommand(param);
         });
 
         public abstract Type RelativeViewType { get; }
@@ -44,8 +44,8 @@ namespace Drive.Client.ViewModels.Base {
 
         protected virtual void OnIsPopupVisible() { }
 
-        protected virtual void OnShowPopup() { }
+        protected virtual void OnShowPopupCommand(object param) { }
 
-        protected virtual void OnClosePopup() { }
+        protected virtual void OnClosePopupCommand(object param) { }
     }
 }

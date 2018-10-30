@@ -17,7 +17,6 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
             StepTitle = PHONENUMBER_TITLE;
             MainInputPlaceholder = PHONE_PLACEHOLDER_STEP_REGISTRATION;
             MainInputIconPath = PHONENUMBER_ICON_PATH;
-            KeyboardType = Device.RuntimePlatform == Device.Android ? Keyboard.Telephone : Keyboard.Default;
         }
 
         public override void Dispose() {
