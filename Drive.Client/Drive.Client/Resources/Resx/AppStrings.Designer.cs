@@ -836,7 +836,7 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SEARCH FOR NUMBERS.
+        ///   Looks up a localized string similar to SEARCH BY NUMBER.
         /// </summary>
         public static string SearchByNumber {
             get {
