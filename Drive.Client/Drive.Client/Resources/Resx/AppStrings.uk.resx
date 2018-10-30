@@ -385,7 +385,7 @@
     <value>ВВЕДІТЬ VIN</value>
   </data>
   <data name="IncorrectDateFormat" xml:space="preserve">
-    <value>Невірне значення дати</value>
+    <value>Невірний формат дати</value>
   </data>
   <data name="VehicleRequestGiveNoResults" xml:space="preserve">
     <value>За вашим запитом нічого не знайдено</value>

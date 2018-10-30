@@ -56,7 +56,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
                 catch (OperationCanceledException) { }
                 catch (ObjectDisposedException) { }
                 catch (ServiceAuthenticationException) { }
-                catch (System.Exception) {
+                catch (System.Exception уч) {
                     Debugger.Break();
 
                     SetBusy(busyKey, false);

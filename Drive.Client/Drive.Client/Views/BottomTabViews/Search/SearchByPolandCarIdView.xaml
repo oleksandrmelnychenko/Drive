@@ -63,7 +63,7 @@
                         Margin="10,0,0,0"
                         HeightRequest="15"
                         HorizontalOptions="Start"
-                        Source="resource://Drive.Client.Resources.Images.name.svg"
+                        Source="resource://Drive.Client.Resources.Images.Search.svg"
                         VerticalOptions="Center"
                         WidthRequest="15" />
                 </Grid>
