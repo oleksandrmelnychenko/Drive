@@ -133,7 +133,7 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PL NUMBER.
+        ///   Looks up a localized string similar to PL VEHICLE.
         /// </summary>
         public static string ByPolandNumberUpperCase {
             get {
@@ -142,7 +142,7 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UA NUMBER.
+        ///   Looks up a localized string similar to UA VEHICLE.
         /// </summary>
         public static string ByUkraineNumberUpperCase {
             get {
@@ -557,7 +557,7 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximum laden mass of braked trailer.
+        ///   Looks up a localized string similar to Max laden mass of braked trailer.
         /// </summary>
         public static string MaximumLadenMassOfBrakedTrailer {
             get {
@@ -566,7 +566,7 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximum laden mass of unbraked trailer.
+        ///   Looks up a localized string similar to Max laden mass of unbraked trailer.
         /// </summary>
         public static string MaximumLadenMassOfUnbrakedTrailer {
             get {
@@ -575,7 +575,7 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximum permissible towable mass.
+        ///   Looks up a localized string similar to Max permissible towable mass.
         /// </summary>
         public static string MaximumPermissibleTowableMass {
             get {
