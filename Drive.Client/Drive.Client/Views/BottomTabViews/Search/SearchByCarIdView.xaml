@@ -144,13 +144,13 @@
                 VerticalTextAlignment="Center" />
 
             <!--  INFORMATION  -->
-            <controls:LabelExtended
+            <!--<controls:LabelExtended
                 Margin="0,30,0,0"
                 FontFamily="{StaticResource SFProThin}"
                 FontSize="{StaticResource Key=MidMediumSize}"
                 HorizontalOptions="Center"
                 Text="{Binding [ActualInfo].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
-                TextColor="{StaticResource Key=ExtraGrayColor}" />
+                TextColor="{StaticResource Key=ExtraGrayColor}" />-->
         </StackLayout>
     </Grid>
 </ContentView>

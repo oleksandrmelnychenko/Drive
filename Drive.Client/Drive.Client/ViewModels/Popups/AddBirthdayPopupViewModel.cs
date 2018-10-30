@@ -58,7 +58,14 @@ namespace Drive.Client.ViewModels.Popups {
         public ICommand DoneCommand => new Command(() => {
             ClosePopupCommand.Execute(null);
             //_searchByPersonArgs.DateOfBirth = DateInput;
-            _searchByPersonArgs.DateOfBirth = $"{Day}/{Mounth}/{Year}";
+            string tt = string.Format("{0:D3}", Day);
+            string h = string.Format("number are:{0:D3} - {1:D3} and {2:D4}", Day, 3, 4);
+
+            _searchByPersonArgs.DateOfBirth = $"{Day:D2}/{Mounth}/{Year}";
+
+            var cc = ValidationHelper.IsValidDate(_searchByPersonArgs.DateOfBirth);
+
+
             BaseSingleton<GlobalSetting>.Instance.AppMessagingEvents.VehicleEvents.OnSendInformation();
         });
 
