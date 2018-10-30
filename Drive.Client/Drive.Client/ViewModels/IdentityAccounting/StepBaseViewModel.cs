@@ -28,6 +28,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
         public static readonly StringResource PASSWORD_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.PasswordUpperCase));
         public static readonly StringResource VEHICLE_VIN_CODE_PLACEHOLDER_STEP = ResourceLoader.Instance.GetString(nameof(AppStrings.VINCodeUpperCase));
         public static readonly StringResource REGISTRATION_DATE_PLACEHOLDER_STEP = ResourceLoader.Instance.GetString(nameof(AppStrings.DateOfCreationUppercase));
+        //public static readonly StringResource INVALID_PASSWORD_WARNING = ResourceLoader.Instance.GetString(nameof(AppStrings.InvalidPassword));
 
         public static readonly string PHONENUMBER_ICON_PATH = "resource://Drive.Client.Resources.Images.Phone.svg";
         public static readonly string NAME_ICON_PATH = "resource://Drive.Client.Resources.Images.name.svg";

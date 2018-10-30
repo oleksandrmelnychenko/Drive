@@ -13,6 +13,7 @@ namespace Drive.Client.Services.Identity {
         Task<UserNameAvailability> CheckUserNameAvailabiltyAsync(string userNmae, CancellationToken cancellationToken = default(CancellationToken));
 
         Task<AuthenticationResult> SignUpAsync(RegistrationCollectedInputsArgs collectedInputsArgs, CancellationToken cancellationToken = default(CancellationToken));
+
         Task<User> UpdatePasswordAsync(ChangePasswordArgs changePasswordArgs, CancellationToken cancellationToken = default(CancellationToken));
 
         Task<ChangedProfileData> ChangePhoneNumberAsync(string phoneNumber, CancellationToken cancellationToken = default(CancellationToken));
@@ -26,8 +27,11 @@ namespace Drive.Client.Services.Identity {
         Task<ChangedProfileData> ChangeEmailAsync(string value, CancellationToken cancellationToken = default(CancellationToken));
 
         Task<CanChangeForgottenPassword> CanUserChangeForgottenPasswordAsync(string phoneNumber, string name, CancellationToken cancellationToken = default(CancellationToken));
+
         Task<User> ForgotPasswordAsync(ForgotPasswordArgs forgotPasswordArgs, CancellationToken cancellationToken = default(CancellationToken));
 
         Task<User> GetUserAsync(CancellationToken cancellationToken = default(CancellationToken));
+
+        Task<IsCurrentPasswordExistResponse> IsCurrentPasswordExistAsync(string password, CancellationToken cancellationToken = default(CancellationToken));
     }
 }
