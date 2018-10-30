@@ -250,7 +250,7 @@
     <value>Forgot your password?</value>
   </data>
   <data name="ByUkraineNumberUpperCase" xml:space="preserve">
-    <value>UA NUMBER</value>
+    <value>UA VEHICLE</value>
   </data>
   <data name="ERROR_INTERNET_CONNECTION" xml:space="preserve">
     <value>Check your internet connection</value>
@@ -370,7 +370,7 @@
     <value>Please update!</value>
   </data>
   <data name="ByPolandNumberUpperCase" xml:space="preserve">
-    <value>PL NUMBER</value>
+    <value>PL VEHICLE</value>
   </data>
   <data name="NumberUpperCase" xml:space="preserve">
     <value>NUMBER</value>
@@ -406,13 +406,13 @@
     <value>Last recorded odometer reading</value>
   </data>
   <data name="MaximumLadenMassOfBrakedTrailer" xml:space="preserve">
-    <value>Maximum laden mass of braked trailer</value>
+    <value>Max laden mass of braked trailer</value>
   </data>
   <data name="MaximumLadenMassOfUnbrakedTrailer" xml:space="preserve">
-    <value>Maximum laden mass of unbraked trailer</value>
+    <value>Max laden mass of unbraked trailer</value>
   </data>
   <data name="MaximumPermissibleTowableMass" xml:space="preserve">
-    <value>Maximum permissible towable mass</value>
+    <value>Max permissible towable mass</value>
   </data>
   <data name="NumberOfSeats" xml:space="preserve">
     <value>Number of seats</value>

@@ -250,7 +250,7 @@
     <value>Забули пароль?</value>
   </data>
   <data name="ByUkraineNumberUpperCase" xml:space="preserve">
-    <value>UA НОМЕР</value>
+    <value>UA АВТО</value>
   </data>
   <data name="ERROR_INTERNET_CONNECTION" xml:space="preserve">
     <value>Перевірте підключення до інтернету</value>
@@ -370,7 +370,7 @@
     <value>Оновіть, будь-ласка!</value>
   </data>
   <data name="ByPolandNumberUpperCase" xml:space="preserve">
-    <value>PL НОМЕР</value>
+    <value>PL АВТО</value>
   </data>
   <data name="NumberUpperCase" xml:space="preserve">
     <value>НОМЕР</value>
@@ -406,14 +406,13 @@
     <value>Останні показники одометра</value>
   </data>
   <data name="MaximumLadenMassOfBrakedTrailer" xml:space="preserve">
-    <value>Максимальна вага маси гальмованого авто</value>
+    <value>Макс. вага маси гальмованого авто</value>
   </data>
   <data name="MaximumLadenMassOfUnbrakedTrailer" xml:space="preserve">
-    <value>Максимальна навантажена маса 
-неблокуваного авто</value>
+    <value>Макс. навантажена маса неблокованого авто</value>
   </data>
   <data name="MaximumPermissibleTowableMass" xml:space="preserve">
-    <value>Максимально допустима буксирована маса</value>
+    <value>Макс. допустима буксирована маса</value>
   </data>
   <data name="NumberOfSeats" xml:space="preserve">
     <value>Кількість місць</value>

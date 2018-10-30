@@ -37,8 +37,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
 
         private readonly IVehicleService _vehicleService;
 
-        private bool _canGet = true;
-
         public Type RelativeViewType => typeof(UserVehiclesView);
 
         StringResource _tabHeader = Helpers.Localize.ResourceLoader.Instance.GetString(nameof(AppStrings.HistoryRequestsUpperCase));
@@ -71,14 +69,15 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
                         if (residentRequestDataItem.ResidentRequest.VehicleCount > 0) {
                             GetVehicles((ResidentRequestDataItem)value);
                         }
-                    }
-                    else if (value is PolandRequestDataItem polandRequestDataItem) {
-                        OnPolandRequestDataItem(polandRequestDataItem);
+                    } else if (value is PolandRequestDataItem polandRequestDataItem) {
+                        if (polandRequestDataItem.PolandVehicleRequest.IsParsed) {
+                            OnPolandRequestDataItem(polandRequestDataItem);
+                        }
                     }
                 }
             }
         }
-        
+
         public ICommand SignInCommand => new Command(async () => await NavigationService.NavigateToAsync<SignInPhoneNumberStepViewModel>());
 
         public ICommand SignUpCommand => new Command(async () => await NavigationService.NavigateToAsync<PhoneNumberRegisterStepViewModel>());

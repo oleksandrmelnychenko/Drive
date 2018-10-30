@@ -49,10 +49,7 @@
         </StackLayout>
 
         <BoxView Grid.Column="1" Color="{StaticResource ExtraLightGrayColor}" />
-        <Grid
-            Grid.Column="1"
-            Padding="10"
-            VerticalOptions="Center">
+        <Grid Grid.Column="1" Padding="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="auto" />
@@ -60,7 +57,8 @@
             <StackLayout
                 Grid.Row="0"
                 Grid.RowSpan="2"
-                Spacing="0">
+                Spacing="0"
+                VerticalOptions="Center">
                 <controls:LabelExtended
                     FontSize="{StaticResource ValueFontSize}"
                     HorizontalOptions="Start"
