@@ -16,9 +16,9 @@ namespace Drive.Client.iOS {
 
         private SBNotificationHub Hub { get; set; }
 
-        public const string ConnectionString = "Endpoint=sb://testfirstnotificationhub.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=bLHhxIZL+MtmtHMI+YhopNS7z/QM6ifRTYoj1UyhshI=";
+        public const string ConnectionString = "";
 
-        public const string NotificationHubPath = "TestFirstNotificationHub";
+        public const string NotificationHubPath = "";
 
         public static string DEVICE_TOKEN = string.Empty;
 
