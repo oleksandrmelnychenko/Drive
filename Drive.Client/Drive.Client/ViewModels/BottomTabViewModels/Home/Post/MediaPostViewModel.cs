@@ -1,7 +1,7 @@
 ﻿using Drive.Client.Models.Identities.Posts;
 using Drive.Client.Services.OpenUrl;
 
-namespace Drive.Client.ViewModels.BottomTabViewModels.HomePosts.Post {
+namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
     public class MediaPostViewModel : SinglePostBaseViewModel {
 
         string _mediaUrl;

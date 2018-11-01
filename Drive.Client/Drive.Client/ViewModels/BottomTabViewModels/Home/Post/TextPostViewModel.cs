@@ -1,6 +1,6 @@
 ﻿using Drive.Client.Services.OpenUrl;
 
-namespace Drive.Client.ViewModels.BottomTabViewModels.HomePosts.Post {
+namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
     public class TextPostViewModel : SinglePostBaseViewModel {
 
         public TextPostViewModel() {

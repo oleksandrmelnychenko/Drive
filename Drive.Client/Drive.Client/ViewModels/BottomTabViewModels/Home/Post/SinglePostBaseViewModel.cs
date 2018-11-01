@@ -4,7 +4,7 @@ using Drive.Client.ViewModels.Base;
 using System;
 using System.Threading.Tasks;
 
-namespace Drive.Client.ViewModels.BottomTabViewModels.HomePosts.Post {
+namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
     public abstract class SinglePostBaseViewModel : NestedViewModel {
 
         protected readonly IOpenUrlService OpenUrlService;

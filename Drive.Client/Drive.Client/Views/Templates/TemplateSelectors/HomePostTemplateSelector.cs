@@ -1,4 +1,4 @@
-﻿using Drive.Client.ViewModels.BottomTabViewModels.HomePosts.Post;
+﻿using Drive.Client.ViewModels.BottomTabViewModels.Home.Post;
 using Drive.Client.Views.Templates.TemplateSelectors.ViewCells.Post;
 using System;
 using System.Diagnostics;

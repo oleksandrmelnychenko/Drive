@@ -4,7 +4,7 @@ using Drive.Client.Services.DeviceUtil;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.BottomTabViewModels;
 using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
-using Drive.Client.ViewModels.BottomTabViewModels.HomePosts;
+using Drive.Client.ViewModels.BottomTabViewModels.Home;
 using Drive.Client.ViewModels.BottomTabViewModels.Search;
 using Drive.Client.ViewModels.Popups;
 using System;

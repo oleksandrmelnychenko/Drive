@@ -2,13 +2,13 @@
 using Drive.Client.Models.Arguments.BottomtabSwitcher;
 using Drive.Client.Models.Identities.Posts;
 using Drive.Client.ViewModels.Base;
-using Drive.Client.ViewModels.BottomTabViewModels.HomePosts.Post;
+using Drive.Client.ViewModels.BottomTabViewModels.Home.Post;
 using Drive.Client.Views.BottomTabViews.Home;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Drive.Client.ViewModels.BottomTabViewModels.HomePosts {
+namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
     public sealed class HomeViewModel : TabbedViewModelBase {
 
         SinglePostBaseViewModel[] _posts = new SinglePostBaseViewModel[] { };
