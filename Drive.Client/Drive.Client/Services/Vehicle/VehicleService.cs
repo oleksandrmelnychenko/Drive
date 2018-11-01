@@ -92,5 +92,76 @@ namespace Drive.Client.Services.Vehicle {
                 }
                 return vehicleDetailsByResidentFullName;
             }, cancellationToken);
+
+        public async Task<PolandVehicleDetail> GetPolandVehicleDetails(SearchByPolandNumberArgs searchByPolandNumberArgs, CancellationToken cancellationToken = default(CancellationToken)) =>
+             await Task.Run(async () => {
+                 PolandVehicleDetail polandVehicleDetail = null;
+
+                 string url = string.Format(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.VehicleEndpoints.PolandVehicleDetailsEndpoint,
+                     searchByPolandNumberArgs.Vin, searchByPolandNumberArgs.Date, searchByPolandNumberArgs.Number);
+                 string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+
+                 try {
+                     polandVehicleDetail = await _requestProvider.GetAsync<PolandVehicleDetail>(url, accessToken);
+                 }
+                 catch (ConnectivityException ex) {
+                     throw ex;
+                 }
+                 catch (HttpRequestExceptionEx ex) {
+                     polandVehicleDetail = null;
+                 }
+                 catch (Exception ex) {
+                     Debug.WriteLine($"ERROR:{ex.Message}");
+                     Debugger.Break();
+                 }
+                 return polandVehicleDetail;
+             }, cancellationToken);
+
+        public async Task<PolandVehicleDetail> GetPolandVehicleDetailsByRequestIdAsync(string requestId, CancellationToken cancellationToken = default(CancellationToken)) =>
+            await Task.Run(async () => {
+                PolandVehicleDetail polandVehicleDetail = null;
+
+                string url =
+                    string.Format(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.VehicleEndpoints.PolandVehicleDetailsByRequestIdEndpoint, requestId);
+                string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+
+                try {
+                    polandVehicleDetail = await _requestProvider.GetAsync<PolandVehicleDetail>(url, accessToken);
+                }
+                catch (ConnectivityException ex) {
+                    throw ex;
+                }
+                catch (HttpRequestExceptionEx ex) {
+                    polandVehicleDetail = null;
+                }
+                catch (Exception ex) {
+                    Debug.WriteLine($"ERROR:{ex.Message}");
+                    Debugger.Break();
+                }
+                return polandVehicleDetail;
+            }, cancellationToken);
+
+        public async Task<List<PolandVehicleRequest>> GetPolandVehicleRequestsAsync(CancellationToken cancellationToken = default(CancellationToken)) =>
+              await Task.Run(async () => {
+                  List<PolandVehicleRequest> polandVehicleRequests = new List<PolandVehicleRequest>();
+
+                  string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.VehicleEndpoints.PolandVehicleRequestsEndpoint;
+                  string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+
+                  try {
+                      polandVehicleRequests = await _requestProvider.GetAsync<List<PolandVehicleRequest>>(url, accessToken);
+                  }
+                  catch (ConnectivityException ex) {
+                      throw ex;
+                  }
+                  catch (HttpRequestExceptionEx ex) {
+                      polandVehicleRequests = null;
+                  }
+                  catch (Exception ex) {
+                      Debug.WriteLine($"ERROR:{ex.Message}");
+                      Debugger.Break();
+                  }
+                  return polandVehicleRequests;
+              }, cancellationToken);
     }
 }

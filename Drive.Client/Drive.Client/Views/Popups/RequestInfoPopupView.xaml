@@ -54,6 +54,21 @@
                     Margin="0,5,0,0"
                     FontSize="{StaticResource LargerSize}"
                     HorizontalOptions="Center"
+                    Text="{Binding Path=MainTitle.Value}"
+                    TextColor="{StaticResource DarkColor}" />
+                <controls:LabelExtended
+                    Grid.Row="2"
+                    FontFamily="{StaticResource SFProLight}"
+                    FontSize="{StaticResource MediumSize}"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Path=PlainOutputText.Value}"
+                    TextColor="{StaticResource BaseGrayColor}" />
+                <!--<controls:LabelExtended
+                    Grid.Row="1"
+                    Margin="0,5,0,0"
+                    FontSize="{StaticResource LargerSize}"
+                    HorizontalOptions="Center"
                     Text="{Binding [RequestSent].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
                     TextColor="{StaticResource DarkColor}" />
                 <controls:LabelExtended
@@ -63,7 +78,7 @@
                     HorizontalOptions="Center"
                     HorizontalTextAlignment="Center"
                     Text="{Binding [AnswerReady].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
-                    TextColor="{StaticResource BaseGrayColor}" />
+                    TextColor="{StaticResource BaseGrayColor}" />-->
             </Grid>
         </Grid>
     </popups:SinglePopupViewBase.Content>

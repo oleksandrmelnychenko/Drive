@@ -2,6 +2,8 @@
 using Drive.Client.Models.Identities.Device;
 using Drive.Client.Services.RequestProvider;
 using Plugin.DeviceInfo;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using System;
 using System.Diagnostics;
 using System.Threading;
@@ -81,20 +83,44 @@ namespace Drive.Client.Services.DeviceUtil {
                     VersionNumber = CrossDeviceInfo.Current.Version
                 };
 
-                Location location;
+                Location location = null;
 
-                if (Device.RuntimePlatform == Device.Android) {
-                    location = null;
-                } else {
-                    location = await GetDeviceLocationAsync(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(9), cancellationTokenSource);
+                try {
+                    var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                    if (status != PermissionStatus.Granted) {
+                        if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Location)) {
+                            Debugger.Break();
+                        }
+
+                        var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Location);
+                        if (results.ContainsKey(Permission.Location))
+                            status = results[Permission.Location];
+                    }
+
+                    if (status == PermissionStatus.Granted) {
+                        try {
+                            //todo
+                            location = await GetDeviceLocationAsync(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(9), cancellationTokenSource);
+                        }
+                        catch (Exception ex) {
+                            Debug.WriteLine($"ERROR:{ex.Message}");
+                            Debugger.Break();
+                        }
+
+                    } else if (status != PermissionStatus.Unknown) {
+
+                    }
+                }
+                catch (Exception ex) {
+                    Debug.WriteLine($"ERROR:{ex.Message}");
+                    Debugger.Break();
                 }
 
                 if (location != null) {
                     clientHardware.Latitude = location.Latitude;
                     clientHardware.Longitude = location.Longitude;
                     clientHardware.TimestampUtc = location.TimestampUtc.UtcDateTime.ToString();
-                }
-                else {
+                } else {
                     clientHardware.TimestampUtc = DateTime.UtcNow.ToString();
                 }
 

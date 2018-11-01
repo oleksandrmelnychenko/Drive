@@ -44,7 +44,7 @@
             FontFamily="{StaticResource SFProLight}"
             FontSize="{StaticResource MidMediumSize}"
             HorizontalOptions="Center"
-            Text="{Binding [MainTitle].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+            Text="{Binding [SearchByNumberFromUkraine].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
             TextColor="{StaticResource DarkColor}"
             VerticalOptions="End" />
 
@@ -114,7 +114,7 @@
                     LetterSpacingPlaceholder="{OnPlatform iOS=1.3,
                                                           Android=0.07}"
                     MaxLength="20"
-                    Placeholder="{Binding [SearchByNumber].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                    Placeholder="{Binding [NumberUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
                     PlaceholderColor="{StaticResource ExtraGrayColor}"
                     ReturnType="Search"
                     Text="{Binding TargetValue, Converter={StaticResource UpperCaseConverter}, Mode=TwoWay}"
@@ -144,13 +144,13 @@
                 VerticalTextAlignment="Center" />
 
             <!--  INFORMATION  -->
-            <controls:LabelExtended
+            <!--<controls:LabelExtended
                 Margin="0,30,0,0"
                 FontFamily="{StaticResource SFProThin}"
                 FontSize="{StaticResource Key=MidMediumSize}"
                 HorizontalOptions="Center"
                 Text="{Binding [ActualInfo].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
-                TextColor="{StaticResource Key=ExtraGrayColor}" />
+                TextColor="{StaticResource Key=ExtraGrayColor}" />-->
         </StackLayout>
     </Grid>
 </ContentView>

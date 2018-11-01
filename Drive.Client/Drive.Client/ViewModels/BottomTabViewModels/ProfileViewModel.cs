@@ -22,9 +22,6 @@ using Xamarin.Forms;
 namespace Drive.Client.ViewModels.BottomTabViewModels {
     public sealed class ProfileViewModel : TabbedViewModelBase {
 
-        // Try get source one time..
-        private bool _canGet = true;
-
         private CancellationTokenSource _changeAvatarCancellationTokenSource = new CancellationTokenSource();
 
         private CancellationTokenSource _getUserCancellationTokenSource = new CancellationTokenSource();
@@ -110,20 +107,15 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         private async void GetUser() {
             try {
                 if (BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth) {
-                    if (_canGet) {
-                        _canGet = false;
+                    User user = await _identityService.GetUserAsync();
 
-                        User user = await _identityService.GetUserAsync();
-                        if (user != null) {
-                            UpdateUserProfile(user);
-                            UpdateView();
-                        }
-                        _canGet = true;
+                    if (user != null) {
+                        UpdateUserProfile(user);
+                        UpdateView();
                     }
                 }
             }
             catch (Exception ex) {
-                _canGet = true;
                 Debug.WriteLine($"ERROR:{ex.Message}");
                 Debugger.Break();
             }

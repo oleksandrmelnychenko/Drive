@@ -11,27 +11,25 @@ using Drive.Client.Services.Identity;
 using Drive.Client.Services.Identity.IdentityUtility;
 using Drive.Client.Services.Media;
 using Drive.Client.Services.Navigation;
-using Drive.Client.Services.OpenUrl;
 using Drive.Client.Services.RequestProvider;
 using Drive.Client.Services.Vehicle;
 using Drive.Client.ViewModels.ActionBars;
 using Drive.Client.ViewModels.BottomTabViewModels;
 using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
-using Drive.Client.ViewModels.BottomTabViewModels.HomePosts;
-using Drive.Client.ViewModels.BottomTabViewModels.HomePosts.Post;
 using Drive.Client.ViewModels.BottomTabViewModels.Popups;
 using Drive.Client.ViewModels.BottomTabViewModels.Search;
-using Drive.Client.ViewModels.IdentityAccounting;
 using Drive.Client.ViewModels.IdentityAccounting.EditProfile;
 using Drive.Client.ViewModels.IdentityAccounting.ForgotPassword;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
-using Drive.Client.ViewModels.Popups;
+using Drive.Client.ViewModels.IdentityAccounting;
 using Drive.Client.ViewModels.Search;
 using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
 using Xamarin.Forms;
+using Drive.Client.ViewModels.Popups;
+using Drive.Client.Services.OpenUrl;
 
 namespace Drive.Client.ViewModels.Base {
     public static class DependencyLocator {
@@ -58,6 +56,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<AppMessagingEvents>().SingleInstance();
 
             // View models.
+            builder.RegisterType<PostViewModel>();
             builder.RegisterType<HomeViewModel>();
             builder.RegisterType<MainViewModel>();
             builder.RegisterType<PostViewModel>();
@@ -81,6 +80,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<RequestInfoPopupViewModel>();
             builder.RegisterType<SignInPasswordStepViewModel>();
             builder.RegisterType<LanguageSelectPopupViewModel>();
+            builder.RegisterType<SearchByPolandCarIdViewModel>();
             builder.RegisterType<PasswordRegisterStepViewModel>();
             builder.RegisterType<UpdateAppVersionPopupViewModel>();
             builder.RegisterType<SignInPhoneNumberStepViewModel>();
@@ -95,12 +95,14 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<ForgotPasswordFinallyStepViewModel>();
             builder.RegisterType<IdentityAccountingActionBarViewModel>();
             builder.RegisterType<ConfirmPasswordRegisterStepViewModel>();
-            builder.RegisterType<TextPostViewModel>();
-            builder.RegisterType<MediaPostViewModel>();
+            builder.RegisterType<SearchByPolandCarIdSecondStepViewModel>();
+            builder.RegisterType<SearchByPolandCarIdFinallyStepViewModel>();
+            builder.RegisterType<PolandRequestInfoPopupViewModel>();
+            builder.RegisterType<PolandDriveAutoDetailsViewModel>();
 
             // Services.
             builder.RegisterType<DialogService>().As<IDialogService>();
-            builder.RegisterType<OpenUrlService>().As<IOpenUrlService>().SingleInstance();
+            builder.RegisterType<OpenUrlService>().As<IOpenUrlService>();
             builder.RegisterType<VehicleService>().As<IVehicleService>();
             builder.RegisterType<RequestProvider>().As<IRequestProvider>().SingleInstance();
             builder.RegisterType<IdentityService>().As<IIdentityService>();
@@ -137,7 +139,7 @@ namespace Drive.Client.ViewModels.Base {
             if (viewModelType == null) {
                 Debug.WriteLine("------------------------ERROR: Can't find viewModel type ---------------------");
                 return;
-            }
+            } 
 
             var viewModel = _container.Resolve(viewModelType);
             view.BindingContext = viewModel;

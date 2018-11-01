@@ -1,4 +1,5 @@
 ﻿using Drive.Client.ViewModels.Base;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Drive.Client.Services.Navigation {
@@ -10,6 +11,8 @@ namespace Drive.Client.Services.Navigation {
 
         ViewModelBase PreviousPageViewModel { get; }
 
+        IReadOnlyCollection<ViewModelBase> CurrentViewModelsNavigationStack { get; }
+
         Task InitializeAsync();
 
         Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase;
@@ -19,6 +22,8 @@ namespace Drive.Client.Services.Navigation {
         Task RemoveLastFromBackStackAsync();
 
         Task RemoveBackStackAsync();
+
+        Task RemoveIntermediatePagesAsync();
 
         Task GoBackAsync();
     }

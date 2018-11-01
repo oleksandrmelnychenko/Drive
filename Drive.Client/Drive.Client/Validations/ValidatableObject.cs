@@ -1,6 +1,5 @@
 ﻿using Drive.Client.Helpers.Localize;
 using Drive.Client.Resources.Resx;
-using Drive.Client.Validations.ValidationRules;
 using Drive.Client.ViewModels.Base;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +13,15 @@ namespace Drive.Client.Validations {
         public static readonly StringResource INVALID_PHONE_VALIDATION_MESSAGE =
             ResourceLoader.Instance.GetString(nameof(AppStrings.InvalidPhoneNumber));
         
+        public static readonly StringResource INVALID_DATE_FORMAT_VALIDATION_MESSAGE =
+            ResourceLoader.Instance.GetString(nameof(AppStrings.IncorrectDateFormat));
+
         public static readonly StringResource ERROR_EMAIL = ResourceLoader.Instance.GetString(nameof(AppStrings.InvalidEmail));
 
         public static readonly StringResource ERROR_MINLENGTH = ResourceLoader.Instance.GetString(nameof(AppStrings.ERROR_MINLENGTH));
 
         public static readonly StringResource ERROR_MAXLENGTH = ResourceLoader.Instance.GetString(nameof(AppStrings.ERROR_MAXLENGTH));
+
 
         public List<IValidationRule<T>> Validations { get; }
 

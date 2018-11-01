@@ -31,6 +31,8 @@ namespace Drive.Client.Models.Rest.EndPoints {
 
         private const string GET_USER_API_KEY = "api/v1/user/get";
 
+        private const string IS_CURRENT_PASSWORD_EXIST = "api/v1/user/check/password?currentPassword={0}";
+
         /// <summary>
         ///     ctor().
         /// </summary>
@@ -74,6 +76,8 @@ namespace Drive.Client.Models.Rest.EndPoints {
 
         public string GetUserEndPoint { get; private set; }
 
+        public string IsCurrentPasswordExist { get; private set; }
+
         private void UpdateEndpoint(string baseEndpoint) {
             CheckPhoneNumberEndPoint = $"{baseEndpoint}/{PHONENUMBER_AVAILABILITY_API_KEY}";
             CheckUserNameEndpoint = $"{baseEndpoint}/{USER_NAME_AVAILABILITY_API_KEY}";
@@ -88,6 +92,7 @@ namespace Drive.Client.Models.Rest.EndPoints {
             CanUserChangeForgottenPasswordEndPoint = $"{baseEndpoint}/{CAN_USER_CHANGE_FORGOTTEN_PASSWORD_API_KEY}";
             ForgotPasswordEndPoint = $"{baseEndpoint}/{FORGOT_PASSWORD_API_KEY}";
             GetUserEndPoint = $"{baseEndpoint}/{GET_USER_API_KEY}";
+            IsCurrentPasswordExist = string.Format("{0}/{1}", baseEndpoint, IS_CURRENT_PASSWORD_EXIST);
         }
     }
 }

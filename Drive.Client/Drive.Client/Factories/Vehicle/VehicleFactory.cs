@@ -2,13 +2,14 @@
 using Drive.Client.Models.DataItems.Vehicle;
 using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.Resources.Resx;
+using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace Drive.Client.Factories.Vehicle {
     class VehicleFactory : IVehicleFactory {
-        public List<ResidentRequestDataItem> BuildItems(IEnumerable<ResidentRequest> residentRequests) {
-            List<ResidentRequestDataItem> residentRequestDataItems = new List<ResidentRequestDataItem>();
+        public List<BaseRequestDataItem> BuildResidentRequestItems(IEnumerable<ResidentRequest> residentRequests) {
+            List<BaseRequestDataItem> residentRequestDataItems = new List<BaseRequestDataItem>();
 
             foreach (var request in residentRequests) {
                 ResidentRequestDataItem residentRequestDataItem = new ResidentRequestDataItem {
@@ -23,6 +24,28 @@ namespace Drive.Client.Factories.Vehicle {
             }
 
             return residentRequestDataItems;
+        }
+
+        public List<BaseRequestDataItem> BuildPolandRequestItems(IEnumerable<PolandVehicleRequest> residentRequests) {
+            List<BaseRequestDataItem> residentRequestDataItems = new List<BaseRequestDataItem>();
+
+            foreach (var request in residentRequests) {
+                PolandRequestDataItem polandRequestDataItem = new PolandRequestDataItem {
+                    PolandVehicleRequest = request,
+                    Created = request.Created,
+                    Status = GetPolandLocalizeStatus(request.IsParsed),
+                    StatusColor = request.IsParsed ? (Color)App.Current.Resources["StatusFinishedColor"] : (Color)App.Current.Resources["ErrorColor"]
+                };
+                polandRequestDataItem.InitializeAsync(null);
+                residentRequestDataItems.Add(polandRequestDataItem);
+            }
+
+            return residentRequestDataItems;
+        }
+
+        private StringResource GetPolandLocalizeStatus(bool isParsed) {
+            return isParsed ? ResourceLoader.Instance.GetString(nameof(AppStrings.ExecutedUpperCase))
+                            : ResourceLoader.Instance.GetString(nameof(AppStrings.ErrorUpperCase));
         }
 
         private StringResource GetLocalizeStatus(Status status) {

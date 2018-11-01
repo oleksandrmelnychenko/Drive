@@ -133,11 +133,20 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BY NUMBER.
+        ///   Looks up a localized string similar to PL VEHICLE.
         /// </summary>
-        public static string ByNumberUpperCase {
+        public static string ByPolandNumberUpperCase {
             get {
-                return ResourceManager.GetString("ByNumberUpperCase", resourceCulture);
+                return ResourceManager.GetString("ByPolandNumberUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UA VEHICLE.
+        /// </summary>
+        public static string ByUkraineNumberUpperCase {
+            get {
+                return ResourceManager.GetString("ByUkraineNumberUpperCase", resourceCulture);
             }
         }
         
@@ -160,6 +169,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Civil liability insurance.
+        /// </summary>
+        public static string CivilLiabilityInsurance {
+            get {
+                return ResourceManager.GetString("CivilLiabilityInsurance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Color.
         /// </summary>
         public static string Color {
@@ -174,6 +192,15 @@ namespace Drive.Client.Resources.Resx {
         public static string ConfirmPasswordUpperCase {
             get {
                 return ResourceManager.GetString("ConfirmPasswordUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curb weight.
+        /// </summary>
+        public static string CurbWeight {
+            get {
+                return ResourceManager.GetString("CurbWeight", resourceCulture);
             }
         }
         
@@ -196,11 +223,57 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DATE OF CREATION.
+        /// </summary>
+        public static string DateOfCreationUppercase {
+            get {
+                return ResourceManager.GetString("DateOfCreationUppercase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DATE.
         /// </summary>
         public static string DateUpperCase {
             get {
                 return ResourceManager.GetString("DateUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date vehicle record document issued.
+        /// </summary>
+        public static string DateVehicleRecordDocumentIssued {
+            get {
+                return ResourceManager.GetString("DateVehicleRecordDocumentIssued", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date сurrent vehicle registration 
+        ///certificate issued.
+        /// </summary>
+        public static string DateСurrentVehicleRegistrationCertificateIssued {
+            get {
+                return ResourceManager.GetString("DateСurrentVehicleRegistrationCertificateIssued", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to day/month/year.
+        /// </summary>
+        public static string DayMonthYear {
+            get {
+                return ResourceManager.GetString("DayMonthYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DAY.
+        /// </summary>
+        public static string DayUpperCase {
+            get {
+                return ResourceManager.GetString("DayUpperCase", resourceCulture);
             }
         }
         
@@ -228,6 +301,24 @@ namespace Drive.Client.Resources.Resx {
         public static string EngineCapacityUpperСase {
             get {
                 return ResourceManager.GetString("EngineCapacityUpperСase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Engine power.
+        /// </summary>
+        public static string EnginePower {
+            get {
+                return ResourceManager.GetString("EnginePower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Engine capacity.
+        /// </summary>
+        public static string EngineСapacity {
+            get {
+                return ResourceManager.GetString("EngineСapacity", resourceCulture);
             }
         }
         
@@ -304,6 +395,24 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ERROR.
+        /// </summary>
+        public static string ErrorUpperCase {
+            get {
+                return ResourceManager.GetString("ErrorUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EXECUTED.
+        /// </summary>
+        public static string ExecutedUpperCase {
+            get {
+                return ResourceManager.GetString("ExecutedUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This field is required.
         /// </summary>
         public static string FieldRequired {
@@ -318,6 +427,15 @@ namespace Drive.Client.Resources.Resx {
         public static string FinishedUpperCase {
             get {
                 return ResourceManager.GetString("FinishedUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to First registration date.
+        /// </summary>
+        public static string FirstRegistrationDateUppercase {
+            get {
+                return ResourceManager.GetString("FirstRegistrationDateUppercase", resourceCulture);
             }
         }
         
@@ -358,11 +476,38 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incorrect date format.
+        /// </summary>
+        public static string IncorrectDateFormat {
+            get {
+                return ResourceManager.GetString("IncorrectDateFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (IN DEVELOPMENT).
         /// </summary>
         public static string InDev {
             get {
                 return ResourceManager.GetString("InDev", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ENTER DATE.
+        /// </summary>
+        public static string InserDateUpperCase {
+            get {
+                return ResourceManager.GetString("InserDateUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ENTER VIN.
+        /// </summary>
+        public static string InserVinUpperCase {
+            get {
+                return ResourceManager.GetString("InserVinUpperCase", resourceCulture);
             }
         }
         
@@ -403,6 +548,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last recorded odometer reading.
+        /// </summary>
+        public static string LastRecordedOdometerReading {
+            get {
+                return ResourceManager.GetString("LastRecordedOdometerReading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log out.
         /// </summary>
         public static string LogOut {
@@ -421,6 +575,33 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Max laden mass of braked trailer.
+        /// </summary>
+        public static string MaximumLadenMassOfBrakedTrailer {
+            get {
+                return ResourceManager.GetString("MaximumLadenMassOfBrakedTrailer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max laden mass of unbraked trailer.
+        /// </summary>
+        public static string MaximumLadenMassOfUnbrakedTrailer {
+            get {
+                return ResourceManager.GetString("MaximumLadenMassOfUnbrakedTrailer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max permissible towable mass.
+        /// </summary>
+        public static string MaximumPermissibleTowableMass {
+            get {
+                return ResourceManager.GetString("MaximumPermissibleTowableMass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MIDDLE NAME.
         /// </summary>
         public static string MiddleNameUpperCase {
@@ -435,6 +616,15 @@ namespace Drive.Client.Resources.Resx {
         public static string ModelUpperCase {
             get {
                 return ResourceManager.GetString("ModelUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MONTH.
+        /// </summary>
+        public static string MonthUpperCase {
+            get {
+                return ResourceManager.GetString("MonthUpperCase", resourceCulture);
             }
         }
         
@@ -489,6 +679,42 @@ namespace Drive.Client.Resources.Resx {
         public static string NSPhotoLibraryUsageDescription {
             get {
                 return ResourceManager.GetString("NSPhotoLibraryUsageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number.
+        /// </summary>
+        public static string Number {
+            get {
+                return ResourceManager.GetString("Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of axles.
+        /// </summary>
+        public static string NumberOfAxles {
+            get {
+                return ResourceManager.GetString("NumberOfAxles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of seats.
+        /// </summary>
+        public static string NumberOfSeats {
+            get {
+                return ResourceManager.GetString("NumberOfSeats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NUMBER.
+        /// </summary>
+        public static string NumberUpperCase {
+            get {
+                return ResourceManager.GetString("NumberUpperCase", resourceCulture);
             }
         }
         
@@ -601,6 +827,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Registration status.
+        /// </summary>
+        public static string RegistrationStatus {
+            get {
+                return ResourceManager.GetString("RegistrationStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your request has been sent!.
         /// </summary>
         public static string RequestSent {
@@ -619,11 +854,29 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SEARCH FOR NUMBERS.
+        ///   Looks up a localized string similar to SEARCH BY NUMBER.
         /// </summary>
         public static string SearchByNumber {
             get {
                 return ResourceManager.GetString("SearchByNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SEARCH CAR IN POLAND.
+        /// </summary>
+        public static string SearchByNumberFromPoland {
+            get {
+                return ResourceManager.GetString("SearchByNumberFromPoland", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SEARCH CAR IN UKRAINE.
+        /// </summary>
+        public static string SearchByNumberFromUkraine {
+            get {
+                return ResourceManager.GetString("SearchByNumberFromUkraine", resourceCulture);
             }
         }
         
@@ -700,6 +953,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total capacity.
+        /// </summary>
+        public static string TotalСapacity {
+            get {
+                return ResourceManager.GetString("TotalСapacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TSC.
         /// </summary>
         public static string TSC {
@@ -714,6 +976,15 @@ namespace Drive.Client.Resources.Resx {
         public static string TSCcode {
             get {
                 return ResourceManager.GetString("TSCcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
             }
         }
         
@@ -763,6 +1034,24 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vehicle found.
+        /// </summary>
+        public static string VehicleFound {
+            get {
+                return ResourceManager.GetString("VehicleFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your request give no results.
+        /// </summary>
+        public static string VehicleRequestGiveNoResults {
+            get {
+                return ResourceManager.GetString("VehicleRequestGiveNoResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to VEHICLES.
         /// </summary>
         public static string VehiclesSecondTypeUpperCase {
@@ -781,11 +1070,38 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vehicle technical inspection.
+        /// </summary>
+        public static string VehicleTechnicalInspection {
+            get {
+                return ResourceManager.GetString("VehicleTechnicalInspection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to VEHICLE.
         /// </summary>
         public static string VehicleUpperCase {
             get {
                 return ResourceManager.GetString("VehicleUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VIN CODE.
+        /// </summary>
+        public static string VINCodeUpperCase {
+            get {
+                return ResourceManager.GetString("VINCodeUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VIN.
+        /// </summary>
+        public static string VinUppercase {
+            get {
+                return ResourceManager.GetString("VinUppercase", resourceCulture);
             }
         }
         
