@@ -3,8 +3,8 @@ using Xamarin.Forms.Xaml;
 
 namespace Drive.Client.Views.Templates.TemplateSelectors.ViewCells.Post {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TextPostView : ViewCell {
-        public TextPostView() {
+    public partial class TextPostViewCell : ViewCell {
+        public TextPostViewCell() {
             InitializeComponent();
         }
     }

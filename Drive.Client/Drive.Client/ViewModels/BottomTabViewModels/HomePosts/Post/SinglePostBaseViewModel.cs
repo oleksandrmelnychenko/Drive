@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace Drive.Client.ViewModels.BottomTabViewModels.HomePosts.Post {
     public abstract class SinglePostBaseViewModel : NestedViewModel {
 
-        private readonly IOpenUrlService _openUrlService;
+        protected readonly IOpenUrlService OpenUrlService;
 
         /// <summary>
         ///     ctor().
         /// </summary>
-        public SinglePostBaseViewModel(IOpenUrlService openUrlService) {
-            _openUrlService = openUrlService;
+        public SinglePostBaseViewModel() {
+            OpenUrlService = DependencyLocator.Resolve<IOpenUrlService>();
         }
 
         /// <summary>

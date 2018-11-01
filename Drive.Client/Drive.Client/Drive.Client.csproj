@@ -129,6 +129,12 @@
     <Compile Update="Views\IdentityAccounting\Registration\SignInPasswordStepView.xaml.cs">
       <DependentUpon>SignInPasswordStepView.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Templates\ViewCells\Post\MediaPostViewCell.xaml.cs">
+      <DependentUpon>MediaPostViewCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Templates\ViewCells\Post\TextPostViewCell.xaml.cs">
+      <DependentUpon>TextPostViewCell.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -172,10 +178,16 @@
     <EmbeddedResource Update="Views\BottomTabViews\Bookmark\UserVehiclesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\ViewCells\Post\MediaPostView.xaml">
+    <EmbeddedResource Update="Views\Templates\ViewCells\Post\Content\PostBaseContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\ViewCells\Post\TextPostView.xaml">
+    <EmbeddedResource Update="Views\Templates\ViewCells\Post\Content\TextPostView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\ViewCells\Post\MediaPostViewCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\ViewCells\Post\TextPostViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BottomTabViews\Popups\LanguageSelectPopupView.xaml">
@@ -211,7 +223,7 @@
     <EmbeddedResource Update="Views\CustomNavigationView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\BottomTabViews\HomePosts\HomeView.xaml">
+    <EmbeddedResource Update="Views\BottomTabViews\Home\HomeView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\FoundDriveAutoView.xaml">

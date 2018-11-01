@@ -3,7 +3,7 @@ using Drive.Client.Models.Arguments.BottomtabSwitcher;
 using Drive.Client.Models.Identities.Posts;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.BottomTabViewModels.HomePosts.Post;
-using Drive.Client.Views.BottomTabViews.HomePosts;
+using Drive.Client.Views.BottomTabViews.Home;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,17 +11,17 @@ using System.Threading.Tasks;
 namespace Drive.Client.ViewModels.BottomTabViewModels.HomePosts {
     public sealed class HomeViewModel : TabbedViewModelBase {
 
+        SinglePostBaseViewModel[] _posts = new SinglePostBaseViewModel[] { };
+        public SinglePostBaseViewModel[] Posts {
+            get => _posts;
+            private set => SetProperty(ref _posts, value);
+        }
+
         /// <summary>
         ///     ctor().
         /// </summary>
         public HomeViewModel() {
 
-        }
-
-        SinglePostBaseViewModel[] _posts = new SinglePostBaseViewModel[] { };
-        public SinglePostBaseViewModel[] Posts {
-            get => _posts;
-            private set => SetProperty<SinglePostBaseViewModel[]>(ref _posts, value);
         }
 
         protected override void TabbViewModelInit() {

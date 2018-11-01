@@ -11,8 +11,8 @@ namespace Drive.Client.Views.Templates.TemplateSelectors {
         private readonly DataTemplate _mediaPost;
 
         public HomePostTemplateSelector() {
-            _textPost = new DataTemplate(typeof(TextPostView));
-            _mediaPost = new DataTemplate(typeof(MediaPostView));
+            _textPost = new DataTemplate(typeof(TextPostViewCell));
+            _mediaPost = new DataTemplate(typeof(MediaPostViewCell));
         }
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container) {

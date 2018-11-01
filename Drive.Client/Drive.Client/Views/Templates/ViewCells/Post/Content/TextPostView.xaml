@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<basePostContentView:PostBaseContentView
+    x:Class="Drive.Client.Views.Templates.ViewCells.Post.Content.TextPostView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:basePostContentView="clr-namespace:Drive.Client.Views.Templates.ViewCells.Post.Content">
+
+    <basePostContentView:PostBaseContentView.MainContent>
+        <Label Margin="0,5" Text="TextPostView" />
+    </basePostContentView:PostBaseContentView.MainContent>
+</basePostContentView:PostBaseContentView>
