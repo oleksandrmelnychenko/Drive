@@ -41,9 +41,10 @@
         <ListView
             Grid.Row="1"
             BackgroundColor="Transparent"
+            CachingStrategy="RecycleElement"
             HasUnevenRows="True"
             ItemTemplate="{StaticResource HomePostTemplateSelector}"
-            ItemsSource="{Binding Path=Posts}"
+            ItemsSource="{Binding Posts}"
             SelectionMode="None"
             SeparatorVisibility="None" />
     </Grid>

@@ -20,6 +20,8 @@
 
   <ItemGroup>
     <Compile Remove="Extensions\TranslateExtension.cs" />
+    <Compile Remove="ViewModels\BottomTabViewModels\Home\Post\MediaPostViewModel.cs" />
+    <Compile Remove="ViewModels\BottomTabViewModels\Home\Post\TextPostViewModel.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +31,7 @@
     <None Remove="Resources\Images\Button.svg" />
     <None Remove="Resources\Images\Calendar.svg" />
     <None Remove="Resources\Images\Close.svg" />
+    <None Remove="Resources\Images\Comment.svg" />
     <None Remove="Resources\Images\drive_logo.svg" />
     <None Remove="Resources\Images\d_logo.svg" />
     <None Remove="Resources\Images\edit.svg" />
@@ -37,7 +40,9 @@
     <None Remove="Resources\Images\filter.svg" />
     <None Remove="Resources\Images\Gear.svg" />
     <None Remove="Resources\Images\Home.svg" />
+    <None Remove="Resources\Images\Icon-100.png" />
     <None Remove="Resources\Images\Icon-72.png" />
+    <None Remove="Resources\Images\icon_user.svg" />
     <None Remove="Resources\Images\ic_barrier.png" />
     <None Remove="Resources\Images\ic_vin.svg" />
     <None Remove="Resources\Images\Idea.svg" />
@@ -64,6 +69,7 @@
     <EmbeddedResource Include="Resources\Images\Button.svg" />
     <EmbeddedResource Include="Resources\Images\Calendar.svg" />
     <EmbeddedResource Include="Resources\Images\Close.svg" />
+    <EmbeddedResource Include="Resources\Images\Comment.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -75,7 +81,9 @@
     <EmbeddedResource Include="Resources\Images\filter.svg" />
     <EmbeddedResource Include="Resources\Images\Gear.svg" />
     <EmbeddedResource Include="Resources\Images\Home.svg" />
+    <EmbeddedResource Include="Resources\Images\Icon-100.png" />
     <EmbeddedResource Include="Resources\Images\Icon-72.png" />
+    <EmbeddedResource Include="Resources\Images\icon_user.svg" />
     <EmbeddedResource Include="Resources\Images\ic_barrier.png" />
     <EmbeddedResource Include="Resources\Images\ic_vin.svg" />
     <EmbeddedResource Include="Resources\Images\Idea.svg" />
@@ -118,6 +126,9 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>AppStrings.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Views\BottomTabViews\PostBuilderView.xaml.cs">
+      <DependentUpon>PostBuilderView.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\DriveAutoDetailsView.xaml.cs">
       <DependentUpon>DriveAutoDetailsView.xaml</DependentUpon>
@@ -181,6 +192,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BottomTabViews\Bookmark\UserVehiclesView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\ViewCells\Post\Content\MediaPostView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\ViewCells\Post\Content\PostBaseContentView.xaml">
@@ -297,7 +311,7 @@
     <EmbeddedResource Update="Views\MainView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\BottomTabViews\PostView.xaml">
+    <EmbeddedResource Update="Views\BottomTabViews\PostBuilderView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BottomTabViews\ProfileView.xaml">

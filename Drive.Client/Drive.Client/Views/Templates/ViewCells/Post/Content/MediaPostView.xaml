@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <basePostContentView:PostBaseContentView
-    x:Class="Drive.Client.Views.Templates.ViewCells.Post.Content.TextPostView"
+    x:Class="Drive.Client.Views.Templates.ViewCells.Post.Content.MediaPostView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:basePostContentView="clr-namespace:Drive.Client.Views.Templates.ViewCells.Post.Content"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     BackgroundColor="{StaticResource WhiteColor}">
 
     <basePostContentView:PostBaseContentView.MainContent>
-        <Label Margin="0,5" Text="{Binding MainMessage}" />
+        <ffimageloadingsvg:SvgCachedImage Aspect="AspectFill" Source="{Binding Post.MediaUrl, Converter={StaticResource StringUrlToUrlImageSourceConverter}}" />
     </basePostContentView:PostBaseContentView.MainContent>
 </basePostContentView:PostBaseContentView>

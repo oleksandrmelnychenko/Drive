@@ -6,14 +6,14 @@ using Drive.Client.Views.BottomTabViews;
 using System.Threading.Tasks;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels {
-    public sealed class PostViewModel : TabbedViewModelBase {
+    public sealed class PostBuilderViewModel : TabbedViewModelBase {
 
         private readonly IIdentityService _identityService;
 
         /// <summary>
         ///     ctor().
         /// </summary>
-        public PostViewModel(IIdentityService identityService) {
+        public PostBuilderViewModel(IIdentityService identityService) {
             _identityService = identityService;
         }
 
@@ -27,8 +27,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         }
 
         protected override void TabbViewModelInit() {
-            TabIcon = IconPath.POST;
-            RelativeViewType = typeof(PostView);
+            TabIcon = IconPath.POSTBUILDER;
+            RelativeViewType = typeof(PostBuilderView);
             HasBackgroundItem = true;
         }
     }

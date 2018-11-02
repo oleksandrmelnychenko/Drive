@@ -8,7 +8,6 @@
 
         internal const string PROFILE = "resource://Drive.Client.Resources.Images.User.svg";
 
-        internal const string POST = "";
-        //internal const string POST = "resource://Drive.Client.Resources.Images.Plus.svg";
+        internal const string POSTBUILDER = "";
     }
 }

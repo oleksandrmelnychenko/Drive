@@ -2,7 +2,7 @@
 using Drive.Client.Services.OpenUrl;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
-    public class MediaPostViewModel : SinglePostBaseViewModel {
+    public class MediaPostViewModel : PostBaseViewModel {
 
         string _mediaUrl;
         public string MediaUrl {
@@ -15,6 +15,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
         /// </summary>
         /// <param name="openUrlService"></param>
         public MediaPostViewModel() {
+           
         }
 
         protected override void OnPost(PostBase post) {

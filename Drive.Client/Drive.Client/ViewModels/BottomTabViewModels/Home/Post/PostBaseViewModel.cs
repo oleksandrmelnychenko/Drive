@@ -5,14 +5,14 @@ using System;
 using System.Threading.Tasks;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
-    public abstract class SinglePostBaseViewModel : NestedViewModel {
+    public class PostBaseViewModel : NestedViewModel {
 
-        protected readonly IOpenUrlService OpenUrlService;
+        private readonly IOpenUrlService OpenUrlService;
 
         /// <summary>
         ///     ctor().
         /// </summary>
-        public SinglePostBaseViewModel() {
+        public PostBaseViewModel() {
             OpenUrlService = DependencyLocator.Resolve<IOpenUrlService>();
         }
 

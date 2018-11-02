@@ -39,7 +39,7 @@ namespace Drive.Client.ViewModels {
             BottomBarItems = new List<IBottomBarTab>() {
                 DependencyLocator.Resolve<HomeViewModel>(),
                 DependencyLocator.Resolve<SearchViewModel>(),
-                DependencyLocator.Resolve<PostViewModel>(),
+                DependencyLocator.Resolve<PostBuilderViewModel>(),
                 DependencyLocator.Resolve<BookmarkViewModel>(),
                 DependencyLocator.Resolve<ProfileViewModel>()};
             BottomBarItems.ForEach(bottomBarTab => bottomBarTab.InitializeAsync(this));

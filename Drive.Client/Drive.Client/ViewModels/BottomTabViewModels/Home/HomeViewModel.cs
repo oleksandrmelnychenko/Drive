@@ -11,8 +11,8 @@ using System.Threading.Tasks;
 namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
     public sealed class HomeViewModel : TabbedViewModelBase {
 
-        SinglePostBaseViewModel[] _posts = new SinglePostBaseViewModel[] { };
-        public SinglePostBaseViewModel[] Posts {
+        PostBaseViewModel[] _posts = new PostBaseViewModel[] { };
+        public PostBaseViewModel[] Posts {
             get => _posts;
             private set => SetProperty(ref _posts, value);
         }
@@ -45,37 +45,40 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
 
         public override Task InitializeAsync(object navigationData) {
             if (navigationData is SelectedBottomBarTabArgs) {
-                List<SinglePostBaseViewModel> foundPosts = new List<SinglePostBaseViewModel>();
+                try {
+                    List<PostBaseViewModel> foundPosts = new List<PostBaseViewModel>();
 
-                for (int i = 0; i < 49; i++) {
-                    PostBase postBase = null;
-                    SinglePostBaseViewModel postViewModel = null;
+                    for (int i = 0; i < 100; i++) {
+                        PostBase postBase = null;
+                        PostBaseViewModel postViewModel = DependencyLocator.Resolve<PostBaseViewModel>();
 
-                    if (i % 2 == 0) {
-                        postBase = new TextPost();
-                        postViewModel = DependencyLocator.Resolve<TextPostViewModel>();
-                    }
-                    else {
-                        postBase = new MediaPost();
-                        postViewModel = DependencyLocator.Resolve<MediaPostViewModel>();
+                        if (i % 2 == 0) {
+                            postBase = new TextPost();
+                        } else {
+                            postBase = new MediaPost();
 
-                        if (i % 3 == 0) {
-                            ((MediaPost)postBase).MediaUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoQ_1qSVR7vwVmYg_WLDZJVnyDc_-Qg8yC1neV90WEFLon3Zz_xw";
+                            if (i % 3 == 0) {
+                                ((MediaPost)postBase).MediaUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoQ_1qSVR7vwVmYg_WLDZJVnyDc_-Qg8yC1neV90WEFLon3Zz_xw";
+                            }
                         }
+
+                        postBase.AuthorName = string.Format("{0} {1}", postBase.AuthorName, i);
+                        postBase.CommentsCount = i;
+                        for (int m = 0; m < i; m++) {
+                            postBase.PostMessage = string.Format("{0}. {1}", postBase.AuthorName, postBase.AuthorName);
+                        }
+                        postBase.PublishDate = postBase.PublishDate - TimeSpan.FromHours(i);
+
+                        postViewModel.Post = postBase;
+                        foundPosts.Add(postViewModel);
                     }
 
-                    postBase.AuthorName = string.Format("{0} {1}", postBase.AuthorName, i);
-                    postBase.CommentsCount = i;
-                    for (int m = 0; m < i; m++) {
-                        postBase.PostMessage = string.Format("{0}. {1}", postBase.AuthorName, postBase.AuthorName);
-                    }
-                    postBase.PublishDate = postBase.PublishDate - TimeSpan.FromHours(i);
-
-                    postViewModel.Post = postBase;
-                    foundPosts.Add(postViewModel);
+                    Posts = foundPosts.ToArray();
                 }
+                catch (Exception ex) {
 
-                Posts = foundPosts.ToArray();
+                    throw;
+                }
             }
 
             return base.InitializeAsync(navigationData);

@@ -58,10 +58,10 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<AppMessagingEvents>().SingleInstance();
 
             // View models.
-            builder.RegisterType<PostViewModel>();
+            builder.RegisterType<PostBuilderViewModel>();
             builder.RegisterType<HomeViewModel>();
             builder.RegisterType<MainViewModel>();
-            builder.RegisterType<PostViewModel>();
+            builder.RegisterType<PostBuilderViewModel>();
             builder.RegisterType<SavedViewModel>();
             builder.RegisterType<SearchViewModel>();
             builder.RegisterType<ProfileViewModel>();
@@ -101,8 +101,8 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<SearchByPolandCarIdFinallyStepViewModel>();
             builder.RegisterType<PolandRequestInfoPopupViewModel>();
             builder.RegisterType<PolandDriveAutoDetailsViewModel>();
-            builder.RegisterType<TextPostViewModel>();
-            builder.RegisterType<MediaPostViewModel>();
+            builder.RegisterType<PostBaseViewModel>();
+            //builder.RegisterType<MediaPostViewModel>();
 
             // Services.
             builder.RegisterType<DialogService>().As<IDialogService>();
