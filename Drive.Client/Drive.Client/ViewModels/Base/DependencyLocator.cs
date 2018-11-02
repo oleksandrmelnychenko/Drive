@@ -58,18 +58,18 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<AppMessagingEvents>().SingleInstance();
 
             // View models.
-            builder.RegisterType<PostBuilderViewModel>();
             builder.RegisterType<HomeViewModel>();
             builder.RegisterType<MainViewModel>();
-            builder.RegisterType<PostBuilderViewModel>();
             builder.RegisterType<SavedViewModel>();
             builder.RegisterType<SearchViewModel>();
             builder.RegisterType<ProfileViewModel>();
             builder.RegisterType<BookmarkViewModel>();
             builder.RegisterType<EditEmailViewModel>();
+            builder.RegisterType<PostBuilderViewModel>();
             builder.RegisterType<UnauthorizeViewModel>();
             builder.RegisterType<EditUserNameViewModel>();
             builder.RegisterType<UserVehiclesViewModel>();
+            builder.RegisterType<PostTypePopupViewModel>();
             builder.RegisterType<VehicleDetailViewModel>();
             builder.RegisterType<SearchByCarIdViewModel>();
             builder.RegisterType<SearchByPersonViewModel>();

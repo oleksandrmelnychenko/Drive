@@ -195,6 +195,9 @@
     <EmbeddedResource Update="Views\BottomTabViews\Bookmark\UserVehiclesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\BottomTabViews\Popups\PostTypePopupView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\ViewCells\Post\Content\MediaPostView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

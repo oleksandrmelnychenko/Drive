@@ -19,7 +19,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Popups {
             _profileSettingsDataItems = profileSettingsDataItems;
 
             Languages = _profileSettingsDataItems.BuildLanguageDataItems();
-            SelectedLanguage = Languages.FirstOrDefault<LanguageDataItem>(languageItem => languageItem.Language.LanguageInterface == BaseSingleton<GlobalSetting>.Instance.AppInterfaceConfigurations.LanguageInterface.LanguageInterface);
+            SelectedLanguage = Languages.FirstOrDefault(languageItem => languageItem.Language.LanguageInterface == BaseSingleton<GlobalSetting>.Instance.AppInterfaceConfigurations.LanguageInterface.LanguageInterface);
         }
 
         public ICommand SelectLanguageCommand => new Command((object param) => {
@@ -43,13 +43,13 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Popups {
         List<LanguageDataItem> _languages;
         public List<LanguageDataItem> Languages {
             get => _languages;
-            private set => SetProperty<List<LanguageDataItem>>(ref _languages, value);
+            private set => SetProperty(ref _languages, value);
         }
 
         LanguageDataItem _selectedLanguage;
         public LanguageDataItem SelectedLanguage {
             get => _selectedLanguage;
-            private set => SetProperty<LanguageDataItem>(ref _selectedLanguage, value);
+            private set => SetProperty(ref _selectedLanguage, value);
         }
     }
 }
