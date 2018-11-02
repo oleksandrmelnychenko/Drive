@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Compile Remove="Extensions\TranslateExtension.cs" />
+    <Compile Remove="ViewModels\Base\ITodo.cs" />
     <Compile Remove="ViewModels\BottomTabViewModels\Home\Post\MediaPostViewModel.cs" />
     <Compile Remove="ViewModels\BottomTabViewModels\Home\Post\TextPostViewModel.cs" />
   </ItemGroup>

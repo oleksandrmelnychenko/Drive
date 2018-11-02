@@ -2,11 +2,12 @@
 using Drive.Client.Models.Arguments.BottomtabSwitcher;
 using Drive.Client.Services.Identity;
 using Drive.Client.ViewModels.Base;
-using Drive.Client.Views.BottomTabViews;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels {
-    public sealed class PostBuilderViewModel : TabbedViewModelBase {
+    public sealed class PostBuilderViewModel : TabbedViewModelBase, IActionBottomBarTab {
 
         private readonly IIdentityService _identityService;
 
@@ -16,6 +17,12 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         public PostBuilderViewModel(IIdentityService identityService) {
             _identityService = identityService;
         }
+
+        public ICommand TabActionCommand => new Command(()=> {
+            ///
+            /// TODO: show your popup etc...
+            /// 
+        });
 
         public override Task InitializeAsync(object navigationData) {
 
@@ -28,7 +35,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
 
         protected override void TabbViewModelInit() {
             TabIcon = IconPath.POSTBUILDER;
-            RelativeViewType = typeof(PostBuilderView);
+            RelativeViewType = null;
             HasBackgroundItem = true;
         }
     }

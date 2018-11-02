@@ -58,7 +58,8 @@ namespace Drive.Client.Views.Base {
 
                         if (declarer.IsBusyAwaiting) {
                             Grid.SetRow(declarer._busyIndicator_Indicator, 0);
-                        } else {
+                        }
+                        else {
                             Grid.SetRow(declarer._busyIndicator_Indicator, 1);
                         }
                     }
@@ -75,7 +76,8 @@ namespace Drive.Client.Views.Base {
                             declarer._popupSpot_ContentView.Opacity = 0;
                             Grid.SetRow(declarer._popupSpot_ContentView, 0);
                             await declarer._popupSpot_ContentView.FadeTo(1);
-                        } else {
+                        }
+                        else {
                             declarer._popupSpot_ContentView.Opacity = 1;
                             await declarer._popupSpot_ContentView.FadeTo(0);
                             Grid.SetRow(declarer._popupSpot_ContentView, 1);
@@ -125,7 +127,9 @@ namespace Drive.Client.Views.Base {
                                 });
                                 declarer._bottomBarSpot_Grid.Children.Add(singleVisualBottomItem);
 
-                                declarer._contentBox_Grid.Children.Add(singleVisualBottomItem.AppropriateItemContentView);
+                                if (!(singleVisualBottomItem.BindingContext is IActionBottomBarTab)) {
+                                    declarer._contentBox_Grid.Children.Add(singleVisualBottomItem.AppropriateItemContentView);
+                                }
                             }
 
                             if (queueNewValue.Any()) {
@@ -141,7 +145,29 @@ namespace Drive.Client.Views.Base {
                 typeof(ContentPageBaseView),
                 defaultValue: -1,
                 propertyChanged: (BindableObject bindable, object oldValue, object newValue) => {
-                    (bindable as ContentPageBaseView)?.OnSelectedBottomItemIndex();
+                    if (bindable is ContentPageBaseView declarer) {
+
+                        IBottomBarTab targetTab = declarer.BottomBarItems.ElementAt((int)newValue);
+
+                        if (targetTab is IActionBottomBarTab actionBottomBarTab) {
+                            actionBottomBarTab.TabActionCommand?.Execute(null);
+
+                            if ((int)oldValue != (int)newValue) {
+                                declarer.SelectedBottomItemIndex = (int)oldValue;
+                            }
+                        }
+                        else {
+                            IEnumerable<SingleBottomItem> bottomItems = declarer._bottomBarSpot_Grid.Children.OfType<SingleBottomItem>();
+
+                            for (int i = 0; i < bottomItems.Count(); i++) {
+
+                                if (!(bottomItems.ElementAt(i).BindingContext is IActionBottomBarTab)) {
+                                    bottomItems.ElementAt(i).IsSelected = (i == declarer.SelectedBottomItemIndex);
+                                    bottomItems.ElementAt(i).AppropriateItemContentView.TranslationX = (bottomItems.ElementAt(i).IsSelected) ? 0 : short.MaxValue;
+                                }
+                            }
+                        }
+                    }
                 });
 
         private TapGestureRecognizer _popupBlockBackingTapGesture = new TapGestureRecognizer();
@@ -216,15 +242,25 @@ namespace Drive.Client.Views.Base {
             set => SetValue(IsBusyAwaitingProperty, value);
         }
 
-        private void OnSelectedBottomItemIndex() {
-            IEnumerable<SingleBottomItem> bottomItems = _bottomBarSpot_Grid.Children.OfType<SingleBottomItem>();
+        //private void OnSelectedActionBottomItemIndex(int oldIndex) {
+        //    IEnumerable<SingleBottomItem> bottomItems = _bottomBarSpot_Grid.Children.OfType<SingleBottomItem>();
 
-            for (int i = 0; i < bottomItems.Count(); i++) {
-                bottomItems.ElementAt(i).IsSelected = (i == SelectedBottomItemIndex);
+        //    for (int i = 0; i < bottomItems.Count(); i++) {
+        //        bottomItems.ElementAt(i).IsSelected = (i == SelectedBottomItemIndex);
 
-                bottomItems.ElementAt(i).AppropriateItemContentView.TranslationX = (bottomItems.ElementAt(i).IsSelected) ? 0 : short.MaxValue;
-            }
-        }
+        //        bottomItems.ElementAt(i).AppropriateItemContentView.TranslationX = (bottomItems.ElementAt(i).IsSelected) ? 0 : short.MaxValue;
+        //    }
+        //}
+
+        //private void OnSelectedBottomItemIndex() {
+        //    IEnumerable<SingleBottomItem> bottomItems = _bottomBarSpot_Grid.Children.OfType<SingleBottomItem>();
+
+        //    for (int i = 0; i < bottomItems.Count(); i++) {
+        //        bottomItems.ElementAt(i).IsSelected = (i == SelectedBottomItemIndex);
+
+        //        bottomItems.ElementAt(i).AppropriateItemContentView.TranslationX = (bottomItems.ElementAt(i).IsSelected) ? 0 : short.MaxValue;
+        //    }
+        //}
 
         private void OnBottomItemTapGestureRecognizerTapped(object sender, EventArgs e) {
             if (SelectedBottomItemIndex != ((SingleBottomItem)sender).TabIndex) {

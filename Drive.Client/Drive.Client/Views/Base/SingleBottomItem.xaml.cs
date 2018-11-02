@@ -66,14 +66,16 @@ namespace Drive.Client.Views.Base {
                                 _icon_CachedImage.Transformations.Add(DEFAULT_ICON_COLOR);
                                 _icon_CachedImage.ReloadImage();
                                 //_icon_CachedImage.Rotation = 45;
-                            } else {
+                            }
+                            else {
                                 _icon_CachedImage.Transformations.Add(SELECTED_ICON_COLOR_TRANSFORMATION);
                                 _icon_CachedImage.ReloadImage();
                             }
                         }
                     }
                 }
-            } else {
+            }
+            else {
                 _icon_CachedImage.Transformations.Clear();
                 _icon_CachedImage.ReloadImage();
                 _icon_CachedImage.Rotation = 0;
@@ -81,8 +83,10 @@ namespace Drive.Client.Views.Base {
         }
 
         private void ApplyRelativeView(IBottomBarTab bottomBarItemContext) {
-            AppropriateItemContentView = (View)new DataTemplate(bottomBarItemContext.RelativeViewType).CreateContent();
-            AppropriateItemContentView.BindingContext = bottomBarItemContext;
+            if (!(bottomBarItemContext is IActionBottomBarTab)) {
+                AppropriateItemContentView = (View)new DataTemplate(bottomBarItemContext.RelativeViewType).CreateContent();
+                AppropriateItemContentView.BindingContext = bottomBarItemContext;
+            }
         }
     }
 }
