@@ -147,23 +147,25 @@ namespace Drive.Client.Views.Base {
                 propertyChanged: (BindableObject bindable, object oldValue, object newValue) => {
                     if (bindable is ContentPageBaseView declarer) {
 
-                        IBottomBarTab targetTab = declarer.BottomBarItems.ElementAt((int)newValue);
+                        if (declarer.BottomBarItems != null && declarer.BottomBarItems.Any()) {
+                            IBottomBarTab targetTab = declarer.BottomBarItems.ElementAt((int)newValue);
 
-                        if (targetTab is IActionBottomBarTab actionBottomBarTab) {
-                            actionBottomBarTab.TabActionCommand?.Execute(null);
+                            if (targetTab is IActionBottomBarTab actionBottomBarTab) {
+                                actionBottomBarTab.TabActionCommand?.Execute(null);
 
-                            if ((int)oldValue != (int)newValue) {
-                                declarer.SelectedBottomItemIndex = (int)oldValue;
+                                if ((int)oldValue != (int)newValue) {
+                                    declarer.SelectedBottomItemIndex = (int)oldValue;
+                                }
                             }
-                        }
-                        else {
-                            IEnumerable<SingleBottomItem> bottomItems = declarer._bottomBarSpot_Grid.Children.OfType<SingleBottomItem>();
+                            else {
+                                IEnumerable<SingleBottomItem> bottomItems = declarer._bottomBarSpot_Grid.Children.OfType<SingleBottomItem>();
 
-                            for (int i = 0; i < bottomItems.Count(); i++) {
+                                for (int i = 0; i < bottomItems.Count(); i++) {
 
-                                if (!(bottomItems.ElementAt(i).BindingContext is IActionBottomBarTab)) {
-                                    bottomItems.ElementAt(i).IsSelected = (i == declarer.SelectedBottomItemIndex);
-                                    bottomItems.ElementAt(i).AppropriateItemContentView.TranslationX = (bottomItems.ElementAt(i).IsSelected) ? 0 : short.MaxValue;
+                                    if (!(bottomItems.ElementAt(i).BindingContext is IActionBottomBarTab)) {
+                                        bottomItems.ElementAt(i).IsSelected = (i == declarer.SelectedBottomItemIndex);
+                                        bottomItems.ElementAt(i).AppropriateItemContentView.TranslationX = (bottomItems.ElementAt(i).IsSelected) ? 0 : short.MaxValue;
+                                    }
                                 }
                             }
                         }
