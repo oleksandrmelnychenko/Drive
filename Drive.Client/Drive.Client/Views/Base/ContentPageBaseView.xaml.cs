@@ -244,26 +244,6 @@ namespace Drive.Client.Views.Base {
             set => SetValue(IsBusyAwaitingProperty, value);
         }
 
-        //private void OnSelectedActionBottomItemIndex(int oldIndex) {
-        //    IEnumerable<SingleBottomItem> bottomItems = _bottomBarSpot_Grid.Children.OfType<SingleBottomItem>();
-
-        //    for (int i = 0; i < bottomItems.Count(); i++) {
-        //        bottomItems.ElementAt(i).IsSelected = (i == SelectedBottomItemIndex);
-
-        //        bottomItems.ElementAt(i).AppropriateItemContentView.TranslationX = (bottomItems.ElementAt(i).IsSelected) ? 0 : short.MaxValue;
-        //    }
-        //}
-
-        //private void OnSelectedBottomItemIndex() {
-        //    IEnumerable<SingleBottomItem> bottomItems = _bottomBarSpot_Grid.Children.OfType<SingleBottomItem>();
-
-        //    for (int i = 0; i < bottomItems.Count(); i++) {
-        //        bottomItems.ElementAt(i).IsSelected = (i == SelectedBottomItemIndex);
-
-        //        bottomItems.ElementAt(i).AppropriateItemContentView.TranslationX = (bottomItems.ElementAt(i).IsSelected) ? 0 : short.MaxValue;
-        //    }
-        //}
-
         private void OnBottomItemTapGestureRecognizerTapped(object sender, EventArgs e) {
             if (SelectedBottomItemIndex != ((SingleBottomItem)sender).TabIndex) {
                 SelectedBottomItemIndex = ((SingleBottomItem)sender).TabIndex;
