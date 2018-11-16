@@ -25,7 +25,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         public PostBuilderViewModel() {
             PostTypePopupViewModel = DependencyLocator.Resolve<PostTypePopupViewModel>();
             PostTypePopupViewModel.InitializeAsync(this);
-
         }
 
         public ICommand TabActionCommand => new Command(()=> {

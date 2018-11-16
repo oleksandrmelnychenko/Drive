@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using CoreFoundation;
 using FFImageLoading.Forms.Platform;
 using Foundation;
 using UIKit;
@@ -16,9 +17,10 @@ namespace Drive.Client.iOS {
 
         private SBNotificationHub Hub { get; set; }
 
-        public const string ConnectionString = "";
-
-        public const string NotificationHubPath = "";
+        //public const string ConnectionString = "Endpoint=sb://driveapp.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=Njb19Byfsgn92XST4eCtAkZLJL7JCzOXgDDkWYXybrk=";
+        public const string ConnectionString = "Endpoint=sb://driveapp.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=8UWFMZOxaoQS8GDsFcIfSqMZ6KJU1DzrFDGdELF5BN8=";
+        
+        public const string NotificationHubPath = "drivenotificationhub";
 
         public static string DEVICE_TOKEN = string.Empty;
 
@@ -32,8 +34,10 @@ namespace Drive.Client.iOS {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options) {
 
             global::Xamarin.Forms.Forms.Init();
-
             CachedImageRenderer.Init();
+
+            //DispatchQueue.MainQueue.DispatchAsync(UIApplication.SharedApplication.RegisterForRemoteNotifications);
+            UIApplication.SharedApplication.RegisterForRemoteNotifications();
 
             LoadApplication(new App());
 

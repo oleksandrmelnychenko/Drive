@@ -25,19 +25,11 @@
                 Grid.Row="1"
                 Spacing="24"
                 VerticalOptions="Center">
-                <!--  Header  -->
-                <controls:LabelExtended
-                    FontFamily="{StaticResource SFProLight}"
-                    FontSize="{StaticResource LittleSize}"
-                    HorizontalOptions="Center"
-                    Text="{Binding [LanguageUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
-                    TextColor="{StaticResource BaseGrayColor}"
-                    VerticalOptions="Center" />
 
-                <!--  Languages list  -->
+                <!--  POST TYPES  -->
                 <stackList:StackList
                     x:Name="_languagesList_StackList"
-                    ItemsSource="{Binding Path=Languages}"
+                    ItemsSource="{Binding Languages}"
                     Spacing="24">
                     <stackList:StackList.ItemTemplate>
                         <DataTemplate>
@@ -56,6 +48,15 @@
                         </DataTemplate>
                     </stackList:StackList.ItemTemplate>
                 </stackList:StackList>
+
+                <!--  FOOTER  -->
+                <controls:LabelExtended
+                    FontFamily="{StaticResource SFProLight}"
+                    FontSize="{StaticResource LittleSize}"
+                    HorizontalOptions="Center"
+                    Text="{Binding [LanguageUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                    TextColor="{StaticResource BaseGrayColor}"
+                    VerticalOptions="Center" />
             </StackLayout>
         </Grid>
     </popups:SinglePopupViewBase.Content>

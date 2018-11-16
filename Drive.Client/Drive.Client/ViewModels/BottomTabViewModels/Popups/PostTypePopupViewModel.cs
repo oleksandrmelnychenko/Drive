@@ -8,5 +8,12 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Popups {
     public class PostTypePopupViewModel : PopupBaseViewModel {
 
         public override Type RelativeViewType => typeof(PostTypePopupView);
+
+        /// <summary>
+        ///     ctor().
+        /// </summary>
+        public PostTypePopupViewModel() {
+                
+        }
     }
 }
