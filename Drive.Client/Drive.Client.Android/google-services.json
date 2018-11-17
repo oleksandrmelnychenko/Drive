@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "265201693145",
+    "firebase_url": "https://drive-b5c46.firebaseio.com",
+    "project_id": "drive-b5c46",
+    "storage_bucket": "drive-b5c46.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:265201693145:android:da08dd368e98d7af",
+        "android_client_info": {
+          "package_name": "com.nolt.TOua"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "265201693145-v3iak3v7hjv3j4pc7a57p8dilc0o18bf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCE1P69o9DGqnh_fzUjrrDsaEqfXV2PFx8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
