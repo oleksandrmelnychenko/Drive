@@ -56,6 +56,7 @@ namespace Drive.Client.ViewModels {
             base.Dispose();
 
             BottomBarItems?.ForEach(bottomBarItem => bottomBarItem?.Dispose());
+            UpdateAppVersionPopupViewModel?.Dispose();
             ResetCancellationTokenSource(ref _registerClientDeviceInfoCancellationTokenSource);
         }
 

@@ -13,6 +13,14 @@ namespace Drive.Client.ViewModels.Base {
 
         private readonly Dictionary<Guid, bool> _busySequence = new Dictionary<Guid, bool>();
 
+        public ContentPageBaseViewModel() {
+            Popups.CollectionChanged += Popups_CollectionChanged;
+        }
+
+        private void Popups_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) {
+            
+        }
+
         private List<IBottomBarTab> _bottomBarItems;
         public List<IBottomBarTab> BottomBarItems {
             get => _bottomBarItems;
@@ -46,7 +54,7 @@ namespace Drive.Client.ViewModels.Base {
                 }
 
                 SetProperty(ref _electedBottomItemIndex, value);
-            } 
+            }
         }
 
         bool _isPullToRefreshEnabled;
@@ -80,6 +88,7 @@ namespace Drive.Client.ViewModels.Base {
             base.Dispose();
 
             ActionBarViewModel?.Dispose();
+            Popups?.ForEach<PopupBaseViewModel>(popup => popup.Dispose());
         }
 
         public override Task InitializeAsync(object navigationData) {

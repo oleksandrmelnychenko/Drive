@@ -11,22 +11,32 @@
     InputTransparent="True">
 
     <popups:SinglePopupViewBase.Content>
+        <Label Text="DUCKS" />
+    </popups:SinglePopupViewBase.Content>
+
+    <!--<popups:SinglePopupViewBase.Content>
         <Grid CascadeInputTransparent="False" InputTransparent="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <!--  Content background backing  -->
+    -->
+    <!--  Content background backing  -->
+    <!--
             <ContentView Grid.Row="1" BackgroundColor="{StaticResource WhiteColor}" />
 
-            <!--  Main content  -->
+    -->
+    <!--  Main content  -->
+    <!--
             <StackLayout
                 Grid.Row="1"
                 Spacing="24"
                 VerticalOptions="Center">
 
-                <!--  POST TYPES  -->
+    -->
+    <!--  POST TYPES  -->
+    <!--
                 <stackList:StackList
                     x:Name="_languagesList_StackList"
                     ItemsSource="{Binding Languages}"
@@ -49,7 +59,9 @@
                     </stackList:StackList.ItemTemplate>
                 </stackList:StackList>
 
-                <!--  FOOTER  -->
+    -->
+    <!--  FOOTER  -->
+    <!--
                 <controls:LabelExtended
                     FontFamily="{StaticResource SFProLight}"
                     FontSize="{StaticResource LittleSize}"
@@ -59,5 +71,5 @@
                     VerticalOptions="Center" />
             </StackLayout>
         </Grid>
-    </popups:SinglePopupViewBase.Content>
+    </popups:SinglePopupViewBase.Content>-->
 </popups:SinglePopupViewBase>

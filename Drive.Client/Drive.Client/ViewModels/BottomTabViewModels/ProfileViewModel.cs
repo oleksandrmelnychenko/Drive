@@ -128,7 +128,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
             if (navigationData is SelectedBottomBarTabArgs) {
                 GetUser();
             }
-
+            
             LanguageSelectPopupViewModel?.InitializeAsync(navigationData);
 
             return base.InitializeAsync(navigationData);

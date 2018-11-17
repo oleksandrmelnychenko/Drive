@@ -31,12 +31,19 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
             PostTypePopupViewModel.ShowPopupCommand.Execute(null);
         });
 
+        public override void Dispose() {
+            base.Dispose();
+
+            PostTypePopupViewModel?.Dispose();
+        }
+
         public override Task InitializeAsync(object navigationData) {
-            PostTypePopupViewModel.InitializeAsync(this);
 
             if (navigationData is SelectedBottomBarTabArgs) {
 
             }
+
+            PostTypePopupViewModel?.InitializeAsync(navigationData);
 
             return base.InitializeAsync(navigationData);
         }
