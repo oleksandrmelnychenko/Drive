@@ -2,7 +2,7 @@
     public class TextPost : PostBase {
 
         public TextPost() {
-            PostType = PostTypes.TextPost;
+            PostType = PostType.TextPost;
         }
     }
 }

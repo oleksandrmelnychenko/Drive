@@ -8,7 +8,7 @@ namespace Drive.Client.Models.Identities.Posts {
         /// <summary>
         /// Type of current post (text, media, link)
         /// </summary>
-        public PostTypes PostType { get; protected set; }
+        public PostType PostType { get; protected set; }
 
         /// <summary>
         /// todo

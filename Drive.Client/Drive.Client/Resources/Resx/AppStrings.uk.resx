@@ -474,4 +474,7 @@
   <data name="FirstRegistrationDateUppercase" xml:space="preserve">
     <value>ВВЕДІТЬ ДАТУ ПЕРШОЇ РЕЄСТРАЦІЇ</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Скасувати</value>
+  </data>
 </root>

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Drive.Client.DataItems.Posts;
 using Drive.Client.DataItems.ProfileSettings;
 using Drive.Client.Factories.Validation;
 using Drive.Client.Factories.Vehicle;
@@ -11,27 +12,27 @@ using Drive.Client.Services.Identity;
 using Drive.Client.Services.Identity.IdentityUtility;
 using Drive.Client.Services.Media;
 using Drive.Client.Services.Navigation;
+using Drive.Client.Services.OpenUrl;
 using Drive.Client.Services.RequestProvider;
 using Drive.Client.Services.Vehicle;
 using Drive.Client.ViewModels.ActionBars;
 using Drive.Client.ViewModels.BottomTabViewModels;
 using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
+using Drive.Client.ViewModels.BottomTabViewModels.Home;
+using Drive.Client.ViewModels.BottomTabViewModels.Home.Post;
 using Drive.Client.ViewModels.BottomTabViewModels.Popups;
 using Drive.Client.ViewModels.BottomTabViewModels.Search;
+using Drive.Client.ViewModels.IdentityAccounting;
 using Drive.Client.ViewModels.IdentityAccounting.EditProfile;
 using Drive.Client.ViewModels.IdentityAccounting.ForgotPassword;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
-using Drive.Client.ViewModels.IdentityAccounting;
+using Drive.Client.ViewModels.Popups;
 using Drive.Client.ViewModels.Search;
 using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
 using Xamarin.Forms;
-using Drive.Client.ViewModels.Popups;
-using Drive.Client.Services.OpenUrl;
-using Drive.Client.ViewModels.BottomTabViewModels.Home.Post;
-using Drive.Client.ViewModels.BottomTabViewModels.Home;
 
 namespace Drive.Client.ViewModels.Base {
     public static class DependencyLocator {
@@ -122,6 +123,7 @@ namespace Drive.Client.ViewModels.Base {
 
             // Data items
             builder.RegisterType<ProfileSettingsDataItems>().As<IProfileSettingsDataItems>().SingleInstance();
+            builder.RegisterType<PostTypeDataItems>().As<IPostTypeDataItems>();
 
             if (_container != null) {
                 _container.Dispose();
