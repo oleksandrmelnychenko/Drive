@@ -2,8 +2,11 @@
 using Android.App;
 using Android.Content;
 using Android.Widget;
+using Drive.Client.Helpers;
 using Firebase.Iid;
 using System;
+using System.Diagnostics;
+using Xamarin.Forms;
 
 namespace Drive.Client.Droid.Controllers.Services {
     [Service]
@@ -12,9 +15,14 @@ namespace Drive.Client.Droid.Controllers.Services {
 
         public override void OnTokenRefresh() {
             //base.OnTokenRefresh();
+            try {
+                string deviceToken = FirebaseInstanceId.Instance.Token;
+                BaseSingleton<GlobalSetting>.Instance.MessagingDeviceToken = deviceToken;
 
-            string refreshedToken = FirebaseInstanceId.Instance.Token;
-            Console.WriteLine("Token received {0}", refreshedToken);
+                MessagingCenter.Send<object>(this, "device_token");
+            } catch (Exception ex) {
+                Debug.WriteLine($"ERRROR: {ex.Message}");
+            }
         }
     }
 }

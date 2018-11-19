@@ -2,8 +2,8 @@
     public enum PostType {
         TextPost,
 
-        MediaPost
+        MediaPost,
 
-        //LinkPost
+        LinkPost
     }
 }

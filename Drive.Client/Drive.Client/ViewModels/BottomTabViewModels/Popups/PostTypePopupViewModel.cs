@@ -2,6 +2,7 @@
 using Drive.Client.Models.DataItems.SelectPostTypes;
 using Drive.Client.Models.Identities.Posts;
 using Drive.Client.ViewModels.Base;
+using Drive.Client.ViewModels.Posts;
 using Drive.Client.Views.BottomTabViews.Popups;
 using System;
 using System.Collections.Generic;
@@ -38,12 +39,15 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Popups {
 
         private void OnSelectPostTypes(object param) {
             if (param is PostTypeDataItem postTypeDataItem) {
-                if (postTypeDataItem.PostType == PostType.MediaPost) {
-                    Debug.WriteLine("In developing..");
-                } else if (postTypeDataItem.PostType == PostType.TextPost) {
-                    Debug.WriteLine("In developing..");
-                }
                 ClosePopupCommand.Execute(null);
+
+                NavigationService.NavigateToAsync<NewPostViewModel>(postTypeDataItem.PostType);
+
+                if (postTypeDataItem.PostType == PostType.MediaPost) {
+
+                } else if (postTypeDataItem.PostType == PostType.TextPost) {
+
+                }
             }
         }
     }

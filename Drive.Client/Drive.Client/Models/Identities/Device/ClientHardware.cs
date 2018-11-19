@@ -44,5 +44,8 @@ namespace Drive.Client.Models.Identities.Device {
 
         [JsonProperty("isDevice")]
         public bool IsDevice { get; set; }
+
+        [JsonProperty("messagingDeviceToken")]
+        public string MessagingDeviceToken { get; set; }
     }
 }

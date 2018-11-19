@@ -27,6 +27,7 @@ using Drive.Client.ViewModels.IdentityAccounting.EditProfile;
 using Drive.Client.ViewModels.IdentityAccounting.ForgotPassword;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
 using Drive.Client.ViewModels.Popups;
+using Drive.Client.ViewModels.Posts;
 using Drive.Client.ViewModels.Search;
 using System;
 using System.Diagnostics;
@@ -59,10 +60,12 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<AppMessagingEvents>().SingleInstance();
 
             // View models.
+            builder.RegisterType<NewPostActionBarViewModel>();
             builder.RegisterType<HomeViewModel>();
             builder.RegisterType<MainViewModel>();
             builder.RegisterType<SavedViewModel>();
             builder.RegisterType<SearchViewModel>();
+            builder.RegisterType<NewPostViewModel>();
             builder.RegisterType<ProfileViewModel>();
             builder.RegisterType<BookmarkViewModel>();
             builder.RegisterType<EditEmailViewModel>();
