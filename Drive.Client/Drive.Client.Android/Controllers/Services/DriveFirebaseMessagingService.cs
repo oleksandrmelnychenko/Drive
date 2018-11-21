@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Support.V4.App;
-using Android.Widget;
 using Firebase.Messaging;
 using System;
 using System.Diagnostics;
@@ -34,9 +33,8 @@ namespace Drive.Client.Droid.Controllers.Services {
                     .SetPriority(NotificationCompat.PriorityHigh)
                     .SetVibrate(new long[] { 1000, 2000, 3000 })
                     .SetSmallIcon(Resource.Mipmap.im_logo_d)
-                    .SetContentTitle("Bla bla bla")
-                    .SetContentText(message.ToString())
-                    //.SetContentIntent(PendingIntent.GetActivity(this, 0, MainActivity.Instance.GetIntentForReceivedAdminNotifiaction(), PendingIntentFlags.UpdateCurrent))
+                    .SetContentTitle("TODO: content title")
+                    .SetContentText("TODO: content text")
                     .SetAutoCancel(true);
 
                 NotificationManager mNotificationManager = (NotificationManager)GetSystemService(Android.Content.Context.NotificationService);
