@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels {
     public sealed class MainViewModel : ContentPageBaseViewModel {
@@ -44,7 +45,15 @@ namespace Drive.Client.ViewModels {
                 DependencyLocator.Resolve<ProfileViewModel>()};
             BottomBarItems.ForEach(bottomBarTab => bottomBarTab.InitializeAsync(this));
 
-            RegisterClientDeviceInfo();
+            if (string.IsNullOrEmpty(BaseSingleton<GlobalSetting>.Instance.MessagingDeviceToken)) {
+                MessagingCenter.Subscribe<object>(this, "device_token", (sender) => {
+                    MessagingCenter.Unsubscribe<object>(this, "device_token");
+
+                    RegisterClientDeviceInfo();
+                });
+            } else {
+                RegisterClientDeviceInfo();
+            }
 
             SelectedBottomItemIndex = 1;
 
@@ -67,8 +76,7 @@ namespace Drive.Client.ViewModels {
                 try {
                     SelectedBottomItemIndex =
                         BottomBarItems.IndexOf(BottomBarItems?.FirstOrDefault(barItem => barItem.GetType().Equals(bottomTabIndexArgs.TargetTab)));
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     Debug.WriteLine($"ERRROR:{ex.Message}");
                     Debugger.Break();
                 }
@@ -91,8 +99,7 @@ namespace Drive.Client.ViewModels {
                         UpdateAppVersionPopupViewModel.ShowPopupCommand.Execute(null);
                     }
                 }
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 Debug.WriteLine($"ERRROR:{ex.Message}");
                 Debugger.Break();
             }

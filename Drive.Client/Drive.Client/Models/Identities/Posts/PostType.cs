@@ -1,9 +1,9 @@
 ﻿namespace Drive.Client.Models.Identities.Posts {
-    public enum PostTypes {
+    public enum PostType {
         TextPost,
 
-        MediaPost
+        MediaPost,
 
-        //LinkPost
+        LinkPost
     }
 }

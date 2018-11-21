@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBaseView
+    x:Class="Drive.Client.Views.Posts.NewPostView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:actionBars="clr-namespace:Drive.Client.Views.ActionBars"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:dependency="clr-namespace:Drive.Client.ViewModels.Base"
+    xmlns:viewBase="clr-namespace:Drive.Client.Views.Base"
+    dependency:DependencyLocator.AutoWireViewModel="True">
+
+    <viewBase:ContentPageBaseView.ActionBar>
+        <actionBars:NewPostActionBarView />
+    </viewBase:ContentPageBaseView.ActionBar>
+
+    <viewBase:ContentPageBaseView.MainContent>
+        <Grid BackgroundColor="{StaticResource WhiteColor}" RowSpacing="0" />
+    </viewBase:ContentPageBaseView.MainContent>
+</viewBase:ContentPageBaseView>

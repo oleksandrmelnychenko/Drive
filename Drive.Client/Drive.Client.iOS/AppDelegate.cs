@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using CoreFoundation;
+using Drive.Client.Helpers;
 using FFImageLoading.Forms.Platform;
 using Foundation;
 using UIKit;
 using WindowsAzure.Messaging;
+using Xamarin.Forms;
 
 namespace Drive.Client.iOS {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
@@ -46,6 +48,9 @@ namespace Drive.Client.iOS {
 
         public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken) {
             DEVICE_TOKEN = deviceToken.ToString();
+
+            BaseSingleton<GlobalSetting>.Instance.MessagingDeviceToken = DEVICE_TOKEN;
+            MessagingCenter.Send(this, "device_token");
 
             // Create a new notification hub with the connection string and hub path
             Hub = new SBNotificationHub(ConnectionString, NotificationHubPath);

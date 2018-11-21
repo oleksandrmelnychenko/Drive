@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<actionBars:ActionBarBaseView
+    x:Class="Drive.Client.Views.ActionBars.NewPostActionBarView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:actionBars="clr-namespace:Drive.Client.Controls.ActionBars"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize">
+
+    <Grid BackgroundColor="{StaticResource WhiteColor}" HeightRequest="55">
+        <BoxView
+            HeightRequest="1"
+            VerticalOptions="End"
+            Color="{StaticResource LightGrayColor}" />
+
+        <!--  TITLE  -->
+        <ContentView Padding="20,0" VerticalOptions="Fill">
+            <controls:LabelExtended
+                FontSize="{StaticResource MediumSize}"
+                HorizontalOptions="Center"
+                Text="{Binding [NewPostUpperCase].Value, Source={x:Static helpers:ResourceLoader.Instance}}"
+                TextColor="{StaticResource DarkColor}"
+                VerticalOptions="Center" />
+        </ContentView>
+        <!--  ACTION  -->
+        <ContentView
+            Padding="20,0"
+            HorizontalOptions="End"
+            VerticalOptions="Fill">
+            <ContentView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding PublishCommand}" NumberOfTapsRequired="1" />
+            </ContentView.GestureRecognizers>
+            <controls:LabelExtended
+                FontSize="{StaticResource MediumSize}"
+                HorizontalOptions="End"
+                Text="{Binding [Publish].Value, Source={x:Static helpers:ResourceLoader.Instance}}"
+                TextColor="{StaticResource DarkBlueColor}"
+                VerticalOptions="Center" />
+        </ContentView>
+        <!--  BACK BUTTON  -->
+        <ContentView
+            Padding="20,0"
+            HorizontalOptions="Start"
+            IsVisible="{Binding IsBackButtonAvailable}"
+            VerticalOptions="Fill">
+            <ContentView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding BackCommand}" />
+            </ContentView.GestureRecognizers>
+            <ffimageloadingsvg:SvgCachedImage
+                HeightRequest="12"
+                HorizontalOptions="Center"
+                Source="resource://Drive.Client.Resources.Images.Arrow.svg"
+                VerticalOptions="Center" />
+        </ContentView>
+    </Grid>
+</actionBars:ActionBarBaseView>

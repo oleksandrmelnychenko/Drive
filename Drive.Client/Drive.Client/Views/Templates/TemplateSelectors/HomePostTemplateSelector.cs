@@ -21,7 +21,7 @@ namespace Drive.Client.Views.Templates.TemplateSelectors {
 
             if (viewModel == null) return null;
 
-            return viewModel.Post.PostType == PostTypes.MediaPost ? _mediaPost : _textPost;
+            return viewModel.Post.PostType == PostType.MediaPost ? _mediaPost : _textPost;
         }
     }
 }

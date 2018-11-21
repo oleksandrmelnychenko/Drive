@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
     xmlns:popups="clr-namespace:Drive.Client.Controls.Popups"
     xmlns:stackList="clr-namespace:Drive.Client.Controls.Stacklist"
@@ -11,65 +12,72 @@
     InputTransparent="True">
 
     <popups:SinglePopupViewBase.Content>
-        <Label Text="DUCKS" />
-    </popups:SinglePopupViewBase.Content>
-
-    <!--<popups:SinglePopupViewBase.Content>
         <Grid CascadeInputTransparent="False" InputTransparent="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-    -->
-    <!--  Content background backing  -->
-    <!--
-            <ContentView Grid.Row="1" BackgroundColor="{StaticResource WhiteColor}" />
+            <!--  Content background backing  -->
+            <ContentView Grid.Row="1" BackgroundColor="Transparent" />
 
-    -->
-    <!--  Main content  -->
-    <!--
+            <!--  MAIN CONTENT  -->
             <StackLayout
                 Grid.Row="1"
-                Spacing="24"
-                VerticalOptions="Center">
-
-    -->
-    <!--  POST TYPES  -->
-    <!--
+                BackgroundColor="{StaticResource WhiteColor}"
+                Spacing="0"
+                VerticalOptions="End">
+                <!--  POST TYPES  -->
                 <stackList:StackList
-                    x:Name="_languagesList_StackList"
-                    ItemsSource="{Binding Languages}"
-                    Spacing="24">
+                    x:Name="_postTypesList_StackList"
+                    ItemsSource="{Binding PostTypes}"
+                    Spacing="0">
                     <stackList:StackList.ItemTemplate>
                         <DataTemplate>
                             <stackList:CommonStackListItem IsOnSelectionVisualChangesEnabled="False" IsSelectable="False">
                                 <stackList:CommonStackListItem.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.SelectLanguageCommand, Source={Reference Name=_languagesList_StackList}}" CommandParameter="{Binding}" />
+                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.SelectPostTypesCommand, Source={Reference Name=_postTypesList_StackList}}" CommandParameter="{Binding}" />
                                 </stackList:CommonStackListItem.GestureRecognizers>
-                                <controls:LabelExtended
-                                    FontFamily="{StaticResource SFProLight}"
-                                    FontSize="{StaticResource MediumSize}"
-                                    HorizontalOptions="Center"
-                                    Text="{Binding Path=Title}"
-                                    TextColor="{StaticResource DarkColor}"
-                                    VerticalOptions="Center" />
+                                <Grid
+                                    Padding="10,0"
+                                    HeightRequest="50"
+                                    RowSpacing="0">
+                                    <ffimageloadingsvg:SvgCachedImage
+                                        HeightRequest="12"
+                                        HorizontalOptions="Start"
+                                        Source="{Binding Icon}"
+                                        WidthRequest="12" />
+                                    <controls:LabelExtended
+                                        FontFamily="{StaticResource SFProLight}"
+                                        FontSize="{StaticResource MediumSize}"
+                                        HorizontalOptions="Center"
+                                        Text="{Binding Title}"
+                                        TextColor="{StaticResource DarkColor}"
+                                        VerticalOptions="Center" />
+                                    <BoxView
+                                        HeightRequest="1"
+                                        VerticalOptions="End"
+                                        Color="{StaticResource LightGrayColor}" />
+                                </Grid>
                             </stackList:CommonStackListItem>
                         </DataTemplate>
                     </stackList:StackList.ItemTemplate>
                 </stackList:StackList>
 
-    -->
-    <!--  FOOTER  -->
-    <!--
+                <!--  FOOTER  -->
                 <controls:LabelExtended
                     FontFamily="{StaticResource SFProLight}"
-                    FontSize="{StaticResource LittleSize}"
-                    HorizontalOptions="Center"
-                    Text="{Binding [LanguageUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                    FontSize="{StaticResource MediumSize}"
+                    HeightRequest="50"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding [Cancel].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
                     TextColor="{StaticResource BaseGrayColor}"
-                    VerticalOptions="Center" />
+                    VerticalTextAlignment="Center">
+                    <controls:LabelExtended.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CancelCommand}" NumberOfTapsRequired="1" />
+                    </controls:LabelExtended.GestureRecognizers>
+                </controls:LabelExtended>
             </StackLayout>
         </Grid>
-    </popups:SinglePopupViewBase.Content>-->
+    </popups:SinglePopupViewBase.Content>
 </popups:SinglePopupViewBase>

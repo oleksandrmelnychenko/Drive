@@ -8,6 +8,8 @@ using Newtonsoft.Json;
 namespace Drive.Client {
     public class GlobalSetting {
 
+        public string MessagingDeviceToken { get; set; }
+
         public UserProfile UserProfile { get; private set; }
 
         public AppMessagingEvents AppMessagingEvents => DependencyLocator.Resolve<AppMessagingEvents>();

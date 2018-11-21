@@ -80,7 +80,8 @@ namespace Drive.Client.Services.DeviceUtil {
                     Platform = CrossDeviceInfo.Current.Platform,
                     Idiom = CrossDeviceInfo.Current.Idiom,
                     IsDevice = CrossDeviceInfo.Current.IsDevice,
-                    VersionNumber = CrossDeviceInfo.Current.Version
+                    VersionNumber = CrossDeviceInfo.Current.Version,
+                    MessagingDeviceToken = BaseSingleton<GlobalSetting>.Instance.MessagingDeviceToken
                 };
 
                 Location location = null;
