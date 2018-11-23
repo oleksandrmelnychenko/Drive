@@ -4,9 +4,13 @@ using System.Diagnostics;
 using System.Linq;
 using CoreFoundation;
 using Drive.Client.Helpers;
+using Drive.Client.iOS.Models.Notifications;
+using Drive.Client.iOS.Services;
 using FFImageLoading.Forms.Platform;
 using Foundation;
+using ObjCRuntime;
 using UIKit;
+using UserNotifications;
 using WindowsAzure.Messaging;
 using Xamarin.Forms;
 
@@ -21,7 +25,7 @@ namespace Drive.Client.iOS {
 
         //public const string ConnectionString = "Endpoint=sb://driveapp.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=Njb19Byfsgn92XST4eCtAkZLJL7JCzOXgDDkWYXybrk=";
         public const string ConnectionString = "Endpoint=sb://driveapp.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=8UWFMZOxaoQS8GDsFcIfSqMZ6KJU1DzrFDGdELF5BN8=";
-        
+
         public const string NotificationHubPath = "drivenotificationhub";
 
         public static string DEVICE_TOKEN = string.Empty;
@@ -38,10 +42,17 @@ namespace Drive.Client.iOS {
             global::Xamarin.Forms.Forms.Init();
             CachedImageRenderer.Init();
 
-            //DispatchQueue.MainQueue.DispatchAsync(UIApplication.SharedApplication.RegisterForRemoteNotifications);
             UIApplication.SharedApplication.RegisterForRemoteNotifications();
 
             LoadApplication(new App());
+
+            // Request notification permissions from the user
+            UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert, (approved, err) => {
+                // Handle approval
+            });
+
+            // Watch for notifications while the app is active
+            UNUserNotificationCenter.Current.Delegate = new UserNotificationCenterDelegate();
 
             return base.FinishedLaunching(app, options);
         }
@@ -70,45 +81,6 @@ namespace Drive.Client.iOS {
                     }
                 });
             });
-        }
-
-        public override void ReceivedRemoteNotification(UIApplication application, NSDictionary userInfo) {
-            // This method is called when a remote notification is received and the
-            // App is in the foreground - i.e., not backgrounded
-
-            // We need to check that the notification has a payload (userInfo) and the payload
-            // has the root "aps" key in the dictionary - this "aps" dictionary contains defined
-            // keys by Apple which allows the system to determine how to handle the alert
-            if (null != userInfo && userInfo.ContainsKey(new NSString("aps"))) {
-                // Get the aps dictionary from the alert payload
-                NSDictionary aps = userInfo.ObjectForKey(new NSString("aps")) as NSDictionary;
-                // Here we can do any additional processing upon receiving the noification
-                // As the app is in the foreground, we can handle this alert manually
-                // here by creating a UIAlert for example
-                try {
-                    NSData jsonData = NSJsonSerialization.Serialize(aps, 0, out NSError error);
-                    string jsonResult = jsonData.ToString();
-                    //AppleNotificationData appleNotificationData = Newtonsoft.Json.JsonConvert.DeserializeObject<AppleNotificationData>(jsonResult);
-
-                    //switch (appleNotificationData.NotificationType) {
-                    //    case NotificationType.Message:
-                    //        MessagingCenter.Send<object, IAppleNotificationData>(this, Constants.IOS_USER_TO_USER, appleNotificationData);
-                    //        break;
-                    //    case NotificationType.AdminAlert:
-                    //        Debugger.Break();
-                    //        break;
-                    //    case NotificationType.NewPost:
-                    //        Debugger.Break();
-                    //        break;
-                    //    default:
-                    //        Debugger.Break();
-                    //        break;
-                    //}
-                }
-                catch (Exception ex) {
-                    Debug.WriteLine($"ERROR:{ex.Message}");
-                }
-            }
-        }
+        }        
     }
 }

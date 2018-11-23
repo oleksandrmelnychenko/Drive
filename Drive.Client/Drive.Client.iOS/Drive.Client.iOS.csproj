@@ -98,12 +98,14 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Models\Notifications\NotificationMessage.cs" />
     <Compile Include="Renderers\DatePickerExtendedRenderer.cs" />
     <Compile Include="Renderers\EntryExtendedRenderer.cs" />
     <Compile Include="Renderers\ExtendedContentViewRenderer.cs" />
     <Compile Include="Renderers\LabelExtendedRenderer.cs" />
     <Compile Include="Services\AppVersion.cs" />
     <Compile Include="Services\Device.cs" />
+    <Compile Include="Services\UserNotificationCenterDelegate.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>

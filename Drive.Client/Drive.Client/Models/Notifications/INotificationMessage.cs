@@ -4,7 +4,7 @@
         /// <summary>
         /// Notification short description
         /// </summary>
-        INotificationType NotificationType { get; set; }
+        NotificationCaseType NotificationType { get; set; }
 
         /// <summary>
         /// Vehicle request id etc... (depends on notification type)
