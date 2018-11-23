@@ -3,6 +3,7 @@ using Drive.Client.Factories.Vehicle;
 using Drive.Client.Helpers;
 using Drive.Client.Helpers.Localize;
 using Drive.Client.Models.Arguments.BottomtabSwitcher;
+using Drive.Client.Models.Arguments.Notifications;
 using Drive.Client.Models.DataItems.Vehicle;
 using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.Models.EntityModels.Vehicle;
@@ -12,6 +13,7 @@ using Drive.Client.Services.Vehicle;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
 using Drive.Client.Views.BottomTabViews.Bookmark;
+using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -69,7 +71,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
                         if (residentRequestDataItem.ResidentRequest.VehicleCount > 0) {
                             GetVehicles((ResidentRequestDataItem)value);
                         }
-                    } else if (value is PolandRequestDataItem polandRequestDataItem) {
+                    }
+                    else if (value is PolandRequestDataItem polandRequestDataItem) {
                         if (polandRequestDataItem.PolandVehicleRequest.IsParsed) {
                             OnPolandRequestDataItem(polandRequestDataItem);
                         }
@@ -94,6 +97,19 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
 
             if (navigationData is SelectedBottomBarTabArgs) {
                 GetRequestsAsync();
+            }
+            else if (navigationData is ReceivedResidentVehicleDetailInfoArgs vehicleDetailInfoArgs) {
+                try { 
+                    long govRequestId = 0;
+
+                    if (long.TryParse(vehicleDetailInfoArgs.RecidentVehicleNotification.Data, out govRequestId)) {
+                        ResidentRequestDataItem requestDataItem = UserRequests?.OfType<ResidentRequestDataItem>().FirstOrDefault<ResidentRequestDataItem>(residentRequestItem => residentRequestItem.ResidentRequest.GovRequestId == govRequestId);
+                        GetVehicles(requestDataItem);
+                    }
+                }
+                catch (Exception exc) {
+                    Crashes.TrackError(exc);
+                }
             }
 
             UpdateView();

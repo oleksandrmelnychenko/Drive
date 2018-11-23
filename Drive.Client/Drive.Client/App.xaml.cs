@@ -1,8 +1,12 @@
 ﻿using Drive.Client.Helpers;
 using Drive.Client.Helpers.Localize;
+using Drive.Client.Models.Notifications;
 using Drive.Client.Services.DependencyServices.AppVersion;
 using Drive.Client.Services.Navigation;
 using Drive.Client.ViewModels.Base;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -26,8 +30,8 @@ namespace Drive.Client {
         }
 
         private void TrackMemoryUsage() {
-            if (Device.RuntimePlatform == Device.Android) {
-                Device.StartTimer(TimeSpan.FromSeconds(5), () => {
+            if (Xamarin.Forms.Device.RuntimePlatform == Xamarin.Forms.Device.Android) {
+                Xamarin.Forms.Device.StartTimer(TimeSpan.FromSeconds(5), () => {
                     MemoryHelper.DisplayAndroidMemory();
 
                     return true;
@@ -48,9 +52,11 @@ namespace Drive.Client {
         protected override async void OnStart() {
             base.OnStart();
 
-            await InitNavigation();
+            AppCenter.Start(string.Format("android={0};", BaseSingleton<GlobalSetting>.Instance.AzureMobileCenter.AndroidAppSecret),
+                typeof(Analytics), typeof(Crashes));
+            AppCenter.LogLevel = LogLevel.Verbose;
 
-            base.OnResume();
+            await InitNavigation();
         }
 
         protected override void OnSleep() {
@@ -59,6 +65,7 @@ namespace Drive.Client {
 
         protected override void OnResume() {
             // Handle when your app resumes
+            base.OnResume();
         }
     }
 }

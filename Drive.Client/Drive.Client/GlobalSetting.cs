@@ -14,6 +14,8 @@ namespace Drive.Client {
 
         public AppMessagingEvents AppMessagingEvents => DependencyLocator.Resolve<AppMessagingEvents>();
 
+        public AzureMobileCenter AzureMobileCenter => BaseSingleton<AzureMobileCenter>.Instance;
+
         public AppInterfaceConfigurations AppInterfaceConfigurations { get; private set; }
 
         public RestEndpoints RestEndpoints { get; private set; } = new RestEndpoints();

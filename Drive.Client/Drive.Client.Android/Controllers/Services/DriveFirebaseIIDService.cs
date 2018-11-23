@@ -1,7 +1,6 @@
 ﻿
 using Android.App;
 using Android.Content;
-using Android.Widget;
 using Drive.Client.Helpers;
 using Firebase.Iid;
 using System;
@@ -14,13 +13,18 @@ namespace Drive.Client.Droid.Controllers.Services {
     public class DriveFirebaseIIDService : FirebaseInstanceIdService {
 
         public override void OnTokenRefresh() {
-            //base.OnTokenRefresh();
+            base.OnTokenRefresh();
+
             try {
-                string deviceToken = FirebaseInstanceId.Instance.Token;
-                BaseSingleton<GlobalSetting>.Instance.MessagingDeviceToken = deviceToken;
+                string messagingDeviceToken = FirebaseInstanceId.Instance.Token;
+
+                Console.WriteLine("Notification token: {0}", messagingDeviceToken);
+
+                BaseSingleton<GlobalSetting>.Instance.MessagingDeviceToken = messagingDeviceToken;
 
                 MessagingCenter.Send<object>(this, "device_token");
-            } catch (Exception ex) {
+            }
+            catch (Exception ex) {
                 Debug.WriteLine($"ERRROR: {ex.Message}");
             }
         }

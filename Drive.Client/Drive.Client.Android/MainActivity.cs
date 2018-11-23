@@ -6,9 +6,10 @@ using Android.Gms.Common;
 using Android.OS;
 using Android.Runtime;
 using Android.Widget;
+using Drive.Client.Droid.Models.Notiifactions;
+using Drive.Client.Models.Notifications;
 using Drive.Client.Views;
 using FFImageLoading.Forms.Platform;
-using Firebase.Iid;
 using Plugin.CurrentActivity;
 using System;
 using System.Diagnostics;
@@ -18,10 +19,13 @@ namespace Drive.Client.Droid {
     [Activity(MainLauncher = true, ScreenOrientation = ScreenOrientation.Portrait, ConfigurationChanges = ConfigChanges.Locale | ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity {
 
+        private static readonly string RECREIVED_PARSED_RESIDENT_VEHICLE_DETAIL_NOTIFICATION_ENTITY_STRING_EXTRA_KEY = "recreived_parsed_resident_vehicle_detail_notification_entity_string_extra_key";
+
         internal static MainActivity Instance { get; private set; }
 
-        public Intent GetIntentForReceivedAdminNotifiaction() {
-            Intent intent = new Intent(this, typeof(MainActivity));
+        public static Intent GetIntentWithParsedResidentVehicleDetail(Context context, string jsonNotificationMessage) {
+            Intent intent = new Intent(context, typeof(MainActivity));
+            intent.PutExtra(RECREIVED_PARSED_RESIDENT_VEHICLE_DETAIL_NOTIFICATION_ENTITY_STRING_EXTRA_KEY, jsonNotificationMessage);
 
             return intent;
         }
@@ -33,8 +37,17 @@ namespace Drive.Client.Droid {
                 Window.SetBackgroundDrawableResource(Resource.Drawable.common_window_background_layer_list_drawable);
             });
 
-            Firebase.FirebaseApp.InitializeApp(this);
-            Firebase.FirebaseApp fireApp = Firebase.FirebaseApp.Instance;
+            while (true) {
+                try {
+                    Firebase.FirebaseApp.InitializeApp(this);
+                    Firebase.FirebaseApp fireApp = Firebase.FirebaseApp.Instance;
+
+                    break;
+                }
+                catch (Exception exc) {
+                    Console.WriteLine(exc.Message);
+                }
+            }
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
@@ -56,12 +69,19 @@ namespace Drive.Client.Droid {
 
             //string refreshedToken = FirebaseInstanceId.Instance.Token;
             //Toast.MakeText(this, string.Format("OnCreate: {0}", refreshedToken), ToastLength.Long).Show();
-        }
 
-        protected override void OnNewIntent(Intent intent) {
-            base.OnNewIntent(intent);
+            if (Intent.Extras != null && Intent.Extras.ContainsKey(RECREIVED_PARSED_RESIDENT_VEHICLE_DETAIL_NOTIFICATION_ENTITY_STRING_EXTRA_KEY)) {
+                try {
+                    string jsonNotificationMessage = Intent.Extras.GetString(RECREIVED_PARSED_RESIDENT_VEHICLE_DETAIL_NOTIFICATION_ENTITY_STRING_EXTRA_KEY);
+                    INotificationMessage notificationMessage = Newtonsoft.Json.JsonConvert.DeserializeObject<NotificationMessage>(jsonNotificationMessage);
 
-
+                    MessagingCenter.Send<object, INotificationMessage>(this, Drive.Client.Services.Notifications.NotificationService.RESIDENT_VEHICLE_DETAIL_RECEIVED_NOTIFICATION, notificationMessage);
+                }
+                catch (Exception exc) {
+                    string message = exc.Message;
+                    Debugger.Break();
+                }
+            }
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults) {

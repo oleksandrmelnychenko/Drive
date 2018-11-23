@@ -12,6 +12,7 @@ using Drive.Client.Services.Identity;
 using Drive.Client.Services.Identity.IdentityUtility;
 using Drive.Client.Services.Media;
 using Drive.Client.Services.Navigation;
+using Drive.Client.Services.Notifications;
 using Drive.Client.Services.OpenUrl;
 using Drive.Client.Services.RequestProvider;
 using Drive.Client.Services.Vehicle;
@@ -119,6 +120,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
             builder.RegisterType<DeviceUtilService>().As<IDeviceUtilService>().SingleInstance();
             builder.RegisterType<IdentityUtilityService>().As<IIdentityUtilityService>();
+            builder.RegisterType<NotificationService>().As<INotificationService>().SingleInstance();
 
             // Factories.
             builder.RegisterType<VehicleFactory>().As<IVehicleFactory>();
@@ -148,7 +150,7 @@ namespace Drive.Client.ViewModels.Base {
             if (viewModelType == null) {
                 Debug.WriteLine("------------------------ERROR: Can't find viewModel type ---------------------");
                 return;
-            } 
+            }
 
             var viewModel = _container.Resolve(viewModelType);
             view.BindingContext = viewModel;
