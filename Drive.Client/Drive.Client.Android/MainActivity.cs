@@ -25,7 +25,8 @@ namespace Drive.Client.Droid {
 
         public static Intent GetIntentWithParsedResidentVehicleDetail(Context context, string jsonNotificationMessage) {
             Intent intent = new Intent(context, typeof(MainActivity));
-            intent.AddFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop);
+            intent.SetFlags(ActivityFlags.SingleTop | ActivityFlags.ClearTop);
+            intent.SetAction(Guid.NewGuid().ToString());
             intent.PutExtra(RECREIVED_PARSED_RESIDENT_VEHICLE_DETAIL_NOTIFICATION_ENTITY_STRING_EXTRA_KEY, jsonNotificationMessage);
 
             return intent;
@@ -89,6 +90,23 @@ namespace Drive.Client.Droid {
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        protected override void OnNewIntent(Intent intent) {
+            base.OnNewIntent(intent);
+
+            if (intent.Extras != null && intent.Extras.ContainsKey(RECREIVED_PARSED_RESIDENT_VEHICLE_DETAIL_NOTIFICATION_ENTITY_STRING_EXTRA_KEY)) {
+                try {
+                    string jsonNotificationMessage = intent.Extras.GetString(RECREIVED_PARSED_RESIDENT_VEHICLE_DETAIL_NOTIFICATION_ENTITY_STRING_EXTRA_KEY);
+                    INotificationMessage notificationMessage = Newtonsoft.Json.JsonConvert.DeserializeObject<NotificationMessage>(jsonNotificationMessage);
+
+                    MessagingCenter.Send<object, INotificationMessage>(this, Drive.Client.Services.Notifications.NotificationService.RESIDENT_VEHICLE_DETAIL_RECEIVED_NOTIFICATION, notificationMessage);
+                }
+                catch (Exception exc) {
+                    string message = exc.Message;
+                    Debugger.Break();
+                }
+            }
         }
 
         /// <summary>

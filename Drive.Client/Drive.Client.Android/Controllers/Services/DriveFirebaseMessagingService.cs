@@ -26,7 +26,7 @@ namespace Drive.Client.Droid.Controllers.Services {
 
                 try {
                     //string jsonNotificationMessage = message.Data.Values.FirstOrDefault().ToString();
-                    string jsonNotificationMessage = "{\"data\":\"goRequestId\",\"notificationType\":{\"Case\":\"ParsedResidentVehicleDetail\"},\"userNetId\":\"7e975d17-54df-463a-b951-a578e6bbdead\"}";
+                    string jsonNotificationMessage = "{\"data\":\"240615667\",\"notificationType\":{\"Case\":\"0\"},\"userNetId\":\"7e975d17-54df-463a-b951-a578e6bbdead\"}";
                     NotificationMessage notificationMessage = Newtonsoft.Json.JsonConvert.DeserializeObject<NotificationMessage>(jsonNotificationMessage);
 
                     string netId = BaseSingleton<GlobalSetting>.Instance.UserProfile?.NetId;
