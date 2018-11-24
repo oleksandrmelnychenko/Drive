@@ -104,6 +104,7 @@ namespace Drive.Client.ViewModels {
             base.OnSubscribeOnAppEvents();
 
             _notificationService.ReceivedResidentVehicleDetailInfo += OnNotificationServiceReceivedResidentVehicleDetailInfo;
+            _notificationService.TryToResolveLastReceivedNotification();
         }
 
         protected override void OnUnsubscribeFromAppEvents() {

@@ -17,6 +17,5 @@ namespace Drive.Client.iOS.Models.Notifications {
 
         [JsonProperty("title")]
         public string Title { get; set; }
-
     }
 }

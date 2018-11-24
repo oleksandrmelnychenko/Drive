@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 
 namespace Drive.Client.Droid.Models.Notiifactions {
-    public class NotificationType : INotificationType {
+    public class NotificationType {
 
         [JsonProperty("Case")]
         public NotificationCaseType Case { get; set; }
