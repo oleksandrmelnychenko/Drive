@@ -28,5 +28,9 @@ namespace Drive.Client.Services.Notifications {
                 }
             });
         }
+
+        ~NotificationService() {
+
+        }
     }
 }

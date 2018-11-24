@@ -25,6 +25,7 @@ namespace Drive.Client.Droid {
 
         public static Intent GetIntentWithParsedResidentVehicleDetail(Context context, string jsonNotificationMessage) {
             Intent intent = new Intent(context, typeof(MainActivity));
+            intent.AddFlags(ActivityFlags.ClearTop | ActivityFlags.SingleTop);
             intent.PutExtra(RECREIVED_PARSED_RESIDENT_VEHICLE_DETAIL_NOTIFICATION_ENTITY_STRING_EXTRA_KEY, jsonNotificationMessage);
 
             return intent;

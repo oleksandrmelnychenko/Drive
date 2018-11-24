@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Media;
 using Android.Support.V4.App;
 using Drive.Client.Droid.Models.Notiifactions;
 using Drive.Client.Helpers;
@@ -24,8 +25,11 @@ namespace Drive.Client.Droid.Controllers.Services {
                 /// 
 
                 try {
-                    string jsonNotificationMessage = message.Data.Values.FirstOrDefault().ToString();
+                    //string jsonNotificationMessage = message.Data.Values.FirstOrDefault().ToString();
+                    string jsonNotificationMessage = "{\"data\":\"goRequestId\",\"notificationType\":{\"Case\":\"ParsedResidentVehicleDetail\"},\"userNetId\":\"7e975d17-54df-463a-b951-a578e6bbdead\"}";
                     NotificationMessage notificationMessage = Newtonsoft.Json.JsonConvert.DeserializeObject<NotificationMessage>(jsonNotificationMessage);
+
+                    string netId = BaseSingleton<GlobalSetting>.Instance.UserProfile?.NetId;
 
                     if (BaseSingleton<GlobalSetting>.Instance.UserProfile?.NetId == notificationMessage.UserNetId) {
                         ReleaseResidentVehicleNotification(jsonNotificationMessage);
@@ -48,6 +52,7 @@ namespace Drive.Client.Droid.Controllers.Services {
                 NotificationCompat.Builder mBuilder = new Android.Support.V4.App.NotificationCompat.Builder(this)
                     .SetPriority(NotificationCompat.PriorityHigh)
                     .SetVibrate(new long[] { 1000, 2000, 3000 })
+                    .SetSound(RingtoneManager.GetDefaultUri(RingtoneType.Notification))
                     .SetSmallIcon(Resource.Mipmap.im_logo_d)
                     .SetContentTitle("Запит по фізичній особі")
                     .SetContentText("Оброблено")
