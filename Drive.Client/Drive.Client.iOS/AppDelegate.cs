@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using AudioToolbox;
 using CoreFoundation;
 using Drive.Client.Helpers;
 using Drive.Client.iOS.Models.Notifications;
@@ -9,6 +10,7 @@ using Drive.Client.iOS.Services;
 using FFImageLoading.Forms.Platform;
 using Foundation;
 using ObjCRuntime;
+using PushKit;
 using UIKit;
 using UserNotifications;
 using WindowsAzure.Messaging;
@@ -30,6 +32,8 @@ namespace Drive.Client.iOS {
 
         public static string DEVICE_TOKEN = string.Empty;
 
+        private UserNotificationCenterDelegate _userNotificationCenterDelegate;
+
         //
         // This method is invoked when the application has loaded and is ready to run. In this 
         // method you should instantiate the window, load the UI into it and then make the window
@@ -44,24 +48,36 @@ namespace Drive.Client.iOS {
 
             UIApplication.SharedApplication.RegisterForRemoteNotifications();
 
+            ConfigereNotification();
+
             LoadApplication(new App());
-
-            // Request notification permissions from the user
-            UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert, (approved, err) => {
-                // Handle approval
-            });
-
-            // Watch for notifications while the app is active
-            UNUserNotificationCenter.Current.Delegate = new UserNotificationCenterDelegate();
 
             return base.FinishedLaunching(app, options);
         }
 
+        private void ConfigereNotification() {
+            if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0)) {
+                //Request notification permissions from the user
+                var authOptions = UNAuthorizationOptions.Alert | UNAuthorizationOptions.Sound;
+                UNUserNotificationCenter.Current.RequestAuthorization(authOptions, (granted, error) => {
+                    Console.WriteLine(granted);
+                });
+
+                //Watch for notifications while the app is active
+                UNUserNotificationCenter.Current.Delegate = new UserNotificationCenterDelegate();
+            } else {
+                var allNotificationTypes = UIUserNotificationType.Alert | UIUserNotificationType.Sound;
+                var settings = UIUserNotificationSettings.GetSettingsForTypes(allNotificationTypes, null);
+                UIApplication.SharedApplication.RegisterUserNotificationSettings(settings);
+            }
+        }
+
         public override void RegisteredForRemoteNotifications(UIApplication application, NSData deviceToken) {
-            DEVICE_TOKEN = deviceToken.ToString();
+            string originalDeviceToken = deviceToken.ToString();
+            DEVICE_TOKEN = originalDeviceToken.Trim('<').Trim('>').Replace(" ", "");
 
             BaseSingleton<GlobalSetting>.Instance.MessagingDeviceToken = DEVICE_TOKEN;
-            MessagingCenter.Send(this, "device_token");
+            MessagingCenter.Send<object>(this, "device_token");
 
             // Create a new notification hub with the connection string and hub path
             Hub = new SBNotificationHub(ConnectionString, NotificationHubPath);
@@ -81,6 +97,6 @@ namespace Drive.Client.iOS {
                     }
                 });
             });
-        }
+        }      
     }
 }

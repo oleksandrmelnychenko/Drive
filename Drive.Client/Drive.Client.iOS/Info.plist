@@ -30,6 +30,8 @@
 	<string>Your location is used to optimize news and searches.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Your location is used to optimize news and searches.</string>
+  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+  <string>Your location is used to optimize news and searches.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>uk</string>
 	<key>CFBundleLocalizations</key>

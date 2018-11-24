@@ -10,14 +10,17 @@ using Drive.Client.iOS.Models.Notifications;
 using Drive.Client.Helpers;
 using Xamarin.Forms;
 using Drive.Client.Models.Notifications;
+using AudioToolbox;
 
 namespace Drive.Client.iOS.Services {
     internal class UserNotificationCenterDelegate : UNUserNotificationCenterDelegate {
 
-        private const string REBUILD_NOTIFICATION_KEY = "rebuildedID"; 
+        private const string REBUILD_NOTIFICATION_KEY = "rebuildedID";
 
-        public UserNotificationCenterDelegate() {
-        }
+        /// <summary>
+        ///     ctor().
+        /// </summary>
+        public UserNotificationCenterDelegate() { }
 
         public override void DidReceiveNotificationResponse(UNUserNotificationCenter center, UNNotificationResponse response, Action completionHandler) {
             try {
@@ -25,9 +28,13 @@ namespace Drive.Client.iOS.Services {
                 NSData jsonData = NSJsonSerialization.Serialize(aps, 0, out NSError error);
                 string jsonNotificationMessage = jsonData.ToString();
 
-                NotificationMessage notificationMessage = Newtonsoft.Json.JsonConvert.DeserializeObject<NotificationMessage>(jsonNotificationMessage);
+                bool forMe = default(bool);
 
-                MessagingCenter.Send<object, INotificationMessage>(this, Drive.Client.Services.Notifications.NotificationService.RESIDENT_VEHICLE_DETAIL_RECEIVED_NOTIFICATION, notificationMessage);
+                NotificationMessage notificationMessage = Newtonsoft.Json.JsonConvert.DeserializeObject<NotificationMessage>(jsonNotificationMessage);
+                forMe = BaseSingleton<GlobalSetting>.Instance.UserProfile?.NetId == notificationMessage.UserNetId;
+                if (forMe) {
+                    MessagingCenter.Send<object, INotificationMessage>(this, Drive.Client.Services.Notifications.NotificationService.RESIDENT_VEHICLE_DETAIL_RECEIVED_NOTIFICATION, notificationMessage);
+                }
             } catch (Exception exc) {
                 string message = exc.Message;
                 Debugger.Break();
@@ -39,7 +46,7 @@ namespace Drive.Client.iOS.Services {
                 if (!(notification.Request.Content.UserInfo.ObjectForKey(new NSString("aps")) is NSDictionary aps)) return;
 
                 if (notification.Request.Identifier == REBUILD_NOTIFICATION_KEY) {
-                    completionHandler(UNNotificationPresentationOptions.Alert);
+                    completionHandler(UNNotificationPresentationOptions.Sound | UNNotificationPresentationOptions.Alert);
                 } else {
                     NSData jsonData = NSJsonSerialization.Serialize(aps, 0, out NSError error);
                     string jsonResult = jsonData.ToString();
@@ -51,6 +58,7 @@ namespace Drive.Client.iOS.Services {
                     if (forMe) {
                         // Rebuild notification
                         var content = new UNMutableNotificationContent {
+                            Sound = UNNotificationSound.Default,
                             Title = "Запит по фізичній особі",
                             Body = "Оброблено",
                             UserInfo = notification.Request.Content.UserInfo
@@ -76,7 +84,7 @@ namespace Drive.Client.iOS.Services {
                 string message = ex.Message;
                 Debugger.Break();
             }
-            completionHandler(UNNotificationPresentationOptions.None);
+            //completionHandler(UNNotificationPresentationOptions.None);
         }
     }
 }
