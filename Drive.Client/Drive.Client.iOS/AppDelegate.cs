@@ -81,6 +81,6 @@ namespace Drive.Client.iOS {
                     }
                 });
             });
-        }        
+        }
     }
 }

@@ -14,6 +14,8 @@ using Drive.Client.Models.Notifications;
 namespace Drive.Client.iOS.Services {
     internal class UserNotificationCenterDelegate : UNUserNotificationCenterDelegate {
 
+        private const string REBUILD_NOTIFICATION_KEY = "rebuildedID"; 
+
         public UserNotificationCenterDelegate() {
         }
 
@@ -34,45 +36,47 @@ namespace Drive.Client.iOS.Services {
 
         public override void WillPresentNotification(UNUserNotificationCenter center, UNNotification notification, Action<UNNotificationPresentationOptions> completionHandler) {
             try {
-                NSDictionary aps = notification.Request.Content.UserInfo.ObjectForKey(new NSString("aps")) as NSDictionary;
+                if (!(notification.Request.Content.UserInfo.ObjectForKey(new NSString("aps")) is NSDictionary aps)) return;
 
-                if (aps == null) return;
+                if (notification.Request.Identifier == REBUILD_NOTIFICATION_KEY) {
+                    completionHandler(UNNotificationPresentationOptions.Alert);
+                } else {
+                    NSData jsonData = NSJsonSerialization.Serialize(aps, 0, out NSError error);
+                    string jsonResult = jsonData.ToString();
+                    bool forMe = default(bool);
 
-                NSData jsonData = NSJsonSerialization.Serialize(aps, 0, out NSError error);
-                string jsonResult = jsonData.ToString();
+                    NotificationMessage notificationMessage = Newtonsoft.Json.JsonConvert.DeserializeObject<NotificationMessage>(jsonResult);
+                    forMe = BaseSingleton<GlobalSetting>.Instance.UserProfile?.NetId == notificationMessage.UserNetId;
 
-                NotificationMessage notificationMessage = Newtonsoft.Json.JsonConvert.DeserializeObject<NotificationMessage>(jsonResult);
-                //BaseSingleton<GlobalSetting>.Instance.UserProfile?.NetId == notificationMessage.UserNetId
+                    if (forMe) {
+                        // Rebuild notification
+                        var content = new UNMutableNotificationContent {
+                            Title = "Запит по фізичній особі",
+                            Body = "Оброблено",
+                            UserInfo = notification.Request.Content.UserInfo
+                        };
 
-                // Rebuild notification
-                var content = new UNMutableNotificationContent {
-                    Title = notificationMessage.Title,
-                    Subtitle = notificationMessage.Alert,
-                    Body = notificationMessage.Data                    
-                };
+                        // New trigger time
+                        var trigger = UNTimeIntervalNotificationTrigger.CreateTrigger(1, false);
 
-                // New trigger time
-                var trigger = UNTimeIntervalNotificationTrigger.CreateTrigger(5, false);
+                        // ID of Notification to be updated
+                        var requestID = REBUILD_NOTIFICATION_KEY;
+                        var request = UNNotificationRequest.FromIdentifier(requestID, content, trigger);
 
-                // ID of Notification to be updated
-                var requestID = notification.Request.Identifier;
-                var request = UNNotificationRequest.FromIdentifier(requestID, content, trigger);
-
-                // Add to system to modify existing Notification
-                UNUserNotificationCenter.Current.AddNotificationRequest(request, (err) => {
-                    if (err != null) {
-                        // Do something with error...
-                        Debugger.Break();
+                        // Add to system to modify existing Notification
+                        UNUserNotificationCenter.Current.AddNotificationRequest(request, (err) => {
+                            if (err != null) {
+                                // Do something with error...
+                                Debugger.Break();
+                            }
+                        });
                     }
-                });
-
-                // Tell system to display the notification anyway or use
-                // `None` to say we have handled the display locally.
-                completionHandler(UNNotificationPresentationOptions.Alert);
+                }
             } catch (Exception ex) {
                 string message = ex.Message;
                 Debugger.Break();
             }
+            completionHandler(UNNotificationPresentationOptions.None);
         }
     }
 }
