@@ -187,6 +187,9 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
         }
 
         private async void GetRequests() {
+            Guid busyKey = Guid.NewGuid();
+            UpdateBusyVisualState(busyKey, true);
+
             try {
                 if (BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth) {
 
@@ -211,6 +214,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
             catch (Exception ex) {
                 Debug.WriteLine($"ERROR: {ex.Message}");
             }
+
+            UpdateBusyVisualState(busyKey, false);
         }
 
         public void ClearAfterTabTap() {

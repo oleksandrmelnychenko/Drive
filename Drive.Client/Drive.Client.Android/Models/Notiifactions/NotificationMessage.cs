@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 namespace Drive.Client.Droid.Models.Notiifactions {
     public class NotificationMessage : INotificationMessage {
 
+        [JsonProperty("notificationType")]
         public NotificationCaseType NotificationType { get; set; }
 
         [JsonProperty("data")]
@@ -12,14 +13,13 @@ namespace Drive.Client.Droid.Models.Notiifactions {
         [JsonProperty("userNetId")]
         public string UserNetId { get; set; }
 
-        private NotificationType _caseype;
-        [JsonProperty("notificationType")]
-        public NotificationType Casetype {
-            get => _caseype;
-            set {
-                _caseype = value;
-                NotificationType = _caseype != null ? _caseype.Case : NotificationCaseType.ParsedResidentVehicleDetail;
-            }
-        }
+        //private NotificationType _caseype;
+        //public NotificationType Casetype {
+        //    get => _caseype;
+        //    set {
+        //        _caseype = value;
+        //        NotificationType = _caseype != null ? _caseype.Case : NotificationCaseType.ParsedResidentVehicleDetail;
+        //    }
+        //}
     }
 }

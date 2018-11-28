@@ -38,7 +38,7 @@ namespace Drive.Client.Droid.Controllers.Services {
                 catch (Exception exc) {
                     string messageExc = exc.Message;
                     Debugger.Break();
-                    TODO_RELEASE_TEMPORARY_NOTIFICATION_FOR_DEV(exc.Message);
+                    //TODO_RELEASE_TEMPORARY_NOTIFICATION_FOR_DEV(exc.Message);
                 }
             }
             catch (Exception exc) {
