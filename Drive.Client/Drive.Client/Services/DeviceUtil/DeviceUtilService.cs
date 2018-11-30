@@ -29,8 +29,7 @@ namespace Drive.Client.Services.DeviceUtil {
 
                 try {
                     responseCompletion = await _requestProvider.PostAsync<bool, ClientHardware>(url, clientHardware, accessToken);
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     Debug.WriteLine($"ERROR: {ex.Message}");
                     Debugger.Break();
                     responseCompletion = true;
@@ -47,18 +46,15 @@ namespace Drive.Client.Services.DeviceUtil {
                     GeolocationRequest request = new GeolocationRequest(accuracy);
                     request.Timeout = timeout;
                     result = await Geolocation.GetLocationAsync(request, cancellationTokenSource.Token);
-                }
-                catch (FeatureNotSupportedException fnsEx) {
+                } catch (FeatureNotSupportedException fnsEx) {
                     // TODO: Handle not supported on device exception
                     Debug.WriteLine($"ERROR: {fnsEx.Message}");
                     Debugger.Break();
-                }
-                catch (PermissionException pEx) {
+                } catch (PermissionException pEx) {
                     // TODO: Handle permission exception
                     Debug.WriteLine($"ERROR: {pEx.Message}");
                     Debugger.Break();
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     // TODO: Unable to get location
                     Debug.WriteLine($"ERROR: {ex.Message}");
                     Debugger.Break();
@@ -87,32 +83,34 @@ namespace Drive.Client.Services.DeviceUtil {
                 Location location = null;
 
                 try {
-                    var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
-                    if (status != PermissionStatus.Granted) {
-                        if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Location)) {
-                            Debugger.Break();
+                    if (Device.RuntimePlatform == Device.iOS) {
+                        location = await GetDeviceLocationAsync(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(9), cancellationTokenSource);
+                    } else {
+                        var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                        if (status != PermissionStatus.Granted) {
+                            if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Location)) {
+                                Debugger.Break();
+                            }
+
+                            var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Location);
+                            if (results.ContainsKey(Permission.Location))
+                                status = results[Permission.Location];
                         }
 
-                        var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Location);
-                        if (results.ContainsKey(Permission.Location))
-                            status = results[Permission.Location];
+                        if (status == PermissionStatus.Granted) {
+                            try {
+                                //todo
+                                location = await GetDeviceLocationAsync(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(9), cancellationTokenSource);
+                            } catch (Exception ex) {
+                                Debug.WriteLine($"ERROR:{ex.Message}");
+                                Debugger.Break();
+                            }
+
+                        } else if (status != PermissionStatus.Unknown) {
+
+                        }
                     }
-
-                    if (status == PermissionStatus.Granted) {
-                        try {
-                            //todo
-                            location = await GetDeviceLocationAsync(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(9), cancellationTokenSource);
-                        }
-                        catch (Exception ex) {
-                            Debug.WriteLine($"ERROR:{ex.Message}");
-                            Debugger.Break();
-                        }
-
-                    } else if (status != PermissionStatus.Unknown) {
-
-                    }
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     Debug.WriteLine($"ERROR:{ex.Message}");
                     Debugger.Break();
                 }
