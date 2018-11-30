@@ -93,16 +93,7 @@ namespace Drive.Client.ViewModels.Popups {
                 catch {
                     IsWarningMessageVisible = true;
                 }
-            }
-            //_searchByPersonArgs.DateOfBirth = DateInput;
-
-
-            //string tt = string.Format("{0:D3}", Day);
-            //string h = string.Format("number are:{0:D3} - {1:D3} and {2:D4}", Day, 3, 4);
-
-            //_searchByPersonArgs.DateOfBirth = $"{Day:D2}/{Mounth}/{Year}";
-
-            //var cc = ValidationHelper.IsValidDate(_searchByPersonArgs.DateOfBirth);
+            }            
         });
 
         /// <summary>

@@ -30,7 +30,7 @@ namespace Drive.Client.iOS.Services {
 
                 bool forMe = default(bool);
 
-                NotificationMessage notificationMessage = Newtonsoft.Json.JsonConvert.DeserializeObject<NotificationMessage>(jsonNotificationMessage);
+                INotificationMessage notificationMessage = Newtonsoft.Json.JsonConvert.DeserializeObject<NotificationMessage>(jsonNotificationMessage);
                 forMe = BaseSingleton<GlobalSetting>.Instance.UserProfile?.NetId == notificationMessage.UserNetId;
                 if (forMe) {
                     MessagingCenter.Send<object, INotificationMessage>(this, Drive.Client.Services.Notifications.NotificationService.RESIDENT_VEHICLE_DETAIL_RECEIVED_NOTIFICATION, notificationMessage);
@@ -84,7 +84,6 @@ namespace Drive.Client.iOS.Services {
                 string message = ex.Message;
                 Debugger.Break();
             }
-            //completionHandler(UNNotificationPresentationOptions.None);
         }
     }
 }
