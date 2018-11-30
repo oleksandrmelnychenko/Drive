@@ -101,7 +101,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
             if (navigationData is SelectedBottomBarTabArgs) {
                 GetRequests();
             }
-            else if (navigationData is ReceivedResidentVehicleDetailInfoArgs vehicleDetailInfoArgs) {
+            if (navigationData is ReceivedResidentVehicleDetailInfoArgs vehicleDetailInfoArgs) {
                 _lastNotificationRequest = vehicleDetailInfoArgs;
             }
 
@@ -186,36 +186,47 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
             VisibilityClosedView = !BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth;
         }
 
+        private bool _isGettingRequestsTEMPORARY = false;
+
         private async void GetRequests() {
-            Guid busyKey = Guid.NewGuid();
-            UpdateBusyVisualState(busyKey, true);
 
-            try {
-                if (BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth) {
+            if (!_isGettingRequestsTEMPORARY) {
+                _isGettingRequestsTEMPORARY = true;
 
-                    UserRequests = (await GetRequestAsync()).ToObservableCollection();
+                Guid busyKey = Guid.NewGuid();
+                UpdateBusyVisualState(busyKey, true);
 
-                    if (_lastNotificationRequest != null) {
-                        long govRequestId = 0;
+                try {
+                    if (BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth) {
 
-                        if (long.TryParse(_lastNotificationRequest.RecidentVehicleNotification.Data, out govRequestId)) {
+                        UserRequests = (await GetRequestAsync()).ToObservableCollection();
 
-                            ResidentRequestDataItem requestDataItem = UserRequests?.OfType<ResidentRequestDataItem>().FirstOrDefault<ResidentRequestDataItem>(residentRequestItem => residentRequestItem.ResidentRequest.GovRequestId == govRequestId);
+                        if (_lastNotificationRequest != null) {
+                            long govRequestId = 0;
 
-                            if (requestDataItem != null) {
-                                GetVehicles(requestDataItem);
+                            if (long.TryParse(_lastNotificationRequest.RecidentVehicleNotification.Data, out govRequestId)) {
+
+                                ResidentRequestDataItem requestDataItem = UserRequests?.OfType<ResidentRequestDataItem>().FirstOrDefault<ResidentRequestDataItem>(residentRequestItem => residentRequestItem.ResidentRequest.GovRequestId == govRequestId);
+
+                                if (requestDataItem != null) {
+                                    UpdateBusyVisualState(busyKey, false);
+                                    GetVehicles(requestDataItem);
+                                }
                             }
-                        }
 
-                        _lastNotificationRequest = null;
+                            _lastNotificationRequest = null;
+                        }
                     }
                 }
-            }
-            catch (Exception ex) {
-                Debug.WriteLine($"ERROR: {ex.Message}");
+                catch (Exception ex) {
+                    Debug.WriteLine($"ERROR: {ex.Message}");
+                }
+
+                _isGettingRequestsTEMPORARY = false;
+                UpdateBusyVisualState(busyKey, false);
             }
 
-            UpdateBusyVisualState(busyKey, false);
+            UpdateView();
         }
 
         public void ClearAfterTabTap() {

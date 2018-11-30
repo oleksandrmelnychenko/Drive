@@ -15,27 +15,27 @@
         </ResourceDictionary>
     </ContentView.Resources>
 
-    <Grid RowSpacing="0">
-        <StackLayout
+    <StackLayout
+        HorizontalOptions="Center"
+        Spacing="4"
+        VerticalOptions="Center">
+        <controls:LabelExtended
+            FontSize="{StaticResource Key=BaseFontSize}"
             HorizontalOptions="Center"
-            Spacing="4"
-            VerticalOptions="Center">
-            <controls:LabelExtended
-                FontSize="{StaticResource Key=BaseFontSize}"
-                HorizontalOptions="Center"
-                Text="{Binding [SavedUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
-                TextColor="{StaticResource DarkColor}"
-                VerticalOptions="Center" />
-            <controls:LabelExtended
-                FontFamily="{StaticResource SFProThin}"
-                FontSize="{StaticResource Key=MidMediumSize}"
-                HorizontalOptions="Center"
-                Text="{Binding [InDev].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
-                TextColor="{StaticResource ExtraGrayColor}"
-                VerticalOptions="Center" />
-        </StackLayout>
+            Text="{Binding [NewsUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+            TextColor="{StaticResource DarkColor}"
+            VerticalOptions="Center" />
+        <controls:LabelExtended
+            FontFamily="{StaticResource SFProThin}"
+            FontSize="{StaticResource Key=MidMediumSize}"
+            HorizontalOptions="Center"
+            Text="{Binding [InDev].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+            TextColor="{StaticResource ExtraGrayColor}"
+            VerticalOptions="Center" />
+    </StackLayout>
 
-        <!--<Grid.RowDefinitions>
+    <!--<Grid RowSpacing="0">
+        <Grid.RowDefinitions>
             <RowDefinition Height="48" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -65,7 +65,7 @@
             ItemTemplate="{StaticResource HomePostTemplateSelector}"
             ItemsSource="{Binding Posts}"
             SelectionMode="None"
-            SeparatorVisibility="None" />-->
-    </Grid>
+            SeparatorVisibility="None" />
+    </Grid>-->
 </ContentView>
 

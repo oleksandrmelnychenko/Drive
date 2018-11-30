@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Media;
+using Android.OS;
 using Android.Support.V4.App;
 using Drive.Client.Droid.Models.Notiifactions;
 using Drive.Client.Helpers;
@@ -26,7 +27,7 @@ namespace Drive.Client.Droid.Controllers.Services {
 
                 try {
                     //string jsonNotificationMessage = message.Data.Values.FirstOrDefault().ToString();
-                    string jsonNotificationMessage = "{\"data\":\"240615667\",\"notificationType\":{\"Case\":\"0\"},\"userNetId\":\"7e975d17-54df-463a-b951-a578e6bbdead\"}";
+                    string jsonNotificationMessage = "{\"data\":\"240615667\",\"notificationType\":\"0\",\"userNetId\":\"7e975d17-54df-463a-b951-a578e6bbdead\"}";
                     NotificationMessage notificationMessage = Newtonsoft.Json.JsonConvert.DeserializeObject<NotificationMessage>(jsonNotificationMessage);
 
                     string netId = BaseSingleton<GlobalSetting>.Instance.UserProfile?.NetId;
@@ -58,6 +59,10 @@ namespace Drive.Client.Droid.Controllers.Services {
                     .SetContentText("Оброблено")
                     .SetContentIntent(PendingIntent.GetActivity(this, 0, MainActivity.GetIntentWithParsedResidentVehicleDetail(this, jsonNotificationMessage), PendingIntentFlags.UpdateCurrent))
                     .SetAutoCancel(true);
+
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop) {
+                    mBuilder.SetVibrate(new long[] { 0 });
+                }
 
                 NotificationManager mNotificationManager = (NotificationManager)GetSystemService(Android.Content.Context.NotificationService);
                 mNotificationManager.Notify(0, mBuilder.Build());

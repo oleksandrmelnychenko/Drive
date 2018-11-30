@@ -28,7 +28,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         }
 
         public ICommand TabActionCommand => new Command(()=> {
-            PostTypePopupViewModel.ShowPopupCommand.Execute(null);
+            //PostTypePopupViewModel.ShowPopupCommand.Execute(null);
         });
 
         public override void Dispose() {
