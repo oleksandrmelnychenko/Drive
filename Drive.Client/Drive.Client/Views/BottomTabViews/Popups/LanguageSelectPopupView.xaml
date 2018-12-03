@@ -30,7 +30,7 @@
                     FontFamily="{StaticResource SFProLight}"
                     FontSize="{StaticResource LittleSize}"
                     HorizontalOptions="Center"
-                    Text="{Binding [LanguageUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                    Text="{Binding ResourceLoader[LanguageUpperCase].Value, Mode=TwoWay}"
                     TextColor="{StaticResource BaseGrayColor}"
                     VerticalOptions="Center" />
 

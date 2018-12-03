@@ -1,6 +1,7 @@
 ﻿using Drive.Client.Exceptions;
 using Drive.Client.Helpers;
 using Drive.Client.Models.EntityModels.Identity;
+using Drive.Client.Resources.Resx;
 using Drive.Client.Services.Identity;
 using Drive.Client.Validations;
 using Drive.Client.Validations.ValidationRules;
@@ -80,7 +81,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
         protected override void ResetValidationObjects() {
             base.ResetValidationObjects();
 
-            MainInput.Validations.Add(new EmailRule<string>() { ValidationMessage = ValidatableObject<string>.ERROR_EMAIL });
+            MainInput.Validations.Add(new EmailRule<string>() { ValidationMessage = ResourceLoader.GetString(nameof(AppStrings.InvalidEmail)) });
         }
     }
 }

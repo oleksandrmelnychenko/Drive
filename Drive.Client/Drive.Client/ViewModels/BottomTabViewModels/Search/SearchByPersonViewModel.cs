@@ -20,7 +20,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
 
         public Type RelativeViewType => typeof(SearchByPersonView);
 
-        StringResource _tabHeader = ResourceLoader.Instance.GetString(nameof(AppStrings.PersonUpperCase));
+        StringResource _tabHeader;
         public StringResource TabHeader {
             get => _tabHeader;
             private set => SetProperty(ref _tabHeader, value);
@@ -96,9 +96,15 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         }
 
         private void AddValidations() {
-            _lastName.Validations.Add(new IsNotNullOrEmptyRule<string>() { ValidationMessage = ValidatableObject<string>.FIELD_IS_REQUIRED_VALIDATION_MESSAGE });
-            _lastName.Validations.Add(new FullNameMinLengthRule<string>() { ValidationMessage = ValidatableObject<string>.ERROR_MINLENGTH });
-            _lastName.Validations.Add(new FullNameMaxLengthRule<string>() { ValidationMessage = ValidatableObject<string>.ERROR_MAXLENGTH });
+            _lastName.Validations.Add(new IsNotNullOrEmptyRule<string>() { ValidationMessage = ResourceLoader.GetString(nameof(AppStrings.FieldRequired)) });
+            _lastName.Validations.Add(new FullNameMinLengthRule<string>() { ValidationMessage = ResourceLoader.GetString(nameof(AppStrings.ERROR_MINLENGTH)) });
+            _lastName.Validations.Add(new FullNameMaxLengthRule<string>() { ValidationMessage = ResourceLoader.GetString(nameof(AppStrings.ERROR_MAXLENGTH)) });
+        }
+
+        protected override void ResolveStringResources() {
+            base.ResolveStringResources();
+
+            TabHeader = ResourceLoader.GetString(nameof(AppStrings.PersonUpperCase));
         }
     }
 }

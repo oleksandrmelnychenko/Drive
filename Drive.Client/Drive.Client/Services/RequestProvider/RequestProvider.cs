@@ -18,6 +18,7 @@ namespace Drive.Client.Services.RequestProvider {
     public class RequestProvider : IRequestProvider {
 
         private readonly HttpClient _client;
+        private ResourceLoader _resourceLoader;
 
         /// <summary>
         ///     ctor().
@@ -28,6 +29,8 @@ namespace Drive.Client.Services.RequestProvider {
 
             _client.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(BaseSingleton<GlobalSetting>.Instance.AppInterfaceConfigurations.LanguageInterface.LocaleId));
             _client.DefaultRequestHeaders.Add("DeviceId", CrossDeviceInfo.Current.Id);
+
+            _resourceLoader = new ResourceLoader();
         }
 
         /// <summary>
@@ -164,9 +167,9 @@ namespace Drive.Client.Services.RequestProvider {
                return default(TResult);
            });
 
-        private static void CheckInternetConnection() {
+        private void CheckInternetConnection() {
             if (!CrossConnectivity.Current.IsConnected)
-                throw new ConnectivityException((ResourceLoader.Instance.GetString(nameof(AppStrings.ERROR_INTERNET_CONNECTION))).Value);
+                throw new ConnectivityException((_resourceLoader.GetString(nameof(AppStrings.ERROR_INTERNET_CONNECTION))).Value);
         }
 
         private void SetLanguage() {
@@ -179,7 +182,8 @@ namespace Drive.Client.Services.RequestProvider {
                 if (!string.IsNullOrEmpty(accessToken)) {
                     _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 }
-            } else {
+            }
+            else {
                 if (!(string.IsNullOrEmpty(accessToken)) && _client.DefaultRequestHeaders.Authorization.Parameter != accessToken) {
                     _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 }

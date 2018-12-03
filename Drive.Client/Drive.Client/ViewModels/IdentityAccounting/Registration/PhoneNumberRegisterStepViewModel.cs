@@ -1,5 +1,6 @@
 ﻿using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
 using Drive.Client.Models.EntityModels.Identity;
+using Drive.Client.Resources.Resx;
 using Drive.Client.Services.Identity;
 using Drive.Client.Validations;
 using Drive.Client.Validations.ValidationRules;
@@ -74,7 +75,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
         protected override void ResetValidationObjects() {
             base.ResetValidationObjects();
 
-            MainInput.Validations.Add(new PhoneNumberRule<string>() { ValidationMessage = ValidatableObject<string>.INVALID_PHONE_VALIDATION_MESSAGE });
+            MainInput.Validations.Add(new PhoneNumberRule<string>() { ValidationMessage = ResourceLoader.GetString(nameof(AppStrings.InvalidPhoneNumber)) });
         }
     }
 }

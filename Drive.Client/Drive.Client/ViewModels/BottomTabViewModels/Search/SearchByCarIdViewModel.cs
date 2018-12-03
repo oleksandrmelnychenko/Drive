@@ -32,7 +32,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
 
         public Type RelativeViewType => typeof(SearchByCarIdView);
 
-        StringResource _tabHeader = ResourceLoader.Instance.GetString(nameof(AppStrings.ByUkraineNumberUpperCase));
+        StringResource _tabHeader;
         public StringResource TabHeader {
             get => _tabHeader;
             private set => SetProperty(ref _tabHeader, value);
@@ -122,6 +122,12 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
 
         public void ClearAfterTabTap() {
             ClearSource();
+        }
+
+        protected override void ResolveStringResources() {
+            base.ResolveStringResources();
+
+            TabHeader = ResourceLoader.GetString(nameof(AppStrings.ByUkraineNumberUpperCase));
         }
 
         private void ClearSource() {

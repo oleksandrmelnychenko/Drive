@@ -252,7 +252,7 @@ namespace Drive.Client.ViewModels {
                 FontFamily = Device.RuntimePlatform == Device.iOS ? "SFProDisplay-Light" : "SFProDisplay-Light.ttf#SF Pro Display light",
             };
 
-            span.SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.Instance.GetString(stringPath)));
+            span.SetBinding(Span.TextProperty, new Binding("Value", source: ResourceLoader.GetString(stringPath)));
 
             return span;
         }

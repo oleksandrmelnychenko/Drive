@@ -49,7 +49,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
 
             bool isValid = MainInput.Value != null && MainInput.Value.Equals(_collectedInputsArgs.Password);
             if (!isValid) {
-                ServerError = (ResourceLoader.Instance.GetString(nameof(AppStrings.ReEnteredPasswordIncorrect)).Value); 
+                ServerError = (ResourceLoader.GetString(nameof(AppStrings.ReEnteredPasswordIncorrect)).Value); 
             }
 
             return isValid;

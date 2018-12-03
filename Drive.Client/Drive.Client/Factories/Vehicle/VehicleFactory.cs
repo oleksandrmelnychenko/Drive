@@ -8,15 +8,16 @@ using Xamarin.Forms;
 
 namespace Drive.Client.Factories.Vehicle {
     class VehicleFactory : IVehicleFactory {
-        public List<BaseRequestDataItem> BuildResidentRequestItems(IEnumerable<ResidentRequest> residentRequests) {
+
+        public List<BaseRequestDataItem> BuildResidentRequestItems(IEnumerable<ResidentRequest> residentRequests, ResourceLoader resourceLoader) {
             List<BaseRequestDataItem> residentRequestDataItems = new List<BaseRequestDataItem>();
 
             foreach (var request in residentRequests) {
                 ResidentRequestDataItem residentRequestDataItem = new ResidentRequestDataItem {
                     ResidentRequest = request,
                     Created = request.Created,
-                    Status = GetLocalizeStatus(request.Status),
-                    CountOutput = GetOutputValue(request.VehicleCount),
+                    Status = GetLocalizeStatus(request.Status, resourceLoader),
+                    CountOutput = GetOutputValue(request.VehicleCount, resourceLoader),
                     StatusColor = (request.Status == Status.Finished) ? (Color)App.Current.Resources["StatusFinishedColor"] : (Color)App.Current.Resources["StatusProcessingColor"]
                 };
                 residentRequestDataItem.InitializeAsync(null);
@@ -26,14 +27,14 @@ namespace Drive.Client.Factories.Vehicle {
             return residentRequestDataItems;
         }
 
-        public List<BaseRequestDataItem> BuildPolandRequestItems(IEnumerable<PolandVehicleRequest> residentRequests) {
+        public List<BaseRequestDataItem> BuildPolandRequestItems(IEnumerable<PolandVehicleRequest> residentRequests, ResourceLoader resourceLoader) {
             List<BaseRequestDataItem> residentRequestDataItems = new List<BaseRequestDataItem>();
 
             foreach (var request in residentRequests) {
                 PolandRequestDataItem polandRequestDataItem = new PolandRequestDataItem {
                     PolandVehicleRequest = request,
                     Created = request.Created,
-                    Status = GetPolandLocalizeStatus(request.IsParsed),
+                    Status = GetPolandLocalizeStatus(request.IsParsed, resourceLoader),
                     StatusColor = request.IsParsed ? (Color)App.Current.Resources["StatusFinishedColor"] : (Color)App.Current.Resources["ErrorColor"]
                 };
                 polandRequestDataItem.InitializeAsync(null);
@@ -43,22 +44,24 @@ namespace Drive.Client.Factories.Vehicle {
             return residentRequestDataItems;
         }
 
-        private StringResource GetPolandLocalizeStatus(bool isParsed) {
-            return isParsed ? ResourceLoader.Instance.GetString(nameof(AppStrings.ExecutedUpperCase))
-                            : ResourceLoader.Instance.GetString(nameof(AppStrings.ErrorUpperCase));
+        private StringResource GetPolandLocalizeStatus(bool isParsed, ResourceLoader resourceLoader) {
+            return isParsed ? resourceLoader.GetString(nameof(AppStrings.ExecutedUpperCase))
+                            : resourceLoader.GetString(nameof(AppStrings.ErrorUpperCase));
         }
 
-        private StringResource GetLocalizeStatus(Status status) {
-            StringResource resource = (status == Status.Finished) ? ResourceLoader.Instance.GetString(nameof(AppStrings.FinishedUpperCase))
-                : ResourceLoader.Instance.GetString(nameof(AppStrings.ProcessingUpperCase));
+        private StringResource GetLocalizeStatus(Status status, ResourceLoader resourceLoader) {
+            StringResource resource = (status == Status.Finished) 
+                ? resourceLoader.GetString(nameof(AppStrings.FinishedUpperCase))
+                : resourceLoader.GetString(nameof(AppStrings.ProcessingUpperCase));
             return resource;
         }
 
-        private StringResource GetOutputValue(long count) {
-            StringResource resource = count.Equals(0) || count > 4 ?
-                ResourceLoader.Instance.GetString(nameof(AppStrings.VehiclesUpperCase))
-                : count.Equals(1) ? ResourceLoader.Instance.GetString(nameof(AppStrings.VehicleUpperCase))
-                : ResourceLoader.Instance.GetString(nameof(AppStrings.VehiclesSecondTypeUpperCase));
+        private StringResource GetOutputValue(long count, ResourceLoader resourceLoader) {
+            StringResource resource = count.Equals(0) || count > 4 
+                ? resourceLoader.GetString(nameof(AppStrings.VehiclesUpperCase))
+                : count.Equals(1) 
+                    ? resourceLoader.GetString(nameof(AppStrings.VehicleUpperCase))
+                    : resourceLoader.GetString(nameof(AppStrings.VehiclesSecondTypeUpperCase));
             return resource;
         }
     }

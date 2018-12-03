@@ -21,7 +21,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
 
         public Type RelativeViewType => typeof(SearchByPolandCarIdView);
 
-        StringResource _tabHeader = ResourceLoader.Instance.GetString(nameof(AppStrings.ByPolandNumberUpperCase));
+        StringResource _tabHeader;
         public StringResource TabHeader {
             get => _tabHeader;
             private set => SetProperty(ref _tabHeader, value);
@@ -86,6 +86,12 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
 
         public void TabClicked() { }
 
+        protected override void ResolveStringResources() {
+            base.ResolveStringResources();
+
+            TabHeader = ResourceLoader.GetString(nameof(AppStrings.ByPolandNumberUpperCase));
+        }
+
         private void ClearSource() {
             try {
                 Number.Value = string.Empty;
@@ -104,7 +110,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         }
 
         private void AddValidations() {
-            _number.Validations.Add(new IsNotNullOrEmptyRule<string>() { ValidationMessage = ValidatableObject<string>.FIELD_IS_REQUIRED_VALIDATION_MESSAGE });
+            _number.Validations.Add(new IsNotNullOrEmptyRule<string>() { ValidationMessage = ResourceLoader.GetString(nameof(AppStrings.FieldRequired)) });
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Drive.Client.Helpers;
 using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.Models.Identities.NavigationArgs;
+using Drive.Client.Resources.Resx;
 using Drive.Client.Services.Vehicle;
 using Drive.Client.Validations;
 using Drive.Client.Validations.ValidationRules;
@@ -75,8 +76,8 @@ namespace Drive.Client.ViewModels.Search {
         protected override void ResetValidationObjects() {
             base.ResetValidationObjects();
 
-            MainInput.Validations.Add(new FullNameMinLengthRule<string>() { ValidationMessage = ValidatableObject<string>.ERROR_MINLENGTH });
-            MainInput.Validations.Add(new FullNameMaxLengthRule<string>() { ValidationMessage = ValidatableObject<string>.ERROR_MAXLENGTH });
+            MainInput.Validations.Add(new FullNameMinLengthRule<string>() { ValidationMessage = ResourceLoader.GetString(nameof(AppStrings.ERROR_MINLENGTH)) });
+            MainInput.Validations.Add(new FullNameMaxLengthRule<string>() { ValidationMessage = ResourceLoader.GetString(nameof(AppStrings.ERROR_MAXLENGTH)) });
         }
 
         public override Task InitializeAsync(object navigationData) {

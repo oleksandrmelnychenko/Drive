@@ -1,5 +1,6 @@
 ﻿using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.Models.Identities.NavigationArgs;
+using Drive.Client.Resources.Resx;
 using Drive.Client.Services.Vehicle;
 using Drive.Client.Validations;
 using Drive.Client.Validations.ValidationRules;
@@ -100,7 +101,7 @@ namespace Drive.Client.ViewModels.Search {
         protected override void ResetValidationObjects() {
             base.ResetValidationObjects();
 
-            MainInput.Validations.Add(new StringToDateTimeRule<string>() { ValidationMessage = ValidatableObject<string>.INVALID_DATE_FORMAT_VALIDATION_MESSAGE });
+            MainInput.Validations.Add(new StringToDateTimeRule<string>() { ValidationMessage = ResourceLoader.GetString(nameof(AppStrings.IncorrectDateFormat)) });
         }
     }
 }

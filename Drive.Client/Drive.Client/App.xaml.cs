@@ -46,7 +46,7 @@ namespace Drive.Client {
 
         private void InitApp() {
             DependencyLocator.RegisterDependencies();
-            ResourceLoader.Init();
+            //ResourceLoader.Init();
         }
 
         private Task InitNavigation() {

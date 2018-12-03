@@ -66,7 +66,7 @@
                     Margin="0,0,0,0"
                     FontSize="{StaticResource LargeSize}"
                     HorizontalOptions="Center"
-                    Text="{Binding [SearchByPerson].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                    Text="{Binding ResourceLoader[SearchByPerson].Value, Mode=TwoWay}"
                     TextColor="{StaticResource BaseGrayColor}" />
 
                 <controls:LabelExtended
@@ -86,14 +86,14 @@
                         FontSize="{StaticResource MediumSize}"
                         HorizontalOptions="Center"
                         HorizontalTextAlignment="Center"
-                        Text="{Binding [AccurateResults].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                        Text="{Binding ResourceLoader[AccurateResults].Value, Mode=TwoWay}"
                         TextColor="{StaticResource BaseGrayColor}" />
 
                     <controls:LabelExtended
                         FontSize="{StaticResource MediumSize}"
                         HorizontalOptions="Center"
                         HorizontalTextAlignment="Center"
-                        Text="{Binding [EnterBirthday].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                        Text="{Binding ResourceLoader[EnterBirthday].Value, Mode=TwoWay}"
                         TextColor="{StaticResource BaseGrayColor}" />
                 </StackLayout>
 
@@ -142,7 +142,7 @@
                         FontSize="{StaticResource UltraLittleSize}"
                         HorizontalOptions="Center"
                         HorizontalTextAlignment="End"
-                        Text="{Binding [DayUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                        Text="{Binding ResourceLoader[DayUpperCase].Value, Mode=TwoWay}"
                         TextColor="{StaticResource BaseGrayColor}" />
 
                     <!--  MONTH  -->
@@ -172,7 +172,7 @@
                         FontSize="{StaticResource UltraLittleSize}"
                         HorizontalOptions="Center"
                         HorizontalTextAlignment="End"
-                        Text="{Binding [MonthUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                        Text="{Binding ResourceLoader[MonthUpperCase].Value, Mode=TwoWay}"
                         TextColor="{StaticResource BaseGrayColor}" />
 
                     <!--  YEAR  -->
@@ -202,7 +202,7 @@
                         FontSize="{StaticResource UltraLittleSize}"
                         HorizontalOptions="Center"
                         HorizontalTextAlignment="End"
-                        Text="{Binding [YearUpperCase].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                        Text="{Binding ResourceLoader[YearUpperCase].Value, Mode=TwoWay}"
                         TextColor="{StaticResource BaseGrayColor}" />
                 </Grid>
 
@@ -211,7 +211,7 @@
                     FontSize="{StaticResource Key=MidMediumSize}"
                     HorizontalOptions="Center"
                     IsVisible="{Binding IsWarningMessageVisible}"
-                    Text="{Binding [IncorrectDateFormat].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                    Text="{Binding ResourceLoader[IncorrectDateFormat].Value, Mode=TwoWay}"
                     TextColor="{StaticResource Key=ErrorColor}"
                     VerticalOptions="Center" />
             </Grid>

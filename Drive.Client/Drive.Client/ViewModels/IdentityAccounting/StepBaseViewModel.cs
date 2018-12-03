@@ -11,25 +11,25 @@ using Xamarin.Forms;
 namespace Drive.Client.ViewModels.IdentityAccounting {
     public abstract class StepBaseViewModel : ContentPageBaseViewModel {
 
-        public static readonly StringResource VIN_STEP_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.InserVinUpperCase));
-        public static readonly StringResource FIRST_DATE_REGISTRATION_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.FirstRegistrationDateUppercase));
-        public static readonly StringResource DATE_STEP_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.InserDateUpperCase));
-        public static readonly StringResource DATE_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.DateUpperCase));
-        public static readonly StringResource MIDDLENAME_STEP_REGISTRATION_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.MiddleNameUpperCase));
-        public static readonly StringResource MIDDLENAME_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.MiddleNameUpperCase));
-        public static readonly StringResource PHONENUMBER_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.PhoneNumberUpperCase));
-        public static readonly StringResource CHANGE_PHONENUMBER_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.ChangePhoneNumberUpperCase));
-        public static readonly StringResource NAME_STEP_REGISTRATION_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.EnterNameUpperCase));
-        public static readonly StringResource CHANGE_EMAIL_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.EmailUppercase));
-        public static readonly StringResource PASSWORD_STEP_REGISTRATION_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.EnterPasswordUpperCase));
-        public static readonly StringResource CURRENT_PASSWORD_STEP_REGISTRATION_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.EnterCurrentPasswordUpperCase));
-        public static readonly StringResource NEW_PASSWORD_STEP_REGISTRATION_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.EnterNewPasswordUpperCase));
-        public static readonly StringResource PASSWORD_CONFIRM_STEP_REGISTRATION_TITLE = ResourceLoader.Instance.GetString(nameof(AppStrings.ConfirmPasswordUpperCase));
-        public static readonly StringResource PHONE_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.PnoneNumberUpperCase));
-        public static readonly StringResource NAME_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.NameUpperCase));
-        public static readonly StringResource PASSWORD_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.Instance.GetString(nameof(AppStrings.PasswordUpperCase));
-        public static readonly StringResource VEHICLE_VIN_CODE_PLACEHOLDER_STEP = ResourceLoader.Instance.GetString(nameof(AppStrings.VINCodeUpperCase));
-        public static readonly StringResource REGISTRATION_DATE_PLACEHOLDER_STEP = ResourceLoader.Instance.GetString(nameof(AppStrings.DateOfCreationUppercase));
+        public static StringResource VIN_STEP_TITLE;
+        public static StringResource FIRST_DATE_REGISTRATION_TITLE;
+        public static StringResource DATE_STEP_TITLE;
+        public static StringResource DATE_TITLE;
+        public static StringResource MIDDLENAME_STEP_REGISTRATION_TITLE;
+        public static StringResource MIDDLENAME_PLACEHOLDER_STEP_REGISTRATION;
+        public static StringResource PHONENUMBER_TITLE;
+        public static StringResource CHANGE_PHONENUMBER_TITLE;
+        public static StringResource NAME_STEP_REGISTRATION_TITLE;
+        public static StringResource CHANGE_EMAIL_TITLE;
+        public static StringResource PASSWORD_STEP_REGISTRATION_TITLE;
+        public static StringResource CURRENT_PASSWORD_STEP_REGISTRATION_TITLE;
+        public static StringResource NEW_PASSWORD_STEP_REGISTRATION_TITLE;
+        public static StringResource PASSWORD_CONFIRM_STEP_REGISTRATION_TITLE;
+        public static StringResource PHONE_PLACEHOLDER_STEP_REGISTRATION;
+        public static StringResource NAME_PLACEHOLDER_STEP_REGISTRATION;
+        public static StringResource PASSWORD_PLACEHOLDER_STEP_REGISTRATION;
+        public static StringResource VEHICLE_VIN_CODE_PLACEHOLDER_STEP;
+        public static StringResource REGISTRATION_DATE_PLACEHOLDER_STEP;
         //public static readonly StringResource INVALID_PASSWORD_WARNING = ResourceLoader.Instance.GetString(nameof(AppStrings.InvalidPassword));
 
         public static readonly string PHONENUMBER_ICON_PATH = "resource://Drive.Client.Resources.Images.Phone.svg";
@@ -116,9 +116,33 @@ namespace Drive.Client.ViewModels.IdentityAccounting {
             ResetValidationObjects();
         }
 
+        protected override void ResolveStringResources() {
+            base.ResolveStringResources();
+
+            VIN_STEP_TITLE = ResourceLoader.GetString(nameof(AppStrings.InserVinUpperCase));
+            FIRST_DATE_REGISTRATION_TITLE = ResourceLoader.GetString(nameof(AppStrings.FirstRegistrationDateUppercase));
+            DATE_STEP_TITLE = ResourceLoader.GetString(nameof(AppStrings.InserDateUpperCase));
+            DATE_TITLE = ResourceLoader.GetString(nameof(AppStrings.DateUpperCase));
+            MIDDLENAME_STEP_REGISTRATION_TITLE = ResourceLoader.GetString(nameof(AppStrings.MiddleNameUpperCase));
+            MIDDLENAME_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.GetString(nameof(AppStrings.MiddleNameUpperCase));
+            PHONENUMBER_TITLE = ResourceLoader.GetString(nameof(AppStrings.PhoneNumberUpperCase));
+            CHANGE_PHONENUMBER_TITLE = ResourceLoader.GetString(nameof(AppStrings.ChangePhoneNumberUpperCase));
+            NAME_STEP_REGISTRATION_TITLE = ResourceLoader.GetString(nameof(AppStrings.EnterNameUpperCase));
+            CHANGE_EMAIL_TITLE = ResourceLoader.GetString(nameof(AppStrings.EmailUppercase));
+            PASSWORD_STEP_REGISTRATION_TITLE = ResourceLoader.GetString(nameof(AppStrings.EnterPasswordUpperCase));
+            CURRENT_PASSWORD_STEP_REGISTRATION_TITLE = ResourceLoader.GetString(nameof(AppStrings.EnterCurrentPasswordUpperCase));
+            NEW_PASSWORD_STEP_REGISTRATION_TITLE = ResourceLoader.GetString(nameof(AppStrings.EnterNewPasswordUpperCase));
+            PASSWORD_CONFIRM_STEP_REGISTRATION_TITLE = ResourceLoader.GetString(nameof(AppStrings.ConfirmPasswordUpperCase));
+            PHONE_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.GetString(nameof(AppStrings.PnoneNumberUpperCase));
+            NAME_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.GetString(nameof(AppStrings.NameUpperCase));
+            PASSWORD_PLACEHOLDER_STEP_REGISTRATION = ResourceLoader.GetString(nameof(AppStrings.PasswordUpperCase));
+            VEHICLE_VIN_CODE_PLACEHOLDER_STEP = ResourceLoader.GetString(nameof(AppStrings.VINCodeUpperCase));
+            REGISTRATION_DATE_PLACEHOLDER_STEP = ResourceLoader.GetString(nameof(AppStrings.DateOfCreationUppercase));
+        }
+
         protected virtual void ResetValidationObjects() {
             MainInput = _validationObjectFactory.GetValidatableObject<string>();
-            MainInput.Validations.Add(new IsNotNullOrEmptyRule<string>() { ValidationMessage = ValidatableObject<string>.FIELD_IS_REQUIRED_VALIDATION_MESSAGE });
+            MainInput.Validations.Add(new IsNotNullOrEmptyRule<string>() { ValidationMessage = ResourceLoader.GetString(nameof(AppStrings.FieldRequired)) });
         }
 
         protected abstract void OnStepCommand();

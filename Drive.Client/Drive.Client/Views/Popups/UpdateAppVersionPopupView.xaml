@@ -53,7 +53,7 @@
                     FontSize="{StaticResource LargerSize}"
                     HorizontalOptions="Center"
                     HorizontalTextAlignment="Center"
-                    Text="{Binding [UpdateVersionInfoPartOne].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                    Text="{Binding ResourceLoader[UpdateVersionInfoPartOne].Value, Mode=TwoWay}"
                     TextColor="{StaticResource DarkColor}" />
                 <controls:LabelExtended
                     Grid.Row="2"
@@ -63,7 +63,7 @@
                     HorizontalTextAlignment="Center"
                     LetterSpacing="{OnPlatform Android=0.07,
                                                iOS=1.2}"
-                    Text="{Binding [UpdateVersionInfoPartTwo].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                    Text="{Binding ResourceLoader[UpdateVersionInfoPartTwo].Value, Mode=TwoWay}"
                     TextColor="{StaticResource DarkColor}" />
                 <controls:LabelExtended
                     Grid.Row="3"
@@ -73,7 +73,7 @@
                     HorizontalTextAlignment="Center"
                     LetterSpacing="{OnPlatform Android=0.07,
                                                iOS=1.2}"
-                    Text="{Binding [Regards].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                    Text="{Binding ResourceLoader[Regards].Value, Mode=TwoWay}"
                     TextColor="{StaticResource ExtraGrayColor}"
                     VerticalOptions="End" />
             </Grid>

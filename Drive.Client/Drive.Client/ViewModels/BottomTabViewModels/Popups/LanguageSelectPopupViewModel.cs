@@ -1,14 +1,13 @@
 ﻿using Drive.Client.DataItems.ProfileSettings;
-using Drive.Client.Helpers.Localize;
+using Drive.Client.Helpers;
 using Drive.Client.Models.DataItems.ProfileSettings;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.Views.BottomTabViews.Popups;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
-using System.Linq;
-using Drive.Client.Helpers;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels.Popups {
     public class LanguageSelectPopupViewModel : PopupBaseViewModel {
@@ -29,10 +28,10 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Popups {
                 BaseSingleton<GlobalSetting>.Instance.AppInterfaceConfigurations.LanguageInterface = selectedLanguageDataItem.Language;
                 BaseSingleton<GlobalSetting>.Instance.AppInterfaceConfigurations.SaveChanges();
 
-                ResourceLoader.Instance.CultureInfo = selectedLanguageDataItem.Language.Culture;
+                //ResourceLoader.Instance.CultureInfo = selectedLanguageDataItem.Language.Culture;
 
                 // Raise selected language.
-                BaseSingleton<GlobalSetting>.Instance.AppMessagingEvents.LanguageEvents.OnLanguageChanged(selectedLanguageDataItem.Language.LocaleId);
+                BaseSingleton<GlobalSetting>.Instance.AppMessagingEvents.LanguageEvents.OnLanguageChanged(selectedLanguageDataItem.Language);
 
                 ClosePopupCommand.Execute(null);
             }

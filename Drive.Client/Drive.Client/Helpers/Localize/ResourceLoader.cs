@@ -1,4 +1,6 @@
-﻿using Drive.Client.Models.Identities.AppInterface.Language;
+﻿using Drive.Client.Helpers.AppEvents.Events.Args;
+using Drive.Client.Models.Identities.AppInterface.Language;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -8,10 +10,7 @@ using System.Resources;
 using System.Threading;
 
 namespace Drive.Client.Helpers.Localize {
-    public class ResourceLoader {
-        /// 
-        /// TODO: dispose unused strings...!?
-        /// 
+    public class ResourceLoader : IDisposable {
 
         public static readonly string UKRAINIAN_LOCALE_ID = "uk-UA";
         public static readonly string ENGLISH_LOCALE_ID = "en-GB";
@@ -21,14 +20,39 @@ namespace Drive.Client.Helpers.Localize {
         private readonly ResourceManager _manager;
         private readonly List<StringResource> _resources = new List<StringResource>();
 
-        private ResourceLoader(ResourceManager resourceManager) {
-            _manager = resourceManager;
-            _cultureInfo = _defaultCulture;
+        public ResourceLoader() {
+            _manager = new ResourceManager(APP_STRINGS_PATH, IntrospectionExtensions.GetTypeInfo(typeof(ResourceLoader)).Assembly);
 
-            Instance = this;
+            switch (BaseSingleton<GlobalSetting>.Instance.AppInterfaceConfigurations.LanguageInterface.LanguageInterface) {
+                case LanguageInterface.Ukrainian:
+                    _cultureInfo = new CultureInfo(UKRAINIAN_LOCALE_ID);
+                    break;
+                case LanguageInterface.English:
+                    _cultureInfo = new CultureInfo(ENGLISH_LOCALE_ID);
+                    break;
+                default:
+                    Debugger.Break();
+                    break;
+            }
+
+            BaseSingleton<GlobalSetting>.Instance.AppMessagingEvents.LanguageEvents.LanguageChanged += OnLanguageEventsLanguageChanged;
         }
 
-        public static ResourceLoader Instance { get; private set; }
+        /// <summary>
+        /// TODO: remove
+        /// </summary>
+        /// <param name="resourceManager"></param>
+        //private ResourceLoader(ResourceManager resourceManager) {
+        //    _manager = resourceManager;
+        //    _cultureInfo = _defaultCulture;
+
+        //    Instance = this;
+        //}
+
+        /// <summary>
+        /// TODO: remove
+        /// </summary>
+        //public static ResourceLoader Instance { get; private set; }
 
         private CultureInfo _cultureInfo;
         public CultureInfo CultureInfo {
@@ -54,21 +78,28 @@ namespace Drive.Client.Helpers.Localize {
             get => GetString(key);
         }
 
-        public static void Init() {
-            new ResourceLoader(new ResourceManager(APP_STRINGS_PATH, IntrospectionExtensions.GetTypeInfo(typeof(ResourceLoader)).Assembly));
-
-            switch (BaseSingleton<GlobalSetting>.Instance.AppInterfaceConfigurations.LanguageInterface.LanguageInterface) {
-                case LanguageInterface.Ukrainian:
-                    Instance.CultureInfo = new CultureInfo(UKRAINIAN_LOCALE_ID);
-                    break;
-                case LanguageInterface.English:
-                    Instance.CultureInfo = new CultureInfo(ENGLISH_LOCALE_ID);
-                    break;
-                default:
-                    Debugger.Break();
-                    break;
-            }
+        public void Dispose() {
+            BaseSingleton<GlobalSetting>.Instance.AppMessagingEvents.LanguageEvents.LanguageChanged -= OnLanguageEventsLanguageChanged;
         }
+
+        /// <summary>
+        /// TODO: remove
+        /// </summary>
+        //public static void Init() {
+        //    new ResourceLoader(new ResourceManager(APP_STRINGS_PATH, IntrospectionExtensions.GetTypeInfo(typeof(ResourceLoader)).Assembly));
+
+        //    switch (BaseSingleton<GlobalSetting>.Instance.AppInterfaceConfigurations.LanguageInterface.LanguageInterface) {
+        //        case LanguageInterface.Ukrainian:
+        //            Instance.CultureInfo = new CultureInfo(UKRAINIAN_LOCALE_ID);
+        //            break;
+        //        case LanguageInterface.English:
+        //            Instance.CultureInfo = new CultureInfo(ENGLISH_LOCALE_ID);
+        //            break;
+        //        default:
+        //            Debugger.Break();
+        //            break;
+        //    }
+        //}
 
         public StringResource GetString(string resourceName) {
 
@@ -85,6 +116,10 @@ namespace Drive.Client.Helpers.Localize {
             }
 
             return stringResource;
+        }
+
+        private void OnLanguageEventsLanguageChanged(object sender, LanguageChangedArgs e) {
+            CultureInfo = e.AppLanguage.Culture;
         }
     }
 }

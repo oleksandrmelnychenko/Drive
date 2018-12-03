@@ -9,7 +9,11 @@
     xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
     dependency:DependencyLocator.AutoWireViewModel="False">
 
-    <StackLayout Padding="10,0" VerticalOptions="Center" Margin="0,0,0,10" Spacing="4">
+    <StackLayout
+        Margin="0,0,0,10"
+        Padding="10,0"
+        Spacing="4"
+        VerticalOptions="Center">
 
         <ffimageloadingsvg:SvgCachedImage
             Margin="0,0,0,10"
@@ -23,7 +27,7 @@
             FontSize="{StaticResource MediumSize}"
             HorizontalOptions="Center"
             HorizontalTextAlignment="Center"
-            Text="{Binding [UnauthorizeText].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+            Text="{Binding ResourceLoader[UnauthorizeText].Value, Mode=TwoWay}"
             TextColor="{StaticResource DarkColor}" />
 
         <StackLayout
@@ -35,7 +39,7 @@
                 FontSize="{StaticResource MediumSize}"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Center"
-                Text="{Binding [Register].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                Text="{Binding ResourceLoader[Register].Value, Mode=TwoWay}"
                 TextColor="{StaticResource BlueColor}">
                 <controls:LabelExtended.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding SignUpCommand}" NumberOfTapsRequired="1" />
@@ -46,14 +50,14 @@
                 FontSize="{StaticResource MediumSize}"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Center"
-                Text="{Binding [Or].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                Text="{Binding ResourceLoader[Or].Value, Mode=TwoWay}"
                 TextColor="{StaticResource DarkColor}" />
             <controls:LabelExtended
                 FontFamily="{StaticResource SFProLight}"
                 FontSize="{StaticResource MediumSize}"
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Center"
-                Text="{Binding [SignIn].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                Text="{Binding ResourceLoader[SignIn].Value, Mode=TwoWay}"
                 TextColor="{StaticResource BlueColor}">
                 <controls:LabelExtended.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding SignInCommand}" NumberOfTapsRequired="1" />

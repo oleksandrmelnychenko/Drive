@@ -70,7 +70,7 @@
                     FontSize="{StaticResource MediumSize}"
                     HeightRequest="50"
                     HorizontalTextAlignment="Center"
-                    Text="{Binding [Cancel].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                    Text="{Binding ResourceLoader[Cancel].Value, Mode=TwoWay}"
                     TextColor="{StaticResource BaseGrayColor}"
                     VerticalTextAlignment="Center">
                     <controls:LabelExtended.GestureRecognizers>

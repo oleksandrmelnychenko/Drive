@@ -20,7 +20,7 @@
             <controls:LabelExtended
                 FontSize="{StaticResource MediumSize}"
                 HorizontalOptions="Center"
-                Text="{Binding [NewPostUpperCase].Value, Source={x:Static helpers:ResourceLoader.Instance}}"
+                Text="{Binding ResourceLoader[NewPostUpperCase].Value}"
                 TextColor="{StaticResource DarkColor}"
                 VerticalOptions="Center" />
         </ContentView>
@@ -35,7 +35,7 @@
             <controls:LabelExtended
                 FontSize="{StaticResource MediumSize}"
                 HorizontalOptions="End"
-                Text="{Binding [Publish].Value, Source={x:Static helpers:ResourceLoader.Instance}}"
+                Text="{Binding ResourceLoader[Publish].Value}"
                 TextColor="{StaticResource DarkBlueColor}"
                 VerticalOptions="Center" />
         </ContentView>

@@ -24,7 +24,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark
             set { SetProperty(ref _visibilityClosedView, value); }
         }
 
-        StringResource _tabHeader = ResourceLoader.Instance.GetString(nameof(AppStrings.SavedUpperCase));
+        StringResource _tabHeader;
         public StringResource TabHeader {
             get => _tabHeader;
             private set => SetProperty(ref _tabHeader, value);
@@ -34,19 +34,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark
 
         public ICommand SignUpCommand => new Command(async () => await NavigationService.NavigateToAsync<PhoneNumberRegisterStepViewModel>());
 
-        /// <summary>
-        ///     ctor().
-        /// </summary>
-        public SavedViewModel() {
-
-        }
-
-        public override void Dispose() {
-            base.Dispose();
-
-           
-        }
-
         public override Task InitializeAsync(object navigationData) {
 
             if (navigationData is SelectedBottomBarTabArgs) {
@@ -55,6 +42,12 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark
             UpdateView();
 
             return base.InitializeAsync(navigationData);
+        }
+
+        protected override void ResolveStringResources() {
+            base.ResolveStringResources();
+
+            TabHeader = ResourceLoader.GetString(nameof(AppStrings.SavedUpperCase));
         }
 
         private void UpdateView() {

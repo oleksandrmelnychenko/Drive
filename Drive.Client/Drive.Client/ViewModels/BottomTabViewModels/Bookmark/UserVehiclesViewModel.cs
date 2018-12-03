@@ -45,7 +45,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
 
         public Type RelativeViewType => typeof(UserVehiclesView);
 
-        StringResource _tabHeader = Helpers.Localize.ResourceLoader.Instance.GetString(nameof(AppStrings.HistoryRequestsUpperCase));
+        StringResource _tabHeader;
         public StringResource TabHeader {
             get => _tabHeader;
             private set => SetProperty(ref _tabHeader, value);
@@ -120,6 +120,12 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
             ResetCancellationTokenSource(ref _getUserVehicleDetailRequestsCancellationTokenSource);
             ResetCancellationTokenSource(ref _getVehiclesCancellationTokenSource);
             ResetCancellationTokenSource(ref _getRequestAsyncCancellationTokenSource);
+        }
+
+        protected override void ResolveStringResources() {
+            base.ResolveStringResources();
+
+            TabHeader = ResourceLoader.GetString(nameof(AppStrings.HistoryRequestsUpperCase));
         }
 
         private async void GetVehicles(ResidentRequestDataItem residentRequestDataItem) {
@@ -247,11 +253,11 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
                     List<ResidentRequest> userRequests = await _vehicleService.GetUserVehicleDetailRequestsAsync(cancellationTokenSource.Token);
 
                     if (userRequests != null) {
-                        createdItems = _vehicleFactory.BuildResidentRequestItems(userRequests);
+                        createdItems = _vehicleFactory.BuildResidentRequestItems(userRequests, ResourceLoader);
 
                         List<PolandVehicleRequest> polandVehicleRequests = await _vehicleService.GetPolandVehicleRequestsAsync(cancellationTokenSource.Token);
                         if (polandVehicleRequests != null) {
-                            createdItems.AddRange(_vehicleFactory.BuildPolandRequestItems(polandVehicleRequests));
+                            createdItems.AddRange(_vehicleFactory.BuildPolandRequestItems(polandVehicleRequests, ResourceLoader));
                         }
                         createdItems = createdItems.OrderByDescending(x => x.Created).ToList();
 

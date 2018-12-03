@@ -39,17 +39,17 @@ namespace Drive.Client.Droid {
                 Window.SetBackgroundDrawableResource(Resource.Drawable.common_window_background_layer_list_drawable);
             });
 
-            while (true) {
-                try {
-                    Firebase.FirebaseApp.InitializeApp(this);
-                    Firebase.FirebaseApp fireApp = Firebase.FirebaseApp.Instance;
+            //while (true) {
+            //    try {
+            //        Firebase.FirebaseApp.InitializeApp(this);
+            //        Firebase.FirebaseApp fireApp = Firebase.FirebaseApp.Instance;
 
-                    break;
-                }
-                catch (Exception exc) {
-                    Console.WriteLine(exc.Message);
-                }
-            }
+            //        break;
+            //    }
+            //    catch (Exception exc) {
+            //        Console.WriteLine(exc.Message);
+            //    }
+            //}
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;

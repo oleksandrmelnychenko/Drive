@@ -34,7 +34,7 @@ namespace Drive.Client.ViewModels {
             private set => SetProperty<string>(ref _targetCarNumber, value);
         }
 
-        string _resultInfo = (ResourceLoader.Instance.GetString(nameof(AppStrings.SearchResult)).Value);
+        string _resultInfo;
         public string ResultInfo {
             get { return _resultInfo; }
             set { SetProperty(ref _resultInfo, value); }
@@ -94,6 +94,11 @@ namespace Drive.Client.ViewModels {
             return base.InitializeAsync(navigationData);
         }
 
+        protected override void ResolveStringResources() {
+            base.ResolveStringResources();
+
+            _resultInfo = (ResourceLoader.GetString(nameof(AppStrings.SearchResult)).Value);
+        }
 
         private async void GetDriveAutoDetail(string targetCarNumber) {
             ResetCancellationTokenSource(ref _getCarsCancellationTokenSource);

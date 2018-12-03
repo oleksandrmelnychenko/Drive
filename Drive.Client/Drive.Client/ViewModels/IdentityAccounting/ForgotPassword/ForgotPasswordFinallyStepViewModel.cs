@@ -52,7 +52,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.ForgotPassword {
 
             bool isValid = MainInput.Value != null && MainInput.Value.Equals(_forgotPasswordArgs.NewPassword);
             if (!isValid) {
-                ServerError = (ResourceLoader.Instance.GetString(nameof(AppStrings.ReEnteredPasswordIncorrect)).Value);
+                ServerError = (ResourceLoader.GetString(nameof(AppStrings.ReEnteredPasswordIncorrect)).Value);
             }
 
             return isValid;

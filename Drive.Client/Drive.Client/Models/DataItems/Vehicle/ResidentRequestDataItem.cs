@@ -1,9 +1,7 @@
 ﻿using Drive.Client.Helpers;
+using Drive.Client.Helpers.AppEvents.Events.Args;
 using Drive.Client.Helpers.Localize;
 using Drive.Client.Models.EntityModels.Search;
-using Drive.Client.Models.EntityModels.Search.Contracts;
-using Drive.Client.ViewModels.Base;
-using System;
 using Xamarin.Forms;
 
 namespace Drive.Client.Models.DataItems.Vehicle {
@@ -29,7 +27,7 @@ namespace Drive.Client.Models.DataItems.Vehicle {
             set { SetProperty(ref _status, value); }
         }
 
-        private void LanguageEvents_LanguageChanged(object sender, Helpers.AppEvents.Events.Args.LanguageChangedArgs e) {
+        private void LanguageEvents_LanguageChanged(object sender, LanguageChangedArgs e) {
             OnPropertyChanged(nameof(Created));
         }
 

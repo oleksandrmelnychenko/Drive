@@ -74,7 +74,7 @@
                         Grid.Row="1"
                         FontSize="{StaticResource Key=MidMediumSize}"
                         HorizontalOptions="Center"
-                        Text="{Binding [DayMonthYear].Value, Mode=TwoWay, Source={x:Static helpers:ResourceLoader.Instance}}"
+                        Text="{Binding ResourceLoader[DayMonthYear].Value, Mode=TwoWay}"
                         TextColor="{StaticResource BaseGrayColor}"
                         VerticalOptions="Center" />
                     <controls:LabelExtended

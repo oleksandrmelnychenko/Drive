@@ -7,21 +7,12 @@ using System.Linq;
 namespace Drive.Client.Validations {
     public class ValidatableObject<T> : ExtendedBindableObject, IValidity {
 
-        public static readonly StringResource FIELD_IS_REQUIRED_VALIDATION_MESSAGE =
-            ResourceLoader.Instance.GetString(nameof(AppStrings.FieldRequired));
-        
-        public static readonly StringResource INVALID_PHONE_VALIDATION_MESSAGE =
-            ResourceLoader.Instance.GetString(nameof(AppStrings.InvalidPhoneNumber));
-        
-        public static readonly StringResource INVALID_DATE_FORMAT_VALIDATION_MESSAGE =
-            ResourceLoader.Instance.GetString(nameof(AppStrings.IncorrectDateFormat));
-
-        public static readonly StringResource ERROR_EMAIL = ResourceLoader.Instance.GetString(nameof(AppStrings.InvalidEmail));
-
-        public static readonly StringResource ERROR_MINLENGTH = ResourceLoader.Instance.GetString(nameof(AppStrings.ERROR_MINLENGTH));
-
-        public static readonly StringResource ERROR_MAXLENGTH = ResourceLoader.Instance.GetString(nameof(AppStrings.ERROR_MAXLENGTH));
-
+        //public static StringResource FIELD_IS_REQUIRED_VALIDATION_MESSAGE = ResourceLoader.Instance.GetString(nameof(AppStrings.FieldRequired));
+        //public static StringResource INVALID_PHONE_VALIDATION_MESSAGE = ResourceLoader.Instance.GetString(nameof(AppStrings.InvalidPhoneNumber));
+        //public static StringResource INVALID_DATE_FORMAT_VALIDATION_MESSAGE =ResourceLoader.Instance.GetString(nameof(AppStrings.IncorrectDateFormat));
+        //public static StringResource ERROR_EMAIL = ResourceLoader.Instance.GetString(nameof(AppStrings.InvalidEmail));
+        //public static StringResource ERROR_MINLENGTH = ResourceLoader.Instance.GetString(nameof(AppStrings.ERROR_MINLENGTH));
+        //public static StringResource ERROR_MAXLENGTH = ResourceLoader.Instance.GetString(nameof(AppStrings.ERROR_MAXLENGTH));
 
         public List<IValidationRule<T>> Validations { get; }
 

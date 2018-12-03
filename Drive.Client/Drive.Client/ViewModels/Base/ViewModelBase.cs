@@ -1,4 +1,5 @@
-﻿using Drive.Client.Services.Dialog;
+﻿using Drive.Client.Helpers.Localize;
+using Drive.Client.Services.Dialog;
 using Drive.Client.Services.Navigation;
 using System;
 using System.Threading;
@@ -15,20 +16,6 @@ namespace Drive.Client.ViewModels.Base {
 
         protected readonly INavigationService NavigationService;
 
-        public bool IsSubscribedOnAppEvents { get; private set; }
-
-        bool _isBusy;
-        public bool IsBusy {
-            get => _isBusy;
-            set => SetProperty(ref _isBusy, value);
-        }
-
-        public ICommand BackCommand { get; protected set; }
-
-        public ICommand NavigateToSourceCommand => new Command((object param) => {
-            Device.OpenUri(new Uri(SOURCE_URL));
-        });
-
         /// <summary>
         ///     ctor().
         /// </summary>
@@ -40,6 +27,25 @@ namespace Drive.Client.ViewModels.Base {
                 await NavigationService.PreviousPageViewModel.InitializeAsync(null);
                 await NavigationService.GoBackAsync();
             });
+
+            ResourceLoader = new ResourceLoader();
+            ResolveStringResources();
+        }
+
+        public ICommand BackCommand { get; protected set; }
+
+        public ICommand NavigateToSourceCommand => new Command((object param) => {
+            Device.OpenUri(new Uri(SOURCE_URL));
+        });
+
+        public ResourceLoader ResourceLoader { get; private set; }
+
+        public bool IsSubscribedOnAppEvents { get; private set; }
+
+        bool _isBusy;
+        public bool IsBusy {
+            get => _isBusy;
+            set => SetProperty(ref _isBusy, value);
         }
 
         public virtual Task InitializeAsync(object navigationData) {
@@ -51,8 +57,11 @@ namespace Drive.Client.ViewModels.Base {
         }
 
         public virtual void Dispose() {
+            ResourceLoader.Dispose();
             OnUnsubscribeFromAppEvents();
         }
+
+        protected virtual void ResolveStringResources() { }
 
         protected void ResetCancellationTokenSource(ref CancellationTokenSource cancellationTokenSource) {
             cancellationTokenSource.Cancel();
