@@ -130,6 +130,7 @@
     <Compile Include="Models\Notiifactions\NotificationType.cs" />
     <Compile Include="Renderers\BorderRenderer.cs" />
     <Compile Include="Renderers\DatePickerExtendedRenderer.cs" />
+    <Compile Include="Renderers\EditorExtendedRenderer.cs" />
     <Compile Include="Renderers\EntryExtendedRenderer.cs" />
     <Compile Include="Renderers\ExtendedContentViewRenderer.cs" />
     <Compile Include="Renderers\Helpers\ValuesResolver.cs" />

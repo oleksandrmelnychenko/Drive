@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="Drive.Client.Controls.EditorCompounded"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Drive.Client.Controls">
+    <AbsoluteLayout>
+
+        <controls:EditorExtended
+            x:Name="_mainInput_EditorExtended"
+            AbsoluteLayout.LayoutBounds="1,1,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            Focused="OnMainInputEditorExtendedFocused"
+            Unfocused="OnMainInputEditorExtendedUnfocused" />
+
+        <controls:LabelExtended
+            x:Name="_placeholder_LabelExtended"
+            AbsoluteLayout.LayoutBounds="1,1,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            InputTransparent="True">
+            <controls:LabelExtended.TranslationY>
+                <OnPlatform
+                    x:TypeArguments="x:Double"
+                    Android="6"
+                    iOS="8" />
+            </controls:LabelExtended.TranslationY>
+        </controls:LabelExtended>
+    </AbsoluteLayout>
+</ContentView>

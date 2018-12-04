@@ -1,13 +1,10 @@
 ﻿using Drive.Client.DataItems.Posts;
 using Drive.Client.Models.DataItems.SelectPostTypes;
-using Drive.Client.Models.Identities.Posts;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.Posts;
 using Drive.Client.Views.BottomTabViews.Popups;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -42,12 +39,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Popups {
                 ClosePopupCommand.Execute(null);
 
                 NavigationService.NavigateToAsync<NewPostViewModel>(postTypeDataItem.PostType);
-
-                if (postTypeDataItem.PostType == PostType.MediaPost) {
-
-                } else if (postTypeDataItem.PostType == PostType.TextPost) {
-
-                }
             }
         }
     }

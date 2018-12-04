@@ -14,6 +14,13 @@
     </viewBase:ContentPageBaseView.ActionBar>
 
     <viewBase:ContentPageBaseView.MainContent>
-        <Grid BackgroundColor="{StaticResource WhiteColor}" RowSpacing="0" />
+        <Grid BackgroundColor="{StaticResource WhiteColor}" RowSpacing="0">
+            <controls:EditorCompounded
+                BackgroundColor="LightGoldenrodYellow"
+                FontFamily="{StaticResource Key=SFProLight}"
+                Placeholder="Hello world placeholder"
+                PlaceholderColor="LightBlue"
+                TextColor="LightCoral" />
+        </Grid>
     </viewBase:ContentPageBaseView.MainContent>
 </viewBase:ContentPageBaseView>
