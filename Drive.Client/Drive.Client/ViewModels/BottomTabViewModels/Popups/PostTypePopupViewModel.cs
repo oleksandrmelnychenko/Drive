@@ -31,7 +31,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Popups {
         public PostTypePopupViewModel(IPostTypeDataItems postTypeDataItems) {
             _postTypeDataItems = postTypeDataItems;
 
-            PostTypes = _postTypeDataItems.BuildLanguageDataItems();
+            PostTypes = _postTypeDataItems.BuildLanguageDataItems(ResourceLoader);
         }
 
         private void OnSelectPostTypes(object param) {

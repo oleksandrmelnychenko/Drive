@@ -13,14 +13,6 @@ namespace Drive.Client.ViewModels.Base {
 
         private readonly Dictionary<Guid, bool> _busySequence = new Dictionary<Guid, bool>();
 
-        public ContentPageBaseViewModel() {
-            Popups.CollectionChanged += Popups_CollectionChanged;
-        }
-
-        private void Popups_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) {
-            
-        }
-
         private List<IBottomBarTab> _bottomBarItems;
         public List<IBottomBarTab> BottomBarItems {
             get => _bottomBarItems;
@@ -50,6 +42,7 @@ namespace Drive.Client.ViewModels.Base {
                     BottomBarItems?[value].InitializeAsync(new SelectedBottomBarTabArgs());
                 }
                 catch (Exception exc) {
+                    string message = exc.Message;
                     Debugger.Break();
                 }
 

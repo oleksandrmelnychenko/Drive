@@ -479,6 +479,15 @@ certificate issued</value>
     <value>Cancel</value>
   </data>
   <data name="Publish" xml:space="preserve">
-    <value>Опублікувати</value>
+    <value>Publish</value>
+  </data>
+  <data name="PhotoUpperCase" xml:space="preserve">
+    <value>PHOTO</value>
+  </data>
+  <data name="PostWithPhoto" xml:space="preserve">
+    <value>Post with photo</value>
+  </data>
+  <data name="TextPost" xml:space="preserve">
+    <value>Text post</value>
   </data>
 </root>

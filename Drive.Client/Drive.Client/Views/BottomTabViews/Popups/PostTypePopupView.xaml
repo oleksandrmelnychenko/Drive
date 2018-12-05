@@ -51,7 +51,7 @@
                                         FontFamily="{StaticResource SFProLight}"
                                         FontSize="{StaticResource MediumSize}"
                                         HorizontalOptions="Center"
-                                        Text="{Binding Title}"
+                                        Text="{Binding Title.Value}"
                                         TextColor="{StaticResource DarkColor}"
                                         VerticalOptions="Center" />
                                     <BoxView

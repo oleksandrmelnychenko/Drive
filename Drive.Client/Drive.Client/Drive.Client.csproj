@@ -46,6 +46,7 @@
     <None Remove="Resources\Images\Icon-72.png" />
     <None Remove="Resources\Images\icon_user.svg" />
     <None Remove="Resources\Images\ic_barrier.png" />
+    <None Remove="Resources\Images\ic_trash_bucket.svg" />
     <None Remove="Resources\Images\ic_vin.svg" />
     <None Remove="Resources\Images\Idea.svg" />
     <None Remove="Resources\Images\Mask.svg" />
@@ -89,6 +90,7 @@
     <EmbeddedResource Include="Resources\Images\Icon-72.png" />
     <EmbeddedResource Include="Resources\Images\icon_user.svg" />
     <EmbeddedResource Include="Resources\Images\ic_barrier.png" />
+    <EmbeddedResource Include="Resources\Images\ic_trash_bucket.svg" />
     <EmbeddedResource Include="Resources\Images\ic_vin.svg" />
     <EmbeddedResource Include="Resources\Images\Idea.svg" />
     <EmbeddedResource Include="Resources\Images\Mask.svg" />
@@ -210,6 +212,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BottomTabViews\Popups\PostTypePopupView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Posts\AtatchedNewPostMediaStackItem.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Posts\NewPostView.xaml">

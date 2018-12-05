@@ -773,11 +773,29 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PHOTO.
+        /// </summary>
+        public static string PhotoUpperCase {
+            get {
+                return ResourceManager.GetString("PhotoUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PHONE NUMBER.
         /// </summary>
         public static string PnoneNumberUpperCase {
             get {
                 return ResourceManager.GetString("PnoneNumberUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post with photo.
+        /// </summary>
+        public static string PostWithPhoto {
+            get {
+                return ResourceManager.GetString("PostWithPhoto", resourceCulture);
             }
         }
         
@@ -791,7 +809,7 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Опублікувати.
+        ///   Looks up a localized string similar to Publish.
         /// </summary>
         public static string Publish {
             get {
@@ -967,6 +985,15 @@ namespace Drive.Client.Resources.Resx {
         public static string SurnameUpperCase {
             get {
                 return ResourceManager.GetString("SurnameUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text post.
+        /// </summary>
+        public static string TextPost {
+            get {
+                return ResourceManager.GetString("TextPost", resourceCulture);
             }
         }
         

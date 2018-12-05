@@ -480,4 +480,13 @@
   <data name="Publish" xml:space="preserve">
     <value>Опублікувати</value>
   </data>
+  <data name="PhotoUpperCase" xml:space="preserve">
+    <value>ФОТО</value>
+  </data>
+  <data name="PostWithPhoto" xml:space="preserve">
+    <value>Пост з фото</value>
+  </data>
+  <data name="TextPost" xml:space="preserve">
+    <value>Пост текст</value>
+  </data>
 </root>

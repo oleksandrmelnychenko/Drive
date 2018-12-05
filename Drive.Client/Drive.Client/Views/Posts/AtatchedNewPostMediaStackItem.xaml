@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<stackList:CommonStackListItem
+    x:Class="Drive.Client.Views.Posts.AtatchedNewPostMediaStackItem"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Drive.Client.Behaviors"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:stackList="clr-namespace:Drive.Client.Controls.Stacklist">
+
+    <controls:ExtendedContentView
+        BackgroundColor="{StaticResource Key=WhiteColor}"
+        BorderColor="{StaticResource Key=LightGrayColor}"
+        BorderThickness="3"
+        CornerRadius="6"
+        WidthRequest="120">
+        <AbsoluteLayout>
+            <BoxView
+                AbsoluteLayout.LayoutBounds="1,1,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="LightGoldenrodYellow" />
+
+            <ffimageloadingsvg:SvgCachedImage
+                AbsoluteLayout.LayoutBounds="1,1,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="#30000000"
+                Source="resource://Drive.Client.Resources.Images.ic_trash_bucket.svg" />
+        </AbsoluteLayout>
+    </controls:ExtendedContentView>
+</stackList:CommonStackListItem>

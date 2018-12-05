@@ -184,7 +184,5 @@ namespace Drive.Client.Services.Media {
                 }
                 return stream;
             });
-
-
     }
 }
