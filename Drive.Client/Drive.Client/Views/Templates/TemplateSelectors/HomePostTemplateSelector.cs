@@ -17,9 +17,7 @@ namespace Drive.Client.Views.Templates.TemplateSelectors {
         }
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container) {
-            var viewModel = item as PostBaseViewModel;
-
-            if (viewModel == null) return null;
+            if (!(item is PostBaseViewModel viewModel)) return null;
 
             return viewModel.Post.PostType == PostType.MediaPost ? _mediaPost : _textPost;
         }

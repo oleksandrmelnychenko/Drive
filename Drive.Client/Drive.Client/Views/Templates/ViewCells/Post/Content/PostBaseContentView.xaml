@@ -56,7 +56,6 @@
                 Text="{Binding PublishDate, StringFormat={StaticResource FormattedDate}}" />
         </AbsoluteLayout>
 
-
         <!--  MAIN CONTENT  -->
         <ContentView x:Name="_mainContent" Grid.Row="1" />
 
@@ -64,15 +63,16 @@
         <AbsoluteLayout Grid.Row="2">
             <ffimageloadingsvg:SvgCachedImage
                 Margin="0,3,0,0"
-                AbsoluteLayout.LayoutBounds="0.0,0.5,AutoSize, AutoSize"
+                AbsoluteLayout.LayoutBounds="0, .5, AutoSize, AutoSize"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 HeightRequest="12"
                 Source="resource://Drive.Client.Resources.Images.Comment.svg" />
             <controls:LabelExtended
-                AbsoluteLayout.LayoutBounds="0.05, .5, Autosize, Autosize"
+                AbsoluteLayout.LayoutBounds="0.06, .5, Autosize, Autosize"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 FontSize="{StaticResource LittleSize}"
-                Text="15" />
+                Text="{Binding Post.CommentsCount}"
+                WidthRequest="60" />
         </AbsoluteLayout>
         <!--  LINE  -->
         <BoxView Grid.Row="3" Color="{StaticResource BaseGrayColor}" />

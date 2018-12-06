@@ -61,7 +61,6 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<AppMessagingEvents>().SingleInstance();
 
             // View models.
-            builder.RegisterType<NewPostActionBarViewModel>();
             builder.RegisterType<HomeViewModel>();
             builder.RegisterType<MainViewModel>();
             builder.RegisterType<SavedViewModel>();
@@ -69,9 +68,11 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<NewPostViewModel>();
             builder.RegisterType<ProfileViewModel>();
             builder.RegisterType<BookmarkViewModel>();
+            builder.RegisterType<PostBaseViewModel>();
             builder.RegisterType<EditEmailViewModel>();
             builder.RegisterType<PostBuilderViewModel>();
             builder.RegisterType<UnauthorizeViewModel>();
+            builder.RegisterType<PostCommentsViewModel>();
             builder.RegisterType<EditUserNameViewModel>();
             builder.RegisterType<UserVehiclesViewModel>();
             builder.RegisterType<PostTypePopupViewModel>();
@@ -81,6 +82,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<FoundDriveAutoViewModel>();
             builder.RegisterType<EditPhoneNumberViewModel>();
             builder.RegisterType<CommonActionBarViewModel>();
+            builder.RegisterType<NewPostActionBarViewModel>();
             builder.RegisterType<DriveAutoDetailsViewModel>();
             builder.RegisterType<AddBirthdayPopupViewModel>();
             builder.RegisterType<NameRegisterStepViewModel>();
@@ -93,6 +95,8 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<SignInPhoneNumberStepViewModel>();
             builder.RegisterType<EditPasswordFirstStepViewModel>();
             builder.RegisterType<EditPasswordSecondStepViewModel>();
+            builder.RegisterType<PolandRequestInfoPopupViewModel>();
+            builder.RegisterType<PolandDriveAutoDetailsViewModel>();
             builder.RegisterType<PhoneNumberRegisterStepViewModel>();
             builder.RegisterType<EditPasswordFinallyStepViewModel>();
             builder.RegisterType<ForgotPasswordFirstStepViewModel>();
@@ -104,9 +108,6 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<ConfirmPasswordRegisterStepViewModel>();
             builder.RegisterType<SearchByPolandCarIdSecondStepViewModel>();
             builder.RegisterType<SearchByPolandCarIdFinallyStepViewModel>();
-            builder.RegisterType<PolandRequestInfoPopupViewModel>();
-            builder.RegisterType<PolandDriveAutoDetailsViewModel>();
-            builder.RegisterType<PostBaseViewModel>();
             //builder.RegisterType<MediaPostViewModel>();
 
             // Services.
@@ -119,8 +120,8 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<PickMediaService>().As<IPickMediaService>();
             builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
             builder.RegisterType<DeviceUtilService>().As<IDeviceUtilService>().SingleInstance();
-            builder.RegisterType<IdentityUtilityService>().As<IIdentityUtilityService>();
             builder.RegisterType<NotificationService>().As<INotificationService>().SingleInstance();
+            builder.RegisterType<IdentityUtilityService>().As<IIdentityUtilityService>();
 
             // Factories.
             builder.RegisterType<VehicleFactory>().As<IVehicleFactory>();

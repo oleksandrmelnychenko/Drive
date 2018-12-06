@@ -15,7 +15,7 @@
         </ResourceDictionary>
     </ContentView.Resources>
 
-    <StackLayout
+    <!--<StackLayout
         HorizontalOptions="Center"
         Spacing="4"
         VerticalOptions="Center">
@@ -32,9 +32,9 @@
             Text="{Binding ResourceLoader[InDev].Value, Mode=TwoWay}"
             TextColor="{StaticResource ExtraGrayColor}"
             VerticalOptions="Center" />
-    </StackLayout>
+    </StackLayout>-->
 
-    <!--<Grid RowSpacing="0">
+    <Grid RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
             <RowDefinition Height="*" />
@@ -64,8 +64,8 @@
             HasUnevenRows="True"
             ItemTemplate="{StaticResource HomePostTemplateSelector}"
             ItemsSource="{Binding Posts}"
-            SelectionMode="None"
+            SelectedItem="{Binding SelectedPostViewModel}"
             SeparatorVisibility="None" />
-    </Grid>-->
+    </Grid>
 </ContentView>
 

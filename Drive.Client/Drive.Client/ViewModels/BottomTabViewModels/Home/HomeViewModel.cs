@@ -3,9 +3,11 @@ using Drive.Client.Models.Arguments.BottomtabSwitcher;
 using Drive.Client.Models.Identities.Posts;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.BottomTabViewModels.Home.Post;
+using Drive.Client.ViewModels.Posts;
 using Drive.Client.Views.BottomTabViews.Home;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
@@ -15,6 +17,19 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
         public PostBaseViewModel[] Posts {
             get => _posts;
             private set => SetProperty(ref _posts, value);
+        }
+
+        PostBaseViewModel _selectedPostViewModel;
+        public PostBaseViewModel SelectedPostViewModel {
+            get { return _selectedPostViewModel; }
+            set {
+                if (SetProperty(ref _selectedPostViewModel, value)) {
+                    if (value != null) {
+                        NavigationService.NavigateToAsync<PostCommentsViewModel>(value);
+                        SelectedPostViewModel = null;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -74,8 +89,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
                     }
 
                     Posts = foundPosts.ToArray();
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
 
                     throw;
                 }
