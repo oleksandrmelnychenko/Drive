@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ViewCell
-    x:Class="Drive.Client.Views.Templates.TemplateSelectors.ViewCells.Post.MediaPostViewCell"
+    x:Class="Drive.Client.Views.Templates.ViewCells.Post.CommentViewCell"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:view="clr-namespace:Drive.Client.Views.Templates.ViewCells.Post.Content">
-    <view:MediaPostView Margin="0,0,0,10" />
+    <view:CommentView />
 </ViewCell>

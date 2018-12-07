@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<basePostContentView:CommentBaseContentView
+    x:Class="Drive.Client.Views.Templates.ViewCells.Post.Content.CommentView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:basePostContentView="clr-namespace:Drive.Client.Views.Templates.ViewCells.Post.Content"
+    BackgroundColor="{StaticResource WhiteColor}">
+
+    <basePostContentView:CommentBaseContentView.MainContent>
+        <Label Text="{Binding Comment}" />
+    </basePostContentView:CommentBaseContentView.MainContent>
+</basePostContentView:CommentBaseContentView>

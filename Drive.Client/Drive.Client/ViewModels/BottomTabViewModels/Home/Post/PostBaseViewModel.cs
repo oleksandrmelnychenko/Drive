@@ -3,17 +3,36 @@ using Drive.Client.Services.OpenUrl;
 using Drive.Client.ViewModels.Base;
 using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
     public class PostBaseViewModel : NestedViewModel {
 
         private readonly IOpenUrlService OpenUrlService;
 
-        /// <summary>
-        ///     ctor().
-        /// </summary>
-        public PostBaseViewModel() {
-            OpenUrlService = DependencyLocator.Resolve<IOpenUrlService>();
+        string _authorAvatarUrl;
+        public string AuthorAvatarUrl {
+            get => _authorAvatarUrl;
+            private set => SetProperty(ref _authorAvatarUrl, value);
+        }
+
+        string _authorName;
+        public string AuthorName {
+            get => _authorName;
+            private set => SetProperty(ref _authorName, value);
+        }
+
+        DateTime _publishDate;
+        public DateTime PublishDate {
+            get => _publishDate;
+            private set => SetProperty(ref _publishDate, value);
+        }
+
+        string _mainMessage;
+        public string MainMessage {
+            get => _mainMessage;
+            private set => SetProperty(ref _mainMessage, value);
         }
 
         /// <summary>
@@ -27,29 +46,17 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
                 OnPost(value);
             }
         }
+       
+        public ICommand TestCommand => new Command(() => OnTest());
 
-        string _authorAvatarUrl;
-        public string AuthorAvatarUrl {
-            get => _authorAvatarUrl;
-            private set => SetProperty<string>(ref _authorAvatarUrl, value);
+        /// <summary>
+        ///     ctor().
+        /// </summary>
+        public PostBaseViewModel() {
+            OpenUrlService = DependencyLocator.Resolve<IOpenUrlService>();
         }
 
-        string _authorName;
-        public string AuthorName {
-            get => _authorName;
-            private set => SetProperty<string>(ref _authorName, value);
-        }
-
-        DateTime _publishDate;
-        public DateTime PublishDate {
-            get => _publishDate;
-            private set => SetProperty<DateTime>(ref _publishDate, value);
-        }
-
-        string _mainMessage;
-        public string MainMessage {
-            get => _mainMessage;
-            private set => SetProperty<string>(ref _mainMessage, value);
+        private void OnTest() {
         }
 
         protected virtual void OnPost(PostBase post) {

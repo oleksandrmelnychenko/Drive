@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Drive.Client.ViewModels.Base;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Drive.Client.Models.Identities.Posts {
-    public abstract class PostBase {
-
+    public abstract class PostBase : ExtendedBindableObject {
         /// <summary>
         /// Type of current post (text, media, link)
         /// </summary>
@@ -31,8 +31,12 @@ namespace Drive.Client.Models.Identities.Posts {
         public DateTime PublishDate { get; set; } = DateTime.Now;
 
         /// <summary>
-        /// todo
+        /// Comments count.
         /// </summary>
-        public int CommentsCount { get; set; } = 9;
+        int _commentsCount;
+        public int CommentsCount {
+            get { return _commentsCount; }
+            set { SetProperty(ref _commentsCount, value); }
+        }
     }
 }
