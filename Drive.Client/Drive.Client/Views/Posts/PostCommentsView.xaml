@@ -4,20 +4,55 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:actionBars="clr-namespace:Drive.Client.Views.ActionBars"
+    xmlns:converters="clr-namespace:Drive.Client.Converters"
+    xmlns:customViewCell="clr-namespace:Drive.Client.Views.Templates.ViewCells.Post"
     xmlns:dependency="clr-namespace:Drive.Client.ViewModels.Base"
     xmlns:viewBase="clr-namespace:Drive.Client.Views.Base"
+    xmlns:viewModels="clr-namespace:Drive.Client.ViewModels.Posts"
     dependency:DependencyLocator.AutoWireViewModel="True">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:EnumToViewConverter x:Key="EnumToViewConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <viewBase:ContentPageBaseView.ActionBar>
         <actionBars:CommonActionBarView />
     </viewBase:ContentPageBaseView.ActionBar>
 
     <viewBase:ContentPageBaseView.MainContent>
-        <Grid>
+        <Grid BackgroundColor="{StaticResource WhiteColor}" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <ContentView
+                Grid.Row="0"
+                BindingContext="{Binding CurrentPost}"
+                Content="{Binding Post.PostType, Converter={StaticResource EnumToViewConverter}}" />
+
             <Label
+                Grid.Row="1"
                 HorizontalOptions="Center"
-                Text="comments"
+                Text="Comments"
                 VerticalOptions="Center" />
+
+            <ListView
+                Grid.Row="1"
+                BackgroundColor="Transparent"
+                CachingStrategy="RecycleElement"
+                HasUnevenRows="True"
+                ItemSelected="ListViewItemSelected"
+                ItemsSource="{Binding Comments}"
+                SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <customViewCell:CommentViewCell />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
     </viewBase:ContentPageBaseView.MainContent>
 </viewBase:ContentPageBaseView>

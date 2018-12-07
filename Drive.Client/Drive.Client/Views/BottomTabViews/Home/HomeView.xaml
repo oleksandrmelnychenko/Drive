@@ -58,10 +58,12 @@
         </Grid>
 
         <ListView
+            x:Name="_posts_listView"
             Grid.Row="1"
             BackgroundColor="Transparent"
             CachingStrategy="RecycleElement"
             HasUnevenRows="True"
+            ItemSelected="ListViewItemSelected"
             ItemTemplate="{StaticResource HomePostTemplateSelector}"
             ItemsSource="{Binding Posts}"
             SelectedItem="{Binding SelectedPostViewModel}"

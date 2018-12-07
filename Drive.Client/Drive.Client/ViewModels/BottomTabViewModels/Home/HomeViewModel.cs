@@ -26,7 +26,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
                 if (SetProperty(ref _selectedPostViewModel, value)) {
                     if (value != null) {
                         NavigationService.NavigateToAsync<PostCommentsViewModel>(value);
-                        SelectedPostViewModel = null;
                     }
                 }
             }

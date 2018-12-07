@@ -7,5 +7,13 @@ namespace Drive.Client.Views.BottomTabViews.Home {
         public HomeView() {
             InitializeComponent();
         }
+
+        private void _posts_listView_ItemSelected(object sender, SelectedItemChangedEventArgs e) {
+
+        }
+
+        private void ListViewItemSelected(object sender, SelectedItemChangedEventArgs e) {
+            _posts_listView.SelectedItem = null;
+        }
     }
 }

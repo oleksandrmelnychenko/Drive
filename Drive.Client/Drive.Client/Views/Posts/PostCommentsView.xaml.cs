@@ -11,5 +11,9 @@ namespace Drive.Client.Views.Posts {
         public PostCommentsView() {
             InitializeComponent();
         }
+
+        private void ListViewItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e) {
+
+        }
     }
 }
