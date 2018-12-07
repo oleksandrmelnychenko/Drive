@@ -2,17 +2,15 @@
 using Drive.Client.Models.Arguments.Notifications;
 using Drive.Client.Models.Identities.Device;
 using Drive.Client.Models.Identities.NavigationArgs;
-using Drive.Client.Models.Notifications;
 using Drive.Client.Services.DeviceUtil;
 using Drive.Client.Services.Notifications;
+using Drive.Client.Services.Signal.Announcement;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.BottomTabViewModels;
 using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
 using Drive.Client.ViewModels.BottomTabViewModels.Home;
 using Drive.Client.ViewModels.BottomTabViewModels.Search;
 using Drive.Client.ViewModels.Popups;
-using Microsoft.AppCenter.Analytics;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -120,8 +118,6 @@ namespace Drive.Client.ViewModels {
                     CancellationTokenSource cancellationTokenSource = _registerClientDeviceInfoCancellationTokenSource;
 
                     ClientHardware clientHardware = await _deviceUtilService.GetDeviceInfoAsync(cancellationTokenSource);
-                    string jObject = JsonConvert.SerializeObject(clientHardware);
-                    Analytics.TrackEvent(BaseSingleton<AzureMobileCenter>.Instance.RegisterClientDeviceInfoEventKey, new Dictionary<string, string> { { "messagingDeveceToken", clientHardware.MessagingDeviceToken } });
 
                     bool deviceRegistrationCompletion = await _deviceUtilService.RegisterClientDeviceInfoAsync(clientHardware, cancellationTokenSource);
 

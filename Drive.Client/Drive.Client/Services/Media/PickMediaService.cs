@@ -1,4 +1,5 @@
 ﻿using Drive.Client.Models.Medias;
+using Microsoft.AppCenter.Crashes;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
@@ -6,6 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Drive.Client.Services.Media {
     public class PickMediaService : IPickMediaService {
@@ -14,10 +16,6 @@ namespace Drive.Client.Services.Media {
 
         private static readonly string VIDEO_ATTACHED_MEDIA_DIRECTORY_NAME = "attached_video_media";
 
-        /// <summary>
-        /// Takes photo with device camera.
-        /// </summary>
-        /// <returns></returns>
         public async Task<MediaFile> TakePhotoAsync() {
             await CrossMedia.Current.Initialize();
 
@@ -37,6 +35,7 @@ namespace Drive.Client.Services.Media {
             catch (Exception) {
                 Debugger.Break();
             }
+
             return file;
         }
 
@@ -46,7 +45,7 @@ namespace Drive.Client.Services.Media {
             if (!CrossMedia.Current.IsPickPhotoSupported) return null;
 
             var file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions {
-                PhotoSize = PhotoSize.Custom,
+                PhotoSize = PhotoSize.Medium,
                 CompressionQuality = 50
             });
 
@@ -69,7 +68,7 @@ namespace Drive.Client.Services.Media {
 
                     pickedImage = new PickedImage {
                         Name = Path.GetFileName(file.Path),
-                        Body = await ParseStreamToBytes(stream)
+                        Body = await ParseStreamToBytesAsync(stream)
                     };
                 }
                 catch (Exception) {
@@ -79,10 +78,6 @@ namespace Drive.Client.Services.Media {
             return pickedImage;
         }
 
-        /// <summary>
-        /// Take video from device camera
-        /// </summary>
-        /// <returns></returns>
         public async Task<MediaFile> TakeVideoAsync() {
             await CrossMedia.Current.Initialize();
 
@@ -123,7 +118,7 @@ namespace Drive.Client.Services.Media {
                 try {
                     pickedImage = new PickedImage {
                         Name = Path.GetFileName(mediaFile.Path),
-                        Body = await ParseStreamToBytes(mediaFile.GetStream())
+                        Body = await ParseStreamToBytesAsync(mediaFile.GetStream())
                     };
                 }
                 catch (Exception) {
@@ -132,25 +127,10 @@ namespace Drive.Client.Services.Media {
                 return pickedImage;
             });
 
-        private Task<byte[]> ParseStreamToBytes(Stream stream) =>
-           Task.Run(() => {
-               byte[] bytes = default(byte[]);
-               try {
-                   stream.Position = 0;
-
-                   using (BinaryReader reader = new BinaryReader(stream)) {
-                       bytes = reader.ReadBytes((int)stream.Length);
-                   }
-               }
-               catch (Exception ex) {
-                   Debugger.Break();
-               }
-               return bytes;
-           });
-
         public Task<string> ParseStreamToBase64(Stream stream) =>
             Task.Run(() => {
                 string base64string = "";
+
                 try {
                     stream.Position = 0;
 
@@ -164,6 +144,7 @@ namespace Drive.Client.Services.Media {
                 catch (Exception) {
                     base64string = "";
                 }
+
                 return base64string;
             });
 
@@ -184,5 +165,45 @@ namespace Drive.Client.Services.Media {
                 }
                 return stream;
             });
+
+        public Task<ImageSource> BuildImageSourceAsync(Stream stream) =>
+            Task<ImageSource>.Run(async () => {
+                ImageSource imageSource = null;
+
+                try {
+                    stream.Position = 0;
+
+                    byte[] binary = await ParseStreamToBytesAsync(stream);
+                    MemoryStream memoryStream = new MemoryStream(binary);
+
+                    imageSource = ImageSource.FromStream(() => memoryStream);
+                }
+                catch (Exception exc) {
+                    Debugger.Break();
+
+                    Crashes.TrackError(exc);
+                    imageSource = null;
+                }
+
+                return imageSource;
+            });
+
+        private Task<byte[]> ParseStreamToBytesAsync(Stream stream) =>
+           Task.Run(() => {
+               byte[] bytes = default(byte[]);
+
+               try {
+                   stream.Position = 0;
+
+                   using (BinaryReader reader = new BinaryReader(stream)) {
+                       bytes = reader.ReadBytes((int)stream.Length);
+                   }
+               }
+               catch (Exception ex) {
+                   Debugger.Break();
+               }
+
+               return bytes;
+           });
     }
 }

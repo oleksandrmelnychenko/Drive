@@ -2,6 +2,8 @@
 using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
 using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Services.Identity;
+using Drive.Client.Services.Signal.Announcement;
+using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.IdentityAccounting.ForgotPassword;
 using Newtonsoft.Json;
 using System;
@@ -66,10 +68,12 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
                         if (signInResult != null) {
                             if (signInResult.IsSucceed) {
                                 await NavigationService.InitializeAsync();
-                            } else {
+                            }
+                            else {
                                 ServerError = signInResult.Errors.LastOrDefault().Item2;
                             }
-                        } else {
+                        }
+                        else {
                             Debugger.Break();
                             await NavigationService.GoBackAsync();
                         }

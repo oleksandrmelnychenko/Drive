@@ -2,9 +2,11 @@
 using Plugin.Media.Abstractions;
 using System.IO;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Drive.Client.Services.Media {
     public interface IPickMediaService {
+
         Task<MediaFile> TakePhotoAsync();
 
         Task<MediaFile> PickPhotoAsync();
@@ -20,5 +22,7 @@ namespace Drive.Client.Services.Media {
         Task<PickedImage> BuildPickedImageAsync(MediaFile mediaFile);
 
         Task<PickedImage> BuildPickedImageAsync();
+
+        Task<ImageSource> BuildImageSourceAsync(Stream stream);
     }
 }

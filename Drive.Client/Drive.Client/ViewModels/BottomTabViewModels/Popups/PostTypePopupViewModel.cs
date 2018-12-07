@@ -13,6 +13,16 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Popups {
 
         private readonly IPostTypeDataItems _postTypeDataItems;
 
+        public PostTypePopupViewModel(IPostTypeDataItems postTypeDataItems) {
+            _postTypeDataItems = postTypeDataItems;
+
+            PostTypes = _postTypeDataItems.BuildLanguageDataItems(ResourceLoader);
+        }
+
+        public ICommand CancelCommand => new Command(() => ClosePopupCommand.Execute(null));
+
+        public ICommand SelectPostTypesCommand => new Command((param) => OnSelectPostTypes(param));
+
         List<PostTypeDataItem> _postTypes;
         public List<PostTypeDataItem> PostTypes {
             get { return _postTypes; }
@@ -20,19 +30,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Popups {
         }
 
         public override Type RelativeViewType => typeof(PostTypePopupView);
-
-        public ICommand CancelCommand => new Command(() => ClosePopupCommand.Execute(null));
-
-        public ICommand SelectPostTypesCommand => new Command((param) => OnSelectPostTypes(param));
-
-        /// <summary>
-        ///     ctor().
-        /// </summary>
-        public PostTypePopupViewModel(IPostTypeDataItems postTypeDataItems) {
-            _postTypeDataItems = postTypeDataItems;
-
-            PostTypes = _postTypeDataItems.BuildLanguageDataItems(ResourceLoader);
-        }
 
         private void OnSelectPostTypes(object param) {
             if (param is PostTypeDataItem postTypeDataItem) {

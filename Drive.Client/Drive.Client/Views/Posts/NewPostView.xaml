@@ -72,8 +72,11 @@
                         BorderThickness="3"
                         CornerRadius="6"
                         WidthRequest="120">
-                        <AbsoluteLayout>
+                        <controls:ExtendedContentView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=AttachNewMediaCommand}" />
+                        </controls:ExtendedContentView.GestureRecognizers>
 
+                        <AbsoluteLayout>
                             <ffimageloadingsvg:SvgCachedImage
                                 AbsoluteLayout.LayoutBounds=".5,.36"
                                 AbsoluteLayout.LayoutFlags="PositionProportional"
@@ -93,9 +96,6 @@
                                 Text="{Binding Path=ResourceLoader[PhotoUpperCase].Value, Mode=TwoWay}"
                                 TextColor="{StaticResource Key=DarkBlueColor}" />
                         </AbsoluteLayout>
-
-
-
                     </controls:ExtendedContentView>
 
                     <stackList:StackList
