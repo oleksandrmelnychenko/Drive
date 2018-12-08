@@ -1,17 +1,17 @@
 ﻿namespace Drive.Client.Models.Rest.EndPoints {
     public class VehicleEndpoints {
 
-        private const string USER_VEHICLE_DETAIL_REQUESTS_API_KEY = "api/v1/resident/vehicle/details/get/all";
+        private const string USER_VEHICLE_DETAIL_REQUESTS_API_KEY = "m/api/v1/resident/vehicle/details/get/all";
 
-        private const string GET_VEHICLE_DETAILS_API_KEY = "api/v1/resident/vehicle/details/get?requestId={0}";
+        private const string GET_VEHICLE_DETAILS_API_KEY = "m/api/v1/resident/vehicle/details/get?requestId={0}";
 
-        private const string GET_VEHICLE_DETAILS_BY_RESIDENT_FULLNAME_API_KEY = "api/v1/resident/vehicle/details/new?first={0}&last={1}&middle={2}&birth={3}";
+        private const string GET_VEHICLE_DETAILS_BY_RESIDENT_FULLNAME_API_KEY = "m/api/v1/resident/vehicle/details/new?first={0}&last={1}&middle={2}&birth={3}";
 
-        private const string GET_NEW_POLAND_VEHICLE_DETAILS_API_KEY = "api/v1/auto/get/poland?vin={0}&date={1}&number={2}";
+        private const string GET_NEW_POLAND_VEHICLE_DETAILS_API_KEY = "m/api/v1/auto/get/poland?vin={0}&date={1}&number={2}";
 
-        private const string GET_POLAND_VEHICLE_REQUESTS_API_KEY = "api/v1/auto/get/poland/user/requests";
+        private const string GET_POLAND_VEHICLE_REQUESTS_API_KEY = "m/api/v1/auto/get/poland/user/requests";
 
-        private const string GET_POLAND_VEHICLE_DETAILS_BY_REQUESTID_API_KEY = "api/v1/auto/get/poland/request?requestId={0}";
+        private const string GET_POLAND_VEHICLE_DETAILS_BY_REQUESTID_API_KEY = "m/api/v1/auto/get/poland/request?requestId={0}";
 
         /// <summary>
         ///     ctor().

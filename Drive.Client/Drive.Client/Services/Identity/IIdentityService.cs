@@ -33,5 +33,9 @@ namespace Drive.Client.Services.Identity {
         Task<User> GetUserAsync(CancellationToken cancellationToken = default(CancellationToken));
 
         Task<IsCurrentPasswordExistResponse> IsCurrentPasswordExistAsync(string password, CancellationToken cancellationToken = default(CancellationToken));
+
+        Task LogOutAsync();
+
+        void StartUseUserProfile();
     }
 }

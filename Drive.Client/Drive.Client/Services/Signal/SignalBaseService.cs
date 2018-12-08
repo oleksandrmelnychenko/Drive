@@ -1,5 +1,6 @@
 ﻿using Microsoft.AppCenter.Crashes;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.Logging;
 using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
 using System;
@@ -34,14 +35,22 @@ namespace Drive.Client.Services.Signal {
                     if (_hubConnection == null) {
                         AccessToken = accessToken;
 
-                        _hubConnection = new HubConnectionBuilder().WithUrl(string.Format(SocketHubGateway)).Build();
+                        _hubConnection = new HubConnectionBuilder()
+                            .WithUrl(SocketHubGateway, (options) => {
+                                if (!string.IsNullOrEmpty(AccessToken)) {
+                                    options.AccessTokenProvider = () => Task.Run(() => AccessToken);
+                                }
+                            })
+                            .ConfigureLogging((logging) => {
+                                logging.AddProvider(new InfallibleLogProvider());
+                            })
+                            .Build();
                         _hubConnection.Closed += OnHubConnectionClosed;
 
                         OnStartListeningToHub();
                     }
 
                     TryToConnectToHub();
-
                 }
                 catch (Exception exc) {
                     _hubConnection = null;
@@ -85,6 +94,8 @@ namespace Drive.Client.Services.Signal {
         private async void TryToConnectToHub() {
             //while (_connectionAttempts < MaxNumberOfConnectionAttempts) {
             try {
+                await Task.Delay(1002);
+
                 await _hubConnection.StartAsync();
 
                 IsConnected = true;

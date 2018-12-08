@@ -5,7 +5,10 @@ using Drive.Client.Models.Arguments.IdentityAccounting.ForgotPassword;
 using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
 using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Models.Medias;
+using Drive.Client.Services.Navigation;
 using Drive.Client.Services.RequestProvider;
+using Drive.Client.Services.Signal.Announcement;
+using Microsoft.AppCenter.Crashes;
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
@@ -16,12 +19,20 @@ namespace Drive.Client.Services.Identity {
     public class IdentityService : IIdentityService {
 
         private readonly IRequestProvider _requestProvider;
+        private readonly INavigationService _navigationService;
+        private readonly IAnnouncementHubService _announcementHubService;
 
         /// <summary>
         ///     ctor().
         /// </summary>
-        public IdentityService(IRequestProvider requestProvider) {
+        public IdentityService(
+            IRequestProvider requestProvider,
+            INavigationService navigationService,
+            IAnnouncementHubService announcementHubService) {
+
             _requestProvider = requestProvider;
+            _navigationService = navigationService;
+            _announcementHubService = announcementHubService;
         }
 
         public async Task<PhoneNumberAvailabilty> CheckPhoneNumberAvailabiltyAsync(string phoneNumber, CancellationToken cancellationToken) =>
@@ -79,7 +90,7 @@ namespace Drive.Client.Services.Identity {
                     authenticationResult = await _requestProvider.PostAsync<AuthenticationResult, RegistrationCollectedInputsArgs>(url, collectedInputsArgs);
 
                     if (authenticationResult != null && authenticationResult.IsSucceed) {
-                        SetupProfile(authenticationResult);
+                        await SetupProfileAsync(authenticationResult);
                     }
                 }
                 catch (ConnectivityException ex) {
@@ -107,7 +118,7 @@ namespace Drive.Client.Services.Identity {
                     authenticationResult = await _requestProvider.PostAsync<AuthenticationResult, SignInArgs>(url, signInArgsArgs);
 
                     if (authenticationResult != null && authenticationResult.IsSucceed) {
-                        SetupProfile(authenticationResult);
+                        await SetupProfileAsync(authenticationResult);
                     }
                 }
                 catch (ConnectivityException ex) {
@@ -123,6 +134,35 @@ namespace Drive.Client.Services.Identity {
 
                 return authenticationResult;
             }, cancellationToken);
+
+        public async Task LogOutAsync() {
+            await Task.Run(async () => {
+                try {
+                    string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.IdentityEndpoints.LogOutEndPoint;
+                    string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+
+                    LogOutResult logOutResult = await _requestProvider.PostAsync<LogOutResult, object>(url, null, accessToken);
+
+                    if (logOutResult != null) { }
+                }
+                catch (Exception ex) {
+                    Debug.WriteLine($"ERROR LogOutAsync():{ex.Message}");
+                }
+            });
+
+            try {
+                BaseSingleton<GlobalSetting>.Instance.UserProfile.ClearUserProfile();
+                BaseSingleton<GlobalSetting>.Instance.UserProfile.SaveChanges();
+
+                await StopSocketServicesAsync();
+
+                await _navigationService.InitializeAsync();
+            }
+            catch (Exception exc) {
+                Crashes.TrackError(exc);
+                throw;
+            }
+        }
 
         public async Task<ChangedProfileData> ChangePhoneNumberAsync(string phoneNumber, CancellationToken cancellationToken = default(CancellationToken)) =>
            await Task.Run(async () => {
@@ -364,23 +404,53 @@ namespace Drive.Client.Services.Identity {
                   return completion;
               }, cancellationToken);
 
-        private static void SetupProfile(AuthenticationResult authenticationResult) {
+        public async void StartUseUserProfile() {
             try {
-                BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken = authenticationResult.AccessToken;
-                BaseSingleton<GlobalSetting>.Instance.UserProfile.RefreshToken = authenticationResult.RefreshToken;
-                BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth = true;
-                BaseSingleton<GlobalSetting>.Instance.UserProfile.NetId = authenticationResult.User.NetId;
-                BaseSingleton<GlobalSetting>.Instance.UserProfile.PhoneNumber = authenticationResult.User.PhoneNumber;
-                BaseSingleton<GlobalSetting>.Instance.UserProfile.Email = authenticationResult.User?.Email;
-                BaseSingleton<GlobalSetting>.Instance.UserProfile.UserName = authenticationResult.User.UserName;
-                BaseSingleton<GlobalSetting>.Instance.UserProfile.AvatarUrl = authenticationResult.User.AvatarUrl;
-
-                BaseSingleton<GlobalSetting>.Instance.UserProfile.SaveChanges();
+                if (!string.IsNullOrEmpty(BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken)) {
+                    await RestartSocketServicesAsync();
+                }
+                else {
+                    //await LogOutAsync();
+                }
             }
-            catch (Exception ex) {
-                Debug.WriteLine($"ERROR:{ex.Message}");
+            catch (Exception exc) {
                 Debugger.Break();
+                Crashes.TrackError(exc);
+
+                //await LogOutAsync();
             }
+        }
+
+        private Task SetupProfileAsync(AuthenticationResult authenticationResult) =>
+            Task.Run(async () => {
+                try {
+                    BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken = authenticationResult.AccessToken;
+                    BaseSingleton<GlobalSetting>.Instance.UserProfile.RefreshToken = authenticationResult.RefreshToken;
+                    BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth = true;
+                    BaseSingleton<GlobalSetting>.Instance.UserProfile.NetId = authenticationResult.User.NetId;
+                    BaseSingleton<GlobalSetting>.Instance.UserProfile.PhoneNumber = authenticationResult.User.PhoneNumber;
+                    BaseSingleton<GlobalSetting>.Instance.UserProfile.Email = authenticationResult.User?.Email;
+                    BaseSingleton<GlobalSetting>.Instance.UserProfile.UserName = authenticationResult.User.UserName;
+                    BaseSingleton<GlobalSetting>.Instance.UserProfile.AvatarUrl = authenticationResult.User.AvatarUrl;
+
+                    BaseSingleton<GlobalSetting>.Instance.UserProfile.SaveChanges();
+
+                    await RestartSocketServicesAsync();
+                }
+                catch (Exception ex) {
+                    Debug.WriteLine($"ERROR:{ex.Message}");
+                    Debugger.Break();
+                }
+            });
+
+        private async Task RestartSocketServicesAsync() {
+            await StopSocketServicesAsync();
+
+            await _announcementHubService.StartAsync(BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken);
+        }
+
+        private async Task StopSocketServicesAsync() {
+            await _announcementHubService.StopAsync();
         }
     }
 }

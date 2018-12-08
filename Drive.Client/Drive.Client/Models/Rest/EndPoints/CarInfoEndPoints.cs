@@ -1,11 +1,11 @@
 ﻿namespace Drive.Client.Models.Rest.EndPoints {
     public class CarInfoEndPoints {
 
-        private const string GET_BY_NUMBER_API_KEY = "api/v1/auto/get?number={0}";
+        private const string GET_BY_NUMBER_API_KEY = "m/api/v1/auto/get?number={0}";
 
-        private const string AUTOCOMPLETE_API_KEY = "api/v1/auto/search/numbers?value={0}";
+        private const string AUTOCOMPLETE_API_KEY = "m/api/v1/auto/search/numbers?value={0}";
 
-        private const string GET_ALL_API_KEY = "api/v1/auto/get/all?number={0}";
+        private const string GET_ALL_API_KEY = "m/api/v1/auto/get/all?number={0}";
 
         /// <summary>
         ///     ctor().

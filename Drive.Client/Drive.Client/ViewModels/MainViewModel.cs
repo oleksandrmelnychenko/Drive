@@ -3,6 +3,7 @@ using Drive.Client.Models.Arguments.Notifications;
 using Drive.Client.Models.Identities.Device;
 using Drive.Client.Models.Identities.NavigationArgs;
 using Drive.Client.Services.DeviceUtil;
+using Drive.Client.Services.Identity;
 using Drive.Client.Services.Notifications;
 using Drive.Client.Services.Signal.Announcement;
 using Drive.Client.ViewModels.Base;
@@ -24,6 +25,7 @@ namespace Drive.Client.ViewModels {
 
         private readonly IDeviceUtilService _deviceUtilService;
         private readonly INotificationService _notificationService;
+        private readonly IIdentityService _identityService;
 
         private CancellationTokenSource _registerClientDeviceInfoCancellationTokenSource = new CancellationTokenSource();
 
@@ -36,15 +38,14 @@ namespace Drive.Client.ViewModels {
             }
         }
 
-        /// <summary>
-        ///     ctor().
-        /// </summary>
         public MainViewModel(
             IDeviceUtilService deviceUtilService,
-            INotificationService notificationService) {
+            INotificationService notificationService,
+            IIdentityService identityService) {
 
             _deviceUtilService = deviceUtilService;
             _notificationService = notificationService;
+            _identityService = identityService;
 
             BottomBarItems = new List<IBottomBarTab>() {
                 DependencyLocator.Resolve<HomeViewModel>(),
@@ -53,6 +54,8 @@ namespace Drive.Client.ViewModels {
                 DependencyLocator.Resolve<BookmarkViewModel>(),
                 DependencyLocator.Resolve<ProfileViewModel>()};
             BottomBarItems.ForEach(bottomBarTab => bottomBarTab.InitializeAsync(this));
+
+            _identityService.StartUseUserProfile();
 
             if (string.IsNullOrEmpty(BaseSingleton<GlobalSetting>.Instance.MessagingDeviceToken)) {
                 MessagingCenter.Subscribe<object>(this, "device_token", (sender) => {

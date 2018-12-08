@@ -10,8 +10,6 @@ using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.Search;
 using Drive.Client.Views.BottomTabViews.Search;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -46,10 +44,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         /// </summary>
         public SearchByPolandCarIdViewModel(IValidationObjectFactory validationObjectFactory) {
             _number = validationObjectFactory.GetValidatableObject<string>();
-
-#if DEBUG
-            _number.Value = "sps02218";
-#endif
         }
 
         private async Task OnInputComplete() {
@@ -58,12 +52,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
                 await NavigationService.NavigateToAsync<SearchByPolandCarIdSecondStepViewModel>(searchByPolandNumberArgs);
                 Number.Value = string.Empty;
             }
-        }
-
-        public override void Dispose() {
-            base.Dispose();
-
-
         }
 
         private void UpdateView() {

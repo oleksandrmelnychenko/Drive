@@ -1,7 +1,7 @@
 ﻿namespace Drive.Client.Models.Rest.EndPoints {
     public class ClientHardwareEndPoints {
 
-        private static readonly string _REGISTER_CLIENT_DEVICE_GATEWAY = "/api/v1/client/hardware/set";
+        private static readonly string _REGISTER_CLIENT_DEVICE_GATEWAY = "/m/api/v1/client/hardware/set";
 
         public ClientHardwareEndPoints(string host) {
             Host = host;
