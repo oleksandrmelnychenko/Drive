@@ -1,8 +1,6 @@
-﻿using Drive.Client.Models.Identities.Posts;
+﻿using Drive.Client.Models.EntityModels.Announcement;
 using Drive.Client.ViewModels.BottomTabViewModels.Home.Post;
 using Drive.Client.Views.Templates.TemplateSelectors.ViewCells.Post;
-using System;
-using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace Drive.Client.Views.Templates.TemplateSelectors {
@@ -19,7 +17,7 @@ namespace Drive.Client.Views.Templates.TemplateSelectors {
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container) {
             if (!(item is PostBaseViewModel viewModel)) return null;
 
-            return viewModel.Post.PostType == PostType.MediaPost ? _mediaPost : _textPost;
+            return viewModel.Post.Type == AnnounceType.Text ? _textPost : _mediaPost;
         }
     }
 }

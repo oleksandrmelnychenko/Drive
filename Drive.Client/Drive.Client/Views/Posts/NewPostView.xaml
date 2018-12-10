@@ -4,13 +4,13 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:actionBars="clr-namespace:Drive.Client.Views.ActionBars"
+    xmlns:announceModel="clr-namespace:Drive.Client.Models.EntityModels.Announcement"
     xmlns:behaviors="clr-namespace:Drive.Client.Behaviors"
     xmlns:controls="clr-namespace:Drive.Client.Controls"
     xmlns:converters="clr-namespace:Drive.Client.Converters"
     xmlns:dependency="clr-namespace:Drive.Client.ViewModels.Base"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:local="clr-namespace:Drive.Client.Views.Posts"
-    xmlns:postModel="clr-namespace:Drive.Client.Models.Identities.Posts"
     xmlns:stackList="clr-namespace:Drive.Client.Controls.Stacklist"
     xmlns:viewBase="clr-namespace:Drive.Client.Views.Base"
     dependency:DependencyLocator.AutoWireViewModel="True">
@@ -18,9 +18,9 @@
     <viewBase:ContentPageBaseView.Resources>
         <ResourceDictionary>
             <converters:GenericValueToBoolConverter
-                x:Key="is_media_post_type_converter"
-                x:TypeArguments="postModel:PostType"
-                TargetValue="MediaPost" />
+                x:Key="is_image_post_type_converter"
+                x:TypeArguments="announceModel:AnnounceType"
+                TargetValue="Image" />
         </ResourceDictionary>
     </viewBase:ContentPageBaseView.Resources>
 
@@ -29,89 +29,123 @@
     </viewBase:ContentPageBaseView.ActionBar>
 
     <viewBase:ContentPageBaseView.MainContent>
-        <Grid BackgroundColor="{StaticResource WhiteColor}" RowSpacing="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
 
-            <!--  BackgroundColor="{StaticResource WhiteColor}"  -->
-            <controls:EditorCompounded
-                Grid.Row="0"
-                Margin="9"
-                FontFamily="{StaticResource SFProThin}"
-                FontSize="{StaticResource MediumSize}"
-                LetterSpacing="{OnPlatform iOS=1.3,
-                                           Android=0.07}"
-                Placeholder="Hello world placeholder"
-                PlaceholderColor="{StaticResource ExtraGrayColor}"
-                TextColor="{StaticResource DarkColor}" />
+        <!--  Absolute layot is temporaray - remove when posts with media will beawailable  -->
+        <AbsoluteLayout>
 
-            <BoxView
-                Grid.Row="0"
-                BackgroundColor="{StaticResource Key=LightGrayColor}"
-                HeightRequest="3"
-                VerticalOptions="End" />
+            <Grid
+                AbsoluteLayout.LayoutBounds="1,1,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="{StaticResource WhiteColor}"
+                RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-            <ScrollView
-                Grid.Row="1"
-                Padding="9,20"
-                IsVisible="{Binding Path=TargetPostType, Converter={StaticResource Key=is_media_post_type_converter}}"
-                Orientation="Horizontal">
+                <controls:EditorCompounded
+                    Grid.Row="0"
+                    Margin="9"
+                    FontFamily="{StaticResource SFProThin}"
+                    FontSize="{StaticResource MediumSize}"
+                    LetterSpacing="{OnPlatform iOS=1.3,
+                                               Android=0.07}"
+                    Placeholder="Hello world placeholder"
+                    PlaceholderColor="{StaticResource ExtraGrayColor}"
+                    TextColor="{StaticResource DarkColor}" />
 
-                <Grid ColumnSpacing="9" HeightRequest="120">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                <BoxView
+                    Grid.Row="0"
+                    BackgroundColor="{StaticResource Key=LightGrayColor}"
+                    HeightRequest="3"
+                    VerticalOptions="End" />
 
-                    <controls:ExtendedContentView
-                        Grid.Column="0"
-                        BackgroundColor="{StaticResource Key=WhiteColor}"
-                        BorderColor="{StaticResource Key=LightGrayColor}"
-                        BorderThickness="3"
-                        CornerRadius="6"
-                        WidthRequest="120">
-                        <controls:ExtendedContentView.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Path=AttachNewMediaCommand}" />
-                        </controls:ExtendedContentView.GestureRecognizers>
+                <ScrollView
+                    Grid.Row="1"
+                    Padding="9,20"
+                    IsVisible="{Binding Path=TargetPostType, Converter={StaticResource Key=is_image_post_type_converter}}"
+                    Orientation="Horizontal">
 
-                        <AbsoluteLayout>
-                            <ffimageloadingsvg:SvgCachedImage
-                                AbsoluteLayout.LayoutBounds=".5,.36"
-                                AbsoluteLayout.LayoutFlags="PositionProportional"
-                                HeightRequest="42"
-                                Source="resource://Drive.Client.Resources.Images.photos.svg"
-                                WidthRequest="42">
-                                <ffimageloadingsvg:SvgCachedImage.Behaviors>
-                                    <behaviors:FFColorScaleBehavior Brightness=".3" TargetColor="#303C4C" />
-                                </ffimageloadingsvg:SvgCachedImage.Behaviors>
-                            </ffimageloadingsvg:SvgCachedImage>
+                    <Grid ColumnSpacing="9" HeightRequest="120">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                            <controls:LabelExtended
-                                AbsoluteLayout.LayoutBounds=".5,.8"
-                                AbsoluteLayout.LayoutFlags="PositionProportional"
-                                FontFamily="{StaticResource SFProLight}"
-                                FontSize="{StaticResource MediumSize}"
-                                Text="{Binding Path=ResourceLoader[PhotoUpperCase].Value, Mode=TwoWay}"
-                                TextColor="{StaticResource Key=DarkBlueColor}" />
-                        </AbsoluteLayout>
-                    </controls:ExtendedContentView>
+                        <controls:ExtendedContentView
+                            Grid.Column="0"
+                            BackgroundColor="{StaticResource Key=WhiteColor}"
+                            BorderColor="{StaticResource Key=LightGrayColor}"
+                            BorderThickness="3"
+                            CornerRadius="6"
+                            WidthRequest="120">
+                            <controls:ExtendedContentView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=AttachNewMediaCommand}" />
+                            </controls:ExtendedContentView.GestureRecognizers>
 
-                    <stackList:StackList
-                        Grid.Column="1"
-                        ItemsSource="{Binding Path=AttachedPostMedias}"
-                        Orientation="Horizontal"
-                        SelectedItem="{Binding Path=SelectedAttachedPostMedia, Mode=TwoWay}"
-                        Spacing="9">
-                        <stackList:StackList.ItemTemplate>
-                            <DataTemplate>
-                                <local:AtatchedNewPostMediaStackItem />
-                            </DataTemplate>
-                        </stackList:StackList.ItemTemplate>
-                    </stackList:StackList>
-                </Grid>
-            </ScrollView>
-        </Grid>
+                            <AbsoluteLayout>
+                                <ffimageloadingsvg:SvgCachedImage
+                                    AbsoluteLayout.LayoutBounds=".5,.36"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    HeightRequest="42"
+                                    Source="resource://Drive.Client.Resources.Images.photos.svg"
+                                    WidthRequest="42">
+                                    <ffimageloadingsvg:SvgCachedImage.Behaviors>
+                                        <behaviors:FFColorScaleBehavior Brightness=".3" TargetColor="#303C4C" />
+                                    </ffimageloadingsvg:SvgCachedImage.Behaviors>
+                                </ffimageloadingsvg:SvgCachedImage>
+
+                                <controls:LabelExtended
+                                    AbsoluteLayout.LayoutBounds=".5,.8"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    FontFamily="{StaticResource SFProLight}"
+                                    FontSize="{StaticResource MediumSize}"
+                                    Text="{Binding Path=ResourceLoader[PhotoUpperCase].Value, Mode=TwoWay}"
+                                    TextColor="{StaticResource Key=DarkBlueColor}" />
+                            </AbsoluteLayout>
+                        </controls:ExtendedContentView>
+
+                        <stackList:StackList
+                            Grid.Column="1"
+                            ItemsSource="{Binding Path=AttachedPostMedias}"
+                            Orientation="Horizontal"
+                            SelectedItem="{Binding Path=SelectedAttachedPostMedia, Mode=TwoWay}"
+                            Spacing="9">
+                            <stackList:StackList.ItemTemplate>
+                                <DataTemplate>
+                                    <local:AtatchedNewPostMediaStackItem />
+                                </DataTemplate>
+                            </stackList:StackList.ItemTemplate>
+                        </stackList:StackList>
+                    </Grid>
+                </ScrollView>
+            </Grid>
+
+            <!--  Temporay stub posts with media  -->
+            <AbsoluteLayout
+                AbsoluteLayout.LayoutBounds="1,1,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="{StaticResource Key=WhiteColor}"
+                IsVisible="{Binding Path=TargetPostType, Converter={StaticResource Key=is_image_post_type_converter}}">
+                <StackLayout
+                    AbsoluteLayout.LayoutBounds=".5,.5"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    Spacing="4">
+                    <controls:LabelExtended
+                        FontSize="{StaticResource Key=BaseFontSize}"
+                        HorizontalOptions="Center"
+                        Text="{Binding ResourceLoader[PostWithPhotoUpperCase].Value, Mode=TwoWay}"
+                        TextColor="{StaticResource DarkColor}"
+                        VerticalOptions="Center" />
+                    <controls:LabelExtended
+                        FontFamily="{StaticResource SFProThin}"
+                        FontSize="{StaticResource Key=MidMediumSize}"
+                        HorizontalOptions="Center"
+                        Text="{Binding ResourceLoader[InDev].Value, Mode=TwoWay}"
+                        TextColor="{StaticResource ExtraGrayColor}"
+                        VerticalOptions="Center" />
+                </StackLayout>
+            </AbsoluteLayout>
+        </AbsoluteLayout>
     </viewBase:ContentPageBaseView.MainContent>
 </viewBase:ContentPageBaseView>

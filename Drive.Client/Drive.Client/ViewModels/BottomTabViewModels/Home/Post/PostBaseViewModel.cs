@@ -1,4 +1,4 @@
-﻿using Drive.Client.Models.Identities.Posts;
+﻿using Drive.Client.Models.EntityModels.Announcement;
 using Drive.Client.Services.OpenUrl;
 using Drive.Client.ViewModels.Base;
 using System;
@@ -38,15 +38,15 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
         /// <summary>
         /// Post instance.
         /// </summary>
-        PostBase _post;
-        public PostBase Post {
+        Announce _post;
+        public Announce Post {
             get => _post;
             set {
                 SetProperty(ref _post, value);
                 OnPost(value);
             }
         }
-       
+
         public ICommand TestCommand => new Command(() => OnTest());
 
         /// <summary>
@@ -59,12 +59,12 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
         private void OnTest() {
         }
 
-        protected virtual void OnPost(PostBase post) {
+        protected virtual void OnPost(Announce post) {
             if (post != null) {
                 AuthorAvatarUrl = post.AuthorAvatar;
                 AuthorName = post.AuthorName;
                 PublishDate = post.PublishDate;
-                MainMessage = post.PostMessage;
+                MainMessage = post.Content;
             }
             else {
                 AuthorAvatarUrl = null;

@@ -5,7 +5,7 @@ using System;
 using System.Diagnostics;
 
 namespace Drive.Client.Services.Signal.Announcement {
-    public class AnnouncementHubService : SignalBaseService, IAnnouncementHubService {
+    public class AnnouncementSignalService : SignalBaseService, IAnnouncementSignalService {
 
         private static readonly string _NEW_ANNOUNCE = "NewAnnounceHubEndpoint";
 

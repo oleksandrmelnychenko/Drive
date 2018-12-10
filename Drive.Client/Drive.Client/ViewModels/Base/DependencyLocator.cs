@@ -5,6 +5,7 @@ using Drive.Client.Factories.Validation;
 using Drive.Client.Factories.Vehicle;
 using Drive.Client.Helpers.AppEvents;
 using Drive.Client.Helpers.AppEvents.Events;
+using Drive.Client.Services.Announcement;
 using Drive.Client.Services.Automobile;
 using Drive.Client.Services.DeviceUtil;
 using Drive.Client.Services.Dialog;
@@ -121,7 +122,8 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
             builder.RegisterType<DeviceUtilService>().As<IDeviceUtilService>().SingleInstance();
             builder.RegisterType<NotificationService>().As<INotificationService>().SingleInstance();
-            builder.RegisterType<AnnouncementHubService>().As<IAnnouncementHubService>().SingleInstance();
+            builder.RegisterType<AnnouncementSignalService>().As<IAnnouncementSignalService>().SingleInstance();
+            builder.RegisterType<AnnouncementService>().As<IAnnouncementService>();
 
             // Factories.
             builder.RegisterType<VehicleFactory>().As<IVehicleFactory>();
