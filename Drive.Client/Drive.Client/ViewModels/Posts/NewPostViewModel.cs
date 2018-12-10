@@ -1,4 +1,4 @@
-﻿using Drive.Client.Models.Identities.Posts;
+﻿using Drive.Client.Models.EntityModels.Announcement;
 using Drive.Client.Services.Media;
 using Drive.Client.ViewModels.ActionBars;
 using Drive.Client.ViewModels.Base;
@@ -26,7 +26,7 @@ namespace Drive.Client.ViewModels.Posts {
         }
 
         public ICommand DeleteAttachedMediaCommand => new Command((object parameter) => {
-            if (parameter is AttachedPostMedia attachedMedia) {
+            if (parameter is AttachedAnnounceMediaBase attachedMedia) {
                 try {
                     AttachedPostMedias.Remove(attachedMedia);
                 }
@@ -47,9 +47,9 @@ namespace Drive.Client.ViewModels.Posts {
                 if (mediaFile != null) {
                     Stream mediaStream = mediaFile.GetStream();
 
-                    AttachedPostMedias.Add(new AttachedPostMedia() { ImageSource = await _pickMediaService.BuildImageSourceAsync(mediaStream),DataBase64 = await _pickMediaService.ParseStreamToBase64(mediaStream) });
-                    mediaStream.Dispose();
+                    AttachedPostMedias.Add(new AttachedImage() { MediaPresentation = await _pickMediaService.BuildImageSourceAsync(mediaStream), DataBase64 = await _pickMediaService.ParseStreamToBase64(mediaStream) });
                     mediaStream.Close();
+                    mediaStream.Dispose();
                     mediaFile.Dispose();
                 }
             }
@@ -61,27 +61,27 @@ namespace Drive.Client.ViewModels.Posts {
             SetBusy(busyKey, false);
         });
 
-        private PostType _targetPostType;
-        public PostType TargetPostType {
+        private AnnounceType _targetPostType;
+        public AnnounceType TargetPostType {
             get => _targetPostType;
-            private set => SetProperty<PostType>(ref _targetPostType, value);
+            private set => SetProperty<AnnounceType>(ref _targetPostType, value);
         }
 
-        private ObservableCollection<AttachedPostMedia> _attachedPostMedias = new ObservableCollection<AttachedPostMedia>();
-        public ObservableCollection<AttachedPostMedia> AttachedPostMedias {
+        private ObservableCollection<AttachedAnnounceMediaBase> _attachedPostMedias = new ObservableCollection<AttachedAnnounceMediaBase>();
+        public ObservableCollection<AttachedAnnounceMediaBase> AttachedPostMedias {
             get => _attachedPostMedias;
-            private set => SetProperty<ObservableCollection<AttachedPostMedia>>(ref _attachedPostMedias, value);
+            private set => SetProperty<ObservableCollection<AttachedAnnounceMediaBase>>(ref _attachedPostMedias, value);
         }
 
-        private AttachedPostMedia _selectedAttachedPostMedia;
-        public AttachedPostMedia SelectedAttachedPostMedia {
+        private AttachedAnnounceMediaBase _selectedAttachedPostMedia;
+        public AttachedAnnounceMediaBase SelectedAttachedPostMedia {
             get => _selectedAttachedPostMedia;
-            set => SetProperty<AttachedPostMedia>(ref _selectedAttachedPostMedia, value);
+            set => SetProperty<AttachedAnnounceMediaBase>(ref _selectedAttachedPostMedia, value);
         }
 
         public override Task InitializeAsync(object navigationData) {
 
-            if (navigationData is PostType postTypeNavigationData) {
+            if (navigationData is AnnounceType postTypeNavigationData) {
                 TargetPostType = postTypeNavigationData;
             }
 

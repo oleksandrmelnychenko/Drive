@@ -1,5 +1,5 @@
 ﻿using Drive.Client.Helpers.Localize;
-using Drive.Client.Models.Identities.Posts;
+using Drive.Client.Models.EntityModels.Announcement;
 
 namespace Drive.Client.Models.DataItems.SelectPostTypes {
     public class PostTypeDataItem {
@@ -8,6 +8,6 @@ namespace Drive.Client.Models.DataItems.SelectPostTypes {
 
         public string Icon { get; set; }
 
-        public PostType PostType { get; set; }
+        public AnnounceType PostType { get; set; }
     }
 }

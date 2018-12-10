@@ -27,8 +27,13 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
             PostTypePopupViewModel.InitializeAsync(this);
         }
 
-        public ICommand TabActionCommand => new Command(()=> {
-            PostTypePopupViewModel.ShowPopupCommand.Execute(null);
+        public ICommand TabActionCommand => new Command(async () => {
+            if (!string.IsNullOrEmpty(BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken)) {
+                PostTypePopupViewModel.ShowPopupCommand.Execute(null);
+            }
+            else {
+                await DialogService.ToastAsync("In developing. TODO: resolve behaviour when user is not authorized.");
+            }
         });
 
         public override void Dispose() {

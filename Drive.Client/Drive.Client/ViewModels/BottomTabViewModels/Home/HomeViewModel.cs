@@ -1,6 +1,6 @@
 ﻿using Drive.Client.Helpers;
 using Drive.Client.Models.Arguments.BottomtabSwitcher;
-using Drive.Client.Models.Identities.Posts;
+using Drive.Client.Models.EntityModels.Announcement;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.BottomTabViewModels.Home.Post;
 using Drive.Client.ViewModels.Posts;
@@ -31,13 +31,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
             }
         }
 
-        /// <summary>
-        ///     ctor().
-        /// </summary>
-        public HomeViewModel() {
-
-        }
-
         protected override void TabbViewModelInit() {
             RelativeViewType = typeof(HomeView);
             TabIcon = IconPath.HOME;
@@ -63,23 +56,24 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
                     List<PostBaseViewModel> foundPosts = new List<PostBaseViewModel>();
 
                     for (int i = 0; i < 100; i++) {
-                        PostBase postBase = null;
+                        Announce postBase = new Announce();
                         PostBaseViewModel postViewModel = DependencyLocator.Resolve<PostBaseViewModel>();
 
                         if (i % 2 == 0) {
-                            postBase = new TextPost();
-                        } else {
-                            postBase = new MediaPost();
+                            postBase.Type = AnnounceType.Text;
+                        }
+                        else {
+                            postBase.Type = AnnounceType.Image;
 
                             if (i % 3 == 0) {
-                                ((MediaPost)postBase).MediaUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoQ_1qSVR7vwVmYg_WLDZJVnyDc_-Qg8yC1neV90WEFLon3Zz_xw";
+                                postBase.MediaUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoQ_1qSVR7vwVmYg_WLDZJVnyDc_-Qg8yC1neV90WEFLon3Zz_xw";
                             }
                         }
 
                         postBase.AuthorName = string.Format("{0} {1}", postBase.AuthorName, i);
                         postBase.CommentsCount = i;
                         for (int m = 0; m < i; m++) {
-                            postBase.PostMessage = string.Format("{0}. {1}", postBase.AuthorName, postBase.AuthorName);
+                            postBase.Content = string.Format("{0}. {1}", postBase.AuthorName, postBase.AuthorName);
                         }
                         postBase.PublishDate = postBase.PublishDate - TimeSpan.FromHours(i);
 
@@ -88,8 +82,9 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
                     }
 
                     Posts = foundPosts.ToArray();
-                } catch (Exception ex) {
-
+                }
+                catch (Exception ex) {
+                    Debugger.Break();
                     throw;
                 }
             }

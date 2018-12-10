@@ -10,12 +10,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\Identities\Posts\**" />
     <Compile Remove="Models\Services\**" />
     <Compile Remove="Services\DependencyServices\Localize\**" />
     <Compile Remove="Services\Identity\IdentityUtility\**" />
+    <EmbeddedResource Remove="Models\Identities\Posts\**" />
     <EmbeddedResource Remove="Models\Services\**" />
     <EmbeddedResource Remove="Services\DependencyServices\Localize\**" />
     <EmbeddedResource Remove="Services\Identity\IdentityUtility\**" />
+    <None Remove="Models\Identities\Posts\**" />
     <None Remove="Models\Services\**" />
     <None Remove="Services\DependencyServices\Localize\**" />
     <None Remove="Services\Identity\IdentityUtility\**" />

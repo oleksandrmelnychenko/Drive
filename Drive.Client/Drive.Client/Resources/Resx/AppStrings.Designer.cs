@@ -800,6 +800,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to POST WITH PHOTO.
+        /// </summary>
+        public static string PostWithPhotoUpperCase {
+            get {
+                return ResourceManager.GetString("PostWithPhotoUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PROCESSING.
         /// </summary>
         public static string ProcessingUpperCase {

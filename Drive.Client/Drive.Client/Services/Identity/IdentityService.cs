@@ -20,7 +20,7 @@ namespace Drive.Client.Services.Identity {
 
         private readonly IRequestProvider _requestProvider;
         private readonly INavigationService _navigationService;
-        private readonly IAnnouncementHubService _announcementHubService;
+        private readonly IAnnouncementSignalService _announcementHubService;
 
         /// <summary>
         ///     ctor().
@@ -28,7 +28,7 @@ namespace Drive.Client.Services.Identity {
         public IdentityService(
             IRequestProvider requestProvider,
             INavigationService navigationService,
-            IAnnouncementHubService announcementHubService) {
+            IAnnouncementSignalService announcementHubService) {
 
             _requestProvider = requestProvider;
             _navigationService = navigationService;

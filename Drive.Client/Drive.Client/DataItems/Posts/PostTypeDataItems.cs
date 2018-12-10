@@ -1,6 +1,6 @@
 ﻿using Drive.Client.Helpers.Localize;
 using Drive.Client.Models.DataItems.SelectPostTypes;
-using Drive.Client.Models.Identities.Posts;
+using Drive.Client.Models.EntityModels.Announcement;
 using Drive.Client.Resources.Resx;
 using System.Collections.Generic;
 
@@ -12,12 +12,12 @@ namespace Drive.Client.DataItems.Posts {
                 new PostTypeDataItem {
                     Icon = "resource://Drive.Client.Resources.Images.photos.svg",
                     Title = resourceLoader[nameof(AppStrings.PostWithPhoto)],
-                    PostType = PostType.MediaPost
+                    PostType = AnnounceType.Image
                 },
                 new PostTypeDataItem {
                     Icon = "resource://Drive.Client.Resources.Images.text.svg",
                     Title = resourceLoader[nameof(AppStrings.TextPost)],
-                    PostType = PostType.TextPost
+                    PostType = AnnounceType.Text
                 }
             };
     }
