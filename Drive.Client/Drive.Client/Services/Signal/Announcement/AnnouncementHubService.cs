@@ -16,11 +16,11 @@ namespace Drive.Client.Services.Signal.Announcement {
         protected override void OnStartListeningToHub() {
             _hubConnection.On<object>(_NEW_ANNOUNCE, (args) => {
                 try {
+                    Console.WriteLine("===> AnnouncementHubService.NewAnnounceHubEndpoint <===");
                     ///
-                    /// TODO: parse parameter
+                    /// TODO: parse parameter. Check if logged in andinvoke event.
                     ///
-                    Console.WriteLine("===> AnnouncementHubService.NewAnnounceHubEndpoint");
-                    NewAnnounceReceived.Invoke(this, args);
+                    //NewAnnounceReceived.Invoke(this, args);
                 }
                 catch (Exception exc) {
                     Crashes.TrackError(exc);

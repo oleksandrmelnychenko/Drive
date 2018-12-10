@@ -3,7 +3,6 @@ using Drive.Client.Models.Arguments.BottomtabSwitcher;
 using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Models.Medias;
 using Drive.Client.Services.Identity;
-using Drive.Client.Services.Identity.IdentityUtility;
 using Drive.Client.Services.Media;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.BottomTabViewModels.Popups;
@@ -25,8 +24,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         private CancellationTokenSource _changeAvatarCancellationTokenSource = new CancellationTokenSource();
 
         private CancellationTokenSource _getUserCancellationTokenSource = new CancellationTokenSource();
-
-        private readonly IIdentityUtilityService _identityUtilityService;
 
         private readonly IPickMediaService _pickMediaService;
 
@@ -86,17 +83,15 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
 
         public ICommand ChangePasswordCommand => new Command(async () => await NavigationService.NavigateToAsync<EditPasswordFirstStepViewModel>());
 
-        public ICommand LogOutCommand => new Command(async () => await _identityUtilityService.LogOutAsync());
+        public ICommand LogOutCommand => new Command(async () => await _identityService.LogOutAsync());
 
         public ICommand ChangeAvatarCommand => new Command(async () => await OnChangeAvatarAsync());
 
         /// <summary>
         ///     ctor().
         /// </summary>
-        public ProfileViewModel(IIdentityUtilityService identityUtilityService,
-                                IPickMediaService pickMediaService,
+        public ProfileViewModel(IPickMediaService pickMediaService,
                                 IIdentityService identityService) {
-            _identityUtilityService = identityUtilityService;
             _pickMediaService = pickMediaService;
             _identityService = identityService;
 

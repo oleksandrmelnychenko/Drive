@@ -12,10 +12,13 @@
   <ItemGroup>
     <Compile Remove="Models\Services\**" />
     <Compile Remove="Services\DependencyServices\Localize\**" />
+    <Compile Remove="Services\Identity\IdentityUtility\**" />
     <EmbeddedResource Remove="Models\Services\**" />
     <EmbeddedResource Remove="Services\DependencyServices\Localize\**" />
+    <EmbeddedResource Remove="Services\Identity\IdentityUtility\**" />
     <None Remove="Models\Services\**" />
     <None Remove="Services\DependencyServices\Localize\**" />
+    <None Remove="Services\Identity\IdentityUtility\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -117,8 +120,8 @@
     <PackageReference Include="Microsoft.AppCenter" Version="1.11.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.11.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.11.0" />
-    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="1.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="1.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="System.Reactive" Version="4.0.0" />

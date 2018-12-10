@@ -5,33 +5,33 @@ using System.Text;
 namespace Drive.Client.Models.Rest.EndPoints {
     public class IdentityEndpoints {
 
-        private const string PHONENUMBER_AVAILABILITY_API_KEY = "api/v1/user/check/phone?phone={0}";
+        private const string PHONENUMBER_AVAILABILITY_API_KEY = "m/api/v1/user/check/phone?phone={0}";
 
-        private const string USER_NAME_AVAILABILITY_API_KEY = "api/v1/user/check/name?name={0}";
+        private const string USER_NAME_AVAILABILITY_API_KEY = "m/api/v1/user/check/name?name={0}";
 
-        private const string SIGNUP_API_KEY = "api/v1/user/signup";
+        private const string SIGNUP_API_KEY = "m/api/v1/user/signup";
 
-        private const string SIGNIN_API_KEY = "api/v1/user/signin";
+        private const string SIGNIN_API_KEY = "m/api/v1/user/signin";
 
-        private const string LOG_OUT_API_KEY = "api/v1/user/logout";
+        private const string LOG_OUT_API_KEY = "m/api/v1/user/logout";
 
-        private const string CHANGE_PHONENUMBER_API_KEY = "api/v1/user/update/phone?phone={0}";
+        private const string CHANGE_PHONENUMBER_API_KEY = "m/api/v1/user/update/phone?phone={0}";
 
-        private const string CHANGE_USERNAME_API_KEY = "api/v1/user/update/name?name={0}";
+        private const string CHANGE_USERNAME_API_KEY = "m/api/v1/user/update/name?name={0}";
 
-        private const string CHANGR_EMAIL_API_KEY = "api/v1/user/update/email?email={0}";
+        private const string CHANGR_EMAIL_API_KEY = "m/api/v1/user/update/email?email={0}";
 
-        private const string UPLOAD_USER_AVATAR_API_KEY = "api/v1/user/avatar/upload";
+        private const string UPLOAD_USER_AVATAR_API_KEY = "m/api/v1/user/avatar/upload";
 
-        private const string UPDATE_PASSWORD_API_KEY = "api/v1/user/update/password?newPassword={0}&currentPassword={1}";
+        private const string UPDATE_PASSWORD_API_KEY = "m/api/v1/user/update/password?newPassword={0}&currentPassword={1}";
 
-        private const string CAN_USER_CHANGE_FORGOTTEN_PASSWORD_API_KEY = "api/v1/user/canchange/forgotten/password?phone={0}&name={1}";
+        private const string CAN_USER_CHANGE_FORGOTTEN_PASSWORD_API_KEY = "m/api/v1/user/canchange/forgotten/password?phone={0}&name={1}";
 
-        private const string FORGOT_PASSWORD_API_KEY = "api/v1/user/forgotpassword?phone={0}&name={1}&password={2}";
+        private const string FORGOT_PASSWORD_API_KEY = "m/api/v1/user/forgotpassword?phone={0}&name={1}&password={2}";
 
-        private const string GET_USER_API_KEY = "api/v1/user/get";
+        private const string GET_USER_API_KEY = "m/api/v1/user/get";
 
-        private const string IS_CURRENT_PASSWORD_EXIST = "api/v1/user/check/password?currentPassword={0}";
+        private const string IS_CURRENT_PASSWORD_EXIST = "m/api/v1/user/check/password?currentPassword={0}";
 
         /// <summary>
         ///     ctor().

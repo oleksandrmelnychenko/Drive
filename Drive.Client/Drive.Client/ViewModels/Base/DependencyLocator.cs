@@ -9,12 +9,12 @@ using Drive.Client.Services.Automobile;
 using Drive.Client.Services.DeviceUtil;
 using Drive.Client.Services.Dialog;
 using Drive.Client.Services.Identity;
-using Drive.Client.Services.Identity.IdentityUtility;
 using Drive.Client.Services.Media;
 using Drive.Client.Services.Navigation;
 using Drive.Client.Services.Notifications;
 using Drive.Client.Services.OpenUrl;
 using Drive.Client.Services.RequestProvider;
+using Drive.Client.Services.Signal.Announcement;
 using Drive.Client.Services.Vehicle;
 using Drive.Client.ViewModels.ActionBars;
 using Drive.Client.ViewModels.BottomTabViewModels;
@@ -121,7 +121,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
             builder.RegisterType<DeviceUtilService>().As<IDeviceUtilService>().SingleInstance();
             builder.RegisterType<NotificationService>().As<INotificationService>().SingleInstance();
-            builder.RegisterType<IdentityUtilityService>().As<IIdentityUtilityService>();
+            builder.RegisterType<AnnouncementHubService>().As<IAnnouncementHubService>().SingleInstance();
 
             // Factories.
             builder.RegisterType<VehicleFactory>().As<IVehicleFactory>();
