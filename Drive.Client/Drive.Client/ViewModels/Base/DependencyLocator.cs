@@ -128,8 +128,8 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<ValidationObjectFactory>().As<IValidationObjectFactory>();
 
             // Data items
-            builder.RegisterType<ProfileSettingsDataItems>().As<IProfileSettingsDataItems>().SingleInstance();
             builder.RegisterType<PostTypeDataItems>().As<IPostTypeDataItems>();
+            builder.RegisterType<ProfileSettingsDataItems>().As<IProfileSettingsDataItems>().SingleInstance();
 
             if (_container != null) {
                 _container.Dispose();

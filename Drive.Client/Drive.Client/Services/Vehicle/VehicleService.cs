@@ -110,6 +110,9 @@ namespace Drive.Client.Services.Vehicle {
                  catch (HttpRequestExceptionEx ex) {
                      polandVehicleDetail = null;
                  }
+                 catch (ServiceAuthenticationException ex) {
+                     throw ex;
+                 }
                  catch (Exception ex) {
                      Debug.WriteLine($"ERROR:{ex.Message}");
                      Debugger.Break();
