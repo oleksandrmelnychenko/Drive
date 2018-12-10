@@ -57,7 +57,7 @@ namespace Drive.Client.Services.Navigation {
             }
         }
 
-        public Task InitializeAsync() {
+        public Task InitializeAsync(object parameter = default(object)) {
             if (Application.Current.MainPage is CustomNavigationView navigationPage) {
                 List<Page> stack = navigationPage.Navigation.NavigationStack.ToList();
                 stack.ForEach(p => {
@@ -67,7 +67,7 @@ namespace Drive.Client.Services.Navigation {
                 });
             }
 
-            return FirstInitilizeAsync<MainViewModel>();
+            return FirstInitilizeAsync<MainViewModel>(parameter);
         }
 
         public Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase =>
@@ -76,10 +76,10 @@ namespace Drive.Client.Services.Navigation {
         public Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase =>
              InternalNavigateToAsync(typeof(TViewModel), parameter);
 
-        private async Task FirstInitilizeAsync<TViewModel>() where TViewModel : ViewModelBase {
+        private async Task FirstInitilizeAsync<TViewModel>(object parameter) where TViewModel : ViewModelBase {
             Page page = CreatePage(typeof(TViewModel), null);
             Application.Current.MainPage = new CustomNavigationView(page);
-            await (page.BindingContext as ViewModelBase).InitializeAsync(null);
+            await (page.BindingContext as ViewModelBase).InitializeAsync(parameter);
         }
 
         private async Task InternalNavigateToAsync(Type viewModelType, object parameter) {

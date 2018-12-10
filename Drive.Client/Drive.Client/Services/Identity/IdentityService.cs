@@ -4,10 +4,12 @@ using Drive.Client.Models.Arguments.IdentityAccounting.ChangePassword;
 using Drive.Client.Models.Arguments.IdentityAccounting.ForgotPassword;
 using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
 using Drive.Client.Models.EntityModels.Identity;
+using Drive.Client.Models.Identities.NavigationArgs;
 using Drive.Client.Models.Medias;
 using Drive.Client.Services.Navigation;
 using Drive.Client.Services.RequestProvider;
 using Drive.Client.Services.Signal.Announcement;
+using Drive.Client.ViewModels.BottomTabViewModels;
 using Microsoft.AppCenter.Crashes;
 using Newtonsoft.Json;
 using System;
@@ -156,7 +158,7 @@ namespace Drive.Client.Services.Identity {
 
                 await StopSocketServicesAsync();
 
-                await _navigationService.InitializeAsync();
+                await _navigationService.InitializeAsync(new BottomTabIndexArgs() { TargetTab = typeof(ProfileViewModel) });
             }
             catch (Exception exc) {
                 Crashes.TrackError(exc);
@@ -180,6 +182,10 @@ namespace Drive.Client.Services.Identity {
                    }
                }
                catch (ConnectivityException ex) {
+                   throw ex;
+               }
+               catch (ServiceAuthenticationException ex) {
+                   await this.LogOutAsync();
                    throw ex;
                }
                catch (HttpRequestExceptionEx ex) {
@@ -210,6 +216,10 @@ namespace Drive.Client.Services.Identity {
                catch (ConnectivityException ex) {
                    throw ex;
                }
+               catch (ServiceAuthenticationException ex) {
+                   await this.LogOutAsync();
+                   throw ex;
+               }
                catch (HttpRequestExceptionEx ex) {
                    throw ex;
                }
@@ -236,6 +246,10 @@ namespace Drive.Client.Services.Identity {
                     }
                 }
                 catch (ConnectivityException ex) {
+                    throw ex;
+                }
+                catch (ServiceAuthenticationException ex) {
+                    await LogOutAsync();
                     throw ex;
                 }
                 catch (HttpRequestExceptionEx ex) {
@@ -267,6 +281,10 @@ namespace Drive.Client.Services.Identity {
                catch (ConnectivityException ex) {
                    throw ex;
                }
+               catch (ServiceAuthenticationException ex) {
+                   await this.LogOutAsync();
+                   throw ex;
+               }
                catch (HttpRequestExceptionEx ex) {
                    throw ex;
                }
@@ -294,6 +312,10 @@ namespace Drive.Client.Services.Identity {
                     }
                 }
                 catch (ConnectivityException ex) {
+                    throw ex;
+                }
+                catch (ServiceAuthenticationException ex) {
+                    await this.LogOutAsync();
                     throw ex;
                 }
                 catch (HttpRequestExceptionEx ex) {
@@ -365,6 +387,10 @@ namespace Drive.Client.Services.Identity {
                       user = await _requestProvider.GetAsync<User>(url, accessToken, cancellationToken);
                   }
                   catch (ConnectivityException ex) {
+                      throw ex;
+                  }
+                  catch (ServiceAuthenticationException ex) {
+                      await this.LogOutAsync();
                       throw ex;
                   }
                   catch (HttpRequestExceptionEx ex) {
