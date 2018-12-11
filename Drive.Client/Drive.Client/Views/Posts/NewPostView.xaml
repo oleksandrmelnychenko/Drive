@@ -127,7 +127,7 @@
             </Grid>
 
             <!--  Temporay stub posts with media  -->
-            <AbsoluteLayout
+            <!--<AbsoluteLayout
                 AbsoluteLayout.LayoutBounds="1,1,1,1"
                 AbsoluteLayout.LayoutFlags="All"
                 BackgroundColor="{StaticResource Key=WhiteColor}"
@@ -150,7 +150,7 @@
                         TextColor="{StaticResource ExtraGrayColor}"
                         VerticalOptions="Center" />
                 </StackLayout>
-            </AbsoluteLayout>
+            </AbsoluteLayout>-->
         </AbsoluteLayout>
     </viewBase:ContentPageBaseView.MainContent>
 </viewBase:ContentPageBaseView>

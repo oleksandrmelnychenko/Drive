@@ -8,8 +8,10 @@ using Microsoft.AppCenter.Crashes;
 using Plugin.Media.Abstractions;
 using System;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -27,17 +29,28 @@ namespace Drive.Client.ViewModels.Posts {
             _pickMediaService = pickMediaService;
             _validationObjectFactory = validationObjectFactory;
 
-            ActionBarViewModel = DependencyLocator.Resolve<NewPostActionBarViewModel>();
-
             ResetValidationObjects();
+            AttachedPostMedias = new ObservableCollection<AttachedAnnounceMediaBase>();
+
+            ActionBarViewModel = DependencyLocator.Resolve<NewPostActionBarViewModel>();
         }
 
         public ICommand AnnounceTextChangedCommand => new Command(() => {
-            if (!string.IsNullOrEmpty(AnnounceText.Value) && !string.IsNullOrWhiteSpace(AnnounceText.Value)) {
-                ((NewPostActionBarViewModel)ActionBarViewModel).ResolveExecutionAvailability(true);
+            try {
+                if (!string.IsNullOrEmpty(AnnounceText.Value) && !string.IsNullOrWhiteSpace(AnnounceText.Value)) {
+                    if (TargetAnnounceType == AnnounceType.Video || TargetAnnounceType == AnnounceType.Image) {
+                        ((NewPostActionBarViewModel)ActionBarViewModel).ResolveExecutionAvailability(AttachedPostMedias?.Any());
+                    }
+                    else {
+                        ((NewPostActionBarViewModel)ActionBarViewModel).ResolveExecutionAvailability(true);
+                    }
+                }
+                else {
+                    ((NewPostActionBarViewModel)ActionBarViewModel).ResolveExecutionAvailability(false);
+                }
             }
-            else {
-                ((NewPostActionBarViewModel)ActionBarViewModel).ResolveExecutionAvailability(false);
+            catch (Exception exc) {
+                Crashes.TrackError(exc);
             }
         });
 
@@ -89,10 +102,22 @@ namespace Drive.Client.ViewModels.Posts {
             set { SetProperty(ref _announceText, value); }
         }
 
-        private ObservableCollection<AttachedAnnounceMediaBase> _attachedPostMedias = new ObservableCollection<AttachedAnnounceMediaBase>();
+        private ObservableCollection<AttachedAnnounceMediaBase> _attachedPostMedias;
         public ObservableCollection<AttachedAnnounceMediaBase> AttachedPostMedias {
             get => _attachedPostMedias;
-            private set => SetProperty<ObservableCollection<AttachedAnnounceMediaBase>>(ref _attachedPostMedias, value);
+            private set {
+                if (_attachedPostMedias != null) {
+                    _attachedPostMedias.CollectionChanged -= OnAttachedPostMediasCollectionChanged;
+                }
+
+                SetProperty<ObservableCollection<AttachedAnnounceMediaBase>>(ref _attachedPostMedias, value);
+
+                if (_attachedPostMedias != null) {
+                    _attachedPostMedias.CollectionChanged += OnAttachedPostMediasCollectionChanged;
+                }
+
+                AnnounceTextChangedCommand.Execute(null);
+            }
         }
 
         private AttachedAnnounceMediaBase _selectedAttachedPostMedia;
@@ -124,6 +149,10 @@ namespace Drive.Client.ViewModels.Posts {
 
             isValid = AnnounceText.Validate();
 
+            if (TargetAnnounceType == AnnounceType.Video || TargetAnnounceType == AnnounceType.Image) {
+                isValid = isValid && AttachedPostMedias.Any();
+            }
+
             return isValid;
         }
 
@@ -134,5 +163,7 @@ namespace Drive.Client.ViewModels.Posts {
         private void ResetValidationObjects() {
             AnnounceText = _validationObjectFactory.GetValidatableObject<string>();
         }
+
+        private void OnAttachedPostMediasCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) => AnnounceTextChangedCommand.Execute(null);
     }
 }
