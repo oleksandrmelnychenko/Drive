@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Drive.Client.Controls {
@@ -62,6 +63,8 @@ namespace Drive.Client.Controls {
         private static readonly double PLACEHOLDER_DEFAULT_X_OFFSET = 6.0;
         private static readonly double PLACEHOLDER_DEFAULT_Y_OFFSET = 10.0;
 
+        public event EventHandler<TextChangedEventArgs> TextChanged = delegate { };
+
         public EditorCompounded() {
             InitializeComponent();
 
@@ -80,6 +83,8 @@ namespace Drive.Client.Controls {
 
             _placeholder_LabelExtended.TranslationX = PLACEHOLDER_DEFAULT_X_OFFSET;
             _placeholder_LabelExtended.TranslationY = PLACEHOLDER_DEFAULT_Y_OFFSET;
+
+            _mainInput_EditorExtended.TextChanged += OnMainInputEditorExtendedTextChanged;
         }
 
         public double FontSize {
@@ -127,5 +132,7 @@ namespace Drive.Client.Controls {
         private void OnMainInputEditorExtendedFocused(object sender, FocusEventArgs e) => ResolvePlaceholderVisibility();
 
         private void OnMainInputEditorExtendedUnfocused(object sender, FocusEventArgs e) => ResolvePlaceholderVisibility();
+
+        private void OnMainInputEditorExtendedTextChanged(object sender, TextChangedEventArgs e) => TextChanged.Invoke(this, e);
     }
 }

@@ -2,6 +2,7 @@
 using Drive.Client.iOS.Renderers;
 using Foundation;
 using System.ComponentModel;
+using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
@@ -31,7 +32,6 @@ namespace Drive.Client.iOS.Renderers {
         private void SetLetterSpacing() {
             if (Element is LabelExtended labelExtended && !string.IsNullOrEmpty(Control.Text)) {
                 try {
-
                     //string text = Control.Text;
                     //NSMutableAttributedString attributedString = new NSMutableAttributedString(text);
 

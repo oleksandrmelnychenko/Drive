@@ -30,7 +30,7 @@
             HorizontalOptions="End"
             VerticalOptions="Fill">
             <ContentView.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding PublishCommand}" NumberOfTapsRequired="1" />
+                <TapGestureRecognizer Command="{Binding ExecuteCommand}" NumberOfTapsRequired="1" />
             </ContentView.GestureRecognizers>
             <controls:LabelExtended
                 FontSize="{StaticResource MediumSize}"

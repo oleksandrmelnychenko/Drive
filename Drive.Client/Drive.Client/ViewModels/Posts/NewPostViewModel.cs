@@ -1,5 +1,7 @@
-﻿using Drive.Client.Models.EntityModels.Announcement;
+﻿using Drive.Client.Factories.Validation;
+using Drive.Client.Models.EntityModels.Announcement;
 using Drive.Client.Services.Media;
+using Drive.Client.Validations;
 using Drive.Client.ViewModels.ActionBars;
 using Drive.Client.ViewModels.Base;
 using Microsoft.AppCenter.Crashes;
@@ -13,17 +15,31 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.Posts {
-    internal sealed class NewPostViewModel : ContentPageBaseViewModel {
+    internal sealed class NewPostViewModel : ContentPageBaseViewModel, IInputForm, IBuildFormModel {
 
         private readonly IPickMediaService _pickMediaService;
+        private readonly IValidationObjectFactory _validationObjectFactory;
 
         public NewPostViewModel(
-            IPickMediaService pickMediaService) {
+            IPickMediaService pickMediaService,
+            IValidationObjectFactory validationObjectFactory) {
 
             _pickMediaService = pickMediaService;
+            _validationObjectFactory = validationObjectFactory;
 
             ActionBarViewModel = DependencyLocator.Resolve<NewPostActionBarViewModel>();
+
+            ResetValidationObjects();
         }
+
+        public ICommand AnnounceTextChangedCommand => new Command(() => {
+            if (!string.IsNullOrEmpty(AnnounceText.Value) && !string.IsNullOrWhiteSpace(AnnounceText.Value)) {
+                ((NewPostActionBarViewModel)ActionBarViewModel).ResolveExecutionAvailability(true);
+            }
+            else {
+                ((NewPostActionBarViewModel)ActionBarViewModel).ResolveExecutionAvailability(false);
+            }
+        });
 
         public ICommand DeleteAttachedMediaCommand => new Command((object parameter) => {
             if (parameter is AttachedAnnounceMediaBase attachedMedia) {
@@ -61,10 +77,16 @@ namespace Drive.Client.ViewModels.Posts {
             SetBusy(busyKey, false);
         });
 
-        private AnnounceType _targetPostType;
-        public AnnounceType TargetPostType {
-            get => _targetPostType;
-            private set => SetProperty<AnnounceType>(ref _targetPostType, value);
+        private AnnounceType _targetAnnounceType;
+        public AnnounceType TargetAnnounceType {
+            get => _targetAnnounceType;
+            private set => SetProperty<AnnounceType>(ref _targetAnnounceType, value);
+        }
+
+        private ValidatableObject<string> _announceText;
+        public ValidatableObject<string> AnnounceText {
+            get { return _announceText; }
+            set { SetProperty(ref _announceText, value); }
         }
 
         private ObservableCollection<AttachedAnnounceMediaBase> _attachedPostMedias = new ObservableCollection<AttachedAnnounceMediaBase>();
@@ -82,10 +104,35 @@ namespace Drive.Client.ViewModels.Posts {
         public override Task InitializeAsync(object navigationData) {
 
             if (navigationData is AnnounceType postTypeNavigationData) {
-                TargetPostType = postTypeNavigationData;
+                TargetAnnounceType = postTypeNavigationData;
             }
 
             return base.InitializeAsync(navigationData);
+        }
+
+        public object BuildFormModel() {
+            TODOAnnounce announce = new TODOAnnounce() {
+                Content = AnnounceText.Value,
+                Type = TargetAnnounceType
+            };
+
+            return announce;
+        }
+
+        public bool ValidateForm() {
+            bool isValid = false;
+
+            isValid = AnnounceText.Validate();
+
+            return isValid;
+        }
+
+        public void ResetInputForm() {
+            ResetValidationObjects();
+        }
+
+        private void ResetValidationObjects() {
+            AnnounceText = _validationObjectFactory.GetValidatableObject<string>();
         }
     }
 }

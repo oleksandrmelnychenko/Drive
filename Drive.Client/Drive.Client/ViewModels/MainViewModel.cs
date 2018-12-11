@@ -47,12 +47,18 @@ namespace Drive.Client.ViewModels {
             _notificationService = notificationService;
             _identityService = identityService;
 
-            BottomBarItems = new List<IBottomBarTab>() {
+            List<IBottomBarTab> bottomBarTabs = new List<IBottomBarTab>() {
                 DependencyLocator.Resolve<HomeViewModel>(),
                 DependencyLocator.Resolve<SearchViewModel>(),
-                DependencyLocator.Resolve<PostBuilderViewModel>(),
                 DependencyLocator.Resolve<BookmarkViewModel>(),
-                DependencyLocator.Resolve<ProfileViewModel>()};
+                DependencyLocator.Resolve<ProfileViewModel>()
+            };
+
+            if (!string.IsNullOrEmpty(BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken)) {
+                bottomBarTabs.Insert(2, DependencyLocator.Resolve<PostBuilderViewModel>());
+            }
+
+            BottomBarItems = bottomBarTabs;
             BottomBarItems.ForEach(bottomBarTab => bottomBarTab.InitializeAsync(this));
 
             _identityService.StartUseUserProfile();

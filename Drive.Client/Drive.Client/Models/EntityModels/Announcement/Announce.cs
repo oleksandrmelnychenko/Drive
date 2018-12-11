@@ -16,7 +16,7 @@ namespace Drive.Client.Models.EntityModels.Announcement {
         [JsonProperty("CommentsCount")]
         public int CommentsCount { get; set; }
 
-        [JsonProperty("CommentsCount")]
+        [JsonProperty("NetId")]
         public string NetId { get; set; }
 
         /// <summary>
@@ -38,5 +38,14 @@ namespace Drive.Client.Models.EntityModels.Announcement {
         /// TODO: temporary implementation
         /// </summary>
         public DateTime PublishDate { get; set; } = DateTime.Now;
+    }
+
+    public class TODOAnnounce {
+
+        [JsonProperty("Type")]
+        public AnnounceType Type { get; set; }
+
+        [JsonProperty("Content")]
+        public string Content { get; set; }
     }
 }
