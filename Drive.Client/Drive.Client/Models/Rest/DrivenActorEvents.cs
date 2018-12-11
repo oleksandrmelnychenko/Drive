@@ -3,6 +3,6 @@
         NewAnnounce = 0,
         ParseGovResponse = 1,
         CheckEmailBox = 2,
-        GetLastAnnounces = 3
+        GetAnnounces = 3
     }
 }

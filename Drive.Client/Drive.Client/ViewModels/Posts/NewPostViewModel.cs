@@ -111,7 +111,7 @@ namespace Drive.Client.ViewModels.Posts {
         }
 
         public object BuildFormModel() {
-            TODOAnnounce announce = new TODOAnnounce() {
+            AnnounceBody announce = new AnnounceBody() {
                 Content = AnnounceText.Value,
                 Type = TargetAnnounceType
             };

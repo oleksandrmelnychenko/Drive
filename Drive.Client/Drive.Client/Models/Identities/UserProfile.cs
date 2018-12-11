@@ -1,6 +1,7 @@
 ﻿using Drive.Client.Helpers;
 using Drive.Client.ViewModels.Base;
 using Newtonsoft.Json;
+using System;
 using System.Runtime.Serialization;
 
 namespace Drive.Client.Models.Identities {
@@ -12,7 +13,6 @@ namespace Drive.Client.Models.Identities {
         /// </summary>
         [DataMember]
         public string AccesToken { get; set; } = string.Empty;
-        //public string AccesToken { get => "TODO"; set => Console.WriteLine(value); }
         /// <summary>
         /// Refresh token by user.
         /// </summary>

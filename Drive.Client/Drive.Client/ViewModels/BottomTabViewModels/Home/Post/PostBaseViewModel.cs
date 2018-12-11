@@ -61,10 +61,10 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
 
         protected virtual void OnPost(Announce post) {
             if (post != null) {
-                AuthorAvatarUrl = post.AuthorAvatar;
-                AuthorName = post.AuthorName;
-                PublishDate = post.PublishDate;
-                MainMessage = post.Content;
+                AuthorAvatarUrl = post.AnnounceBody.AvatarUrl;
+                AuthorName = post.AnnounceBody.UserName;
+                PublishDate = post.AnnounceBody.Created;
+                MainMessage = post.AnnounceBody.Content;
             }
             else {
                 AuthorAvatarUrl = null;

@@ -5,7 +5,7 @@ using Xamarin.Forms;
 namespace Drive.Client.ViewModels.ActionBars {
     public abstract class ExecutionActionBarBaseViewModel : CommonActionBarViewModel {
 
-        public ICommand ExecuteCommand => new Command(OnExecuteCommand, () => IsEcutionAvailable);
+        public ICommand ExecuteCommand => new Command(OnExecuteCommand, () => IsExecutionAvailable);
 
         public ContentPageBaseViewModel RelativeContentPageBaseViewModel { get; private set; }
 
@@ -15,10 +15,10 @@ namespace Drive.Client.ViewModels.ActionBars {
             protected set => SetProperty<string>(ref _title, value);
         }
 
-        private bool _isEcutionAvailable;
-        public bool IsEcutionAvailable {
-            get => _isEcutionAvailable;
-            protected set => SetProperty<bool>(ref _isEcutionAvailable, value);
+        private bool _isExecutionAvailable;
+        public bool IsExecutionAvailable {
+            get => _isExecutionAvailable;
+            protected set => SetProperty<bool>(ref _isExecutionAvailable, value);
         }
 
         public virtual void ResolveExecutionAvailability(object condition) { }

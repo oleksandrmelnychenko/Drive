@@ -30,7 +30,7 @@ namespace Drive.Client.ViewModels.ActionBars {
             base.ResolveExecutionAvailability(condition);
 
             if (condition is bool boolCondition) {
-                IsEcutionAvailable = boolCondition;
+                IsExecutionAvailable = boolCondition;
             }
         }
 
@@ -42,7 +42,7 @@ namespace Drive.Client.ViewModels.ActionBars {
                     if (inputForm is IBuildFormModel buildFormModel) {
                         object formModel = buildFormModel.BuildFormModel();
 
-                        if (formModel is TODOAnnounce announce) {
+                        if (formModel is AnnounceBody announceBody) {
                             Guid busyKey = Guid.NewGuid();
                             UpdateBusyVisualState(busyKey, true);
 
@@ -50,11 +50,8 @@ namespace Drive.Client.ViewModels.ActionBars {
                             CancellationTokenSource cancellationTokenSource = _newAnnounceCancellationTokenSource;
 
                             try {
-                                bool completion = await _announcementService.NewAnnouncementAsync(announce, cancellationTokenSource);
-
-                                if (completion) {
-                                    await NavigationService.GoBackAsync();
-                                }
+                                await _announcementService.NewAnnouncementAsync(announceBody, cancellationTokenSource);
+                                await NavigationService.GoBackAsync();
                             }
                             catch (OperationCanceledException) { }
                             catch (ObjectDisposedException) { }

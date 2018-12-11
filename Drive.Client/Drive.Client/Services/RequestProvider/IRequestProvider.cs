@@ -9,7 +9,7 @@ namespace Drive.Client.Services.RequestProvider {
         Task<TResult> PostAsync<TResult, TBodyContent>(string url, TBodyContent bodyContent, string accessToken = "");
 
         Task<TResult> PostFormDataAsync<TResult, TBodyContent>(string url, TBodyContent bodyContent, string accessToken = "")
-            where TBodyContent : PickedMediaBase;
+            where TBodyContent : MediaBase;
 
         Task<TResult> PutAsync<TResult, TBodyContent>(string url, TBodyContent bodyContent, string accessToken = "");
     }

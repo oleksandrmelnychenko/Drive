@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 namespace Drive.Client.Services.Announcement {
     public interface IAnnouncementService {
 
-        Task<bool> NewAnnouncementAsync(TODOAnnounce announce, CancellationTokenSource cancellationTokenSource);
+        Task NewAnnouncementAsync(AnnounceBody announce, CancellationTokenSource cancellationTokenSource);
+
+        Task AskToGetAnnouncementAsync(CancellationTokenSource cancellationTokenSource);
     }
 }

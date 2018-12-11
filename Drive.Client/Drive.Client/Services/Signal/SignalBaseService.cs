@@ -1,6 +1,7 @@
 ﻿using Microsoft.AppCenter.Crashes;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
 using System;
@@ -85,6 +86,20 @@ namespace Drive.Client.Services.Signal {
             });
 
         protected abstract void OnStartListeningToHub();
+
+        protected TResult ParseResponseData<TResult>(object data) {
+            try {
+                TResult result = JsonConvert.DeserializeObject<TResult>(data.ToString());
+
+                return result;
+            }
+            catch (Exception exc) {
+                Debugger.Break();
+                Crashes.TrackError(exc);
+
+                throw exc;
+            }
+        }
 
         private Task OnHubConnectionClosed(Exception arg) =>
             Task.Run(() => {
