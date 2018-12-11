@@ -13,7 +13,7 @@ namespace Drive.Client.Services.Navigation {
 
         IReadOnlyCollection<ViewModelBase> CurrentViewModelsNavigationStack { get; }
 
-        Task InitializeAsync();
+        Task InitializeAsync(object parameter = default(object));
 
         Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase;
 

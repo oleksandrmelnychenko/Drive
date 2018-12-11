@@ -8,6 +8,7 @@ using Drive.Client.Helpers;
 using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.Models.EntityModels.Vehicle;
 using Drive.Client.Models.Identities.NavigationArgs;
+using Drive.Client.Services.Identity;
 using Drive.Client.Services.RequestProvider;
 
 namespace Drive.Client.Services.Vehicle {
@@ -15,11 +16,14 @@ namespace Drive.Client.Services.Vehicle {
 
         private readonly IRequestProvider _requestProvider;
 
+        private readonly IIdentityService _identityService;
+
         /// <summary>
         ///     ctor().
         /// </summary>
-        public VehicleService(IRequestProvider requestProvider) {
+        public VehicleService(IRequestProvider requestProvider, IIdentityService identityService) {
             _requestProvider = requestProvider;
+            _identityService = identityService;
         }
 
         public Task<List<ResidentRequest>> GetUserVehicleDetailRequestsAsync(CancellationToken cancellationToken = default(CancellationToken)) =>
@@ -33,6 +37,10 @@ namespace Drive.Client.Services.Vehicle {
                     residentRequests = await _requestProvider.GetAsync<List<ResidentRequest>>(url, accessToken, cancellationToken);
                 }
                 catch (ConnectivityException ex) {
+                    throw ex;
+                }
+                catch (ServiceAuthenticationException ex) {
+                    await _identityService.LogOutAsync();
                     throw ex;
                 }
                 catch (HttpRequestExceptionEx ex) {
@@ -59,6 +67,10 @@ namespace Drive.Client.Services.Vehicle {
                 catch (ConnectivityException ex) {
                     throw ex;
                 }
+                catch (ServiceAuthenticationException ex) {
+                    await _identityService.LogOutAsync();
+                    throw ex;
+                }
                 catch (HttpRequestExceptionEx ex) {
                     throw ex;
                 }
@@ -81,6 +93,10 @@ namespace Drive.Client.Services.Vehicle {
                     vehicleDetailsByResidentFullName = await _requestProvider.GetAsync<VehicleDetailsByResidentFullName>(url, accessToken);
                 }
                 catch (ConnectivityException ex) {
+                    throw ex;
+                }
+                catch (ServiceAuthenticationException ex) {
+                    await _identityService.LogOutAsync();
                     throw ex;
                 }
                 catch (HttpRequestExceptionEx ex) {
@@ -110,6 +126,10 @@ namespace Drive.Client.Services.Vehicle {
                  catch (HttpRequestExceptionEx ex) {
                      polandVehicleDetail = null;
                  }
+                 catch (ServiceAuthenticationException ex) {
+                     await _identityService.LogOutAsync();
+                     throw ex;
+                 }
                  catch (Exception ex) {
                      Debug.WriteLine($"ERROR:{ex.Message}");
                      Debugger.Break();
@@ -129,6 +149,10 @@ namespace Drive.Client.Services.Vehicle {
                     polandVehicleDetail = await _requestProvider.GetAsync<PolandVehicleDetail>(url, accessToken);
                 }
                 catch (ConnectivityException ex) {
+                    throw ex;
+                }
+                catch (ServiceAuthenticationException ex) {
+                    await _identityService.LogOutAsync();
                     throw ex;
                 }
                 catch (HttpRequestExceptionEx ex) {
@@ -152,6 +176,10 @@ namespace Drive.Client.Services.Vehicle {
                       polandVehicleRequests = await _requestProvider.GetAsync<List<PolandVehicleRequest>>(url, accessToken);
                   }
                   catch (ConnectivityException ex) {
+                      throw ex;
+                  }
+                  catch (ServiceAuthenticationException ex) {
+                      await _identityService.LogOutAsync();
                       throw ex;
                   }
                   catch (HttpRequestExceptionEx ex) {

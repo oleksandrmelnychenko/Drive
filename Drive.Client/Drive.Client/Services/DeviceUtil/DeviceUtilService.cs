@@ -1,5 +1,7 @@
-﻿using Drive.Client.Helpers;
+﻿using Drive.Client.Exceptions;
+using Drive.Client.Helpers;
 using Drive.Client.Models.Identities.Device;
+using Drive.Client.Services.Identity;
 using Drive.Client.Services.RequestProvider;
 using Plugin.DeviceInfo;
 using Plugin.Permissions;
@@ -16,8 +18,11 @@ namespace Drive.Client.Services.DeviceUtil {
 
         private readonly IRequestProvider _requestProvider;
 
-        public DeviceUtilService(IRequestProvider requestProvider) {
+        private readonly IIdentityService _identityService;
+
+        public DeviceUtilService(IRequestProvider requestProvider, IIdentityService identityService) {
             _requestProvider = requestProvider;
+            _identityService = identityService;
         }
 
         public Task<bool> RegisterClientDeviceInfoAsync(ClientHardware clientHardware, CancellationTokenSource cancellationTokenSource) =>
@@ -29,7 +34,12 @@ namespace Drive.Client.Services.DeviceUtil {
 
                 try {
                     responseCompletion = await _requestProvider.PostAsync<bool, ClientHardware>(url, clientHardware, accessToken);
-                } catch (Exception ex) {
+                }
+                catch (ServiceAuthenticationException ex) {
+                    await _identityService.LogOutAsync();
+                    throw ex;
+                }
+                catch (Exception ex) {
                     Debug.WriteLine($"ERROR: {ex.Message}");
                     Debugger.Break();
                     responseCompletion = true;
