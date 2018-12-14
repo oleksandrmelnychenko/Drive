@@ -2,6 +2,7 @@
 using Drive.Client.iOS.Renderers;
 using Foundation;
 using System.ComponentModel;
+using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
@@ -30,25 +31,13 @@ namespace Drive.Client.iOS.Renderers {
 
         private void SetLetterSpacing() {
             if (Element is LabelExtended labelExtended && !string.IsNullOrEmpty(Control.Text)) {
-                try {
-
-                    //string text = Control.Text;
-                    //NSMutableAttributedString attributedString = new NSMutableAttributedString(text);
-
-                    //NSString nsKern = new NSString("NSKern");
-                    //NSObject spacing = NSObject.FromObject(labelExtended.LetterSpacing * 10);
-                    //NSRange range = new NSRange(0, text.Length);
-
-                    //attributedString.AddAttribute(nsKern, spacing, range);
-                    //Control.AttributedText = attributedString;
-                    //if (string.IsNullOrEmpty(Control.Text)) return;
+                try {                   
                     Control.AttributedText = new NSAttributedString(Control.Text, kerning: labelExtended.LetterSpacing);
                 }
                 catch (System.Exception ex) {
-
-                    throw;
+                    Debugger.Break();
+                    Debug.WriteLine($"ERROR: {ex.Message}");
                 }
-
             }
         }
     }
