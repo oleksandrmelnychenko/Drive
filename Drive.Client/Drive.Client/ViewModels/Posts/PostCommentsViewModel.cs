@@ -34,7 +34,7 @@ namespace Drive.Client.ViewModels.Posts {
             if (navigationData is PostBaseViewModel postBaseViewModel) {
                 CurrentPost = postBaseViewModel;
 
-                Comments = GetComments(postBaseViewModel.Post.CommentsCount);
+                Comments = GetComments(postBaseViewModel.Post.AnnounceBody.CommentsCount);
             }
 
             return base.InitializeAsync(navigationData);

@@ -5,9 +5,20 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:actionBars="clr-namespace:Drive.Client.Controls.ActionBars"
     xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:converters="clr-namespace:Drive.Client.Converters"
     xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize">
+
+    <actionBars:ActionBarBaseView.Resources>
+        <ResourceDictionary>
+            <converters:BoolToGenericObjectConverter
+                x:Key="execution_availability_to_color"
+                x:TypeArguments="Color"
+                FalseObject="#F5F5F5"
+                TrueObject="#2C3E50" />
+        </ResourceDictionary>
+    </actionBars:ActionBarBaseView.Resources>
 
     <Grid BackgroundColor="{StaticResource WhiteColor}" HeightRequest="55">
         <BoxView
@@ -30,13 +41,13 @@
             HorizontalOptions="End"
             VerticalOptions="Fill">
             <ContentView.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding PublishCommand}" NumberOfTapsRequired="1" />
+                <TapGestureRecognizer Command="{Binding ExecuteCommand}" NumberOfTapsRequired="1" />
             </ContentView.GestureRecognizers>
             <controls:LabelExtended
                 FontSize="{StaticResource MediumSize}"
                 HorizontalOptions="End"
                 Text="{Binding ResourceLoader[Publish].Value}"
-                TextColor="{StaticResource DarkBlueColor}"
+                TextColor="{Binding Path=IsExecutionAvailable, Converter={StaticResource Key=execution_availability_to_color}}"
                 VerticalOptions="Center" />
         </ContentView>
         <!--  BACK BUTTON  -->

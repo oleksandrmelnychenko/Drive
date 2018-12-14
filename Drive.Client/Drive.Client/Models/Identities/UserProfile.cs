@@ -12,7 +12,7 @@ namespace Drive.Client.Models.Identities {
         /// Acces token by user.
         /// </summary>
         [DataMember]
-        public string AccesToken { get; set; } = string.Empty;       
+        public string AccesToken { get; set; } = string.Empty;
         /// <summary>
         /// Refresh token by user.
         /// </summary>

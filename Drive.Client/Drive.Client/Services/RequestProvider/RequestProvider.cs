@@ -101,7 +101,7 @@ namespace Drive.Client.Services.RequestProvider {
         /// <param name="accessToken"></param>
         /// <returns></returns>
         public async Task<TResult> PostFormDataAsync<TResult, TBodyContent>(string uri, TBodyContent bodyContent, string accessToken = "")
-            where TBodyContent : PickedMediaBase =>
+            where TBodyContent : MediaBase =>
             await Task.Run(async () => {
                 TResult result = default(TResult);
 
