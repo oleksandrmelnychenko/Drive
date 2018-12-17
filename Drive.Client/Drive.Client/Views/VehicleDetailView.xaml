@@ -167,27 +167,27 @@
                                     TextColor="{StaticResource DarkColor}" />
 
                                 <StackLayout Orientation="Horizontal" Spacing="0">
-                                    <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding ResourceLoader[ModelUpperCase].Value, Mode=TwoWay}" />
+                                    <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding BindingContext.ResourceLoader[ModelUpperCase].Value, Mode=TwoWay, Source={Reference Name=_list}}" />
                                     <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding Model}" />
                                 </StackLayout>
 
                                 <StackLayout Orientation="Horizontal" Spacing="0">
-                                    <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding ResourceLoader[YearUpperCase].Value, Mode=TwoWay}" />
+                                    <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding BindingContext.ResourceLoader[YearUpperCase].Value, Mode=TwoWay, Source={Reference Name=_list}}" />
                                     <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding Year}" />
                                 </StackLayout>
 
                                 <StackLayout Orientation="Horizontal" Spacing="0">
-                                    <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding ResourceLoader[DataRegUpperCase].Value, Mode=TwoWay}" />
+                                    <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding BindingContext.ResourceLoader[DataRegUpperCase].Value, Mode=TwoWay, Source={Reference Name=_list}}" />
                                     <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding Data}" />
                                 </StackLayout>
 
                                 <StackLayout Orientation="Horizontal" Spacing="0">
-                                    <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding ResourceLoader[EngineCapacityUpperСase].Value, Mode=TwoWay}" />
+                                    <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding BindingContext.ResourceLoader[EngineCapacityUpperСase].Value, Mode=TwoWay, Source={Reference Name=_list}}" />
                                     <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding Volume}" />
                                 </StackLayout>
 
                                 <StackLayout Orientation="Horizontal" Spacing="0">
-                                    <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding ResourceLoader[ActuallyToUpperCase].Value, Mode=TwoWay}" />
+                                    <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding BindingContext.ResourceLoader[ActuallyToUpperCase].Value, Mode=TwoWay, Source={Reference Name=_list}}" />
                                     <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding Created, StringFormat={StaticResource FormattedDate}}" />
                                 </StackLayout>
                             </StackLayout>
