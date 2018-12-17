@@ -130,7 +130,7 @@
                     </Grid>
 
                     <StackLayout Orientation="Horizontal" Spacing="0">
-                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding ResourceLoader[RegistrationStatus].Value, Mode=TwoWay}" />
+                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="tt, Mode=TwoWay}" />
                         <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding PolandDriveAuto.RegistrationStatus}" />
                     </StackLayout>
 

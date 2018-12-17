@@ -39,6 +39,8 @@ namespace Drive.Client.ViewModels.Base {
             get => _electedBottomItemIndex;
             set {
                 try {
+                    BottomBarItems?[_electedBottomItemIndex].Dispose();
+
                     BottomBarItems?[value].InitializeAsync(new SelectedBottomBarTabArgs());
                 }
                 catch (Exception exc) {

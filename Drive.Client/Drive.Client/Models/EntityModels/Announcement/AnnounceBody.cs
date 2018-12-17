@@ -3,7 +3,6 @@ using System;
 
 namespace Drive.Client.Models.EntityModels.Announcement {
     public class AnnounceBody {
-
         [JsonProperty("Id")]
         public long Id { get; set; }
 

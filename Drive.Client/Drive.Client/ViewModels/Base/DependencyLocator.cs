@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Drive.Client.DataItems.Posts;
 using Drive.Client.DataItems.ProfileSettings;
+using Drive.Client.Factories.Announcements;
 using Drive.Client.Factories.Validation;
 using Drive.Client.Factories.Vehicle;
 using Drive.Client.Helpers.AppEvents;
@@ -127,6 +128,7 @@ namespace Drive.Client.ViewModels.Base {
 
             // Factories.
             builder.RegisterType<VehicleFactory>().As<IVehicleFactory>();
+            builder.RegisterType<AnnouncementsFactory>().As<IAnnouncementsFactory>();
             builder.RegisterType<ValidationObjectFactory>().As<IValidationObjectFactory>();
 
             // Data items

@@ -1,4 +1,6 @@
-﻿using Drive.Client.Models.Medias;
+﻿using Drive.Client.Models.EntityModels.Announcement;
+using Drive.Client.Models.Medias;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,5 +14,8 @@ namespace Drive.Client.Services.RequestProvider {
             where TBodyContent : MediaBase;
 
         Task<TResult> PutAsync<TResult, TBodyContent>(string url, TBodyContent bodyContent, string accessToken = "");
+
+        Task<TResult> PostFormDataCollectionAsync<TResult, TBodyContent>(string url, TBodyContent attachedData, string accessToken = "")
+            where TBodyContent : IEnumerable<MediaBase>;
     }
 }

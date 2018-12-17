@@ -31,7 +31,7 @@
             <ContentView
                 Grid.Row="0"
                 BindingContext="{Binding CurrentPost}"
-                Content="{Binding Post.PostType, Converter={StaticResource EnumToViewConverter}}" />
+                Content="{Binding Post.AnnounceBody.Type, Converter={StaticResource EnumToViewConverter}}" />
 
             <Label
                 Grid.Row="1"

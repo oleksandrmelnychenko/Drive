@@ -4,10 +4,22 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:basePostContentView="clr-namespace:Drive.Client.Views.Templates.ViewCells.Post.Content"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     BackgroundColor="{StaticResource WhiteColor}">
 
     <basePostContentView:PostBaseContentView.MainContent>
-        <ffimageloadingsvg:SvgCachedImage Aspect="AspectFill" Source="{Binding Post.MediaUrl, Converter={StaticResource StringUrlToUrlImageSourceConverter}}" />
+        <StackLayout Margin="0,5" Spacing="0">
+            <Label Text="{Binding MainMessage}" VerticalOptions="Center" />
+            <ffimageloadingsvg:SvgCachedImage
+                Aspect="AspectFill"
+                HeightRequest="140"
+                Source="{Binding Post.ImageUrl, Converter={StaticResource StringUrlToUrlImageSourceConverter}}" />
+            <!--<ffimageloading:CachedImage
+                BackgroundColor="Yellow"
+                Aspect="AspectFill"
+                Source="{Binding Post.ImageUrl, Converter={StaticResource StringUrlToUrlImageSourceConverter}}"
+                VerticalOptions="FillAndExpand" />-->
+        </StackLayout>
     </basePostContentView:PostBaseContentView.MainContent>
 </basePostContentView:PostBaseContentView>

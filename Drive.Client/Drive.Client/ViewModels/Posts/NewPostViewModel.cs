@@ -1,5 +1,7 @@
 ﻿using Drive.Client.Factories.Validation;
 using Drive.Client.Models.EntityModels.Announcement;
+using Drive.Client.Models.EntityModels.Identity;
+using Drive.Client.Models.Medias;
 using Drive.Client.Services.Media;
 using Drive.Client.Validations;
 using Drive.Client.ViewModels.ActionBars;
@@ -40,12 +42,10 @@ namespace Drive.Client.ViewModels.Posts {
                 if (!string.IsNullOrEmpty(AnnounceText.Value) && !string.IsNullOrWhiteSpace(AnnounceText.Value)) {
                     if (TargetAnnounceType == AnnounceType.Video || TargetAnnounceType == AnnounceType.Image) {
                         ((NewPostActionBarViewModel)ActionBarViewModel).ResolveExecutionAvailability(AttachedPostMedias?.Any());
-                    }
-                    else {
+                    } else {
                         ((NewPostActionBarViewModel)ActionBarViewModel).ResolveExecutionAvailability(true);
                     }
-                }
-                else {
+                } else {
                     ((NewPostActionBarViewModel)ActionBarViewModel).ResolveExecutionAvailability(false);
                 }
             }
@@ -71,16 +71,8 @@ namespace Drive.Client.ViewModels.Posts {
             SetBusy(busyKey, true);
 
             try {
-                MediaFile mediaFile = await _pickMediaService.PickPhotoAsync();
-
-                if (mediaFile != null) {
-                    Stream mediaStream = mediaFile.GetStream();
-
-                    AttachedPostMedias.Add(new AttachedImage() { MediaPresentation = await _pickMediaService.BuildImageSourceAsync(mediaStream), DataBase64 = await _pickMediaService.ParseStreamToBase64(mediaStream) });
-                    mediaStream.Close();
-                    mediaStream.Dispose();
-                    mediaFile.Dispose();
-                }
+                AttachedImage attachedImage = await _pickMediaService.BuildAttachedImageAsync();
+                AttachedPostMedias.Add(attachedImage);
             }
             catch (Exception exc) {
                 Debugger.Break();
@@ -110,7 +102,7 @@ namespace Drive.Client.ViewModels.Posts {
                     _attachedPostMedias.CollectionChanged -= OnAttachedPostMediasCollectionChanged;
                 }
 
-                SetProperty<ObservableCollection<AttachedAnnounceMediaBase>>(ref _attachedPostMedias, value);
+                SetProperty(ref _attachedPostMedias, value);
 
                 if (_attachedPostMedias != null) {
                     _attachedPostMedias.CollectionChanged += OnAttachedPostMediasCollectionChanged;
@@ -141,7 +133,9 @@ namespace Drive.Client.ViewModels.Posts {
                 Type = TargetAnnounceType
             };
 
-            return announce;
+            if (TargetAnnounceType == AnnounceType.Text) return announce;
+
+            return new AnnounceBodyWithData { AnnounceBody = announce, AttachedData = AttachedPostMedias };
         }
 
         public bool ValidateForm() {
@@ -154,6 +148,12 @@ namespace Drive.Client.ViewModels.Posts {
             }
 
             return isValid;
+        }
+
+        public override void Dispose() {
+            base.Dispose();
+
+            AttachedPostMedias?.Clear();
         }
 
         public void ResetInputForm() {

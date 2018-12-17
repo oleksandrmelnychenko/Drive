@@ -1,4 +1,5 @@
-﻿using Drive.Client.Models.Medias;
+﻿using Drive.Client.Models.EntityModels.Announcement;
+using Drive.Client.Models.Medias;
 using Microsoft.AppCenter.Crashes;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -78,6 +79,32 @@ namespace Drive.Client.Services.Media {
             return pickedImage;
         }
 
+        public async Task<AttachedImage> BuildAttachedImageAsync() {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsPickPhotoSupported) return null;
+
+            AttachedImage attachedImage = null;
+
+            using (var file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions { PhotoSize = PhotoSize.Custom, CompressionQuality = 50 })) {
+                if (file == null) return null;
+
+                try {
+                    Stream stream = file.GetStream();
+                    
+                    attachedImage = new AttachedImage {
+                        MediaPresentation = ImageSource.FromFile(file.Path),
+                        Name = Path.GetFileName(file.Path),
+                        Body = await ParseStreamToBytesAsync(stream)
+                    };
+                }
+                catch (Exception) {
+                    attachedImage = null;
+                }
+            }
+
+            return attachedImage;
+        }
+
         public async Task<MediaFile> TakeVideoAsync() {
             await CrossMedia.Current.Initialize();
 
@@ -112,20 +139,20 @@ namespace Drive.Client.Services.Media {
             return file;
         }
 
-        public Task<PickedImage> BuildPickedImageAsync(MediaFile mediaFile) =>
-            Task.Run(async () => {
-                PickedImage pickedImage = null;
-                try {
-                    pickedImage = new PickedImage {
-                        Name = Path.GetFileName(mediaFile.Path),
-                        Body = await ParseStreamToBytesAsync(mediaFile.GetStream())
-                    };
-                }
-                catch (Exception) {
-                    pickedImage = null;
-                }
-                return pickedImage;
-            });
+        //public Task<PickedImage> BuildPickedImageAsync(MediaFile mediaFile) =>
+        //    Task.Run(async () => {
+        //        PickedImage pickedImage = null;
+        //        try {
+        //            pickedImage = new PickedImage {
+        //                Name = Path.GetFileName(mediaFile.Path),
+        //                Body = await ParseStreamToBytesAsync(mediaFile.GetStream())
+        //            };
+        //        }
+        //        catch (Exception) {
+        //            pickedImage = null;
+        //        }
+        //        return pickedImage;
+        //    });
 
         public Task<string> ParseStreamToBase64(Stream stream) =>
             Task.Run(() => {
@@ -188,7 +215,7 @@ namespace Drive.Client.Services.Media {
                 return imageSource;
             });
 
-        private Task<byte[]> ParseStreamToBytesAsync(Stream stream) =>
+        public Task<byte[]> ParseStreamToBytesAsync(Stream stream) =>
            Task.Run(() => {
                byte[] bytes = default(byte[]);
 

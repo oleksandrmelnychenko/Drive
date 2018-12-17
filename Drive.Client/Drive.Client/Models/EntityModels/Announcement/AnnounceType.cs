@@ -5,7 +5,7 @@ using System.Text;
 namespace Drive.Client.Models.EntityModels.Announcement {
     public enum AnnounceType {
         Text,
-        Video,
-        Image
+        Image,
+        Video
     }
 }

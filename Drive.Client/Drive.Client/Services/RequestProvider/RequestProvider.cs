@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Plugin.Connectivity;
 using Plugin.DeviceInfo;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
@@ -128,6 +129,37 @@ namespace Drive.Client.Services.RequestProvider {
                 return result;
             });
 
+        public async Task<TResult> PostFormDataCollectionAsync<TResult, TBodyContent>(string url, TBodyContent attachedData, string accessToken = "")
+            where TBodyContent : IEnumerable<MediaBase> =>
+             await Task.Run(async () => {
+                 TResult result = default(TResult);
+
+                 CheckInternetConnection();
+                 SetAccesToken(accessToken);
+                 SetLanguage();
+
+                 using (MultipartFormDataContent formDataContent = new MultipartFormDataContent()) {
+                     if (attachedData != null) {
+                         foreach (var item in attachedData) {
+
+                             ByteArrayContent byteArrayContent = new ByteArrayContent(item.Body);
+
+                             formDataContent.Add(byteArrayContent, "ImageFile", item.Name);
+                         }
+
+                         HttpResponseMessage response = await _client.PostAsync(url, formDataContent);
+
+                         await HandleResponse(response);
+
+                         string serialized = await response.Content.ReadAsStringAsync();
+
+                         result = await DeserializeResponse<TResult>(serialized);
+                     }
+                 }
+
+                 return result;
+             });
+
         /// <summary>
         /// PUT.
         /// </summary>
@@ -182,8 +214,7 @@ namespace Drive.Client.Services.RequestProvider {
                 if (!string.IsNullOrEmpty(accessToken)) {
                     _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 }
-            }
-            else {
+            } else {
                 if (!(string.IsNullOrEmpty(accessToken)) && _client.DefaultRequestHeaders.Authorization.Parameter != accessToken) {
                     _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 }
@@ -204,5 +235,7 @@ namespace Drive.Client.Services.RequestProvider {
                 throw new HttpRequestExceptionEx(response.StatusCode, content);
             }
         }
+
+
     }
 }

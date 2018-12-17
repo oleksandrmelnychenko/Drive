@@ -75,8 +75,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
                         if (residentRequestDataItem.ResidentRequest.VehicleCount > 0) {
                             GetVehicles((ResidentRequestDataItem)value);
                         }
-                    }
-                    else if (value is PolandRequestDataItem polandRequestDataItem) {
+                    } else if (value is PolandRequestDataItem polandRequestDataItem) {
                         if (polandRequestDataItem.PolandVehicleRequest.IsParsed) {
                             OnPolandRequestDataItem(polandRequestDataItem);
                         }
@@ -152,7 +151,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
                 PolandVehicleDetail polandVehicleDetail = await _vehicleService.GetPolandVehicleDetailsByRequestIdAsync(selectedPolandRequestDataItem.PolandVehicleRequest.RequestId.ToString(), cancellationTokenSource.Token);
 
                 if (polandVehicleDetail != null) {
-                    UpdateBusyVisualState(busyKey, false);
                     await NavigationService.NavigateToAsync<PolandDriveAutoDetailsViewModel>(polandVehicleDetail);
                 }
             }
@@ -164,6 +162,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
                 Debug.WriteLine($"ERROR: {exc.Message}");
                 Debugger.Break();
             }
+            UpdateBusyVisualState(busyKey, false);
         }
 
         private async Task<IEnumerable<VehicleDetail>> GetVehiclesByRequestIdAsync(long govRequestId) {
