@@ -22,7 +22,6 @@ namespace Drive.Client.iOS.Renderers {
             if (Element != null) {
                 SetLetterSpacingText();
                 SetLetterSpacingPlaceholder();
-
             }
 
             if (e.OldElement != null) {
@@ -43,9 +42,6 @@ namespace Drive.Client.iOS.Renderers {
                 SetLetterSpacingPlaceholder();
             } else if (e.PropertyName == Entry.TextProperty.PropertyName) {
                 SetLetterSpacingText();
-                //var tt = NSLocale.CurrentLocale;
-                //var tt = NSLocale.PreferredLanguages[0];
-                //var x = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
             }
         }
 
@@ -56,7 +52,7 @@ namespace Drive.Client.iOS.Renderers {
                 }
                 catch (Exception ex) {
                     Debugger.Break();
-                    throw;
+                    Debug.WriteLine($"ERROR: {ex.Message}");
                 }
             }
         }
@@ -72,6 +68,7 @@ namespace Drive.Client.iOS.Renderers {
                 }
                 catch (Exception ex) {
                     Debugger.Break();
+                    Debug.WriteLine($"ERROR: {ex.Message}");
                 }
             }
         }
