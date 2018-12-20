@@ -16,10 +16,15 @@ namespace Drive.Client.Services.Announcement {
     public class AnnouncementService : IAnnouncementService {
 
         private readonly IRequestProvider _requestProvider;
+
         private readonly IIdentityService _identityService;
 
+        /// <summary>
+        ///     ctor().
+        /// </summary>
+        /// <param name="identityService"></param>
+        /// <param name="requestProvider"></param>
         public AnnouncementService(IIdentityService identityService, IRequestProvider requestProvider) {
-
             _identityService = identityService;
             _requestProvider = requestProvider;
         }
@@ -39,38 +44,33 @@ namespace Drive.Client.Services.Announcement {
 
                     await _requestProvider.PostAsync<object, DrivenEvent>(url, announceActor, accessToken);
                 }
-                catch (ServiceAuthenticationException exc) {
-
+                catch (ServiceAuthenticationException) {
                     await _identityService.LogOutAsync();
-                    throw exc;
                 }
                 catch (Exception exc) {
-
                     Crashes.TrackError(exc);
-                    throw exc;
                 }
 
             }, cancellationTokenSource.Token);
 
         public Task AskToGetAnnouncementAsync(CancellationTokenSource cancellationTokenSource) =>
-            Task<bool>.Run(async () => {
+            Task.Run(async () => {
                 try {
                     DrivenEvent announceActor = new DrivenEvent() {
                         Id = Guid.NewGuid().ToString(),
                         EventType = DrivenActorEvents.GetAnnounces
                     };
 
-                    await _requestProvider.PostAsync<object, DrivenEvent>(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.AnnouncementEndPoints.NewAnnounce,
-                        announceActor,
-                        BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken);
+                    string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.AnnouncementEndPoints.NewAnnounce;
+                    string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+
+                    await _requestProvider.PostAsync<object, DrivenEvent>(url, announceActor, accessToken);
                 }
-                catch (ServiceAuthenticationException exc) {
+                catch (ServiceAuthenticationException) {
                     await _identityService.LogOutAsync();
-                    throw exc;
                 }
                 catch (Exception exc) {
                     Crashes.TrackError(exc);
-                    throw exc;
                 }
             }, cancellationTokenSource.Token);
 

@@ -26,9 +26,8 @@
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 Aspect="AspectFill"
                 HeightRequest="40"
-                Source="resource://Drive.Client.Resources.Images.Icon-100.png"
-                WidthRequest="40" />
-            <!--  Source="{Binding AuthorAvatarUrl, Converter={StaticResource StringUrlToUrlImageSourceConverter}}"  -->
+                Source="{Binding AuthorAvatarUrl, Converter={StaticResource StringUrlToUrlImageSourceConverter}}"
+                WidthRequest="40" />            
 
             <ffimageloadingsvg:SvgCachedImage
                 AbsoluteLayout.LayoutBounds="0.03, .5, AutoSize, AutoSize"

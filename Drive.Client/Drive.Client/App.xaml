@@ -15,6 +15,7 @@
             <Color x:Key="ErrorColor">#ff5252</Color>
             <Color x:Key="DarkColor">#101010</Color>
             <Color x:Key="DarkBlueColor">#2c3e50</Color>
+            <Color x:Key="MediumGrayColor">#E1E1E1</Color>
             <Color x:Key="HardGrayColor">#6e6e6e</Color>
             <Color x:Key="BaseGrayColor">#a1a1a1</Color>
             <Color x:Key="ExtraLightGrayColor">#fafafa</Color>
@@ -87,6 +88,13 @@
                 Android="14"
                 Default="14"
                 iOS="12" />
+
+            <OnPlatform
+                x:Key="SoftMediumSize"
+                x:TypeArguments="x:Double"
+                Android="13"
+                Default="14"
+                iOS="13" />
 
             <OnPlatform
                 x:Key="MediumSize"

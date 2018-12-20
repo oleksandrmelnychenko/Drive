@@ -493,4 +493,7 @@ certificate issued</value>
   <data name="PostWithPhotoUpperCase" xml:space="preserve">
     <value>POST WITH PHOTO</value>
   </data>
+  <data name="Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
 </root>

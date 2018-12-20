@@ -38,6 +38,7 @@
     <None Remove="Resources\Images\Arrow_ok.svg" />
     <None Remove="Resources\Images\Button.svg" />
     <None Remove="Resources\Images\Calendar.svg" />
+    <None Remove="Resources\Images\checked.svg" />
     <None Remove="Resources\Images\Close.svg" />
     <None Remove="Resources\Images\Comment.svg" />
     <None Remove="Resources\Images\drive_logo.svg" />
@@ -52,11 +53,13 @@
     <None Remove="Resources\Images\Icon-72.png" />
     <None Remove="Resources\Images\icon_user.svg" />
     <None Remove="Resources\Images\ic_barrier.png" />
+    <None Remove="Resources\Images\ic_image.png" />
     <None Remove="Resources\Images\ic_trash_bucket.svg" />
     <None Remove="Resources\Images\ic_vin.svg" />
     <None Remove="Resources\Images\Idea.svg" />
     <None Remove="Resources\Images\Mask.svg" />
     <None Remove="Resources\Images\name.svg" />
+    <None Remove="Resources\Images\noun_comment_1321948.svg" />
     <None Remove="Resources\Images\Ok.svg" />
     <None Remove="Resources\Images\Out.svg" />
     <None Remove="Resources\Images\password.svg" />
@@ -67,6 +70,8 @@
     <None Remove="Resources\Images\Save.svg" />
     <None Remove="Resources\Images\Search.svg" />
     <None Remove="Resources\Images\Security.svg" />
+    <None Remove="Resources\Images\send-button.svg" />
+    <None Remove="Resources\Images\Send.svg" />
     <None Remove="Resources\Images\Sent.svg" />
     <None Remove="Resources\Images\stroke.svg" />
     <None Remove="Resources\Images\text.svg" />
@@ -79,6 +84,7 @@
     <EmbeddedResource Include="Resources\Images\Arrow_ok.svg" />
     <EmbeddedResource Include="Resources\Images\Button.svg" />
     <EmbeddedResource Include="Resources\Images\Calendar.svg" />
+    <EmbeddedResource Include="Resources\Images\checked.svg" />
     <EmbeddedResource Include="Resources\Images\Close.svg" />
     <EmbeddedResource Include="Resources\Images\Comment.svg" />
   </ItemGroup>
@@ -96,11 +102,13 @@
     <EmbeddedResource Include="Resources\Images\Icon-72.png" />
     <EmbeddedResource Include="Resources\Images\icon_user.svg" />
     <EmbeddedResource Include="Resources\Images\ic_barrier.png" />
+    <EmbeddedResource Include="Resources\Images\ic_image.png" />
     <EmbeddedResource Include="Resources\Images\ic_trash_bucket.svg" />
     <EmbeddedResource Include="Resources\Images\ic_vin.svg" />
     <EmbeddedResource Include="Resources\Images\Idea.svg" />
     <EmbeddedResource Include="Resources\Images\Mask.svg" />
     <EmbeddedResource Include="Resources\Images\name.svg" />
+    <EmbeddedResource Include="Resources\Images\noun_comment_1321948.svg" />
     <EmbeddedResource Include="Resources\Images\Ok.svg" />
     <EmbeddedResource Include="Resources\Images\Out.svg" />
     <EmbeddedResource Include="Resources\Images\password.svg" />
@@ -111,6 +119,8 @@
     <EmbeddedResource Include="Resources\Images\Save.svg" />
     <EmbeddedResource Include="Resources\Images\Search.svg" />
     <EmbeddedResource Include="Resources\Images\Security.svg" />
+    <EmbeddedResource Include="Resources\Images\send-button.svg" />
+    <EmbeddedResource Include="Resources\Images\Send.svg" />
     <EmbeddedResource Include="Resources\Images\Sent.svg" />
     <EmbeddedResource Include="Resources\Images\stroke.svg" />
     <EmbeddedResource Include="Resources\Images\text.svg" />

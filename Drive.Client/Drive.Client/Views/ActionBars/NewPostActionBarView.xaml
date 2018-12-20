@@ -17,6 +17,11 @@
                 x:TypeArguments="Color"
                 FalseObject="#F5F5F5"
                 TrueObject="#2C3E50" />
+            <converters:BoolToGenericObjectConverter
+                x:Key="tt"
+                x:TypeArguments="x:Double"
+                FalseObject="0.2"
+                TrueObject="1" />
         </ResourceDictionary>
     </actionBars:ActionBarBaseView.Resources>
 
@@ -43,11 +48,18 @@
             <ContentView.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding ExecuteCommand}" NumberOfTapsRequired="1" />
             </ContentView.GestureRecognizers>
-            <controls:LabelExtended
+            <!--<controls:LabelExtended
                 FontSize="{StaticResource MediumSize}"
                 HorizontalOptions="End"
                 Text="{Binding ResourceLoader[Publish].Value}"
                 TextColor="{Binding Path=IsExecutionAvailable, Converter={StaticResource Key=execution_availability_to_color}}"
+                VerticalOptions="Center" />-->
+            <ffimageloadingsvg:SvgCachedImage
+                HeightRequest="16"
+                HorizontalOptions="Center"
+                IsEnabled="False"
+                Opacity="{Binding IsExecutionAvailable, Converter={StaticResource tt}}"
+                Source="resource://Drive.Client.Resources.Images.checked.svg"
                 VerticalOptions="Center" />
         </ContentView>
         <!--  BACK BUTTON  -->

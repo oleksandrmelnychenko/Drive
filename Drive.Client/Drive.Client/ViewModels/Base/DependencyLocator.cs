@@ -2,12 +2,14 @@
 using Drive.Client.DataItems.Posts;
 using Drive.Client.DataItems.ProfileSettings;
 using Drive.Client.Factories.Announcements;
+using Drive.Client.Factories.Comments;
 using Drive.Client.Factories.Validation;
 using Drive.Client.Factories.Vehicle;
 using Drive.Client.Helpers.AppEvents;
 using Drive.Client.Helpers.AppEvents.Events;
 using Drive.Client.Services.Announcement;
 using Drive.Client.Services.Automobile;
+using Drive.Client.Services.Comments;
 using Drive.Client.Services.DeviceUtil;
 using Drive.Client.Services.Dialog;
 using Drive.Client.Services.Identity;
@@ -115,6 +117,7 @@ namespace Drive.Client.ViewModels.Base {
             // Services.
             builder.RegisterType<DialogService>().As<IDialogService>();
             builder.RegisterType<OpenUrlService>().As<IOpenUrlService>().SingleInstance();
+            builder.RegisterType<CommentService>().As<ICommentService>();
             builder.RegisterType<VehicleService>().As<IVehicleService>();
             builder.RegisterType<RequestProvider>().As<IRequestProvider>().SingleInstance();
             builder.RegisterType<IdentityService>().As<IIdentityService>();
@@ -128,6 +131,7 @@ namespace Drive.Client.ViewModels.Base {
 
             // Factories.
             builder.RegisterType<VehicleFactory>().As<IVehicleFactory>();
+            builder.RegisterType<CommentsFactory>().As<ICommentsFactory>();
             builder.RegisterType<AnnouncementsFactory>().As<IAnnouncementsFactory>();
             builder.RegisterType<ValidationObjectFactory>().As<IValidationObjectFactory>();
 

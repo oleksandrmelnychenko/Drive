@@ -56,7 +56,7 @@ namespace Drive.Client.Droid {
 
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            CachedImageRenderer.Init(true);
+            CachedImageRenderer.Init(false);
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 

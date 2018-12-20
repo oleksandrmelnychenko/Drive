@@ -492,4 +492,7 @@
   <data name="PostWithPhotoUpperCase" xml:space="preserve">
     <value>ПОСТ З ФОТО</value>
   </data>
+  <data name="Text" xml:space="preserve">
+    <value>Текст</value>
+  </data>
 </root>

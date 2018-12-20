@@ -15,25 +15,6 @@
         </ResourceDictionary>
     </ContentView.Resources>
 
-    <!--<StackLayout
-        HorizontalOptions="Center"
-        Spacing="4"
-        VerticalOptions="Center">
-        <controls:LabelExtended
-            FontSize="{StaticResource Key=BaseFontSize}"
-            HorizontalOptions="Center"
-            Text="{Binding ResourceLoader[NewsUpperCase].Value, Mode=TwoWay}"
-            TextColor="{StaticResource DarkColor}"
-            VerticalOptions="Center" />
-        <controls:LabelExtended
-            FontFamily="{StaticResource SFProThin}"
-            FontSize="{StaticResource Key=MidMediumSize}"
-            HorizontalOptions="Center"
-            Text="{Binding ResourceLoader[InDev].Value, Mode=TwoWay}"
-            TextColor="{StaticResource ExtraGrayColor}"
-            VerticalOptions="Center" />
-    </StackLayout>-->
-
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
@@ -60,7 +41,7 @@
         <ListView
             x:Name="_posts_listView"
             Grid.Row="1"
-            BackgroundColor="Transparent"
+            BackgroundColor="{StaticResource MediumGrayColor}"
             CachingStrategy="RecycleElement"
             HasUnevenRows="True"
             ItemSelected="ListViewItemSelected"

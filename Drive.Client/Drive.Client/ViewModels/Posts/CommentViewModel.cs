@@ -2,7 +2,7 @@
 using System;
 
 namespace Drive.Client.ViewModels.Posts {
-    internal sealed class CommentViewModel : NestedViewModel {
+    public sealed class CommentViewModel : NestedViewModel {
 
         string _authorAvatarUrl;
         public string AuthorAvatarUrl {

@@ -4,9 +4,17 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:basePostContentView="clr-namespace:Drive.Client.Views.Templates.ViewCells.Post.Content"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
     BackgroundColor="{StaticResource WhiteColor}">
 
     <basePostContentView:PostBaseContentView.MainContent>
-        <Label Margin="0,5" Text="{Binding MainMessage}" />
+        <controls:LabelExtended
+            Margin="0,0,0,0"
+            FontSize="{StaticResource SoftMediumSize}"
+            LetterSpacing="{OnPlatform iOS=0.5,
+                                       Android=0.04}"
+            Text="{Binding MainMessage}"
+            TextColor="{StaticResource DarkColor}"
+            TranslationY="-5" />
     </basePostContentView:PostBaseContentView.MainContent>
 </basePostContentView:PostBaseContentView>

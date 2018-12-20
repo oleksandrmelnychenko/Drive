@@ -2,6 +2,8 @@
 using Drive.Client.Helpers;
 using Drive.Client.Models.Arguments.BottomtabSwitcher;
 using Drive.Client.Models.EntityModels.Announcement;
+using Drive.Client.Models.EntityModels.Announcement.Comments;
+using Drive.Client.Models.Rest;
 using Drive.Client.Services.Announcement;
 using Drive.Client.Services.Signal.Announcement;
 using Drive.Client.ViewModels.Base;
@@ -12,8 +14,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Xamarin.Forms.Internals;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
     public sealed class HomeViewModel : TabbedViewModelBase, ISwitchTab {
@@ -64,6 +68,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
 
             _announcementSignalService.GetAnnouncement += GetAnnouncements;
             _announcementSignalService.NewAnnounceReceived += NewAnnounceReceived;
+            _announcementSignalService.PostCommentsCountReceived += PostCommentsCountReceived;
         }
 
         protected override void OnUnsubscribeFromAppEvents() {
@@ -71,10 +76,21 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
 
             _announcementSignalService.GetAnnouncement -= GetAnnouncements;
             _announcementSignalService.NewAnnounceReceived -= NewAnnounceReceived;
+            _announcementSignalService.PostCommentsCountReceived -= PostCommentsCountReceived;
+        }
+
+        private void PostCommentsCountReceived(object sender, CommentCountBody e) {
+            if (Posts == null) return;
+
+            foreach (var post in Posts) {
+                if (post.Post.AnnounceBody.Id == e.PostId) {
+                    post.CommentsCount = e.CommentsCount;
+                }
+            }
         }
 
         private void NewAnnounceReceived(object sender, Announce e) {
-            Posts?.Add(_announcementsFactory.CreatePostViewModel(e));
+            Posts?.Insert(0, _announcementsFactory.CreatePostViewModel(e));
         }
 
         private void GetAnnouncements(object sender, Announce[] e) {
@@ -99,7 +115,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
         }
 
         public void TabClicked() {
-            
         }
     }
 }

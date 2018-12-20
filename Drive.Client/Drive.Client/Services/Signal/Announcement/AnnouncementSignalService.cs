@@ -1,5 +1,6 @@
 ﻿using Drive.Client.Helpers;
 using Drive.Client.Models.EntityModels.Announcement;
+using Drive.Client.Models.EntityModels.Announcement.Comments;
 using Drive.Client.Models.Rest;
 using Drive.Client.Services.Identity;
 using Drive.Client.ViewModels.Base;
@@ -12,16 +13,84 @@ using System.Net;
 namespace Drive.Client.Services.Signal.Announcement {
     public class AnnouncementSignalService : SignalBaseService, IAnnouncementSignalService {
 
-        private static readonly string _NEW_ANNOUNCE = "NewPostHubEndpoint";
-        private static readonly string _GET_ANNOUNCEMENT = "GetPostHubEndpoint";
+        private const string NEW_ANNOUNCE = "NewPostHubEndpoint";
+
+        private const string GET_ANNOUNCEMENT = "GetPostHubEndpoint";
+
+        private const string NEW_POST_COMMENT = "NewPostCommentHubEndpoint";
+
+        private const string UPDATE_POST_COMMENTS_C0UNT = "UpdatePostCommentsCountHubEndpoint";
+
+        private const string GET_POST_COMMENTS = "GetPostCommentsHubEndpoint";
 
         public event EventHandler<Announce> NewAnnounceReceived = delegate { };
+
         public event EventHandler<Announce[]> GetAnnouncement = delegate { };
+
+        public event EventHandler<CommentCountBody> PostCommentsCountReceived = delegate { };
+
+        public event EventHandler<Comment[]> PostCommentsReceived = delegate { };
+
+        public event EventHandler<Comment> NewPostCommentReceived = delegate { };
 
         public override string SocketHubGateway { get; protected set; } = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.SignalGateways.Announcements;
 
         protected override void OnStartListeningToHub() {
-            _hubConnection.On<object>(_NEW_ANNOUNCE, async (args) => {
+            _hubConnection.On<object>(NEW_POST_COMMENT, async (args) => {
+                try {
+                    DrivenEventResponse drivenEventResponse = ParseResponseData<DrivenEventResponse>(args);
+
+                    if (drivenEventResponse.StatusCode == HttpStatusCode.OK) {
+                        DrivenEvent drivenEvent = ParseResponseData<DrivenEvent>(drivenEventResponse.Data);
+
+                        Comment comment = ParseResponseData<Comment>(drivenEvent.Data);
+                        NewPostCommentReceived(this, comment);
+                    } else if (drivenEventResponse.StatusCode == HttpStatusCode.Unauthorized) {
+                        await DependencyLocator.Resolve<IIdentityService>().LogOutAsync();
+                    }
+                }
+                catch (Exception ex) {
+                    Crashes.TrackError(ex);
+                }
+            });
+
+            _hubConnection.On<object>(GET_POST_COMMENTS, async (args) => {
+                try {
+                    DrivenEventResponse drivenEventResponse = ParseResponseData<DrivenEventResponse>(args);
+
+                    if (drivenEventResponse.StatusCode == HttpStatusCode.OK) {
+                        DrivenEvent drivenEvent = ParseResponseData<DrivenEvent>(drivenEventResponse.Data);
+
+                        Comment[] comments = ParseResponseData<Comment[]>(drivenEvent.Data);
+                        PostCommentsReceived.Invoke(this, comments);
+                    } else if (drivenEventResponse.StatusCode == HttpStatusCode.Unauthorized) {
+                        await DependencyLocator.Resolve<IIdentityService>().LogOutAsync();
+                    }
+                }
+                catch (Exception ex) {
+                    Crashes.TrackError(ex);
+                }
+            });
+
+            _hubConnection.On<object>(UPDATE_POST_COMMENTS_C0UNT, async (args) => {
+                try {
+                    DrivenEventResponse drivenEventResponse = ParseResponseData<DrivenEventResponse>(args);
+
+                    if (drivenEventResponse.StatusCode == HttpStatusCode.OK) {
+                        DrivenEvent drivenEvent = ParseResponseData<DrivenEvent>(drivenEventResponse.Data);
+
+                        CommentCountBody commentCountBody = ParseResponseData<CommentCountBody>(drivenEvent.Data);
+                        PostCommentsCountReceived.Invoke(this, commentCountBody);
+                    } else if (drivenEventResponse.StatusCode == HttpStatusCode.Unauthorized) {
+                        await DependencyLocator.Resolve<IIdentityService>().LogOutAsync();
+                    }
+                }
+                catch (Exception ex) {
+                    Crashes.TrackError(ex);
+                }
+            });
+
+            _hubConnection.On<object>(NEW_ANNOUNCE, async (args) => {
                 try {
                     Console.WriteLine("===> AnnouncementHubService.NewPostHubEndpoint <===");
                     DrivenEventResponse drivenEventResponse = ParseResponseData<DrivenEventResponse>(args);
@@ -29,14 +98,15 @@ namespace Drive.Client.Services.Signal.Announcement {
                     if (drivenEventResponse.StatusCode == HttpStatusCode.OK) {
                         DrivenEvent drivenEvent = ParseResponseData<DrivenEvent>(drivenEventResponse.Data);
 
-                        ///
-                        /// TODO
-                        /// 
-                        //Announce announce = ParseResponseData<Announce>(drivenEvent.Data);
-                        //AnnounceBody announceBody = ParseResponseData<AnnounceBody>(drivenEvent.Data);
-                        //NewAnnounceReceived.Invoke(this, );
-                    }
-                    else if (drivenEventResponse.StatusCode == HttpStatusCode.Unauthorized) {
+                        Announce announce = ParseResponseData<Announce>(drivenEvent.Data);
+                        if (announce != null && string.IsNullOrEmpty(announce.ImageUrl)) {
+                            AnnounceBody announceBody = ParseResponseData<AnnounceBody>(drivenEvent.Data);
+                            announce.AnnounceBody = announceBody;
+                            NewAnnounceReceived.Invoke(this, announce);
+                        } else if (announce != null) {
+                            NewAnnounceReceived.Invoke(this, announce);
+                        }
+                    } else if (drivenEventResponse.StatusCode == HttpStatusCode.Unauthorized) {
                         await DependencyLocator.Resolve<IIdentityService>().LogOutAsync();
                     }
                 }
@@ -46,7 +116,7 @@ namespace Drive.Client.Services.Signal.Announcement {
                 }
             });
 
-            _hubConnection.On<object>(_GET_ANNOUNCEMENT, async (args) => {
+            _hubConnection.On<object>(GET_ANNOUNCEMENT, async (args) => {
                 try {
                     Console.WriteLine("===> AnnouncementHubService.GetPostHubEndpoint <===");
                     DrivenEventResponse drivenEventResponse = ParseResponseData<DrivenEventResponse>(args);
@@ -56,8 +126,7 @@ namespace Drive.Client.Services.Signal.Announcement {
 
                         Announce[] announcement = ParseResponseData<Announce[]>(drivenEvent.Data);
                         GetAnnouncement.Invoke(this, announcement);
-                    }
-                    else if (drivenEventResponse.StatusCode == HttpStatusCode.Unauthorized) {
+                    } else if (drivenEventResponse.StatusCode == HttpStatusCode.Unauthorized) {
                         await DependencyLocator.Resolve<IIdentityService>().LogOutAsync();
                     }
                 }

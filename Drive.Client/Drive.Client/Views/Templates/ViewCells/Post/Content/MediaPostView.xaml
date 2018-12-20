@@ -4,22 +4,41 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:basePostContentView="clr-namespace:Drive.Client.Views.Templates.ViewCells.Post.Content"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     BackgroundColor="{StaticResource WhiteColor}">
 
     <basePostContentView:PostBaseContentView.MainContent>
-        <StackLayout Margin="0,5" Spacing="0">
-            <Label Text="{Binding MainMessage}" VerticalOptions="Center" />
-            <ffimageloadingsvg:SvgCachedImage
-                Aspect="AspectFill"
-                HeightRequest="140"
-                Source="{Binding Post.ImageUrl, Converter={StaticResource StringUrlToUrlImageSourceConverter}}" />
-            <!--<ffimageloading:CachedImage
-                BackgroundColor="Yellow"
-                Aspect="AspectFill"
-                Source="{Binding Post.ImageUrl, Converter={StaticResource StringUrlToUrlImageSourceConverter}}"
-                VerticalOptions="FillAndExpand" />-->
-        </StackLayout>
+        <Grid Margin="0,0,0,0" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="350" />
+            </Grid.RowDefinitions>
+
+            <controls:LabelExtended
+                Grid.Row="0"
+                FontSize="{StaticResource SoftMediumSize}"
+                LetterSpacing="{OnPlatform iOS=0.5,
+                                           Android=0.04}"
+                Text="{Binding MainMessage}"
+                TextColor="{StaticResource DarkColor}"
+                TranslationY="-5"
+                VerticalOptions="Center" />
+
+            <AbsoluteLayout Grid.Row="1">
+                <ffimageloading:CachedImage
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    Aspect="AspectFill"
+                    CacheType="Memory"
+                    DownsampleHeight="350"
+                    ErrorPlaceholder="resource://Drive.Client.Resources.Images.ic_image.png"
+                    LoadingPlaceholder="resource://Drive.Client.Resources.Images.ic_image.png"
+                    RetryCount="3"
+                    RetryDelay="2"
+                    Source="{Binding Post.ImageUrl, Converter={StaticResource StringUrlToUrlImageSourceConverter}}" />
+            </AbsoluteLayout>
+        </Grid>
     </basePostContentView:PostBaseContentView.MainContent>
 </basePostContentView:PostBaseContentView>

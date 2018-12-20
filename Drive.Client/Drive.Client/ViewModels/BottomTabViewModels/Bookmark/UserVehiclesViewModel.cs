@@ -151,6 +151,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
                 PolandVehicleDetail polandVehicleDetail = await _vehicleService.GetPolandVehicleDetailsByRequestIdAsync(selectedPolandRequestDataItem.PolandVehicleRequest.RequestId.ToString(), cancellationTokenSource.Token);
 
                 if (polandVehicleDetail != null) {
+                    UpdateBusyVisualState(busyKey, false);
                     await NavigationService.NavigateToAsync<PolandDriveAutoDetailsViewModel>(polandVehicleDetail);
                 }
             }
@@ -207,9 +208,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
                         UserRequests = (await GetRequestAsync()).ToObservableCollection();
 
                         if (_lastNotificationRequest != null) {
-                            long govRequestId = 0;
 
-                            if (long.TryParse(_lastNotificationRequest.RecidentVehicleNotification.Data, out govRequestId)) {
+                            if (long.TryParse(_lastNotificationRequest.RecidentVehicleNotification.Data, out long govRequestId)) {
 
                                 ResidentRequestDataItem requestDataItem = UserRequests?.OfType<ResidentRequestDataItem>().FirstOrDefault<ResidentRequestDataItem>(residentRequestItem => residentRequestItem.ResidentRequest.GovRequestId == govRequestId);
 

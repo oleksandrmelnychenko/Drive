@@ -35,6 +35,12 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
             private set => SetProperty(ref _mainMessage, value);
         }
 
+        long _commentsCount;
+        public long CommentsCount {
+            get { return _commentsCount; }
+            set { SetProperty(ref _commentsCount, value); }
+        }
+
         /// <summary>
         /// Post instance.
         /// </summary>
@@ -62,9 +68,10 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
         protected virtual void OnPost(Announce post) {
             if (post != null) {
                 AuthorAvatarUrl = post.AnnounceBody.AvatarUrl;
-                AuthorName = post.AnnounceBody.UserName;
+                AuthorName = post.AnnounceBody.UserName.TrimStart();
                 PublishDate = post.AnnounceBody.Created;
                 MainMessage = post.AnnounceBody.Content;
+                CommentsCount = post.AnnounceBody.CommentsCount;
             }
             else {
                 AuthorAvatarUrl = null;
