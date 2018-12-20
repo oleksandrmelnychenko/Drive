@@ -29,12 +29,12 @@ namespace Drive.Client.Services.Announcement {
             _requestProvider = requestProvider;
         }
 
-        public Task NewAnnouncementAsync(AnnounceBody announce, CancellationTokenSource cancellationTokenSource = default(CancellationTokenSource), string eventId = "") =>
+        public Task NewAnnouncementAsync(AnnounceBodyRequest announceBodyRequest, CancellationTokenSource cancellationTokenSource = default(CancellationTokenSource), string eventId = "") =>
             Task.Run(async () => {
                 try {
                     DrivenEvent announceActor = new DrivenEvent() {
                         Id = string.IsNullOrEmpty(eventId) ? Guid.NewGuid().ToString() : eventId,
-                        Data = JsonConvert.SerializeObject(announce),
+                        Data = JsonConvert.SerializeObject(announceBodyRequest),
                         EventType = DrivenActorEvents.NewAnnounce,
                         UserNetId = BaseSingleton<GlobalSetting>.Instance.UserProfile.NetId
                     };

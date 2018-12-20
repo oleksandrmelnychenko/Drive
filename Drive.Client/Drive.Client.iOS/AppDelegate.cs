@@ -9,6 +9,7 @@ using Drive.Client.iOS.Models.Notifications;
 using Drive.Client.iOS.Services;
 using FFImageLoading.Forms.Platform;
 using Foundation;
+using KeyboardOverlap.Forms.Plugin.iOSUnified;
 using ObjCRuntime;
 using PushKit;
 using UIKit;
@@ -45,6 +46,7 @@ namespace Drive.Client.iOS {
 
             global::Xamarin.Forms.Forms.Init();
             CachedImageRenderer.Init();
+            //KeyboardOverlapRenderer.Init();
 
             UIApplication.SharedApplication.RegisterForRemoteNotifications();
 

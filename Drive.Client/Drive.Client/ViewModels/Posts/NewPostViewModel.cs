@@ -85,7 +85,7 @@ namespace Drive.Client.ViewModels.Posts {
         private AnnounceType _targetAnnounceType;
         public AnnounceType TargetAnnounceType {
             get => _targetAnnounceType;
-            private set => SetProperty<AnnounceType>(ref _targetAnnounceType, value);
+            private set => SetProperty(ref _targetAnnounceType, value);
         }
 
         private ValidatableObject<string> _announceText;
@@ -115,7 +115,7 @@ namespace Drive.Client.ViewModels.Posts {
         private AttachedAnnounceMediaBase _selectedAttachedPostMedia;
         public AttachedAnnounceMediaBase SelectedAttachedPostMedia {
             get => _selectedAttachedPostMedia;
-            set => SetProperty<AttachedAnnounceMediaBase>(ref _selectedAttachedPostMedia, value);
+            set => SetProperty(ref _selectedAttachedPostMedia, value);
         }
 
         public override Task InitializeAsync(object navigationData) {
@@ -128,14 +128,14 @@ namespace Drive.Client.ViewModels.Posts {
         }
 
         public object BuildFormModel() {
-            AnnounceBody announce = new AnnounceBody() {
+            AnnounceBodyRequest announceBodyRequest = new AnnounceBodyRequest() {
                 Content = AnnounceText.Value,
                 Type = TargetAnnounceType
             };
 
-            if (TargetAnnounceType == AnnounceType.Text) return announce;
+            if (TargetAnnounceType == AnnounceType.Text) return announceBodyRequest;
 
-            return new AnnounceBodyWithData { AnnounceBody = announce, AttachedData = AttachedPostMedias };
+            return new AnnounceBodyWithData { AnnounceBodyRequest = announceBodyRequest, AttachedData = AttachedPostMedias };
         }
 
         public bool ValidateForm() {

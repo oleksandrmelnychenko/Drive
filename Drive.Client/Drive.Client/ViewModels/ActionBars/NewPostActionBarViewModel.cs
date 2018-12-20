@@ -51,10 +51,8 @@ namespace Drive.Client.ViewModels.ActionBars {
                         object formModel = buildFormModel.BuildFormModel();
 
                         try {
-                            if (formModel is AnnounceBody announceBody) {
-                                await _announcementService.NewAnnouncementAsync(announceBody, cancellationTokenSource);
-                                //await NavigationService.GoBackAsync();
-                                //await NavigationService.InitializeAsync(new BottomTabIndexArgs() { TargetTab = typeof(HomeViewModel) });
+                            if (formModel is AnnounceBodyRequest announceBodyRequest) {
+                                await _announcementService.NewAnnouncementAsync(announceBodyRequest, cancellationTokenSource);
 
                                 await NavigationService.CurrentViewModelsNavigationStack.First().InitializeAsync(new BottomTabIndexArgs { TargetTab = typeof(HomeViewModel) });
                                 await NavigationService.NavigateToAsync<MainViewModel>();
@@ -62,9 +60,7 @@ namespace Drive.Client.ViewModels.ActionBars {
                                 string eventId = await _announcementService.UploadAttachedDataAsync(announceBodyWithData.AttachedData, new CancellationTokenSource());
 
                                 if (!string.IsNullOrEmpty(eventId)) {
-                                    await _announcementService.NewAnnouncementAsync(announceBodyWithData.AnnounceBody, cancellationTokenSource, eventId);
-                                    //await NavigationService.GoBackAsync();
-                                    //await NavigationService.InitializeAsync(new BottomTabIndexArgs() { TargetTab = typeof(HomeViewModel) });
+                                    await _announcementService.NewAnnouncementAsync(announceBodyWithData.AnnounceBodyRequest, cancellationTokenSource, eventId);
 
                                     await NavigationService.CurrentViewModelsNavigationStack.First().InitializeAsync(new BottomTabIndexArgs { TargetTab = typeof(HomeViewModel) });
                                     await NavigationService.NavigateToAsync<MainViewModel>();
