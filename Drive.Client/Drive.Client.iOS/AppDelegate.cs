@@ -9,7 +9,6 @@ using Drive.Client.iOS.Models.Notifications;
 using Drive.Client.iOS.Services;
 using FFImageLoading.Forms.Platform;
 using Foundation;
-using KeyboardOverlap.Forms.Plugin.iOSUnified;
 using ObjCRuntime;
 using PushKit;
 using UIKit;
@@ -33,8 +32,6 @@ namespace Drive.Client.iOS {
 
         public static string DEVICE_TOKEN = string.Empty;
 
-        private UserNotificationCenterDelegate _userNotificationCenterDelegate;
-
         //
         // This method is invoked when the application has loaded and is ready to run. In this 
         // method you should instantiate the window, load the UI into it and then make the window
@@ -46,8 +43,7 @@ namespace Drive.Client.iOS {
 
             global::Xamarin.Forms.Forms.Init();
             CachedImageRenderer.Init();
-            //KeyboardOverlapRenderer.Init();
-
+            
             UIApplication.SharedApplication.RegisterForRemoteNotifications();
 
             ConfigereNotification();

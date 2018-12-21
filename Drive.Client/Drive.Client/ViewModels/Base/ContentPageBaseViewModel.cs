@@ -96,8 +96,7 @@ namespace Drive.Client.ViewModels.Base {
         public void SetBusy(Guid guidKey, bool isBusy) {
             if (_busySequence.ContainsKey(guidKey)) {
                 _busySequence[guidKey] = isBusy;
-            }
-            else {
+            } else {
                 _busySequence.Add(guidKey, isBusy);
             }
 

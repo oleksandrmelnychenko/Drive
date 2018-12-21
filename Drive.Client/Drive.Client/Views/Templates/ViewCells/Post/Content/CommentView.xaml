@@ -3,10 +3,13 @@
     x:Class="Drive.Client.Views.Templates.ViewCells.Post.Content.CommentView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:basePostContentView="clr-namespace:Drive.Client.Views.Templates.ViewCells.Post.Content"
-    BackgroundColor="{StaticResource WhiteColor}">
+    xmlns:basePostContentView="clr-namespace:Drive.Client.Views.Templates.ViewCells.Post.Content">
+
+    <basePostContentView:CommentBaseContentView.GestureRecognizers>
+        <TapGestureRecognizer />
+    </basePostContentView:CommentBaseContentView.GestureRecognizers>
 
     <basePostContentView:CommentBaseContentView.MainContent>
-        <Label Text="{Binding Comment}" />
+        <Label FontSize="{StaticResource MediumSize}" Text="{Binding Comment}" />
     </basePostContentView:CommentBaseContentView.MainContent>
 </basePostContentView:CommentBaseContentView>

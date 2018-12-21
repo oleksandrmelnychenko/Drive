@@ -4,75 +4,100 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:converters="clr-namespace:Drive.Client.Converters"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
+
+    <ContentView.Resources>
+        <converters:PublishDateTimeConverter x:Key="publishDateTimeConverter" />
+    </ContentView.Resources>
 
     <Grid
         Padding="10,0"
         BackgroundColor="{StaticResource WhiteColor}"
         RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="60" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="0.5" />
+            <!--<RowDefinition Height="30" />-->
         </Grid.RowDefinitions>
+
         <!--  HEADER  -->
-        <AbsoluteLayout Grid.Row="0">
-            <ffimageloadingsvg:SvgCachedImage
-                x:Name="_avatar"
-                AbsoluteLayout.LayoutBounds="0.03, .5, AutoSize, AutoSize"
-                AbsoluteLayout.LayoutFlags="PositionProportional"
-                Aspect="AspectFill"
-                HeightRequest="40"
-                Source="{Binding AuthorAvatarUrl, Converter={StaticResource StringUrlToUrlImageSourceConverter}}"
-                WidthRequest="40" />            
+        <Grid
+            Grid.Row="0"
+            BackgroundColor="Transparent"
+            ColumnSpacing="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-            <ffimageloadingsvg:SvgCachedImage
-                AbsoluteLayout.LayoutBounds="0.03, .5, AutoSize, AutoSize"
-                AbsoluteLayout.LayoutFlags="PositionProportional"
-                HeightRequest="40"
-                Source="resource://Drive.Client.Resources.Images.icon_user.svg"
-                WidthRequest="40" />
+            <!--  AVATAR  -->
+            <Grid
+                Grid.Column="0"
+                ColumnSpacing="0"
+                HeightRequest="38"
+                IsClippedToBounds="True"
+                RowSpacing="0"
+                VerticalOptions="Center"
+                WidthRequest="38">
 
-            <controls:LabelExtended
-                x:Name="authorAvatar_LabelExtended"
-                AbsoluteLayout.LayoutBounds=".22, .5, Autosize, Autosize"
-                AbsoluteLayout.LayoutFlags="PositionProportional"
-                FontFamily="{StaticResource SFProThin}"
-                FontSize="{StaticResource MediumSize}"
-                LetterSpacing="{OnPlatform iOS=1.3,
-                                           Android=0.07}"
-                Text="{Binding AuthorName}"
-                TextColor="{StaticResource ExtraGrayColor}" />
+                <ffimageloadingsvg:SvgCachedImage
+                    Aspect="AspectFill"
+                    HeightRequest="38"
+                    HorizontalOptions="Center"
+                    Source="{Binding AuthorAvatarUrl, Converter={StaticResource StringUrlToUrlImageSourceConverter}}"
+                    VerticalOptions="Center"
+                    WidthRequest="38" />
+                <ffimageloadingsvg:SvgCachedImage
+                    Grid.Column="0"
+                    HeightRequest="39"
+                    Source="resource://Drive.Client.Resources.Images.icon_user.svg"
+                    WidthRequest="39" />
+            </Grid>
 
-            <controls:LabelExtended
-                Margin="0,0,0,0"
-                AbsoluteLayout.LayoutBounds="1, .5, Autosize, Autosize"
-                AbsoluteLayout.LayoutFlags="PositionProportional"
-                Text="{Binding PublishDate, StringFormat={StaticResource FormattedDate}}" />
-        </AbsoluteLayout>
+            <Grid Grid.Column="1" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <controls:LabelExtended
+                    x:Name="authorAvatar_LabelExtended"
+                    Grid.Row="0"
+                    FontFamily="{StaticResource SFProSemiBold}"
+                    FontSize="{StaticResource SoftMediumSize}"
+                    LetterSpacing="{OnPlatform iOS=0.5,
+                                               Android=0.04}"
+                    Text="{Binding AuthorName}"
+                    TextColor="{StaticResource DarkColor}"
+                    TranslationY="15" />
+
+                <controls:LabelExtended
+                    Grid.Row="1"
+                    FontSize="{StaticResource LittleSize}"
+                    LetterSpacing="{OnPlatform iOS=1.0,
+                                               Android=0.07}"
+                    Text="{Binding PublishDate, Converter={StaticResource publishDateTimeConverter}}"
+                    TextColor="{StaticResource BaseGrayColor}"
+                    TranslationY="-1" />
+            </Grid>
+        </Grid>
 
         <!--  MAIN CONTENT  -->
         <ContentView
             x:Name="_mainContent"
             Grid.Row="1"
-            Margin="55,5,5,5" />
+            Margin="45,0,0,0" />
 
         <!--  FOOTER  -->
-        <AbsoluteLayout Grid.Row="2">
+        <!--<AbsoluteLayout Grid.Row="2">
             <ffimageloadingsvg:SvgCachedImage
                 Margin="0,3,0,0"
                 AbsoluteLayout.LayoutBounds="1, .5, AutoSize, AutoSize"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 HeightRequest="12"
                 Source="resource://Drive.Client.Resources.Images.Comment.svg" />
-        </AbsoluteLayout>
-        <!--  LINE  -->
-        <BoxView
-            Grid.Row="3"
-            Margin="55,0,0,0"
-            Color="{StaticResource BaseGrayColor}" />
+        </AbsoluteLayout>-->
     </Grid>
 </ContentView>

@@ -11,7 +11,8 @@
     xmlns:dependency="clr-namespace:Drive.Client.ViewModels.Base"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:viewBase="clr-namespace:Drive.Client.Views.Base"
-    dependency:DependencyLocator.AutoWireViewModel="True">
+    dependency:DependencyLocator.AutoWireViewModel="True"
+    BackgroundColor="{StaticResource WhiteColor}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -24,7 +25,80 @@
     </viewBase:ContentPageBaseView.ActionBar>
 
     <viewBase:ContentPageBaseView.MainContent>
-        <Grid BackgroundColor="{StaticResource WhiteColor}" RowSpacing="0">
+        <ScrollView>
+            <RelativeLayout>
+                <ListView
+                    x:Name="_comments_listView"
+                    BackgroundColor="{StaticResource MediumGrayColor}"
+                    CachingStrategy="RecycleElement"
+                    HasUnevenRows="True"
+                    Header="{Binding CurrentPost}"
+                    ItemSelected="ListViewItemSelected"
+                    ItemsSource="{Binding Comments}"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                           Property=Height,
+                                                                           Factor=0.9,
+                                                                           Constant=0}"
+                    SeparatorVisibility="None">
+                    <ListView.HeaderTemplate>
+                        <DataTemplate>
+                            <ContentView Content="{Binding Post.AnnounceBody.Type, Converter={StaticResource EnumToViewConverter}}" />
+                        </DataTemplate>
+                    </ListView.HeaderTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <customViewCell:CommentViewCell />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <StackLayout
+                    Padding="10,0"
+                    BackgroundColor="Yellow"
+                    Orientation="Horizontal"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                           ElementName=_comments_listView,
+                                                                           Property=Height,
+                                                                           Factor=.1,
+                                                                           Constant=0}"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Width,
+                                                                          Factor=1,
+                                                                          Constant=0}"
+                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView,
+                                                                      ElementName=_comments_listView,
+                                                                      Property=Height,
+                                                                      Factor=1.01,
+                                                                      Constant=0}">
+                    <controls:EntryExtended
+                        FontFamily="{StaticResource SFProLight}"
+                        FontSize="{StaticResource MediumSize}"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="comment"
+                        ReturnType="Send"
+                        Text="{Binding CommentText.Value}"
+                        TextColor="{StaticResource ExtraGrayColor}">
+                        <controls:EntryExtended.Behaviors>
+                            <behaviors:EventToCommandBehavior Command="{Binding SendCommand}" EventName="Completed" />
+                        </controls:EntryExtended.Behaviors>
+                    </controls:EntryExtended>
+
+                    <ffimageloadingsvg:SvgCachedImage
+                        Margin="0,12"
+                        HeightRequest="20"
+                        HorizontalOptions="End"
+                        Source="resource://Drive.Client.Resources.Images.send-button.svg"
+                        VerticalOptions="Center"
+                        WidthRequest="30">
+                        <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SendCommand}" NumberOfTapsRequired="1" />
+                        </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    </ffimageloadingsvg:SvgCachedImage>
+                </StackLayout>
+            </RelativeLayout>
+        </ScrollView>
+
+        <!--<Grid BackgroundColor="{StaticResource WhiteColor}" RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="0.5" />
@@ -32,8 +106,9 @@
             </Grid.RowDefinitions>
 
             <ListView
+                x:Name="_comments_listView"
                 Grid.Row="0"
-                BackgroundColor="Transparent"
+                BackgroundColor="{StaticResource MediumGrayColor}"
                 CachingStrategy="RecycleElement"
                 HasUnevenRows="True"
                 Header="{Binding CurrentPost}"
@@ -84,6 +159,6 @@
                     </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
                 </ffimageloadingsvg:SvgCachedImage>
             </StackLayout>
-        </Grid>
+        </Grid>-->
     </viewBase:ContentPageBaseView.MainContent>
 </viewBase:ContentPageBaseView>

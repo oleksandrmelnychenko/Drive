@@ -9,13 +9,13 @@ namespace Drive.Client.Factories.Comments {
         public ObservableCollection<CommentViewModel> BuildCommentsViewModels(IEnumerable<Comment> comments) {
             ObservableCollection<CommentViewModel> commentViewModels = new ObservableCollection<CommentViewModel>();
 
-            List<Comment> listedComments = comments.ToList();
+            //List<Comment> listedComments = comments.ToList();
 
-            var sortedByDate = from a in listedComments
-                               orderby a.Created descending
-                               select a;
+            //var sortedByDate = from a in listedComments
+            //                   orderby a.Created descending
+            //                   select a;
 
-            foreach (var comment in sortedByDate) {
+            foreach (var comment in comments) {
                 CommentViewModel commentViewModel = new CommentViewModel {
                     AuthorAvatarUrl = comment.AvatarUrl,
                     Comment = comment.TextContent,

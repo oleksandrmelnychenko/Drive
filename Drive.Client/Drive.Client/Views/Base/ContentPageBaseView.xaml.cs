@@ -245,8 +245,17 @@ namespace Drive.Client.Views.Base {
         }
 
         private void OnBottomItemTapGestureRecognizerTapped(object sender, EventArgs e) {
-            if (SelectedBottomItemIndex != ((SingleBottomItem)sender).TabIndex) {
-                SelectedBottomItemIndex = ((SingleBottomItem)sender).TabIndex;
+            object context = ((SingleBottomItem)sender).BindingContext;
+
+
+            if ((context is IBottomBarTab bottomBar) && bottomBar.RelativeViewType != null) {
+                if (SelectedBottomItemIndex != ((SingleBottomItem)sender).TabIndex) {
+                    SelectedBottomItemIndex = ((SingleBottomItem)sender).TabIndex;
+                }
+            } else {
+                if (context is IActionBottomBarTab actionBottomBarTab) {
+                    actionBottomBarTab.TabActionCommand?.Execute(null);
+                }
             }
         }
     }

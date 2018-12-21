@@ -102,7 +102,7 @@ namespace Drive.Client.ViewModels.Posts {
         }
 
         private void NewPostCommentReceived(object sender, Comment e) {
-            Comments?.Insert(0, _commentsFactory.CreateCommentViewModel(e));
+            Comments?.Add(_commentsFactory.CreateCommentViewModel(e));
         }
 
         private void PostCommentsReceived(object sender, Comment[] e) {

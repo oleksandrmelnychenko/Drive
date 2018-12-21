@@ -1,4 +1,5 @@
 ﻿using Drive.Client.Views.Base;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Drive.Client.Views.Posts {
@@ -12,8 +13,8 @@ namespace Drive.Client.Views.Posts {
             InitializeComponent();
         }
 
-        private void ListViewItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e) {
-
+        private void ListViewItemSelected(object sender, SelectedItemChangedEventArgs e) {
+            _comments_listView.SelectedItem = null;
         }
     }
 }

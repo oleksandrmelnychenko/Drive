@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms.Internals;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
-    public sealed class HomeViewModel : TabbedViewModelBase, ISwitchTab {
+    public sealed class HomeViewModel : TabbedViewModelBase {
 
         private readonly IAnnouncementService _announcementService;
 
@@ -109,12 +109,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
             base.Dispose();
 
             Posts?.Clear();
-        }
-
-        public void ClearAfterTabTap() {
-        }
-
-        public void TabClicked() {
         }
     }
 }

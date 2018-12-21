@@ -4,5 +4,5 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:view="clr-namespace:Drive.Client.Views.Templates.ViewCells.Post.Content">
-    <view:CommentView />
+    <view:CommentView Margin="0,0,0,1" />
 </ViewCell>
