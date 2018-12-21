@@ -25,21 +25,26 @@
     </viewBase:ContentPageBaseView.ActionBar>
 
     <viewBase:ContentPageBaseView.MainContent>
-        <ScrollView>
-            <RelativeLayout>
+
+        <AbsoluteLayout >
+            <Grid AbsoluteLayout.LayoutBounds="1,1,1,1"
+                    AbsoluteLayout.LayoutFlags="All">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+
                 <ListView
-                    x:Name="_comments_listView"
-                    BackgroundColor="{StaticResource MediumGrayColor}"
-                    CachingStrategy="RecycleElement"
-                    HasUnevenRows="True"
-                    Header="{Binding CurrentPost}"
-                    ItemSelected="ListViewItemSelected"
-                    ItemsSource="{Binding Comments}"
-                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                           Property=Height,
-                                                                           Factor=0.9,
-                                                                           Constant=0}"
-                    SeparatorVisibility="None">
+                    Grid.Row="0"
+                    
+                        x:Name="_comments_listView"
+                        BackgroundColor="{StaticResource MediumGrayColor}"
+                        CachingStrategy="RecycleElement"
+                        HasUnevenRows="True"
+                        Header="{Binding CurrentPost}"
+                        ItemSelected="ListViewItemSelected"
+                        ItemsSource="{Binding Comments}"
+                        SeparatorVisibility="None">
                     <ListView.HeaderTemplate>
                         <DataTemplate>
                             <ContentView Content="{Binding Post.AnnounceBody.Type, Converter={StaticResource EnumToViewConverter}}" />
@@ -53,49 +58,82 @@
                 </ListView>
 
                 <StackLayout
-                    Padding="10,0"
-                    BackgroundColor="{StaticResource ExtraLightGrayColor}"
-                    Orientation="Horizontal"
-                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                           Property=Height,
-                                                                           Factor=0.1,
-                                                                           Constant=0}"
-                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                          Property=Width,
-                                                                          Factor=1,
-                                                                          Constant=0}"
-                    RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                      Property=Height,
-                                                                      Factor=0.895,
-                                                                      Constant=0}"
-                    TranslationY="2.5">
+                        Grid.Row="1"
+                        Padding="10,0"
+                        BackgroundColor="Yellow"
+                        Orientation="Horizontal">
                     <controls:EntryExtended
-                        FontFamily="{StaticResource SFProLight}"
-                        FontSize="{StaticResource MediumSize}"
-                        HorizontalOptions="FillAndExpand"
-                        Placeholder="comment"
-                        ReturnType="Send"
-                        Text="{Binding CommentText.Value}"
-                        TextColor="{StaticResource ExtraGrayColor}">
+                            x:Name="_comentInput_Entry"
+                            FontFamily="{StaticResource SFProLight}"
+                            FontSize="{StaticResource MediumSize}"
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="comment"
+                            ReturnType="Send"
+                        Focused="_comentInput_Entry_Focused"
+                        
+                            Text="{Binding CommentText.Value}"
+                            TextColor="{StaticResource ExtraGrayColor}">
                         <controls:EntryExtended.Behaviors>
                             <behaviors:EventToCommandBehavior Command="{Binding SendCommand}" EventName="Completed" />
                         </controls:EntryExtended.Behaviors>
                     </controls:EntryExtended>
 
                     <ffimageloadingsvg:SvgCachedImage
-                        Margin="0,12"
-                        HeightRequest="20"
-                        HorizontalOptions="End"
-                        Source="resource://Drive.Client.Resources.Images.send-button.svg"
-                        VerticalOptions="Center"
-                        WidthRequest="30">
+                            Margin="0,12"
+                            HeightRequest="20"
+                            HorizontalOptions="End"
+                            Source="resource://Drive.Client.Resources.Images.send-button.svg"
+                            VerticalOptions="Center"
+                            WidthRequest="30">
                         <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding SendCommand}" NumberOfTapsRequired="1" />
                         </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
                     </ffimageloadingsvg:SvgCachedImage>
                 </StackLayout>
-            </RelativeLayout>
-        </ScrollView>
+            </Grid>
+
+            <ScrollView x:Name="_hackScroll_ScrollView" TranslationX="9999999" InputTransparent="True" AbsoluteLayout.LayoutBounds="1,1,1,1"
+                        AbsoluteLayout.LayoutFlags="All">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="60"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout
+                        Grid.Row="1"
+                        Padding="10,0"
+                        BackgroundColor="LightCoral"
+                        Orientation="Horizontal">
+                        <controls:EntryExtended
+                            FontFamily="{StaticResource SFProLight}"
+                            FontSize="{StaticResource MediumSize}"
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="comment"
+                            ReturnType="Send"
+                            Unfocused="EntryExtended_Unfocused"
+                            Text="{Binding CommentText.Value}"
+                            TextColor="{StaticResource ExtraGrayColor}">
+                            <controls:EntryExtended.Behaviors>
+                                <behaviors:EventToCommandBehavior Command="{Binding SendCommand}" EventName="Completed" />
+                            </controls:EntryExtended.Behaviors>
+                        </controls:EntryExtended>
+
+                        <ffimageloadingsvg:SvgCachedImage
+                            Margin="0,12"
+                            HeightRequest="20"
+                            HorizontalOptions="End"
+                            Source="resource://Drive.Client.Resources.Images.send-button.svg"
+                            VerticalOptions="Center"
+                            WidthRequest="30">
+                            <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SendCommand}" NumberOfTapsRequired="1" />
+                            </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                        </ffimageloadingsvg:SvgCachedImage>
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+        </AbsoluteLayout>
 
         <!--<Grid BackgroundColor="{StaticResource WhiteColor}" RowSpacing="0">
             <Grid.RowDefinitions>
