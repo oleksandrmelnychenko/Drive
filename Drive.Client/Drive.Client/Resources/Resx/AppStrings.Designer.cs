@@ -196,6 +196,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Comment.
+        /// </summary>
+        public static string Comment {
+            get {
+                return ResourceManager.GetString("Comment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CONFIRM PASSWORD.
         /// </summary>
         public static string ConfirmPasswordUpperCase {
@@ -1021,6 +1030,15 @@ namespace Drive.Client.Resources.Resx {
         public static string TotalСapacity {
             get {
                 return ResourceManager.GetString("TotalСapacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Try later.
+        /// </summary>
+        public static string TryLate {
+            get {
+                return ResourceManager.GetString("TryLate", resourceCulture);
             }
         }
         

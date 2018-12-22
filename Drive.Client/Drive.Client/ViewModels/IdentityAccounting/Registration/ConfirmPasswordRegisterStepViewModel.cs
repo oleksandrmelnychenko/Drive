@@ -3,6 +3,7 @@ using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
 using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Resources.Resx;
 using Drive.Client.Services.Identity;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -49,7 +50,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
 
             bool isValid = MainInput.Value != null && MainInput.Value.Equals(_collectedInputsArgs.Password);
             if (!isValid) {
-                ServerError = (ResourceLoader.GetString(nameof(AppStrings.ReEnteredPasswordIncorrect)).Value); 
+                ServerError = (ResourceLoader.GetString(nameof(AppStrings.ReEnteredPasswordIncorrect)).Value);
             }
 
             return isValid;
@@ -79,6 +80,16 @@ namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
                         }
                     }
                     catch (Exception ex) {
+                        try {
+                            HttpRequestExceptionResult httpRequestExceptionResult = JsonConvert.DeserializeObject<HttpRequestExceptionResult>(ex.Message);
+                            if (httpRequestExceptionResult != null) {
+                                ServerError = httpRequestExceptionResult.Message;
+                            }
+                        }
+                        catch (Exception) {
+                            ServerError = ResourceLoader[nameof(AppStrings.TryLate)].Value;
+                        }
+
                         Debug.WriteLine($"ERROR:{ex.Message}");
                         Debugger.Break();
                     }

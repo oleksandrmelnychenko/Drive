@@ -16,6 +16,7 @@ using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Drive.Client.Services.Identity {
     public class IdentityService : IIdentityService {
@@ -158,10 +159,13 @@ namespace Drive.Client.Services.Identity {
 
                 await StopSocketServicesAsync();
 
-                await _navigationService.InitializeAsync(new BottomTabIndexArgs() { TargetTab = typeof(ProfileViewModel) });
+                Device.BeginInvokeOnMainThread(async () => {
+                    await _navigationService.InitializeAsync(new BottomTabIndexArgs() { TargetTab = typeof(ProfileViewModel) });
+                });
             }
             catch (Exception exc) {
                 Crashes.TrackError(exc);
+                Debugger.Break();
                 throw;
             }
         }
@@ -434,8 +438,7 @@ namespace Drive.Client.Services.Identity {
             try {
                 if (!string.IsNullOrEmpty(BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken)) {
                     await RestartSocketServicesAsync();
-                }
-                else {
+                } else {
                     //await LogOutAsync();
                 }
             }

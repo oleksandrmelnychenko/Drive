@@ -496,4 +496,10 @@ certificate issued</value>
   <data name="Text" xml:space="preserve">
     <value>Text</value>
   </data>
+  <data name="TryLate" xml:space="preserve">
+    <value>Try later</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
 </root>

@@ -96,6 +96,7 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Renderers\ContentPageRenderer.cs" />
     <Compile Include="Renderers\EditorExtendedRenderer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />

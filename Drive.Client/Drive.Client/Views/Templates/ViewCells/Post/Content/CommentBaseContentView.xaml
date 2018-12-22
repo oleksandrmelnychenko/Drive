@@ -17,7 +17,7 @@
         BackgroundColor="{StaticResource WhiteColor}"
         RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
+            <RowDefinition Height="55" />
             <RowDefinition Height="auto" />
             <!--<RowDefinition Height="30" />-->
         </Grid.RowDefinitions>
@@ -88,7 +88,7 @@
         <ContentView
             x:Name="_mainContent"
             Grid.Row="1"
-            Margin="45,0,0,0" />
+            Margin="45,0,0,10" />
 
         <!--  FOOTER  -->
         <!--<AbsoluteLayout Grid.Row="2">

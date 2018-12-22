@@ -495,4 +495,10 @@
   <data name="Text" xml:space="preserve">
     <value>Текст</value>
   </data>
+  <data name="TryLate" xml:space="preserve">
+    <value>Спробуйте пізніше</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Коментар</value>
+  </data>
 </root>
