@@ -5,28 +5,16 @@
         /// </summary>
         NewAnnounce = 0,
         /// <summary>
-        /// Server event.
-        /// </summary>
-        ParseGovResponse = 1,
-        /// <summary>
-        /// Server event.
-        /// </summary>
-        CheckEmailBox = 2,
-        /// <summary>
-        /// Get all posts.
-        /// </summary>
-        GetAnnounces = 3,
-        /// <summary>
         /// Comment post.
         /// </summary>
-        CommentPost = 4,
+        CommentPost = 1,
         /// <summary>
-        /// Post comments count.
+        /// Like post.
         /// </summary>
-        UpdatePostCommentsCount=5,
+        LikePost = 2,
         /// <summary>
-        /// Get post comments.
+        /// Remove post.
         /// </summary>
-        GetPostComments = 6
+        RemovePost = 3
     }
 }

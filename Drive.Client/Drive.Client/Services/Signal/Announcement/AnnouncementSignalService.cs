@@ -23,6 +23,8 @@ namespace Drive.Client.Services.Signal.Announcement {
 
         private const string GET_POST_COMMENTS = "GetPostCommentsHubEndpoint";
 
+        private const string REMOVE_POST = "RemovePostHubEndpoint";
+
         public event EventHandler<Announce> NewAnnounceReceived = delegate { };
 
         public event EventHandler<Announce[]> GetAnnouncement = delegate { };
@@ -33,9 +35,29 @@ namespace Drive.Client.Services.Signal.Announcement {
 
         public event EventHandler<Comment> NewPostCommentReceived = delegate { };
 
+        public event EventHandler<string> DeletedPostReceived = delegate { };
+
         public override string SocketHubGateway { get; protected set; } = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.SignalGateways.Announcements;
 
         protected override void OnStartListeningToHub() {
+            _hubConnection.On<object>(REMOVE_POST, async (args) => {
+                try {
+                    DrivenEventResponse drivenEventResponse = ParseResponseData<DrivenEventResponse>(args);
+
+                    if (drivenEventResponse.StatusCode == HttpStatusCode.OK) {
+                        DrivenEvent drivenEvent = ParseResponseData<DrivenEvent>(drivenEventResponse.Data);
+
+                        string postId = ParseResponseData<string>(drivenEvent.Data);
+                        DeletedPostReceived(this, postId);
+                    } else if (drivenEventResponse.StatusCode == HttpStatusCode.Unauthorized) {
+                        await DependencyLocator.Resolve<IIdentityService>().LogOutAsync();
+                    }
+                }
+                catch (Exception ex) {
+                    Crashes.TrackError(ex);
+                }
+            });
+
             _hubConnection.On<object>(NEW_POST_COMMENT, async (args) => {
                 try {
                     DrivenEventResponse drivenEventResponse = ParseResponseData<DrivenEventResponse>(args);

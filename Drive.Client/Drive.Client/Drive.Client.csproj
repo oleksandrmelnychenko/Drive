@@ -60,6 +60,7 @@
     <None Remove="Resources\Images\Mask.svg" />
     <None Remove="Resources\Images\name.svg" />
     <None Remove="Resources\Images\noun_comment_1321948.svg" />
+    <None Remove="Resources\Images\noun_more.svg" />
     <None Remove="Resources\Images\Ok.svg" />
     <None Remove="Resources\Images\Out.svg" />
     <None Remove="Resources\Images\password.svg" />
@@ -109,6 +110,7 @@
     <EmbeddedResource Include="Resources\Images\Mask.svg" />
     <EmbeddedResource Include="Resources\Images\name.svg" />
     <EmbeddedResource Include="Resources\Images\noun_comment_1321948.svg" />
+    <EmbeddedResource Include="Resources\Images\noun_more.svg" />
     <EmbeddedResource Include="Resources\Images\Ok.svg" />
     <EmbeddedResource Include="Resources\Images\Out.svg" />
     <EmbeddedResource Include="Resources\Images\password.svg" />
@@ -230,6 +232,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BottomTabViews\Popups\PostTypePopupView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popups\PostFunctionPopupView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Posts\AtatchedNewPostMediaStackItem.xaml">

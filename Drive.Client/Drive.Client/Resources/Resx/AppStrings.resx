@@ -502,4 +502,7 @@ certificate issued</value>
   <data name="Comment" xml:space="preserve">
     <value>Comment</value>
   </data>
+  <data name="RemoveUpperCase" xml:space="preserve">
+    <value>DELETE</value>
+  </data>
 </root>

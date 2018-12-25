@@ -13,5 +13,7 @@ namespace Drive.Client.Services.Signal.Announcement {
         event EventHandler<Comment[]> PostCommentsReceived;
 
         event EventHandler<Comment> NewPostCommentReceived;
+
+        event EventHandler<string> DeletedPostReceived;
     }
 }

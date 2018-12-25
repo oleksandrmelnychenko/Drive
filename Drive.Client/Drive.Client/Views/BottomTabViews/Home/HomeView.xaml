@@ -6,6 +6,7 @@
     xmlns:controls="clr-namespace:Drive.Client.Controls"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
+    xmlns:hiddenView="clr-namespace:Drive.Client.Views.IdentityAccounting"
     xmlns:templateSelectors="clr-namespace:Drive.Client.Views.Templates.TemplateSelectors"
     BackgroundColor="{StaticResource WhiteColor}">
 
@@ -16,39 +17,44 @@
     </ContentView.Resources>
 
     <Grid RowSpacing="0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="48" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <Grid
-            Grid.Row="0"
-            BackgroundColor="{StaticResource WhiteColor}"
-            RowSpacing="0">
-            <BoxView
-                HeightRequest="1"
-                VerticalOptions="End"
-                Color="{StaticResource LightGrayColor}" />
+            <Grid
+                Grid.Row="0"
+                BackgroundColor="{StaticResource WhiteColor}"
+                RowSpacing="0">
+                <BoxView
+                    HeightRequest="1"
+                    VerticalOptions="End"
+                    Color="{StaticResource LightGrayColor}" />
 
-            <ffimageloadingsvg:SvgCachedImage
-                HeightRequest="20"
-                HorizontalOptions="Center"
-                Source="resource://Drive.Client.Resources.Images.drive_logo.svg"
-                TranslationY="-6"
-                VerticalOptions="Center" />
+                <ffimageloadingsvg:SvgCachedImage
+                    HeightRequest="20"
+                    HorizontalOptions="Center"
+                    Source="resource://Drive.Client.Resources.Images.drive_logo.svg"
+                    TranslationY="-6"
+                    VerticalOptions="Center" />
+            </Grid>
+
+            <ListView
+                x:Name="_posts_listView"
+                Grid.Row="1"
+                BackgroundColor="{StaticResource MediumGrayColor}"
+                CachingStrategy="RecycleElement"
+                HasUnevenRows="True"
+                ItemSelected="ListViewItemSelected"
+                ItemTemplate="{StaticResource HomePostTemplateSelector}"
+                ItemsSource="{Binding Posts}"
+                RefreshCommand="{Binding RefreshPostsCommand}"
+                SelectedItem="{Binding SelectedPostViewModel}"
+                SeparatorVisibility="None" />
         </Grid>
 
-        <ListView
-            x:Name="_posts_listView"
-            Grid.Row="1"
-            BackgroundColor="{StaticResource MediumGrayColor}"
-            CachingStrategy="RecycleElement"
-            HasUnevenRows="True"
-            ItemSelected="ListViewItemSelected"
-            ItemTemplate="{StaticResource HomePostTemplateSelector}"
-            ItemsSource="{Binding Posts}"
-            SelectedItem="{Binding SelectedPostViewModel}"
-            SeparatorVisibility="None" />
+        <hiddenView:UnauthorizeView BackgroundColor="{StaticResource WhiteColor}" IsVisible="{Binding VisibilityClosedView}" />
     </Grid>
 </ContentView>
 

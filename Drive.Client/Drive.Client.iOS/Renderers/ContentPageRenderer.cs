@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using CoreGraphics;
 using Drive.Client.iOS.Renderers;
+using Drive.Client.Views.Posts;
 using Foundation;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(ContentPage), typeof(ContentPageRenderer))]
+[assembly: ExportRenderer(typeof(PostCommentsView), typeof(ContentPageRenderer))]
 namespace Drive.Client.iOS.Renderers {
     public class ContentPageRenderer : PageRenderer {
         private UIView activeview;             // Controller that activated the keyboard
@@ -21,11 +22,14 @@ namespace Drive.Client.iOS.Renderers {
         protected override void OnElementChanged(VisualElementChangedEventArgs e) {
             base.OnElementChanged(e);
 
-            this.View.GestureRecognizers = new UIGestureRecognizer[0]; // Stop dissmis keyboard.
+            //this.View.GestureRecognizers = new UIGestureRecognizer[0]; // Stop dissmis keyboard.
         }
 
         public override void ViewDidLoad() {
             base.ViewDidLoad();
+
+            UITapGestureRecognizer hideKeyboardGestureRecognizer = new UITapGestureRecognizer(() => View.EndEditing(true));
+            View.AddGestureRecognizer(hideKeyboardGestureRecognizer);
 
             // Keyboard popup
             NSNotificationCenter.DefaultCenter.AddObserver(UIKeyboard.DidShowNotification, KeyBoardUpNotification);
@@ -39,10 +43,9 @@ namespace Drive.Client.iOS.Renderers {
             CGRect keyboardRect = UIKeyboard.BoundsFromNotification(notification);
 
             // Find what opened the keyboard
-
             activeview = GetActiveView(NativeView);
-            if (activeview == null)
-                return;
+
+            if (activeview == null) return;
 
             // Bottom of the controller = initial position + height + offset    
             var point = GetAbsolutePoint(activeview);

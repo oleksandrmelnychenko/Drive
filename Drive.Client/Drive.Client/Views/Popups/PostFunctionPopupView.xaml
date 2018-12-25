@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<popups:SinglePopupViewBase
+    x:Class="Drive.Client.Views.Popups.PostFunctionPopupView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:popups="clr-namespace:Drive.Client.Controls.Popups"
+    CascadeInputTransparent="False"
+    InputTransparent="True">
+    <popups:SinglePopupViewBase.Content>
+        <Grid CascadeInputTransparent="False" InputTransparent="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Content background backing  -->
+            <ContentView Grid.Row="1" BackgroundColor="Transparent" />
+
+            <!--  MAIN CONTENT  -->
+            <StackLayout
+                Grid.Row="1"
+                BackgroundColor="{StaticResource WhiteColor}"
+                Spacing="0"
+                VerticalOptions="End">
+
+                <controls:LabelExtended
+                    FontFamily="{StaticResource SFProLight}"
+                    FontSize="{StaticResource MediumSize}"
+                    HeightRequest="50"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding ResourceLoader[RemoveUpperCase].Value, Mode=TwoWay}"
+                    TextColor="{StaticResource ErrorColor}"
+                    VerticalTextAlignment="Center">
+                    <controls:LabelExtended.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding DeleteCommand}" NumberOfTapsRequired="1" />
+                    </controls:LabelExtended.GestureRecognizers>
+                </controls:LabelExtended>
+
+                <!--  FOOTER  -->
+                <controls:LabelExtended
+                    FontFamily="{StaticResource SFProLight}"
+                    FontSize="{StaticResource MediumSize}"
+                    HeightRequest="50"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding ResourceLoader[Cancel].Value, Mode=TwoWay}"
+                    TextColor="{StaticResource BaseGrayColor}"
+                    VerticalTextAlignment="Center">
+                    <controls:LabelExtended.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CancelCommand}" NumberOfTapsRequired="1" />
+                    </controls:LabelExtended.GestureRecognizers>
+                </controls:LabelExtended>
+            </StackLayout>
+        </Grid>
+    </popups:SinglePopupViewBase.Content>
+</popups:SinglePopupViewBase>

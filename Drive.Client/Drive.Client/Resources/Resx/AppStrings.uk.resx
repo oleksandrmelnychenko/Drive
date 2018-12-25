@@ -501,4 +501,7 @@
   <data name="Comment" xml:space="preserve">
     <value>Коментар</value>
   </data>
+  <data name="RemoveUpperCase" xml:space="preserve">
+    <value>ВИДАЛИТИ</value>
+  </data>
 </root>

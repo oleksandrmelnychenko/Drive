@@ -12,6 +12,7 @@ using Drive.Client.ViewModels.BottomTabViewModels.Home.Post;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -72,17 +73,45 @@ namespace Drive.Client.ViewModels.Posts {
 
             if (navigationData is PostBaseViewModel postBaseViewModel) {
                 CurrentPost = postBaseViewModel;
-
-                _commentService.GetPostCommentsById(postBaseViewModel.Post.AnnounceBody.Id, new CancellationTokenSource());
+                GetPostComments(postBaseViewModel);
             }
 
             return base.InitializeAsync(navigationData);
         }
 
+        public override void Dispose() {
+            base.Dispose();
+
+            ResetCancellationTokenSource(ref _getPostCommentsCancellationTokenSource);
+            Comments?.Clear();
+        }
+
+        private CancellationTokenSource _getPostCommentsCancellationTokenSource = new CancellationTokenSource();
+
+        private async void GetPostComments(PostBaseViewModel postBaseViewModel) {
+            try {
+                ResetCancellationTokenSource(ref _getPostCommentsCancellationTokenSource);
+                CancellationTokenSource cancellationTokenSource = _getPostCommentsCancellationTokenSource;
+
+                Guid busyKey = Guid.NewGuid();
+                SetBusy(busyKey, true);
+
+                var comments = await _commentService.GetPostCommentsAsync(postBaseViewModel.Post.AnnounceBody.Id, cancellationTokenSource);
+
+                if (comments != null) {
+                    Comments = _commentsFactory.BuildCommentsViewModels(comments);
+                }
+
+                SetBusy(busyKey, false);
+            }
+            catch (Exception ex) {
+                Debug.WriteLine($"ERROR:{ex.Message}");
+            }
+        }
+
         protected override void OnSubscribeOnAppEvents() {
             base.OnSubscribeOnAppEvents();
 
-            _announcementSignalService.PostCommentsReceived += PostCommentsReceived;
             _announcementSignalService.NewPostCommentReceived += NewPostCommentReceived;
             _announcementSignalService.PostCommentsCountReceived += PostCommentsCountReceived;
         }
@@ -90,7 +119,6 @@ namespace Drive.Client.ViewModels.Posts {
         protected override void OnUnsubscribeFromAppEvents() {
             base.OnUnsubscribeFromAppEvents();
 
-            _announcementSignalService.PostCommentsReceived -= PostCommentsReceived;
             _announcementSignalService.NewPostCommentReceived -= NewPostCommentReceived;
             _announcementSignalService.PostCommentsCountReceived -= PostCommentsCountReceived;
         }
@@ -104,11 +132,7 @@ namespace Drive.Client.ViewModels.Posts {
         private void NewPostCommentReceived(object sender, Comment e) {
             Comments?.Add(_commentsFactory.CreateCommentViewModel(e));
         }
-
-        private void PostCommentsReceived(object sender, Comment[] e) {
-            Comments = _commentsFactory.BuildCommentsViewModels(e);
-        }
-
+     
         private void OnSend() {
             if (Validate()) {
                 CommentBody commentBody = new CommentBody {
@@ -134,12 +158,6 @@ namespace Drive.Client.ViewModels.Posts {
 
         private void AddValidationRules() {
             _commentText.Validations.Add(new IsNotNullOrEmptyRule<string>());
-        }
-
-        public override void Dispose() {
-            base.Dispose();
-
-            Comments?.Clear();
         }
     }
 }

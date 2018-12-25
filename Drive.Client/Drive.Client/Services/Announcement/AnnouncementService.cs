@@ -29,6 +29,30 @@ namespace Drive.Client.Services.Announcement {
             _requestProvider = requestProvider;
         }
 
+        public Task DeleteAnnounceAsync(string id, CancellationTokenSource cancellationTokenSource) =>
+             Task.Run(async () => {
+                 try {
+                     DrivenEvent announceActor = new DrivenEvent() {
+                         Id = Guid.NewGuid().ToString(),
+                         Data = id,
+                         EventType = DrivenActorEvents.RemovePost,
+                         UserNetId = BaseSingleton<GlobalSetting>.Instance.UserProfile.NetId
+                     };
+
+                     string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.AnnouncementEndPoints.NewAnnounce;
+                     string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+
+                     await _requestProvider.PostAsync<object, DrivenEvent>(url, announceActor, accessToken);
+                 }
+                 catch (ServiceAuthenticationException) {
+                     await _identityService.LogOutAsync();
+                 }
+                 catch (Exception exc) {
+                     Crashes.TrackError(exc);
+                 }
+
+             }, cancellationTokenSource.Token);
+
         public Task NewAnnouncementAsync(AnnounceBodyRequest announceBodyRequest, CancellationTokenSource cancellationTokenSource = default(CancellationTokenSource), string eventId = "") =>
             Task.Run(async () => {
                 try {
@@ -53,18 +77,36 @@ namespace Drive.Client.Services.Announcement {
 
             }, cancellationTokenSource.Token);
 
+        public async Task<List<Announce>> GetAnnouncesAsync(CancellationTokenSource cancellationTokenSource = default(CancellationTokenSource)) =>
+            await Task.Run(async () => {
+                List<Announce> announces = null;
+                try {
+                    string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.AnnouncementEndPoints.GetAnnouncesEndpoint;
+                    string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+
+                    announces = await _requestProvider.GetAsync<List<Announce>>(url, accessToken);
+                }
+                catch (ServiceAuthenticationException) {
+                    await _identityService.LogOutAsync();
+                }
+                catch (Exception exc) {
+                    Crashes.TrackError(exc);
+                }
+                return announces;
+            }, cancellationTokenSource.Token);
+
         public Task AskToGetAnnouncementAsync(CancellationTokenSource cancellationTokenSource) =>
             Task.Run(async () => {
                 try {
-                    DrivenEvent announceActor = new DrivenEvent() {
-                        Id = Guid.NewGuid().ToString(),
-                        EventType = DrivenActorEvents.GetAnnounces
-                    };
+                    //DrivenEvent announceActor = new DrivenEvent() {
+                    //    Id = Guid.NewGuid().ToString(),
+                    //    EventType = DrivenActorEvents.GetAnnounces
+                    //};
 
-                    string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.AnnouncementEndPoints.NewAnnounce;
-                    string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+                    //string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.AnnouncementEndPoints.NewAnnounce;
+                    //string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
 
-                    await _requestProvider.PostAsync<object, DrivenEvent>(url, announceActor, accessToken);
+                    //await _requestProvider.PostAsync<object, DrivenEvent>(url, announceActor, accessToken);
                 }
                 catch (ServiceAuthenticationException) {
                     await _identityService.LogOutAsync();
@@ -100,5 +142,6 @@ namespace Drive.Client.Services.Announcement {
 
                 return string.Empty;
             }, cancellationTokenSource.Token);
+
     }
 }

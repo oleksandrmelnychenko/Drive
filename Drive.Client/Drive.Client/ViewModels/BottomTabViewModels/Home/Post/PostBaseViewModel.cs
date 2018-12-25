@@ -41,6 +41,12 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
             set { SetProperty(ref _commentsCount, value); }
         }
 
+        bool _isRemovable;
+        public bool IsRemovable {
+            get { return _isRemovable; }
+            set { SetProperty(ref _isRemovable, value); }
+        }
+        
         /// <summary>
         /// Post instance.
         /// </summary>
@@ -53,7 +59,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
             }
         }
 
-        public ICommand TestCommand => new Command(() => OnTest());
+       
 
         /// <summary>
         ///     ctor().
@@ -62,8 +68,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
             OpenUrlService = DependencyLocator.Resolve<IOpenUrlService>();
         }
 
-        private void OnTest() {
-        }
+      
 
         protected virtual void OnPost(Announce post) {
             if (post != null) {

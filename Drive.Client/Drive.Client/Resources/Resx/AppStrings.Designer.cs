@@ -890,6 +890,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DELETE.
+        /// </summary>
+        public static string RemoveUpperCase {
+            get {
+                return ResourceManager.GetString("RemoveUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your request has been sent!.
         /// </summary>
         public static string RequestSent {

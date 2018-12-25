@@ -11,5 +11,9 @@ namespace Drive.Client.Services.Announcement {
         Task NewAnnouncementAsync(AnnounceBodyRequest announceBodyRequest, CancellationTokenSource cancellationTokenSource = default(CancellationTokenSource), string eventId = "");
 
         Task<string> UploadAttachedDataAsync(IEnumerable<AttachedAnnounceMediaBase> attachedData, CancellationTokenSource cancellationTokenSource = default(CancellationTokenSource));
+
+        Task DeleteAnnounceAsync(string id, CancellationTokenSource cancellationTokenSource);
+
+        Task<List<Announce>> GetAnnouncesAsync(CancellationTokenSource cancellationTokenSource = default(CancellationTokenSource));
     }
 }

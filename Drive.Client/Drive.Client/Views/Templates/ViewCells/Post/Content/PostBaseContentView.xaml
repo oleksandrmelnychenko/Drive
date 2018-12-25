@@ -7,7 +7,8 @@
     xmlns:converters="clr-namespace:Drive.Client.Converters"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations">
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    x:Name="_root_ContentView">
 
     <ContentView.Resources>
         <converters:PublishDateTimeConverter x:Key="publishDateTimeConverter" />
@@ -20,7 +21,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="40" />
+            <RowDefinition Height="45" />
         </Grid.RowDefinitions>
 
         <!--  HEADER  -->
@@ -83,6 +84,26 @@
                     TextColor="{StaticResource BaseGrayColor}"
                     TranslationY="-1" />
             </Grid>
+
+            <ContentView
+                Grid.Column="1"
+                HorizontalOptions="End"
+                WidthRequest="40">
+                <ContentView.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding Path=Parent.Parent.BindingContext.OpenFunctionCommand, Source={Reference Name=_root_ContentView}}"
+                        CommandParameter="{Binding}"
+                        NumberOfTapsRequired="1" />
+                </ContentView.GestureRecognizers>
+                <ffimageloadingsvg:SvgCachedImage
+                    HeightRequest="18"
+                    HorizontalOptions="End"
+                    IsVisible="{Binding IsRemovable}"
+                    Source="resource://Drive.Client.Resources.Images.noun_more.svg"
+                    VerticalOptions="Center"
+                    WidthRequest="18" />
+            </ContentView>
+
         </Grid>
 
         <!--  MAIN CONTENT  -->

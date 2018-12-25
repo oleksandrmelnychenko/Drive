@@ -107,21 +107,18 @@ namespace Drive.Client.Services.Signal {
             });
 
         private async void TryToConnectToHub() {
-            //while (_connectionAttempts < MaxNumberOfConnectionAttempts) {
             try {
-                await Task.Delay(1002);
+                //await Task.Delay(1002);
 
                 await _hubConnection.StartAsync();
 
                 IsConnected = true;
-                //break;
             }
             catch (Exception exc) {
                 string message = exc.Message;
                 _connectionAttempts++;
                 IsConnected = false;
             }
-            //}
 
             _connectionAttempts = 0;
         }

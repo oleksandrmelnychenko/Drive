@@ -8,6 +8,8 @@ using Drive.Client.Services.Announcement;
 using Drive.Client.Services.Signal.Announcement;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.BottomTabViewModels.Home.Post;
+using Drive.Client.ViewModels.IdentityAccounting.Registration;
+using Drive.Client.ViewModels.Popups;
 using Drive.Client.ViewModels.Posts;
 using Drive.Client.Views.BottomTabViews.Home;
 using System;
@@ -17,6 +19,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
@@ -27,6 +31,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
         private readonly IAnnouncementsFactory _announcementsFactory;
 
         private readonly IAnnouncementSignalService _announcementSignalService;
+
+        private CancellationTokenSource _getPostsCancellationTokenSource = new CancellationTokenSource();
 
         ObservableCollection<PostBaseViewModel> _posts;
         public ObservableCollection<PostBaseViewModel> Posts {
@@ -46,6 +52,29 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
             }
         }
 
+        bool _visibilityClosedView;
+        public bool VisibilityClosedView {
+            get { return _visibilityClosedView; }
+            set { SetProperty(ref _visibilityClosedView, value); }
+        }
+
+        PostFunctionPopupViewModel _postFunctionPopupViewModel;
+        public PostFunctionPopupViewModel PostFunctionPopupViewModel {
+            get => _postFunctionPopupViewModel;
+            private set {
+                _postFunctionPopupViewModel?.Dispose();
+                SetProperty(ref _postFunctionPopupViewModel, value);
+            }
+        }
+
+        public ICommand SignInCommand => new Command(async () => await NavigationService.NavigateToAsync<SignInPhoneNumberStepViewModel>());
+
+        public ICommand SignUpCommand => new Command(async () => await NavigationService.NavigateToAsync<PhoneNumberRegisterStepViewModel>());
+
+        public ICommand RefreshPostsCommand => new Command(() => OnRefreshPostsCommand());
+
+        public ICommand OpenFunctionCommand => new Command((param) => OpenFunction(param));
+       
         /// <summary>
         ///     ctor().
         /// </summary>
@@ -55,6 +84,9 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
             _announcementService = announcementService;
             _announcementsFactory = announcementsFactory;
             _announcementSignalService = announcementSignalService;
+
+            PostFunctionPopupViewModel = DependencyLocator.Resolve<PostFunctionPopupViewModel>();
+            PostFunctionPopupViewModel.InitializeAsync(this);
         }
 
         protected override void TabbViewModelInit() {
@@ -66,17 +98,69 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
         protected override void OnSubscribeOnAppEvents() {
             base.OnSubscribeOnAppEvents();
 
-            _announcementSignalService.GetAnnouncement += GetAnnouncements;
             _announcementSignalService.NewAnnounceReceived += NewAnnounceReceived;
+            _announcementSignalService.DeletedPostReceived += DeletedPostReceived;
             _announcementSignalService.PostCommentsCountReceived += PostCommentsCountReceived;
         }
 
         protected override void OnUnsubscribeFromAppEvents() {
             base.OnUnsubscribeFromAppEvents();
 
-            _announcementSignalService.GetAnnouncement -= GetAnnouncements;
             _announcementSignalService.NewAnnounceReceived -= NewAnnounceReceived;
+            _announcementSignalService.DeletedPostReceived -= DeletedPostReceived;
             _announcementSignalService.PostCommentsCountReceived -= PostCommentsCountReceived;
+        }
+
+        public override Task InitializeAsync(object navigationData) {
+            if (navigationData is SelectedBottomBarTabArgs) {
+                GetPosts();
+            }
+
+            UpdateView();
+
+            PostFunctionPopupViewModel?.InitializeAsync(navigationData);
+
+            return base.InitializeAsync(navigationData);
+        }
+
+        public override void Dispose() {
+            base.Dispose();
+
+            ResetCancellationTokenSource(ref _getPostsCancellationTokenSource);
+            PostFunctionPopupViewModel?.Dispose();
+            Posts?.Clear();
+        }
+
+        private void OnRefreshPostsCommand() {
+
+        }
+
+        private async void GetPosts() {
+            try {
+                ResetCancellationTokenSource(ref _getPostsCancellationTokenSource);
+                CancellationTokenSource cancellationTokenSource = _getPostsCancellationTokenSource;
+
+                Guid busyKey = Guid.NewGuid();
+                UpdateBusyVisualState(busyKey, true);
+
+                var announces = await _announcementService.GetAnnouncesAsync(cancellationTokenSource);
+
+                if (announces != null) {
+                    Posts = _announcementsFactory.BuildPostViewModels(announces);
+                }
+
+                UpdateBusyVisualState(busyKey, false);
+            }
+            catch (Exception ex) {
+                Debug.WriteLine($"ERROR:{ex.Message}");
+            }
+        }
+
+        private void OpenFunction(object param) {
+            if (param is PostBaseViewModel postBaseViewModelParam) {
+                PostFunctionPopupViewModel.ShowPopupCommand.Execute(null);
+                PostFunctionPopupViewModel.InitializeAsync(param);
+            }
         }
 
         private void PostCommentsCountReceived(object sender, CommentCountBody e) {
@@ -89,26 +173,22 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
             }
         }
 
+        private void DeletedPostReceived(object sender, string e) {
+            if (Posts == null) return;
+
+            foreach (var post in Posts) {
+                if (post.Post.AnnounceBody.Id == e) {
+                    Posts.Remove(post);
+                }
+            }
+        }
+
         private void NewAnnounceReceived(object sender, Announce e) {
             Posts?.Insert(0, _announcementsFactory.CreatePostViewModel(e));
         }
-
-        private void GetAnnouncements(object sender, Announce[] e) {
-            Posts = _announcementsFactory.BuildPostViewModels(e);
-        }
-
-        public override Task InitializeAsync(object navigationData) {
-            if (navigationData is SelectedBottomBarTabArgs) {
-                _announcementService.AskToGetAnnouncementAsync(new CancellationTokenSource());
-            }
-
-            return base.InitializeAsync(navigationData);
-        }
-
-        public override void Dispose() {
-            base.Dispose();
-
-            Posts?.Clear();
+      
+        private void UpdateView() {
+            VisibilityClosedView = !BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth;
         }
     }
 }

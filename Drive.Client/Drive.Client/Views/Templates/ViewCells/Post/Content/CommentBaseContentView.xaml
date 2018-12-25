@@ -13,11 +13,12 @@
     </ContentView.Resources>
 
     <Grid
+        Margin="0,5"
         Padding="10,0"
         BackgroundColor="{StaticResource WhiteColor}"
         RowSpacing="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="55" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="auto" />
             <!--<RowDefinition Height="30" />-->
         </Grid.RowDefinitions>
@@ -71,7 +72,7 @@
                                                Android=0.04}"
                     Text="{Binding AuthorName}"
                     TextColor="{StaticResource DarkColor}"
-                    TranslationY="15" />
+                    TranslationY="13" />
 
                 <controls:LabelExtended
                     Grid.Row="1"
@@ -80,7 +81,7 @@
                                                Android=0.07}"
                     Text="{Binding PublishDate, Converter={StaticResource publishDateTimeConverter}}"
                     TextColor="{StaticResource BaseGrayColor}"
-                    TranslationY="-1" />
+                    TranslationY="1" />
             </Grid>
         </Grid>
 
@@ -88,7 +89,8 @@
         <ContentView
             x:Name="_mainContent"
             Grid.Row="1"
-            Margin="45,0,0,10" />
+            Margin="45,0,0,10"
+            TranslationY="-3" />
 
         <!--  FOOTER  -->
         <!--<AbsoluteLayout Grid.Row="2">

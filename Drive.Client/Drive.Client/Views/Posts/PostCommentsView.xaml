@@ -107,7 +107,7 @@
             <ListView
                 x:Name="_comments_listView"
                 Grid.Row="0"
-                BackgroundColor="{StaticResource MediumGrayColor}"
+                BackgroundColor="{StaticResource WhiteColor}"
                 CachingStrategy="RecycleElement"
                 HasUnevenRows="True"
                 Header="{Binding CurrentPost}"
@@ -116,7 +116,13 @@
                 SeparatorVisibility="None">
                 <ListView.HeaderTemplate>
                     <DataTemplate>
-                        <ContentView Content="{Binding Post.AnnounceBody.Type, Converter={StaticResource EnumToViewConverter}}" />
+                        <Grid>
+                            <ContentView Content="{Binding Post.AnnounceBody.Type, Converter={StaticResource EnumToViewConverter}}" />
+                            <BoxView
+                                HeightRequest="0.5"
+                                VerticalOptions="End"
+                                Color="{StaticResource MediumGrayColor}" />
+                        </Grid>
                     </DataTemplate>
                 </ListView.HeaderTemplate>
                 <ListView.ItemTemplate>
@@ -126,7 +132,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <BoxView Grid.Row="1" Color="{StaticResource ExtraLightGrayColor}" />
+            <BoxView Grid.Row="1" Color="{StaticResource LightGrayColor}" />
 
             <StackLayout
                 Grid.Row="2"

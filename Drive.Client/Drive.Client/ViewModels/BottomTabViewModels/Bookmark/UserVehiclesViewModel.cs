@@ -242,7 +242,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
         }
 
         private Task<List<BaseRequestDataItem>> GetRequestAsync() =>
-            Task<List<BaseRequestDataItem>>.Run(async () => {
+            Task.Run(async () => {
                 ResetCancellationTokenSource(ref _getRequestAsyncCancellationTokenSource);
                 CancellationTokenSource cancellationTokenSource = _getRequestAsyncCancellationTokenSource;
 
@@ -261,7 +261,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
                         createdItems = createdItems.OrderByDescending(x => x.Created).ToList();
 
                         cancellationTokenSource.Token.ThrowIfCancellationRequested();
-                        //Device.BeginInvokeOnMainThread(() => { UserRequests = createdItems.ToObservableCollection(); });
                     }
                 }
                 catch (OperationCanceledException) { }
@@ -274,32 +273,5 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
 
                 return createdItems;
             });
-
-        //private async void OnInitializeVehicleDetailInfoArgs(ReceivedResidentVehicleDetailInfoArgs vehicleDetailInfoArgs) {
-        //    try {
-        //        if (BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth) {
-
-        //            if (UserRequests == null || !UserRequests.Any()) {
-        //                UserRequests = (await GetRequestAsync()).ToObservableCollection();
-        //            }
-
-        //            long govRequestId = 0;
-
-        //            if (long.TryParse(vehicleDetailInfoArgs.RecidentVehicleNotification.Data, out govRequestId)) {
-
-        //                ResidentRequestDataItem requestDataItem = UserRequests?.OfType<ResidentRequestDataItem>().FirstOrDefault<ResidentRequestDataItem>(residentRequestItem => residentRequestItem.ResidentRequest.GovRequestId == govRequestId);
-
-        //                if (requestDataItem != null) {
-        //                    GetVehicles(requestDataItem);
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (OperationCanceledException) { }
-        //    catch (ObjectDisposedException) { }
-        //    catch (Exception exc) {
-        //        Crashes.TrackError(exc);
-        //    }
-        //}
     }
 }

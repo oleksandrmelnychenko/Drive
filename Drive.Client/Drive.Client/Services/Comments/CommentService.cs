@@ -27,19 +27,37 @@ namespace Drive.Client.Services.Comments {
             _requestProvider = requestProvider;
         }
 
+        public async Task<List<Comment>> GetPostCommentsAsync(string postId, CancellationTokenSource cancellationTokenSource) =>
+              await Task.Run(async () => {
+                  List<Comment> comments = null;
+                  try {
+                      string url = string.Format(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.AnnouncementEndPoints.GetPostCommentsEndpoint, postId);
+                      string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+
+                      comments = await _requestProvider.GetAsync<List<Comment>>(url, accessToken);
+                  }
+                  catch (ServiceAuthenticationException) {
+                      await _identityService.LogOutAsync();
+                  }
+                  catch (Exception exc) {
+                      Crashes.TrackError(exc);
+                  }
+                  return comments;
+              }, cancellationTokenSource.Token);
+
         public Task GetPostCommentsById(string postId, CancellationTokenSource cancellationTokenSource) =>
             Task.Run(async () => {
                 try {
-                    DrivenEvent announceActor = new DrivenEvent() {
-                        Id = Guid.NewGuid().ToString(),
-                        EventType = DrivenActorEvents.GetPostComments,
-                        Data = postId
-                    };
+                    //DrivenEvent announceActor = new DrivenEvent() {
+                    //    Id = Guid.NewGuid().ToString(),
+                    //    EventType = DrivenActorEvents.GetPostComments,
+                    //    Data = postId
+                    //};
 
-                    string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.AnnouncementEndPoints.NewAnnounce;
-                    string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+                    //string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.AnnouncementEndPoints.NewAnnounce;
+                    //string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
 
-                    await _requestProvider.PostAsync<object, DrivenEvent>(url, announceActor, accessToken);
+                    //await _requestProvider.PostAsync<object, DrivenEvent>(url, announceActor, accessToken);
                 }
                 catch (ServiceAuthenticationException) {
                     await _identityService.LogOutAsync();
@@ -49,7 +67,7 @@ namespace Drive.Client.Services.Comments {
                 }
             }, cancellationTokenSource.Token);
 
-        public Task SendCommentAsync(CommentBody commentBody, CancellationTokenSource cancellationTokenSource)=>
+        public Task SendCommentAsync(CommentBody commentBody, CancellationTokenSource cancellationTokenSource) =>
             Task.Run(async () => {
                 try {
                     DrivenEvent announceActor = new DrivenEvent() {

@@ -10,24 +10,25 @@ namespace Drive.Client.Models.Rest {
         /// Car info endpoints.
         /// </summary>
         public CarInfoEndPoints CarInfoEndPoints { get; private set; } = new CarInfoEndPoints(DEFAULT_ENDPOINT);
-
         /// <summary>
         /// Client hardware endpoints.
         /// </summary>
         public ClientHardwareEndPoints ClientHardwareEndPoints { get; private set; } = new ClientHardwareEndPoints(DEFAULT_ENDPOINT);
-
         /// <summary>
         /// Identity endpoints.
         /// </summary>
         public IdentityEndpoints IdentityEndpoints { get; set; } = new IdentityEndpoints(DEFAULT_ENDPOINT);
-
         /// <summary>
-        /// Vehicle endpoints
+        /// Vehicle endpoints.
         /// </summary>
         public VehicleEndpoints VehicleEndpoints { get; set; } = new VehicleEndpoints(DEFAULT_ENDPOINT);
-
+        /// <summary>
+        /// Signal endpoints.
+        /// </summary>
         public SignalGateways SignalGateways { get; set; } = new SignalGateways(DEFAULT_ENDPOINT);
-
+        /// <summary>
+        /// Announcement endpoints.
+        /// </summary>
         public AnnouncementEndPoints AnnouncementEndPoints { get; set; } = new AnnouncementEndPoints(DEFAULT_ENDPOINT);
     }
 }

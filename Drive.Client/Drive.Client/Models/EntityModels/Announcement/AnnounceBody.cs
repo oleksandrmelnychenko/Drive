@@ -23,5 +23,8 @@ namespace Drive.Client.Models.EntityModels.Announcement {
 
         [JsonProperty("AvatarUrl")]
         public string AvatarUrl { get; set; }
+        
+        [JsonProperty("UserNetId")]
+        public string UserNetId { get; set; }
     }
 }

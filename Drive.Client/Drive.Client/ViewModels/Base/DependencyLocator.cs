@@ -112,7 +112,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<ConfirmPasswordRegisterStepViewModel>();
             builder.RegisterType<SearchByPolandCarIdSecondStepViewModel>();
             builder.RegisterType<SearchByPolandCarIdFinallyStepViewModel>();
-            //builder.RegisterType<MediaPostViewModel>();
+            builder.RegisterType<PostFunctionPopupViewModel>();
 
             // Services.
             builder.RegisterType<DialogService>().As<IDialogService>();
