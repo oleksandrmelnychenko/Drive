@@ -61,7 +61,7 @@ namespace Drive.Client.Services.Media {
 
             PickedImage pickedImage = null;
 
-            using (var file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions { PhotoSize = PhotoSize.Medium, CompressionQuality = 50 })) {
+            using (var file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions { PhotoSize = PhotoSize.Medium, CompressionQuality = 90 })) {
                 if (file == null) return null;
 
                 try {
@@ -85,7 +85,7 @@ namespace Drive.Client.Services.Media {
 
             AttachedImage attachedImage = null;
 
-            using (var file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions { PhotoSize = PhotoSize.Large, CompressionQuality = 90 })) {
+            using (var file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions { PhotoSize = PhotoSize.Medium, CompressionQuality = 90 })) {
                 if (file == null) return null;
 
                 try {

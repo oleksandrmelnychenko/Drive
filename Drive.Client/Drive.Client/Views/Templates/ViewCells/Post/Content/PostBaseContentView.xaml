@@ -121,8 +121,7 @@
                 AbsoluteLayout.LayoutBounds="0, .5, AutoSize, AutoSize"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 HeightRequest="20"
-                Source="{Binding IsLiked, Converter={StaticResource boolToImageSource}}">
-            </ffimageloadingsvg:SvgCachedImage>
+                Source="{Binding IsLiked, Converter={StaticResource boolToImageSource}}" />
             <controls:LabelExtended
                 AbsoluteLayout.LayoutBounds="0.09, .5, Autosize, Autosize"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
@@ -132,11 +131,16 @@
                 TranslationY="2"
                 WidthRequest="60" />
 
-            <BoxView ScaleX="3.5" ScaleY="2.3" HeightRequest="20" WidthRequest="20" AbsoluteLayout.LayoutBounds="0, .5"
-                AbsoluteLayout.LayoutFlags="PositionProportional">
+            <BoxView
+                AbsoluteLayout.LayoutBounds="0, .5"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                HeightRequest="20"
+                ScaleX="3.5"
+                ScaleY="2.3"
+                WidthRequest="20">
                 <BoxView.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding LikeCommand}" NumberOfTapsRequired="1" />
-                    
+
                 </BoxView.GestureRecognizers>
             </BoxView>
 
@@ -170,11 +174,11 @@
                 AbsoluteLayout.LayoutBounds="1, .5, Autosize, Autosize"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 FontSize="{StaticResource SoftMediumSize}"
-                HorizontalTextAlignment="Center"
                 InputTransparent="True"
                 IsVisible="{Binding CanShowImageInfo}"
                 Text="{Binding ImagesCount}"
                 TextColor="{StaticResource DarkColor}"
+                TranslationX="6"
                 TranslationY="{OnPlatform Android=2,
                                           iOS=4}"
                 WidthRequest="20" />
