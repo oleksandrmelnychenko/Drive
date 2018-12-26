@@ -505,4 +505,7 @@ certificate issued</value>
   <data name="RemoveUpperCase" xml:space="preserve">
     <value>DELETE</value>
   </data>
+  <data name="AppInfo" xml:space="preserve">
+    <value>Vehicle information, data from 2013</value>
+  </data>
 </root>

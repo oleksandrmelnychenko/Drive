@@ -97,6 +97,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vehicle information, data from 2013.
+        /// </summary>
+        public static string AppInfo {
+            get {
+                return ResourceManager.GetString("AppInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reliably serves your interests..
         /// </summary>
         public static string AppSlogan {
