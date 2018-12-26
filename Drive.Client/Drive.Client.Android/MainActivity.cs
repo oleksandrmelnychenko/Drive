@@ -33,23 +33,15 @@ namespace Drive.Client.Droid {
         }
 
         protected override void OnCreate(Bundle savedInstanceState) {
-            MessagingCenter.Subscribe<object>(this, CustomNavigationView.ON_CUSTOM_NAVIGATION_VIEW_APPEARING, (param) => {
+            MessagingCenter.Subscribe<object>(this, CustomNavigationView.ON_CUSTOM_NAVIGATION_VIEW_APPEARING, (param) =>
+            {
                 MessagingCenter.Unsubscribe<object>(this, CustomNavigationView.ON_CUSTOM_NAVIGATION_VIEW_APPEARING);
 
                 Window.SetBackgroundDrawableResource(Resource.Drawable.common_window_background_layer_list_drawable);
             });
 
-            //while (true) {
-            //    try {
-            //        Firebase.FirebaseApp.InitializeApp(this);
-            //        Firebase.FirebaseApp fireApp = Firebase.FirebaseApp.Instance;
-
-            //        break;
-            //    }
-            //    catch (Exception exc) {
-            //        Console.WriteLine(exc.Message);
-            //    }
-            //}
+            Firebase.FirebaseApp.InitializeApp(this);
+            Firebase.FirebaseApp fireApp = Firebase.FirebaseApp.Instance;
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
@@ -73,14 +65,17 @@ namespace Drive.Client.Droid {
             //string refreshedToken = FirebaseInstanceId.Instance.Token;
             //Toast.MakeText(this, string.Format("OnCreate: {0}", refreshedToken), ToastLength.Long).Show();
 
-            if (Intent.Extras != null && Intent.Extras.ContainsKey(RECREIVED_PARSED_RESIDENT_VEHICLE_DETAIL_NOTIFICATION_ENTITY_STRING_EXTRA_KEY)) {
-                try {
+            if (Intent.Extras != null && Intent.Extras.ContainsKey(RECREIVED_PARSED_RESIDENT_VEHICLE_DETAIL_NOTIFICATION_ENTITY_STRING_EXTRA_KEY))
+            {
+                try
+                {
                     string jsonNotificationMessage = Intent.Extras.GetString(RECREIVED_PARSED_RESIDENT_VEHICLE_DETAIL_NOTIFICATION_ENTITY_STRING_EXTRA_KEY);
                     INotificationMessage notificationMessage = Newtonsoft.Json.JsonConvert.DeserializeObject<NotificationMessage>(jsonNotificationMessage);
 
                     MessagingCenter.Send<object, INotificationMessage>(this, Drive.Client.Services.Notifications.NotificationService.RESIDENT_VEHICLE_DETAIL_RECEIVED_NOTIFICATION, notificationMessage);
                 }
-                catch (Exception exc) {
+                catch (Exception exc)
+                {
                     string message = exc.Message;
                     Debugger.Break();
                 }
@@ -96,14 +91,17 @@ namespace Drive.Client.Droid {
         protected override void OnNewIntent(Intent intent) {
             base.OnNewIntent(intent);
 
-            if (intent.Extras != null && intent.Extras.ContainsKey(RECREIVED_PARSED_RESIDENT_VEHICLE_DETAIL_NOTIFICATION_ENTITY_STRING_EXTRA_KEY)) {
-                try {
+            if (intent.Extras != null && intent.Extras.ContainsKey(RECREIVED_PARSED_RESIDENT_VEHICLE_DETAIL_NOTIFICATION_ENTITY_STRING_EXTRA_KEY))
+            {
+                try
+                {
                     string jsonNotificationMessage = intent.Extras.GetString(RECREIVED_PARSED_RESIDENT_VEHICLE_DETAIL_NOTIFICATION_ENTITY_STRING_EXTRA_KEY);
                     INotificationMessage notificationMessage = Newtonsoft.Json.JsonConvert.DeserializeObject<NotificationMessage>(jsonNotificationMessage);
 
                     MessagingCenter.Send<object, INotificationMessage>(this, Drive.Client.Services.Notifications.NotificationService.RESIDENT_VEHICLE_DETAIL_RECEIVED_NOTIFICATION, notificationMessage);
                 }
-                catch (Exception exc) {
+                catch (Exception exc)
+                {
                     string message = exc.Message;
                     Debugger.Break();
                 }
@@ -115,12 +113,15 @@ namespace Drive.Client.Droid {
         /// </summary>
         private bool IsPlayServicesAvailable() {
             int resultCode = GoogleApiAvailability.Instance.IsGooglePlayServicesAvailable(this);
-            if (resultCode != ConnectionResult.Success) {
-                if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode)) {
+            if (resultCode != ConnectionResult.Success)
+            {
+                if (GoogleApiAvailability.Instance.IsUserResolvableError(resultCode))
+                {
                     // In a real project you can give the user a chance to fix the issue.
                     Console.WriteLine($"Error: {GoogleApiAvailability.Instance.GetErrorString(resultCode)}");
                 }
-                else {
+                else
+                {
                     Console.WriteLine("Error: Play services not supported!");
                     Debugger.Break();
                 }
@@ -128,7 +129,8 @@ namespace Drive.Client.Droid {
                 Toast.MakeText(this, string.Format("Error: Play services not supported!"), ToastLength.Long);
                 return false;
             }
-            else {
+            else
+            {
                 Console.WriteLine("Play Services available.");
                 return true;
             }
