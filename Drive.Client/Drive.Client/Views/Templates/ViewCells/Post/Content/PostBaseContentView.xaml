@@ -115,15 +115,13 @@
 
         <!--  FOOTER  -->
         <AbsoluteLayout Grid.Row="2" Margin="10,0">
+
             <ffimageloadingsvg:SvgCachedImage
                 Margin="0,4,0,0"
                 AbsoluteLayout.LayoutBounds="0, .5, AutoSize, AutoSize"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 HeightRequest="20"
                 Source="{Binding IsLiked, Converter={StaticResource boolToImageSource}}">
-                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding LikeCommand}" NumberOfTapsRequired="1" />
-                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
             </ffimageloadingsvg:SvgCachedImage>
             <controls:LabelExtended
                 AbsoluteLayout.LayoutBounds="0.09, .5, Autosize, Autosize"
@@ -133,6 +131,14 @@
                 TextColor="{StaticResource DarkColor}"
                 TranslationY="2"
                 WidthRequest="60" />
+
+            <BoxView ScaleX="3.5" ScaleY="2.3" HeightRequest="20" WidthRequest="20" AbsoluteLayout.LayoutBounds="0, .5"
+                AbsoluteLayout.LayoutFlags="PositionProportional">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding LikeCommand}" NumberOfTapsRequired="1" />
+                    
+                </BoxView.GestureRecognizers>
+            </BoxView>
 
             <ffimageloadingsvg:SvgCachedImage
                 Margin="0,4,0,0"
