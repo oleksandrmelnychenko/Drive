@@ -12,12 +12,14 @@ namespace Drive.Client.Services.Signal {
     public abstract class SignalBaseService {
 
         private static readonly int _DEFAULT_NUMBER_OF_CONNECTION_ATTEMPTS = 9;
-        private static readonly string _HUB_CONNECTION_ERROR = "{0} cant connect to the appropriate hub.";
 
         protected HubConnection _hubConnection;
 
         private int _connectionAttempts;
 
+        /// <summary>
+        ///     ctor().
+        /// </summary>
         public SignalBaseService() {
             CrossConnectivity.Current.ConnectivityChanged += OnCurrentConnectivityChanged;
         }
@@ -88,17 +90,16 @@ namespace Drive.Client.Services.Signal {
         protected abstract void OnStartListeningToHub();
 
         protected TResult ParseResponseData<TResult>(object data) {
-            try {
-                TResult result = JsonConvert.DeserializeObject<TResult>(data.ToString());
+            TResult result = default(TResult);
 
-                return result;
+            try {
+                result = JsonConvert.DeserializeObject<TResult>(data.ToString());
             }
             catch (Exception exc) {
                 Debugger.Break();
                 Crashes.TrackError(exc);
-
-                throw exc;
             }
+            return result;
         }
 
         private Task OnHubConnectionClosed(Exception arg) =>

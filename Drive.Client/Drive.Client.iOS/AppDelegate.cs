@@ -43,7 +43,8 @@ namespace Drive.Client.iOS {
 
             global::Xamarin.Forms.Forms.Init();
             CachedImageRenderer.Init();
-            
+            Stormlion.PhotoBrowser.iOS.Platform.Init();
+
             UIApplication.SharedApplication.RegisterForRemoteNotifications();
 
             ConfigereNotification();

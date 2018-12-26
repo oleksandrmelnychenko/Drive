@@ -12,12 +12,14 @@
 
     <ContentView.Resources>
         <converters:PublishDateTimeConverter x:Key="publishDateTimeConverter" />
+        <converters:BoolToGenericObjectConverter
+            x:Key="boolToImageSource"
+            x:TypeArguments="ImageSource"
+            FalseObject="resource://Drive.Client.Resources.Images.not_liked.svg"
+            TrueObject="resource://Drive.Client.Resources.Images.liked.svg" />
     </ContentView.Resources>
 
-    <Grid
-        Padding="10,0"
-        BackgroundColor="{StaticResource WhiteColor}"
-        RowSpacing="0">
+    <Grid BackgroundColor="{StaticResource WhiteColor}" RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="auto" />
@@ -27,6 +29,7 @@
         <!--  HEADER  -->
         <Grid
             Grid.Row="0"
+            Margin="10,0"
             BackgroundColor="Transparent"
             ColumnSpacing="5">
             <Grid.ColumnDefinitions>
@@ -86,6 +89,7 @@
             </Grid>
 
             <ContentView
+                x:Name="_options_ContentView"
                 Grid.Column="1"
                 HorizontalOptions="End"
                 WidthRequest="40">
@@ -94,6 +98,7 @@
                         Command="{Binding Path=Parent.Parent.BindingContext.OpenFunctionCommand, Source={Reference Name=_root_ContentView}}"
                         CommandParameter="{Binding}"
                         NumberOfTapsRequired="1" />
+                    <TapGestureRecognizer Command="{Binding Path=Parent.Parent.Parent.BindingContext.OpenFunctionCommand, Source={Reference Name=_root_ContentView}}" NumberOfTapsRequired="1" />
                 </ContentView.GestureRecognizers>
                 <ffimageloadingsvg:SvgCachedImage
                     HeightRequest="18"
@@ -103,27 +108,70 @@
                     VerticalOptions="Center"
                     WidthRequest="18" />
             </ContentView>
-
         </Grid>
 
         <!--  MAIN CONTENT  -->
         <ContentView x:Name="_mainContent" Grid.Row="1" />
 
         <!--  FOOTER  -->
-        <AbsoluteLayout Grid.Row="2">
+        <AbsoluteLayout Grid.Row="2" Margin="10,0">
             <ffimageloadingsvg:SvgCachedImage
-                Margin="0,3,0,0"
+                Margin="0,4,0,0"
                 AbsoluteLayout.LayoutBounds="0, .5, AutoSize, AutoSize"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                HeightRequest="20"
+                Source="{Binding IsLiked, Converter={StaticResource boolToImageSource}}">
+                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding LikeCommand}" NumberOfTapsRequired="1" />
+                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+            </ffimageloadingsvg:SvgCachedImage>
+            <controls:LabelExtended
+                AbsoluteLayout.LayoutBounds="0.09, .5, Autosize, Autosize"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                FontSize="{StaticResource SoftMediumSize}"
+                Text="{Binding LikesCount}"
+                TextColor="{StaticResource DarkColor}"
+                TranslationY="2"
+                WidthRequest="60" />
+
+            <ffimageloadingsvg:SvgCachedImage
+                Margin="0,4,0,0"
+                AbsoluteLayout.LayoutBounds="0.15, .5, AutoSize, AutoSize"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 HeightRequest="20"
                 Source="resource://Drive.Client.Resources.Images.noun_comment_1321948.svg" />
             <controls:LabelExtended
-                AbsoluteLayout.LayoutBounds="0.1, .5, Autosize, Autosize"
+                AbsoluteLayout.LayoutBounds="0.26, .5, Autosize, Autosize"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 FontSize="{StaticResource SoftMediumSize}"
                 Text="{Binding CommentsCount}"
                 TextColor="{StaticResource DarkColor}"
+                TranslationY="2"
                 WidthRequest="60" />
+
+            <ffimageloadingsvg:SvgCachedImage
+                Margin="0,3,0,0"
+                AbsoluteLayout.LayoutBounds="1, .5, AutoSize, AutoSize"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                HeightRequest="20"
+                IsVisible="{Binding CanShowImageInfo}"
+                Source="resource://Drive.Client.Resources.Images.images.svg">
+                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ShowImageCommand}" NumberOfTapsRequired="1" />
+                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+            </ffimageloadingsvg:SvgCachedImage>
+            <controls:LabelExtended
+                AbsoluteLayout.LayoutBounds="1, .5, Autosize, Autosize"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                FontSize="{StaticResource SoftMediumSize}"
+                HorizontalTextAlignment="Center"
+                InputTransparent="True"
+                IsVisible="{Binding CanShowImageInfo}"
+                Text="{Binding ImagesCount}"
+                TextColor="{StaticResource DarkColor}"
+                TranslationY="{OnPlatform Android=2,
+                                          iOS=4}"
+                WidthRequest="20" />
         </AbsoluteLayout>
     </Grid>
 </ContentView>

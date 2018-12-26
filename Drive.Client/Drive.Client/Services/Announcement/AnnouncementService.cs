@@ -95,18 +95,20 @@ namespace Drive.Client.Services.Announcement {
                 return announces;
             }, cancellationTokenSource.Token);
 
-        public Task AskToGetAnnouncementAsync(CancellationTokenSource cancellationTokenSource) =>
+        public Task SetLikeStatusAsync(string postId, CancellationTokenSource cancellationTokenSource) =>
             Task.Run(async () => {
                 try {
-                    //DrivenEvent announceActor = new DrivenEvent() {
-                    //    Id = Guid.NewGuid().ToString(),
-                    //    EventType = DrivenActorEvents.GetAnnounces
-                    //};
+                    DrivenEvent announceActor = new DrivenEvent() {
+                        Id = Guid.NewGuid().ToString(),
+                        EventType = DrivenActorEvents.LikePost,
+                        Data = postId,
+                        UserNetId = BaseSingleton<GlobalSetting>.Instance.UserProfile.NetId
+                    };
 
-                    //string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.AnnouncementEndPoints.NewAnnounce;
-                    //string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+                    string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.AnnouncementEndPoints.NewAnnounce;
+                    string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
 
-                    //await _requestProvider.PostAsync<object, DrivenEvent>(url, announceActor, accessToken);
+                    await _requestProvider.PostAsync<object, DrivenEvent>(url, announceActor, accessToken);
                 }
                 catch (ServiceAuthenticationException) {
                     await _identityService.LogOutAsync();

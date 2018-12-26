@@ -53,12 +53,16 @@
     <None Remove="Resources\Images\Icon-72.png" />
     <None Remove="Resources\Images\icon_user.svg" />
     <None Remove="Resources\Images\ic_barrier.png" />
+    <None Remove="Resources\Images\ic_comment.svg" />
     <None Remove="Resources\Images\ic_image.png" />
     <None Remove="Resources\Images\ic_trash_bucket.svg" />
     <None Remove="Resources\Images\ic_vin.svg" />
     <None Remove="Resources\Images\Idea.svg" />
+    <None Remove="Resources\Images\images.svg" />
+    <None Remove="Resources\Images\liked.svg" />
     <None Remove="Resources\Images\Mask.svg" />
     <None Remove="Resources\Images\name.svg" />
+    <None Remove="Resources\Images\not_liked.svg" />
     <None Remove="Resources\Images\noun_comment_1321948.svg" />
     <None Remove="Resources\Images\noun_more.svg" />
     <None Remove="Resources\Images\Ok.svg" />
@@ -103,12 +107,16 @@
     <EmbeddedResource Include="Resources\Images\Icon-72.png" />
     <EmbeddedResource Include="Resources\Images\icon_user.svg" />
     <EmbeddedResource Include="Resources\Images\ic_barrier.png" />
+    <EmbeddedResource Include="Resources\Images\ic_comment.svg" />
     <EmbeddedResource Include="Resources\Images\ic_image.png" />
     <EmbeddedResource Include="Resources\Images\ic_trash_bucket.svg" />
     <EmbeddedResource Include="Resources\Images\ic_vin.svg" />
     <EmbeddedResource Include="Resources\Images\Idea.svg" />
+    <EmbeddedResource Include="Resources\Images\images.svg" />
+    <EmbeddedResource Include="Resources\Images\liked.svg" />
     <EmbeddedResource Include="Resources\Images\Mask.svg" />
     <EmbeddedResource Include="Resources\Images\name.svg" />
+    <EmbeddedResource Include="Resources\Images\not_liked.svg" />
     <EmbeddedResource Include="Resources\Images\noun_comment_1321948.svg" />
     <EmbeddedResource Include="Resources\Images\noun_more.svg" />
     <EmbeddedResource Include="Resources\Images\Ok.svg" />
@@ -138,6 +146,7 @@
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="1.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="PhotoBrowser.Forms" Version="0.1.3" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="System.Reactive" Version="4.0.0" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />

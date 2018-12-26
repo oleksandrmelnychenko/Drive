@@ -59,6 +59,7 @@ namespace Drive.Client.Droid {
             CachedImageRenderer.Init(false);
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            Stormlion.PhotoBrowser.Droid.Platform.Init(this);
 
             base.OnCreate(savedInstanceState);
 

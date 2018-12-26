@@ -46,6 +46,8 @@
                 BackgroundColor="{StaticResource MediumGrayColor}"
                 CachingStrategy="RecycleElement"
                 HasUnevenRows="True"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsBusy}"
                 ItemSelected="ListViewItemSelected"
                 ItemTemplate="{StaticResource HomePostTemplateSelector}"
                 ItemsSource="{Binding Posts}"

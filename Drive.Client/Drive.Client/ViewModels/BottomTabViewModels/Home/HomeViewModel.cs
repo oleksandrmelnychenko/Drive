@@ -74,7 +74,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
         public ICommand RefreshPostsCommand => new Command(() => OnRefreshPostsCommand());
 
         public ICommand OpenFunctionCommand => new Command((param) => OpenFunction(param));
-       
+
         /// <summary>
         ///     ctor().
         /// </summary>
@@ -98,6 +98,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
         protected override void OnSubscribeOnAppEvents() {
             base.OnSubscribeOnAppEvents();
 
+            _announcementSignalService.PostLikesCountReceived += PostLikesCountReceived;
             _announcementSignalService.NewAnnounceReceived += NewAnnounceReceived;
             _announcementSignalService.DeletedPostReceived += DeletedPostReceived;
             _announcementSignalService.PostCommentsCountReceived += PostCommentsCountReceived;
@@ -109,14 +110,13 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
             _announcementSignalService.NewAnnounceReceived -= NewAnnounceReceived;
             _announcementSignalService.DeletedPostReceived -= DeletedPostReceived;
             _announcementSignalService.PostCommentsCountReceived -= PostCommentsCountReceived;
+            _announcementSignalService.PostLikesCountReceived -= PostLikesCountReceived;
         }
 
         public override Task InitializeAsync(object navigationData) {
             if (navigationData is SelectedBottomBarTabArgs) {
                 GetPosts();
             }
-
-            UpdateView();
 
             PostFunctionPopupViewModel?.InitializeAsync(navigationData);
 
@@ -131,8 +131,28 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
             Posts?.Clear();
         }
 
-        private void OnRefreshPostsCommand() {
+        private async void OnRefreshPostsCommand() {
+            IsBusy = true;
 
+            ResetCancellationTokenSource(ref _getPostsCancellationTokenSource);
+            CancellationTokenSource cancellationTokenSource = _getPostsCancellationTokenSource;
+
+            await GetDataAsync(cancellationTokenSource);
+
+            IsBusy = false;
+        }
+
+        private void PostLikesCountReceived(object sender, PostLikedBody e) {
+            if (Posts == null) return;
+
+            foreach (var post in Posts) {
+                if (post.Post.AnnounceBody.Id == e.PostId) {
+                    post.LikesCount = e.LikesCount;
+                    if (e.PostLikedByUser.UserNetId == BaseSingleton<GlobalSetting>.Instance.UserProfile.NetId) {
+                        post.IsLiked = e.PostLikedByUser.IsLikedByUser;
+                    }
+                }
+            }
         }
 
         private async void GetPosts() {
@@ -143,16 +163,20 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
                 Guid busyKey = Guid.NewGuid();
                 UpdateBusyVisualState(busyKey, true);
 
-                var announces = await _announcementService.GetAnnouncesAsync(cancellationTokenSource);
-
-                if (announces != null) {
-                    Posts = _announcementsFactory.BuildPostViewModels(announces);
-                }
+                await GetDataAsync(cancellationTokenSource);
 
                 UpdateBusyVisualState(busyKey, false);
             }
             catch (Exception ex) {
                 Debug.WriteLine($"ERROR:{ex.Message}");
+            }
+        }
+
+        private async Task GetDataAsync(CancellationTokenSource cancellationTokenSource) {
+            var announces = await _announcementService.GetAnnouncesAsync(cancellationTokenSource);
+
+            if (announces != null) {
+                Posts = _announcementsFactory.BuildPostViewModels(announces);
             }
         }
 
@@ -186,7 +210,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
         private void NewAnnounceReceived(object sender, Announce e) {
             Posts?.Insert(0, _announcementsFactory.CreatePostViewModel(e));
         }
-      
+
         private void UpdateView() {
             VisibilityClosedView = !BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth;
         }

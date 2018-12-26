@@ -49,7 +49,11 @@ namespace Drive.Client.ViewModels.Posts {
         }
 
         public ICommand SendCommand => new Command(() => OnSend());
-       
+
+        public ICommand OpenFunctionCommand => new Command(() => {
+
+        });
+
         /// <summary>
         ///     ctor().
         /// </summary>
@@ -93,16 +97,11 @@ namespace Drive.Client.ViewModels.Posts {
                 ResetCancellationTokenSource(ref _getPostCommentsCancellationTokenSource);
                 CancellationTokenSource cancellationTokenSource = _getPostCommentsCancellationTokenSource;
 
-                Guid busyKey = Guid.NewGuid();
-                SetBusy(busyKey, true);
-
                 var comments = await _commentService.GetPostCommentsAsync(postBaseViewModel.Post.AnnounceBody.Id, cancellationTokenSource);
 
                 if (comments != null) {
                     Comments = _commentsFactory.BuildCommentsViewModels(comments);
                 }
-
-                SetBusy(busyKey, false);
             }
             catch (Exception ex) {
                 Debug.WriteLine($"ERROR:{ex.Message}");

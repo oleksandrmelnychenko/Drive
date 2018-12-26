@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Drive.Client.Services.Announcement {
     public interface IAnnouncementService {
-        Task AskToGetAnnouncementAsync(CancellationTokenSource cancellationTokenSource);
+        Task SetLikeStatusAsync(string postId, CancellationTokenSource cancellationTokenSource);
 
         Task NewAnnouncementAsync(AnnounceBodyRequest announceBodyRequest, CancellationTokenSource cancellationTokenSource = default(CancellationTokenSource), string eventId = "");
 

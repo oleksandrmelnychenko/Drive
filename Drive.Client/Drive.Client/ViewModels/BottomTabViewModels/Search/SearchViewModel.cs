@@ -30,13 +30,13 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         /// </summary>
         public SearchViewModel() {
             SearchTabs = new List<IVisualFiguring>() {
-                //DependencyLocator.Resolve<SearchByPolandCarIdViewModel>(),
+                DependencyLocator.Resolve<SearchByPolandCarIdViewModel>(),
                 DependencyLocator.Resolve<SearchByCarIdViewModel>(),
                 DependencyLocator.Resolve<SearchByPersonViewModel>()
             };
             SearchTabs.ForEach(searchTab => searchTab.InitializeAsync(this));
 
-            SelectedTabIndex = 0;
+            SelectedTabIndex = 1;
         }
 
         protected override void TabbViewModelInit() {

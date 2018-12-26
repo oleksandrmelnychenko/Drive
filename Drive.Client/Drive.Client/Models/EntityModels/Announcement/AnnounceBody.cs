@@ -21,6 +21,9 @@ namespace Drive.Client.Models.EntityModels.Announcement {
         [JsonProperty("CommentsCount")]
         public long CommentsCount { get; set; }
 
+        [JsonProperty("LikesCount")]
+        public long LikesCount { get; set; }
+
         [JsonProperty("AvatarUrl")]
         public string AvatarUrl { get; set; }
         
