@@ -504,4 +504,7 @@
   <data name="RemoveUpperCase" xml:space="preserve">
     <value>ВИДАЛИТИ</value>
   </data>
+  <data name="AppInfo" xml:space="preserve">
+    <value>Відомості про транспортні засоби, дані з 2013 року</value>
+  </data>
 </root>

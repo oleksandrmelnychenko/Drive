@@ -9,6 +9,7 @@ using Drive.Client.Validations.ValidationRules;
 using Drive.Client.ViewModels.ActionBars;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.BottomTabViewModels.Home.Post;
+using Drive.Client.ViewModels.Popups;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -48,10 +49,20 @@ namespace Drive.Client.ViewModels.Posts {
             set { SetProperty(ref _commentText, value); }
         }
 
+        PostFunctionPopupViewModel _postFunctionPopupViewModel;
+        public PostFunctionPopupViewModel PostFunctionPopupViewModel {
+            get => _postFunctionPopupViewModel;
+            private set {
+                _postFunctionPopupViewModel?.Dispose();
+                SetProperty(ref _postFunctionPopupViewModel, value);
+            }
+        }
+
         public ICommand SendCommand => new Command(() => OnSend());
 
         public ICommand OpenFunctionCommand => new Command(() => {
-
+            PostFunctionPopupViewModel.ShowPopupCommand.Execute(null);
+            PostFunctionPopupViewModel.InitializeAsync(CurrentPost);
         });
 
         /// <summary>
@@ -70,6 +81,9 @@ namespace Drive.Client.ViewModels.Posts {
 
             AddValidationRules();
 
+            PostFunctionPopupViewModel = DependencyLocator.Resolve<PostFunctionPopupViewModel>();
+            PostFunctionPopupViewModel.InitializeAsync(this);
+
             ActionBarViewModel = DependencyLocator.Resolve<CommonActionBarViewModel>();
         }
 
@@ -79,6 +93,8 @@ namespace Drive.Client.ViewModels.Posts {
                 CurrentPost = postBaseViewModel;
                 GetPostComments(postBaseViewModel);
             }
+
+            PostFunctionPopupViewModel?.InitializeAsync(navigationData);
 
             return base.InitializeAsync(navigationData);
         }

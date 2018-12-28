@@ -43,9 +43,14 @@ namespace Drive.Client.ViewModels.Popups {
             return base.InitializeAsync(navigationData);
         }
 
-        private void OnDelete() {
-            _announcementService.DeleteAnnounceAsync(SelectedPostBaseViewModel.Post.AnnounceBody.Id, new CancellationTokenSource());
+        private async  void OnDelete() {
+            await _announcementService.DeleteAnnounceAsync(SelectedPostBaseViewModel.Post.AnnounceBody.Id, new CancellationTokenSource());
+
             ClosePopupCommand.Execute(null);
+
+            if (NavigationService.CurrentViewModelsNavigationStack.Count > 1) {
+                await NavigationService.GoBackAsync();
+            }
         }
     }
 }

@@ -30,8 +30,8 @@
 	<string>Your location is used to optimize news and searches.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Your location is used to optimize news and searches.</string>
-  <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-  <string>Your location is used to optimize news and searches.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Your location is used to optimize news and searches.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>uk</string>
 	<key>CFBundleLocalizations</key>
@@ -60,9 +60,9 @@
 	<key>CFBundleName</key>
 	<string>Drive.Client</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.08</string>
+	<string>1.09</string>
 	<key>CFBundleVersion</key>
-	<string>1.10</string>
+	<string>1.11</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIBackgroundModes</key>

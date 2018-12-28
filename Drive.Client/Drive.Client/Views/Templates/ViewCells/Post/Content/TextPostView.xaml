@@ -9,7 +9,7 @@
 
     <basePostContentView:PostBaseContentView.MainContent>
         <controls:LabelExtended
-            Margin="10,0,0,0"
+            Margin="10,0,10,0"
             FontSize="{StaticResource SoftMediumSize}"
             LetterSpacing="{OnPlatform iOS=0.5,
                                        Android=0.04}"
