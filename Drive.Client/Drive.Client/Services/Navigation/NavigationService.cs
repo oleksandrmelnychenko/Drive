@@ -1,4 +1,5 @@
-﻿using Drive.Client.ViewModels;
+﻿using Drive.Client.Models.Arguments.LifeCycle;
+using Drive.Client.ViewModels;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.Views;
 using System;
@@ -27,9 +28,15 @@ namespace Drive.Client.Services.Navigation {
 
         public ViewModelBase PreviousPageViewModel {
             get {
-                var mainPage = Application.Current.MainPage as CustomNavigationView;
-                var viewModel = mainPage.Navigation.NavigationStack[mainPage.Navigation.NavigationStack.Count - 2].BindingContext;
-                return viewModel as ViewModelBase;
+                try {
+                    var mainPage = Application.Current.MainPage as CustomNavigationView;
+                    var viewModel = mainPage.Navigation.NavigationStack[mainPage.Navigation.NavigationStack.Count - 2].BindingContext;
+                    return viewModel as ViewModelBase;
+                }
+                catch (Exception ex) {
+                    Debugger.Break();
+                    return null;
+                }
             }
         }
 
@@ -107,20 +114,17 @@ namespace Drive.Client.Services.Navigation {
                         }
 
                         await GoBackAsync();
-                    }
-                    else if (stepsToForBackStack == 1) {
+                    } else if (stepsToForBackStack == 1) {
                         await GoBackAsync();
                     }
 
                     await ((ViewModelBase)targetPage.BindingContext).InitializeAsync(parameter);
-                }
-                else {
+                } else {
                     Page page = CreatePage(viewModelType, parameter);
                     await navigationPage.PushAsync(page, false);
                     await (page.BindingContext as ViewModelBase).InitializeAsync(parameter);
                 }
-            }
-            else {
+            } else {
                 Page page = CreatePage(viewModelType, parameter);
                 Application.Current.MainPage = new CustomNavigationView(page);
                 await (page.BindingContext as ViewModelBase).InitializeAsync(parameter);
@@ -149,7 +153,7 @@ namespace Drive.Client.Services.Navigation {
             return Task.FromResult(true);
         }
 
-        public Task RemoveIntermediatePagesAsync() { 
+        public Task RemoveIntermediatePagesAsync() {
             if (Application.Current.MainPage is CustomNavigationView mainPage && mainPage.Navigation.NavigationStack.Count >= 3) {
                 List<Page> pagesToRemove = new List<Page>();
 
@@ -201,6 +205,33 @@ namespace Drive.Client.Services.Navigation {
         private void DisposeBindingContext(Page targetPage) {
             if (targetPage?.BindingContext is ViewModelBase viewModel) {
                 viewModel.Dispose();
+            }
+        }
+
+        public void InitAfterResumeApp() {
+            try {
+                CustomNavigationView customNavigationView = Application.Current.MainPage as CustomNavigationView;
+                customNavigationView.Navigation.NavigationStack
+                .Select(p => (ViewModelBase)p.BindingContext)
+                .ToList().ForEach(viewModel => viewModel.InitializeAsync(null));
+            }
+            catch (Exception) {
+                Debugger.Break();
+            }
+        }
+
+        public void UnsubscribeAfterSleepApp() {
+            try {
+                CustomNavigationView customNavigationView = Application.Current.MainPage as CustomNavigationView;
+
+                SleepAppArg sleepAppArg = new SleepAppArg(); 
+
+                customNavigationView.Navigation.NavigationStack
+                .Select<Page, ViewModelBase>(p => (ViewModelBase)p.BindingContext)
+                .ToList<ViewModelBase>().ForEach(viewModel => viewModel.InitializeAsync(sleepAppArg));
+            }
+            catch (Exception) {
+                Debugger.Break();
             }
         }
     }

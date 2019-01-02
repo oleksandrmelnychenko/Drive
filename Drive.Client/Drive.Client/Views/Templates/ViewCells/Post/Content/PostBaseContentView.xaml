@@ -121,6 +121,9 @@
                 HeightRequest="45"
                 Orientation="Horizontal"
                 Spacing="4">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding LikeCommand}" NumberOfTapsRequired="1" />
+                </StackLayout.GestureRecognizers>
                 <ffimageloadingsvg:SvgCachedImage
                     HeightRequest="20"
                     Source="{Binding IsLiked, Converter={StaticResource boolToImageSource}}"
@@ -133,9 +136,6 @@
                     TranslationY="2"
                     VerticalOptions="Center"
                     WidthRequest="60" />
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding LikeCommand}" NumberOfTapsRequired="1" />
-                </StackLayout.GestureRecognizers>
             </StackLayout>
 
             <StackLayout
@@ -144,6 +144,9 @@
                 HeightRequest="45"
                 Orientation="Horizontal"
                 Spacing="4">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CommentCommand}" NumberOfTapsRequired="1" />
+                </StackLayout.GestureRecognizers>
                 <ffimageloadingsvg:SvgCachedImage
                     HeightRequest="20"
                     Source="resource://Drive.Client.Resources.Images.noun_comment_1321948.svg"
@@ -156,9 +159,6 @@
                     TranslationY="2"
                     VerticalOptions="Center"
                     WidthRequest="60" />
-                <StackLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding LikeCommand}" NumberOfTapsRequired="1" />
-                </StackLayout.GestureRecognizers>
             </StackLayout>
 
             <ffimageloadingsvg:SvgCachedImage
