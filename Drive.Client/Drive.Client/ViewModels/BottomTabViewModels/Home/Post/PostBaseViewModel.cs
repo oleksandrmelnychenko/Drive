@@ -3,6 +3,7 @@ using Drive.Client.Models.EntityModels.Announcement;
 using Drive.Client.Services.Announcement;
 using Drive.Client.Services.OpenUrl;
 using Drive.Client.ViewModels.Base;
+using Drive.Client.ViewModels.Posts;
 using Stormlion.PhotoBrowser;
 using System;
 using System.Collections.Generic;
@@ -115,6 +116,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
 
         public ICommand ShowImageCommand => new Command(() => OnShowImage());
 
+        public ICommand CommentCommand => new Command(() => OnComment());
+
         /// <summary>
         ///     ctor().
         /// </summary>
@@ -122,7 +125,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
             _openUrlService = DependencyLocator.Resolve<IOpenUrlService>();
             _announcementService = DependencyLocator.Resolve<IAnnouncementService>();
         }
-
+       
         protected virtual void OnPost(Announce post) {
             if (post != null) {
                 AuthorAvatarUrl = post.AnnounceBody.AvatarUrl;
@@ -155,6 +158,10 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
 
 
             return base.InitializeAsync(navigationData);
+        }
+
+        private async void OnComment() {
+            await NavigationService.NavigateToAsync<PostCommentsViewModel>(this);
         }
 
         private void OnShowImage() {

@@ -47,7 +47,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
                 try {
                     ChangedProfileData changedProfileData = await _identityService.ChangeUserNameAsync(MainInput.Value, _changeUserNameCancellationTokenSource.Token);
                     if (changedProfileData != null) {
-                        await NavigationService.PreviousPageViewModel.InitializeAsync(null);
+                        await NavigationService.PreviousPageViewModel?.InitializeAsync(null);
                         await NavigationService.GoBackAsync();
                     }
                 }

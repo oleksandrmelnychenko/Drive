@@ -69,11 +69,15 @@ namespace Drive.Client {
 
             BaseSingleton<GlobalSetting>.Instance.SaveState();
             MessagingCenter.Unsubscribe<object, INotificationMessage>(this, NotificationService.RESIDENT_VEHICLE_DETAIL_RECEIVED_NOTIFICATION);
+
+            DependencyLocator.Resolve<INavigationService>().UnsubscribeAfterSleepApp();
         }
 
         protected override void OnResume() {
             // Handle when your app resumes
             base.OnResume();
+
+            DependencyLocator.Resolve<INavigationService>().InitAfterResumeApp();
         }
     }
 }

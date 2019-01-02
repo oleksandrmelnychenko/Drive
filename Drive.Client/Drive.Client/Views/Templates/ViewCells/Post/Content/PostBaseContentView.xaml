@@ -115,49 +115,51 @@
 
         <!--  FOOTER  -->
         <AbsoluteLayout Grid.Row="2" Margin="10,0">
-
-            <ffimageloadingsvg:SvgCachedImage
-                Margin="0,4,0,0"
-                AbsoluteLayout.LayoutBounds="0, .5, AutoSize, AutoSize"
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0, 0"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
-                HeightRequest="20"
-                Source="{Binding IsLiked, Converter={StaticResource boolToImageSource}}" />
-            <controls:LabelExtended
-                AbsoluteLayout.LayoutBounds="0.09, .5, Autosize, Autosize"
-                AbsoluteLayout.LayoutFlags="PositionProportional"
-                FontSize="{StaticResource SoftMediumSize}"
-                Text="{Binding LikesCount}"
-                TextColor="{StaticResource DarkColor}"
-                TranslationY="2"
-                WidthRequest="60" />
-
-            <BoxView
-                AbsoluteLayout.LayoutBounds="0, .5"
-                AbsoluteLayout.LayoutFlags="PositionProportional"
-                HeightRequest="20"
-                ScaleX="3.5"
-                ScaleY="2.3"
-                WidthRequest="20">
-                <BoxView.GestureRecognizers>
+                HeightRequest="45"
+                Orientation="Horizontal"
+                Spacing="4">
+                <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding LikeCommand}" NumberOfTapsRequired="1" />
+                </StackLayout.GestureRecognizers>
+                <ffimageloadingsvg:SvgCachedImage
+                    HeightRequest="20"
+                    Source="{Binding IsLiked, Converter={StaticResource boolToImageSource}}"
+                    TranslationY="2"
+                    VerticalOptions="Center" />
+                <controls:LabelExtended
+                    FontSize="{StaticResource SoftMediumSize}"
+                    Text="{Binding LikesCount}"
+                    TextColor="{StaticResource DarkColor}"
+                    TranslationY="2"
+                    VerticalOptions="Center"
+                    WidthRequest="60" />
+            </StackLayout>
 
-                </BoxView.GestureRecognizers>
-            </BoxView>
-
-            <ffimageloadingsvg:SvgCachedImage
-                Margin="0,4,0,0"
-                AbsoluteLayout.LayoutBounds="0.15, .5, AutoSize, AutoSize"
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0.18, 0"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
-                HeightRequest="20"
-                Source="resource://Drive.Client.Resources.Images.noun_comment_1321948.svg" />
-            <controls:LabelExtended
-                AbsoluteLayout.LayoutBounds="0.26, .5, Autosize, Autosize"
-                AbsoluteLayout.LayoutFlags="PositionProportional"
-                FontSize="{StaticResource SoftMediumSize}"
-                Text="{Binding CommentsCount}"
-                TextColor="{StaticResource DarkColor}"
-                TranslationY="2"
-                WidthRequest="60" />
+                HeightRequest="45"
+                Orientation="Horizontal"
+                Spacing="4">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CommentCommand}" NumberOfTapsRequired="1" />
+                </StackLayout.GestureRecognizers>
+                <ffimageloadingsvg:SvgCachedImage
+                    HeightRequest="20"
+                    Source="resource://Drive.Client.Resources.Images.noun_comment_1321948.svg"
+                    TranslationY="2"
+                    VerticalOptions="Center" />
+                <controls:LabelExtended
+                    FontSize="{StaticResource SoftMediumSize}"
+                    Text="{Binding CommentsCount}"
+                    TextColor="{StaticResource DarkColor}"
+                    TranslationY="2"
+                    VerticalOptions="Center"
+                    WidthRequest="60" />
+            </StackLayout>
 
             <ffimageloadingsvg:SvgCachedImage
                 Margin="0,3,0,0"

@@ -26,5 +26,9 @@ namespace Drive.Client.Services.Navigation {
         Task RemoveIntermediatePagesAsync();
 
         Task GoBackAsync();
+
+        void InitAfterResumeApp();
+
+        void UnsubscribeAfterSleepApp();
     }
 }
