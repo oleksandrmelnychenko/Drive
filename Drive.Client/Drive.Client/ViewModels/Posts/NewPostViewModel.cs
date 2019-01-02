@@ -41,15 +41,16 @@ namespace Drive.Client.ViewModels.Posts {
             try {
                 if (!string.IsNullOrEmpty(AnnounceText.Value) && !string.IsNullOrWhiteSpace(AnnounceText.Value)) {
                     if (TargetAnnounceType == AnnounceType.Video || TargetAnnounceType == AnnounceType.Image) {
-                        ((NewPostActionBarViewModel)ActionBarViewModel).ResolveExecutionAvailability(AttachedPostMedias?.Any());
+                        ((NewPostActionBarViewModel)ActionBarViewModel)?.ResolveExecutionAvailability(AttachedPostMedias?.Any());
                     } else {
-                        ((NewPostActionBarViewModel)ActionBarViewModel).ResolveExecutionAvailability(true);
+                        ((NewPostActionBarViewModel)ActionBarViewModel)?.ResolveExecutionAvailability(true);
                     }
                 } else {
-                    ((NewPostActionBarViewModel)ActionBarViewModel).ResolveExecutionAvailability(false);
+                    ((NewPostActionBarViewModel)ActionBarViewModel)?.ResolveExecutionAvailability(false);
                 }
             }
             catch (Exception exc) {
+                Debugger.Break();
                 Crashes.TrackError(exc);
             }
         });

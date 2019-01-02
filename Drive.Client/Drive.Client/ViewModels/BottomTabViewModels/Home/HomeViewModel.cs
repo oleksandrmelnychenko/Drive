@@ -143,15 +143,21 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
         }
 
         private void PostLikesCountReceived(object sender, PostLikedBody e) {
-            if (Posts == null) return;
+            try {
+                if (Posts == null) return;
 
-            foreach (var post in Posts) {
-                if (post.Post.AnnounceBody.Id == e.PostId) {
-                    post.LikesCount = e.LikesCount;
-                    if (e.PostLikedByUser.UserNetId == BaseSingleton<GlobalSetting>.Instance.UserProfile.NetId) {
-                        post.IsLiked = e.PostLikedByUser.IsLikedByUser;
+                foreach (var post in Posts) {
+                    if (post.Post.AnnounceBody.Id == e.PostId) {
+                        post.LikesCount = e.LikesCount;
+                        if (e.PostLikedByUser.UserNetId == BaseSingleton<GlobalSetting>.Instance.UserProfile.NetId) {
+                            post.IsLiked = e.PostLikedByUser.IsLikedByUser;
+                        }
                     }
                 }
+            }
+            catch (Exception ex) {
+                Debug.WriteLine($"ERROR:{ex.Message}");
+                Debugger.Break();
             }
         }
 
@@ -188,27 +194,45 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
         }
 
         private void PostCommentsCountReceived(object sender, CommentCountBody e) {
-            if (Posts == null) return;
+            try {
+                if (Posts == null) return;
 
-            foreach (var post in Posts) {
-                if (post.Post.AnnounceBody.Id == e.PostId) {
-                    post.CommentsCount = e.CommentsCount;
+                foreach (var post in Posts) {
+                    if (post.Post.AnnounceBody.Id == e.PostId) {
+                        post.CommentsCount = e.CommentsCount;
+                    }
                 }
+            }
+            catch (Exception ex) {
+                Debug.WriteLine($"ERROR:{ex.Message}");
+                Debugger.Break();
             }
         }
 
         private void DeletedPostReceived(object sender, string e) {
-            if (Posts == null) return;
+            try {
+                if (Posts == null) return;
 
-            foreach (var post in Posts) {
-                if (post.Post.AnnounceBody.Id == e) {
-                    Posts.Remove(post);
+                foreach (PostBaseViewModel post in Posts.ToList()) {
+                    if (post.Post.AnnounceBody.Id == e) {
+                        Posts.Remove(post);
+                    }
                 }
+            }
+            catch (Exception ex) {
+                Debug.WriteLine($"ERROR:{ex.Message}");
+                Debugger.Break();
             }
         }
 
         private void NewAnnounceReceived(object sender, Announce e) {
-            Posts?.Insert(0, _announcementsFactory.CreatePostViewModel(e));
+            try {
+                Posts?.Insert(0, _announcementsFactory.CreatePostViewModel(e));
+            }
+            catch (Exception ex) {
+                Debug.WriteLine($"ERROR:{ex.Message}");
+                Debugger.Break();
+            }
         }
 
         private void UpdateView() {

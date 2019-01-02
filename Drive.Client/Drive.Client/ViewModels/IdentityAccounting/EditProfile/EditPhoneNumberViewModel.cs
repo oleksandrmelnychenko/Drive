@@ -53,7 +53,7 @@ namespace Drive.Client.ViewModels.IdentityAccounting.EditProfile {
                 try {
                     ChangedProfileData changedProfileData =  await _identityService.ChangePhoneNumberAsync(MainInput.Value, _changePhoneNumberCancellationTokenSource.Token);
                     if (changedProfileData != null) {
-                        await NavigationService.PreviousPageViewModel.InitializeAsync(null);
+                        await NavigationService.PreviousPageViewModel?.InitializeAsync(null);
                         await NavigationService.GoBackAsync();
                     }
                 }

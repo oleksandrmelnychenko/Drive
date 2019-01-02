@@ -1,4 +1,5 @@
 ﻿using Drive.Client.Helpers.Localize;
+using Drive.Client.Models.Arguments.LifeCycle;
 using Drive.Client.Services.Dialog;
 using Drive.Client.Services.Navigation;
 using System;
@@ -24,7 +25,7 @@ namespace Drive.Client.ViewModels.Base {
             NavigationService = DependencyLocator.Resolve<INavigationService>();
 
             BackCommand = new Command(async () => {
-                await NavigationService.PreviousPageViewModel.InitializeAsync(null);
+                await NavigationService.PreviousPageViewModel?.InitializeAsync(null);
                 await NavigationService.GoBackAsync();
             });
 
@@ -51,6 +52,10 @@ namespace Drive.Client.ViewModels.Base {
         public virtual Task InitializeAsync(object navigationData) {
             if (!IsSubscribedOnAppEvents) {
                 OnSubscribeOnAppEvents();
+            }
+
+            if (navigationData is SleepAppArg) {
+                OnUnsubscribeFromAppEvents();
             }
 
             return Task.FromResult(false);

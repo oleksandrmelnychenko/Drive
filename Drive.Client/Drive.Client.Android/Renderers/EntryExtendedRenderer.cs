@@ -4,6 +4,7 @@ using Drive.Client.Controls;
 using Drive.Client.Droid.Renderers;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
@@ -34,91 +35,132 @@ namespace Drive.Client.Droid.Renderers {
         }
 
         private void UpdateLetterSpacingPlaceholder(EntryExtended entryEx) {
-            if (entryEx == null) return;
+            try {
+                if (entryEx == null) return;
 
-            Control.LetterSpacing = ((EntryExtended)Element).LetterSpacingPlaceholder;
+                Control.LetterSpacing = ((EntryExtended)Element).LetterSpacingPlaceholder;
+            }
+            catch (Exception ex) {
+                Debugger.Break();
+                System.Diagnostics.Debug.WriteLine($"ERROR: {ex.Message}");
+            }
         }
 
         private void UpdateLetterSpacing(EntryExtended entryEx) {
-            if (entryEx == null) return;
+            try {
+                if (entryEx == null) return;
 
-            Control.LetterSpacing = ((EntryExtended)Element).LetterSpacing;
+                Control.LetterSpacing = ((EntryExtended)Element).LetterSpacing;
+            }
+            catch (Exception ex) {
+                Debugger.Break();
+                System.Diagnostics.Debug.WriteLine($"ERROR: {ex.Message}");
+            }
         }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) {
             base.OnElementPropertyChanged(sender, e);
-            if (Element == null) {
-                return;
-            }
+            try {
+                if (Element == null) {
+                    return;
+                }
 
-            EntryExtended entryEx = Element as EntryExtended;
+                EntryExtended entryEx = Element as EntryExtended;
 
-            if (e.PropertyName == EntryExtended.BorderWidthProperty.PropertyName ||
-                e.PropertyName == EntryExtended.BorderColorProperty.PropertyName ||
-                e.PropertyName == EntryExtended.BorderRadiusProperty.PropertyName ||
-                e.PropertyName == EntryExtended.BackgroundColorProperty.PropertyName) {
-                UpdateBackground(entryEx);
-            } else if (e.PropertyName == EntryExtended.LeftPaddingProperty.PropertyName ||
-                  e.PropertyName == EntryExtended.RightPaddingProperty.PropertyName) {
-                UpdatePadding(entryEx);
-            } else if (e.PropertyName == Entry.HorizontalTextAlignmentProperty.PropertyName) {
-                UpdateTextAlighnment(entryEx);
-            } else if (e.PropertyName == Entry.TextProperty.PropertyName) {
-                UpdateLetterSpacing(entryEx);
+                if (e.PropertyName == EntryExtended.BorderWidthProperty.PropertyName ||
+                    e.PropertyName == EntryExtended.BorderColorProperty.PropertyName ||
+                    e.PropertyName == EntryExtended.BorderRadiusProperty.PropertyName ||
+                    e.PropertyName == EntryExtended.BackgroundColorProperty.PropertyName) {
+                    UpdateBackground(entryEx);
+                } else if (e.PropertyName == EntryExtended.LeftPaddingProperty.PropertyName ||
+                      e.PropertyName == EntryExtended.RightPaddingProperty.PropertyName) {
+                    UpdatePadding(entryEx);
+                } else if (e.PropertyName == Entry.HorizontalTextAlignmentProperty.PropertyName) {
+                    UpdateTextAlighnment(entryEx);
+                } else if (e.PropertyName == Entry.TextProperty.PropertyName) {
+                    UpdateLetterSpacing(entryEx);
 
-                if (string.IsNullOrEmpty(entryEx.Text)) {
+                    if (string.IsNullOrEmpty(entryEx.Text)) {
+                        UpdateLetterSpacingPlaceholder(entryEx);
+                    }
+                } else if (e.PropertyName == EntryExtended.LetterSpacingPlaceholderProperty.PropertyName) {
                     UpdateLetterSpacingPlaceholder(entryEx);
                 }
-            } else if (e.PropertyName == EntryExtended.LetterSpacingPlaceholderProperty.PropertyName) {
-                UpdateLetterSpacingPlaceholder(entryEx);
+            }
+            catch (Exception ex) {
+                Debugger.Break();
+                System.Diagnostics.Debug.WriteLine($"ERROR: {ex.Message}");
             }
         }
 
         protected override void Dispose(bool disposing) {
             base.Dispose(disposing);
-
-            if (disposing) {
-                if (_renderer != null) {
-                    _renderer.Dispose();
-                    _renderer = null;
+            try {
+                if (disposing) {
+                    if (_renderer != null) {
+                        _renderer.Dispose();
+                        _renderer = null;
+                    }
                 }
+            }
+            catch (Exception ex) {
+                Debugger.Break();
+                System.Diagnostics.Debug.WriteLine($"ERROR: {ex.Message}");
             }
         }
 
         private void UpdateBackground(EntryExtended entryEx) {
+            try {
+                _renderer = new BorderRenderer();
+
+                Control.Background = _renderer.GetBorderBackground(entryEx.BorderColor, entryEx.BackgroundColor, entryEx.BorderWidth, entryEx.BorderRadius);
+            }
+            catch (Exception ex) {
+                Debugger.Break();
+                System.Diagnostics.Debug.WriteLine($"ERROR: {ex.Message}");
+            }
             if (_renderer != null) {
                 _renderer.Dispose();
                 _renderer = null;
             }
-            _renderer = new BorderRenderer();
-
-            Control.Background = _renderer.GetBorderBackground(entryEx.BorderColor, entryEx.BackgroundColor, entryEx.BorderWidth, entryEx.BorderRadius);
             //Control.Background = new Android.Graphics.Drawables.ColorDrawable(BaseSingleton<ValuesResolver>.Instance.ResolveNativeColor(entryEx.BackgroundColor));
             //Control.Background.SetColorFilter(BaseSingleton<ValuesResolver>.Instance.ResolveNativeColor(entryEx.BackgroundColor), PorterDuff.Mode.SrcAtop);
             //Control.Background.SetColorFilter(Android.Graphics.Color.ParseColor("#fefefe"), PorterDuff.Mode.SrcAtop);
         }
 
         private void UpdatePadding(EntryExtended entryEx) {
-            Control.SetPadding((int)Context.ToPixels(entryEx.LeftPadding), 0,
-                (int)Context.ToPixels(entryEx.RightPadding), 0);
+            try {
+                Control.SetPadding((int)Context.ToPixels(entryEx.LeftPadding), 0,
+                    (int)Context.ToPixels(entryEx.RightPadding), 0);
+            }
+            catch (Exception ex) {
+                Debugger.Break();
+                System.Diagnostics.Debug.WriteLine($"ERROR: {ex.Message}");
+            }
         }
 
         private void UpdateTextAlighnment(EntryExtended entryEx) {
-            GravityFlags gravity = DefaultGravity;
+            try {
+                GravityFlags gravity = DefaultGravity;
 
-            switch (entryEx.HorizontalTextAlignment) {
-                case Xamarin.Forms.TextAlignment.Start:
-                    gravity |= GravityFlags.Start;
-                    break;
-                case Xamarin.Forms.TextAlignment.Center:
-                    gravity |= GravityFlags.CenterHorizontal;
-                    break;
-                case Xamarin.Forms.TextAlignment.End:
-                    gravity |= GravityFlags.End;
-                    break;
+                switch (entryEx.HorizontalTextAlignment) {
+                    case Xamarin.Forms.TextAlignment.Start:
+                        gravity |= GravityFlags.Start;
+                        break;
+                    case Xamarin.Forms.TextAlignment.Center:
+                        gravity |= GravityFlags.CenterHorizontal;
+                        break;
+                    case Xamarin.Forms.TextAlignment.End:
+                        gravity |= GravityFlags.End;
+                        break;
+                }
+
+                Control.Gravity = gravity;
             }
-
-            Control.Gravity = gravity;
+            catch (Exception ex) {
+                Debugger.Break();
+                System.Diagnostics.Debug.WriteLine($"ERROR: {ex.Message}");
+            }
         }
     }
 }
