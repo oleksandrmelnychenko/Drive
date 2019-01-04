@@ -40,8 +40,8 @@ namespace Drive.Client.Droid {
                 Window.SetBackgroundDrawableResource(Resource.Drawable.common_window_background_layer_list_drawable);
             });
 
-            Firebase.FirebaseApp.InitializeApp(this);
-            Firebase.FirebaseApp fireApp = Firebase.FirebaseApp.Instance;
+            //Firebase.FirebaseApp.InitializeApp(this);
+            //Firebase.FirebaseApp fireApp = Firebase.FirebaseApp.Instance;
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
