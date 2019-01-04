@@ -32,7 +32,7 @@ namespace Drive.Client.Services.Signal {
 
         public int MaxNumberOfConnectionAttempts { get; protected set; } = _DEFAULT_NUMBER_OF_CONNECTION_ATTEMPTS;
 
-        public Task StartAsync(string accessToken) =>
+        public Task StartAsync(string accessToken = null) =>
             Task.Run(() => {
                 try {
                     if (_hubConnection == null) {
