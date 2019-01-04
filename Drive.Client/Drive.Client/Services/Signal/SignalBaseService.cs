@@ -32,7 +32,7 @@ namespace Drive.Client.Services.Signal {
 
         public int MaxNumberOfConnectionAttempts { get; protected set; } = _DEFAULT_NUMBER_OF_CONNECTION_ATTEMPTS;
 
-        public Task StartAsync(string accessToken = null) =>
+        public Task StartAsync(string accessToken) =>
             Task.Run(() => {
                 try {
                     if (_hubConnection == null) {
@@ -150,14 +150,19 @@ namespace Drive.Client.Services.Signal {
         }
 
         private async void OnCurrentConnectivityChanged(object sender, ConnectivityChangedEventArgs e) {
-            if (e.IsConnected) {
-                _hubConnection = BuildNewHubConnection();
+            try {
+                if (e.IsConnected) {
+                    _hubConnection = BuildNewHubConnection();
 
-                OnStartListeningToHub();
-                TryToConnectToHub();
+                    OnStartListeningToHub();
+                    TryToConnectToHub();
+                } else if (!e.IsConnected) {
+                    await DisposeCurrentHubConnectionAsync();
+                }
             }
-            else if (!e.IsConnected) {
-                await DisposeCurrentHubConnectionAsync();
+            catch (Exception exc) {
+                Debugger.Break();
+                Crashes.TrackError(exc);
             }
         }
     }
