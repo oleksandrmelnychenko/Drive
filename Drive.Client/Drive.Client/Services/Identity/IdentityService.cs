@@ -438,7 +438,8 @@ namespace Drive.Client.Services.Identity {
             try {
                 if (!string.IsNullOrEmpty(BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken)) {
                     await RestartSocketServicesAsync();
-                } else {
+                }
+                else {
                     //await LogOutAsync();
                 }
             }

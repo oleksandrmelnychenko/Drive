@@ -33,8 +33,7 @@ namespace Drive.Client.Droid {
         }
 
         protected override void OnCreate(Bundle savedInstanceState) {
-            MessagingCenter.Subscribe<object>(this, CustomNavigationView.ON_CUSTOM_NAVIGATION_VIEW_APPEARING, (param) =>
-            {
+            MessagingCenter.Subscribe<object>(this, CustomNavigationView.ON_CUSTOM_NAVIGATION_VIEW_APPEARING, (param) => {
                 MessagingCenter.Unsubscribe<object>(this, CustomNavigationView.ON_CUSTOM_NAVIGATION_VIEW_APPEARING);
 
                 Window.SetBackgroundDrawableResource(Resource.Drawable.common_window_background_layer_list_drawable);

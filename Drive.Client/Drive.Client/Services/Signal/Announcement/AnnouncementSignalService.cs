@@ -8,7 +8,6 @@ using Microsoft.AppCenter.Crashes;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
 using Xamarin.Forms;
 
@@ -47,7 +46,8 @@ namespace Drive.Client.Services.Signal.Announcement {
 
                         PostLikedBody postLikedBody = ParseResponseData<PostLikedBody>(drivenEvent.Data);
                         Device.BeginInvokeOnMainThread(() => PostLikesCountReceived(this, postLikedBody));
-                    } else if (drivenEventResponse.StatusCode == HttpStatusCode.Unauthorized) {
+                    }
+                    else if (drivenEventResponse.StatusCode == HttpStatusCode.Unauthorized) {
                         await DependencyLocator.Resolve<IIdentityService>().LogOutAsync();
                     }
                 }
@@ -66,7 +66,8 @@ namespace Drive.Client.Services.Signal.Announcement {
 
                         string postId = ParseResponseData<string>(drivenEvent.Data);
                         Device.BeginInvokeOnMainThread(() => DeletedPostReceived(this, postId));
-                    } else if (drivenEventResponse.StatusCode == HttpStatusCode.Unauthorized) {
+                    }
+                    else if (drivenEventResponse.StatusCode == HttpStatusCode.Unauthorized) {
                         await DependencyLocator.Resolve<IIdentityService>().LogOutAsync();
                     }
                 }
@@ -85,7 +86,8 @@ namespace Drive.Client.Services.Signal.Announcement {
 
                         Comment comment = ParseResponseData<Comment>(drivenEvent.Data);
                         Device.BeginInvokeOnMainThread(() => NewPostCommentReceived(this, comment));
-                    } else if (drivenEventResponse.StatusCode == HttpStatusCode.Unauthorized) {
+                    }
+                    else if (drivenEventResponse.StatusCode == HttpStatusCode.Unauthorized) {
                         await DependencyLocator.Resolve<IIdentityService>().LogOutAsync();
                     }
                 }
@@ -104,7 +106,8 @@ namespace Drive.Client.Services.Signal.Announcement {
 
                         CommentCountBody commentCountBody = ParseResponseData<CommentCountBody>(drivenEvent.Data);
                         Device.BeginInvokeOnMainThread(() => PostCommentsCountReceived(this, commentCountBody));
-                    } else if (drivenEventResponse.StatusCode == HttpStatusCode.Unauthorized) {
+                    }
+                    else if (drivenEventResponse.StatusCode == HttpStatusCode.Unauthorized) {
                         await DependencyLocator.Resolve<IIdentityService>().LogOutAsync();
                     }
                 }
@@ -125,13 +128,15 @@ namespace Drive.Client.Services.Signal.Announcement {
                         Announce announce = ParseResponseData<Announce>(drivenEvent.Data);
                         if (announce != null && announce.AnnounceBody != null && announce.ImageUrl != null) {
                             Device.BeginInvokeOnMainThread(() => NewAnnounceReceived(this, announce));
-                        } else {
+                        }
+                        else {
                             announce = new Announce();
                             AnnounceBody announceBody = ParseResponseData<AnnounceBody>(drivenEvent.Data);
                             announce.AnnounceBody = announceBody;
                             Device.BeginInvokeOnMainThread(() => NewAnnounceReceived(this, announce));
                         }
-                    } else if (drivenEventResponse.StatusCode == HttpStatusCode.Unauthorized) {
+                    }
+                    else if (drivenEventResponse.StatusCode == HttpStatusCode.Unauthorized) {
                         await DependencyLocator.Resolve<IIdentityService>().LogOutAsync();
                     }
                 }

@@ -32,13 +32,10 @@ namespace Drive.Client.Services.Signal {
 
         public int MaxNumberOfConnectionAttempts { get; protected set; } = _DEFAULT_NUMBER_OF_CONNECTION_ATTEMPTS;
 
-        public Task StartAsync(string accessToken) =>
-            Task.Run(() =>
-            {
-                try
-                {
-                    if (_hubConnection == null)
-                    {
+        public Task StartAsync(string accessToken = null) =>
+            Task.Run(() => {
+                try {
+                    if (_hubConnection == null) {
                         AccessToken = accessToken;
 
                         _hubConnection = BuildNewHubConnection();
@@ -48,8 +45,7 @@ namespace Drive.Client.Services.Signal {
 
                     TryToConnectToHub();
                 }
-                catch (Exception exc)
-                {
+                catch (Exception exc) {
                     _hubConnection = null;
                     AccessToken = null;
                     IsConnected = false;
@@ -60,19 +56,15 @@ namespace Drive.Client.Services.Signal {
             });
 
         public Task StopAsync() =>
-            Task.Run(async () =>
-            {
-                try
-                {
+            Task.Run(async () => {
+                try {
                     AccessToken = null;
 
-                    if (_hubConnection != null)
-                    {
+                    if (_hubConnection != null) {
                         await DisposeCurrentHubConnectionAsync();
                     }
                 }
-                catch (Exception exc)
-                {
+                catch (Exception exc) {
                     Crashes.TrackError(exc);
                     Debugger.Break();
 
@@ -87,12 +79,10 @@ namespace Drive.Client.Services.Signal {
         protected TResult ParseResponseData<TResult>(object data) {
             TResult result = default(TResult);
 
-            try
-            {
+            try {
                 result = JsonConvert.DeserializeObject<TResult>(data.ToString());
             }
-            catch (Exception exc)
-            {
+            catch (Exception exc) {
                 Debugger.Break();
                 Crashes.TrackError(exc);
             }
@@ -100,22 +90,19 @@ namespace Drive.Client.Services.Signal {
         }
 
         private Task OnHubConnectionClosed(Exception arg) =>
-            Task.Run(() =>
-            {
+            Task.Run(() => {
                 TryToConnectToHub();
             });
 
         private async void TryToConnectToHub() {
-            try
-            {
+            try {
                 //await Task.Delay(1002);
 
                 await _hubConnection.StartAsync();
 
                 IsConnected = true;
             }
-            catch (Exception exc)
-            {
+            catch (Exception exc) {
                 string message = exc.Message;
                 _connectionAttempts++;
                 IsConnected = false;
@@ -125,12 +112,9 @@ namespace Drive.Client.Services.Signal {
         }
 
         private Task DisposeCurrentHubConnectionAsync() =>
-            Task.Run(async () =>
-            {
-                try
-                {
-                    if (_hubConnection != null)
-                    {
+            Task.Run(async () => {
+                try {
+                    if (_hubConnection != null) {
                         _hubConnection.Closed -= OnHubConnectionClosed;
                         await _hubConnection.StopAsync();
                         await _hubConnection.DisposeAsync();
@@ -139,8 +123,7 @@ namespace Drive.Client.Services.Signal {
 
                     IsConnected = false;
                 }
-                catch (Exception exc)
-                {
+                catch (Exception exc) {
                     Crashes.TrackError(exc);
                     Debugger.Break();
 
@@ -151,15 +134,12 @@ namespace Drive.Client.Services.Signal {
 
         private HubConnection BuildNewHubConnection() {
             HubConnection hubConnection = new HubConnectionBuilder()
-                .WithUrl(SocketHubGateway, (options) =>
-                {
-                    if (!string.IsNullOrEmpty(AccessToken))
-                    {
+                .WithUrl(SocketHubGateway, (options) => {
+                    if (!string.IsNullOrEmpty(AccessToken)) {
                         options.AccessTokenProvider = () => Task.Run(() => AccessToken);
                     }
                 })
-                .ConfigureLogging((logging) =>
-                {
+                .ConfigureLogging((logging) => {
                     logging.AddProvider(new InfallibleLogProvider());
                 })
                 .Build();
@@ -170,15 +150,13 @@ namespace Drive.Client.Services.Signal {
         }
 
         private async void OnCurrentConnectivityChanged(object sender, ConnectivityChangedEventArgs e) {
-            if (e.IsConnected)
-            {
+            if (e.IsConnected) {
                 _hubConnection = BuildNewHubConnection();
 
                 OnStartListeningToHub();
                 TryToConnectToHub();
             }
-            else if (!e.IsConnected)
-            {
+            else if (!e.IsConnected) {
                 await DisposeCurrentHubConnectionAsync();
             }
         }
