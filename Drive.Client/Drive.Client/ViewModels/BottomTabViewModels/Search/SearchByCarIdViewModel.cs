@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading;
@@ -59,7 +60,10 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         private bool _hasError = false;
         public bool HasError {
             get { return _hasError; }
-            set { SetProperty(ref _hasError, value); }
+            set {
+                SetProperty(ref _hasError, value);
+                LocationVisibility = !value;
+            }
         }
 
         DriveAutoSearch _resultSelected;
@@ -69,6 +73,18 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
                 SetProperty(ref _resultSelected, value);
                 OnResulSelected(value);
             }
+        }
+
+        bool _locationVisibility = false;
+        public bool LocationVisibility {
+            get { return _locationVisibility; }
+            set { SetProperty(ref _locationVisibility, value); }
+        }
+
+        string _locationInfo;
+        public string LocationInfo {
+            get { return _locationInfo; }
+            set { SetProperty(ref _locationInfo, value); }
         }
 
         ObservableCollection<DriveAutoSearch> _foundResult;
@@ -134,6 +150,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
             try {
                 ValidationTargetValue.Value = string.Empty;
                 FoundResult?.Clear();
+                LocationInfo = string.Empty;
                 TargetValue = string.Empty;
                 HasError = false;
                 ErrorMessage = string.Empty;
@@ -239,7 +256,16 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Search {
         }
 
         private void ApplySearchResults(IEnumerable<DriveAutoSearch> foundResult) {
-            FoundResult = foundResult.ToObservableCollection();
+            try {
+                FoundResult = foundResult.ToObservableCollection();
+                if (foundResult.Any()) {
+                    LocationInfo = foundResult.FirstOrDefault().Location;
+                }
+            }
+            catch (Exception ex) {
+                Debug.WriteLine($"ERROR: {ex.Message}");
+                Debugger.Break();
+            }
         }
 
         private async void OnResulSelected(DriveAutoSearch value) {

@@ -76,6 +76,13 @@
                 iOS="8" />
 
             <OnPlatform
+                x:Key="ExtraLittleSize"
+                x:TypeArguments="x:Double"
+                Android="10"
+                Default="10"
+                iOS="10" />
+
+            <OnPlatform
                 x:Key="LittleSize"
                 x:TypeArguments="x:Double"
                 Android="12"
