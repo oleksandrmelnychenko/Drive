@@ -87,7 +87,7 @@
                                             Default="10"
                                             iOS="{StaticResource ExtraLittleSize}" />
                                     </StackLayout.Resources>
-                                    
+
                                     <controls:LabelExtended
                                         FontSize="{StaticResource MediumSize}"
                                         Text="{Binding Number}"
@@ -97,13 +97,13 @@
                                         FontFamily="{StaticResource SFProThin}"
                                         FontSize="{StaticResource listFontSize}"
                                         Text="{Binding Brand}"
-                                        TextColor="{StaticResource ExtraGrayColor}"
+                                        TextColor="{StaticResource HardGrayColor}"
                                         VerticalOptions="Center" />
                                     <controls:LabelExtended
                                         FontFamily="{StaticResource SFProThin}"
                                         FontSize="{StaticResource listFontSize}"
                                         Text="{Binding Location}"
-                                        TextColor="{StaticResource ExtraGrayColor}"
+                                        TextColor="{StaticResource HardGrayColor}"
                                         VerticalOptions="Center" />
                                 </StackLayout>
                             </Grid>
