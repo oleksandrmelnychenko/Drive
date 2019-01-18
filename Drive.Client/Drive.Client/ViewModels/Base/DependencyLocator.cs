@@ -20,6 +20,7 @@ using Drive.Client.Services.OpenUrl;
 using Drive.Client.Services.RequestProvider;
 using Drive.Client.Services.Signal.Announcement;
 using Drive.Client.Services.Vehicle;
+using Drive.Client.Services.Vision;
 using Drive.Client.ViewModels.ActionBars;
 using Drive.Client.ViewModels.BottomTabViewModels;
 using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
@@ -115,6 +116,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<PostFunctionPopupViewModel>();
 
             // Services.
+            builder.RegisterType<VisionService>().As<IVisionService>();
             builder.RegisterType<DialogService>().As<IDialogService>();
             builder.RegisterType<OpenUrlService>().As<IOpenUrlService>().SingleInstance();
             builder.RegisterType<CommentService>().As<ICommentService>();
