@@ -12,7 +12,7 @@
     xmlns:stackList="clr-namespace:Drive.Client.Controls.Stacklist"
     BackgroundColor="{StaticResource WhiteColor}">
 
-    <StackLayout
+    <!--<StackLayout
         HorizontalOptions="Center"
         Spacing="4"
         VerticalOptions="Center">
@@ -29,28 +29,22 @@
             Text="{Binding ResourceLoader[InDev].Value, Mode=TwoWay}"
             TextColor="{StaticResource ExtraGrayColor}"
             VerticalOptions="Center" />
-    </StackLayout>
+    </StackLayout>-->
 
-    <!--<Grid>
+    <Grid>
         <Grid RowSpacing="0" VerticalOptions="Start">
             <Grid.RowDefinitions>
                 <RowDefinition Height="200" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
-    -->
-    <!--  LOGO  -->
-    <!--
+            <!--  LOGO  -->
             <ffimageloadingsvg:SvgCachedImage
                 Grid.Row="0"
                 HorizontalOptions="Center"
                 Source="resource://Drive.Client.Resources.Images.drive_logo.svg"
                 VerticalOptions="Center"
                 WidthRequest="185" />
-
-    -->
-    <!--  TITLE  -->
-    <!--
+            <!--  TITLE  -->
             <controls:LabelExtended
                 Grid.Row="0"
                 Margin="0,30"
@@ -62,9 +56,7 @@
                 VerticalOptions="End" />
 
             <StackLayout Grid.Row="1" Spacing="0">
-    -->
-    <!--  INPUT  -->
-    <!--
+                <!--  INPUT  -->
                 <Grid
                     BackgroundColor="{StaticResource LightGrayColor}"
                     HeightRequest="60"
@@ -94,9 +86,7 @@
                         VerticalOptions="Center"
                         WidthRequest="15" />
                 </Grid>
-    -->
-    <!--  ERROR  -->
-    <!--
+                <!--  ERROR  -->
                 <controls:LabelExtended
                     Margin="0,0,0,0"
                     FontSize="{StaticResource LittleSize}"
@@ -106,9 +96,7 @@
                     TextColor="{StaticResource ErrorColor}"
                     VerticalOptions="End"
                     VerticalTextAlignment="Center" />
-    -->
-    <!--  INFORMATION  -->
-    <!--
+                <!--  INFORMATION  -->
                 <controls:LabelExtended
                     Margin="0,30,0,0"
                     FontFamily="{StaticResource SFProThin}"
@@ -120,5 +108,5 @@
         </Grid>
 
         <hiddenView:UnauthorizeView BackgroundColor="{StaticResource WhiteColor}" IsVisible="{Binding VisibilityClosedView}" />
-    </Grid>-->
+    </Grid>
 </ContentView>
