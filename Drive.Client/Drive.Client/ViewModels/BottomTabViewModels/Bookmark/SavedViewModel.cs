@@ -17,13 +17,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark
-{
+namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
     public sealed class SavedViewModel : NestedViewModel, IVisualFiguring, ISwitchTab {
 
-        private readonly IVisionService _visionService;
-
-        private readonly IPickMediaService _pickMediaService;
+      
 
         public Type RelativeViewType => typeof(SavedView);
 
@@ -49,14 +46,11 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark
 
         public ICommand SignUpCommand => new Command(async () => await NavigationService.NavigateToAsync<PhoneNumberRegisterStepViewModel>());
 
-        public ICommand TestCommand => new Command(async () => await OnTestAsync());
-
         /// <summary>
         ///     ctor().
         /// </summary>
-        public SavedViewModel(IPickMediaService pickMediaService, IVisionService visionService) {
-            _visionService = visionService;
-            _pickMediaService = pickMediaService;
+        public SavedViewModel() {
+          
         }
 
         public override Task InitializeAsync(object navigationData) {
@@ -67,37 +61,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark
             UpdateView();
 
             return base.InitializeAsync(navigationData);
-        }
-
-        private async Task OnTestAsync() {
-            try {
-                //await NavigationService.NavigateToAsync<TestViewModel>();
-
-                using (var file = await _pickMediaService.TakePhotoAsync()) {
-                    if (file != null) {
-                        var result = await _visionService.AnalyzeImageForText(file);
-
-                        if (result != null) {
-                            Results = result.ToObservableCollection();
-                        }
-                    }
-                }
-
-                //using (var file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions { PhotoSize = PhotoSize.Medium, CompressionQuality = 90 })) {
-
-                //    if (file != null) {
-                //        var result = await _visionService.AnalyzeImageForText(file);
-
-                //        if (result != null) {
-
-                //        }
-                //    }
-                //}
-            }
-            catch (Exception ex) {
-                Debug.WriteLine($"ERROR: -{ex.Message}");
-                Debugger.Break();
-            }
         }
 
         protected override void ResolveStringResources() {

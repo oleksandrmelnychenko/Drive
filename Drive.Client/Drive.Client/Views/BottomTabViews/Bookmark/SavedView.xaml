@@ -11,16 +11,7 @@
     BackgroundColor="{StaticResource WhiteColor}">
 
     <Grid>
-        <Grid>
-            <Button
-                Command="{Binding TestCommand}"
-                HorizontalOptions="Center"
-                Text="TAKE PHOTO"
-                VerticalOptions="Center" />
-
-            <ListView Grid.Row="1" ItemsSource="{Binding Results}" />
-        </Grid>
-        <!--<StackLayout
+        <StackLayout
             HorizontalOptions="Center"
             Spacing="4"
             VerticalOptions="Center">
@@ -37,7 +28,7 @@
                 Text="{Binding ResourceLoader[InDev].Value, Mode=TwoWay}"
                 TextColor="{StaticResource ExtraGrayColor}"
                 VerticalOptions="Center" />
-        </StackLayout>-->
+        </StackLayout>
 
         <hiddenView:UnauthorizeView BackgroundColor="{StaticResource WhiteColor}" IsVisible="{Binding VisibilityClosedView}" />
     </Grid>
