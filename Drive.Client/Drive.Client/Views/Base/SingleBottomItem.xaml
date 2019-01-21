@@ -22,6 +22,7 @@
             Source="resource://Drive.Client.Resources.Images.Button.svg"
             VerticalOptions="Center"
             WidthRequest="50" />
+
         <ffimageloadingsvg:SvgCachedImage
             x:Name="_icon_CachedImage"
             HeightRequest="22"

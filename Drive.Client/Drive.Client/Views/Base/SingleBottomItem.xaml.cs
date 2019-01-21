@@ -83,7 +83,7 @@ namespace Drive.Client.Views.Base {
         }
 
         private void ApplyRelativeView(IBottomBarTab bottomBarItemContext) {
-            if (!(bottomBarItemContext is IActionBottomBarTab)) {
+            if (!(bottomBarItemContext is ViewLessTabViewModel)) {
                 AppropriateItemContentView = (View)new DataTemplate(bottomBarItemContext.RelativeViewType).CreateContent();
                 AppropriateItemContentView.BindingContext = bottomBarItemContext;
             }

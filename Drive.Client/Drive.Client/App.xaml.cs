@@ -20,7 +20,7 @@ namespace Drive.Client {
         /// <summary>
         ///     ctor().
         /// </summary>
-        public App() {
+        public App() { 
             InitializeComponent();
 
             InitApp();

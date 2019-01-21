@@ -127,7 +127,7 @@ namespace Drive.Client.Views.Base {
                                 });
                                 declarer._bottomBarSpot_Grid.Children.Add(singleVisualBottomItem);
 
-                                if (!(singleVisualBottomItem.BindingContext is IActionBottomBarTab)) {
+                                if (!(singleVisualBottomItem.BindingContext is ViewLessTabViewModel)) {
                                     declarer._contentBox_Grid.Children.Add(singleVisualBottomItem.AppropriateItemContentView);
                                 }
                             }
@@ -152,7 +152,9 @@ namespace Drive.Client.Views.Base {
 
                             if (targetTab is IActionBottomBarTab actionBottomBarTab) {
                                 actionBottomBarTab.TabActionCommand?.Execute(null);
+                            }
 
+                            if (targetTab is ViewLessTabViewModel) {
                                 if ((int)oldValue != (int)newValue) {
                                     declarer.SelectedBottomItemIndex = (int)oldValue;
                                 }
@@ -162,7 +164,7 @@ namespace Drive.Client.Views.Base {
 
                                 for (int i = 0; i < bottomItems.Count(); i++) {
 
-                                    if (!(bottomItems.ElementAt(i).BindingContext is IActionBottomBarTab)) {
+                                    if (!(bottomItems.ElementAt(i).BindingContext is ViewLessTabViewModel)) {
                                         bottomItems.ElementAt(i).IsSelected = (i == declarer.SelectedBottomItemIndex);
                                         bottomItems.ElementAt(i).AppropriateItemContentView.TranslationX = (bottomItems.ElementAt(i).IsSelected) ? 0 : short.MaxValue;
                                     }
@@ -252,7 +254,8 @@ namespace Drive.Client.Views.Base {
                 if (SelectedBottomItemIndex != ((SingleBottomItem)sender).TabIndex) {
                     SelectedBottomItemIndex = ((SingleBottomItem)sender).TabIndex;
                 }
-            } else {
+            }
+            else {
                 if (context is IActionBottomBarTab actionBottomBarTab) {
                     actionBottomBarTab.TabActionCommand?.Execute(null);
                 }
