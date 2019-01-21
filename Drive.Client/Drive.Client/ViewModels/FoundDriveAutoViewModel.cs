@@ -5,6 +5,8 @@ using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.Models.Identities.NavigationArgs;
 using Drive.Client.Resources.Resx;
 using Drive.Client.Services.Automobile;
+using Drive.Client.Services.Media;
+using Drive.Client.Services.Vision;
 using Drive.Client.ViewModels.ActionBars;
 using Drive.Client.ViewModels.Base;
 using System;
@@ -19,6 +21,10 @@ namespace Drive.Client.ViewModels {
     public sealed class FoundDriveAutoViewModel : ContentPageBaseViewModel {
 
         private CancellationTokenSource _getCarsCancellationTokenSource = new CancellationTokenSource();
+
+        private readonly IVisionService _visionService;
+
+        private readonly IPickMediaService _pickMediaService;
 
         private readonly IDriveAutoService _driveAutoService;
 
@@ -65,8 +71,12 @@ namespace Drive.Client.ViewModels {
         /// <summary>
         ///     ctor().
         /// </summary>
-        public FoundDriveAutoViewModel(IDriveAutoService driveAutoService) {
+        public FoundDriveAutoViewModel(IDriveAutoService driveAutoService,
+                                       IPickMediaService pickMediaService,
+                                       IVisionService visionService) {
             _driveAutoService = driveAutoService;
+            _visionService = visionService;
+            _pickMediaService = pickMediaService;
 
             ActionBarViewModel = DependencyLocator.Resolve<CommonActionBarViewModel>();
 
@@ -80,6 +90,12 @@ namespace Drive.Client.ViewModels {
         }
 
         public override Task InitializeAsync(object navigationData) {
+
+            if (navigationData is bool canTakePhoto) {
+                if (canTakePhoto) {
+                    AnalysePhotoAsync();
+                }
+            }
 
             if (navigationData is string) {
                 TargetCarNumber = navigationData.ToString();
@@ -98,6 +114,28 @@ namespace Drive.Client.ViewModels {
             base.ResolveStringResources();
 
             _resultInfo = (ResourceLoader.GetString(nameof(AppStrings.SearchResult)).Value);
+        }
+
+        private async void AnalysePhotoAsync() {
+            try {
+                Guid busyKey = Guid.NewGuid();
+                SetBusy(busyKey, true);
+
+                using (var file = await _pickMediaService.TakePhotoAsync()) {
+                    if (file != null) {
+                        var result = await _visionService.AnalyzeImageForText(file);
+
+                        if (result != null) {
+                            List<string> results = result;
+                        }
+                    }
+                }
+                SetBusy(busyKey, false);
+            }
+            catch (Exception ex) {
+                Debug.WriteLine($"ERROR: -{ex.Message}");
+                Debugger.Break();
+            }
         }
 
         private async void GetDriveAutoDetail(string targetCarNumber) {

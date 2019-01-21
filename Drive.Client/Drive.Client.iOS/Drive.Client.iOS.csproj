@@ -80,6 +80,7 @@
     <CodesignProvision>DriveAppStoreDistrProv</CodesignProvision>
     <CodesignKey>iPhone Distribution: Oleksandr Melnychenko (8DKCVKHBBL)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchDebug>true</MtouchDebug>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>none</DebugType>
