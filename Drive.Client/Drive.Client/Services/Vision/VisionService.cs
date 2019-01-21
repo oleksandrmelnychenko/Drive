@@ -60,7 +60,7 @@ namespace Drive.Client.Services.Vision {
             int maxRetries = 10;
             while ((result.Status == TextOperationStatusCodes.Running || result.Status == TextOperationStatusCodes.NotStarted) && i++ < maxRetries) {
                 Debug.WriteLine("Server status: {0}, waiting {1} seconds...", result.Status, i);
-                await Task.Delay(1000);
+                await Task.Delay(500);
 
                 result = await computerVision.GetTextOperationResultAsync(operationId);
             }
