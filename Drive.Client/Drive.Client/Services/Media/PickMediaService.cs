@@ -20,11 +20,10 @@ namespace Drive.Client.Services.Media {
         public async Task<MediaFile> TakePhotoAsync() {
             await CrossMedia.Current.Initialize();
 
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported) {
-                return null;
-            }
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported) return null;
 
             MediaFile file = null;
+
             try {
                 file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions {
                     PhotoSize = PhotoSize.Medium,
@@ -81,6 +80,7 @@ namespace Drive.Client.Services.Media {
 
         public async Task<AttachedImage> BuildAttachedImageAsync() {
             await CrossMedia.Current.Initialize();
+
             if (!CrossMedia.Current.IsPickPhotoSupported) return null;
 
             AttachedImage attachedImage = null;
