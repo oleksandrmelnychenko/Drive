@@ -118,6 +118,9 @@ namespace Drive.Client.ViewModels {
 
         private async void AnalysePhotoAsync() {
             try {
+                Guid busyKey = Guid.NewGuid();
+                SetBusy(busyKey, true);
+
                 using (var file = await _pickMediaService.TakePhotoAsync()) {
                     if (file != null) {
                         var result = await _visionService.AnalyzeImageForText(file);
@@ -127,6 +130,7 @@ namespace Drive.Client.ViewModels {
                         }
                     }
                 }
+                SetBusy(busyKey, false);
             }
             catch (Exception ex) {
                 Debug.WriteLine($"ERROR: -{ex.Message}");
