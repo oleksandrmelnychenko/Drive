@@ -107,6 +107,7 @@
     <Compile Include="Renderers\ExtendedContentViewRenderer.cs" />
     <Compile Include="Renderers\LabelExtendedRenderer.cs" />
     <Compile Include="Services\AppVersion.cs" />
+    <Compile Include="Services\Class1.cs" />
     <Compile Include="Services\Device.cs" />
     <Compile Include="Services\UserNotificationCenterDelegate.cs" />
     <None Include="Entitlements.plist" />
