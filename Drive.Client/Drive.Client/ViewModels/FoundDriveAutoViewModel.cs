@@ -91,6 +91,7 @@ namespace Drive.Client.ViewModels {
 
         public override Task InitializeAsync(object navigationData) {
 
+            // temp variable
             if (navigationData is bool canTakePhoto) {
                 if (canTakePhoto) {
                     AnalysePhotoAsync();
@@ -123,11 +124,9 @@ namespace Drive.Client.ViewModels {
 
                 using (var file = await _pickMediaService.TakePhotoAsync()) {
                     if (file != null) {
-                        var result = await _visionService.AnalyzeImageForText(file);
+                        List<string> results = await _visionService.AnalyzeImageForText(file);
 
-                        if (result != null) {
-                            List<string> results = result;
-                        }
+
                     }
                 }
                 SetBusy(busyKey, false);
