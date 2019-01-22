@@ -1,4 +1,4 @@
-﻿using Drive.Client.Models.EntityModels.Announcement;
+﻿using Drive.Client.Models.EntityModels.Cognitive;
 using Drive.Client.Models.Medias;
 using System.Collections.Generic;
 using System.Threading;
@@ -12,10 +12,11 @@ namespace Drive.Client.Services.RequestProvider {
 
         Task<TResult> PostFormDataAsync<TResult, TBodyContent>(string url, TBodyContent bodyContent, string accessToken = "")
             where TBodyContent : MediaBase;
-
         Task<TResult> PutAsync<TResult, TBodyContent>(string url, TBodyContent bodyContent, string accessToken = "");
 
         Task<TResult> PostFormDataCollectionAsync<TResult, TBodyContent>(string url, TBodyContent attachedData, string accessToken = "")
             where TBodyContent : IEnumerable<MediaBase>;
+        Task<TResult> PostComplexFormDataAsync<TResult, TbodyContent>(string url, TbodyContent bodyContent, string accessToken = "")
+            where TbodyContent : FormDataContent;
     }
 }

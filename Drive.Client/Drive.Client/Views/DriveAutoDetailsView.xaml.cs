@@ -7,5 +7,9 @@ namespace Drive.Client.Views {
         public DriveAutoDetailsView() {
             InitializeComponent();
         }
+
+        private void ListView_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e) {
+            _list.SelectedItem = null;
+        }
     }
 }

@@ -78,6 +78,28 @@ namespace Drive.Client.Services.Media {
             return pickedImage;
         }
 
+        public async Task<PickedImage> BuildPickedImageAsync(MediaFile mediaFile) {
+            await CrossMedia.Current.Initialize();
+            if (!CrossMedia.Current.IsPickPhotoSupported) return null;
+
+            PickedImage pickedImage = null;
+
+                if (mediaFile == null) return null;
+
+                try {
+                    Stream stream = mediaFile.GetStream();
+
+                    pickedImage = new PickedImage {
+                        Name = Path.GetFileName(mediaFile.Path),
+                        Body = await ParseStreamToBytesAsync(stream)
+                    };
+                }
+                catch (Exception) {
+                    pickedImage = null;
+                }
+            return pickedImage;
+        }
+
         public async Task<AttachedImage> BuildAttachedImageAsync() {
             await CrossMedia.Current.Initialize();
 

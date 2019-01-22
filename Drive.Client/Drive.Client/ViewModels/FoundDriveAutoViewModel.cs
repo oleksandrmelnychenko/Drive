@@ -22,10 +22,6 @@ namespace Drive.Client.ViewModels {
 
         private CancellationTokenSource _getCarsCancellationTokenSource = new CancellationTokenSource();
 
-        private readonly IVisionService _visionService;
-
-        private readonly IPickMediaService _pickMediaService;
-
         private readonly IDriveAutoService _driveAutoService;
 
         bool _isBackButtonAvailable;
@@ -71,12 +67,9 @@ namespace Drive.Client.ViewModels {
         /// <summary>
         ///     ctor().
         /// </summary>
-        public FoundDriveAutoViewModel(IDriveAutoService driveAutoService,
-                                       IPickMediaService pickMediaService,
-                                       IVisionService visionService) {
+        public FoundDriveAutoViewModel(IDriveAutoService driveAutoService                                       ) {
             _driveAutoService = driveAutoService;
-            _visionService = visionService;
-            _pickMediaService = pickMediaService;
+          
 
             ActionBarViewModel = DependencyLocator.Resolve<CommonActionBarViewModel>();
 
@@ -89,14 +82,7 @@ namespace Drive.Client.ViewModels {
             ResetCancellationTokenSource(ref _getCarsCancellationTokenSource);
         }
 
-        public override Task InitializeAsync(object navigationData) {
-
-            // temp variable
-            if (navigationData is bool canTakePhoto) {
-                if (canTakePhoto) {
-                    AnalysePhotoAsync();
-                }
-            }
+        public override Task InitializeAsync(object navigationData) {           
 
             if (navigationData is string) {
                 TargetCarNumber = navigationData.ToString();
@@ -115,26 +101,6 @@ namespace Drive.Client.ViewModels {
             base.ResolveStringResources();
 
             _resultInfo = (ResourceLoader.GetString(nameof(AppStrings.SearchResult)).Value);
-        }
-
-        private async void AnalysePhotoAsync() {
-            try {
-                Guid busyKey = Guid.NewGuid();
-                SetBusy(busyKey, true);
-
-                using (var file = await _pickMediaService.TakePhotoAsync()) {
-                    if (file != null) {
-                        List<string> results = await _visionService.AnalyzeImageForText(file);
-
-
-                    }
-                }
-                SetBusy(busyKey, false);
-            }
-            catch (Exception ex) {
-                Debug.WriteLine($"ERROR: -{ex.Message}");
-                Debugger.Break();
-            }
         }
 
         private async void GetDriveAutoDetail(string targetCarNumber) {
