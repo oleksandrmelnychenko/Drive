@@ -42,8 +42,10 @@ namespace Drive.Client.ViewModels.Base {
                     BottomBarItems?[_electedBottomItemIndex].Dispose();
                     BottomBarItems?[value].InitializeAsync(new SelectedBottomBarTabArgs());
 
-                    SomeBottomTabWasSelectedArgs someBottomTabWasSelectedArgs = new SomeBottomTabWasSelectedArgs(BottomBarItems?[value].GetType());
-                    BottomBarItems.ForEach(barItem => barItem.InitializeAsync(someBottomTabWasSelectedArgs));
+                    if (BottomBarItems != null && BottomBarItems.Any()) {
+                        SomeBottomTabWasSelectedArgs someBottomTabWasSelectedArgs = new SomeBottomTabWasSelectedArgs(BottomBarItems?[value].GetType());
+                        BottomBarItems.ForEach(barItem => barItem.InitializeAsync(someBottomTabWasSelectedArgs));
+                    }
                 }
                 catch (Exception exc) {
                     string message = exc.Message;

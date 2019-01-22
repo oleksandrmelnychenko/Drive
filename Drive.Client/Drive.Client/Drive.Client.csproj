@@ -38,6 +38,9 @@
     <None Remove="Resources\Images\ArrowNext.svg" />
     <None Remove="Resources\Images\Arrow_ok.svg" />
     <None Remove="Resources\Images\Button.svg" />
+    <None Remove="Resources\Images\Button_tesla.svg" />
+    <None Remove="Resources\Images\Button_tesla_2.svg" />
+    <None Remove="Resources\Images\Button_Tesla_Model_S.svg" />
     <None Remove="Resources\Images\Calendar.svg" />
     <None Remove="Resources\Images\checked.svg" />
     <None Remove="Resources\Images\Close.svg" />
@@ -134,6 +137,7 @@
     <EmbeddedResource Include="Resources\Images\Send.svg" />
     <EmbeddedResource Include="Resources\Images\Sent.svg" />
     <EmbeddedResource Include="Resources\Images\stroke.svg" />
+    <EmbeddedResource Include="Resources\Images\Button_Tesla_Model_S.svg" />
     <EmbeddedResource Include="Resources\Images\text.svg" />
     <EmbeddedResource Include="Resources\Images\User.svg" />
   </ItemGroup>
@@ -169,7 +173,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppStrings.resx</DependentUpon>
     </Compile>
-    <Compile Update="Views\BottomTabViews\PostBuilderView.xaml.cs">
+    <Compile Update="Views\BottomTabViews\PostBuilder\PostBuilderView.xaml.cs">
       <DependentUpon>PostBuilderView.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\DriveAutoDetailsView.xaml.cs">
@@ -243,6 +247,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BottomTabViews\Popups\PostTypePopupView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\BottomTabViews\PostBuilder\UserButtonBottomItemView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Popups\PostFunctionPopupView.xaml">
@@ -383,7 +390,7 @@
     <EmbeddedResource Update="Views\MainView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\BottomTabViews\PostBuilderView.xaml">
+    <EmbeddedResource Update="Views\BottomTabViews\PostBuilder\PostBuilderView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BottomTabViews\ProfileView.xaml">

@@ -27,6 +27,7 @@ using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
 using Drive.Client.ViewModels.BottomTabViewModels.Home;
 using Drive.Client.ViewModels.BottomTabViewModels.Home.Post;
 using Drive.Client.ViewModels.BottomTabViewModels.Popups;
+using Drive.Client.ViewModels.BottomTabViewModels.PostBuilder;
 using Drive.Client.ViewModels.BottomTabViewModels.Search;
 using Drive.Client.ViewModels.IdentityAccounting;
 using Drive.Client.ViewModels.IdentityAccounting.EditProfile;
