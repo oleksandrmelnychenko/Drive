@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<local:BottomItemViewBase
-    x:Class="Drive.Client.Views.Base.SingleBottomItem"
+<baseViews:BottomItemViewBase
+    x:Class="Drive.Client.Views.BottomTabViews.PostBuilder.UserButtonBottomItemView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:baseViews="clr-namespace:Drive.Client.Views.Base"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-    xmlns:local="clr-namespace:Drive.Client.Views.Base"
     BackgroundColor="{StaticResource UltraLightGrayColor}"
     HeightRequest="60">
 
@@ -12,24 +12,21 @@
         x:Name="_rootContainer_Grid"
         RowSpacing="0"
         VerticalOptions="Center">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
 
         <ffimageloadingsvg:SvgCachedImage
+            x:Name="_createPostButton_SvgCachedImage"
             HeightRequest="50"
             HorizontalOptions="Center"
-            IsVisible="{Binding HasBackgroundItem}"
             Source="resource://Drive.Client.Resources.Images.Button.svg"
             VerticalOptions="Center"
             WidthRequest="50" />
 
         <ffimageloadingsvg:SvgCachedImage
-            x:Name="_icon_CachedImage"
-            HeightRequest="22"
+            x:Name="_visionSearchByImageButton_ContentView"
+            HeightRequest="50"
             HorizontalOptions="Center"
-            Source="{Binding TabIcon}"
+            Source="resource://Drive.Client.Resources.Images.Button_Tesla_Model_S.svg"
             VerticalOptions="Center"
-            WidthRequest="22" />
+            WidthRequest="50" />
     </Grid>
-</local:BottomItemViewBase>
+</baseViews:BottomItemViewBase>

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace Drive.Client.ViewModels.Base {
     public interface IBottomBarTab : IVisualFiguring {
@@ -10,5 +11,7 @@ namespace Drive.Client.ViewModels.Base {
         int BudgeCount { get; }
 
         string TabIcon { get; }
+
+        Type BottomTasselViewType { get; }
     }
 }

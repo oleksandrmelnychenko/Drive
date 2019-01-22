@@ -3,7 +3,6 @@ using Drive.Client.Controls.Popups;
 using Drive.Client.ViewModels.Base;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -116,7 +115,7 @@ namespace Drive.Client.Views.Base {
 
                         if (newValue is IEnumerable<IBottomBarTab> queueNewValue) {
                             for (int i = 0; i < queueNewValue.Count(); i++) {
-                                SingleBottomItem singleVisualBottomItem = new SingleBottomItem();
+                                BottomItemViewBase singleVisualBottomItem = (BottomItemViewBase)new DataTemplate(queueNewValue.ElementAt(i).BottomTasselViewType).CreateContent();
                                 singleVisualBottomItem.TabIndex = i;
                                 singleVisualBottomItem.BindingContext = queueNewValue.ElementAt(i);
                                 singleVisualBottomItem.GestureRecognizers.Add(declarer._bottomItemTapGestureRecognizer);
@@ -160,10 +159,9 @@ namespace Drive.Client.Views.Base {
                                 }
                             }
                             else {
-                                IEnumerable<SingleBottomItem> bottomItems = declarer._bottomBarSpot_Grid.Children.OfType<SingleBottomItem>();
+                                IEnumerable<BottomItemViewBase> bottomItems = declarer._bottomBarSpot_Grid.Children.OfType<BottomItemViewBase>();
 
                                 for (int i = 0; i < bottomItems.Count(); i++) {
-
                                     if (!(bottomItems.ElementAt(i).BindingContext is ViewLessTabViewModel)) {
                                         bottomItems.ElementAt(i).IsSelected = (i == declarer.SelectedBottomItemIndex);
                                         bottomItems.ElementAt(i).AppropriateItemContentView.TranslationX = (bottomItems.ElementAt(i).IsSelected) ? 0 : short.MaxValue;
@@ -247,8 +245,7 @@ namespace Drive.Client.Views.Base {
         }
 
         private void OnBottomItemTapGestureRecognizerTapped(object sender, EventArgs e) {
-            object context = ((SingleBottomItem)sender).BindingContext;
-
+            object context = ((BottomItemViewBase)sender).BindingContext;
 
             if ((context is IBottomBarTab bottomBar) && bottomBar.RelativeViewType != null) {
                 if (SelectedBottomItemIndex != ((SingleBottomItem)sender).TabIndex) {
