@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Drive.Client.ViewModels {
@@ -26,6 +27,8 @@ namespace Drive.Client.ViewModels {
         private readonly IPickMediaService _pickMediaService;
 
         private readonly IDriveAutoService _driveAutoService;
+
+        private CancellationTokenSource _analysePhotoCancellationTokenSource = new CancellationTokenSource();
 
         bool _hasResult;
         public bool HasResult {
@@ -71,6 +74,7 @@ namespace Drive.Client.ViewModels {
 
             _driveAutoDetails?.Clear();
             ErrorMessage = string.Empty;
+            ResetCancellationTokenSource(ref _analysePhotoCancellationTokenSource);
 
             ActionBarViewModel?.Dispose();
         }
@@ -95,6 +99,9 @@ namespace Drive.Client.ViewModels {
             Guid busyKey = Guid.NewGuid();
             SetBusy(busyKey, true);
 
+            ResetCancellationTokenSource(ref _analysePhotoCancellationTokenSource);
+            CancellationTokenSource cancellationTokenSource = _analysePhotoCancellationTokenSource;
+
             try {
                 using (var file = await _pickMediaService.TakePhotoAsync()) {
                     if (file != null) {
@@ -109,7 +116,8 @@ namespace Drive.Client.ViewModels {
                                     MediaContent = targetImage
                                 };
 
-                                List<DriveAuto> driveAutoDetails = await _driveAutoService.SearchDriveAutoByCognitiveAsync(formDataContent);
+                                List<DriveAuto> driveAutoDetails =
+                                    await _driveAutoService.SearchDriveAutoByCognitiveAsync(formDataContent, cancellationTokenSource.Token);
 
                                 if (driveAutoDetails != null) {
                                     DriveAutoDetails = driveAutoDetails.ToObservableCollection();
