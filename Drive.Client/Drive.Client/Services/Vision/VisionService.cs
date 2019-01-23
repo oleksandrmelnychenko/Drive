@@ -60,19 +60,17 @@ namespace Drive.Client.Services.Vision {
             int maxRetries = 10;
             while ((result.Status == TextOperationStatusCodes.Running || result.Status == TextOperationStatusCodes.NotStarted) && i++ < maxRetries) {
                 Debug.WriteLine("Server status: {0}, waiting {1} seconds...", result.Status, i);
-                await Task.Delay(500);
+                await Task.Delay(1000);
 
                 result = await computerVision.GetTextOperationResultAsync(operationId);
             }
 
             List<string> resultlines = new List<string>();
 
-            // Display the results
-            var lines = result.RecognitionResult.Lines;
+            IList<Line> lines = result.RecognitionResult?.Lines;
 
             foreach (Line line in lines) {
-                Debug.WriteLine(line.Text);
-                resultlines.Add(line.Text);
+                resultlines.Add(line.Text.Trim().Replace(" ", ""));
             }
 
             return resultlines;

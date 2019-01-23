@@ -20,6 +20,7 @@ namespace Drive.Client.Services.RequestProvider {
     public class RequestProvider : IRequestProvider {
 
         private readonly HttpClient _client;
+
         private ResourceLoader _resourceLoader;
 
         /// <summary>
@@ -175,15 +176,15 @@ namespace Drive.Client.Services.RequestProvider {
                   if (bodyContent != null) {
                       ByteArrayContent byteArrayContent = new ByteArrayContent(bodyContent.MediaContent.Body);
 
-                      formDataContent.Add(byteArrayContent, "ImageFile", bodyContent.MediaContent.Name);
+                      formDataContent.Add(byteArrayContent, "Image", bodyContent.MediaContent.Name);
 
                       if (bodyContent.Content != null) {
-                          string jObject = JsonConvert.SerializeObject(bodyContent.Content);
+                          string jObject = JsonConvert.SerializeObject(bodyContent);
 
                           content = new StringContent(jObject);
                           content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-                          formDataContent.Add(content);
+                          formDataContent.Add(content, "Data");
                       }
 
                       HttpResponseMessage response = await _client.PostAsync(url, formDataContent);

@@ -71,6 +71,7 @@
     <None Remove="Resources\Images\noun_more.svg" />
     <None Remove="Resources\Images\Ok.svg" />
     <None Remove="Resources\Images\Out.svg" />
+    <None Remove="Resources\Images\papers.png" />
     <None Remove="Resources\Images\password.svg" />
     <None Remove="Resources\Images\PasswordKey.svg" />
     <None Remove="Resources\Images\Phone.svg" />
@@ -125,6 +126,7 @@
     <EmbeddedResource Include="Resources\Images\noun_more.svg" />
     <EmbeddedResource Include="Resources\Images\Ok.svg" />
     <EmbeddedResource Include="Resources\Images\Out.svg" />
+    <EmbeddedResource Include="Resources\Images\papers.png" />
     <EmbeddedResource Include="Resources\Images\password.svg" />
     <EmbeddedResource Include="Resources\Images\PasswordKey.svg" />
     <EmbeddedResource Include="Resources\Images\Phone.svg" />

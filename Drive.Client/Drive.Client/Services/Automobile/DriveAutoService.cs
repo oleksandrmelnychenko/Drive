@@ -104,9 +104,10 @@ namespace Drive.Client.Services.Automobile {
                 List<DriveAuto> driveAutos = null;
 
                 string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.CarInfoEndPoints.SearchByCognitiveEndPoint;
+                string accesToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
 
                 try {
-                    driveAutos = await _requestProvider.GetAsync<List<DriveAuto>>(url);
+                    driveAutos = await _requestProvider.PostComplexFormDataAsync<List<DriveAuto>, FormDataContent>(url, formDataContent, accesToken);
                 }
                 catch (ConnectivityException exc) {
                     throw exc;

@@ -42,7 +42,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.PostBuilder {
                     }
                     break;
                 case UserButtonState.SearchByImage:
-                    await DialogService.ToastAsync("TODO: `search by image` flow starts here");
+                    await NavigationService.NavigateToAsync<DriveAutoDetailsViewModel>(new SearchByImageArgs());
                     break;
                 default:
                     Debugger.Break();
