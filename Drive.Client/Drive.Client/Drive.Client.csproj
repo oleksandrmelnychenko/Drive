@@ -41,6 +41,9 @@
     <None Remove="Resources\Images\Button_tesla.svg" />
     <None Remove="Resources\Images\Button_tesla_2.svg" />
     <None Remove="Resources\Images\Button_Tesla_Model_S.svg" />
+    <None Remove="Resources\Images\Calculator_1.svg" />
+    <None Remove="Resources\Images\Calculator_2.svg" />
+    <None Remove="Resources\Images\Calculator_3.svg" />
     <None Remove="Resources\Images\Calendar.svg" />
     <None Remove="Resources\Images\checked.svg" />
     <None Remove="Resources\Images\Close.svg" />
@@ -93,6 +96,9 @@
     <EmbeddedResource Include="Resources\Images\ArrowNext.svg" />
     <EmbeddedResource Include="Resources\Images\Arrow_ok.svg" />
     <EmbeddedResource Include="Resources\Images\Button.svg" />
+    <EmbeddedResource Include="Resources\Images\Calculator_1.svg" />
+    <EmbeddedResource Include="Resources\Images\Calculator_2.svg" />
+    <EmbeddedResource Include="Resources\Images\Calculator_3.svg" />
     <EmbeddedResource Include="Resources\Images\Calendar.svg" />
     <EmbeddedResource Include="Resources\Images\checked.svg" />
     <EmbeddedResource Include="Resources\Images\Close.svg" />
@@ -246,6 +252,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BottomTabViews\Bookmark\UserVehiclesView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\BottomTabViews\Calculator\CalculatorView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BottomTabViews\Popups\PostTypePopupView.xaml">

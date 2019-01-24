@@ -8,6 +8,7 @@ using Drive.Client.Services.Notifications;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.BottomTabViewModels;
 using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
+using Drive.Client.ViewModels.BottomTabViewModels.Calculator;
 using Drive.Client.ViewModels.BottomTabViewModels.Home;
 using Drive.Client.ViewModels.BottomTabViewModels.PostBuilder;
 using Drive.Client.ViewModels.BottomTabViewModels.Search;
@@ -50,7 +51,8 @@ namespace Drive.Client.ViewModels {
             List<IBottomBarTab> bottomBarTabs = new List<IBottomBarTab>() {
                 DependencyLocator.Resolve<HomeViewModel>(),
                 DependencyLocator.Resolve<SearchViewModel>(),
-                DependencyLocator.Resolve<BookmarkViewModel>(),
+                DependencyLocator.Resolve<CalculatorViewModel>(),
+                //DependencyLocator.Resolve<BookmarkViewModel>(),
                 DependencyLocator.Resolve<ProfileViewModel>()
             };
 

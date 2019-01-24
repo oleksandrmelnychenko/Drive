@@ -81,10 +81,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         public ICommand EditUserNameCommand => new Command(async () => await NavigationService.NavigateToAsync<EditUserNameViewModel>());
 
         public ICommand EditEmailCommand => new Command(async () => await NavigationService.NavigateToAsync<EditEmailViewModel>());
-        //public ICommand EditEmailCommand => new Command(async () => {
-        //    await DependencyService.Get<Interface1>().GetPhotoAsync();
-        //});
-
+      
         public ICommand ChangePasswordCommand => new Command(async () => await NavigationService.NavigateToAsync<EditPasswordFirstStepViewModel>());
 
         public ICommand LogOutCommand => new Command(async () => await _identityService.LogOutAsync());

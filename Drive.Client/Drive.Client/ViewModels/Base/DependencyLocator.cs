@@ -24,6 +24,7 @@ using Drive.Client.Services.Vision;
 using Drive.Client.ViewModels.ActionBars;
 using Drive.Client.ViewModels.BottomTabViewModels;
 using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
+using Drive.Client.ViewModels.BottomTabViewModels.Calculator;
 using Drive.Client.ViewModels.BottomTabViewModels.Home;
 using Drive.Client.ViewModels.BottomTabViewModels.Home.Post;
 using Drive.Client.ViewModels.BottomTabViewModels.Popups;
@@ -76,6 +77,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<BookmarkViewModel>();
             builder.RegisterType<PostBaseViewModel>();
             builder.RegisterType<EditEmailViewModel>();
+            builder.RegisterType<CalculatorViewModel>();
             builder.RegisterType<PostBuilderViewModel>();
             builder.RegisterType<UnauthorizeViewModel>();
             builder.RegisterType<PostCommentsViewModel>();
