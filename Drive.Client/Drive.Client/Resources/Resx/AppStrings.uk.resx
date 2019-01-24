@@ -510,4 +510,13 @@
   <data name="TryMore" xml:space="preserve">
     <value>Спробуйте використати зображення вищої якості</value>
   </data>
+  <data name="CustomsClearanceCalculator" xml:space="preserve">
+    <value>Калькулятор розтаможки на 2019 рік</value>
+  </data>
+  <data name="VehicleAgeUppercase" xml:space="preserve">
+    <value>ВІК АВТОМОБІЛЯ</value>
+  </data>
+  <data name="VehicleTypeUppercase" xml:space="preserve">
+    <value>ТИП ТРАНСПОРТУ</value>
+  </data>
 </root>

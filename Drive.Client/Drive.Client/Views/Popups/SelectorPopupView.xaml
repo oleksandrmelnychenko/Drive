@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<popups:SinglePopupViewBase
+    x:Class="Drive.Client.Views.Popups.SelectorPopupView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:converters="clr-namespace:Drive.Client.Converters"
+    xmlns:popups="clr-namespace:Drive.Client.Controls.Popups"
+    xmlns:stackList="clr-namespace:Drive.Client.Controls.Stacklist"
+    CascadeInputTransparent="False"
+    InputTransparent="True">
+
+    <popups:SinglePopupViewBase.Resources>
+        <ResourceDictionary>
+            <converters:SelectorPopupItemTitleConverter x:Key="selector_popup_item_title_converter" />
+        </ResourceDictionary>
+    </popups:SinglePopupViewBase.Resources>
+
+    <popups:SinglePopupViewBase.Content>
+        <Grid CascadeInputTransparent="False" InputTransparent="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Content background backing  -->
+            <ContentView Grid.Row="1" BackgroundColor="{StaticResource WhiteColor}" />
+
+            <!--  Main content  -->
+            <Grid
+                Grid.Row="1"
+                Padding="20"
+                RowSpacing="24">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!--  Header  -->
+                <controls:LabelExtended
+                    Grid.Row="0"
+                    FontFamily="{StaticResource SFProLight}"
+                    FontSize="{StaticResource LittleSize}"
+                    HorizontalOptions="Center"
+                    Text="{Binding Path=Title.Value}"
+                    TextColor="{StaticResource BaseGrayColor}"
+                    VerticalOptions="Center" />
+
+                <ScrollView Grid.Row="1">
+
+                    <!--  Values list  -->
+                    <stackList:StackList
+                        x:Name="_itemsList_StackList"
+                        ItemsSource="{Binding Path=ItemsToSelect}"
+                        Spacing="24">
+                        <stackList:StackList.ItemTemplate>
+                            <DataTemplate>
+                                <stackList:CommonStackListItem IsOnSelectionVisualChangesEnabled="False" IsSelectable="False">
+                                    <stackList:CommonStackListItem.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.SelectItemCommand, Source={Reference Name=_itemsList_StackList}}" CommandParameter="{Binding}" />
+                                    </stackList:CommonStackListItem.GestureRecognizers>
+                                    <controls:LabelExtended
+                                        FontFamily="{StaticResource SFProLight}"
+                                        FontSize="{StaticResource MediumSize}"
+                                        HorizontalOptions="Center"
+                                        Text="{Binding Converter={StaticResource Key=selector_popup_item_title_converter}}"
+                                        TextColor="{StaticResource DarkColor}"
+                                        VerticalOptions="Center" />
+                                </stackList:CommonStackListItem>
+                            </DataTemplate>
+                        </stackList:StackList.ItemTemplate>
+                    </stackList:StackList>
+                </ScrollView>
+            </Grid>
+        </Grid>
+    </popups:SinglePopupViewBase.Content>
+</popups:SinglePopupViewBase>

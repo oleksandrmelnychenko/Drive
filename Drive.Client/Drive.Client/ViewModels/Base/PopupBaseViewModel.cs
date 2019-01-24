@@ -1,4 +1,5 @@
 ﻿using Drive.Client.Controls.Popups;
+using Drive.Client.Helpers.Localize;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -6,6 +7,12 @@ using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.Base {
     public abstract class PopupBaseViewModel : NestedViewModel, IPopupContext {
+
+        private StringResource _title;
+        public StringResource Title {
+            get => _title;
+            set => SetProperty<StringResource>(ref _title, value);
+        }
 
         bool _isPopupVisible;
         public bool IsPopupVisible {
@@ -18,16 +25,14 @@ namespace Drive.Client.ViewModels.Base {
         }
 
         public ICommand ShowPopupCommand => new Command((object param) => {
+            OnShowPopupCommand(param);
             UpdatePopupScopeVisibility(true);
             IsPopupVisible = true;
-
-            OnShowPopupCommand(param);
         });
 
         public ICommand ClosePopupCommand => new Command((object param) => {
-            UpdatePopupScopeVisibility(false);
-
             OnClosePopupCommand(param);
+            UpdatePopupScopeVisibility(false);
         });
 
         public abstract Type RelativeViewType { get; }

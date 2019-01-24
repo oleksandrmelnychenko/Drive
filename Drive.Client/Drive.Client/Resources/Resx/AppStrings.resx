@@ -511,4 +511,13 @@ certificate issued</value>
   <data name="TryMore" xml:space="preserve">
     <value>Try using a higher quality image</value>
   </data>
+  <data name="CustomsClearanceCalculator" xml:space="preserve">
+    <value>Customs clearance calculator for 2019</value>
+  </data>
+  <data name="VehicleAgeUppercase" xml:space="preserve">
+    <value>VEHICLE AGE</value>
+  </data>
+  <data name="VehicleTypeUppercase" xml:space="preserve">
+    <value>TYPE OF TRANSPORT</value>
+  </data>
 </root>

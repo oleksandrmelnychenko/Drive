@@ -232,6 +232,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customs clearance calculator for 2019.
+        /// </summary>
+        public static string CustomsClearanceCalculator {
+            get {
+                return ResourceManager.GetString("CustomsClearanceCalculator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to REGISTRATION DATE.
         /// </summary>
         public static string DataRegUpperCase {
@@ -1142,6 +1151,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to VEHICLE AGE.
+        /// </summary>
+        public static string VehicleAgeUppercase {
+            get {
+                return ResourceManager.GetString("VehicleAgeUppercase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vehicle found.
         /// </summary>
         public static string VehicleFound {
@@ -1183,6 +1201,15 @@ namespace Drive.Client.Resources.Resx {
         public static string VehicleTechnicalInspection {
             get {
                 return ResourceManager.GetString("VehicleTechnicalInspection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TYPE OF TRANSPORT.
+        /// </summary>
+        public static string VehicleTypeUppercase {
+            get {
+                return ResourceManager.GetString("VehicleTypeUppercase", resourceCulture);
             }
         }
         

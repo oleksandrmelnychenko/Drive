@@ -117,6 +117,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<SearchByPolandCarIdSecondStepViewModel>();
             builder.RegisterType<SearchByPolandCarIdFinallyStepViewModel>();
             builder.RegisterType<PostFunctionPopupViewModel>();
+            builder.RegisterType<SelectorPopupViewModel>();
 
             // Services.
             builder.RegisterType<VisionService>().As<IVisionService>();
