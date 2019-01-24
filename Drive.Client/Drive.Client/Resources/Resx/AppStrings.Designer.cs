@@ -1061,6 +1061,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Try using a higher quality image.
+        /// </summary>
+        public static string TryMore {
+            get {
+                return ResourceManager.GetString("TryMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TSC.
         /// </summary>
         public static string TSC {

@@ -2,6 +2,7 @@
 using Drive.Client.Models.Arguments.BottomtabSwitcher;
 using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Models.Medias;
+using Drive.Client.Services;
 using Drive.Client.Services.Identity;
 using Drive.Client.Services.Media;
 using Drive.Client.ViewModels.Base;
@@ -80,6 +81,9 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         public ICommand EditUserNameCommand => new Command(async () => await NavigationService.NavigateToAsync<EditUserNameViewModel>());
 
         public ICommand EditEmailCommand => new Command(async () => await NavigationService.NavigateToAsync<EditEmailViewModel>());
+        //public ICommand EditEmailCommand => new Command(async () => {
+        //    await DependencyService.Get<Interface1>().GetPhotoAsync();
+        //});
 
         public ICommand ChangePasswordCommand => new Command(async () => await NavigationService.NavigateToAsync<EditPasswordFirstStepViewModel>());
 
@@ -123,7 +127,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
             if (navigationData is SelectedBottomBarTabArgs) {
                 GetUser();
             }
-            
+
             LanguageSelectPopupViewModel?.InitializeAsync(navigationData);
 
             return base.InitializeAsync(navigationData);
@@ -184,7 +188,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
                         Debugger.Break();
                     }
                     UpdateBusyVisualState(busyKey, false);
-                } else if (status != PermissionStatus.Unknown) {
+                }
+                else if (status != PermissionStatus.Unknown) {
                     await DialogService.ShowAlertAsync("Photos access Denied", "Can not continue, try again.", "OK");
                 }
             }

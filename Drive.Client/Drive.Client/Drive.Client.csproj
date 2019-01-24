@@ -27,6 +27,7 @@
   <ItemGroup>
     <Compile Remove="Extensions\TranslateExtension.cs" />
     <Compile Remove="Models\Notifications\INotificationType.cs" />
+    <Compile Remove="Services\Interface1.cs" />
     <Compile Remove="ViewModels\Base\ITodo.cs" />
     <Compile Remove="ViewModels\BottomTabViewModels\Home\Post\MediaPostViewModel.cs" />
     <Compile Remove="ViewModels\BottomTabViewModels\Home\Post\TextPostViewModel.cs" />
@@ -37,6 +38,9 @@
     <None Remove="Resources\Images\ArrowNext.svg" />
     <None Remove="Resources\Images\Arrow_ok.svg" />
     <None Remove="Resources\Images\Button.svg" />
+    <None Remove="Resources\Images\Button_tesla.svg" />
+    <None Remove="Resources\Images\Button_tesla_2.svg" />
+    <None Remove="Resources\Images\Button_Tesla_Model_S.svg" />
     <None Remove="Resources\Images\Calendar.svg" />
     <None Remove="Resources\Images\checked.svg" />
     <None Remove="Resources\Images\Close.svg" />
@@ -67,6 +71,7 @@
     <None Remove="Resources\Images\noun_more.svg" />
     <None Remove="Resources\Images\Ok.svg" />
     <None Remove="Resources\Images\Out.svg" />
+    <None Remove="Resources\Images\papers.png" />
     <None Remove="Resources\Images\password.svg" />
     <None Remove="Resources\Images\PasswordKey.svg" />
     <None Remove="Resources\Images\Phone.svg" />
@@ -121,6 +126,7 @@
     <EmbeddedResource Include="Resources\Images\noun_more.svg" />
     <EmbeddedResource Include="Resources\Images\Ok.svg" />
     <EmbeddedResource Include="Resources\Images\Out.svg" />
+    <EmbeddedResource Include="Resources\Images\papers.png" />
     <EmbeddedResource Include="Resources\Images\password.svg" />
     <EmbeddedResource Include="Resources\Images\PasswordKey.svg" />
     <EmbeddedResource Include="Resources\Images\Phone.svg" />
@@ -133,6 +139,7 @@
     <EmbeddedResource Include="Resources\Images\Send.svg" />
     <EmbeddedResource Include="Resources\Images\Sent.svg" />
     <EmbeddedResource Include="Resources\Images\stroke.svg" />
+    <EmbeddedResource Include="Resources\Images\Button_Tesla_Model_S.svg" />
     <EmbeddedResource Include="Resources\Images\text.svg" />
     <EmbeddedResource Include="Resources\Images\User.svg" />
   </ItemGroup>
@@ -145,6 +152,7 @@
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.11.0" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client.Core" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.ComputerVision" Version="3.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="PhotoBrowser.Forms" Version="0.1.3" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
@@ -167,7 +175,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppStrings.resx</DependentUpon>
     </Compile>
-    <Compile Update="Views\BottomTabViews\PostBuilderView.xaml.cs">
+    <Compile Update="Views\BottomTabViews\PostBuilder\PostBuilderView.xaml.cs">
       <DependentUpon>PostBuilderView.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\DriveAutoDetailsView.xaml.cs">
@@ -241,6 +249,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BottomTabViews\Popups\PostTypePopupView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\BottomTabViews\PostBuilder\UserButtonBottomItemView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Popups\PostFunctionPopupView.xaml">
@@ -381,7 +392,7 @@
     <EmbeddedResource Update="Views\MainView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\BottomTabViews\PostBuilderView.xaml">
+    <EmbeddedResource Update="Views\BottomTabViews\PostBuilder\PostBuilderView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BottomTabViews\ProfileView.xaml">

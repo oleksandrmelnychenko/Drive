@@ -7,5 +7,8 @@ namespace Drive.Client.Models.EntityModels.Search {
 
         [JsonProperty("brand")]
         public string Brand { get; set; }
+
+        [JsonProperty("location")]
+        public string Location { get; set; }
     }
 }

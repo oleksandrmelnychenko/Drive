@@ -5,6 +5,8 @@ using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.Models.Identities.NavigationArgs;
 using Drive.Client.Resources.Resx;
 using Drive.Client.Services.Automobile;
+using Drive.Client.Services.Media;
+using Drive.Client.Services.Vision;
 using Drive.Client.ViewModels.ActionBars;
 using Drive.Client.ViewModels.Base;
 using System;
@@ -65,8 +67,9 @@ namespace Drive.Client.ViewModels {
         /// <summary>
         ///     ctor().
         /// </summary>
-        public FoundDriveAutoViewModel(IDriveAutoService driveAutoService) {
+        public FoundDriveAutoViewModel(IDriveAutoService driveAutoService                                       ) {
             _driveAutoService = driveAutoService;
+          
 
             ActionBarViewModel = DependencyLocator.Resolve<CommonActionBarViewModel>();
 
@@ -79,7 +82,7 @@ namespace Drive.Client.ViewModels {
             ResetCancellationTokenSource(ref _getCarsCancellationTokenSource);
         }
 
-        public override Task InitializeAsync(object navigationData) {
+        public override Task InitializeAsync(object navigationData) {           
 
             if (navigationData is string) {
                 TargetCarNumber = navigationData.ToString();

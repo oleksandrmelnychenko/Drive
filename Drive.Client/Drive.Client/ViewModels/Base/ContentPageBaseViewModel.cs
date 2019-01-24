@@ -40,8 +40,12 @@ namespace Drive.Client.ViewModels.Base {
             set {
                 try {
                     BottomBarItems?[_electedBottomItemIndex].Dispose();
-
                     BottomBarItems?[value].InitializeAsync(new SelectedBottomBarTabArgs());
+
+                    if (BottomBarItems != null && BottomBarItems.Any()) {
+                        SomeBottomTabWasSelectedArgs someBottomTabWasSelectedArgs = new SomeBottomTabWasSelectedArgs(BottomBarItems?[value].GetType());
+                        BottomBarItems.ForEach(barItem => barItem.InitializeAsync(someBottomTabWasSelectedArgs));
+                    }
                 }
                 catch (Exception exc) {
                     string message = exc.Message;
@@ -96,7 +100,8 @@ namespace Drive.Client.ViewModels.Base {
         public void SetBusy(Guid guidKey, bool isBusy) {
             if (_busySequence.ContainsKey(guidKey)) {
                 _busySequence[guidKey] = isBusy;
-            } else {
+            }
+            else {
                 _busySequence.Add(guidKey, isBusy);
             }
 

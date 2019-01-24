@@ -6,6 +6,235 @@
     xmlns:actionBars="clr-namespace:Drive.Client.Views.ActionBars"
     xmlns:controls="clr-namespace:Drive.Client.Controls"
     xmlns:dependency="clr-namespace:Drive.Client.ViewModels.Base"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
+    xmlns:viewBase="clr-namespace:Drive.Client.Views.Base"
+    dependency:DependencyLocator.AutoWireViewModel="True">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform
+                x:Key="TitleFontSize"
+                x:TypeArguments="x:Double"
+                Android="{StaticResource LittleSize}"
+                iOS="{StaticResource MediumSize}" />
+
+            <OnPlatform
+                x:Key="ValueFontSize"
+                x:TypeArguments="x:Double"
+                Android="{StaticResource MidMediumSize}"
+                iOS="{StaticResource MediumSize}" />
+
+            <Style x:Key="descriptionLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="FontSize" Value="{StaticResource MediumSize}" />
+            </Style>
+
+            <Style x:Key="detailBase" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style
+                x:Key="valueLabel"
+                BasedOn="{StaticResource detailBase}"
+                TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+                <Setter Property="TextColor" Value="{StaticResource BlackColor}" />
+                <Setter Property="FontSize" Value="{StaticResource ValueFontSize}" />
+            </Style>
+
+            <Style
+                x:Key="titleLabel"
+                BasedOn="{StaticResource detailBase}"
+                TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource SFProLight}" />
+                <Setter Property="TextColor" Value="{StaticResource HardGrayColor}" />
+                <Setter Property="FontSize" Value="{StaticResource TitleFontSize}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <viewBase:ContentPageBaseView.ActionBar>
+        <actionBars:CommonActionBarView />
+    </viewBase:ContentPageBaseView.ActionBar>
+
+    <viewBase:ContentPageBaseView.MainContent>
+        <Grid BackgroundColor="{StaticResource WhiteColor}">
+            <StackLayout
+                IsVisible="{Binding ErrorMessage, Converter={StaticResource StringToBoolConverter}}"
+                Spacing="10"
+                TranslationY="-80"
+                VerticalOptions="Center">
+                <ffimageloadingsvg:SvgCachedImage
+                    Margin="0,0,0,0"
+                    HorizontalOptions="Center"
+                    Source="resource://Drive.Client.Resources.Images.papers.png"
+                    VerticalOptions="Center"
+                    WidthRequest="220" />
+
+                <controls:LabelExtended
+                    Margin="20,0"
+                    FontSize="{StaticResource MediumSize}"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding ErrorMessage}"
+                    TextColor="{StaticResource DarkColor}" />
+            </StackLayout>
+
+            <ListView
+                x:Name="_list"
+                BackgroundColor="{StaticResource WhiteColor}"
+                CachingStrategy="RecycleElement"
+                HasUnevenRows="True"
+                IsVisible="{Binding HasResult}"
+                ItemSelected="ListView_ItemSelected"
+                ItemsSource="{Binding DriveAutoDetails}"
+                SelectionMode="None"
+                SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid
+                                Padding="20"
+                                BackgroundColor="White"
+                                RowSpacing="20">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <StackLayout Grid.Row="0" Margin="20,0,0,0">
+                                    <controls:LabelExtended
+                                        FontSize="{StaticResource LargerSize}"
+                                        Style="{StaticResource descriptionLabel}"
+                                        Text="{Binding NRegNew}"
+                                        VerticalOptions="Center" />
+                                    <controls:LabelExtended
+                                        Style="{StaticResource descriptionLabel}"
+                                        Text="{Binding OperName}"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+
+                                <StackLayout Grid.Row="1" Spacing="10">
+                                    <StackLayout Orientation="Horizontal" Spacing="0">
+                                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding BindingContext.ResourceLoader[RegistrationDate].Value, Mode=TwoWay, Source={Reference Name=_list}}" />
+                                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding DReg, StringFormat={StaticResource FormattedDate}}" />
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="0">
+                                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding BindingContext.ResourceLoader[TSCcode].Value, Mode=TwoWay, Source={Reference Name=_list}}" />
+                                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding DepCode}" />
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="0">
+                                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding BindingContext.ResourceLoader[TSC].Value, Mode=TwoWay, Source={Reference Name=_list}}" />
+                                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding Dep}" />
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="0">
+                                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding BindingContext.ResourceLoader[Brand].Value, Mode=TwoWay, Source={Reference Name=_list}}" />
+                                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding Brand}" />
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="0">
+                                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding BindingContext.ResourceLoader[YearOfCreation].Value, Mode=TwoWay, Source={Reference Name=_list}}" />
+                                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding MakeYear}" />
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="0">
+                                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding BindingContext.ResourceLoader[Color].Value, Mode=TwoWay, Source={Reference Name=_list}}" />
+                                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding Color}" />
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="0">
+                                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding BindingContext.ResourceLoader[Kind].Value, Mode=TwoWay, Source={Reference Name=_list}}" />
+                                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding Kind}" />
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="0">
+                                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding BindingContext.ResourceLoader[BodyType].Value, Mode=TwoWay, Source={Reference Name=_list}}" />
+                                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding Body}" />
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="0">
+                                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding BindingContext.ResourceLoader[Purpose].Value, Mode=TwoWay, Source={Reference Name=_list}}" />
+                                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding Purpose}" />
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="0">
+                                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding BindingContext.ResourceLoader[FuelType].Value, Mode=TwoWay, Source={Reference Name=_list}}" />
+                                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding Fuel}" />
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="0">
+                                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding BindingContext.ResourceLoader[EngineCapacity].Value, Mode=TwoWay, Source={Reference Name=_list}}" />
+                                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding Capacity}" />
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="0">
+                                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding BindingContext.ResourceLoader[WeightWithoutLoad].Value, Mode=TwoWay, Source={Reference Name=_list}}" />
+                                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding OwnWeight}" />
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal" Spacing="0">
+                                        <controls:LabelExtended Style="{StaticResource titleLabel}" Text="{Binding BindingContext.ResourceLoader[FullWeight].Value, Mode=TwoWay, Source={Reference Name=_list}}" />
+                                        <controls:LabelExtended Style="{StaticResource valueLabel}" Text="{Binding TotalWeight}" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </viewBase:ContentPageBaseView.MainContent>
+</viewBase:ContentPageBaseView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<?xml version="1.0" encoding="utf-8" ?>
+<viewBase:ContentPageBaseView
+    x:Class="Drive.Client.Views.DriveAutoDetailsView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:actionBars="clr-namespace:Drive.Client.Views.ActionBars"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:dependency="clr-namespace:Drive.Client.ViewModels.Base"
     xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
     xmlns:viewBase="clr-namespace:Drive.Client.Views.Base"
     dependency:DependencyLocator.AutoWireViewModel="True">
@@ -150,4 +379,4 @@
             </ScrollView>
         </Grid>
     </viewBase:ContentPageBaseView.MainContent>
-</viewBase:ContentPageBaseView>
+</viewBase:ContentPageBaseView>-->

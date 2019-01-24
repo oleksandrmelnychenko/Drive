@@ -12,13 +12,17 @@ using System.Threading;
 namespace Drive.Client.Helpers.Localize {
     public class ResourceLoader : IDisposable {
 
-        public static readonly string UKRAINIAN_LOCALE_ID = "uk-UA";
         public static readonly string ENGLISH_LOCALE_ID = "en-GB";
+
+        public static readonly string UKRAINIAN_LOCALE_ID = "uk-UA";
+
         public static readonly string APP_STRINGS_PATH = "Drive.Client.Resources.Resx.AppStrings";
 
-        private readonly CultureInfo _defaultCulture = new CultureInfo(UKRAINIAN_LOCALE_ID);
         private readonly ResourceManager _manager;
+
         private readonly List<StringResource> _resources = new List<StringResource>();
+
+        private readonly CultureInfo _defaultCulture = new CultureInfo(UKRAINIAN_LOCALE_ID);
 
         public ResourceLoader() {
             _manager = new ResourceManager(APP_STRINGS_PATH, IntrospectionExtensions.GetTypeInfo(typeof(ResourceLoader)).Assembly);
@@ -58,8 +62,8 @@ namespace Drive.Client.Helpers.Localize {
         public CultureInfo CultureInfo {
             get => _cultureInfo;
             set {
-                Thread.CurrentThread.CurrentCulture = value != null ? value : _defaultCulture;
-                Thread.CurrentThread.CurrentUICulture = value != null ? value : _defaultCulture;
+                Thread.CurrentThread.CurrentCulture = value ?? _defaultCulture;
+                Thread.CurrentThread.CurrentUICulture = value ?? _defaultCulture;
 
                 if (_cultureInfo?.Name != value?.Name) {
                     _cultureInfo = value;

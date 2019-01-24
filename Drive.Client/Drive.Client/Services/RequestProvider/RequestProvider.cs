@@ -1,6 +1,7 @@
 ﻿using Drive.Client.Exceptions;
 using Drive.Client.Helpers;
 using Drive.Client.Helpers.Localize;
+using Drive.Client.Models.EntityModels.Cognitive;
 using Drive.Client.Models.Medias;
 using Drive.Client.Resources.Resx;
 using Newtonsoft.Json;
@@ -19,6 +20,7 @@ namespace Drive.Client.Services.RequestProvider {
     public class RequestProvider : IRequestProvider {
 
         private readonly HttpClient _client;
+
         private ResourceLoader _resourceLoader;
 
         /// <summary>
@@ -160,6 +162,44 @@ namespace Drive.Client.Services.RequestProvider {
                  return result;
              });
 
+        public async Task<TResult> PostComplexFormDataAsync<TResult, TbodyContent>(string url, TbodyContent bodyContent, string accessToken = "")
+          where TbodyContent : FormDataContent =>
+          await Task.Run(async () => {
+              TResult result = default(TResult);
+              HttpContent content = null;
+
+              CheckInternetConnection();
+              SetAccesToken(accessToken);
+              SetLanguage();
+
+              using (MultipartFormDataContent formDataContent = new MultipartFormDataContent()) {
+                  if (bodyContent != null) {
+                      ByteArrayContent byteArrayContent = new ByteArrayContent(bodyContent.MediaContent.Body);
+
+                      formDataContent.Add(byteArrayContent, "Image", bodyContent.MediaContent.Name);
+
+                      if (bodyContent.Content != null) {
+                          string jObject = JsonConvert.SerializeObject(bodyContent);
+
+                          content = new StringContent(jObject);
+                          content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                          formDataContent.Add(content, "Data");
+                      }
+
+                      HttpResponseMessage response = await _client.PostAsync(url, formDataContent);
+
+                      await HandleResponse(response);
+
+                      string serialized = await response.Content.ReadAsStringAsync();
+
+                      result = await DeserializeResponse<TResult>(serialized);
+                  }
+              }
+
+              return result;
+          });
+
         /// <summary>
         /// PUT.
         /// </summary>
@@ -236,6 +276,6 @@ namespace Drive.Client.Services.RequestProvider {
             }
         }
 
-
+      
     }
 }

@@ -508,4 +508,7 @@ certificate issued</value>
   <data name="AppInfo" xml:space="preserve">
     <value>Vehicle information, data from 2013</value>
   </data>
+  <data name="TryMore" xml:space="preserve">
+    <value>Try using a higher quality image</value>
+  </data>
 </root>

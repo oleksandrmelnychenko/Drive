@@ -79,6 +79,15 @@
                                     Padding="130,0,0,0"
                                     Spacing="0"
                                     VerticalOptions="Center">
+                                    <StackLayout.Resources>
+                                        <OnPlatform
+                                            x:Key="listFontSize"
+                                            x:TypeArguments="x:Double"
+                                            Android="{StaticResource UltraLittleSize}"
+                                            Default="10"
+                                            iOS="{StaticResource ExtraLittleSize}" />
+                                    </StackLayout.Resources>
+
                                     <controls:LabelExtended
                                         FontSize="{StaticResource MediumSize}"
                                         Text="{Binding Number}"
@@ -86,9 +95,15 @@
                                         VerticalOptions="Center" />
                                     <controls:LabelExtended
                                         FontFamily="{StaticResource SFProThin}"
-                                        FontSize="{StaticResource LittleSize}"
+                                        FontSize="{StaticResource listFontSize}"
                                         Text="{Binding Brand}"
-                                        TextColor="{StaticResource ExtraGrayColor}"
+                                        TextColor="{StaticResource HardGrayColor}"
+                                        VerticalOptions="Center" />
+                                    <controls:LabelExtended
+                                        FontFamily="{StaticResource SFProThin}"
+                                        FontSize="{StaticResource listFontSize}"
+                                        Text="{Binding Location}"
+                                        TextColor="{StaticResource HardGrayColor}"
                                         VerticalOptions="Center" />
                                 </StackLayout>
                             </Grid>
@@ -98,9 +113,15 @@
             </stackList:StackList>
         </ScrollView>
 
-        <StackLayout Grid.Row="2" Spacing="0">
+        <Grid Grid.Row="2" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
             <!--  INPUT  -->
             <Grid
+                Grid.Row="0"
                 BackgroundColor="{StaticResource LightGrayColor}"
                 HeightRequest="60"
                 RowSpacing="0"
@@ -134,6 +155,7 @@
             </Grid>
             <!--  ERROR  -->
             <controls:LabelExtended
+                Grid.Row="1"
                 Margin="0,0,0,0"
                 FontSize="{StaticResource LittleSize}"
                 HorizontalOptions="CenterAndExpand"
@@ -142,15 +164,15 @@
                 TextColor="{StaticResource ErrorColor}"
                 VerticalOptions="End"
                 VerticalTextAlignment="Center" />
-
             <!--  INFORMATION  -->
             <controls:LabelExtended
+                Grid.Row="2"
                 Margin="0,30,0,0"
                 FontFamily="{StaticResource SFProThin}"
                 FontSize="{StaticResource Key=MidMediumSize}"
                 HorizontalOptions="Center"
                 Text="{Binding ResourceLoader[AppInfo].Value, Mode=TwoWay}"
                 TextColor="{StaticResource Key=ExtraGrayColor}" />
-        </StackLayout>
+        </Grid>
     </Grid>
 </ContentView>

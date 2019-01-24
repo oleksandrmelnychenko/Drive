@@ -12,13 +12,31 @@
     xmlns:stackList="clr-namespace:Drive.Client.Controls.Stacklist"
     BackgroundColor="{StaticResource WhiteColor}">
 
+    <!--<StackLayout
+        HorizontalOptions="Center"
+        Spacing="4"
+        VerticalOptions="Center">
+        <controls:LabelExtended
+            FontSize="{StaticResource Key=BaseFontSize}"
+            HorizontalOptions="Center"
+            Text="{Binding ResourceLoader[SearchByPersonTitleUpperCase].Value, Mode=TwoWay}"
+            TextColor="{StaticResource DarkColor}"
+            VerticalOptions="Center" />
+        <controls:LabelExtended
+            FontFamily="{StaticResource SFProThin}"
+            FontSize="{StaticResource Key=MidMediumSize}"
+            HorizontalOptions="Center"
+            Text="{Binding ResourceLoader[InDev].Value, Mode=TwoWay}"
+            TextColor="{StaticResource ExtraGrayColor}"
+            VerticalOptions="Center" />
+    </StackLayout>-->
+
     <Grid>
         <Grid RowSpacing="0" VerticalOptions="Start">
             <Grid.RowDefinitions>
                 <RowDefinition Height="200" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
             <!--  LOGO  -->
             <ffimageloadingsvg:SvgCachedImage
                 Grid.Row="0"
@@ -26,7 +44,6 @@
                 Source="resource://Drive.Client.Resources.Images.drive_logo.svg"
                 VerticalOptions="Center"
                 WidthRequest="185" />
-
             <!--  TITLE  -->
             <controls:LabelExtended
                 Grid.Row="0"

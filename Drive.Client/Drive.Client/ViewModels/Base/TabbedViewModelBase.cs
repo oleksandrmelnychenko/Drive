@@ -1,4 +1,5 @@
 ﻿using Drive.Client.Helpers.Localize;
+using Drive.Client.Views.Base;
 using System;
 
 namespace Drive.Client.ViewModels.Base {
@@ -17,6 +18,8 @@ namespace Drive.Client.ViewModels.Base {
         public string TabIcon { get; protected set; }
 
         public Type RelativeViewType { get; protected set; }
+
+        public Type BottomTasselViewType { get; protected set; } = typeof(SingleBottomItem);
 
         public bool HasBackgroundItem { get; protected set; }
 
