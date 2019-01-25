@@ -232,6 +232,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CURRENCY.
+        /// </summary>
+        public static string CurrencyUppercase {
+            get {
+                return ResourceManager.GetString("CurrencyUppercase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customs clearance calculator for 2019.
         /// </summary>
         public static string CustomsClearanceCalculator {

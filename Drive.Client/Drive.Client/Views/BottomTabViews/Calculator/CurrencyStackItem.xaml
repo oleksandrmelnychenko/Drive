@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<stackList:CommonStackListItem
+    x:Class="Drive.Client.Views.BottomTabViews.Calculator.CurrencyStackItem"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:stackList="clr-namespace:Drive.Client.Controls.Stacklist"
+    x:Name="_root_CommonStackListItem"
+    IsOnSelectionVisualChangesEnabled="True"
+    IsSelectable="True">
+
+    <AbsoluteLayout>
+        <controls:ExtendedContentView AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" />
+    </AbsoluteLayout>
+
+
+
+
+    <!--<controls:ExtendedContentView
+        BackgroundColor="{StaticResource Key=WhiteColor}"
+        CornerRadius="6"
+        WidthRequest="120">
+        <AbsoluteLayout>
+
+    -->
+    <!--  Image  -->
+    <!--
+            <ffimageloading:CachedImage
+                AbsoluteLayout.LayoutBounds="1,1,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Aspect="AspectFill"
+                CacheType="All"
+                Source="{Binding Path=MediaPresentation}" />
+
+            <AbsoluteLayout
+                x:Name="_deleteTrigger_AbsoluteLayout"
+                AbsoluteLayout.LayoutBounds="1,1,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                InputTransparent="True"
+                Opacity="0">
+                <AbsoluteLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Path=Parent.BindingContext.DeleteAttachedMediaCommand, Source={Reference Name=_root_CommonStackListItem}}" CommandParameter="{Binding}" />
+                </AbsoluteLayout.GestureRecognizers>
+
+                <BoxView
+                    AbsoluteLayout.LayoutBounds="1,1,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="#50000000" />
+
+                <ffimageloadingsvg:SvgCachedImage
+                    AbsoluteLayout.LayoutBounds=".5,.7,.8,.8"
+                    AbsoluteLayout.LayoutFlags="All"
+                    CacheType="All"
+                    Source="resource://Drive.Client.Resources.Images.ic_trash_bucket.svg" />
+            </AbsoluteLayout>
+        </AbsoluteLayout>
+    </controls:ExtendedContentView>-->
+</stackList:CommonStackListItem>

@@ -520,4 +520,7 @@ certificate issued</value>
   <data name="VehicleTypeUppercase" xml:space="preserve">
     <value>TYPE OF TRANSPORT</value>
   </data>
+  <data name="CurrencyUppercase" xml:space="preserve">
+    <value>CURRENCY</value>
+  </data>
 </root>

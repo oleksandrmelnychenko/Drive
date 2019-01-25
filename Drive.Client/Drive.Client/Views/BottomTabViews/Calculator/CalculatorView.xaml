@@ -8,6 +8,8 @@
     xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
+    xmlns:local="clr-namespace:Drive.Client.Views.BottomTabViews.Calculator"
+    xmlns:stackList="clr-namespace:Drive.Client.Controls.Stacklist"
     BackgroundColor="{StaticResource WhiteColor}">
 
     <ContentView.Resources>
@@ -99,6 +101,71 @@
                     </controls:ExtendedContentView>
                 </Grid>
 
+                <!--  Vehicle type  -->
+                <Grid ColumnSpacing="0" RowSpacing="9">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!--  Currency chooser  -->
+                    <controls:LabelExtended
+                        Grid.Row="0"
+                        LetterSpacing="{OnPlatform iOS=1.4,
+                                                   Android=0.07}"
+                        Style="{StaticResource smallTitleLabel}"
+                        Text="{Binding ResourceLoader[CurrencyUppercase].Value, Mode=TwoWay}" />
+
+                    <stackList:StackList
+                        Grid.Row="1"
+                        IsMultiRowEnabled="True"
+                        ItemsPerRow="2"
+                        ItemsSource="{Binding Path=Currencies}"
+                        MultiRowStrategy="Grid"
+                        RowHorizontalLayoutOptions="FillAndExpand"
+                        SelectedItem="{Binding Path=SelectedCurrency, Mode=TwoWay}"
+                        Spacing="9">
+                        <stackList:StackList.ItemTemplate>
+                            <DataTemplate>
+                                <local:CurrencyStackItem />
+                            </DataTemplate>
+                        </stackList:StackList.ItemTemplate>
+                    </stackList:StackList>
+                </Grid>
+
+                <!--  Vehicle cost  -->
+                <Grid ColumnSpacing="0" RowSpacing="9">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="54" />
+                    </Grid.RowDefinitions>
+
+                    <!--  Input label  -->
+                    <controls:LabelExtended
+                        Grid.Row="0"
+                        LetterSpacing="{OnPlatform iOS=1.4,
+                                                   Android=0.07}"
+                        Style="{StaticResource smallTitleLabel}"
+                        Text="{Binding ResourceLoader[PhoneUpperCase].Value, Mode=TwoWay}" />
+
+                    <!--  Input container  -->
+                    <controls:ExtendedContentView
+                        Grid.Row="1"
+                        BorderColor="{StaticResource Key=LightGrayColor}"
+                        BorderThickness="1">
+                        <controls:EntryExtended
+                            FontFamily="{StaticResource SFProLight}"
+                            FontSize="{StaticResource MediumSize}"
+                            Keyboard="Numeric"
+                            LeftPadding="20"
+                            LetterSpacingPlaceholder="{OnPlatform iOS=1.3,
+                                                                  Android=0.07}"
+                            PlaceholderColor="{StaticResource ExtraGrayColor}"
+                            ReturnType="Next"
+                            TextColor="{StaticResource DarkColor}" />
+                    </controls:ExtendedContentView>
+                </Grid>
+
                 <!--  Vehicle age  -->
                 <Grid ColumnSpacing="0" RowSpacing="9">
                     <Grid.RowDefinitions>
@@ -140,39 +207,6 @@
                                 Rotation="90"
                                 Source="resource://Drive.Client.Resources.Images.ArrowNext.svg" />
                         </AbsoluteLayout>
-                    </controls:ExtendedContentView>
-                </Grid>
-
-                <!--  Vehicle cost  -->
-                <Grid ColumnSpacing="0" RowSpacing="9">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="54" />
-                    </Grid.RowDefinitions>
-
-                    <!--  Input label  -->
-                    <controls:LabelExtended
-                        Grid.Row="0"
-                        LetterSpacing="{OnPlatform iOS=1.4,
-                                                   Android=0.07}"
-                        Style="{StaticResource smallTitleLabel}"
-                        Text="{Binding ResourceLoader[PhoneUpperCase].Value, Mode=TwoWay}" />
-
-                    <!--  Input container  -->
-                    <controls:ExtendedContentView
-                        Grid.Row="1"
-                        BorderColor="{StaticResource Key=LightGrayColor}"
-                        BorderThickness="1">
-                        <controls:EntryExtended
-                            FontFamily="{StaticResource SFProLight}"
-                            FontSize="{StaticResource MediumSize}"
-                            Keyboard="Numeric"
-                            LeftPadding="20"
-                            LetterSpacingPlaceholder="{OnPlatform iOS=1.3,
-                                                                  Android=0.07}"
-                            PlaceholderColor="{StaticResource ExtraGrayColor}"
-                            ReturnType="Next"
-                            TextColor="{StaticResource DarkColor}" />
                     </controls:ExtendedContentView>
                 </Grid>
             </StackLayout>

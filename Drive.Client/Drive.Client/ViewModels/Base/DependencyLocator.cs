@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Drive.Client.DataItems.Calculator;
 using Drive.Client.DataItems.Posts;
 using Drive.Client.DataItems.ProfileSettings;
 using Drive.Client.Factories.Announcements;
@@ -144,6 +145,7 @@ namespace Drive.Client.ViewModels.Base {
             // Data items
             builder.RegisterType<PostTypeDataItems>().As<IPostTypeDataItems>();
             builder.RegisterType<ProfileSettingsDataItems>().As<IProfileSettingsDataItems>().SingleInstance();
+            builder.RegisterType<CalculatorEntitiesDataItems>().As<ICalculatorEntitiesDataItems>().SingleInstance();
 
             if (_container != null) {
                 _container.Dispose();

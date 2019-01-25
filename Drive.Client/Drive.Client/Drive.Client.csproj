@@ -263,6 +263,9 @@
     <EmbeddedResource Update="Views\BottomTabViews\Calculator\CalculatorView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\BottomTabViews\Calculator\CurrencyStackItem.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\BottomTabViews\Popups\PostTypePopupView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

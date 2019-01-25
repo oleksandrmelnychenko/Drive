@@ -3,7 +3,6 @@ using Drive.Client.Views.Popups;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 

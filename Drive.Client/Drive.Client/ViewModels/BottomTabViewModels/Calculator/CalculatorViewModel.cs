@@ -1,4 +1,6 @@
-﻿using Drive.Client.Helpers;
+﻿using Drive.Client.DataItems.Calculator;
+using Drive.Client.Helpers;
+using Drive.Client.Models.DataItems.Calculator;
 using Drive.Client.Models.EntityModels.Vehicle.Significance;
 using Drive.Client.Resources.Resx;
 using Drive.Client.ViewModels.Base;
@@ -13,10 +15,18 @@ using Xamarin.Forms;
 namespace Drive.Client.ViewModels.BottomTabViewModels.Calculator {
     public sealed class CalculatorViewModel : TabbedViewModelBase {
 
-        public CalculatorViewModel() {
+        private readonly ICalculatorEntitiesDataItems _calculatorEntitiesDataItems;
+
+        public CalculatorViewModel(
+            ICalculatorEntitiesDataItems calculatorEntitiesDataItems) {
+
+            _calculatorEntitiesDataItems = calculatorEntitiesDataItems;
+
             SelectorPopupViewModel = DependencyLocator.Resolve<SelectorPopupViewModel>();
             SelectorPopupViewModel.InitializeAsync(this);
             SelectorPopupViewModel.ItemSelected += OnSelectorPopupViewModelItemSelected;
+
+            Currencies = _calculatorEntitiesDataItems.GetCurrencyDataItems();
         }
 
         public ICommand SelectVehicleTypeCommand => new Command(() => {
@@ -37,6 +47,18 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Calculator {
         public SelectorPopupViewModel SelectorPopupViewModel {
             get => _selectorPopupViewModel;
             private set => SetProperty<SelectorPopupViewModel>(ref _selectorPopupViewModel, value);
+        }
+
+        private List<CurrencyDataItem> _currencies;
+        public List<CurrencyDataItem> Currencies {
+            get => _currencies;
+            private set => SetProperty<List<CurrencyDataItem>>(ref _currencies, value);
+        }
+
+        private CurrencyDataItem _selectedCurrency;
+        public CurrencyDataItem SelectedCurrency {
+            get => _selectedCurrency;
+            private set => SetProperty<CurrencyDataItem>(ref _selectedCurrency, value);
         }
 
         public override Task InitializeAsync(object navigationData) {

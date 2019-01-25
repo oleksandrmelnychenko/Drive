@@ -519,4 +519,7 @@
   <data name="VehicleTypeUppercase" xml:space="preserve">
     <value>ТИП ТРАНСПОРТУ</value>
   </data>
+  <data name="CurrencyUppercase" xml:space="preserve">
+    <value>ВАЛЮТА</value>
+  </data>
 </root>
