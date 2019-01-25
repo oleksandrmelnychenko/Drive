@@ -10,336 +10,50 @@
     xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
     BackgroundColor="{StaticResource WhiteColor}">
 
-    <ContentView.Resources>
-        <ResourceDictionary>
-            <OnPlatform
-                x:Key="BaseTitleFontSize"
-                x:TypeArguments="x:Double"
-                Android="{StaticResource MediumSize}"
-                iOS="{StaticResource LargeSize}" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            <Style x:Key="baseLabel" TargetType="Label">
-                <Setter Property="FontFamily" Value="{StaticResource SFProLight}" />
-                <Setter Property="VerticalOptions" Value="Center" />
-            </Style>
-
-            <Style
-                x:Key="smallTitleLabel"
-                BasedOn="{StaticResource baseLabel}"
-                TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource BaseGrayColor}" />
-                <Setter Property="FontSize" Value="{StaticResource LittleSize}" />
-            </Style>
-
-            <Style
-                x:Key="baseTitleLabel"
-                BasedOn="{StaticResource baseLabel}"
-                TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource DarkColor}" />
-                <Setter Property="FontSize" Value="{StaticResource BaseTitleFontSize}" />
-            </Style>
-        </ResourceDictionary>
-    </ContentView.Resources>
-
-    <!--  MAIN FRAME  -->
-    <Grid RowSpacing="0">
-
-        <!--  PROFILE CONTENT  -->
-        <Grid RowSpacing="0">
-            <ScrollView Scrolled="OnScrollViewScrolled" VerticalScrollBarVisibility="Never">
-                <StackLayout BackgroundColor="Transparent" Spacing="18">
-
-                    <BoxView
-                        BackgroundColor="{StaticResource WhiteColor}"
-                        HeightRequest="180"
-                        VerticalOptions="Start" />
-
-                    <!--  PROFILE TOOLS  -->
-                    <StackLayout
-                        Grid.Row="1"
-                        Padding="0,0"
-                        BackgroundColor="{StaticResource UltraLightGrayColor}"
-                        Spacing="20"
-                        VerticalOptions="Fill">
-
-                        <StackLayout
-                            Padding="20,10"
-                            BackgroundColor="{StaticResource WhiteColor}"
-                            Spacing="15">
-
-                            <Grid HeightRequest="50" RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="30" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding EditUserNameCommand}" NumberOfTapsRequired="1" />
-                                </Grid.GestureRecognizers>
-
-                                <controls:LabelExtended
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    LetterSpacing="{OnPlatform iOS=1.4,
-                                                               Android=0.07}"
-                                    Style="{StaticResource smallTitleLabel}"
-                                    Text="{Binding Path=ResourceLoader[UserNameUpperCase].Value, Mode=TwoWay}" />
-                                <controls:LabelExtended
-                                    Grid.Row="1"
-                                    Grid.Column="0"
-                                    LetterSpacing="{OnPlatform iOS=1.4,
-                                                               Android=0.07}"
-                                    Style="{StaticResource baseTitleLabel}"
-                                    Text="{Binding UserName}" />
-                                <ffimageloadingsvg:SvgCachedImage
-                                    Grid.Row="0"
-                                    Grid.RowSpan="2"
-                                    Grid.Column="1"
-                                    HeightRequest="15"
-                                    HorizontalOptions="End"
-                                    Source="resource://Drive.Client.Resources.Images.ArrowNext.svg"
-                                    VerticalOptions="Center" />
-                            </Grid>
-
-                            <Grid HeightRequest="50" RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="30" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding EditPhoneNumberCommand}" NumberOfTapsRequired="1" />
-                                </Grid.GestureRecognizers>
-
-                                <controls:LabelExtended
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    LetterSpacing="{OnPlatform iOS=1.4,
-                                                               Android=0.07}"
-                                    Style="{StaticResource smallTitleLabel}"
-                                    Text="{Binding ResourceLoader[PhoneUpperCase].Value, Mode=TwoWay}" />
-                                <controls:LabelExtended
-                                    Grid.Row="1"
-                                    Grid.Column="0"
-                                    LetterSpacing="{OnPlatform iOS=1.4,
-                                                               Android=0.07}"
-                                    Style="{StaticResource baseTitleLabel}"
-                                    Text="{Binding PhoneNumber}" />
-                                <ffimageloadingsvg:SvgCachedImage
-                                    Grid.Row="0"
-                                    Grid.RowSpan="2"
-                                    Grid.Column="1"
-                                    HeightRequest="15"
-                                    HorizontalOptions="End"
-                                    Source="resource://Drive.Client.Resources.Images.ArrowNext.svg"
-                                    VerticalOptions="Center" />
-                            </Grid>
-
-                            <Grid HeightRequest="50" RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="30" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding EditEmailCommand}" NumberOfTapsRequired="1" />
-                                </Grid.GestureRecognizers>
-
-                                <controls:LabelExtended
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    LetterSpacing="{OnPlatform iOS=1.4,
-                                                               Android=0.07}"
-                                    Style="{StaticResource smallTitleLabel}"
-                                    Text="EMAIL" />
-                                <controls:LabelExtended
-                                    Grid.Row="1"
-                                    Grid.Column="0"
-                                    LetterSpacing="{OnPlatform iOS=1.4,
-                                                               Android=0.07}"
-                                    Style="{StaticResource baseTitleLabel}"
-                                    Text="{Binding Email}" />
-                                <ffimageloadingsvg:SvgCachedImage
-                                    Grid.Row="0"
-                                    Grid.RowSpan="2"
-                                    Grid.Column="1"
-                                    HeightRequest="15"
-                                    HorizontalOptions="End"
-                                    Source="resource://Drive.Client.Resources.Images.ArrowNext.svg"
-                                    VerticalOptions="Center" />
-                            </Grid>
-                        </StackLayout>
-
-                        <StackLayout
-                            Padding="20,10"
-                            BackgroundColor="{StaticResource WhiteColor}"
-                            Spacing="15">
-
-                            <Grid HeightRequest="50" RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="30" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Path=LanguageSelectPopupViewModel.ShowPopupCommand}" />
-                                </Grid.GestureRecognizers>
-
-                                <controls:LabelExtended
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    LetterSpacing="{OnPlatform iOS=1.4,
-                                                               Android=0.07}"
-                                    Style="{StaticResource smallTitleLabel}"
-                                    Text="{Binding ResourceLoader[LanguageUpperCase].Value, Mode=TwoWay}" />
-                                <controls:LabelExtended
-                                    Grid.Row="1"
-                                    Grid.Column="0"
-                                    LetterSpacing="{OnPlatform iOS=1.4,
-                                                               Android=0.07}"
-                                    Style="{StaticResource baseTitleLabel}"
-                                    Text="{Binding Path=LanguageSelectPopupViewModel.SelectedLanguage.Title}" />
-                                <ffimageloadingsvg:SvgCachedImage
-                                    Grid.Row="0"
-                                    Grid.RowSpan="2"
-                                    Grid.Column="1"
-                                    HeightRequest="15"
-                                    HorizontalOptions="End"
-                                    Source="resource://Drive.Client.Resources.Images.ArrowNext.svg"
-                                    VerticalOptions="Center" />
-                            </Grid>
-                        </StackLayout>
-
-                        <StackLayout
-                            Padding="20,10"
-                            BackgroundColor="{StaticResource WhiteColor}"
-                            Spacing="15">
-
-                            <Grid HeightRequest="50" RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="30" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding ChangePasswordCommand}" />
-                                </Grid.GestureRecognizers>
-
-                                <controls:LabelExtended
-                                    Grid.Row="0"
-                                    Grid.RowSpan="2"
-                                    Grid.Column="0"
-                                    LetterSpacing="{OnPlatform iOS=1.4,
-                                                               Android=0.07}"
-                                    Style="{StaticResource baseTitleLabel}"
-                                    Text="{Binding ResourceLoader[ChangePassword].Value, Mode=TwoWay}" />
-                                <ffimageloadingsvg:SvgCachedImage
-                                    Grid.Row="0"
-                                    Grid.RowSpan="2"
-                                    Grid.Column="1"
-                                    HeightRequest="20"
-                                    HorizontalOptions="End"
-                                    Source="resource://Drive.Client.Resources.Images.PasswordKey.svg"
-                                    VerticalOptions="Center" />
-                            </Grid>
-                            <!--  LOG OUT  -->
-                            <Grid HeightRequest="50" RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="30" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding LogOutCommand}" NumberOfTapsRequired="1" />
-                                </Grid.GestureRecognizers>
-
-                                <controls:LabelExtended
-                                    Grid.Row="0"
-                                    Grid.RowSpan="2"
-                                    Grid.Column="0"
-                                    LetterSpacing="{OnPlatform iOS=1.4,
-                                                               Android=0.07}"
-                                    Style="{StaticResource baseTitleLabel}"
-                                    Text="{Binding ResourceLoader[LogOut].Value, Mode=TwoWay}" />
-
-                                <ffimageloadingsvg:SvgCachedImage
-                                    Grid.Row="0"
-                                    Grid.RowSpan="2"
-                                    Grid.Column="1"
-                                    HeightRequest="20"
-                                    HorizontalOptions="End"
-                                    Source="resource://Drive.Client.Resources.Images.Out.svg"
-                                    VerticalOptions="Center" />
-                            </Grid>
-                        </StackLayout>
-                    </StackLayout>
-                </StackLayout>
-            </ScrollView>
-
-            <!--  Avatar scope  -->
-            <ContentView
-                x:Name="_avatarScope_ContentView"
-                Padding="0,23,0,0"
+        <Grid
+            x:Name="_avatar_Grid"
+            Grid.Row="0"
+            IsClippedToBounds="True">
+            <!--  PROFILE PHOTO  -->
+            <ffimageloadingsvg:SvgCachedImage
+                x:Name="_avatarImage_CachedImage"
+                Aspect="AspectFill"
                 BackgroundColor="{StaticResource WhiteColor}"
-                VerticalOptions="Start">
-                <Grid x:Name="_avatar_Grid" IsClippedToBounds="True">
-
-                    <!--  PROFILE PHOTO  -->
-                    <ffimageloadingsvg:SvgCachedImage
-                        x:Name="_avatarImage_CachedImage"
-                        Aspect="AspectFill"
-                        BackgroundColor="{StaticResource WhiteColor}"
-                        HeightRequest="150"
-                        HorizontalOptions="Center"
-                        InputTransparent="True"
-                        Source="{Binding AvatarUrl}"
-                        VerticalOptions="Center"
-                        WidthRequest="150">
-                        <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ChangeAvatarCommand}" />
-                        </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
-                    </ffimageloadingsvg:SvgCachedImage>
-                    <ffimageloadingsvg:SvgCachedImage
-                        HeightRequest="170"
-                        HorizontalOptions="Center"
-                        InputTransparent="True"
-                        Source="resource://Drive.Client.Resources.Images.Mask.svg"
-                        VerticalOptions="Center" />
-                    <ffimageloadingsvg:SvgCachedImage
-                        x:Name="_changeAvatarPencil_SvgCachedImage"
-                        HeightRequest="80"
-                        HorizontalOptions="Center"
-                        InputTransparent="False"
-                        Source="resource://Drive.Client.Resources.Images.edit.svg"
-                        VerticalOptions="End">
-                        <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ChangeAvatarCommand}" />
-                        </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
-                    </ffimageloadingsvg:SvgCachedImage>
-                </Grid>
-            </ContentView>
+                HeightRequest="80"
+                HorizontalOptions="Center"
+                InputTransparent="True"
+                Source="{Binding AvatarUrl}"
+                VerticalOptions="Center"
+                WidthRequest="80">
+                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ChangeAvatarCommand}" />
+                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+            </ffimageloadingsvg:SvgCachedImage>
+            <ffimageloadingsvg:SvgCachedImage
+                HeightRequest="80"
+                HorizontalOptions="Center"
+                InputTransparent="True"
+                Source="resource://Drive.Client.Resources.Images.Mask.svg"
+                VerticalOptions="Center" />
         </Grid>
+
+        <Button
+            Command="{Binding SettingsCommand}"
+            HorizontalOptions="End"
+            Text="tt"
+            WidthRequest="50" />
+
 
         <!--  Login/registartion stub  -->
         <Grid
+            Grid.Row="0"
+            Grid.RowSpan="2"
             BackgroundColor="{StaticResource WhiteColor}"
             IsVisible="{Binding VisibilityRegistrationContent}"
             RowSpacing="0">
@@ -414,35 +128,6 @@
                         TextColor="{StaticResource HardGrayColor}"
                         VerticalOptions="Center" />
                 </StackLayout>
-
-                <!--<Label
-                    Margin="0,30,0,0"
-                    HorizontalTextAlignment="Center"
-                    Text="або миттєво увійти через"
-                    TextColor="{StaticResource ExtraGrayColor}" />-->
-
-                <!--<controls:ExtendedContentView
-                    Margin="0,20,0,0"
-                    BorderColor="{StaticResource LightGrayColor}"
-                    BorderThickness="1"
-                    CornerRadius="{OnPlatform Android=20,
-                                              iOS=20,
-                                              Default=20}"
-                    HeightRequest="40"
-                    HorizontalOptions="Center"
-                    WidthRequest="40">
-                    <ContentView.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Path=FacebookLoginCommand}" />
-                    </ContentView.GestureRecognizers>
-
-                    <ffimageloadingsvg:SvgCachedImage
-                        Aspect="AspectFit"
-                        HeightRequest="20"
-                        HorizontalOptions="Center"
-                        Source="resource://Drive.Client.Resources.Images.facebook.svg"
-                        VerticalOptions="Center"
-                        WidthRequest="20" />
-                </controls:ExtendedContentView>-->
             </StackLayout>
         </Grid>
     </Grid>

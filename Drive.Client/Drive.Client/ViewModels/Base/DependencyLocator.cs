@@ -68,6 +68,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<AppMessagingEvents>().SingleInstance();
 
             // View models.
+            builder.RegisterType<BandViewModel>();
             builder.RegisterType<HomeViewModel>();
             builder.RegisterType<MainViewModel>();
             builder.RegisterType<SavedViewModel>();
@@ -76,6 +77,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<ProfileViewModel>();
             builder.RegisterType<BookmarkViewModel>();
             builder.RegisterType<PostBaseViewModel>();
+            builder.RegisterType<SettingsViewModel>();
             builder.RegisterType<EditEmailViewModel>();
             builder.RegisterType<CalculatorViewModel>();
             builder.RegisterType<PostBuilderViewModel>();

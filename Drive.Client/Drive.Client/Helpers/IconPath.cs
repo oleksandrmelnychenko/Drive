@@ -10,6 +10,6 @@
 
         internal const string POSTBUILDER = "";
 
-        internal const string CALCULATOR = "resource://Drive.Client.Resources.Images.Calculator_1.svg";
+        internal const string CALCULATOR = "resource://Drive.Client.Resources.Images.Calculator_3.svg";
     }
 }

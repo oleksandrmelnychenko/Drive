@@ -511,4 +511,7 @@ certificate issued</value>
   <data name="TryMore" xml:space="preserve">
     <value>Try using a higher quality image</value>
   </data>
+  <data name="BandUpperCase" xml:space="preserve">
+    <value>BAND</value>
+  </data>
 </root>

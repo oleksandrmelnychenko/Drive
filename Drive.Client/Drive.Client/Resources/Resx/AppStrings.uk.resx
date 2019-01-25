@@ -510,4 +510,7 @@
   <data name="TryMore" xml:space="preserve">
     <value>Спробуйте використати зображення вищої якості</value>
   </data>
+  <data name="BandUpperCase" xml:space="preserve">
+    <value>СТРІЧКА</value>
+  </data>
 </root>

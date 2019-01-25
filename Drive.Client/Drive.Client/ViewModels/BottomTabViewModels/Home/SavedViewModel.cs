@@ -1,26 +1,18 @@
-﻿using Drive.Client.Extensions;
-using Drive.Client.Helpers;
+﻿using Drive.Client.Helpers;
 using Drive.Client.Helpers.Localize;
 using Drive.Client.Models.Arguments.BottomtabSwitcher;
 using Drive.Client.Resources.Resx;
-using Drive.Client.Services.Media;
-using Drive.Client.Services.Vision;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
-using Drive.Client.Views.BottomTabViews.Bookmark;
+using Drive.Client.Views.BottomTabViews.Home;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
+namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
     public sealed class SavedViewModel : NestedViewModel, IVisualFiguring, ISwitchTab {
-
-      
 
         public Type RelativeViewType => typeof(SavedView);
 

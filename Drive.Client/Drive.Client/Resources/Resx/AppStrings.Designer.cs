@@ -115,6 +115,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BAND.
+        /// </summary>
+        public static string BandUpperCase {
+            get {
+                return ResourceManager.GetString("BandUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Body.
         /// </summary>
         public static string BodyType {

@@ -6,6 +6,7 @@ using Drive.Client.Views.BottomTabViews.Popups;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -36,6 +37,10 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Popups {
                 ClosePopupCommand.Execute(null);
             }
         });
+
+        public override Task InitializeAsync(object navigationData) {
+            return base.InitializeAsync(navigationData);
+        }
 
         public override Type RelativeViewType => typeof(LanguageSelectPopupView);
 
