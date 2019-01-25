@@ -13,6 +13,7 @@ using Drive.Client.Services.Vehicle;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
 using Drive.Client.Views.BottomTabViews.Bookmark;
+using Drive.Client.Views.BottomTabViews.Profile;
 using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
-namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
+namespace Drive.Client.ViewModels.BottomTabViewModels.Profile {
     public sealed class UserVehiclesViewModel : NestedViewModel, IVisualFiguring, ISwitchTab {
 
         private CancellationTokenSource _getUserVehicleDetailRequestsCancellationTokenSource = new CancellationTokenSource();

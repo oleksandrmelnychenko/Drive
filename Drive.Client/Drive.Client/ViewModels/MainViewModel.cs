@@ -11,6 +11,7 @@ using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
 using Drive.Client.ViewModels.BottomTabViewModels.Calculator;
 using Drive.Client.ViewModels.BottomTabViewModels.Home;
 using Drive.Client.ViewModels.BottomTabViewModels.PostBuilder;
+using Drive.Client.ViewModels.BottomTabViewModels.Profile;
 using Drive.Client.ViewModels.BottomTabViewModels.Search;
 using Drive.Client.ViewModels.Popups;
 using System;
@@ -145,10 +146,10 @@ namespace Drive.Client.ViewModels {
 
         private void OnNotificationServiceReceivedResidentVehicleDetailInfo(object sender, ReceivedResidentVehicleDetailInfoArgs args) {
             try {
-                IBottomBarTab bookmarkTab = BottomBarItems.FirstOrDefault(tab => tab is BookmarkViewModel);
-                bookmarkTab.InitializeAsync(args);
+                IBottomBarTab profileTab = BottomBarItems.FirstOrDefault(tab => tab is ProfileViewModel);
+                profileTab.InitializeAsync(args);
 
-                SelectedBottomItemIndex = BottomBarItems.IndexOf(bookmarkTab);
+                SelectedBottomItemIndex = BottomBarItems.IndexOf(profileTab);
             }
             catch (Exception ex) {
                 Debug.WriteLine($"ERRROR:{ex.Message}");

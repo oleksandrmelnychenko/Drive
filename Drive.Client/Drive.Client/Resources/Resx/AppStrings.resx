@@ -514,4 +514,7 @@ certificate issued</value>
   <data name="BandUpperCase" xml:space="preserve">
     <value>BAND</value>
   </data>
+  <data name="YourPostsUpperCase" xml:space="preserve">
+    <value>YOUR POSTS</value>
+  </data>
 </root>

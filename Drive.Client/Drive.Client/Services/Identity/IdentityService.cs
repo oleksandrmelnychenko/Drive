@@ -10,6 +10,7 @@ using Drive.Client.Services.Navigation;
 using Drive.Client.Services.RequestProvider;
 using Drive.Client.Services.Signal.Announcement;
 using Drive.Client.ViewModels.BottomTabViewModels;
+using Drive.Client.ViewModels.BottomTabViewModels.Profile;
 using Microsoft.AppCenter.Crashes;
 using Newtonsoft.Json;
 using System;

@@ -94,6 +94,9 @@ namespace Drive.Client.ViewModels {
                                  IIdentityService identityService) {
             _pickMediaService = pickMediaService;
             _identityService = identityService;
+
+            LanguageSelectPopupViewModel = DependencyLocator.Resolve<LanguageSelectPopupViewModel>();
+            LanguageSelectPopupViewModel.InitializeAsync(this);
         }
 
         private async void GetUser() {
@@ -114,11 +117,6 @@ namespace Drive.Client.ViewModels {
         }
 
         public override Task InitializeAsync(object navigationData) {
-            if (LanguageSelectPopupViewModel == null) {
-                LanguageSelectPopupViewModel = DependencyLocator.Resolve<LanguageSelectPopupViewModel>();
-                LanguageSelectPopupViewModel.InitializeAsync(this);
-            }
-
             UpdateView();
 
             GetUser();

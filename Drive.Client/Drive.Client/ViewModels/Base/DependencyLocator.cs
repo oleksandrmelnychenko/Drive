@@ -29,6 +29,7 @@ using Drive.Client.ViewModels.BottomTabViewModels.Home;
 using Drive.Client.ViewModels.BottomTabViewModels.Home.Post;
 using Drive.Client.ViewModels.BottomTabViewModels.Popups;
 using Drive.Client.ViewModels.BottomTabViewModels.PostBuilder;
+using Drive.Client.ViewModels.BottomTabViewModels.Profile;
 using Drive.Client.ViewModels.BottomTabViewModels.Search;
 using Drive.Client.ViewModels.IdentityAccounting;
 using Drive.Client.ViewModels.IdentityAccounting.EditProfile;
@@ -73,6 +74,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<MainViewModel>();
             builder.RegisterType<SavedViewModel>();
             builder.RegisterType<SearchViewModel>();
+            builder.RegisterType<MyPostsViewModel>();
             builder.RegisterType<NewPostViewModel>();
             builder.RegisterType<ProfileViewModel>();
             builder.RegisterType<BookmarkViewModel>();

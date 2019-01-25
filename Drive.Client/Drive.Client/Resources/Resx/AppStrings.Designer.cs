@@ -1248,5 +1248,14 @@ namespace Drive.Client.Resources.Resx {
                 return ResourceManager.GetString("YearUpperCase", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to YOUR POSTS.
+        /// </summary>
+        public static string YourPostsUpperCase {
+            get {
+                return ResourceManager.GetString("YourPostsUpperCase", resourceCulture);
+            }
+        }
     }
 }

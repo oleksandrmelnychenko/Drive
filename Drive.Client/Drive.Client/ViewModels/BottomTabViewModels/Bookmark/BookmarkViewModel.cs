@@ -9,6 +9,7 @@ using Drive.Client.Models.Arguments.BottomtabSwitcher;
 using Drive.Client.Models.Arguments.Notifications;
 using Drive.Client.Services.Vehicle;
 using Drive.Client.ViewModels.Base;
+using Drive.Client.ViewModels.BottomTabViewModels.Profile;
 using Drive.Client.Views.BottomTabViews;
 using Drive.Client.Views.BottomTabViews.Bookmark;
 using Microsoft.AppCenter.Crashes;
@@ -57,8 +58,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Bookmark {
         public override Task InitializeAsync(object navigationData) {
             if (navigationData is SelectedBottomBarTabArgs) {
 
-            }
-            else if (navigationData is ReceivedResidentVehicleDetailInfoArgs vehicleDetailInfoArgs) {
+            } else if (navigationData is ReceivedResidentVehicleDetailInfoArgs vehicleDetailInfoArgs) {
                 try {
                     SelectedTabIndex = SearchTabs.IndexOf(SearchTabs.FirstOrDefault(tab => tab is UserVehiclesViewModel));
                 }

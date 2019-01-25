@@ -251,7 +251,7 @@
     <EmbeddedResource Update="Views\BottomTabViews\Home\SavedView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\BottomTabViews\Bookmark\UserVehiclesView.xaml">
+    <EmbeddedResource Update="Views\BottomTabViews\Profile\UserVehiclesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BottomTabViews\Calculator\CalculatorView.xaml">
@@ -264,6 +264,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BottomTabViews\PostBuilder\UserButtonBottomItemView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\BottomTabViews\Profile\MyPostsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Popups\PostFunctionPopupView.xaml">
@@ -410,7 +413,7 @@
     <EmbeddedResource Update="Views\BottomTabViews\PostBuilder\PostBuilderView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\BottomTabViews\ProfileView.xaml">
+    <EmbeddedResource Update="Views\BottomTabViews\Profile\ProfileView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\BottomTabViews\Search\SearchView.xaml">

@@ -1,5 +1,6 @@
 ﻿using Drive.Client.Helpers;
 using Drive.Client.Models.Arguments.BottomtabSwitcher;
+using Drive.Client.Models.Arguments.Notifications;
 using Drive.Client.Models.EntityModels.Identity;
 using Drive.Client.Models.Medias;
 using Drive.Client.Services;
@@ -10,29 +11,33 @@ using Drive.Client.ViewModels.BottomTabViewModels.Popups;
 using Drive.Client.ViewModels.IdentityAccounting.EditProfile;
 using Drive.Client.ViewModels.IdentityAccounting.Registration;
 using Drive.Client.Views.BottomTabViews;
+using Drive.Client.Views.BottomTabViews.Profile;
+using Microsoft.AppCenter.Crashes;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace Drive.Client.ViewModels.BottomTabViewModels {
+namespace Drive.Client.ViewModels.BottomTabViewModels.Profile {
     public sealed class ProfileViewModel : TabbedViewModelBase {
 
         private CancellationTokenSource _getUserCancellationTokenSource = new CancellationTokenSource();
 
         private readonly IPickMediaService _pickMediaService;
 
-        private readonly IIdentityService _identityService;       
+        private readonly IIdentityService _identityService;
 
         bool _visibilityRegistrationContent;
         public bool VisibilityRegistrationContent {
             get { return _visibilityRegistrationContent; }
             set { SetProperty(ref _visibilityRegistrationContent, value); }
-        }   
+        }
 
         string _avatarUrl;
         public string AvatarUrl {
@@ -40,12 +45,28 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
             set { SetProperty(ref _avatarUrl, value); }
         }
 
+
+        List<IVisualFiguring> _historyTabs;
+        public List<IVisualFiguring> HistoryTabs {
+            get => _historyTabs;
+            private set {
+                _historyTabs?.ForEach(searchTab => searchTab.Dispose());
+                SetProperty(ref _historyTabs, value);
+            }
+        }
+
+        int _selectedTabIndex;
+        public int SelectedTabIndex {
+            get => _selectedTabIndex;
+            set => SetProperty(ref _selectedTabIndex, value);
+        }
+
         public ICommand LoginCommand => new Command(async () => await NavigationService.NavigateToAsync<SignInPhoneNumberStepViewModel>());
 
         public ICommand RegisterCommand => new Command(async () => await NavigationService.NavigateToAsync<PhoneNumberRegisterStepViewModel>());
 
         public ICommand SettingsCommand => new Command(async () => await NavigationService.NavigateToAsync<SettingsViewModel>());
-        
+
         /// <summary>
         ///     ctor().
         /// </summary>
@@ -54,14 +75,30 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
             _pickMediaService = pickMediaService;
             _identityService = identityService;
 
-           
+            HistoryTabs = new List<IVisualFiguring>() {
+                DependencyLocator.Resolve<MyPostsViewModel>(),
+                DependencyLocator.Resolve<UserVehiclesViewModel>()
+            };
+            HistoryTabs.ForEach(searchTab => searchTab.InitializeAsync(this));
+
+            SelectedTabIndex = HistoryTabs.IndexOf(HistoryTabs.FirstOrDefault(tab => tab is UserVehiclesViewModel));
         }
 
         public override Task InitializeAsync(object navigationData) {
             UpdateView();
 
             if (navigationData is SelectedBottomBarTabArgs) {
+
+            } else if (navigationData is ReceivedResidentVehicleDetailInfoArgs vehicleDetailInfoArgs) {
+                try {
+                    SelectedTabIndex = HistoryTabs.IndexOf(HistoryTabs.FirstOrDefault(tab => tab is UserVehiclesViewModel));
+                }
+                catch (Exception exc) {
+                    Crashes.TrackError(exc);
+                }
             }
+
+            HistoryTabs?.ForEach(searchTab => searchTab.InitializeAsync(navigationData));
 
             return base.InitializeAsync(navigationData);
         }
@@ -69,6 +106,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
         public override void Dispose() {
             base.Dispose();
 
+            HistoryTabs?.ForEach(searchTab => searchTab.Dispose());
             ResetCancellationTokenSource(ref _getUserCancellationTokenSource);
         }
 
@@ -76,14 +114,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels {
             TabIcon = IconPath.PROFILE;
             RelativeViewType = typeof(ProfileView);
             HasBackgroundItem = false;
-        }
-
-        private static void UpdateUserProfile(User user) {
-            BaseSingleton<GlobalSetting>.Instance.UserProfile.UserName = user.UserName;
-            BaseSingleton<GlobalSetting>.Instance.UserProfile.PhoneNumber = user.PhoneNumber;
-            BaseSingleton<GlobalSetting>.Instance.UserProfile.Email = user.Email;
-            BaseSingleton<GlobalSetting>.Instance.UserProfile.AvatarUrl = user.AvatarUrl;
-            BaseSingleton<GlobalSetting>.Instance.UserProfile.NetId = user.NetId;
         }
 
         private void UpdateView() {

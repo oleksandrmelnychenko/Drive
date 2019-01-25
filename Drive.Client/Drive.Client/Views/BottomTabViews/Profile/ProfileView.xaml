@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentView
-    x:Class="Drive.Client.Views.BottomTabViews.ProfileView"
+    x:Class="Drive.Client.Views.BottomTabViews.Profile.ProfileView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Drive.Client.Controls"
@@ -8,6 +8,7 @@
     xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
+    xmlns:switcherControls="clr-namespace:Drive.Client.Controls.Switcher"
     BackgroundColor="{StaticResource WhiteColor}">
 
     <Grid>
@@ -43,12 +44,27 @@
                 VerticalOptions="Center" />
         </Grid>
 
-        <Button
-            Command="{Binding SettingsCommand}"
+        <ContentView
+            Grid.Row="0"
             HorizontalOptions="End"
-            Text="tt"
-            WidthRequest="50" />
+            WidthRequest="40">
+            <ContentView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding SettingsCommand}" NumberOfTapsRequired="1" />
+            </ContentView.GestureRecognizers>
 
+            <ffimageloadingsvg:SvgCachedImage
+                Margin="0,10,10,0"
+                HeightRequest="20"
+                HorizontalOptions="End"
+                Source="resource://Drive.Client.Resources.Images.Gear.svg"
+                VerticalOptions="Start"
+                WidthRequest="20" />
+        </ContentView>
+
+        <switcherControls:ContentSwitcher
+            Grid.Row="1"
+            ContentItemSource="{Binding HistoryTabs}"
+            SelectedContentItemIndex="{Binding Path=SelectedTabIndex}" />
 
         <!--  Login/registartion stub  -->
         <Grid
