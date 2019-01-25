@@ -1,6 +1,7 @@
 ﻿using Drive.Client.DataItems.Calculator;
 using Drive.Client.Helpers;
 using Drive.Client.Models.DataItems.Calculator;
+using Drive.Client.Models.EntityModels;
 using Drive.Client.Models.EntityModels.Vehicle.Significance;
 using Drive.Client.Resources.Resx;
 using Drive.Client.ViewModels.Base;
@@ -8,6 +9,7 @@ using Drive.Client.ViewModels.Popups;
 using Drive.Client.Views.BottomTabViews.Calculator;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -27,6 +29,10 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Calculator {
             SelectorPopupViewModel.ItemSelected += OnSelectorPopupViewModelItemSelected;
 
             Currencies = _calculatorEntitiesDataItems.GetCurrencyDataItems();
+            SelectedCurrency = Currencies.First();
+
+            Engines = _calculatorEntitiesDataItems.GetEngineTypesDataItems();
+            SelectedEngine = Engines.First();
         }
 
         public ICommand SelectVehicleTypeCommand => new Command(() => {
@@ -49,16 +55,28 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Calculator {
             private set => SetProperty<SelectorPopupViewModel>(ref _selectorPopupViewModel, value);
         }
 
-        private List<CurrencyDataItem> _currencies;
-        public List<CurrencyDataItem> Currencies {
+        private List<CalculatorDataItemBase<Currency>> _currencies;
+        public List<CalculatorDataItemBase<Currency>> Currencies {
             get => _currencies;
-            private set => SetProperty<List<CurrencyDataItem>>(ref _currencies, value);
+            private set => SetProperty<List<CalculatorDataItemBase<Currency>>>(ref _currencies, value);
         }
 
-        private CurrencyDataItem _selectedCurrency;
-        public CurrencyDataItem SelectedCurrency {
+        private CalculatorDataItemBase<Currency> _selectedCurrency;
+        public CalculatorDataItemBase<Currency> SelectedCurrency {
             get => _selectedCurrency;
-            private set => SetProperty<CurrencyDataItem>(ref _selectedCurrency, value);
+            private set => SetProperty<CalculatorDataItemBase<Currency>>(ref _selectedCurrency, value);
+        }
+
+        private List<CalculatorDataItemBase<EngineType>> _engines;
+        public List<CalculatorDataItemBase<EngineType>> Engines {
+            get => _engines;
+            private set => SetProperty<List<CalculatorDataItemBase<EngineType>>>(ref _engines, value);
+        }
+
+        private CalculatorDataItemBase<EngineType> _selectedEngine;
+        public CalculatorDataItemBase<EngineType> SelectedEngine {
+            get => _selectedEngine;
+            private set => SetProperty<CalculatorDataItemBase<EngineType>>(ref _selectedEngine, value);
         }
 
         public override Task InitializeAsync(object navigationData) {

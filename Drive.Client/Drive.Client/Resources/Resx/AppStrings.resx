@@ -523,4 +523,7 @@ certificate issued</value>
   <data name="CurrencyUppercase" xml:space="preserve">
     <value>CURRENCY</value>
   </data>
+  <data name="EngineTypeUppercase" xml:space="preserve">
+    <value>ENGINE TYPE</value>
+  </data>
 </root>

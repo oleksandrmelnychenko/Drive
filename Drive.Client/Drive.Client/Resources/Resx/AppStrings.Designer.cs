@@ -359,6 +359,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ENGINE TYPE.
+        /// </summary>
+        public static string EngineTypeUppercase {
+            get {
+                return ResourceManager.GetString("EngineTypeUppercase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Engine capacity.
         /// </summary>
         public static string EngineСapacity {

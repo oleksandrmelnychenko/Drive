@@ -522,4 +522,7 @@
   <data name="CurrencyUppercase" xml:space="preserve">
     <value>ВАЛЮТА</value>
   </data>
+  <data name="EngineTypeUppercase" xml:space="preserve">
+    <value>ТИП ДВИГУНА</value>
+  </data>
 </root>

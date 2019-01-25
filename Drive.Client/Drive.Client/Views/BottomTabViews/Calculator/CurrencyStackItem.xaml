@@ -11,50 +11,38 @@
     IsOnSelectionVisualChangesEnabled="True"
     IsSelectable="True">
 
-    <AbsoluteLayout>
-        <controls:ExtendedContentView AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" />
+    <AbsoluteLayout HeightRequest="120">
+
+        <controls:ExtendedContentView
+            x:Name="_backgroundPad_ExtendedContentView"
+            AbsoluteLayout.LayoutBounds="1,1,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="{StaticResource Key=WhiteColor}"
+            BorderColor="{StaticResource Key=LightGrayColor}"
+            BorderThickness="2"
+            CornerRadius="3" />
+
+        <ffimageloadingsvg:SvgCachedImage
+            x:Name="_icon_SvgCachedImage"
+            AbsoluteLayout.LayoutBounds=".5,.5"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            CacheType="All"
+            HeightRequest="36"
+            Source="{Binding Path=IconPath}"
+            TranslationY="-9"
+            WidthRequest="36" />
+
+        <controls:LabelExtended
+            x:Name="_title_LabelExtended"
+            AbsoluteLayout.LayoutBounds=".5,.5"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            FontFamily="{StaticResource SFProLight}"
+            FontSize="{StaticResource MediumSize}"
+            LetterSpacing="{OnPlatform iOS=1.4,
+                                       Android=0.07}"
+            Text="{Binding Path=Titile}"
+            TextColor="{StaticResource BaseGrayColor}"
+            TranslationY="24" />
+
     </AbsoluteLayout>
-
-
-
-
-    <!--<controls:ExtendedContentView
-        BackgroundColor="{StaticResource Key=WhiteColor}"
-        CornerRadius="6"
-        WidthRequest="120">
-        <AbsoluteLayout>
-
-    -->
-    <!--  Image  -->
-    <!--
-            <ffimageloading:CachedImage
-                AbsoluteLayout.LayoutBounds="1,1,1,1"
-                AbsoluteLayout.LayoutFlags="All"
-                Aspect="AspectFill"
-                CacheType="All"
-                Source="{Binding Path=MediaPresentation}" />
-
-            <AbsoluteLayout
-                x:Name="_deleteTrigger_AbsoluteLayout"
-                AbsoluteLayout.LayoutBounds="1,1,1,1"
-                AbsoluteLayout.LayoutFlags="All"
-                InputTransparent="True"
-                Opacity="0">
-                <AbsoluteLayout.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Path=Parent.BindingContext.DeleteAttachedMediaCommand, Source={Reference Name=_root_CommonStackListItem}}" CommandParameter="{Binding}" />
-                </AbsoluteLayout.GestureRecognizers>
-
-                <BoxView
-                    AbsoluteLayout.LayoutBounds="1,1,1,1"
-                    AbsoluteLayout.LayoutFlags="All"
-                    BackgroundColor="#50000000" />
-
-                <ffimageloadingsvg:SvgCachedImage
-                    AbsoluteLayout.LayoutBounds=".5,.7,.8,.8"
-                    AbsoluteLayout.LayoutFlags="All"
-                    CacheType="All"
-                    Source="resource://Drive.Client.Resources.Images.ic_trash_bucket.svg" />
-            </AbsoluteLayout>
-        </AbsoluteLayout>
-    </controls:ExtendedContentView>-->
 </stackList:CommonStackListItem>
