@@ -22,8 +22,6 @@ using Drive.Client.Services.Signal.Announcement;
 using Drive.Client.Services.Vehicle;
 using Drive.Client.Services.Vision;
 using Drive.Client.ViewModels.ActionBars;
-using Drive.Client.ViewModels.BottomTabViewModels;
-using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
 using Drive.Client.ViewModels.BottomTabViewModels.Calculator;
 using Drive.Client.ViewModels.BottomTabViewModels.Home;
 using Drive.Client.ViewModels.BottomTabViewModels.Home.Post;
@@ -77,7 +75,6 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<MyPostsViewModel>();
             builder.RegisterType<NewPostViewModel>();
             builder.RegisterType<ProfileViewModel>();
-            builder.RegisterType<BookmarkViewModel>();
             builder.RegisterType<PostBaseViewModel>();
             builder.RegisterType<SettingsViewModel>();
             builder.RegisterType<EditEmailViewModel>();

@@ -2,12 +2,11 @@
 using Drive.Client.Models.DataItems.Vehicle;
 using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.Resources.Resx;
-using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace Drive.Client.Factories.Vehicle {
-    class VehicleFactory : IVehicleFactory {
+    public class VehicleFactory : IVehicleFactory {
 
         public List<BaseRequestDataItem> BuildResidentRequestItems(IEnumerable<ResidentRequest> residentRequests, ResourceLoader resourceLoader) {
             List<BaseRequestDataItem> residentRequestDataItems = new List<BaseRequestDataItem>();
@@ -15,6 +14,7 @@ namespace Drive.Client.Factories.Vehicle {
             foreach (var request in residentRequests) {
                 ResidentRequestDataItem residentRequestDataItem = new ResidentRequestDataItem {
                     ResidentRequest = request,
+                    HistoryType = request.HistoryType,
                     Created = request.Created,
                     Status = GetLocalizeStatus(request.Status, resourceLoader),
                     CountOutput = GetOutputValue(request.VehicleCount, resourceLoader),
@@ -33,12 +33,29 @@ namespace Drive.Client.Factories.Vehicle {
             foreach (var request in residentRequests) {
                 PolandRequestDataItem polandRequestDataItem = new PolandRequestDataItem {
                     PolandVehicleRequest = request,
+                    HistoryType = request.HistoryType,
                     Created = request.Created,
                     Status = GetPolandLocalizeStatus(request.IsParsed, resourceLoader),
                     StatusColor = request.IsParsed ? (Color)App.Current.Resources["StatusFinishedColor"] : (Color)App.Current.Resources["ErrorColor"]
                 };
                 polandRequestDataItem.InitializeAsync(null);
                 residentRequestDataItems.Add(polandRequestDataItem);
+            }
+
+            return residentRequestDataItems;
+        }
+
+        public List<BaseRequestDataItem> BuildCognitiveRequestItems(IEnumerable<CognitiveRequest> cognitiveRequests, ResourceLoader resourceLoader) {
+            List<BaseRequestDataItem> residentRequestDataItems = new List<BaseRequestDataItem>();
+
+            foreach (var request in cognitiveRequests) {
+                CognitiveRequestDataItem cognitiveRequestDataItem = new CognitiveRequestDataItem {
+                    CognitiveRequest = request,
+                    HistoryType = request.HistoryType,
+                    Created = request.Created,
+                };
+                cognitiveRequestDataItem.InitializeAsync(null);
+                residentRequestDataItems.Add(cognitiveRequestDataItem);
             }
 
             return residentRequestDataItems;
@@ -64,5 +81,6 @@ namespace Drive.Client.Factories.Vehicle {
                     : resourceLoader.GetString(nameof(AppStrings.VehiclesSecondTypeUpperCase));
             return resource;
         }
+
     }
 }

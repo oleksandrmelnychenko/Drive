@@ -8,5 +8,7 @@ namespace Drive.Client.Factories.Vehicle {
         List<BaseRequestDataItem> BuildPolandRequestItems(IEnumerable<PolandVehicleRequest> residentRequests, ResourceLoader resourceLoader);
 
         List<BaseRequestDataItem> BuildResidentRequestItems(IEnumerable<ResidentRequest> residentRequests, ResourceLoader resourceLoader);
+
+        List<BaseRequestDataItem> BuildCognitiveRequestItems(IEnumerable<CognitiveRequest> cognitiveRequests, ResourceLoader resourceLoader);
     }
 }

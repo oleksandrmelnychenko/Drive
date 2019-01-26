@@ -18,5 +18,7 @@ namespace Drive.Client.Services.Vehicle {
         Task<PolandVehicleDetail> GetPolandVehicleDetailsByRequestIdAsync(string requestId, CancellationToken cancellationToken = default(CancellationToken));
 
         Task<List<PolandVehicleRequest>> GetPolandVehicleRequestsAsync(CancellationToken cancellationToken = default(CancellationToken));
+
+        Task<List<CognitiveRequest>> GetCognitiveRequestsAsync(CancellationToken cancellationToken = default(CancellationToken));
     }
 }

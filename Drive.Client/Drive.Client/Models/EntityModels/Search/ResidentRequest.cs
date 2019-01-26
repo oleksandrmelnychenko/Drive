@@ -27,5 +27,8 @@ namespace Drive.Client.Models.EntityModels.Search {
 
         [JsonProperty("VehicleCount")]
         public long VehicleCount { get; set; }
+
+        [JsonProperty("HistoryType")]
+        public RequestType HistoryType { get; set; }
     }
 }

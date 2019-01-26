@@ -1,4 +1,5 @@
 ﻿using Drive.Client.Models.DataItems.Vehicle;
+using Drive.Client.Models.EntityModels.Search;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,7 +12,7 @@ namespace Drive.Client.Views.CustomCells.DataTemplateSelectors {
 
         private readonly DataTemplate _polandRequestDataTemplate;
 
-        private readonly DataTemplate _lithuaniaRequestDataTemplate;
+        private readonly DataTemplate _cogitiveRequestDataTemplate;
 
         /// <summary>
         ///     ctor().
@@ -19,14 +20,23 @@ namespace Drive.Client.Views.CustomCells.DataTemplateSelectors {
         public VehicleRequestDataTemplateSelector() {
             _residentRequestDataTemplate = new DataTemplate(typeof(ResidentRequestViewCell));
             _polandRequestDataTemplate = new DataTemplate(typeof(PolandRequestViewCell));
+            _cogitiveRequestDataTemplate = new DataTemplate(typeof(CognitiveRequestViewCell));
         }
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container) {
-            BaseRequestDataItem baseRequestDataItem = item as BaseRequestDataItem;
 
-            if (baseRequestDataItem == null) return null;
+            if (!(item is BaseRequestDataItem baseRequestDataItem)) return null;
 
-            return baseRequestDataItem is ResidentRequestDataItem ? _residentRequestDataTemplate : _polandRequestDataTemplate;
+            switch (baseRequestDataItem.HistoryType) {
+                case RequestType.ResidentVehicle:
+                    return _residentRequestDataTemplate;
+                case RequestType.CognitiveImageData:
+                    return _cogitiveRequestDataTemplate;
+                case RequestType.PolandVehicle:
+                    return _polandRequestDataTemplate;
+                default:
+                    return null;
+            }
         }
     }
 }

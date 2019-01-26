@@ -191,5 +191,32 @@ namespace Drive.Client.Services.Vehicle {
                   }
                   return polandVehicleRequests;
               }, cancellationToken);
+
+        public async Task<List<CognitiveRequest>> GetCognitiveRequestsAsync(CancellationToken cancellationToken = default(CancellationToken)) =>
+              await Task.Run(async () => {
+                  List<CognitiveRequest> cognitiveRequests = new List<CognitiveRequest>();
+
+                  string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.VehicleEndpoints.CognitiveRequestsEndpoint;
+                  string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+
+                  try {
+                      cognitiveRequests = await _requestProvider.GetAsync<List<CognitiveRequest>>(url, accessToken);
+                  }
+                  catch (ConnectivityException ex) {
+                      throw ex;
+                  }
+                  catch (ServiceAuthenticationException ex) {
+                      await _identityService.LogOutAsync();
+                      throw ex;
+                  }
+                  catch (HttpRequestExceptionEx ex) {
+                      cognitiveRequests = null;
+                  }
+                  catch (Exception ex) {
+                      Debug.WriteLine($"ERROR:{ex.Message}");
+                      Debugger.Break();
+                  }
+                  return cognitiveRequests;
+              }, cancellationToken);
     }
 }

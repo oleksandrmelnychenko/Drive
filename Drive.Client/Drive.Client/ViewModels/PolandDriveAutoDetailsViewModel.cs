@@ -1,13 +1,13 @@
 ﻿using Drive.Client.Helpers.Localize;
 using Drive.Client.Models.EntityModels.Search;
+using Drive.Client.Models.Identities.NavigationArgs;
 using Drive.Client.Resources.Resx;
 using Drive.Client.ViewModels.ActionBars;
 using Drive.Client.ViewModels.Base;
+using Drive.Client.ViewModels.BottomTabViewModels.Profile;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using System.Linq;
-using Drive.Client.Models.Identities.NavigationArgs;
-using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
 
 namespace Drive.Client.ViewModels {
     public class PolandDriveAutoDetailsViewModel : ContentPageBaseViewModel {
@@ -213,7 +213,7 @@ namespace Drive.Client.ViewModels {
 
             if (navigationData is PolandVehicleDetail polandVehicleDetail) {
                 if (NavigationService.CurrentViewModelsNavigationStack.FirstOrDefault() is MainViewModel mainViewModel) {
-                    mainViewModel.InitializeAsync(new BottomTabIndexArgs() { TargetTab = typeof(BookmarkViewModel) });
+                    mainViewModel.InitializeAsync(new BottomTabIndexArgs() { TargetTab = typeof(ProfileViewModel) });
                 }
 
                 PolandDriveAuto = polandVehicleDetail;

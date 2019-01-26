@@ -1,6 +1,5 @@
 ﻿using Drive.Client.Models.Identities.NavigationArgs;
-using Drive.Client.Services.Navigation;
-using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
+using Drive.Client.ViewModels.BottomTabViewModels.Profile;
 using Drive.Client.Views.Popups;
 using System;
 using System.Linq;
@@ -19,7 +18,7 @@ namespace Drive.Client.ViewModels.Popups {
             base.OnIsPopupVisible();
 
             if (!IsPopupVisible) {
-                await NavigationService.CurrentViewModelsNavigationStack.First().InitializeAsync(new BottomTabIndexArgs { TargetTab = typeof(BookmarkViewModel) });
+                await NavigationService.CurrentViewModelsNavigationStack.First().InitializeAsync(new BottomTabIndexArgs { TargetTab = typeof(ProfileViewModel) });
                 await NavigationService.NavigateToAsync<MainViewModel>();
             }
         }

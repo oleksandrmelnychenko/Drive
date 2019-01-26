@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ViewCell
+    x:Class="Drive.Client.Views.CustomCells.CognitiveRequestViewCell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:converters="clr-namespace:Drive.Client.Converters"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms">
+
+    <Grid ColumnSpacing="0" RowSpacing="0">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <converters:DateFormatConverter x:Key="dateFormatConverter" />
+                <converters:VechicalCountConverter x:Key="vechicalCountConverter" />
+
+                <OnPlatform
+                    x:Key="ValueFontSize"
+                    x:TypeArguments="x:Double"
+                    Android="{StaticResource MidMediumSize}"
+                    iOS="{StaticResource MediumSize}" />
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <BoxView Color="{StaticResource WhiteColor}" />
+        <StackLayout
+            Padding="10"
+            HorizontalOptions="Center"
+            Spacing="0"
+            VerticalOptions="Center">
+            <controls:LabelExtended
+                Grid.Row="0"
+                FontFamily="{StaticResource SFProLight}"
+                FontSize="{StaticResource LargerSize}"
+                HorizontalOptions="Center"
+                Text="{Binding CognitiveRequest.Created, StringFormat=' {0:dd}'}"
+                TextColor="{StaticResource HardGrayColor}"
+                VerticalOptions="Center" />
+            <controls:LabelExtended
+                Grid.Row="1"
+                FontFamily="{StaticResource SFProLight}"
+                FontSize="{StaticResource LittleSize}"
+                HorizontalOptions="Center"
+                Text="{Binding Created, Converter={StaticResource dateFormatConverter}}"
+                TextColor="{StaticResource HardGrayColor}"
+                VerticalOptions="Center" />
+        </StackLayout>
+
+        <BoxView Grid.Column="1" Color="{StaticResource ExtraLightGrayColor}" />
+        <Grid Grid.Column="1" Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="80" />
+            </Grid.ColumnDefinitions>
+
+            <controls:LabelExtended
+                Grid.Column="0"
+                FontSize="{StaticResource ValueFontSize}"
+                HorizontalOptions="Start"
+                Text="{Binding CognitiveRequest.VehicleNumber, Converter={StaticResource UpperCaseConverter}}"
+                TextColor="{StaticResource DarkColor}"
+                VerticalOptions="Center" />
+
+            <ffimageloadingsvg:SvgCachedImage
+                Grid.Column="1"
+                BackgroundColor="Yellow"
+                Aspect="AspectFill"
+                Margin="0,0,0,0"
+                CacheType="Memory"
+                HorizontalOptions="Center"
+                Source="{Binding CognitiveRequest.ImageUrl}"
+                VerticalOptions="Center"
+                WidthRequest="80" />
+        </Grid>
+        <BoxView
+            Grid.ColumnSpan="2"
+            HeightRequest="1"
+            VerticalOptions="End"
+            Color="#CCCCCC" />
+    </Grid>
+</ViewCell>

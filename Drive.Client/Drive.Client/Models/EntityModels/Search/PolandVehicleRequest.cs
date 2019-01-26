@@ -21,5 +21,8 @@ namespace Drive.Client.Models.EntityModels.Search {
 
         [JsonProperty("IsParsed")]
         public bool IsParsed { get; set; }
+
+        [JsonProperty("HistoryType")]
+        public RequestType HistoryType { get; set; }
     }
 }

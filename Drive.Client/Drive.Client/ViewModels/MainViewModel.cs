@@ -6,8 +6,6 @@ using Drive.Client.Services.DeviceUtil;
 using Drive.Client.Services.Identity;
 using Drive.Client.Services.Notifications;
 using Drive.Client.ViewModels.Base;
-using Drive.Client.ViewModels.BottomTabViewModels;
-using Drive.Client.ViewModels.BottomTabViewModels.Bookmark;
 using Drive.Client.ViewModels.BottomTabViewModels.Calculator;
 using Drive.Client.ViewModels.BottomTabViewModels.Home;
 using Drive.Client.ViewModels.BottomTabViewModels.PostBuilder;

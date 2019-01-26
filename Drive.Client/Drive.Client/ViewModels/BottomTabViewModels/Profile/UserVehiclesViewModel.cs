@@ -236,43 +236,46 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Profile {
         }
 
         public void ClearAfterTabTap() {
+            Dispose();
         }
 
         public void TabClicked() {
             GetRequests();
         }
 
-        private Task<List<BaseRequestDataItem>> GetRequestAsync() =>
-            Task.Run(async () => {
-                ResetCancellationTokenSource(ref _getRequestAsyncCancellationTokenSource);
-                CancellationTokenSource cancellationTokenSource = _getRequestAsyncCancellationTokenSource;
+        private async Task<List<BaseRequestDataItem>> GetRequestAsync() {
+            ResetCancellationTokenSource(ref _getRequestAsyncCancellationTokenSource);
+            CancellationTokenSource cancellationTokenSource = _getRequestAsyncCancellationTokenSource;
 
-                List<BaseRequestDataItem> createdItems = null;
+            List<BaseRequestDataItem> createdItems = null;
 
-                try {
-                    List<ResidentRequest> userRequests = await _vehicleService.GetUserVehicleDetailRequestsAsync(cancellationTokenSource.Token);
-
-                    if (userRequests != null) {
-                        createdItems = _vehicleFactory.BuildResidentRequestItems(userRequests, ResourceLoader);
-
-                        List<PolandVehicleRequest> polandVehicleRequests = await _vehicleService.GetPolandVehicleRequestsAsync(cancellationTokenSource.Token);
-                        if (polandVehicleRequests != null) {
-                            createdItems.AddRange(_vehicleFactory.BuildPolandRequestItems(polandVehicleRequests, ResourceLoader));
-                        }
-                        createdItems = createdItems.OrderByDescending(x => x.Created).ToList();
-
-                        cancellationTokenSource.Token.ThrowIfCancellationRequested();
-                    }
-                }
-                catch (OperationCanceledException) { }
-                catch (ObjectDisposedException) { }
-                catch (Exception exc) {
-                    Debug.WriteLine($"ERROR: {exc.Message}");
-
-                    createdItems = new List<BaseRequestDataItem>();
+            try {
+                List<ResidentRequest> userRequests = await _vehicleService.GetUserVehicleDetailRequestsAsync(cancellationTokenSource.Token);
+                if (userRequests != null) {
+                    createdItems = _vehicleFactory.BuildResidentRequestItems(userRequests, ResourceLoader);
                 }
 
-                return createdItems;
-            });
+                List<PolandVehicleRequest> polandVehicleRequests = await _vehicleService.GetPolandVehicleRequestsAsync(cancellationTokenSource.Token);
+                if (polandVehicleRequests != null) {
+                    createdItems.AddRange(_vehicleFactory.BuildPolandRequestItems(polandVehicleRequests, ResourceLoader));
+                }
+
+                List<CognitiveRequest> cognitiveRequests = await _vehicleService.GetCognitiveRequestsAsync(cancellationTokenSource.Token);
+                if (cognitiveRequests != null) {
+                    createdItems.AddRange(_vehicleFactory.BuildCognitiveRequestItems(cognitiveRequests, ResourceLoader));
+                }
+
+                createdItems = createdItems.OrderByDescending(x => x.Created).ToList();
+            }
+            catch (OperationCanceledException) { }
+            catch (ObjectDisposedException) { }
+            catch (Exception exc) {
+                Debug.WriteLine($"ERROR: {exc.Message}");
+
+                createdItems = new List<BaseRequestDataItem>();
+            }
+
+            return createdItems;
+        }
     }
 }

@@ -29,6 +29,7 @@
     <Compile Remove="Models\Notifications\INotificationType.cs" />
     <Compile Remove="Services\Interface1.cs" />
     <Compile Remove="ViewModels\Base\ITodo.cs" />
+    <Compile Remove="ViewModels\BottomTabViewModels\Bookmark\BookmarkViewModel.cs" />
     <Compile Remove="ViewModels\BottomTabViewModels\Home\Post\MediaPostViewModel.cs" />
     <Compile Remove="ViewModels\BottomTabViewModels\Home\Post\TextPostViewModel.cs" />
   </ItemGroup>
@@ -269,6 +270,9 @@
     <EmbeddedResource Update="Views\BottomTabViews\Profile\MyPostsView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\CustomCells\CognitiveRequestViewCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Popups\PostFunctionPopupView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -497,5 +501,9 @@
     <None Update="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\BottomTabViewModels\Bookmark\" />
   </ItemGroup>
 </Project>
