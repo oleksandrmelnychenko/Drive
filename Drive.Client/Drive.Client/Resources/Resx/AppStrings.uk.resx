@@ -525,4 +525,16 @@
   <data name="EngineTypeUppercase" xml:space="preserve">
     <value>ТИП ДВИГУНА</value>
   </data>
+  <data name="GracePeriodDescription" xml:space="preserve">
+    <value>знижуючий коефіцієнт 0,50 поширюється на акциз при розмитненні авто протягои 90 днів після вступу в силу закону 8487</value>
+  </data>
+  <data name="VehicleCostUppercase" xml:space="preserve">
+    <value>ВАРТІСТЬ АВТОМОБІЛЯ</value>
+  </data>
+  <data name="WithGracePeriodIntoAccountUppercase" xml:space="preserve">
+    <value>З УРАХУВАННЯМ ПІЛЬГОВОГО ПЕРІОДУ</value>
+  </data>
+  <data name="CalculateUppercase" xml:space="preserve">
+    <value>РОЗРАХУВАТИ</value>
+  </data>
 </root>

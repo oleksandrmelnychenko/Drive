@@ -27,32 +27,19 @@
             <ContentView Grid.Row="1" BackgroundColor="{StaticResource WhiteColor}" />
 
             <!--  Main content  -->
-            <Grid
-                Grid.Row="1"
-                Padding="20"
-                RowSpacing="24">
+            <Grid Grid.Row="1" RowSpacing="24">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
+                    <!--<RowDefinition Height="Auto" />-->
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <!--  Header  -->
-                <controls:LabelExtended
-                    Grid.Row="0"
-                    FontFamily="{StaticResource SFProLight}"
-                    FontSize="{StaticResource LittleSize}"
-                    HorizontalOptions="Center"
-                    Text="{Binding Path=Title.Value}"
-                    TextColor="{StaticResource BaseGrayColor}"
-                    VerticalOptions="Center" />
-
-                <ScrollView Grid.Row="1">
-
+                <ScrollView Grid.Row="0" Padding="0,54,0,20">
                     <!--  Values list  -->
                     <stackList:StackList
                         x:Name="_itemsList_StackList"
                         ItemsSource="{Binding Path=ItemsToSelect}"
-                        Spacing="24">
+                        Spacing="24"
+                        VerticalOptions="Center">
                         <stackList:StackList.ItemTemplate>
                             <DataTemplate>
                                 <stackList:CommonStackListItem IsOnSelectionVisualChangesEnabled="False" IsSelectable="False">
@@ -62,15 +49,28 @@
                                     <controls:LabelExtended
                                         FontFamily="{StaticResource SFProLight}"
                                         FontSize="{StaticResource MediumSize}"
-                                        HorizontalOptions="Center"
+                                        HorizontalTextAlignment="Center"
                                         Text="{Binding Converter={StaticResource Key=selector_popup_item_title_converter}}"
                                         TextColor="{StaticResource DarkColor}"
-                                        VerticalOptions="Center" />
+                                        VerticalTextAlignment="Center" />
                                 </stackList:CommonStackListItem>
                             </DataTemplate>
                         </stackList:StackList.ItemTemplate>
                     </stackList:StackList>
                 </ScrollView>
+
+                <!--  Header  -->
+                <controls:LabelExtended
+                    Grid.Row="0"
+                    BackgroundColor="{StaticResource Key=WhiteColor}"
+                    FontFamily="{StaticResource SFProLight}"
+                    FontSize="{StaticResource LittleSize}"
+                    HeightRequest="54"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Path=Title.Value}"
+                    TextColor="{StaticResource BaseGrayColor}"
+                    VerticalOptions="Start"
+                    VerticalTextAlignment="Center" />
             </Grid>
         </Grid>
     </popups:SinglePopupViewBase.Content>

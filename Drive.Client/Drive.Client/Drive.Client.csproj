@@ -10,14 +10,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DataItems\Calculator\**" />
+    <Compile Remove="Models\EntityModels\Vehicle\Significance\**" />
     <Compile Remove="Models\Identities\Posts\**" />
     <Compile Remove="Models\Services\**" />
     <Compile Remove="Services\DependencyServices\Localize\**" />
     <Compile Remove="Services\Identity\IdentityUtility\**" />
+    <EmbeddedResource Remove="DataItems\Calculator\**" />
+    <EmbeddedResource Remove="Models\EntityModels\Vehicle\Significance\**" />
     <EmbeddedResource Remove="Models\Identities\Posts\**" />
     <EmbeddedResource Remove="Models\Services\**" />
     <EmbeddedResource Remove="Services\DependencyServices\Localize\**" />
     <EmbeddedResource Remove="Services\Identity\IdentityUtility\**" />
+    <None Remove="DataItems\Calculator\**" />
+    <None Remove="Models\EntityModels\Vehicle\Significance\**" />
     <None Remove="Models\Identities\Posts\**" />
     <None Remove="Models\Services\**" />
     <None Remove="Services\DependencyServices\Localize\**" />
@@ -26,8 +32,6 @@
 
   <ItemGroup>
     <Compile Remove="Extensions\TranslateExtension.cs" />
-    <Compile Remove="Models\DataItems\Calculator\CurrencyDataItem.cs" />
-    <Compile Remove="Models\DataItems\Calculator\EngineTypeDataItem.cs" />
     <Compile Remove="Models\Notifications\INotificationType.cs" />
     <Compile Remove="Services\Interface1.cs" />
     <Compile Remove="ViewModels\Base\ITodo.cs" />

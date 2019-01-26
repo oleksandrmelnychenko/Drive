@@ -526,4 +526,16 @@ certificate issued</value>
   <data name="EngineTypeUppercase" xml:space="preserve">
     <value>ENGINE TYPE</value>
   </data>
+  <data name="GracePeriodDescription" xml:space="preserve">
+    <value>a reduction coefficient of 0.50 is applied to the excise duty when the vehicle is cleared for 90 days after the entry into force of the law 8487</value>
+  </data>
+  <data name="VehicleCostUppercase" xml:space="preserve">
+    <value>VEHICLE COST</value>
+  </data>
+  <data name="WithGracePeriodIntoAccountUppercase" xml:space="preserve">
+    <value>WITH GRACE PERIOD INTO ACCOUNT</value>
+  </data>
+  <data name="CalculateUppercase" xml:space="preserve">
+    <value>CALCULATE</value>
+  </data>
 </root>

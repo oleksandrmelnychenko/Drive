@@ -39,7 +39,11 @@ namespace Drive.Client.ViewModels.Base {
             get => _electedBottomItemIndex;
             set {
                 try {
-                    BottomBarItems?[_electedBottomItemIndex].Dispose();
+                    ///
+                    /// TODO: implement Take/Lose intent args (like in PeackMVP).
+                    /// P.S. Dispose() clearing everything, including ResourceLoader (language switching is not working after that).
+                    ///
+                    //BottomBarItems?[_electedBottomItemIndex].Dispose();
                     BottomBarItems?[value].InitializeAsync(new SelectedBottomBarTabArgs());
 
                     if (BottomBarItems != null && BottomBarItems.Any()) {

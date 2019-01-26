@@ -16,27 +16,27 @@ namespace Drive.Client.DataItems.Calculator {
         private static readonly string USD_CURRENCY_ICON_PATH = "resource://Drive.Client.Resources.Images.Gear.svg";
         private static readonly string EURO_CURRENCY_ICON_PATH = "resource://Drive.Client.Resources.Images.Gear.svg";
 
-        public List<CalculatorDataItemBase<Currency>> GetCurrencyDataItems() =>
-            new List<CalculatorDataItemBase<Currency>>() {
-                new CalculatorDataItemBase<Currency>() {
+        public List<CommonDataItem<Currency>> GetCurrencyDataItems() =>
+            new List<CommonDataItem<Currency>>() {
+                new CommonDataItem<Currency>() {
                     Data = Currency.USD,
                     Titile = USD_CURRENCY_TITLE,
                     IconPath = USD_CURRENCY_ICON_PATH
                 },
-                new CalculatorDataItemBase<Currency>() {
+                new CommonDataItem<Currency>() {
                     Data = Currency.Euro,
                     Titile = EURO_CURRENCY_TITLE,
                     IconPath = EURO_CURRENCY_ICON_PATH
                 }
             };
 
-        public List<CalculatorDataItemBase<EngineType>> GetEngineTypesDataItems() =>
-            new List<CalculatorDataItemBase<EngineType>>() {
-                new CalculatorDataItemBase<EngineType>() {
+        public List<CommonDataItem<EngineType>> GetEngineTypesDataItems() =>
+            new List<CommonDataItem<EngineType>>() {
+                new CommonDataItem<EngineType>() {
                     Data = EngineType.Diesel,
                     Titile = DIESEL_ENGINE_TITLE
                 },
-                new CalculatorDataItemBase<EngineType>() {
+                new CommonDataItem<EngineType>() {
                     Data = EngineType.Gasoline,
                     Titile = GASOLINE_ENGINE_TITLE
                 }

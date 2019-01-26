@@ -22,8 +22,8 @@
             <AbsoluteLayout
                 AbsoluteLayout.LayoutBounds="0,.5"
                 AbsoluteLayout.LayoutFlags="PositionProportional"
-                HeightRequest="30"
-                WidthRequest="30">
+                HeightRequest="24"
+                WidthRequest="24">
                 <controls:ExtendedContentView
                     x:Name="_radioInficator_ExtendedContentView"
                     AbsoluteLayout.LayoutBounds="1,1,1,1"
@@ -31,15 +31,15 @@
                     BackgroundColor="{StaticResource Key=DarkBlueColor}"
                     BorderColor="{StaticResource Key=DarkBlueColor}"
                     BorderThickness="1"
-                    CornerRadius="30" />
+                    CornerRadius="24" />
 
                 <controls:ExtendedContentView
                     AbsoluteLayout.LayoutBounds=".5,.5"
                     AbsoluteLayout.LayoutFlags="PositionProportional"
                     BackgroundColor="{StaticResource Key=WhiteColor}"
-                    CornerRadius="12"
-                    HeightRequest="12"
-                    WidthRequest="12" />
+                    CornerRadius="9"
+                    HeightRequest="9"
+                    WidthRequest="9" />
             </AbsoluteLayout>
 
             <controls:LabelExtended
@@ -51,7 +51,7 @@
                                            Android=0.07}"
                 Text="{Binding Path=Titile}"
                 TextColor="{StaticResource DarkColor}"
-                TranslationX="50" />
+                TranslationX="39" />
         </AbsoluteLayout>
     </controls:ExtendedContentView>
 </stackList:CommonStackListItem>

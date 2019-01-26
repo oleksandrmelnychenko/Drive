@@ -5,8 +5,8 @@ using System.Collections.Generic;
 namespace Drive.Client.DataItems.Calculator {
     public interface ICalculatorEntitiesDataItems {
 
-        List<CalculatorDataItemBase<Currency>> GetCurrencyDataItems();
+        List<CommonDataItem<Currency>> GetCurrencyDataItems();
 
-        List<CalculatorDataItemBase<EngineType>> GetEngineTypesDataItems();
+        List<CommonDataItem<EngineType>> GetEngineTypesDataItems();
     }
 }
