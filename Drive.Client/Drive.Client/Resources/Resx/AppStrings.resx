@@ -135,6 +135,37 @@
   <data name="Brand" xml:space="preserve">
     <value>Brand</value>
   </data>
+  <data name="CustomsClearanceCalculator" xml:space="preserve">
+    <value>Customs clearance calculator for 2019</value>
+  </data>
+  <data name="VehicleAgeUppercase" xml:space="preserve">
+    <value>VEHICLE AGE</value>
+  </data>
+  <data name="VehicleTypeUppercase" xml:space="preserve">
+    <value>TYPE OF TRANSPORT</value>
+  </data>
+  <data name="CurrencyUppercase" xml:space="preserve">
+    <value>CURRENCY</value>
+  </data>
+  <data name="EngineTypeUppercase" xml:space="preserve">
+    <value>ENGINE TYPE</value>
+  </data>
+  <data name="GracePeriodDescription" xml:space="preserve">
+    <value>a reduction coefficient of 0.50 is applied to the excise duty when the vehicle is cleared for 90 days after the entry into force of the law 8487</value>
+  </data>
+  <data name="VehicleCostUppercase" xml:space="preserve">
+    <value>VEHICLE COST</value>
+  </data>
+  <data name="WithGracePeriodIntoAccountUppercase" xml:space="preserve">
+    <value>WITH GRACE PERIOD INTO ACCOUNT</value>
+  </data>
+  <data name="CalculateUppercase" xml:space="preserve">
+    <value>CALCULATE</value>
+  </data>
+  <data name="FullWeightKilogramsUppercase" xml:space="preserve">
+    <value>FULL WEIGHT KG</value>
+  </data>
+
   <data name="ChangePassword" xml:space="preserve">
     <value>Change password</value>
   </data>
