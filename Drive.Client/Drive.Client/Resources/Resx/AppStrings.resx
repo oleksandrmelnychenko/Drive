@@ -538,4 +538,7 @@ certificate issued</value>
   <data name="CalculateUppercase" xml:space="preserve">
     <value>CALCULATE</value>
   </data>
+  <data name="FullWeightKilogramsUppercase" xml:space="preserve">
+    <value>FULL WEIGHT KG</value>
+  </data>
 </root>

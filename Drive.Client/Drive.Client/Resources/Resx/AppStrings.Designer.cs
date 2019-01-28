@@ -530,6 +530,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FULL WEIGHT KG.
+        /// </summary>
+        public static string FullWeightKilogramsUppercase {
+            get {
+                return ResourceManager.GetString("FullWeightKilogramsUppercase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to a reduction coefficient of 0.50 is applied to the excise duty when the vehicle is cleared for 90 days after the entry into force of the law 8487.
         /// </summary>
         public static string GracePeriodDescription {

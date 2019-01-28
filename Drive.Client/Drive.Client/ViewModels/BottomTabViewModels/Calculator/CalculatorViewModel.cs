@@ -119,6 +119,12 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Calculator {
             set => SetProperty<double>(ref _vehicleCost, value);
         }
 
+        private double _vehicleFullMass;
+        public double VehicleFullMass {
+            get => _vehicleFullMass;
+            set => SetProperty<double>(ref _vehicleFullMass, value);
+        }
+
         private bool _isGracePeriodTakenIntoAccount;
         public bool IsGracePeriodTakenIntoAccount {
             get => _isGracePeriodTakenIntoAccount;

@@ -537,4 +537,7 @@
   <data name="CalculateUppercase" xml:space="preserve">
     <value>РОЗРАХУВАТИ</value>
   </data>
+  <data name="FullWeightKilogramsUppercase" xml:space="preserve">
+    <value>ПОВНА МАССА КГ</value>
+  </data>
 </root>
