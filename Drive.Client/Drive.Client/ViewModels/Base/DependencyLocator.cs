@@ -3,6 +3,7 @@ using Drive.Client.DataItems.Posts;
 using Drive.Client.DataItems.ProfileSettings;
 using Drive.Client.Factories.Announcements;
 using Drive.Client.Factories.Comments;
+using Drive.Client.Factories.ObjectToSelectorDataItem;
 using Drive.Client.Factories.Validation;
 using Drive.Client.Factories.Vehicle;
 using Drive.Client.Helpers.AppEvents;
@@ -46,7 +47,7 @@ namespace Drive.Client.ViewModels.Base {
     public static class DependencyLocator {
 
         private static IContainer _container;
-
+        
         public static readonly BindableProperty AutoWireViewModelProperty =
           BindableProperty.CreateAttached("AutoWireViewModel", typeof(bool), typeof(DependencyLocator), default(bool), propertyChanged: OnAutoWireViewModelChanged);
 
@@ -118,6 +119,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<SearchByPolandCarIdSecondStepViewModel>();
             builder.RegisterType<SearchByPolandCarIdFinallyStepViewModel>();
             builder.RegisterType<PostFunctionPopupViewModel>();
+            builder.RegisterType<SelectorPopupViewModel>();
 
             // Services.
             builder.RegisterType<VisionService>().As<IVisionService>();
@@ -140,6 +142,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<CommentsFactory>().As<ICommentsFactory>();
             builder.RegisterType<AnnouncementsFactory>().As<IAnnouncementsFactory>();
             builder.RegisterType<ValidationObjectFactory>().As<IValidationObjectFactory>();
+            builder.RegisterType<ObjectToSelectorDataItemFactory>().As<IObjectToSelectorDataItemFactory>();
 
             // Data items
             builder.RegisterType<PostTypeDataItems>().As<IPostTypeDataItems>();

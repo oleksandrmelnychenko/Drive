@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<stackList:CommonStackListItem
+    x:Class="Drive.Client.Views.BottomTabViews.Calculator.EngineTypeStackItem"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:stackList="clr-namespace:Drive.Client.Controls.Stacklist"
+    x:Name="_root_CommonStackListItem"
+    IsOnSelectionVisualChangesEnabled="True"
+    IsSelectable="True">
+
+    <controls:ExtendedContentView
+        x:Name="_contentBorderedContainer_ExtendedContentView"
+        BorderColor="{StaticResource Key=LightGrayColor}"
+        BorderThickness="1"
+        HeightRequest="54">
+        <AbsoluteLayout Padding="20,0">
+
+            <!--  Circle indicator  -->
+            <AbsoluteLayout
+                AbsoluteLayout.LayoutBounds="0,.5"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                HeightRequest="24"
+                WidthRequest="24">
+                <controls:ExtendedContentView
+                    x:Name="_radioInficator_ExtendedContentView"
+                    AbsoluteLayout.LayoutBounds="1,1,1,1"
+                    AbsoluteLayout.LayoutFlags="All"
+                    BackgroundColor="{StaticResource Key=DarkBlueColor}"
+                    BorderColor="{StaticResource Key=DarkBlueColor}"
+                    BorderThickness="1"
+                    CornerRadius="24" />
+
+                <controls:ExtendedContentView
+                    AbsoluteLayout.LayoutBounds=".5,.5"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    BackgroundColor="{StaticResource Key=WhiteColor}"
+                    CornerRadius="9"
+                    HeightRequest="9"
+                    WidthRequest="9" />
+            </AbsoluteLayout>
+
+            <controls:LabelExtended
+                AbsoluteLayout.LayoutBounds="0,.5"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                FontFamily="{StaticResource SFProLight}"
+                FontSize="{StaticResource MediumSize}"
+                LetterSpacing="{OnPlatform iOS=1.4,
+                                           Android=0.07}"
+                Text="{Binding Path=Titile}"
+                TextColor="{StaticResource DarkColor}"
+                TranslationX="39" />
+        </AbsoluteLayout>
+    </controls:ExtendedContentView>
+</stackList:CommonStackListItem>

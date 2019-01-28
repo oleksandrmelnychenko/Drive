@@ -1,14 +1,8 @@
 ﻿using Drive.Client.Helpers;
-using Drive.Client.Helpers.Localize;
-using Drive.Client.Models.EntityModels.Search;
 using Drive.Client.Models.Identities.NavigationArgs;
-using Drive.Client.Resources.Resx;
-using Drive.Client.Services.Vehicle;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.Views.Popups;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
