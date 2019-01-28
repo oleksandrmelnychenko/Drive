@@ -132,6 +132,37 @@
   <data name="BodyType" xml:space="preserve">
     <value>Тип кузова</value>
   </data>
+  <data name="CustomsClearanceCalculator" xml:space="preserve">
+    <value>Калькулятор розтаможки на 2019 рік</value>
+  </data>
+  <data name="VehicleAgeUppercase" xml:space="preserve">
+    <value>ВІК АВТОМОБІЛЯ</value>
+  </data>
+  <data name="VehicleTypeUppercase" xml:space="preserve">
+    <value>ТИП ТРАНСПОРТУ</value>
+  </data>
+  <data name="CurrencyUppercase" xml:space="preserve">
+    <value>ВАЛЮТА</value>
+  </data>
+  <data name="EngineTypeUppercase" xml:space="preserve">
+    <value>ТИП ДВИГУНА</value>
+  </data>
+  <data name="GracePeriodDescription" xml:space="preserve">
+    <value>знижуючий коефіцієнт 0,50 поширюється на акциз при розмитненні авто протягои 90 днів після вступу в силу закону 8487</value>
+  </data>
+  <data name="VehicleCostUppercase" xml:space="preserve">
+    <value>ВАРТІСТЬ АВТОМОБІЛЯ</value>
+  </data>
+  <data name="WithGracePeriodIntoAccountUppercase" xml:space="preserve">
+    <value>З УРАХУВАННЯМ ПІЛЬГОВОГО ПЕРІОДУ</value>
+  </data>
+  <data name="CalculateUppercase" xml:space="preserve">
+    <value>РОЗРАХУВАТИ</value>
+  </data>
+  <data name="FullWeightKilogramsUppercase" xml:space="preserve">
+    <value>ПОВНА МАССА КГ</value>
+  </data>
+
   <data name="Brand" xml:space="preserve">
     <value>Марка</value>
   </data>

@@ -119,6 +119,7 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
+
             <!--  INPUT  -->
             <Grid
                 Grid.Row="0"

@@ -4,11 +4,426 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Drive.Client.Controls"
+    xmlns:converters="clr-namespace:Drive.Client.Converters"
     xmlns:ffImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
     xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
+    xmlns:local="clr-namespace:Drive.Client.Views.BottomTabViews.Calculator"
+    xmlns:stackList="clr-namespace:Drive.Client.Controls.Stacklist"
+    xmlns:todoTypes="clr-namespace:Drive.Client.Models.EntityModels.TODO"
     BackgroundColor="{StaticResource WhiteColor}">
 
-    <Grid BackgroundColor="Gray" />
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="baseLabel" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource SFProLight}" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style
+                x:Key="smallTitleLabel"
+                BasedOn="{StaticResource baseLabel}"
+                TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource BaseGrayColor}" />
+                <Setter Property="FontSize" Value="{StaticResource LittleSize}" />
+            </Style>
+
+            <converters:BoolToGenericObjectConverter
+                x:Key="grace_period_indicator_background_coloring"
+                x:TypeArguments="Color"
+                FalseObject="#ffffff"
+                TrueObject="#2c3e50" />
+
+            <converters:BoolToGenericObjectConverter
+                x:Key="grace_period_indicator_border_coloring"
+                x:TypeArguments="Color"
+                FalseObject="#f5f5f5"
+                TrueObject="#2c3e50" />
+
+            <converters:GenericValueToBoolConverter
+                x:Key="is_car_selected_converter"
+                x:TypeArguments="todoTypes:VehicleType"
+                TargetValue="Car" />
+
+            <converters:GenericValueToBoolConverter
+                x:Key="is_truck_selected_converter"
+                x:TypeArguments="todoTypes:VehicleType"
+                TargetValue="Truck" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ScrollView Padding="0,0,0,20">
+        <Grid ColumnSpacing="0" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--  Header logo  -->
+            <ffimageloadingsvg:SvgCachedImage
+                Grid.Row="0"
+                HeightRequest="20"
+                HorizontalOptions="Center"
+                Source="resource://Drive.Client.Resources.Images.drive_logo.svg"
+                TranslationY="-6" />
+
+            <StackLayout
+                Grid.Row="1"
+                Padding="20,0"
+                Spacing="30">
+
+                <!--  Title  -->
+                <controls:LabelExtended
+                    FontFamily="{StaticResource SFProLight}"
+                    FontSize="{StaticResource MidMediumSize}"
+                    HorizontalOptions="Center"
+                    Text="{Binding ResourceLoader[CustomsClearanceCalculator].Value, Mode=TwoWay}"
+                    TextColor="{StaticResource DarkColor}" />
+
+                <StackLayout Spacing="24">
+
+                    <!--  Vehicle type  -->
+                    <Grid ColumnSpacing="0" RowSpacing="9">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="54" />
+                        </Grid.RowDefinitions>
+
+                        <!--  Input title  -->
+                        <controls:LabelExtended
+                            Grid.Row="0"
+                            LetterSpacing="{OnPlatform iOS=1.4,
+                                                       Android=0.07}"
+                            Style="{StaticResource smallTitleLabel}"
+                            Text="{Binding ResourceLoader[VehicleTypeUppercase].Value, Mode=TwoWay}" />
+
+                        <!--  Input container  -->
+                        <controls:ExtendedContentView
+                            Grid.Row="1"
+                            BorderColor="{StaticResource Key=LightGrayColor}"
+                            BorderThickness="1">
+                            <controls:ExtendedContentView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=SelectVehicleTypeCommand}" />
+                            </controls:ExtendedContentView.GestureRecognizers>
+                            <AbsoluteLayout Padding="20,0">
+                                <controls:LabelExtended
+                                    AbsoluteLayout.LayoutBounds="0,.5"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    FontFamily="{StaticResource SFProLight}"
+                                    FontSize="{StaticResource MediumSize}"
+                                    LetterSpacing="{OnPlatform iOS=1.4,
+                                                               Android=0.07}"
+                                    Text="{Binding Path=SelectedVehicleType.Titile}"
+                                    TextColor="{StaticResource DarkColor}" />
+
+                                <ffimageloadingsvg:SvgCachedImage
+                                    AbsoluteLayout.LayoutBounds="1,.5"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    HeightRequest="15"
+                                    Rotation="90"
+                                    Source="resource://Drive.Client.Resources.Images.ArrowNext.svg" />
+                            </AbsoluteLayout>
+                        </controls:ExtendedContentView>
+                    </Grid>
+
+                    <!--  Currency types  -->
+                    <Grid ColumnSpacing="0" RowSpacing="9">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!--  Currency chooser  -->
+                        <controls:LabelExtended
+                            Grid.Row="0"
+                            LetterSpacing="{OnPlatform iOS=1.4,
+                                                       Android=0.07}"
+                            Style="{StaticResource smallTitleLabel}"
+                            Text="{Binding ResourceLoader[CurrencyUppercase].Value, Mode=TwoWay}" />
+
+                        <stackList:StackList
+                            Grid.Row="1"
+                            IsMultiRowEnabled="True"
+                            ItemsPerRow="2"
+                            ItemsSource="{Binding Path=Currencies}"
+                            MultiRowStrategy="Grid"
+                            RowHorizontalLayoutOptions="FillAndExpand"
+                            SelectedItem="{Binding Path=SelectedCurrency, Mode=TwoWay}"
+                            Spacing="9">
+                            <stackList:StackList.ItemTemplate>
+                                <DataTemplate>
+                                    <local:CurrencyStackItem />
+                                </DataTemplate>
+                            </stackList:StackList.ItemTemplate>
+                        </stackList:StackList>
+                    </Grid>
+
+                    <!--  Vehicle cost  -->
+                    <Grid ColumnSpacing="0" RowSpacing="9">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="54" />
+                        </Grid.RowDefinitions>
+
+                        <!--  Input label  -->
+                        <controls:LabelExtended
+                            Grid.Row="0"
+                            LetterSpacing="{OnPlatform iOS=1.4,
+                                                       Android=0.07}"
+                            Style="{StaticResource smallTitleLabel}"
+                            Text="{Binding ResourceLoader[VehicleCostUppercase].Value, Mode=TwoWay}" />
+
+                        <!--  Input container  -->
+                        <controls:ExtendedContentView
+                            Grid.Row="1"
+                            BorderColor="{StaticResource Key=LightGrayColor}"
+                            BorderThickness="1">
+                            <controls:EntryExtended
+                                FontFamily="{StaticResource SFProLight}"
+                                FontSize="{StaticResource MediumSize}"
+                                Keyboard="Numeric"
+                                LeftPadding="20"
+                                LetterSpacingPlaceholder="{OnPlatform iOS=1.3,
+                                                                      Android=0.07}"
+                                PlaceholderColor="{StaticResource ExtraGrayColor}"
+                                ReturnType="Next"
+                                Text="{Binding Path=VehicleCost, Mode=TwoWay}"
+                                TextColor="{StaticResource DarkColor}" />
+                        </controls:ExtendedContentView>
+                    </Grid>
+
+                    <!--  Vehicle full mass  -->
+                    <Grid
+                        ColumnSpacing="0"
+                        IsVisible="{Binding Path=SelectedVehicleType.Data, Converter={StaticResource Key=is_truck_selected_converter}}"
+                        RowSpacing="9">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="54" />
+                        </Grid.RowDefinitions>
+
+                        <!--  Input label  -->
+                        <controls:LabelExtended
+                            Grid.Row="0"
+                            LetterSpacing="{OnPlatform iOS=1.4,
+                                                       Android=0.07}"
+                            Style="{StaticResource smallTitleLabel}"
+                            Text="{Binding ResourceLoader[FullWeightKilogramsUppercase].Value, Mode=TwoWay}" />
+
+                        <!--  Input container  -->
+                        <controls:ExtendedContentView
+                            Grid.Row="1"
+                            BorderColor="{StaticResource Key=LightGrayColor}"
+                            BorderThickness="1">
+                            <controls:EntryExtended
+                                FontFamily="{StaticResource SFProLight}"
+                                FontSize="{StaticResource MediumSize}"
+                                Keyboard="Numeric"
+                                LeftPadding="20"
+                                LetterSpacingPlaceholder="{OnPlatform iOS=1.3,
+                                                                      Android=0.07}"
+                                PlaceholderColor="{StaticResource ExtraGrayColor}"
+                                ReturnType="Next"
+                                Text="{Binding Path=VehicleFullMass, Mode=TwoWay}"
+                                TextColor="{StaticResource DarkColor}" />
+                        </controls:ExtendedContentView>
+                    </Grid>
+
+                    <!--  Engine capacities  -->
+                    <Grid ColumnSpacing="0" RowSpacing="9">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="54" />
+                        </Grid.RowDefinitions>
+
+                        <!--  Input title  -->
+                        <controls:LabelExtended
+                            Grid.Row="0"
+                            LetterSpacing="{OnPlatform iOS=1.4,
+                                                       Android=0.07}"
+                            Style="{StaticResource smallTitleLabel}"
+                            Text="{Binding ResourceLoader[EngineCapacityUpperСase].Value, Mode=TwoWay}" />
+
+                        <!--  Input container  -->
+                        <controls:ExtendedContentView
+                            Grid.Row="1"
+                            BorderColor="{StaticResource Key=LightGrayColor}"
+                            BorderThickness="1">
+                            <controls:ExtendedContentView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=SelectEngineCapacityCommand}" />
+                            </controls:ExtendedContentView.GestureRecognizers>
+                            <AbsoluteLayout Padding="20,0">
+                                <controls:LabelExtended
+                                    AbsoluteLayout.LayoutBounds="0,.5"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    FontFamily="{StaticResource SFProLight}"
+                                    FontSize="{StaticResource MediumSize}"
+                                    LetterSpacing="{OnPlatform iOS=1.4,
+                                                               Android=0.07}"
+                                    Text="{Binding Path=SelectedEngineCapacity.Titile}"
+                                    TextColor="{StaticResource DarkColor}" />
+
+                                <ffimageloadingsvg:SvgCachedImage
+                                    AbsoluteLayout.LayoutBounds="1,.5"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    HeightRequest="15"
+                                    Rotation="90"
+                                    Source="resource://Drive.Client.Resources.Images.ArrowNext.svg" />
+                            </AbsoluteLayout>
+                        </controls:ExtendedContentView>
+                    </Grid>
+
+                    <!--  Engine types  -->
+                    <Grid ColumnSpacing="0" RowSpacing="9">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <!--  Currency chooser  -->
+                        <controls:LabelExtended
+                            Grid.Row="0"
+                            LetterSpacing="{OnPlatform iOS=1.4,
+                                                       Android=0.07}"
+                            Style="{StaticResource smallTitleLabel}"
+                            Text="{Binding ResourceLoader[EngineTypeUppercase].Value, Mode=TwoWay}" />
+
+                        <stackList:StackList
+                            Grid.Row="1"
+                            ItemsSource="{Binding Path=Engines}"
+                            SelectedItem="{Binding Path=SelectedEngine, Mode=TwoWay}"
+                            Spacing="9">
+                            <stackList:StackList.ItemTemplate>
+                                <DataTemplate>
+                                    <local:EngineTypeStackItem />
+                                </DataTemplate>
+                            </stackList:StackList.ItemTemplate>
+                        </stackList:StackList>
+                    </Grid>
+
+                    <!--  Vehicle age  -->
+                    <Grid ColumnSpacing="0" RowSpacing="9">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="54" />
+                        </Grid.RowDefinitions>
+
+                        <!--  Input label  -->
+                        <controls:LabelExtended
+                            Grid.Row="0"
+                            LetterSpacing="{OnPlatform iOS=1.4,
+                                                       Android=0.07}"
+                            Style="{StaticResource smallTitleLabel}"
+                            Text="{Binding ResourceLoader[VehicleAgeUppercase].Value, Mode=TwoWay}" />
+
+                        <!--  Input container  -->
+                        <controls:ExtendedContentView
+                            Grid.Row="1"
+                            BorderColor="{StaticResource Key=LightGrayColor}"
+                            BorderThickness="1">
+                            <controls:ExtendedContentView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=SelectVehicleAgeCommand}" />
+                            </controls:ExtendedContentView.GestureRecognizers>
+                            <AbsoluteLayout Padding="20,0">
+                                <controls:LabelExtended
+                                    AbsoluteLayout.LayoutBounds="0,.5"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    FontFamily="{StaticResource SFProLight}"
+                                    FontSize="{StaticResource MediumSize}"
+                                    LetterSpacing="{OnPlatform iOS=1.4,
+                                                               Android=0.07}"
+                                    Text="{Binding Path=SelectedVehicleAge.Titile}"
+                                    TextColor="{StaticResource DarkColor}" />
+
+                                <ffimageloadingsvg:SvgCachedImage
+                                    AbsoluteLayout.LayoutBounds="1,.5"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    HeightRequest="15"
+                                    Rotation="90"
+                                    Source="resource://Drive.Client.Resources.Images.ArrowNext.svg" />
+                            </AbsoluteLayout>
+                        </controls:ExtendedContentView>
+                    </Grid>
+
+                    <!--  Is grace period  -->
+                    <Grid
+                        ColumnSpacing="0"
+                        IsVisible="{Binding Path=SelectedVehicleType.Data, Converter={StaticResource Key=is_car_selected_converter}}"
+                        RowSpacing="9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--  Description  -->
+                        <StackLayout Grid.Column="0" Spacing="0">
+                            <controls:LabelExtended
+                                FontFamily="{StaticResource Key=SFProLight}"
+                                FontSize="{StaticResource Key=LittleSize}"
+                                LetterSpacing="{OnPlatform iOS=1.4,
+                                                           Android=0.07}"
+                                Text="{Binding ResourceLoader[WithGracePeriodIntoAccountUppercase].Value, Mode=TwoWay, StringFormat='{0}*'}"
+                                TextColor="{StaticResource Key=DarkColor}" />
+
+                            <controls:LabelExtended
+                                FontFamily="{StaticResource Key=SFProLight}"
+                                FontSize="{StaticResource Key=ExtraLittleSize}"
+                                LetterSpacing="{OnPlatform iOS=1.4,
+                                                           Android=0.07}"
+                                Text="{Binding ResourceLoader[GracePeriodDescription].Value, Mode=TwoWay, StringFormat='({0})'}"
+                                TextColor="{StaticResource Key=DarkColor}" />
+                        </StackLayout>
+
+                        <!--  Circle indicator  -->
+                        <AbsoluteLayout
+                            Grid.Column="1"
+                            HeightRequest="24"
+                            VerticalOptions="Center"
+                            WidthRequest="24">
+                            <AbsoluteLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Path=TakeGracePeriodIntoAccountCommand}" />
+                            </AbsoluteLayout.GestureRecognizers>
+
+                            <controls:ExtendedContentView
+                                AbsoluteLayout.LayoutBounds="1,1,1,1"
+                                AbsoluteLayout.LayoutFlags="All"
+                                BackgroundColor="{Binding Path=IsGracePeriodTakenIntoAccount, Converter={StaticResource Key=grace_period_indicator_background_coloring}}"
+                                BorderColor="{Binding Path=IsGracePeriodTakenIntoAccount, Converter={StaticResource Key=grace_period_indicator_border_coloring}}"
+                                BorderThickness="1"
+                                CornerRadius="24" />
+
+                            <controls:ExtendedContentView
+                                AbsoluteLayout.LayoutBounds=".5,.5"
+                                AbsoluteLayout.LayoutFlags="PositionProportional"
+                                BackgroundColor="{StaticResource Key=WhiteColor}"
+                                CornerRadius="9"
+                                HeightRequest="9"
+                                WidthRequest="9" />
+                        </AbsoluteLayout>
+                    </Grid>
+
+                    <!--  Calculate button  -->
+                    <controls:ExtendedContentView
+                        BackgroundColor="{StaticResource Key=DarkBlueColor}"
+                        BorderColor="{StaticResource Key=DarkBlueColor}"
+                        BorderThickness="1"
+                        HeightRequest="52">
+                        <controls:ExtendedContentView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Path=CalculateCommand}" />
+                        </controls:ExtendedContentView.GestureRecognizers>
+                        <controls:LabelExtended
+                            FontFamily="{StaticResource SFProLight}"
+                            FontSize="{StaticResource MediumSize}"
+                            HorizontalTextAlignment="Center"
+                            LetterSpacing="{OnPlatform iOS=1.6,
+                                                       Android=0.07}"
+                            Text="{Binding ResourceLoader[CalculateUppercase].Value, Mode=TwoWay}"
+                            TextColor="{StaticResource WhiteColor}"
+                            VerticalTextAlignment="Center" />
+                    </controls:ExtendedContentView>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
 </ContentView>
