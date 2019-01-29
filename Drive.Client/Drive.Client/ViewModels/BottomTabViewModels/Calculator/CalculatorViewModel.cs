@@ -1,7 +1,8 @@
 ﻿using Drive.Client.Factories.ObjectToSelectorDataItem;
 using Drive.Client.Helpers;
+using Drive.Client.Models.Calculator;
+using Drive.Client.Models.Calculator.TODO;
 using Drive.Client.Models.DataItems;
-using Drive.Client.Models.EntityModels.TODO;
 using Drive.Client.Resources.Resx;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.Popups;
@@ -62,6 +63,30 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Calculator {
         public ICommand TakeGracePeriodIntoAccountCommand => new Command(() => IsGracePeriodTakenIntoAccount = !IsGracePeriodTakenIntoAccount);
 
         public ICommand CalculateCommand => new Command(async () => {
+
+            ///
+            /// TODO: validate, resolve what type of calculator is necessary tu build.
+            /// Also define appropriate `Customs Clearance Calculator Form Builder`
+            /// 
+            //CustomsClearanceCalculatorFormBase calculatorFormBase = SelectedVehicleType.Data == VehicleType.Car ? new CarCalculatorForm() : new TruckCalculatorForm();
+            CustomsClearanceCalculatorFormBase calculatorFormBase = null;
+
+            switch (SelectedVehicleType.Data) {
+                case VehicleType.Car:
+                    calculatorFormBase = new CarCalculatorForm();
+                    break;
+                case VehicleType.Truck:
+                    calculatorFormBase = new TruckCalculatorForm();
+                    break;
+                default:
+                    Debugger.Break();
+                    throw new InvalidOperationException("Unresolved vehicle type");
+            }
+            ///
+            /// TODO: validate, resolve what type of calculator is necessary tu build.
+            /// Also define appropriate `Customs Clearance Calculator Form Builder`
+            /// 
+
             await DialogService.ToastAsync("CalculateCommand in developing");
         });
 

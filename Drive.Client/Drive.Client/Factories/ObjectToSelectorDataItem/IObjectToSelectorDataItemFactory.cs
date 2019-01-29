@@ -1,5 +1,5 @@
-﻿using Drive.Client.Models.DataItems;
-using Drive.Client.Models.EntityModels.TODO;
+﻿using Drive.Client.Models.Calculator.TODO;
+using Drive.Client.Models.DataItems;
 using System.Collections.Generic;
 
 namespace Drive.Client.Factories.ObjectToSelectorDataItem {

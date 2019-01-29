@@ -132,8 +132,8 @@
   <data name="BodyType" xml:space="preserve">
     <value>Тип кузова</value>
   </data>
-  <data name="CustomsClearanceCalculator" xml:space="preserve">
-    <value>Калькулятор розтаможки на 2019 рік</value>
+  <data name="CustomsClearanceCalculatorUppercase" xml:space="preserve">
+    <value>КАЛЬКУЛЯТОР РОЗТАМОЖКИ НА 2019 РІК</value>
   </data>
   <data name="VehicleAgeUppercase" xml:space="preserve">
     <value>ВІК АВТОМОБІЛЯ</value>
@@ -162,7 +162,6 @@
   <data name="FullWeightKilogramsUppercase" xml:space="preserve">
     <value>ПОВНА МАССА КГ</value>
   </data>
-
   <data name="Brand" xml:space="preserve">
     <value>Марка</value>
   </data>

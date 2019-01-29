@@ -67,6 +67,8 @@
     <None Remove="Resources\Images\icon_user.svg" />
     <None Remove="Resources\Images\ic_barrier.png" />
     <None Remove="Resources\Images\ic_comment.svg" />
+    <None Remove="Resources\Images\ic_dollar_stack.svg" />
+    <None Remove="Resources\Images\ic_euro_stack.svg" />
     <None Remove="Resources\Images\ic_image.png" />
     <None Remove="Resources\Images\ic_trash_bucket.svg" />
     <None Remove="Resources\Images\ic_vin.svg" />
@@ -125,6 +127,8 @@
     <EmbeddedResource Include="Resources\Images\icon_user.svg" />
     <EmbeddedResource Include="Resources\Images\ic_barrier.png" />
     <EmbeddedResource Include="Resources\Images\ic_comment.svg" />
+    <EmbeddedResource Include="Resources\Images\ic_dollar_stack.svg" />
+    <EmbeddedResource Include="Resources\Images\ic_euro_stack.svg" />
     <EmbeddedResource Include="Resources\Images\ic_image.png" />
     <EmbeddedResource Include="Resources\Images\ic_trash_bucket.svg" />
     <EmbeddedResource Include="Resources\Images\ic_vin.svg" />
@@ -168,6 +172,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="PhotoBrowser.Forms" Version="0.1.3" />
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.60.3" />
     <PackageReference Include="System.Reactive" Version="4.0.0" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
     <PackageReference Include="Xam.Plugin.DeviceInfo" Version="4.0.0.13" />

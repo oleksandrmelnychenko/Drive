@@ -259,11 +259,11 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Customs clearance calculator for 2019.
+        ///   Looks up a localized string similar to CUSTOMS CLEARANCE CALCULATOR FOR 2019.
         /// </summary>
-        public static string CustomsClearanceCalculator {
+        public static string CustomsClearanceCalculatorUppercase {
             get {
-                return ResourceManager.GetString("CustomsClearanceCalculator", resourceCulture);
+                return ResourceManager.GetString("CustomsClearanceCalculatorUppercase", resourceCulture);
             }
         }
         

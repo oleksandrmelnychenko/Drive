@@ -1,18 +1,17 @@
-﻿using Drive.Client.Models.DataItems;
-using Drive.Client.Models.EntityModels.TODO;
+﻿using Drive.Client.Models.Calculator.TODO;
+using Drive.Client.Models.DataItems;
 using Drive.Client.ViewModels.Popups;
 using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using Xamarin.Forms.Internals;
 
 namespace Drive.Client.Factories.ObjectToSelectorDataItem {
     public class ObjectToSelectorDataItemFactory : IObjectToSelectorDataItemFactory {
 
-        private static readonly string USD_CURRENCY_ICON_PATH = "resource://Drive.Client.Resources.Images.Gear.svg";
-        private static readonly string EURO_CURRENCY_ICON_PATH = "resource://Drive.Client.Resources.Images.Gear.svg";
+        private static readonly string USD_CURRENCY_ICON_PATH = "resource://Drive.Client.Resources.Images.ic_dollar_stack.svg";
+        private static readonly string EURO_CURRENCY_ICON_PATH = "resource://Drive.Client.Resources.Images.ic_euro_stack.svg";
 
         /// <summary>
         /// TODO: temporary implementation

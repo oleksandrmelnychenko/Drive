@@ -33,7 +33,10 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <ScrollView Grid.Row="0" Padding="0,54,0,20">
+                <ScrollView
+                    Grid.Row="0"
+                    Padding="0,54,0,20"
+                    VerticalOptions="Center">
                     <!--  Values list  -->
                     <stackList:StackList
                         x:Name="_itemsList_StackList"
