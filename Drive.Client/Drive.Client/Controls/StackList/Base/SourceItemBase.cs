@@ -25,13 +25,19 @@ namespace Drive.Client.Controls.Stacklist.Base {
 
         public bool IsOnSelectionVisualChangesEnabled { get; set; } = false;
 
+        public bool IsSelected { get; private set; }
+
         public Color SelectedColor { get; set; } = DEFAULT_SELECTED_COLOR;
 
         public Color DeselectedColor { get; set; } = DEFAULT_DESELECTED_COLOR;
 
-        public abstract void Selected();
+        public virtual void Selected() {
+            IsSelected = true;
+        }
 
-        public abstract void Deselected();
+        public virtual void Deselected() {
+            IsSelected = false;
+        }
 
         private void OnTapGestureRecognizerTapped(object sender, EventArgs e) {
             if (IsSelectable && SelectionAction != null) {

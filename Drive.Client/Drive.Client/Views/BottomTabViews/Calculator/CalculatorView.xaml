@@ -11,7 +11,7 @@
     xmlns:helpers="clr-namespace:Drive.Client.Helpers.Localize"
     xmlns:local="clr-namespace:Drive.Client.Views.BottomTabViews.Calculator"
     xmlns:stackList="clr-namespace:Drive.Client.Controls.Stacklist"
-    xmlns:todoTypes="clr-namespace:Drive.Client.Models.EntityModels.TODO"
+    xmlns:todoTypes="clr-namespace:Drive.Client.Models.Calculator.TODO"
     BackgroundColor="{StaticResource WhiteColor}">
 
     <ContentView.Resources>
@@ -78,7 +78,10 @@
                     FontFamily="{StaticResource SFProLight}"
                     FontSize="{StaticResource MidMediumSize}"
                     HorizontalOptions="Center"
-                    Text="{Binding ResourceLoader[CustomsClearanceCalculator].Value, Mode=TwoWay}"
+                    HorizontalTextAlignment="Center"
+                    LetterSpacing="{OnPlatform iOS=1.4,
+                                               Android=0.07}"
+                    Text="{Binding ResourceLoader[CustomsClearanceCalculatorUppercase].Value, Mode=TwoWay}"
                     TextColor="{StaticResource DarkColor}" />
 
                 <StackLayout Spacing="24">
@@ -415,7 +418,7 @@
                         <controls:LabelExtended
                             FontFamily="{StaticResource SFProLight}"
                             FontSize="{StaticResource MediumSize}"
-                            HorizontalTextAlignment="Center"
+                            HorizontalOptions="Center"
                             LetterSpacing="{OnPlatform iOS=1.6,
                                                        Android=0.07}"
                             Text="{Binding ResourceLoader[CalculateUppercase].Value, Mode=TwoWay}"

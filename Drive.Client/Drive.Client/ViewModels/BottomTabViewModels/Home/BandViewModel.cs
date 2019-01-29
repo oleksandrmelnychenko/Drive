@@ -23,6 +23,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
     public sealed class BandViewModel: NestedViewModel, IVisualFiguring, ISwitchTab {
@@ -136,6 +137,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
 
             ResetCancellationTokenSource(ref _getPostsCancellationTokenSource);
             PostFunctionPopupViewModel?.Dispose();
+            Posts?.ForEach<PostBaseViewModel>(postViewModel => postViewModel.Dispose());
             Posts?.Clear();
         }
 
@@ -248,7 +250,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
         }
 
         public void ClearAfterTabTap() {
-            Dispose();
+            //Dispose();
         }
 
         public void TabClicked() {

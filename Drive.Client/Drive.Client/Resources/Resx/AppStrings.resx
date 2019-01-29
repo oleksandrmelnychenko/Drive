@@ -135,8 +135,8 @@
   <data name="Brand" xml:space="preserve">
     <value>Brand</value>
   </data>
-  <data name="CustomsClearanceCalculator" xml:space="preserve">
-    <value>Customs clearance calculator for 2019</value>
+  <data name="CustomsClearanceCalculatorUppercase" xml:space="preserve">
+    <value>CUSTOMS CLEARANCE CALCULATOR FOR 2019</value>
   </data>
   <data name="VehicleAgeUppercase" xml:space="preserve">
     <value>VEHICLE AGE</value>

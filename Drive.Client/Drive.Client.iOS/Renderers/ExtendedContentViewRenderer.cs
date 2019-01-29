@@ -1,6 +1,7 @@
 ﻿using Drive.Client.Controls;
 using Drive.Client.iOS.Renderers;
 using System;
+using System.ComponentModel;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -25,7 +26,8 @@ namespace Drive.Client.iOS.Renderers {
 
             if (Element.BackgroundColor != Color.Default) {
                 Layer.BackgroundColor = Element.BackgroundColor.ToUIColor().CGColor;
-            } else {
+            }
+            else {
                 Layer.BackgroundColor = UIColor.White.CGColor;
             }
 
@@ -36,6 +38,18 @@ namespace Drive.Client.iOS.Renderers {
 
             Layer.RasterizationScale = UIScreen.MainScreen.Scale;
             Layer.ShouldRasterize = true;
+        }
+
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) {
+            base.OnElementPropertyChanged(sender, e);
+
+            if (e.PropertyName == ExtendedContentView.BorderColorProperty.PropertyName ||
+                e.PropertyName == ExtendedContentView.BorderThicknessProperty.PropertyName ||
+                e.PropertyName == ExtendedContentView.CornerRadiusProperty.PropertyName) {
+                if (Element != null) {
+                    SetupLayer((int)Element.BorderThickness, Element.CornerRadius);
+                }
+            }
         }
     }
 }
