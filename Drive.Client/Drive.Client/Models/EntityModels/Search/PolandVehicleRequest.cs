@@ -8,7 +8,7 @@ namespace Drive.Client.Models.EntityModels.Search {
         public DateTime Created { get; set; }
 
         [JsonProperty("RequestId")]
-        public Guid RequestId { get; set; }
+        public string RequestId { get; set; }
 
         [JsonProperty("Vin")]
         public string Vin { get; set; }

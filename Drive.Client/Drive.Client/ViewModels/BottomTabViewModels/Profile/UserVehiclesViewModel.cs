@@ -149,7 +149,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Profile {
             CancellationTokenSource cancellationTokenSource = _getPolandVehicleInfoCancellationTokenSource;
 
             try {
-                PolandVehicleDetail polandVehicleDetail = await _vehicleService.GetPolandVehicleDetailsByRequestIdAsync(selectedPolandRequestDataItem.PolandVehicleRequest.RequestId.ToString(), cancellationTokenSource.Token);
+                PolandVehicleDetail polandVehicleDetail = await _vehicleService.GetPolandVehicleDetailsByRequestIdAsync(selectedPolandRequestDataItem.PolandVehicleRequest.RequestId, cancellationTokenSource.Token);
 
                 if (polandVehicleDetail != null) {
                     UpdateBusyVisualState(busyKey, false);
