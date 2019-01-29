@@ -218,5 +218,34 @@ namespace Drive.Client.Services.Vehicle {
                   }
                   return cognitiveRequests;
               }, cancellationToken);
+
+        public async Task<DriveAuto> GetCognitiveVehicleDetailsAsync(string netId, CancellationToken cancellationToken = default(CancellationToken)) =>
+              await Task.Run(async () => {
+                  DriveAuto driveAuto = null;
+
+                  string url =
+                      string.Format(BaseSingleton<GlobalSetting>.Instance.RestEndpoints.VehicleEndpoints.CognitivVehicleDetailsByRequestNetIdEndpoint, netId);
+                  string accessToken = BaseSingleton<GlobalSetting>.Instance.UserProfile.AccesToken;
+
+                  try {
+                      driveAuto = await _requestProvider.GetAsync<DriveAuto>(url, accessToken);
+                  }
+                  catch (ConnectivityException ex) {
+                      throw ex;
+                  }
+                  catch (ServiceAuthenticationException ex) {
+                      await _identityService.LogOutAsync();
+                      throw ex;
+                  }
+                  catch (HttpRequestExceptionEx ex) {
+                      Debug.WriteLine($"ERROR:{ex.Message}");
+                  }
+                  catch (Exception ex) {
+                      Debug.WriteLine($"ERROR:{ex.Message}");
+                      Debugger.Break();
+                  }
+                  return driveAuto;
+              }, cancellationToken);
+
     }
 }

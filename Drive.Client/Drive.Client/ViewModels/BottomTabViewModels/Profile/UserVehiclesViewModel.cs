@@ -32,17 +32,21 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Profile {
 
         private CancellationTokenSource _getUserVehicleDetailRequestsCancellationTokenSource = new CancellationTokenSource();
 
-        private CancellationTokenSource _getVehiclesCancellationTokenSource = new CancellationTokenSource();
+        private CancellationTokenSource _getCognitiveVehicleDetailsCancellationTokenSource = new CancellationTokenSource();
 
         private CancellationTokenSource _getPolandVehicleInfoCancellationTokenSource = new CancellationTokenSource();
 
         private CancellationTokenSource _getRequestAsyncCancellationTokenSource = new CancellationTokenSource();
+
+        private CancellationTokenSource _getVehiclesCancellationTokenSource = new CancellationTokenSource();
 
         private readonly IVehicleFactory _vehicleFactory;
 
         private readonly IVehicleService _vehicleService;
 
         private ReceivedResidentVehicleDetailInfoArgs _lastNotificationRequest;
+
+        private bool _isGettingRequestsTEMPORARY = false;
 
         public Type RelativeViewType => typeof(UserVehiclesView);
 
@@ -74,12 +78,14 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Profile {
                 if (SetProperty(ref _selectedRequest, value) && value != null) {
                     if (value is ResidentRequestDataItem residentRequestDataItem) {
                         if (residentRequestDataItem.ResidentRequest.VehicleCount > 0) {
-                            GetVehicles((ResidentRequestDataItem)value);
+                            GetVehicles(residentRequestDataItem);
                         }
                     } else if (value is PolandRequestDataItem polandRequestDataItem) {
                         if (polandRequestDataItem.PolandVehicleRequest.IsParsed) {
                             OnPolandRequestDataItem(polandRequestDataItem);
                         }
+                    } else if (value.HistoryType == RequestType.CognitiveImageData) {
+                        GetCognitiveDriveInfo(value);
                     }
                 }
             }
@@ -115,11 +121,11 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Profile {
 
             UserRequests?.ForEach(r => r.Dispose());
             UserRequests?.Clear();
-
-            ResetCancellationTokenSource(ref _getPolandVehicleInfoCancellationTokenSource);
             ResetCancellationTokenSource(ref _getUserVehicleDetailRequestsCancellationTokenSource);
-            ResetCancellationTokenSource(ref _getVehiclesCancellationTokenSource);
+            ResetCancellationTokenSource(ref _getCognitiveVehicleDetailsCancellationTokenSource);
+            ResetCancellationTokenSource(ref _getPolandVehicleInfoCancellationTokenSource);
             ResetCancellationTokenSource(ref _getRequestAsyncCancellationTokenSource);
+            ResetCancellationTokenSource(ref _getVehiclesCancellationTokenSource);
         }
 
         protected override void ResolveStringResources() {
@@ -139,6 +145,34 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Profile {
 
                 await NavigationService.NavigateToAsync<VehicleDetailViewModel>(vehicleArgs);
             }
+        }
+
+        private async void GetCognitiveDriveInfo(BaseRequestDataItem value) {
+            Guid busyKey = Guid.NewGuid();
+            UpdateBusyVisualState(busyKey, true);
+
+            ResetCancellationTokenSource(ref _getCognitiveVehicleDetailsCancellationTokenSource);
+            CancellationTokenSource cancellationTokenSource = _getCognitiveVehicleDetailsCancellationTokenSource;
+
+            CognitiveRequestDataItem cognitiveRequestDataItem = value as CognitiveRequestDataItem;
+
+            try {
+                DriveAuto cognitiveVehicleDetails = await _vehicleService.GetCognitiveVehicleDetailsAsync(cognitiveRequestDataItem.CognitiveRequest.NetId, _getCognitiveVehicleDetailsCancellationTokenSource.Token);
+
+                if (cognitiveVehicleDetails != null) {
+                    UpdateBusyVisualState(busyKey, false);
+                    await NavigationService.NavigateToAsync<DriveAutoDetailsViewModel>(cognitiveVehicleDetails);
+                }
+            }
+            catch (OperationCanceledException) { }
+            catch (ObjectDisposedException) { }
+            catch (Exception exc) {
+                UpdateBusyVisualState(busyKey, false);
+
+                Debug.WriteLine($"ERROR: {exc.Message}");
+                Debugger.Break();
+            }
+            UpdateBusyVisualState(busyKey, false);
         }
 
         private async void OnPolandRequestDataItem(PolandRequestDataItem selectedPolandRequestDataItem) {
@@ -193,8 +227,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Profile {
             VisibilityClosedView = !BaseSingleton<GlobalSetting>.Instance.UserProfile.IsAuth;
         }
 
-        private bool _isGettingRequestsTEMPORARY = false;
-
         private async void GetRequests() {
 
             if (!_isGettingRequestsTEMPORARY) {
@@ -247,25 +279,35 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Profile {
             ResetCancellationTokenSource(ref _getRequestAsyncCancellationTokenSource);
             CancellationTokenSource cancellationTokenSource = _getRequestAsyncCancellationTokenSource;
 
-            List<BaseRequestDataItem> createdItems = null;
+            List<BaseRequestDataItem> createdItems = new List<BaseRequestDataItem>();
 
             try {
-                List<ResidentRequest> userRequests = await _vehicleService.GetUserVehicleDetailRequestsAsync(cancellationTokenSource.Token);
-                if (userRequests != null) {
-                    createdItems = _vehicleFactory.BuildResidentRequestItems(userRequests, ResourceLoader);
-                }
+                Task[] tasks = new Task[3];
 
-                List<PolandVehicleRequest> polandVehicleRequests = await _vehicleService.GetPolandVehicleRequestsAsync(cancellationTokenSource.Token);
-                if (polandVehicleRequests != null) {
-                    createdItems.AddRange(_vehicleFactory.BuildPolandRequestItems(polandVehicleRequests, ResourceLoader));
-                }
+                tasks[0] = Task.Run(async () => {
+                    List<ResidentRequest> userRequests = await _vehicleService.GetUserVehicleDetailRequestsAsync(cancellationTokenSource.Token);
+                    if (userRequests != null) {
+                        createdItems.AddRange(_vehicleFactory.BuildResidentRequestItems(userRequests, ResourceLoader));
+                    }
+                });
 
-                List<CognitiveRequest> cognitiveRequests = await _vehicleService.GetCognitiveRequestsAsync(cancellationTokenSource.Token);
-                if (cognitiveRequests != null) {
-                    createdItems.AddRange(_vehicleFactory.BuildCognitiveRequestItems(cognitiveRequests, ResourceLoader));
-                }
+                tasks[1] = Task.Run(async () => {
+                    List<PolandVehicleRequest> polandVehicleRequests = await _vehicleService.GetPolandVehicleRequestsAsync(cancellationTokenSource.Token);
+                    if (polandVehicleRequests != null) {
+                        createdItems.AddRange(_vehicleFactory.BuildPolandRequestItems(polandVehicleRequests, ResourceLoader));
+                    }
+                });
 
-                createdItems = createdItems.OrderByDescending(x => x.Created).ToList();
+                tasks[2] = Task.Run(async () => {
+                    List<CognitiveRequest> cognitiveRequests = await _vehicleService.GetCognitiveRequestsAsync(cancellationTokenSource.Token);
+                    if (cognitiveRequests != null) {
+                        createdItems.AddRange(_vehicleFactory.BuildCognitiveRequestItems(cognitiveRequests, ResourceLoader));
+                    }
+                });
+
+                await Task.Factory.ContinueWhenAll(tasks, completedTasks => {
+                    createdItems = createdItems.OrderByDescending(x => x.Created).ToList();
+                });
             }
             catch (OperationCanceledException) { }
             catch (ObjectDisposedException) { }

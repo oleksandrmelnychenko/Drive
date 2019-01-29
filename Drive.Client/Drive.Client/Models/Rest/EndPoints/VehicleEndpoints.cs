@@ -15,6 +15,8 @@
 
         private const string GET_COGNITIVE_REQUESTS_API_KEY = "m/api/v1/resident/vehicle/details/get/cognitive";
 
+        private const string GET_COGNITIVE_VEHICLE_DETAILS_BY_NETID_API_KEY = "m/api/v1/auto/get/cognitive?cognitiveRequestId={0}";
+
         /// <summary>
         ///     ctor().
         /// </summary>
@@ -46,6 +48,8 @@
 
         public string PolandVehicleDetailsByRequestIdEndpoint { get; private set; }
 
+        public string CognitivVehicleDetailsByRequestNetIdEndpoint { get; private set; }
+
         private void UpdateEndpoint(string baseEndpoint) {
             UserVehicleDetailRequestsEndpoint = $"{baseEndpoint}/{USER_VEHICLE_DETAIL_REQUESTS_API_KEY}";
             VehicleDetailsEndpoint = $"{baseEndpoint}/{GET_VEHICLE_DETAILS_API_KEY}";
@@ -54,6 +58,7 @@
             PolandVehicleRequestsEndpoint = $"{baseEndpoint}/{GET_POLAND_VEHICLE_REQUESTS_API_KEY}";
             PolandVehicleDetailsByRequestIdEndpoint = $"{baseEndpoint}/{GET_POLAND_VEHICLE_DETAILS_BY_REQUESTID_API_KEY}";
             CognitiveRequestsEndpoint = $"{baseEndpoint}/{GET_COGNITIVE_REQUESTS_API_KEY}";
+            CognitivVehicleDetailsByRequestNetIdEndpoint = $"{baseEndpoint}/{GET_COGNITIVE_VEHICLE_DETAILS_BY_NETID_API_KEY}";
         }
     }
 }

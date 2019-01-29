@@ -68,12 +68,20 @@
                 Grid.Column="1"
                 Margin="0,0,0,0"
                 Aspect="AspectFill"
-                BackgroundColor="Yellow"
                 CacheType="Memory"
+                DownsampleWidth="80"
+                ErrorPlaceholder="resource://Drive.Client.Resources.Images.ic_image.png"
                 HorizontalOptions="Center"
+                LoadingPlaceholder="resource://Drive.Client.Resources.Images.ic_image.png"
+                RetryCount="3"
+                RetryDelay="2"
                 Source="{Binding CognitiveRequest.ImageUrl}"
                 VerticalOptions="Center"
-                WidthRequest="80" />
+                WidthRequest="80">
+                <ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ShowImageCommand}" NumberOfTapsRequired="1" />
+                </ffimageloadingsvg:SvgCachedImage.GestureRecognizers>
+            </ffimageloadingsvg:SvgCachedImage>
         </Grid>
         <BoxView
             Grid.ColumnSpan="2"

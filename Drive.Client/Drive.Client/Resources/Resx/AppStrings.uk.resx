@@ -162,7 +162,6 @@
   <data name="FullWeightKilogramsUppercase" xml:space="preserve">
     <value>ПОВНА МАССА КГ</value>
   </data>
-
   <data name="Brand" xml:space="preserve">
     <value>Марка</value>
   </data>
@@ -546,5 +545,8 @@
   </data>
   <data name="YourPostsUpperCase" xml:space="preserve">
     <value>ВАШІ ПОСТИ</value>
+  </data>
+  <data name="LanguageUkr" xml:space="preserve">
+    <value>Мова вводу українська</value>
   </data>
 </root>

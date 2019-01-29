@@ -629,6 +629,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Input language is Ukrainian.
+        /// </summary>
+        public static string LanguageUkr {
+            get {
+                return ResourceManager.GetString("LanguageUkr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LANGUAGE.
         /// </summary>
         public static string LanguageUpperCase {

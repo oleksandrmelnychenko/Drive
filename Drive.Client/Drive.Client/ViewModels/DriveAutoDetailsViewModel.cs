@@ -98,6 +98,7 @@ namespace Drive.Client.ViewModels {
         private async void AnalysePhotoAsync() {
             Guid busyKey = Guid.NewGuid();
             SetBusy(busyKey, true);
+            PickedImage targetImage = null;
 
             ResetCancellationTokenSource(ref _analysePhotoCancellationTokenSource);
             CancellationTokenSource cancellationTokenSource = _analysePhotoCancellationTokenSource;
@@ -108,7 +109,7 @@ namespace Drive.Client.ViewModels {
                         List<string> results = await _visionService.AnalyzeImageForText(file);
 
                         if (results != null && results.Any()) {
-                            PickedImage targetImage = await _pickMediaService.BuildPickedImageAsync(file);
+                            targetImage = await _pickMediaService.BuildPickedImageAsync(file);
 
                             if (targetImage != null) {
                                 FormDataContent formDataContent = new FormDataContent {
@@ -149,6 +150,10 @@ namespace Drive.Client.ViewModels {
                 }
             }
             SetBusy(busyKey, false);
+
+            if (targetImage == null) {
+                BackCommand.Execute(null);
+            }
         }
     }
 }

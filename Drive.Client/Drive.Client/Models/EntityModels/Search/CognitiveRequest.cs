@@ -8,7 +8,7 @@ namespace Drive.Client.Models.EntityModels.Search {
         public string NetId { get; set; }
 
         [JsonProperty("ImageUrl")]
-        public Uri ImageUrl { get; set; }
+        public string ImageUrl { get; set; }
 
         [JsonProperty("Created")]
         public DateTime Created { get; set; }

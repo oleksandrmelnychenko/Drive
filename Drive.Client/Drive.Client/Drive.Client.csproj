@@ -61,6 +61,7 @@
     <None Remove="Resources\Images\facebook.svg" />
     <None Remove="Resources\Images\filter.svg" />
     <None Remove="Resources\Images\Gear.svg" />
+    <None Remove="Resources\Images\Gear_new.svg" />
     <None Remove="Resources\Images\Home.svg" />
     <None Remove="Resources\Images\Icon-100.png" />
     <None Remove="Resources\Images\Icon-72.png" />
@@ -119,6 +120,7 @@
     <EmbeddedResource Include="Resources\Images\facebook.svg" />
     <EmbeddedResource Include="Resources\Images\filter.svg" />
     <EmbeddedResource Include="Resources\Images\Gear.svg" />
+    <EmbeddedResource Include="Resources\Images\Gear_new.svg" />
     <EmbeddedResource Include="Resources\Images\Home.svg" />
     <EmbeddedResource Include="Resources\Images\Icon-100.png" />
     <EmbeddedResource Include="Resources\Images\Icon-72.png" />

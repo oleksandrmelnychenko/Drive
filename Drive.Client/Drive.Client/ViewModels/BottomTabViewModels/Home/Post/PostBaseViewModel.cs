@@ -186,7 +186,6 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home.Post {
             }
         }
 
-
         private void OnLike() {
             _announcementService.SetLikeStatusAsync(Post.AnnounceBody.Id, new CancellationTokenSource());
         }

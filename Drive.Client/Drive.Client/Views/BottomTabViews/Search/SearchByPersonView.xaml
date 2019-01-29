@@ -102,6 +102,13 @@
                     FontFamily="{StaticResource SFProThin}"
                     FontSize="{StaticResource Key=MidMediumSize}"
                     HorizontalOptions="Center"
+                    Text="{Binding ResourceLoader[LanguageUkr].Value, Mode=TwoWay}"
+                    TextColor="{StaticResource Key=ExtraGrayColor}" />
+                <controls:LabelExtended
+                    Margin="0,5,0,0"
+                    FontFamily="{StaticResource SFProThin}"
+                    FontSize="{StaticResource Key=MidMediumSize}"
+                    HorizontalOptions="Center"
                     Text="{Binding ResourceLoader[UpdatedInfo].Value, Mode=TwoWay}"
                     TextColor="{StaticResource Key=ExtraGrayColor}" />
             </StackLayout>

@@ -165,7 +165,6 @@
   <data name="FullWeightKilogramsUppercase" xml:space="preserve">
     <value>FULL WEIGHT KG</value>
   </data>
-
   <data name="ChangePassword" xml:space="preserve">
     <value>Change password</value>
   </data>
@@ -547,5 +546,8 @@ certificate issued</value>
   </data>
   <data name="YourPostsUpperCase" xml:space="preserve">
     <value>YOUR POSTS</value>
+  </data>
+  <data name="LanguageUkr" xml:space="preserve">
+    <value>Input language is Ukrainian</value>
   </data>
 </root>
