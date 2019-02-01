@@ -53,7 +53,7 @@ namespace Drive.Client.Factories.ObjectToSelectorDataItem {
                 data.ForEach(engineType => {
                     CommonDataItem<EngineType> item = new CommonDataItem<EngineType>() {
                         Data = engineType,
-                        Titile = engineType.ToString().ToUpper()
+                        Titile = engineType == EngineType.Gasoline ? "БЕНЗИН" : "ДИЗЕЛЬ"
                     };
                     ((IPopupSelectionItem)item).Title = item.Titile;
 
@@ -98,15 +98,15 @@ namespace Drive.Client.Factories.ObjectToSelectorDataItem {
         /// <summary>
         /// TODO: temporary implementation
         /// </summary>
-        public List<CommonDataItem<string>> BuildCommonDataItems(IEnumerable<string> data, string titleStrinFormat = "") {
-            List<CommonDataItem<string>> result = null;
+        public List<CommonDataItem<int>> BuildCommonDataItems(IEnumerable<string> data, string titleStrinFormat = "") {
+            List<CommonDataItem<int>> result = null;
 
             try {
-                result = new List<CommonDataItem<string>>();
+                result = new List<CommonDataItem<int>>();
 
                 data.ForEach(singleDataValue => {
-                    CommonDataItem<string> item = new CommonDataItem<string>() {
-                        Data = singleDataValue,
+                    CommonDataItem<int> item = new CommonDataItem<int>() {
+                        Data = int.TryParse(singleDataValue, out int year) ? year : default(int),
                         Titile = singleDataValue.ToString().ToUpper()
                     };
                     ((IPopupSelectionItem)item).Title = item.Titile;

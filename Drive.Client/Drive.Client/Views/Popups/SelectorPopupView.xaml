@@ -33,11 +33,41 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <ScrollView
+                <ContentView Padding="0,54,0,20">
+                    <ListView
+                        x:Name="_itemsList_StackList"
+                        BackgroundColor="Transparent"
+                        CachingStrategy="RecycleElement"
+                        ItemsSource="{Binding ItemsToSelect}"
+                        SeparatorVisibility="None">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <stackList:CommonStackListItem IsOnSelectionVisualChangesEnabled="False" IsSelectable="False">
+                                        <stackList:CommonStackListItem.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.SelectItemCommand, Source={Reference Name=_itemsList_StackList}}" CommandParameter="{Binding}" />
+                                        </stackList:CommonStackListItem.GestureRecognizers>
+                                        <controls:LabelExtended
+                                            FontFamily="{StaticResource SFProLight}"
+                                            FontSize="{StaticResource MediumSize}"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{Binding Converter={StaticResource Key=selector_popup_item_title_converter}}"
+                                            TextColor="{StaticResource DarkColor}"
+                                            VerticalTextAlignment="Center" />
+                                    </stackList:CommonStackListItem>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ContentView>
+
+                <!--<ScrollView
                     Grid.Row="0"
                     Padding="0,54,0,20"
                     VerticalOptions="Center">
-                    <!--  Values list  -->
+                -->
+                <!--  Values list  -->
+                <!--
                     <stackList:StackList
                         x:Name="_itemsList_StackList"
                         ItemsSource="{Binding Path=ItemsToSelect}"
@@ -60,7 +90,7 @@
                             </DataTemplate>
                         </stackList:StackList.ItemTemplate>
                     </stackList:StackList>
-                </ScrollView>
+                </ScrollView>-->
 
                 <!--  Header  -->
                 <controls:LabelExtended

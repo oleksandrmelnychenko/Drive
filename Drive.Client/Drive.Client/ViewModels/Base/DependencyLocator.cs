@@ -11,6 +11,7 @@ using Drive.Client.Helpers.AppEvents.Events;
 using Drive.Client.Services.Announcement;
 using Drive.Client.Services.Automobile;
 using Drive.Client.Services.Comments;
+using Drive.Client.Services.Customs;
 using Drive.Client.Services.DeviceUtil;
 using Drive.Client.Services.Dialog;
 using Drive.Client.Services.Identity;
@@ -136,6 +137,9 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<NotificationService>().As<INotificationService>().SingleInstance();
             builder.RegisterType<AnnouncementSignalService>().As<IAnnouncementSignalService>().SingleInstance();
             builder.RegisterType<AnnouncementService>().As<IAnnouncementService>();
+
+            // Temp.
+            builder.RegisterType<CustomsService>().As<ICustomsService>();
 
             // Factories.
             builder.RegisterType<VehicleFactory>().As<IVehicleFactory>();

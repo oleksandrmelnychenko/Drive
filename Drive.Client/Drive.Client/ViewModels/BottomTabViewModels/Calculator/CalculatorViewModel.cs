@@ -4,6 +4,7 @@ using Drive.Client.Models.Calculator;
 using Drive.Client.Models.Calculator.TODO;
 using Drive.Client.Models.DataItems;
 using Drive.Client.Resources.Resx;
+using Drive.Client.Services.Customs;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.Popups;
 using Drive.Client.Views.BottomTabViews.Calculator;
@@ -20,6 +21,8 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Calculator {
 
         private readonly IObjectToSelectorDataItemFactory _objectToSelectorDataItemFactory;
 
+        private readonly ICustomsService _customsService;
+
         /// <summary>
         /// TODO: temporary hardcoded data
         /// </summary>
@@ -27,22 +30,77 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Calculator {
         /// <summary>
         /// TODO: temporary hardcoded data
         /// </summary>
-        private List<CommonDataItem<string>> _vehicleAges = null;
+        private List<CommonDataItem<int>> _vehicleAges = null;
         /// <summary>
         /// TODO: temporary hardcoded data
         /// </summary>
         private List<CommonDataItem<double>> _engineCapacities = null;
 
-        public CalculatorViewModel(
-            IObjectToSelectorDataItemFactory objectToSelectorDataItemFactory) {
 
-            _objectToSelectorDataItemFactory = objectToSelectorDataItemFactory;
+        private SelectorPopupViewModel _selectorPopupViewModel;
+        public SelectorPopupViewModel SelectorPopupViewModel {
+            get => _selectorPopupViewModel;
+            private set => SetProperty<SelectorPopupViewModel>(ref _selectorPopupViewModel, value);
+        }
 
-            SelectorPopupViewModel = DependencyLocator.Resolve<SelectorPopupViewModel>();
-            SelectorPopupViewModel.InitializeAsync(this);
-            SelectorPopupViewModel.ItemSelected += OnSelectorPopupViewModelItemSelected;
+        private CommonDataItem<VehicleType> _selectedVehicleType;
+        public CommonDataItem<VehicleType> SelectedVehicleType {
+            get => _selectedVehicleType;
+            set => SetProperty<CommonDataItem<VehicleType>>(ref _selectedVehicleType, value);
+        }
 
-            TODO_HARDCODED_EXTRACTION();
+        CommonDataItem<int> _selectedVehicleAge;
+        public CommonDataItem<int> SelectedVehicleAge {
+            get => _selectedVehicleAge;
+            set => SetProperty<CommonDataItem<int>>(ref _selectedVehicleAge, value);
+        }
+
+        CommonDataItem<double> _selectedEngineCapacity;
+        public CommonDataItem<double> SelectedEngineCapacity {
+            get => _selectedEngineCapacity;
+            set => SetProperty<CommonDataItem<double>>(ref _selectedEngineCapacity, value);
+        }
+
+        List<CommonDataItem<Currency>> _currencies;
+        public List<CommonDataItem<Currency>> Currencies {
+            get => _currencies;
+            private set => SetProperty<List<CommonDataItem<Currency>>>(ref _currencies, value);
+        }
+
+        CommonDataItem<Currency> _selectedCurrency;
+        public CommonDataItem<Currency> SelectedCurrency {
+            get => _selectedCurrency;
+            set => SetProperty<CommonDataItem<Currency>>(ref _selectedCurrency, value);
+        }
+
+        List<CommonDataItem<EngineType>> _engines;
+        public List<CommonDataItem<EngineType>> Engines {
+            get => _engines;
+            private set => SetProperty<List<CommonDataItem<EngineType>>>(ref _engines, value);
+        }
+
+        CommonDataItem<EngineType> _selectedEngine;
+        public CommonDataItem<EngineType> SelectedEngine {
+            get => _selectedEngine;
+            set => SetProperty<CommonDataItem<EngineType>>(ref _selectedEngine, value);
+        }
+
+        double _vehicleCost;
+        public double VehicleCost {
+            get => _vehicleCost;
+            set => SetProperty<double>(ref _vehicleCost, value);
+        }
+
+        double _vehicleFullMass;
+        public double VehicleFullMass {
+            get => _vehicleFullMass;
+            set => SetProperty<double>(ref _vehicleFullMass, value);
+        }
+
+        bool _isGracePeriodTakenIntoAccount;
+        public bool IsGracePeriodTakenIntoAccount {
+            get => _isGracePeriodTakenIntoAccount;
+            set => SetProperty<bool>(ref _isGracePeriodTakenIntoAccount, value);
         }
 
         public ICommand SelectVehicleTypeCommand => new Command(() => {
@@ -62,98 +120,21 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Calculator {
 
         public ICommand TakeGracePeriodIntoAccountCommand => new Command(() => IsGracePeriodTakenIntoAccount = !IsGracePeriodTakenIntoAccount);
 
-        public ICommand CalculateCommand => new Command(async () => {
+        public ICommand CalculateCommand => new Command(() => OnCalculate());
 
-            ///
-            /// TODO: validate, resolve what type of calculator is necessary tu build.
-            /// Also define appropriate `Customs Clearance Calculator Form Builder`
-            /// 
-            //CustomsClearanceCalculatorFormBase calculatorFormBase = SelectedVehicleType.Data == VehicleType.Car ? new CarCalculatorForm() : new TruckCalculatorForm();
-            CustomsClearanceCalculatorFormBase calculatorFormBase = null;
+        /// <summary>
+        ///     ctor().
+        /// </summary>
+        /// <param name="objectToSelectorDataItemFactory"></param>
+        public CalculatorViewModel(IObjectToSelectorDataItemFactory objectToSelectorDataItemFactory, ICustomsService customsService) {
+            _objectToSelectorDataItemFactory = objectToSelectorDataItemFactory;
+            _customsService = customsService;
 
-            switch (SelectedVehicleType.Data) {
-                case VehicleType.Car:
-                    calculatorFormBase = new CarCalculatorForm();
-                    break;
-                case VehicleType.Truck:
-                    calculatorFormBase = new TruckCalculatorForm();
-                    break;
-                default:
-                    Debugger.Break();
-                    throw new InvalidOperationException("Unresolved vehicle type");
-            }
-            ///
-            /// TODO: validate, resolve what type of calculator is necessary tu build.
-            /// Also define appropriate `Customs Clearance Calculator Form Builder`
-            /// 
+            SelectorPopupViewModel = DependencyLocator.Resolve<SelectorPopupViewModel>();
+            SelectorPopupViewModel.InitializeAsync(this);
+            SelectorPopupViewModel.ItemSelected += OnSelectorPopupViewModelItemSelected;
 
-            await DialogService.ToastAsync("CalculateCommand in developing");
-        });
-
-        private SelectorPopupViewModel _selectorPopupViewModel;
-        public SelectorPopupViewModel SelectorPopupViewModel {
-            get => _selectorPopupViewModel;
-            private set => SetProperty<SelectorPopupViewModel>(ref _selectorPopupViewModel, value);
-        }
-
-        private CommonDataItem<VehicleType> _selectedVehicleType;
-        public CommonDataItem<VehicleType> SelectedVehicleType {
-            get => _selectedVehicleType;
-            set => SetProperty<CommonDataItem<VehicleType>>(ref _selectedVehicleType, value);
-        }
-
-        private CommonDataItem<string> _selectedVehicleAge;
-        public CommonDataItem<string> SelectedVehicleAge {
-            get => _selectedVehicleAge;
-            set => SetProperty<CommonDataItem<string>>(ref _selectedVehicleAge, value);
-        }
-
-        private CommonDataItem<double> _selectedEngineCapacity;
-        public CommonDataItem<double> SelectedEngineCapacity {
-            get => _selectedEngineCapacity;
-            set => SetProperty<CommonDataItem<double>>(ref _selectedEngineCapacity, value);
-        }
-
-        private List<CommonDataItem<Currency>> _currencies;
-        public List<CommonDataItem<Currency>> Currencies {
-            get => _currencies;
-            private set => SetProperty<List<CommonDataItem<Currency>>>(ref _currencies, value);
-        }
-
-        private CommonDataItem<Currency> _selectedCurrency;
-        public CommonDataItem<Currency> SelectedCurrency {
-            get => _selectedCurrency;
-            set => SetProperty<CommonDataItem<Currency>>(ref _selectedCurrency, value);
-        }
-
-        private List<CommonDataItem<EngineType>> _engines;
-        public List<CommonDataItem<EngineType>> Engines {
-            get => _engines;
-            private set => SetProperty<List<CommonDataItem<EngineType>>>(ref _engines, value);
-        }
-
-        private CommonDataItem<EngineType> _selectedEngine;
-        public CommonDataItem<EngineType> SelectedEngine {
-            get => _selectedEngine;
-            set => SetProperty<CommonDataItem<EngineType>>(ref _selectedEngine, value);
-        }
-
-        private double _vehicleCost;
-        public double VehicleCost {
-            get => _vehicleCost;
-            set => SetProperty<double>(ref _vehicleCost, value);
-        }
-
-        private double _vehicleFullMass;
-        public double VehicleFullMass {
-            get => _vehicleFullMass;
-            set => SetProperty<double>(ref _vehicleFullMass, value);
-        }
-
-        private bool _isGracePeriodTakenIntoAccount;
-        public bool IsGracePeriodTakenIntoAccount {
-            get => _isGracePeriodTakenIntoAccount;
-            set => SetProperty<bool>(ref _isGracePeriodTakenIntoAccount, value);
+            GetData();
         }
 
         public override Task InitializeAsync(object navigationData) {
@@ -170,6 +151,30 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Calculator {
             SelectorPopupViewModel?.Dispose();
         }
 
+        private void OnCalculate() {
+            CustomsClearanceCalculatorFormBase calculatorFormBase = null;
+
+            switch (SelectedVehicleType.Data) {
+                case VehicleType.Car:
+                    calculatorFormBase = new CarCalculatorForm();
+                    break;
+                case VehicleType.Truck:
+                    calculatorFormBase = new TruckCalculatorForm();
+                    break;
+                default:
+                    Debugger.Break();
+                    throw new InvalidOperationException("Unresolved vehicle type");
+            }
+           
+            var tt = _customsService.CalculateCustoms(new CarCustoms {
+                EngineCap = 3000,
+                EngineType = "Gasoline",
+                PreferentialExcise = false,
+                Price = 5000,
+                Year = 10
+            });
+        }
+
         protected override void TabbViewModelInit() {
             TabIcon = IconPath.CALCULATOR;
             RelativeViewType = typeof(CalculatorView);
@@ -179,33 +184,35 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Calculator {
         private async void OnSelectorPopupViewModelItemSelected(object sender, IPopupSelectionItem e) {
             if (e is CommonDataItem<VehicleType> vehicleType) {
                 SelectedVehicleType = vehicleType;
-            }
-            else if (e is CommonDataItem<string> vehicleAge) {
+            } else if (e is CommonDataItem<int> vehicleAge) {
                 SelectedVehicleAge = vehicleAge;
-            }
-            else if (e is CommonDataItem<double> engineCapacity) {
+            } else if (e is CommonDataItem<double> engineCapacity) {
                 SelectedEngineCapacity = engineCapacity;
-            }
-            else {
+            } else {
                 Debugger.Break();
                 await DialogService.ToastAsync("Unsuported selection type");
             }
         }
 
-        private void TODO_HARDCODED_EXTRACTION() {
+        private void GetData() {
             Currencies = _objectToSelectorDataItemFactory.BuildCommonDataItems(Enum.GetValues(typeof(Currency)).Cast<Currency>().ToArray<Currency>());
             SelectedCurrency = Currencies.First();
 
             Engines = _objectToSelectorDataItemFactory.BuildCommonDataItems(Enum.GetValues(typeof(EngineType)).Cast<EngineType>().ToArray<EngineType>());
             SelectedEngine = Engines.First();
 
-            _vehicleTypes = _objectToSelectorDataItemFactory.BuildCommonDataItems(Enum.GetValues(typeof(VehicleType)).Cast<VehicleType>().ToArray<VehicleType>());
+            _vehicleTypes = _objectToSelectorDataItemFactory.BuildCommonDataItems(Enum.GetValues(typeof(VehicleType)).OfType<VehicleType>().ToArray());
             SelectedVehicleType = _vehicleTypes.First();
 
-            _vehicleAges = _objectToSelectorDataItemFactory.BuildCommonDataItems(new string[] { "1", "2", "3", "4", "5", "6", "7", "15 and more" });
+            _vehicleAges = _objectToSelectorDataItemFactory.BuildCommonDataItems(new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15" });
             SelectedVehicleAge = _vehicleAges.First();
 
-            _engineCapacities = _objectToSelectorDataItemFactory.BuildCommonDataItems(new double[] { 0.5, 1, 1.5, 2.5, 3.5, 7.7, 8.9 });
+            List<double> engineCap = new List<double> { 0.5 };
+            for (int i = 0; i < 195; i++) {
+                engineCap.Add(Math.Round(engineCap.LastOrDefault() + 0.1, 1));
+            }
+
+            _engineCapacities = _objectToSelectorDataItemFactory.BuildCommonDataItems(engineCap);
             SelectedEngineCapacity = _engineCapacities.First();
         }
     }

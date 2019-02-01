@@ -31,13 +31,13 @@
                     BackgroundColor="{StaticResource Key=DarkBlueColor}"
                     BorderColor="{StaticResource Key=DarkBlueColor}"
                     BorderThickness="1"
-                    CornerRadius="24" />
+                    CornerRadius="{OnPlatform Android=24, iOS=12}" />
 
                 <controls:ExtendedContentView
                     AbsoluteLayout.LayoutBounds=".5,.5"
                     AbsoluteLayout.LayoutFlags="PositionProportional"
                     BackgroundColor="{StaticResource Key=WhiteColor}"
-                    CornerRadius="9"
+                    CornerRadius="{OnPlatform Android=9, iOS=4}"
                     HeightRequest="9"
                     WidthRequest="9" />
             </AbsoluteLayout>

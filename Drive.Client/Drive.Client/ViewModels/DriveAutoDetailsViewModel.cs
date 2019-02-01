@@ -147,6 +147,7 @@ namespace Drive.Client.ViewModels {
                 catch (Exception exc) {
                     Debug.WriteLine($"ERROR: -{exc.Message}");
                     Debugger.Break();
+                    BackCommand.Execute(null);
                 }
             }
             SetBusy(busyKey, false);

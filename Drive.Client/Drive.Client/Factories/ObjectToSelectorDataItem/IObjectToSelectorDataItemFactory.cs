@@ -23,7 +23,7 @@ namespace Drive.Client.Factories.ObjectToSelectorDataItem {
         /// <summary>
         /// TODO: temporary implementation
         /// </summary>
-        List<CommonDataItem<string>> BuildCommonDataItems(IEnumerable<string> data, string titleStringFormat = "");
+        List<CommonDataItem<int>> BuildCommonDataItems(IEnumerable<string> data, string titleStringFormat = "");
 
         /// <summary>
         /// TODO: temporary implementation
