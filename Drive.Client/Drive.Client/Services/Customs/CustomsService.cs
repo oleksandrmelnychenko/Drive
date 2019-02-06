@@ -1,8 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 using Drive.Client.Models.Calculator;
+using Drive.Client.Models.Calculator.TODO;
+using Drive.Client.Services.RequestProvider;
+using Xamarin.Forms.Internals;
 
 namespace Drive.Client.Services.Customs {
     public class CustomsService : ICustomsService {
+
+        private readonly IRequestProvider _requestProvider;
 
         private const long GASOLINE_BID = 50;
 
@@ -10,14 +19,18 @@ namespace Drive.Client.Services.Customs {
 
         private const decimal PREFERENTIAL_MULTIPLIER = 0.5M;
 
-        public CustomsResult CalculateCustoms(CarCustoms carCustoms) {
+        public CustomsService(IRequestProvider requestProvider) {
+            _requestProvider = requestProvider;
+        }
+
+        public async Task<CustomsResult> CalculateCustoms(CarCustoms carCustoms) {
             CustomsResult customsResult = new CustomsResult();
 
             decimal bondedCarCost = carCustoms.Price;
 
             decimal importDuty = CalculateImportDuty(bondedCarCost);
 
-            decimal exciseDuty = CalculateExciseDuty(carCustoms.EngineType, carCustoms.Year, carCustoms.EngineCap);
+            decimal exciseDuty = await CalculateExciseDuty(carCustoms.EngineType, carCustoms.Year, carCustoms.EngineCap, carCustoms.Currency);
             if (carCustoms.PreferentialExcise) {
                 exciseDuty = CalculatePreferentialExcise(exciseDuty);
             }
@@ -28,12 +41,14 @@ namespace Drive.Client.Services.Customs {
 
             decimal clearedCarsCost = CalculateClearedCarsCost(bondedCarCost, customsClearanceCosts);
 
-            customsResult.BondedCarCost = bondedCarCost.ToString();
-            customsResult.ImportDuty = importDuty.ToString();
-            customsResult.ExciseDuty = exciseDuty.ToString();
-            customsResult.Vat = vat.ToString();
-            customsResult.CustomsClearanceCosts = customsClearanceCosts.ToString();
-            customsResult.ClearedCarsCost = clearedCarsCost.ToString();
+            string viewCurrencyType = carCustoms.Currency == Currency.Euro ? "€" : "$";
+
+            customsResult.BondedCarCost = string.Format($"{bondedCarCost:0.##} {viewCurrencyType}");
+            customsResult.ImportDuty = string.Format($"{importDuty:0.##} {viewCurrencyType}");
+            customsResult.ExciseDuty = string.Format($"{exciseDuty:0.##} {viewCurrencyType}");
+            customsResult.Vat = string.Format($"{vat:0.##} {viewCurrencyType}");
+            customsResult.CustomsClearanceCosts = string.Format($"{customsClearanceCosts:0.##} {viewCurrencyType}");
+            customsResult.ClearedCarsCost = string.Format($"{clearedCarsCost:0.##} {viewCurrencyType}");
 
             return customsResult;
         }
@@ -59,22 +74,50 @@ namespace Drive.Client.Services.Customs {
         }
 
         // Calculate excise duty.
-        private decimal CalculateExciseDuty(string engineType, decimal year, decimal engineCap) {
+        private async Task<decimal> CalculateExciseDuty(string engineType, decimal year, double engineCap, Currency currency) {
             decimal exciseDuty = default(decimal);
 
-            decimal engineMultiplier = CalculateEngineMultiplier(engineCap);
+            double engineMultiplier = engineCap;
             if (engineType == "Gasoline") {
-                exciseDuty = engineMultiplier * GASOLINE_BID * year;
+                exciseDuty = (decimal)engineMultiplier * GASOLINE_BID * year;
             } else {
-                exciseDuty = engineMultiplier * DIESEL_BID * year;
+                exciseDuty = (decimal)engineMultiplier * DIESEL_BID * year;
+            }
+
+            if (currency == Currency.USD) {
+                exciseDuty = await ConvertCurrency(exciseDuty);
             }
 
             return exciseDuty;
         }
 
-        // Engine multiplier from engine capacity.
-        private decimal CalculateEngineMultiplier(decimal engineCap) {
-            return engineCap / 1000;
+        private async Task<decimal> ConvertCurrency(decimal exciseDuty) {
+            string usdRate = string.Empty;
+            string euroRate = string.Empty;
+
+            try {
+                IEnumerable<ExchangeRate> exchangeRates = await _requestProvider.GetAsync<IEnumerable<ExchangeRate>>("https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5");
+
+                foreach (var item in exchangeRates) {
+                    if (item.Ccy == "USD") {
+                        usdRate = item.Sale;
+                    }
+                    if (item.Ccy == "EUR") {
+                        euroRate = item.Sale;
+                    }
+                }
+
+                if (decimal.TryParse(usdRate, out decimal usd) && decimal.TryParse(euroRate, out decimal euro)) {
+                    decimal difference = Math.Round(euro / usd, 2);
+                    exciseDuty = difference * exciseDuty;
+                }
+            }
+            catch (Exception ex) {
+                Debug.WriteLine($"ERROR: ---------{ex.Message}");
+                Debugger.Break();
+            }
+
+            return exciseDuty;
         }
 
         // Import duty 10% from bonded car cost.

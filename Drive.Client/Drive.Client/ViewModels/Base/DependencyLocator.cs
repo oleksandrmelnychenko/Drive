@@ -99,6 +99,7 @@ namespace Drive.Client.ViewModels.Base {
             builder.RegisterType<NameRegisterStepViewModel>();
             builder.RegisterType<RequestInfoPopupViewModel>();
             builder.RegisterType<SignInPasswordStepViewModel>();
+            builder.RegisterType<CustomsResultPopupViewModel>();
             builder.RegisterType<LanguageSelectPopupViewModel>();
             builder.RegisterType<SearchByPolandCarIdViewModel>();
             builder.RegisterType<PasswordRegisterStepViewModel>();

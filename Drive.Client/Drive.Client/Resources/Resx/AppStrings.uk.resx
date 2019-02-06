@@ -549,4 +549,25 @@
   <data name="LanguageUkr" xml:space="preserve">
     <value>Мова вводу українська</value>
   </data>
+  <data name="NewBid" xml:space="preserve">
+    <value>Нові тарифи (закон №8487 / 8488)</value>
+  </data>
+  <data name="Clean" xml:space="preserve">
+    <value>Очистити</value>
+  </data>
+  <data name="ExciseDutyUpperCase" xml:space="preserve">
+    <value>АКЦИЗНИЙ ЗБІР</value>
+  </data>
+  <data name="VatUpperCase" xml:space="preserve">
+    <value>ПДВ</value>
+  </data>
+  <data name="ClearedCarsCostUpperCase" xml:space="preserve">
+    <value>ЦІНА З РОЗМИТНЕННЯМ</value>
+  </data>
+  <data name="CustomsClearanceCostsUpperCase" xml:space="preserve">
+    <value>ВСЬОГО МИТНИХ ПЛАТЕЖІВ</value>
+  </data>
+  <data name="ImportDutyUpperCase" xml:space="preserve">
+    <value>МИТО</value>
+  </data>
 </root>

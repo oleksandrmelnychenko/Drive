@@ -2,9 +2,11 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
+using CoreGraphics;
 using Drive.Client.Controls;
 using Drive.Client.iOS.Renderers;
 using Foundation;
+using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
@@ -22,6 +24,7 @@ namespace Drive.Client.iOS.Renderers {
             if (Element != null) {
                 SetLetterSpacingText();
                 SetLetterSpacingPlaceholder();
+                UpdatePadding();
             }
 
             if (e.OldElement != null) {
@@ -33,7 +36,7 @@ namespace Drive.Client.iOS.Renderers {
             }
         }
 
-        
+
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) {
             base.OnElementPropertyChanged(sender, e);
@@ -44,7 +47,15 @@ namespace Drive.Client.iOS.Renderers {
                 SetLetterSpacingPlaceholder();
             } else if (e.PropertyName == Entry.TextProperty.PropertyName) {
                 SetLetterSpacingText();
+            } else if (e.PropertyName == EntryExtended.LeftPaddingProperty.PropertyName) {
+                UpdatePadding();
             }
+        }
+
+        private void UpdatePadding() {
+            UIView paddingView = new UIView(new CGRect(0, 0, ((EntryExtended)Element).LeftPadding, 0));
+            Control.LeftView = paddingView;
+            Control.LeftViewMode = UITextFieldViewMode.Always;
         }
 
         private void SetLetterSpacingText() {

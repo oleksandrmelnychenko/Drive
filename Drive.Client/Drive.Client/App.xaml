@@ -163,6 +163,8 @@
             <converters:EmailConverter x:Key="EmailConverter" />
             <converters:UpperCaseConverter x:Key="UpperCaseConverter" />
             <converters:StringUrlToUrlImageSourceConverter x:Key="StringUrlToUrlImageSourceConverter" />
+            <converters:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
+            <converters:StringToDecimalConverter x:Key="StringToDecimalConverter" />
 
             <!--  DATA TEMPLATES  -->
             <dataTemplates:VehicleRequestDataTemplateSelector x:Key="VehicleRequestDataTemplateSelector" />

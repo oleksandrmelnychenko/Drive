@@ -6,7 +6,7 @@ using System.Linq;
 using Xamarin.Forms;
 
 namespace Drive.Client.Converters {
-    class FirstElementFromCollectionConverter : IValueConverter {
+    public class FirstElementFromCollectionConverter : IValueConverter {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
             value is ICollection<StringResource> collection ? collection.FirstOrDefault()?.Value : null;
 

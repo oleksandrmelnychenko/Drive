@@ -1,10 +1,15 @@
 ﻿using Drive.Client.Factories.ObjectToSelectorDataItem;
+using Drive.Client.Factories.Validation;
 using Drive.Client.Helpers;
+using Drive.Client.Helpers.Localize;
+using Drive.Client.Models.Arguments.BottomtabSwitcher;
 using Drive.Client.Models.Calculator;
 using Drive.Client.Models.Calculator.TODO;
 using Drive.Client.Models.DataItems;
 using Drive.Client.Resources.Resx;
 using Drive.Client.Services.Customs;
+using Drive.Client.Validations;
+using Drive.Client.Validations.ValidationRules;
 using Drive.Client.ViewModels.Base;
 using Drive.Client.ViewModels.Popups;
 using Drive.Client.Views.BottomTabViews.Calculator;
@@ -23,84 +28,84 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Calculator {
 
         private readonly ICustomsService _customsService;
 
-        /// <summary>
-        /// TODO: temporary hardcoded data
-        /// </summary>
-        private List<CommonDataItem<VehicleType>> _vehicleTypes = null;
-        /// <summary>
-        /// TODO: temporary hardcoded data
-        /// </summary>
-        private List<CommonDataItem<int>> _vehicleAges = null;
-        /// <summary>
-        /// TODO: temporary hardcoded data
-        /// </summary>
-        private List<CommonDataItem<double>> _engineCapacities = null;
+        private readonly IValidationObjectFactory _validationObjectFactory;
 
+        private List<CommonDataItem<VehicleType>> _vehicleTypes = null;
+       
+        private List<CommonDataItem<int>> _vehicleAges = null;
+    
+        private List<CommonDataItem<double>> _engineCapacities = null;
 
         private SelectorPopupViewModel _selectorPopupViewModel;
         public SelectorPopupViewModel SelectorPopupViewModel {
             get => _selectorPopupViewModel;
-            private set => SetProperty<SelectorPopupViewModel>(ref _selectorPopupViewModel, value);
+            private set => SetProperty(ref _selectorPopupViewModel, value);
+        }
+
+        CustomsResultPopupViewModel _customsResultPopupViewModel;
+        public CustomsResultPopupViewModel CustomsResultPopupViewModel {
+            get => _customsResultPopupViewModel;
+            private set => SetProperty(ref _customsResultPopupViewModel, value);
         }
 
         private CommonDataItem<VehicleType> _selectedVehicleType;
         public CommonDataItem<VehicleType> SelectedVehicleType {
             get => _selectedVehicleType;
-            set => SetProperty<CommonDataItem<VehicleType>>(ref _selectedVehicleType, value);
+            set => SetProperty(ref _selectedVehicleType, value);
         }
 
         CommonDataItem<int> _selectedVehicleAge;
         public CommonDataItem<int> SelectedVehicleAge {
             get => _selectedVehicleAge;
-            set => SetProperty<CommonDataItem<int>>(ref _selectedVehicleAge, value);
+            set => SetProperty(ref _selectedVehicleAge, value);
         }
 
         CommonDataItem<double> _selectedEngineCapacity;
         public CommonDataItem<double> SelectedEngineCapacity {
             get => _selectedEngineCapacity;
-            set => SetProperty<CommonDataItem<double>>(ref _selectedEngineCapacity, value);
+            set => SetProperty(ref _selectedEngineCapacity, value);
         }
 
         List<CommonDataItem<Currency>> _currencies;
         public List<CommonDataItem<Currency>> Currencies {
             get => _currencies;
-            private set => SetProperty<List<CommonDataItem<Currency>>>(ref _currencies, value);
+            private set => SetProperty(ref _currencies, value);
         }
 
         CommonDataItem<Currency> _selectedCurrency;
         public CommonDataItem<Currency> SelectedCurrency {
             get => _selectedCurrency;
-            set => SetProperty<CommonDataItem<Currency>>(ref _selectedCurrency, value);
+            set => SetProperty(ref _selectedCurrency, value);
         }
 
         List<CommonDataItem<EngineType>> _engines;
         public List<CommonDataItem<EngineType>> Engines {
             get => _engines;
-            private set => SetProperty<List<CommonDataItem<EngineType>>>(ref _engines, value);
+            private set => SetProperty(ref _engines, value);
         }
 
         CommonDataItem<EngineType> _selectedEngine;
         public CommonDataItem<EngineType> SelectedEngine {
             get => _selectedEngine;
-            set => SetProperty<CommonDataItem<EngineType>>(ref _selectedEngine, value);
+            set => SetProperty(ref _selectedEngine, value);
         }
 
-        double _vehicleCost;
-        public double VehicleCost {
+        ValidatableObject<decimal> _vehicleCost;
+        public ValidatableObject<decimal> VehicleCost {
             get => _vehicleCost;
-            set => SetProperty<double>(ref _vehicleCost, value);
+            set => SetProperty(ref _vehicleCost, value);
         }
 
         double _vehicleFullMass;
         public double VehicleFullMass {
             get => _vehicleFullMass;
-            set => SetProperty<double>(ref _vehicleFullMass, value);
+            set => SetProperty(ref _vehicleFullMass, value);
         }
 
         bool _isGracePeriodTakenIntoAccount;
         public bool IsGracePeriodTakenIntoAccount {
             get => _isGracePeriodTakenIntoAccount;
-            set => SetProperty<bool>(ref _isGracePeriodTakenIntoAccount, value);
+            set => SetProperty(ref _isGracePeriodTakenIntoAccount, value);
         }
 
         public ICommand SelectVehicleTypeCommand => new Command(() => {
@@ -122,26 +127,49 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Calculator {
 
         public ICommand CalculateCommand => new Command(() => OnCalculate());
 
+        public ICommand InputTextChangedCommand => new Command(() => OnInputTextChanged());
+
+        private void OnInputTextChanged() {
+            if (_vehicleCost.Value > 0) {
+                _vehicleCost.Validate();
+            }
+        }
+
         /// <summary>
         ///     ctor().
         /// </summary>
         /// <param name="objectToSelectorDataItemFactory"></param>
-        public CalculatorViewModel(IObjectToSelectorDataItemFactory objectToSelectorDataItemFactory, ICustomsService customsService) {
+        public CalculatorViewModel(IObjectToSelectorDataItemFactory objectToSelectorDataItemFactory,
+                                   ICustomsService customsService,
+                                   IValidationObjectFactory validationObjectFactory) {
             _objectToSelectorDataItemFactory = objectToSelectorDataItemFactory;
             _customsService = customsService;
+            _validationObjectFactory = validationObjectFactory;
 
             SelectorPopupViewModel = DependencyLocator.Resolve<SelectorPopupViewModel>();
             SelectorPopupViewModel.InitializeAsync(this);
             SelectorPopupViewModel.ItemSelected += OnSelectorPopupViewModelItemSelected;
 
+            CustomsResultPopupViewModel = DependencyLocator.Resolve<CustomsResultPopupViewModel>();
+            CustomsResultPopupViewModel.InitializeAsync(this);
+
             GetData();
         }
-
+      
         public override Task InitializeAsync(object navigationData) {
+            if (navigationData is SelectedBottomBarTabArgs) {
+                ClearData();
+            }
 
             SelectorPopupViewModel?.InitializeAsync(navigationData);
+            CustomsResultPopupViewModel?.InitializeAsync(navigationData);
 
             return base.InitializeAsync(navigationData);
+        }
+
+        private void ClearData() {
+            VehicleCost = _validationObjectFactory.GetValidatableObject<decimal>();
+            VehicleCost.Validations.Add(new NoZeroPriceRule<decimal> { ValidationMessage = ResourceLoader.GetString(nameof(AppStrings.FieldRequired)) });
         }
 
         public override void Dispose() {
@@ -149,30 +177,42 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Calculator {
 
             SelectorPopupViewModel.ItemSelected -= OnSelectorPopupViewModelItemSelected;
             SelectorPopupViewModel?.Dispose();
+            CustomsResultPopupViewModel?.Dispose();
         }
 
-        private void OnCalculate() {
-            CustomsClearanceCalculatorFormBase calculatorFormBase = null;
+        private async void OnCalculate() {
+            if (Validate()) {
+                CustomsClearanceCalculatorFormBase calculatorFormBase = null;
 
-            switch (SelectedVehicleType.Data) {
-                case VehicleType.Car:
-                    calculatorFormBase = new CarCalculatorForm();
-                    break;
-                case VehicleType.Truck:
-                    calculatorFormBase = new TruckCalculatorForm();
-                    break;
-                default:
-                    Debugger.Break();
-                    throw new InvalidOperationException("Unresolved vehicle type");
+                switch (SelectedVehicleType.Data) {
+                    case VehicleType.Car:
+                        calculatorFormBase = new CarCalculatorForm();
+                        break;
+                    case VehicleType.Truck:
+                        calculatorFormBase = new TruckCalculatorForm();
+                        break;
+                    default:
+                        Debugger.Break();
+                        throw new InvalidOperationException("Unresolved vehicle type");
+                }
+
+                CustomsResult customsResult = await _customsService.CalculateCustoms(new CarCustoms {
+                    EngineCap = SelectedEngineCapacity.Data,
+                    EngineType = SelectedEngine.Data.ToString(),
+                    PreferentialExcise = IsGracePeriodTakenIntoAccount,
+                    Price = VehicleCost.Value,
+                    Year = SelectedVehicleAge.Data,
+                    Currency = SelectedCurrency.Data
+                });
+
+                CustomsResultPopupViewModel.ShowPopupCommand.Execute(customsResult);
             }
-           
-            var tt = _customsService.CalculateCustoms(new CarCustoms {
-                EngineCap = 3000,
-                EngineType = "Gasoline",
-                PreferentialExcise = false,
-                Price = 5000,
-                Year = 10
-            });
+        }
+
+        private bool Validate() {
+            bool isValidVehicleCost = _vehicleCost.Validate();
+
+            return isValidVehicleCost;
         }
 
         protected override void TabbViewModelInit() {
@@ -196,7 +236,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Calculator {
 
         private void GetData() {
             Currencies = _objectToSelectorDataItemFactory.BuildCommonDataItems(Enum.GetValues(typeof(Currency)).Cast<Currency>().ToArray<Currency>());
-            SelectedCurrency = Currencies.First();
+            SelectedCurrency = Currencies.Last();
 
             Engines = _objectToSelectorDataItemFactory.BuildCommonDataItems(Enum.GetValues(typeof(EngineType)).Cast<EngineType>().ToArray<EngineType>());
             SelectedEngine = Engines.First();
@@ -211,9 +251,12 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Calculator {
             for (int i = 0; i < 195; i++) {
                 engineCap.Add(Math.Round(engineCap.LastOrDefault() + 0.1, 1));
             }
-
             _engineCapacities = _objectToSelectorDataItemFactory.BuildCommonDataItems(engineCap);
             SelectedEngineCapacity = _engineCapacities.First();
+        }
+
+        private void AddValidations() {
+            _vehicleCost.Validations.Add(new NoZeroPriceRule<decimal> { ValidationMessage = ResourceLoader.GetString(nameof(AppStrings.FieldRequired)) });
         }
     }
 }

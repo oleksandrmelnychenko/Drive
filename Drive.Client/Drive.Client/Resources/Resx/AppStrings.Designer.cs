@@ -214,6 +214,24 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clean.
+        /// </summary>
+        public static string Clean {
+            get {
+                return ResourceManager.GetString("Clean", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TOTAL PRICE.
+        /// </summary>
+        public static string ClearedCarsCostUpperCase {
+            get {
+                return ResourceManager.GetString("ClearedCarsCostUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Color.
         /// </summary>
         public static string Color {
@@ -264,6 +282,15 @@ namespace Drive.Client.Resources.Resx {
         public static string CustomsClearanceCalculatorUppercase {
             get {
                 return ResourceManager.GetString("CustomsClearanceCalculatorUppercase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TOTAL CUSTOMS PAYMENTS.
+        /// </summary>
+        public static string CustomsClearanceCostsUpperCase {
+            get {
+                return ResourceManager.GetString("CustomsClearanceCostsUpperCase", resourceCulture);
             }
         }
         
@@ -476,6 +503,15 @@ namespace Drive.Client.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EXCISE.
+        /// </summary>
+        public static string ExciseDutyUpperCase {
+            get {
+                return ResourceManager.GetString("ExciseDutyUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EXECUTED.
         /// </summary>
         public static string ExecutedUpperCase {
@@ -562,6 +598,15 @@ namespace Drive.Client.Resources.Resx {
         public static string HistoryRequestsUpperCase {
             get {
                 return ResourceManager.GetString("HistoryRequestsUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CUSTOMS.
+        /// </summary>
+        public static string ImportDutyUpperCase {
+            get {
+                return ResourceManager.GetString("ImportDutyUpperCase", resourceCulture);
             }
         }
         
@@ -733,6 +778,15 @@ namespace Drive.Client.Resources.Resx {
         public static string NameUpperCase {
             get {
                 return ResourceManager.GetString("NameUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Tariffs (Law No. 8487/8488).
+        /// </summary>
+        public static string NewBid {
+            get {
+                return ResourceManager.GetString("NewBid", resourceCulture);
             }
         }
         
@@ -1210,6 +1264,15 @@ namespace Drive.Client.Resources.Resx {
         public static string UserNameUpperCase {
             get {
                 return ResourceManager.GetString("UserNameUpperCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VAT.
+        /// </summary>
+        public static string VatUpperCase {
+            get {
+                return ResourceManager.GetString("VatUpperCase", resourceCulture);
             }
         }
         

@@ -3,6 +3,7 @@
     x:Class="Drive.Client.Views.BottomTabViews.Calculator.CalculatorView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviors="clr-namespace:Drive.Client.Behaviors"
     xmlns:controls="clr-namespace:Drive.Client.Controls"
     xmlns:converters="clr-namespace:Drive.Client.Converters"
     xmlns:ffImage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
@@ -86,14 +87,14 @@
 
                 <StackLayout Spacing="24">
 
-                    <!--  Vehicle type  -->
-                    <Grid ColumnSpacing="0" RowSpacing="9">
+                    <!--  Vehicle type TEMPORARY COMMENT  -->
+                    <!--<Grid ColumnSpacing="0" RowSpacing="9">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="54" />
                         </Grid.RowDefinitions>
 
-                        <!--  Input title  -->
+                        --><!--  Input title  --><!--
                         <controls:LabelExtended
                             Grid.Row="0"
                             LetterSpacing="{OnPlatform iOS=1.4,
@@ -101,7 +102,7 @@
                             Style="{StaticResource smallTitleLabel}"
                             Text="{Binding ResourceLoader[VehicleTypeUppercase].Value, Mode=TwoWay}" />
 
-                        <!--  Input container  -->
+                        --><!--  Input container  --><!--
                         <controls:ExtendedContentView
                             Grid.Row="1"
                             BorderColor="{StaticResource Key=LightGrayColor}"
@@ -128,7 +129,7 @@
                                     Source="resource://Drive.Client.Resources.Images.ArrowNext.svg" />
                             </AbsoluteLayout>
                         </controls:ExtendedContentView>
-                    </Grid>
+                    </Grid>-->
 
                     <!--  Currency types  -->
                     <Grid ColumnSpacing="0" RowSpacing="9">
@@ -182,6 +183,7 @@
                             Grid.Row="1"
                             BorderColor="{StaticResource Key=LightGrayColor}"
                             BorderThickness="1">
+
                             <controls:EntryExtended
                                 FontFamily="{StaticResource SFProLight}"
                                 FontSize="{StaticResource MediumSize}"
@@ -191,9 +193,21 @@
                                                                       Android=0.07}"
                                 PlaceholderColor="{StaticResource ExtraGrayColor}"
                                 ReturnType="Next"
-                                Text="{Binding Path=VehicleCost, Mode=TwoWay}"
-                                TextColor="{StaticResource DarkColor}" />
+                                Text="{Binding VehicleCost.Value, Mode=TwoWay, Converter={StaticResource StringToDecimalConverter}}"
+                                TextColor="{StaticResource DarkColor}">
+                                <controls:EntryExtended.Behaviors>
+                                    <behaviors:EventToCommandBehavior Command="{Binding InputTextChangedCommand}" EventName="TextChanged" />
+                                </controls:EntryExtended.Behaviors>
+                            </controls:EntryExtended>
                         </controls:ExtendedContentView>
+
+                        <!--  ERROR LABEL  -->
+                        <controls:LabelExtended
+                            Grid.Row="1"
+                            Style="{StaticResource ValidationErrorLabelStyle}"
+                            Text="{Binding VehicleCost.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                            TranslationY="35"
+                            VerticalOptions="Center" />
                     </Grid>
 
                     <!--  Vehicle full mass  -->
@@ -362,8 +376,7 @@
                         <!--  Description  -->
                         <StackLayout Grid.Column="0" Spacing="0">
                             <controls:LabelExtended
-                                FontFamily="{StaticResource Key=SFProLight}"
-                                FontSize="{StaticResource Key=LittleSize}"
+                                FontSize="{StaticResource LittleSize}"
                                 LetterSpacing="{OnPlatform iOS=1.4,
                                                            Android=0.07}"
                                 Text="{Binding ResourceLoader[WithGracePeriodIntoAccountUppercase].Value, Mode=TwoWay, StringFormat='{0}*'}"

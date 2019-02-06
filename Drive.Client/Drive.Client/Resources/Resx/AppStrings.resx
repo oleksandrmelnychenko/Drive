@@ -550,4 +550,25 @@ certificate issued</value>
   <data name="LanguageUkr" xml:space="preserve">
     <value>Input language is Ukrainian</value>
   </data>
+  <data name="NewBid" xml:space="preserve">
+    <value>New Tariffs (Law No. 8487/8488)</value>
+  </data>
+  <data name="Clean" xml:space="preserve">
+    <value>Clean</value>
+  </data>
+  <data name="ExciseDutyUpperCase" xml:space="preserve">
+    <value>EXCISE</value>
+  </data>
+  <data name="VatUpperCase" xml:space="preserve">
+    <value>VAT</value>
+  </data>
+  <data name="ClearedCarsCostUpperCase" xml:space="preserve">
+    <value>TOTAL PRICE</value>
+  </data>
+  <data name="CustomsClearanceCostsUpperCase" xml:space="preserve">
+    <value>TOTAL CUSTOMS PAYMENTS</value>
+  </data>
+  <data name="ImportDutyUpperCase" xml:space="preserve">
+    <value>CUSTOMS</value>
+  </data>
 </root>
