@@ -94,7 +94,9 @@
                             <RowDefinition Height="54" />
                         </Grid.RowDefinitions>
 
-                        --><!--  Input title  --><!--
+                    -->
+                    <!--  Input title  -->
+                    <!--
                         <controls:LabelExtended
                             Grid.Row="0"
                             LetterSpacing="{OnPlatform iOS=1.4,
@@ -102,7 +104,9 @@
                             Style="{StaticResource smallTitleLabel}"
                             Text="{Binding ResourceLoader[VehicleTypeUppercase].Value, Mode=TwoWay}" />
 
-                        --><!--  Input container  --><!--
+                    -->
+                    <!--  Input container  -->
+                    <!--
                         <controls:ExtendedContentView
                             Grid.Row="1"
                             BorderColor="{StaticResource Key=LightGrayColor}"

@@ -75,7 +75,7 @@ namespace Drive.Client.ViewModels {
                 RegisterClientDeviceInfo();
             }
 
-            SelectedBottomItemIndex = 0;
+            SelectedBottomItemIndex = 1;
 
             UpdateAppVersionPopupViewModel = DependencyLocator.Resolve<UpdateAppVersionPopupViewModel>();
             UpdateAppVersionPopupViewModel.InitializeAsync(this);

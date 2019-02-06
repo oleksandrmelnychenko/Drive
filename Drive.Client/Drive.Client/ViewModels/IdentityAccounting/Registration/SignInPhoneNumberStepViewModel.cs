@@ -1,12 +1,9 @@
-﻿using Drive.Client.Extensions;
-using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
+﻿using Drive.Client.Models.Arguments.IdentityAccounting.Registration;
 using Drive.Client.Resources.Resx;
-using Drive.Client.Validations;
 using Drive.Client.Validations.ValidationRules;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace Drive.Client.ViewModels.IdentityAccounting.Registration {
     public sealed class SignInPhoneNumberStepViewModel : StepBaseViewModel {

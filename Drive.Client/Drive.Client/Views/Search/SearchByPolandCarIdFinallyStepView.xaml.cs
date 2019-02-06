@@ -7,5 +7,11 @@ namespace Drive.Client.Views.Search {
         public SearchByPolandCarIdFinallyStepView() {
             InitializeComponent();
         }
+
+        protected override void OnAppearing() {
+            base.OnAppearing();
+
+            _entyEx?.Focus();
+        }
     }
 }

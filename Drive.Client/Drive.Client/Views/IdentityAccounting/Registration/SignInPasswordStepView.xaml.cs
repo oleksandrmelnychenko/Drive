@@ -6,5 +6,11 @@ namespace Drive.Client.Views.IdentityAccounting.Registration {
         public SignInPasswordStepView() {
             InitializeComponent();
         }
+
+        protected override void OnAppearing() {
+            base.OnAppearing();
+
+            _entyEx?.Focus();
+        }
     }
 }

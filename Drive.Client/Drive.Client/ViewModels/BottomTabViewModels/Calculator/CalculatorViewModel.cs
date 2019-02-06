@@ -236,7 +236,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Calculator {
 
         private void GetData() {
             Currencies = _objectToSelectorDataItemFactory.BuildCommonDataItems(Enum.GetValues(typeof(Currency)).Cast<Currency>().ToArray<Currency>());
-            SelectedCurrency = Currencies.Last();
+            SelectedCurrency = Currencies.First();
 
             Engines = _objectToSelectorDataItemFactory.BuildCommonDataItems(Enum.GetValues(typeof(EngineType)).Cast<EngineType>().ToArray<EngineType>());
             SelectedEngine = Engines.First();
