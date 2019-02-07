@@ -25,8 +25,8 @@ namespace Drive.Client.Services.DeviceUtil {
             _identityService = identityService;
         }
 
-        public Task<bool> RegisterClientDeviceInfoAsync(ClientHardware clientHardware, CancellationTokenSource cancellationTokenSource) =>
-            Task.Run(async () => {
+        public async Task<bool> RegisterClientDeviceInfoAsync(ClientHardware clientHardware, CancellationTokenSource cancellationTokenSource) =>
+            await Task.Run(async () => {
                 bool responseCompletion = default(bool);
 
                 string url = BaseSingleton<GlobalSetting>.Instance.RestEndpoints.ClientHardwareEndPoints.RegisterClientDevice;
@@ -41,7 +41,6 @@ namespace Drive.Client.Services.DeviceUtil {
                 }
                 catch (Exception ex) {
                     Debug.WriteLine($"ERROR: {ex.Message}");
-                    Debugger.Break();
                     responseCompletion = true;
                 }
 

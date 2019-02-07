@@ -51,7 +51,6 @@ namespace Drive.Client.ViewModels {
                 DependencyLocator.Resolve<HomeViewModel>(),
                 DependencyLocator.Resolve<SearchViewModel>(),
                 DependencyLocator.Resolve<CalculatorViewModel>(),
-                //DependencyLocator.Resolve<BookmarkViewModel>(),
                 DependencyLocator.Resolve<ProfileViewModel>()
             };
 
@@ -130,7 +129,6 @@ namespace Drive.Client.ViewModels {
                     ClientHardware clientHardware = await _deviceUtilService.GetDeviceInfoAsync(cancellationTokenSource);
 
                     bool deviceRegistrationCompletion = await _deviceUtilService.RegisterClientDeviceInfoAsync(clientHardware, cancellationTokenSource);
-
                     if (!deviceRegistrationCompletion) {
                         UpdateAppVersionPopupViewModel.ShowPopupCommand.Execute(null);
                     }

@@ -27,6 +27,7 @@ using Xamarin.Forms.Internals;
 
 namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
     public sealed class BandViewModel: NestedViewModel, IVisualFiguring, ISwitchTab {
+
         private readonly IAnnouncementService _announcementService;
 
         private readonly IAnnouncementsFactory _announcementsFactory;
@@ -137,7 +138,7 @@ namespace Drive.Client.ViewModels.BottomTabViewModels.Home {
 
             ResetCancellationTokenSource(ref _getPostsCancellationTokenSource);
             PostFunctionPopupViewModel?.Dispose();
-            Posts?.ForEach<PostBaseViewModel>(postViewModel => postViewModel.Dispose());
+            Posts?.ForEach(postViewModel => postViewModel.Dispose());
             Posts?.Clear();
         }
 
