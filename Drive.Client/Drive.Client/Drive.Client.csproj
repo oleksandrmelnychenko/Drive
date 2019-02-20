@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Extensions\EncodeQueryStringExtension.cs" />
     <Compile Remove="Extensions\TranslateExtension.cs" />
     <Compile Remove="Models\Notifications\INotificationType.cs" />
     <Compile Remove="Services\Interface1.cs" />

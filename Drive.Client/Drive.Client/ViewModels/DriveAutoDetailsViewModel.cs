@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -106,14 +107,16 @@ namespace Drive.Client.ViewModels {
             try {
                 using (var file = await _pickMediaService.TakePhotoAsync()) {
                     if (file != null) {
-                        List<string> results = await _visionService.AnalyzeImageForText(file);
+                        List<string> results = await _visionService.AnalyzeImageForText(file);                                
 
                         if (results != null && results.Any()) {
+                            List<string> parsedResult = results.ParseVisionResult();
+
                             targetImage = await _pickMediaService.BuildPickedImageAsync(file);
 
                             if (targetImage != null) {
                                 FormDataContent formDataContent = new FormDataContent {
-                                    Content = results,
+                                    Content = parsedResult,
                                     MediaContent = targetImage
                                 };
 

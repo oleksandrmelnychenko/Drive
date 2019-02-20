@@ -47,11 +47,14 @@
                 VerticalOptions="Center"
                 WidthRequest="38">
 
-                <ffimageloading:CachedImage
+                <ffimageloadingsvg:SvgCachedImage
                     Aspect="AspectFill"
                     HeightRequest="38"
+                    CacheType="Memory"
+                    RetryCount="3"
+                    RetryDelay="2"
                     HorizontalOptions="Center"
-                    Source="{Binding AuthorAvatarUrl, Converter={StaticResource StringUrlToUrlImageSourceConverter}}"
+                    Source="{Binding AuthorAvatarUrl}"
                     VerticalOptions="Center"
                     WidthRequest="38" />
                 <ffimageloadingsvg:SvgCachedImage
